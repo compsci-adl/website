@@ -11,7 +11,6 @@ body {
 
 body {
 	font-size: 1.5em;
-	min-width: 600px;
 	margin: 0 auto;
 	background-image: url(../images/background1.jpg);
 }
@@ -50,6 +49,7 @@ hr {
 
 .header_banner {
 	width: 75%;
+	min-width: 35em;
 	margin: auto;
 }
 
@@ -68,6 +68,7 @@ hr {
 
 .nav_bar_align {
 	width: 75%;
+	min-width: 35em;
 	margin: auto;
 }
 
@@ -134,11 +135,10 @@ hr {
 }
 
 .body_container {
-	border-spacing: 0.2em;
 	display: table;
 	width: 75%;
+	min-width: 35em;
 	margin: 0em auto 1.2em auto;
-	/*padding: 0 0 5em 0;*/
 	background: #DDDDDD;
 	box-shadow: 0px 5px 10px #444444;
 	-moz-box-shadow: 0px 5px 10px #444444;
@@ -148,7 +148,7 @@ hr {
 .content {
 	display: table-cell;
 	width: 75%;
-	padding: 0 1.0em;
+	padding: 0 1em 5em 1.0em;
 }
 
 .entry {
@@ -159,7 +159,7 @@ hr {
 	width: 105%;
 	display: table;
 	padding: 0 0 0 1.0em;
-	margin: 0 0 0 -1.2em;
+	margin: 0 0 0 -1.0em;
 	background: linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
 	background: -moz-linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
 	background: -webkit-linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
@@ -225,7 +225,6 @@ hr {
 	width: 100%;
 	position: absolute;
 	bottom: 0;
-	/*margin: 1em 0 0 0;*/
 	background: #EEEEEE;
 	border-top: 0.2em solid #CCCCCC; 
 }
@@ -234,6 +233,7 @@ hr {
 	color: #AAAAAA;
 	font-size: 0.75em;
 	width: 75%;
-	padding: 0.5px 0;
-	margin: 0 auto;
+	min-width: 45.7em;
+	padding: 0 0.5em;
+	margin: auto;
 }
