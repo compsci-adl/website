@@ -10,7 +10,7 @@ body {
 }
 
 body {
-	font-size: 1.5em;
+	font-size: 1em;
 	margin: 0 auto;
 	background-image: url(../images/background1.jpg);
 }
@@ -40,15 +40,15 @@ hr {
 /*******************************************/
 
 .header {
-	color: #222222;
+	color: #ffcc00;
 	width: 100%;
 	padding: 0.5em 0 0 0;
-	background: #222222;
+	background-color: #262626;
 	font-family: 'Roboto', sans-serif;
 }
 
 .header_banner {
-	width: 75%;
+	width: 100%;
 	min-width: 35em;
 	margin: auto;
 }
@@ -226,7 +226,7 @@ hr {
 	position: absolute;
 	bottom: 0;
 	background: #EEEEEE;
-	border-top: 0.2em solid #CCCCCC; 
+	border-top: 0.2em solid #CCCCCC;
 }
 
 .footer_content {
