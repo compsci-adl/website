@@ -231,8 +231,6 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 ################
 
 INSTALLED_APPS = (
-    "cssite",
-    "mezzanine_pagedown",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -311,14 +309,6 @@ OPTIONAL_APPS = (
 )
 
 DEBUG_TOOLBAR_CONFIG = {"INTERCEPT_REDIRECTS": False}
-
-RICHTEXT_WIDGET_CLASS = 'mezzanine_pagedown.widgets.PageDownWidget'
-RICHTEXT_FILTER = 'mezzanine_pagedown.filters.custom'
-RICHTEXT_FILTERS = (RICHTEXT_FILTER,)
-PAGEDOWN_MARKDOWN_EXTENSIONS = ('extra','codehilite','toc')
-RICHTEXT_FILTER_LEVEL = 3
-PAGEDOWN_SERVER_SIDE_PREVIEW = True
-SEARCH_MODEL_CHOICES = []
 
 BLOG_SLUG = ""
 ###################
