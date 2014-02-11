@@ -6,6 +6,8 @@ from django.contrib import admin
 
 from mezzanine.core.views import direct_to_template
 
+from mezzanine.blog.views import blog_post_list
+
 admin.autodiscover()
 
 # Add the urlpatterns for any custom Django applications here.
@@ -30,7 +32,7 @@ urlpatterns += patterns('',
     # one homepage pattern, so if you use a different one, comment this
     # one out.
 
-    url("^$", direct_to_template, {"template": "blog/blog_post_list.html"}, name="home"),
+    url("^$", blog_post_list, name="home"),
 
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
