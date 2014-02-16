@@ -87,8 +87,8 @@
 </div>-->
 
 
-<div class="container">
-
+<!--<div class="container">-->
+<div class="body_container">
 
 <!-- +++++++ I HAVE NO IDEA WHAT THIS BLOCK DOES BUT NOTHING SEEMS TO BREAK BY COMMENTING IT OUT -->
 <!--{% nevercache %}
@@ -115,7 +115,7 @@
 {% endspaceless %}
 </ul>-->
 
-</div>
+<!--</div>-->
 
 <!--<div class="container">
 <div class="row">-->
@@ -130,14 +130,14 @@
 
 
 <!-- ++++++ ALL BLOG POSTS ENCAPSULATED IN THIS DIV ++++++ -->
-<div class="col-md-7 middle">
+<div class="entry">
     {% block main %}{% endblock %}
 </div>
 
 
-
 <!-- ++++++ RIGHT HAND COLUMN BAR ++++++ -->
-<div class="col-md-3 right">
+<!--<div class="col-md-3 right">-->
+<div class="side_bar">
     {% nevercache %}
     {% include "includes/user_panel.html" %}
     {% endnevercache %}
@@ -155,9 +155,12 @@
     </div>
     </div>
 </div>
+<!--</div>-->
 
 <!--</div>
 </div>-->
+</div>
+
 
 
 <!-- +++++++ FOOTER BAR ++++++ --> 

@@ -64,6 +64,7 @@
 {% for blog_post in blog_posts.object_list %}
 {% block blog_post_list_post_title %}
 {% editable blog_post.title %}
+<div class="entry_title">
 <h2>
     <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
 </h2>
@@ -84,8 +85,11 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
+    <div class="date">
     {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+    </div>
 </h6>
+</div>
 {% endeditable %}
 {% endblock %}
 
