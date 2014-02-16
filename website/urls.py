@@ -33,7 +33,6 @@ urlpatterns += patterns('',
     # one out.
 
     url("^$", blog_post_list, name="home"),
-
     # HOMEPAGE AS AN EDITABLE PAGE IN THE PAGE TREE
     # ---------------------------------------------
     # This pattern gives us a normal ``Page`` object, so that your
