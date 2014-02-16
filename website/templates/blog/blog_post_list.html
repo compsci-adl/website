@@ -15,14 +15,6 @@
 {{ page.description }}
 {% endmetablock %}{% endblock %}
 
-{% block title %}
-{% if page %}
-{% editable page.title %}{{ page.title }}{% endeditable %}
-{% else %}
-{% trans "Blog" %}
-{% endif %}
-{% endblock %}
-
 {% block breadcrumb_menu %}
 {{ block.super }}
 {% if tag or category or year or month or author %}

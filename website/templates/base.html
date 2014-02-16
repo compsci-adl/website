@@ -43,12 +43,31 @@
 <script src="{% static "js/respond.min.js" %}"></script>
 <![endif]-->
 
-{% block extra_head %}{% endblock %}
 </head>
 
 <body id="{% block body_id %}body{% endblock %}">
+    <div id="container">
 
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <!-- +++++++++++++++++ HEADER +++++++++++++++++ -->
+        <div class="header">
+            <div class="header_banner">
+                <img src="{% static "images/banner.png" %}">
+            </div>
+        </div>
+
+        <!-- +++++++++++++++++ NAVIGATION BAR +++++++++++++++++ -->
+        <div class="nav_bar">
+            <div class="nav_bar_align">
+                <div class="nav_container">
+                    <div class="nav_btn_current"><a href="index.html">home</a></div>
+                    <div class="nav_btn"><a href="about.html">about</a></div>
+                    <div class="nav_btn"><a href="join.html">join</a></div>
+                    <div class="nav_btn"><a href="members.html">members</a></div>
+                    <div class="nav_btn"><a href="contact.html">contact</a></div>
+                </div>
+            </div>
+        </div>
+<!--<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 <div class="container">
 <div class="navbar-header">
     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -65,11 +84,14 @@
     {% page_menu "pages/menus/dropdown.html" %}
 </div>
 </div>
-</div>
+</div>-->
+
 
 <div class="container">
 
-{% nevercache %}
+
+<!-- +++++++ I HAVE NO IDEA WHAT THIS BLOCK DOES BUT NOTHING SEEMS TO BREAK BY COMMENTING IT OUT -->
+<!--{% nevercache %}
 {% if messages %}
 <div class="messages">
 {% for message in messages %}
@@ -80,9 +102,12 @@
 {% endfor %}
 </div>
 {% endif %}
-{% endnevercache %}
+{% endnevercache %}-->
 
-<h1>{% block title %}{% endblock %}</h1>
+<p class="first">
+    <h2>Welcome to the official site of the cs.club()</h2>
+</p>
+<!--<h1>{% block title %}{% endblock %}</h1>-->
 
 <!--<ul class="breadcrumb">
 {% spaceless %}
@@ -92,8 +117,9 @@
 
 </div>
 
-<div class="container">
-<div class="row">
+<!--<div class="container">
+<div class="row">-->
+
 
 <!--<div class="col-md-2 left">
     {% block left_panel %}
@@ -101,18 +127,27 @@
     {% endblock %}
 </div>-->
 
+
+
+<!-- ++++++ ALL BLOG POSTS ENCAPSULATED IN THIS DIV ++++++ -->
 <div class="col-md-7 middle">
     {% block main %}{% endblock %}
 </div>
 
+
+
+<!-- ++++++ RIGHT HAND COLUMN BAR ++++++ -->
 <div class="col-md-3 right">
     {% nevercache %}
     {% include "includes/user_panel.html" %}
     {% endnevercache %}
     <div class="panel panel-default">
     <div class="panel-body">
+    <!-- +++++ GOOGLE CALENDAR WIDGET +++++ -->
+    <iframe src="https://www.google.com/calendar/embed?src=csclub.org.au_ufpa491kddofejhphe061cdjp4%40group.calendar.google.com&ctz=Australia/Adelaide" style="border: 0" width="190" height="300" frameborder="0" scrolling="no"></iframe>
     {% block right_panel %}
-    <p>CALENDER WIDGET GOES HERE</p>
+    
+    <!-- +++++ TWITTER WIDGET SHOULD WE LATER CHOOSE TO LINK TO OFFICIAL TWITTER PAGE FOR CLUB +++++ -->
     <!--{% ifinstalled mezzanine.twitter %}
     {% include "twitter/tweets.html" %}
     {% endifinstalled %}-->
@@ -121,14 +156,16 @@
     </div>
 </div>
 
-</div>
-</div>
+<!--</div>
+</div>-->
 
-<footer>
-<div class="container">
+
+<!-- +++++++ FOOTER BAR ++++++ --> 
+<div id="footer">
+<!--<div class="container">-->
 <!--{% page_menu "pages/menus/footer.html" %}-->
 
-<div class="row">
+<!--<div class="row">-->
 <!--<p class="site-info text-center">
     {% trans "Powered by" %}
     <a href="http://mezzanine.jupo.org">Mezzanine</a>{% ifinstalled cartridge.shop %},
@@ -142,10 +179,19 @@
     <a href="{% url "set_device" "mobile" %}?next={{ request.path }}">{% trans "View Mobile Site" %}</a>
     {% endifinstalled %}
 </p>-->
-</div>
-</div>
-</footer>
 
+            <div class="footer_content">
+                <p>
+                    cs.club()
+                    <br/>
+                    Computer Science Club of The University of Adelaide
+                </p>
+            </div>
+<!--</div>
+</div>-->
+</div>
+
+<!-- +++++ SCRIPTS FOR MAKING ADMIN TOOLTIPS APPEAR +++++ -->
 {% include "includes/footer_scripts.html" %}
 
 </body>

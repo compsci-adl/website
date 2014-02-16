@@ -1,6 +1,4 @@
 TO DO:
-- Deal with the local version of the blogs template html file not rendering
-	- Alternatively, make a new index page from scratch, and work in the django for the blog posts manually
 - Manipulate the existing base.html and connected .html files to resemble the layouts designed by Ed
-- Implement a django app for the calender widget
-- Implement a django database app for the storage of member lists as well as a member registration page
+    - Navbar editing is being a bit iffy for the time being; for me (Daniel) at least. Easy solution is to remove django's dynamic navbar generation and manually throw in all the main navbar pages. Pros: Easy fix. Cons: If we ever add an extra main page (note this excludes individual blog posts and is more to do with pages like contact/about us/gallery/etc) we have to manually edit the base.html file to make the required hyperlinks. It's literally just one extra line of html, so not that big of a deal, but still not a very fluid solution. Currently considering just leaving it as a low priority fix. The easier solution is still good enough for shipping. Easy solution Priority: High. Hard(er) solution Priority: Low
+    - Still unsure how to scrape out individual elements of blog posts to style as shown in prototype. The base.html file only has one line that is responsible for rendering everything. We'll have to fiddle with blog_post_list.html to do this. Priority: High
