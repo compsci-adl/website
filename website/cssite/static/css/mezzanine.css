@@ -181,20 +181,26 @@ img.pull-left {
   font-weight: normal;
   margin-bottom: 0px;
   font-size: 14px;
+  line-height: 95%;
 }
 .post-meta > a {
   color: #666;
 }
-.share-facebook, .share-twitter,
-.share-facebook:hover, .share-twitter:hover {
-  color: #fff;
-  font-weight: 700;
+.share-facebook:hover{
+  background-color: #344D7C;
 }
+
+.share-twitter:hover {
+  background-color: #007A9F;
+}
+
 .share-facebook {
+  font-weight: 700;
   background-color: #4667A6;
 }
 .share-twitter {
-    background-color: #00A3D4;
+  font-weight: 700;
+  background-color: #00A3D4;
 }
 .tag-weight-1 {
   font-size: 90%;

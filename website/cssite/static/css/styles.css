@@ -78,6 +78,42 @@ a:active{
 	padding-top: .3em;
 }
 
+.linebreaker{
+	display:block;
+	margin: .3em;
+}
+
+.rightbar_titles{
+	font-size: 1.2em;
+	line-height: 100%;
+}
+
+.rightbar_year{
+	font-weight:bold;
+	margin-left: 1em;
+}
+
+.rightbar_month{
+	margin-left: 2em;
+}
+
+.rightbar_content{
+	margin-left: 1em;
+}
+
+.buttoncolour{
+	color:white;
+}
+
+.formy{
+	line-height: 100%;
+}
+
+.pagenumbers{
+	display:block;
+	text-align: center;
+}
+
 /*******************************************/
 /*                 HEADER                  */
 /*******************************************/
@@ -215,14 +251,18 @@ a:active{
 	width: 40%;
 	display: table-row;
 	font-size: 1.4em;
-	padding: 0 0 0 10px;
+	margin: 10px 0;
 }
 
 .date {
-	display: table-row;
-	font-size: 0.75em;
-	padding: 0 1.0em 0 0;
-	text-align: left;
+	/*display: table-row;*/
+	font-size: 0.9em;
+	padding: 0 0 0 1.1em;
+	margin: 0 0 0 0;
+}
+
+.author {
+	padding: 0 0 0 1em;
 }
 
 

@@ -68,11 +68,13 @@
 <div class="blog_title">
     <a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a>
 </div>
+<div class="linebreaker"></div>
 {% endeditable %}
 {% endblock %}
 {% block blog_post_list_post_metainfo %}
 {% editable blog_post.publish_date %}
 <div class="post-meta">
+    <div class="author">
     {% trans "Posted by" %}:
     {% with blog_post.user as author %}
     <a href="{% url "blog_post_list_author" author %}">{{ author.get_full_name|default:author.username }}</a>
@@ -85,6 +87,7 @@
     {% endfor %}
     {% endif %}
     {% endwith %}
+    </div>
     <div class="date">
     {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
     </div>
@@ -140,10 +143,9 @@
 {% endfor %}
 
 {% pagination_for blog_posts %}
-
-{% if settings.COMMENTS_DISQUS_SHORTNAME %}
+<!--{% if settings.COMMENTS_DISQUS_SHORTNAME %}
 {% include "generic/includes/disqus_counts.html" %}
-{% endif %}
+{% endif %}-->
 
 {% endblock %}
 
