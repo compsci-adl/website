@@ -172,13 +172,14 @@ img.pull-left {
 ==========================================*/
 
 .blog-list-detail {
-  border-bottom: 1px dashed #CCCCCC;
+  /*border-bottom: 1px dashed #CCCCCC;
   margin-bottom: 30px;
-  padding-bottom: 15px;
+  padding-bottom: 15px;*/
 }
 .post-meta {
-  font-weight: 700;
-  margin-bottom: 15px;
+  font-size: 100%;
+  font-weight: normal;
+  margin-bottom: 0px;
   font-size: 14px;
 }
 .post-meta > a {

@@ -24,6 +24,10 @@ h2 {
 	font-size: 1.3em;
 }
 
+h6 {
+	font-size: 0.4em;
+}
+
 hr {
 	background-color: #AAAAAA;
 	border: 0;
@@ -33,6 +37,45 @@ hr {
 #container {
 	min-height: 100%;
 	position: relative;
+}
+
+a:link{
+	color:#000000;
+	text-decoration: none;
+}
+
+a:visited{
+	color:#3d3d3d;
+	text-decoration: none;
+}
+
+a:hover{
+	color:#898989;
+	text-decoration: none;
+}
+
+a:active{
+	color:#5b5b5b;
+	text-decoration: none;
+}
+
+.titler{
+	padding: 0 0 0 1em;
+}
+
+.padderouter{
+	padding: 0.6em 0 0 0;
+}
+
+.readmore{
+	color:#000000;
+	font-weight:bold;
+}
+
+.blog_title{
+	font-weight: normal;
+	font-size: 2em;
+	padding-top: .3em;
 }
 
 /*******************************************/
@@ -152,14 +195,14 @@ hr {
 }
 
 .entry {
-	padding: 0 0  1em 0;
+	padding: 0 0  1em 1em;
 }
 
 .entry_title {
 	width: 105%;
 	display: table;
-	padding: 0 0 0 1.0em;
-	margin: 0 0 0 -1.0em;
+	padding: 0 0 0 1em;
+	margin: 0 0 0 0;
 	background: linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
 	background: -moz-linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
 	background: -webkit-linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
@@ -224,7 +267,7 @@ hr {
 #footer {
 	width: 100%;
 	position: absolute;
-	bottom: 0;
+	bottom: -5em;
 	background: #EEEEEE;
 	border-top: 0.2em solid #CCCCCC;
 }

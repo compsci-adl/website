@@ -34,7 +34,7 @@
 </h6>
 {% endeditable %}
 {% endblock %}
-{% block blog_post_detail_commentlink %}
+<!--{% block blog_post_detail_commentlink %}
 <p>
     {% if blog_post.allow_comments %}
         {% if settings.COMMENTS_DISQUS_SHORTNAME %}
@@ -48,7 +48,9 @@
         {% endif %}
     {% endif %}
 </p>
-{% endblock %}
+{% endblock %}-->
+
+</br>
 
 {% block blog_post_detail_featured_image %}
 {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -80,11 +82,11 @@
 {% endif %}
 {% endblock %}
 
-<div class="panel panel-default rating">
+<!--<div class="panel panel-default rating">
     <div class="panel-body">
     {% rating_for blog_post %}
     </div>
-</div>
+</div>-->
 
 {% block blog_post_detail_sharebuttons %}
 {% set_short_url_for blog_post %}
@@ -124,8 +126,8 @@
 {% endif %}
 {% endblock %}
 
-{% block blog_post_detail_comments %}
+<!--{% block blog_post_detail_comments %}
 {% if blog_post.allow_comments %}{% comments_for blog_post %}{% endif %}
-{% endblock %}
+{% endblock %}-->
 
 {% endblock %}
