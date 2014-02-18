@@ -17,21 +17,21 @@
 {% if results.paginator.count == 0 %}
 <p>
 {% blocktrans %}
-No results were found in {{ search_type }} matching your query: {{ query }}
+No results were found matching your query: {{ query }}
 {% endblocktrans %}
 {% else %}
 {% blocktrans with start=results.start_index end=results.end_index total=results.paginator.count %}
-Showing {{ start }} to {{ end }} of {{ total }} results in {{ search_type }} matching your query: {{ query }}
+Showing {{ start }} to {{ end }} of {{ total }} results matching your query: {{ query }}
 {% endblocktrans %}
 {% endif %}
 </p>
 
 <div id="search-results">
     {% for result in results.object_list %}
-    <h5>{{ forloop.counter0|add:results.start_index }})
-        <a href="{{ result.get_absolute_url }}">{{ result }}</a></h5>
-    <p>{{ result.description|truncatewords_html:20|safe }}</p>
-    <a href="{{ result.get_absolute_url }}">{% trans "read more" %}</a>
+    <div class="search_headings">{{ forloop.counter0|add:results.start_index }})
+        <a href="{{ result.get_absolute_url }}">{{ result }}</a></div>
+    <div class="search_contents">{{ result.description|truncatewords_html:20|safe }}</div>
+</br>
     {% endfor %}
 </div>
 

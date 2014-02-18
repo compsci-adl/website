@@ -16,6 +16,7 @@
 {% endmetablock %}{% endblock %}
 
 {% block breadcrumb_menu %}
+
 {{ block.super }}
 {% if tag or category or year or month or author %}
 <li>{% spaceless %}
@@ -61,6 +62,7 @@
     {% endif %}
 {% endif %}
 
+<div class="greeting">{% trans "Welcome to the official site of the cs.club()" %}</div>
 {% for blog_post in blog_posts.object_list %}
 <div class="entry_title">
 {% block blog_post_list_post_title %}
