@@ -37,11 +37,8 @@ ul, ol {
   margin:15px 20px 0 5px;
 }
 .navbar-form.navbar-right {
-  padding-right: 0;
-  margin-right: -10px;
 }
 .navbar-form.navbar-right .form-group {
-  margin-right: 2px;
 }
 .messages {
   margin-top: 20px;
@@ -123,8 +120,12 @@ img.pull-left {
           MULTI-LEVEL DROP-DOWN NAV
 ==========================================*/
 .nav > li > a.dropdown-toggle:hover{
-  background-color: #e7e7e7;
-  color: #555;
+  background-color: #2A2A2A;
+  color: #ffcc00;
+}
+.nav > li > a.dropdown-toggle:active{
+  background-color: #2A2A2A;
+  color: #ffcc00;
 }
 .dropdown-submenu {
   position: relative;
@@ -242,8 +243,7 @@ img.pull-left {
 .form-group > textarea {
   display: block;
   width: 100%;
-  max-width: 300px;
-  height: 34px;
+  height: 1.9em;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.428571429;

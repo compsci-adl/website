@@ -60,11 +60,7 @@ a:active{
 }
 
 .titler{
-	padding: 0 0 0 1em;
-}
-
-.padderouter{
-	padding: 0.6em 0 0 0;
+	/*padding: 0 0 0 1em;*/
 }
 
 .readmore{
@@ -72,33 +68,9 @@ a:active{
 	font-weight:bold;
 }
 
-.blog_title{
-	font-weight: normal;
-	font-size: 2em;
-	padding-top: .3em;
-}
-
 .linebreaker{
 	display:block;
-	margin: .3em;
-}
-
-.rightbar_titles{
-	font-size: 1.2em;
-	line-height: 100%;
-}
-
-.rightbar_year{
-	font-weight:bold;
-	margin-left: 1em;
-}
-
-.rightbar_month{
-	margin-left: 2em;
-}
-
-.rightbar_content{
-	margin-left: 1em;
+	margin: 0.5em;
 }
 
 .buttoncolour{
@@ -110,12 +82,18 @@ a:active{
 }
 
 .pagenumbers{
-	display:block;
+	width: 110%;
+	display: table;
+	padding: 0 0 0 0;
+	margin: 0 0 -1em -1em;
+	background: #CCCCCC;
 	text-align: center;
 }
 
 .searchbar{
-	padding-right: .8em;
+	display: table-cell;
+	width: 25%;
+	padding: 0 0.5em;
 }
 
 .greeting{
@@ -142,12 +120,13 @@ a:active{
 	padding: 0.5em 0 0 0;
 	background-color: #262626;
 	font-family: 'Roboto', sans-serif;
+	min-width: 35em;
 }
 
 .header_banner {
 	width: 100%;
-	min-width: 35em;
 	margin: auto;
+	min-width: 35em;
 }
 
 /*******************************************/
@@ -156,7 +135,7 @@ a:active{
 
 .nav_bar {
 	width: 100%;
-	height: 3.3em;
+  	min-width: 35em;
 	background: #333333;
 	border-bottom: 0.3em solid #272727;
 	box-shadow: 0px 5px 5px #888888;
@@ -165,6 +144,7 @@ a:active{
 }
 
 .nav_bar_align {
+	display: table;
 	width: 75%;
 	min-width: 35em;
 	margin: auto;
@@ -245,19 +225,18 @@ a:active{
 
 .content {
 	display: table-cell;
-	width: 75%;
-	padding: 0 1em 5em 1.0em;
+	padding: 0.5em 1.0em 1.0em 1.0em;
 }
 
 .entry {
-	padding: 0 0  1em 1em;
+	/*padding: 0 0  1em 1em;*/
 }
 
 .entry_title {
-	width: 105%;
+	width: 110%;
 	display: table;
-	padding: 0 0 0 1em;
-	margin: 0 0 0 0;
+	padding: 0.5em 0 0.5em 1.0em;
+	margin: 0 0 0 -1.0em;
 	background: linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
 	background: -moz-linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
 	background: -webkit-linear-gradient(left, #BBBBBB 0%, #CCCCCC 2%);
@@ -266,22 +245,22 @@ a:active{
   	-webkit-box-shadow: 0px 3px 3px #999999;
 }
 
-.title {
-	width: 40%;
-	display: table-row;
-	font-size: 1.4em;
-	margin: 10px 0;
-}
-
-.date {
-	/*display: table-row;*/
-	font-size: 0.9em;
-	padding: 0 0 0 1.1em;
-	margin: 0 0 0 0;
+.blog_title{
+	width: 100%;
+	font-weight: bold;
+	font-size: 2em;
 }
 
 .author {
-	padding: 0 0 0 1em;
+}
+
+.date {
+	font-size: 0.9em;
+	padding: 0.5em 0 0 0;
+}
+
+.padderouter{
+	padding: 0.6em 0 0 0;
 }
 
 
@@ -293,8 +272,8 @@ a:active{
 	vertical-align: top;
 	display: table-cell;
 	width: 25%;
-	padding: 0.2em;
-	background: #CFCFCF;
+	padding: 0.5em;
+	background: #BFBFBF;
 }
 
 .side_options {
@@ -312,10 +291,29 @@ a:active{
 	color: #000000;
 }
 
-.calendar {
-	font-size: 18px;
-	padding: 100px 50px;
-	background: #AAAAAA;
+.rightbar {
+	background: #DDDDDD;
+}
+
+.rightbar_titles{
+	font-weight: bold;
+	font-size: 1.2em;
+	line-height: 100%;
+	padding: 0.2em;
+	background: #CCCCCC;
+}
+
+.rightbar_year{
+	font-weight: bold;
+	margin-left: 1em;
+}
+
+.rightbar_month{
+	margin-left: 2em;
+}
+
+.rightbar_content{
+	margin-left: 1em;
 }
 
 
@@ -332,10 +330,10 @@ a:active{
 }
 
 .footer_content {
-	color: #AAAAAA;
+	color: #888888;
 	font-size: 0.75em;
 	width: 75%;
-	min-width: 45.7em;
+	min-width: 47em;
 	padding: 0 0.5em;
 	margin: auto;
 }

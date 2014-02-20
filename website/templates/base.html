@@ -16,6 +16,8 @@
 {% endifinstalled %}
 
 {% compress css %}
+<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{% static "css/bootstrap.css" %}">
 <link rel="stylesheet" href="{% static "css/mezzanine.css" %}">
 <link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}">
@@ -59,11 +61,11 @@
         <!-- +++++++++++++++++ NAVIGATION BAR +++++++++++++++++ -->
         <div class="nav_bar">
             <div class="nav_bar_align">
-                <!--<div class="navbar-collapse collapse">
-                </div>-->
+                <div class="navbar-collapse collapse">
+                </div>
                     <div class="navbar-default">
-                    <!--<div class="container">
-                    <div class="navbar-header">
+                    <!-- <div class="container"> -->
+                    <!-- <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">{% trans "Toggle Navigation" %}</span>
                             <span class="icon-bar"></span>
@@ -77,14 +79,14 @@
                         {% search_form "all" %}
 
                     </div>
-                    </div>-->
+                    </div> -->
                     {% page_menu "pages/menus/dropdown.html" %}
 
 
 
                     <!-- +++++ NIFTY SEARCH BAR WHICH IS SUPER HANDY BUT SUPER UGLY +++++ -->
-                    <div class="searchbar">{% search_form "all" %}</div>
                     </div>
+                    <div class="searchbar">{% search_form "all" %}</div>
             </div>
         </div>
 
@@ -108,7 +110,7 @@
 <!--<p class="first">
     <h2>Welcome to the official site of the cs.club()</h2>
 </p>-->
-<div class="titler"><h1>{% block title %}{% endblock %}</h1></div>
+
 
 <!--<ul class="breadcrumb">
 {% spaceless %}
@@ -131,9 +133,12 @@
 
 
 <!-- ++++++ ALL BLOG POSTS ENCAPSULATED IN THIS DIV ++++++ -->
-<div class="entry">
-    {% block main %}{% endblock %}
-</div>
+<!-- <div class="content"> -->
+    <div class="content">
+        <div class="titler"><h1>{% block title %}{% endblock %}</h1></div>
+        {% block main %}{% endblock %}
+    </div>
+<!-- </div> -->
 
 
 <!-- ++++++ RIGHT HAND COLUMN BAR ++++++ -->
@@ -146,13 +151,16 @@
     <div class="panel-body">-->
     <!-- +++++ GOOGLE CALENDAR WIDGET +++++ -->
     <iframe src="https://www.google.com/calendar/embed?src=csclub.org.au_ufpa491kddofejhphe061cdjp4%40group.calendar.google.com&ctz=Australia/Adelaide" style="border: 0" width="100%" height="300" frameborder="0" scrolling="yes"></iframe>
-    {% block right_panel %}
     
-    <!-- +++++ TWITTER WIDGET SHOULD WE LATER CHOOSE TO LINK TO OFFICIAL TWITTER PAGE FOR CLUB +++++ -->
-    <!--{% ifinstalled mezzanine.twitter %}
-    {% include "twitter/tweets.html" %}
-    {% endifinstalled %}-->
-    {% endblock %}
+    <div class="rightbar">
+        {% block right_panel %}
+        
+        <!-- +++++ TWITTER WIDGET SHOULD WE LATER CHOOSE TO LINK TO OFFICIAL TWITTER PAGE FOR CLUB +++++ -->
+        <!--{% ifinstalled mezzanine.twitter %}
+        {% include "twitter/tweets.html" %}
+        {% endifinstalled %}-->
+        {% endblock %}
+    </div>
     <!--</div>
     </div>-->
 </div>
