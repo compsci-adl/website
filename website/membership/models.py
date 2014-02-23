@@ -23,10 +23,14 @@ class Member(models.Model):
             return
         self.student_id = parsed_id
 
+    class Meta:
+        unique_together = ('first_name', 'last_name', 'student_id', 'email')
+
 class MemberYear(models.Model):
     member = models.ForeignKey(Member)
     year = models.IntegerField(default=time.strftime("%Y"))
     member_no = models.CharField(max_length=8)
+    paid = models.BooleanField(default=False)
 
     def __unicode__(self):
         return "%s %d" % (self.member.__unicode__(), self.year)
@@ -45,3 +49,5 @@ class MemberYear(models.Model):
 
     class Meta:
         unique_together = ('member','year')
+
+

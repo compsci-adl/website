@@ -1,0 +1,14 @@
+
+body {background-color: #000000; color:#005500}
+
+tr .normal {background-color:#000000}
+   .highlight {background-color:#003300}
+td {font: 11px arial; color:#00dd00}
+th {font: bold 12px arial; text-align:left; color:#006600; line-height: 150%}
+p {font: bold 12px arial; color:#00dd00; }
+h3 {font: bold 14px arial; color:#00dd00}
+
+a {font: bold 12px arial; color:#ee0000; text-decoration:none}
+
+input {background-color : #000000; border: 1px solid #00dd00; color:#00dd00; font: 12px arial}
+textarea {background-color : #000000; border: 1px solid #00dd00; color:#00dd00; font: 12px arial}

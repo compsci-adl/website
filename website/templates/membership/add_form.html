@@ -1,0 +1,16 @@
+{% extends "membership/base.html" %}
+{% block links %}
+{% if method != "kiosk" %}
+<a href="/membership/add/">Add Member</a> | <a href="/membership/">Member List</a>
+| <a href="/membership/kiosk">Kiosk Mode</a>
+{% endif %}
+{% endblock %}
+{% block content %}
+{% if message %}
+<h3>{{ message }}</h3>
+{% endif %}
+<form action="/membership/{{ method }}/" method="post">{% csrf_token %}
+  {{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

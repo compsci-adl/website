@@ -1,0 +1,8 @@
+{% extends "membership/base.html" %}
+{% block content %}
+<p>Do you want to delete member {{ memberyear }}?</p>
+<form action="/membership/{{ year }}/delete/{{ uid }}/" method="post">{% csrf_token %}
+  {{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

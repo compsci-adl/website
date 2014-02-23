@@ -1,0 +1,36 @@
+{% extends "membership/base.html" %}
+{% block content %}
+<h3>Member List - {{ requested_year }} </h3>
+{% if member_list %}
+<table width="100%" cellspacing="0" cellpadding="0" border="0">
+	<tr>
+		<th><a href="/membership/?order=id"><b>#</b></a></th>
+		<th><a href="/membership/?order=member_no"><b>mem#</b></a></th>
+		<th><a href="/membership/?order=year"><b>Year</b></a></th>
+		<th><a href="/membership/?order=student_id"><b>ID</b></a></th>
+		<th><a href="/membership/?order=first_name"><b>First Name</b></a></th>
+		<th><a href="/membership/?order=last_name"><b>Last Name</b></a></th>
+		<th><a href="/membership/?order=email"><b>Email</b></a></th>
+		<th><a href="/membership/?order=paid"><b>Paid</b></a></th>
+		<th></th>
+		<th></th>
+	</tr>
+  {% for member in member_list %}
+    <tr class="normal">
+      <td>{{ member.member.id }}</td>
+      <td>{{ member.member_no }}</td>
+      <td>{{ member.year }}</td>
+      <td>{{ member.member.student_id }}</td>
+      <td>{{ member.member.first_name }}</td>
+      <td>{{ member.member.last_name }}</td>
+      <td>{{ member.member.email }}</td>
+      <td>{{ member.paid }}</td>
+      <td><a href="/membership/{{ requested_year }}/edit/{{ member.member.id }}/">Edit</a></td>
+      <td><a href="/membership/{{ requested_year }}/delete/{{ member.member.id }}/">Delete</a></td>
+    </tr>
+  {% endfor %}
+</table>
+{% else %}
+  <p>No members for year {{ requested_year }}.</p>
+{% endif %}
+{% endblock %}

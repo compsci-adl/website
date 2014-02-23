@@ -21,6 +21,7 @@ urlpatterns = i18n_patterns("",
 )
 
 urlpatterns += patterns('',
+    url(r'^membership/', include('membership.urls')),
 
     # We don't want to presume how your homepage works, so here are a
     # few patterns you can use to set it up.
@@ -86,7 +87,6 @@ urlpatterns += patterns('',
     # need to use the ``SITE_PREFIX`` setting as well.
 
     # ("^%s/" % settings.SITE_PREFIX, include("mezzanine.urls"))
-
 )
 
 # Adds ``STATIC_URL`` to the context of error pages, so that error
