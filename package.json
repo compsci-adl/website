@@ -25,6 +25,7 @@
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.56.0",
     "@typescript-eslint/parser": "^5.56.0",
+    "autoprefixer": "^10.4.14",
     "cross-env": "^7.0.3",
     "eslint-config-prettier": "^8.8.0",
     "eslint-import-resolver-typescript": "^3.5.3",
@@ -39,8 +40,10 @@
     "eslint-plugin-security": "^1.7.1",
     "eslint-plugin-sonarjs": "^0.19.0",
     "eslint-plugin-unicorn": "^46.0.0",
+    "postcss": "^8.4.21",
     "prettier-plugin-jsdoc": "^0.4.2",
     "prettier-plugin-tailwindcss": "^0.2.5",
+    "tailwindcss": "^3.2.7",
     "tsec": "^0.2.6"
   }
 }

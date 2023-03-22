@@ -291,7 +291,7 @@
           { "selector": "variable", "format": ["camelCase", "PascalCase"] },
           { "selector": "variableLike", "format": ["camelCase"] },
           {
-            "selector": "memberLike",
+            "selector": "property",
             "modifiers": ["private"],
             "format": ["camelCase"],
             "leadingUnderscore": "require"
@@ -302,10 +302,70 @@
             "format": ["UPPER_CASE"]
           },
           {
+            "selector": "variable",
+            "modifiers": ["destructured"],
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "parameter",
+            "modifiers": ["destructured"],
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
             // React function components
             "selector": "function",
             "modifiers": ["global", "exported"],
             "format": ["camelCase", "PascalCase"]
+          },
+          {
+            // Next.js metadata
+            "selector": "variable",
+            "modifiers": ["global", "const", "exported"],
+            "filter": {
+              "regex": "^metadata$",
+              "match": true
+            },
+            "format": ["camelCase"]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*route.ts"],
+      "rules": {
+        "@typescript-eslint/require-await": "off",
+        "@typescript-eslint/naming-convention": [
+          "error",
+          { "selector": "variableLike", "format": ["camelCase"] },
+          {
+            "selector": "property",
+            "modifiers": ["private"],
+            "format": ["camelCase"],
+            "leadingUnderscore": "require"
+          },
+          {
+            "selector": "variable",
+            "modifiers": ["global"],
+            "format": ["UPPER_CASE"]
+          },
+          {
+            "selector": "variable",
+            "modifiers": ["destructured"],
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "parameter",
+            "modifiers": ["destructured"],
+            "format": ["camelCase", "PascalCase"]
+          },
+          {
+            "selector": "function",
+            "modifiers": ["exported", "async"],
+            "filter": {
+              "regex": "(^GET$)|(^POST$)|(^PUT$)|(^PATCH$)|(^DELETE$)|(^HEAD$)|(^OPTIONS$)",
+              "match": true
+            },
+            "format": ["UPPER_CASE"]
           }
         ]
       }
