@@ -92,7 +92,7 @@
         "no-await-in-loop": "error",
         "no-param-reassign": ["error", { "props": false }],
         "array-callback-return": "error",
-        "new-cap": ["error", { "capIsNewExceptions": ["Poppins"] }], // Ignore next fonts
+        "new-cap": ["error", { "capIsNewExceptions": ["Archivo"] }], // Ignore next fonts
         "operator-assignment": ["error", "always"],
         "require-atomic-updates": "error",
         "prefer-rest-params": "error",
