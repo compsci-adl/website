@@ -10,19 +10,22 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-archivo)', ...defaultTheme.fontFamily.sans],
       },
+      fontSize: {
+        'primary-heading': ['5.5rem ', '1'],
+      },
       colors: {
         'accent-blue': '#1BB8D1',
         'accent-yellow': '#FCC018',
         'accent-red': '#E71A64',
-        // accentHighlight: '', // TODO
+        'accent-highlight': '#0AD7F8',
         'primary-fg': 'white',
-        // bgPrimary: '' // TODO
+        'primary-bg': '#F2EFE5',
       },
       borderWidth: {
         primary: '4px',
       },
       boxShadow: {
-        solid: '5px 5px',
+        solid: '7px 7px',
       },
     },
   },
