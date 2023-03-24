@@ -1,10 +1,10 @@
 import Article from '@/components/Article';
 import Card from '@/components/Card';
-import Hero from '@/components/Hero';
+import Hero from './Hero';
 
 export default function Page() {
     return (
-        <main className="relative z-10 flex h-auto w-[70rem] flex-col items-center">
+        <main className="relative z-10 flex h-auto w-responsive flex-col items-center justify-center">
             {/* TODO responsive width */}
             <Hero />
             <section className="grid grid-cols-3 gap-12">

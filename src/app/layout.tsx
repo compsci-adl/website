@@ -9,8 +9,8 @@ const ARCHIVO = Archivo({
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <html lang="en" className={ARCHIVO.className}>
-            <body className="flex justify-center bg-primary-bg">
+        <html lang="en" className={`${ARCHIVO.className} w-full overflow-x-hidden`}>
+            <body className="flex w-full justify-center overflow-x-hidden bg-primary-bg">
                 <Navbar />
                 {children}
             </body>
