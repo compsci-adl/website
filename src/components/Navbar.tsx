@@ -25,7 +25,7 @@ export default function Navbar() {
             className="fixed top-10 z-20 flex w-responsive items-center justify-between border-primary border-black
             bg-primary-fg py-3 px-7 text-xl shadow-solid"
         >
-            <Link className="text-4xl font-bold" href="/">
+            <Link className="text-2xl font-bold md:text-4xl" href="/">
                 CS Club
             </Link>
             <div className="flex flex-row items-center gap-5">
@@ -61,8 +61,11 @@ export default function Navbar() {
                 >
                     Join Us
                 </Button>
-                <Button className="bg-accent-highlight px-3 py-3 lg:hidden" href="/navigation">
-                    <GiHamburgerMenu className="h-6 w-6 text-black" />
+                <Button
+                    className="bg-accent-highlight px-2 py-2 md:px-3 md:py-3 lg:hidden"
+                    href="/navigation"
+                >
+                    <GiHamburgerMenu className="h-5 w-5 text-black md:h-6 md:w-6" />
                 </Button>
             </div>
         </nav>
