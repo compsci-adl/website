@@ -4,15 +4,14 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import type { ReactNode } from 'react';
 
 type NavLinkProps = {
-    className?: string;
     href: string;
     children: ReactNode;
 };
 
-function NavLink({ className, href, children }: NavLinkProps) {
+function NavLink({ href, children }: NavLinkProps) {
     return (
         <li>
-            <Link className={className} href={href}>
+            <Link className="hover:opacity-70 motion-safe:transition-opacity" href={href}>
                 {children}
             </Link>
         </li>
@@ -30,30 +29,10 @@ export default function Navbar() {
             </Link>
             <div className="flex flex-row items-center gap-5">
                 <ul className="hidden flex-row items-center gap-5 lg:flex">
-                    <NavLink
-                        className="hover:opacity-70 motion-safe:transition-opacity"
-                        href="/about"
-                    >
-                        About
-                    </NavLink>
-                    <NavLink
-                        className="hover:opacity-70 motion-safe:transition-opacity"
-                        href="/events"
-                    >
-                        Events
-                    </NavLink>
-                    <NavLink
-                        className="hover:opacity-70 motion-safe:transition-opacity"
-                        href="/contact"
-                    >
-                        Contact
-                    </NavLink>
-                    <NavLink
-                        className="hover:opacity-70 motion-safe:transition-opacity"
-                        href="/sponsors"
-                    >
-                        Sponsors
-                    </NavLink>
+                    <NavLink href="/about">About</NavLink>
+                    <NavLink href="/events">Events</NavLink>
+                    <NavLink href="/contact">Contact</NavLink>
+                    <NavLink href="/sponsors">Sponsors</NavLink>
                 </ul>
                 <Button
                     className="hidden bg-accent-highlight py-2 px-6 text-2xl font-bold md:flex"
