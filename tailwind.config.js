@@ -27,6 +27,9 @@ module.exports = {
       boxShadow: {
         solid: '7px 7px',
       },
+      width: {
+        responsive: 'min(80vw, 70rem)',
+      },
     },
   },
   plugins: [],
