@@ -314,7 +314,7 @@
           {
             // React function components
             "selector": "function",
-            "modifiers": ["global", "exported"],
+            "modifiers": ["global"],
             "format": ["camelCase", "PascalCase"]
           },
           {
