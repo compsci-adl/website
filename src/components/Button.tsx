@@ -5,10 +5,11 @@ type ButtonProps = {
     onClick?: MouseEventHandler<HTMLAnchorElement>;
     href?: string;
     className?: string;
+    smallShadow?: boolean;
     children: ReactNode;
 };
 
-export default function Button({ onClick, href, className, children }: ButtonProps) {
+export default function Button({ onClick, href, className, children, smallShadow }: ButtonProps) {
     return (
         <button className="relative z-10">
             <Link
@@ -19,7 +20,11 @@ export default function Button({ onClick, href, className, children }: ButtonPro
             >
                 {children}
             </Link>
-            <div className="absolute top-0 left-0 -z-10 box-content h-full w-full translate-x-[7px] translate-y-[7px] bg-black" />
+            <div
+                className={`absolute top-0 left-0 -z-10 box-content h-full w-full translate-x-[7px] translate-y-[7px] bg-black ${
+                    smallShadow === true ? 'max-md:translate-y-[5px] max-md:translate-x-[5px]' : ''
+                }`}
+            />
         </button>
     );
 }

@@ -8,7 +8,7 @@ export default function Hero() {
     return (
         <section
             className="relative flex h-screen w-full flex-col items-center justify-between
-            gap-6 pt-[21vh] max-sm:pb-12 md:flex-row md:gap-0 md:pt-24"
+            gap-6 pt-[21vh] max-md:pb-12 md:flex-row md:gap-0 md:pt-24"
         >
             <div className="z-10 flex flex-col gap-6 md:gap-14 lg:gap-20">
                 <h1 className="text-left text-5xl font-bold md:text-6xl lg:text-primary-heading">

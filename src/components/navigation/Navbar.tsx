@@ -23,6 +23,7 @@ export default function Navbar() {
                 <Button
                     className="bg-accent-highlight px-1 py-1 md:px-2 md:py-2 lg:hidden"
                     href="/navigation"
+                    smallShadow
                 >
                     <GiHamburgerMenu className="h-6 w-6 text-black md:h-8 md:w-8" />
                 </Button>
