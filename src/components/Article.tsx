@@ -1,14 +1,16 @@
 import type { ReactNode } from 'react';
 
-type ArticleProps = {
+type ArticleProps = JSX.IntrinsicElements['article'] & {
     title?: ReactNode;
     children: ReactNode;
 };
 
-// TODO remove, just use h1 tags in children for now
-export default function Article({ title, children }: ArticleProps) {
+export default function Article({ title, children, ...intrinsicProps }: ArticleProps) {
     return (
-        <article className="flex flex-row gap-2 text-2xl leading-10">
+        <article
+            {...intrinsicProps}
+            className="flex flex-row gap-2 text-xl leading-9 md:text-2xl md:leading-10"
+        >
             {title !== undefined && <h2 className="font-bold">{title}</h2>}
             {children}
         </article>

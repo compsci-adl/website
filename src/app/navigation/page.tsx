@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 
 export default function Navigation() {
     const router = useRouter();
+
     return (
         <section className="flex h-screen w-full flex-row items-center justify-center">
             <nav
