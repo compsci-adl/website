@@ -24,6 +24,7 @@ export default function Navigation() {
                     <Button
                         className="bg-accent-highlight px-1 py-1 md:px-2 md:py-2"
                         onClick={() => router.back()}
+                        smallShadow
                     >
                         <RiCloseLine className="h-8 w-8 text-black" />
                     </Button>
