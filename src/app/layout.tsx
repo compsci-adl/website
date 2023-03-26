@@ -1,5 +1,4 @@
 import { Archivo } from 'next/font/google';
-import Navbar from '@/components/Navbar';
 import '@/styles/globals.css';
 
 const ARCHIVO = Archivo({
@@ -11,7 +10,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en" className={`${ARCHIVO.className} w-full overflow-x-hidden`}>
             <body className="flex w-full justify-center overflow-x-hidden bg-primary-bg">
-                <Navbar />
                 {children}
             </body>
         </html>
