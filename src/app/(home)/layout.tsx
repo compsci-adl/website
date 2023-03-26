@@ -1,6 +1,6 @@
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/navigation/Navbar';
 
-export default function Layout({ children }: RootLayoutProps) {
+export default function HomeLayout({ children }: RootLayoutProps) {
     return (
         <>
             <Navbar />

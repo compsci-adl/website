@@ -1,22 +1,7 @@
 import Link from 'next/link';
-import Button from './Button';
+import Button from '@/components/Button';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import type { ReactNode } from 'react';
-
-type NavLinkProps = {
-    href: string;
-    children: ReactNode;
-};
-
-function NavLink({ href, children }: NavLinkProps) {
-    return (
-        <li>
-            <Link className="hover:opacity-70 motion-safe:transition-opacity" href={href}>
-                {children}
-            </Link>
-        </li>
-    );
-}
+import NavLinks from './NavLinks';
 
 export default function Navbar() {
     return (
@@ -28,14 +13,9 @@ export default function Navbar() {
                 CS Club
             </Link>
             <div className="flex flex-row items-center gap-5">
-                <ul className="hidden flex-row items-center gap-5 lg:flex">
-                    <NavLink href="/about">About</NavLink>
-                    <NavLink href="/events">Events</NavLink>
-                    <NavLink href="/contact">Contact</NavLink>
-                    <NavLink href="/sponsors">Sponsors</NavLink>
-                </ul>
+                <NavLinks className="hidden flex-row items-center gap-5 lg:flex" />
                 <Button
-                    className="hidden bg-accent-highlight py-2 px-6 text-2xl font-bold md:flex"
+                    className="bg-accent-highlight py-2 px-6 text-2xl font-bold max-md:hidden"
                     href="/join"
                 >
                     Join Us

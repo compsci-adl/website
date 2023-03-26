@@ -2,7 +2,7 @@ import Article from '@/components/Article';
 import Card from '@/components/Card';
 import Hero from './Hero';
 
-export default function Page() {
+export default function Home() {
     return (
         <main className="relative z-10 flex h-auto w-responsive flex-col items-center justify-center">
             {/* TODO responsive width */}
