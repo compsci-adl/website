@@ -30,16 +30,16 @@ export default function Hero() {
             <ClubLogo className="w-48 md:w-80 lg:w-[30rem]" />
             {/* SVG decorations */}
             <Circle
-                className="absolute left-[-60%] bottom-[30%] -z-50 w-[500px] fill-accent-blue md:bottom-0 md:left-[-45%]
-                lg:bottom-[-20%] lg:left-[-58%] lg:w-[900px]"
+                className="absolute left-[-60%] bottom-[30%] -z-50 w-[31rem] fill-accent-blue md:bottom-0 md:left-[-45%]
+                lg:bottom-[-20%] lg:left-[-58%] lg:w-[57rem]"
                 opacity={0.3}
             />
             <Star
-                className="absolute top-[30%] right-[23%] -z-50 hidden w-60 fill-accent-red md:flex lg:top-[18%] lg:w-[300px]"
+                className="absolute top-[30%] right-[23%] -z-50 hidden w-60 fill-accent-red md:flex lg:top-[18%] lg:w-[19rem]"
                 opacity={0.3}
             />
             <Duck
-                className="absolute right-[-20%] bottom-[-4%] -z-50 w-60 -scale-x-100 lg:bottom-[-7%] lg:right-[-36%] lg:w-96"
+                className="absolute bottom-[-4%] right-[-20%] -z-50 w-40 -scale-x-100 md:w-60 lg:bottom-[-7%] lg:right-[-36%] lg:w-96"
                 opacity={0.5}
                 mono
             />

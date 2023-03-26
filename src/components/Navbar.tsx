@@ -41,10 +41,10 @@ export default function Navbar() {
                     Join Us
                 </Button>
                 <Button
-                    className="bg-accent-highlight px-2 py-2 md:px-3 md:py-3 lg:hidden"
+                    className="bg-accent-highlight px-1 py-1 md:px-2 md:py-2 lg:hidden"
                     href="/navigation"
                 >
-                    <GiHamburgerMenu className="h-5 w-5 text-black md:h-6 md:w-6" />
+                    <GiHamburgerMenu className="h-6 w-6 text-black md:h-8 md:w-8" />
                 </Button>
             </div>
         </nav>
