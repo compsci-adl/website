@@ -6,7 +6,7 @@ export default function Home() {
     return (
         <main className="relative z-10 flex h-auto w-responsive flex-col items-center justify-center">
             <Hero />
-            <section className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-3">
+            <section className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                 <Card headingClassName="bg-accent-blue" heading="Learn">
                     <Article>
                         The club has a major focus on education and learning. We run workshops to
@@ -14,11 +14,7 @@ export default function Home() {
                         talks and guest lectures.
                     </Article>
                 </Card>
-                <Card
-                    className="md:max-lg:row-span-2 md:max-lg:my-[60%]"
-                    headingClassName="bg-accent-yellow"
-                    heading="Socialise"
-                >
+                <Card headingClassName="bg-accent-yellow" heading="Socialise">
                     <Article>
                         We are primarily a social club. Events such as meet & greets, games / movies
                         nights, BBQs, and pub crawls are just some of the social events the club

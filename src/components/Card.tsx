@@ -16,18 +16,18 @@ export default function Card({
 }: CardProps) {
     const headingComponent = heading !== undefined && (
         <div
-            className={`border-primary border-b-0 border-black px-7 py-4 shadow-solid md:px-8 md:py-5 ${
+            className={`border-primary border-b-0 border-black px-6 py-3 leading-none shadow-solid lg:px-8 lg:py-5 ${
                 headingClassName ?? ''
             }`}
         >
-            <h2 className="text-3xl font-bold md:text-4xl">{heading}</h2>
+            <h2 className="text-3xl font-bold lg:text-4xl">{heading}</h2>
         </div>
     );
 
     return (
         <div {...intrinsicProps} className={`flex flex-col ${className ?? ''}`}>
             {headingComponent}
-            <div className="flex-grow border-primary border-black bg-primary-fg py-4 px-7 shadow-solid md:py-5 md:px-8">
+            <div className="flex-grow border-primary border-black bg-primary-fg py-3 px-5 pb-4 shadow-solid lg:py-5 lg:px-8">
                 {children}
             </div>
         </div>

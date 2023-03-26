@@ -9,7 +9,7 @@ export default function Article({ title, children, ...intrinsicProps }: ArticleP
     return (
         <article
             {...intrinsicProps}
-            className="flex flex-row gap-2 text-xl leading-9 md:text-2xl md:leading-10"
+            className="flex flex-row gap-2 text-xl leading-8 md:text-2xl md:leading-10"
         >
             {title !== undefined && <h2 className="font-bold">{title}</h2>}
             {children}
