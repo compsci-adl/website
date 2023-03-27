@@ -6,6 +6,8 @@ import Diagonals from '@/svg/Diagonals';
 import Dots from '@/svg/Dots';
 import Hero from './Hero';
 import Button from '@/components/Button';
+import Footer from './Footer';
+import Squiggle from '@/svg/Squiggle';
 
 const LOGO_SIZE = 150;
 
@@ -110,7 +112,7 @@ export default function Home() {
                         height={LOGO_SIZE}
                     />
                 </div>
-                <Card className="flex flex-col justify-between gap-7 p-5 max-md:py-7 md:gap-10 md:p-12 lg:flex-row lg:items-center lg:gap-0">
+                <Card className="relative flex flex-col justify-between gap-7 p-5 max-md:py-7 md:gap-10 md:p-12 lg:flex-row lg:items-center lg:gap-0">
                     <Article className="lg:w-[70%]" heading="We'd *love* to work with you">
                         Thinking of supporting the Computer Science Club and reaching our extremely
                         active community of hundreds of computer science students?
@@ -121,8 +123,10 @@ export default function Home() {
                     >
                         Contact Us
                     </Button>
+                    <Squiggle className="absolute bottom-[-35%] right-[-15%] -z-50 h-72 w-72 fill-accent-yellow opacity-30 md:right-[-10%] md:bottom-[-60%] md:h-96 md:w-96 lg:bottom-[-100%]" />
                 </Card>
             </section>
+            <Footer />
         </main>
     );
 }
