@@ -62,15 +62,14 @@ export default function Home() {
                         other computer science students and graduates to learn from and make friends
                         with.
                     </Article>
-                    <Diagonals className="absolute -z-50 h-60 w-60 fill-accent-red opacity-30 max-md:bottom-[-50%] md:h-72 md:w-72" />
+                    <Diagonals className="absolute bottom-[-50%] -z-50 h-60 w-60 fill-accent-red opacity-30 md:h-72 md:w-72 lg:bottom-[-60%]" />
                 </Card>
                 <div className="relative">
                     <Card className="w-5/6 -translate-y-8 self-end p-5 max-md:pb-8 max-md:pt-7 md:w-3/4 md:-translate-y-11 md:p-12">
                         <Article heading="First-Years' *Extras*">
-                            As a member, some of the perks you&apos;ll have access to include
-                            computer science talks and workshops, catered social events, and a wide
-                            network of other computer science students and graduates to learn from
-                            and make friends with.
+                            Are you a first year student? The Club runs activities at the start of
+                            the year specially for you, giving you a chance to meet other students,
+                            and helping ease you into university life.
                         </Article>
                     </Card>
                     <Dots
@@ -86,7 +85,7 @@ export default function Home() {
                     <span className="text-accent-blue">Greatest</span>
                 </h2>
                 <h3 className="pb-3 text-xl md:pb-6 md:text-2xl lg:pb-12 lg:text-3xl">
-                    We&apos;re proud to be supported by
+                    We&apos;re proud to be sponsored by
                 </h3>
                 <div className="grid grid-cols-3 pb-3 md:gap-16 md:pb-6 lg:gap-24 lg:pb-12">
                     <Image
