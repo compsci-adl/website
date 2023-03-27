@@ -5,4 +5,4 @@ export const LINKS = [
     { name: 'facebook', link: 'https://www.facebook.com/compsci.adl/' },
     { name: 'instagram', link: 'https://www.instagram.com/compsci.adl/' },
     { name: 'email', link: 'mailto:contact@csclub.org.au' },
-];
+] as const;

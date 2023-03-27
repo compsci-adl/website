@@ -1,8 +1,9 @@
 import { SiGithub, SiLinkedin, SiFacebook, SiInstagram, SiDiscord } from 'react-icons/si';
 import { IoMdMail } from 'react-icons/io';
 import { LINKS } from '@/util/links';
+import type { IconType } from 'react-icons/lib';
 
-const ICONS = new Map([
+const ICONS = new Map<(typeof LINKS)[number]['name'], IconType>([
     ['discord', SiDiscord],
     ['linkedin', SiLinkedin],
     ['github', SiGithub],
