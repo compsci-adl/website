@@ -1,17 +1,35 @@
 import type { ReactNode } from 'react';
 
 type ArticleProps = JSX.IntrinsicElements['article'] & {
-    title?: ReactNode;
-    children: ReactNode;
+    heading?: ReactNode;
 };
 
-export default function Article({ title, children, ...intrinsicProps }: ArticleProps) {
+export default function Article({ className, heading, children, ...intrinsicProps }: ArticleProps) {
+    let headingComponent = heading;
+
+    // Text shorthand heading - surround emphasised text with '*'
+    if (typeof heading === 'string') {
+        headingComponent = heading.split('*').map((part, i) =>
+            i % 2 ? (
+                <span key={part} className="text-accent-blue">
+                    {part}
+                </span>
+            ) : (
+                part
+            )
+        );
+    }
+
     return (
         <article
             {...intrinsicProps}
-            className="flex flex-row gap-2 text-xl leading-8 md:text-2xl md:leading-10"
+            className={`flex flex-col gap-2 text-xl leading-8 md:text-2xl md:leading-10 ${
+                className ?? ''
+            }`}
         >
-            {title !== undefined && <h2 className="font-bold">{title}</h2>}
+            {heading !== undefined && (
+                <h2 className="text-3xl font-bold lg:text-4xl">{headingComponent}</h2>
+            )}
             {children}
         </article>
     );
