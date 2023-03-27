@@ -13,7 +13,7 @@ export default function Button({ onClick, href, className, children, smallShadow
     return (
         <button className="relative z-10">
             <Link
-                className={`z-10 flex items-center justify-center border-primary border-black hover:translate-x-[4px]
+                className={`z-10 flex h-full items-center justify-center border-primary border-black hover:translate-x-[4px]
                 hover:translate-y-[4px] motion-safe:transition-transform ${className ?? ''}`}
                 href={href ?? ''}
                 {...{ onClick }}

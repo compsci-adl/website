@@ -10,7 +10,7 @@ export default function Card({
     headingClassName,
     heading,
     children,
-    ...intrinsicProps
+    ...props
 }: CardProps) {
     const headingComponent = heading !== undefined && (
         <div
@@ -22,7 +22,7 @@ export default function Card({
     );
 
     return (
-        <div {...intrinsicProps} className="flex flex-col">
+        <div className="flex flex-col" {...props}>
             {headingComponent}
             <div
                 className={`border-primary border-black bg-primary-fg shadow-solid ${

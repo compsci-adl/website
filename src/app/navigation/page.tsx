@@ -37,7 +37,7 @@ export default function Navigation() {
                     Join Us
                 </Button>
                 <Duck
-                    className="absolute bottom-[-4%] right-[-10%] z-0 w-40 -scale-x-100 md:w-60 lg:right-[-5%] opacity-50"
+                    className="absolute bottom-[-4%] right-[-10%] z-0 w-40 -scale-x-100 opacity-50 md:w-60 lg:right-[-5%]"
                     mono
                 />
             </nav>

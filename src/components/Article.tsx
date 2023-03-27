@@ -4,7 +4,7 @@ type ArticleProps = JSX.IntrinsicElements['article'] & {
     heading?: ReactNode;
 };
 
-export default function Article({ className, heading, children, ...intrinsicProps }: ArticleProps) {
+export default function Article({ className, heading, children, ...props }: ArticleProps) {
     let headingComponent = heading;
 
     // Text shorthand heading - surround emphasised text with '*'
@@ -22,10 +22,10 @@ export default function Article({ className, heading, children, ...intrinsicProp
 
     return (
         <article
-            {...intrinsicProps}
             className={`flex flex-col gap-2 text-xl leading-8 md:text-2xl md:leading-10 ${
                 className ?? ''
             }`}
+            {...props}
         >
             {heading !== undefined && (
                 <h2 className="text-3xl font-bold lg:text-4xl">{headingComponent}</h2>
