@@ -7,7 +7,7 @@ import Dots from '@/svg/Dots';
 import Hero from './Hero';
 import Button from '@/components/Button';
 import Footer from './Footer';
-import Squiggle from '@/svg/Squiggle';
+import Duck from '@/svg/Duck';
 
 const LOGO_SIZE = 150;
 
@@ -123,7 +123,11 @@ export default function Home() {
                     >
                         Contact Us
                     </Button>
-                    <Squiggle className="absolute bottom-[-35%] right-[-15%] -z-50 h-72 w-72 fill-accent-yellow opacity-30 md:right-[-10%] md:bottom-[-60%] md:h-96 md:w-96 lg:bottom-[-100%]" />
+                    <Duck
+                        className="absolute -bottom-36 right-[-8%] -z-50 h-52 w-52 -scale-y-100 -scale-x-100 fill-accent-yellow opacity-30 md:-bottom-52
+                        md:right-[-5%] md:h-72 md:w-72 lg:bottom-[-17rem] lg:h-96 lg:w-96"
+                        mono
+                    />
                 </Card>
             </section>
             <Footer />

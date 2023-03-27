@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function Footer() {
     return (
-        <section className="mg:gap-16 relative flex w-full flex-col items-start justify-center gap-10 pt-20 lg:pt-24">
+        <section className="mg:gap-16 relative flex w-full flex-col items-start justify-center gap-10 pt-36 lg:pt-36">
             <h1 className="text-5xl font-bold md:w-3/4 md:text-6xl lg:text-primary-heading">
                 A Community that <i>Really</i> <span className="text-accent-blue">Cares</span>
             </h1>
@@ -29,7 +29,7 @@ export default function Footer() {
                     </p>
                 </Article>
             </div>
-            <FooterComponent className="md:pt-24 lg:pt-48" />
+            <FooterComponent className="pt-24 md:pt-36 lg:pt-48" />
         </section>
     );
 }
