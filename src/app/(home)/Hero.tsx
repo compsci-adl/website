@@ -1,8 +1,8 @@
-import ClubLogo from '@/svg/ClubLogo';
 import Button from '@/components/Button';
 import Circle from '@/svg/Circle';
-import Star from '@/svg/Star';
+import ClubLogo from '@/svg/ClubLogo';
 import Duck from '@/svg/Duck';
+import Star from '@/svg/Star';
 
 export default function Hero() {
     return (
@@ -30,17 +30,12 @@ export default function Hero() {
             <ClubLogo className="w-48 md:w-80 lg:w-[30rem]" />
             {/* SVG decorations */}
             <Circle
-                className="absolute left-[-60%] bottom-[30%] -z-50 w-[31rem] fill-accent-blue md:bottom-0 md:left-[-45%]
-                lg:bottom-[-20%] lg:left-[-58%] lg:w-[57rem]"
-                opacity={0.3}
+                className="absolute left-[-60%] bottom-[30%] -z-50 w-[31rem] fill-accent-blue opacity-30 md:bottom-0
+                md:left-[-45%] lg:bottom-[-20%] lg:left-[-58%] lg:w-[57rem]"
             />
-            <Star
-                className="absolute top-[30%] right-[23%] -z-50 hidden w-60 fill-accent-red md:flex lg:top-[18%] lg:w-[19rem]"
-                opacity={0.3}
-            />
+            <Star className="absolute top-[30%] right-[23%] -z-50 hidden w-60 fill-accent-red opacity-30 md:flex lg:top-[18%] lg:w-[19rem]" />
             <Duck
-                className="absolute bottom-[-4%] right-[-20%] -z-50 w-40 -scale-x-100 md:w-60 lg:bottom-[-7%] lg:right-[-36%] lg:w-96"
-                opacity={0.5}
+                className="absolute bottom-[-4%] right-[-20%] -z-50 w-40 -scale-x-100 opacity-50 md:w-60 lg:bottom-[-7%] lg:right-[-36%] lg:w-96"
                 mono
             />
         </section>

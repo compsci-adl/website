@@ -1,11 +1,11 @@
 'use client';
 
-import Link from 'next/link';
 import Button from '@/components/Button';
 import NavLinks from '@/components/navigation/NavLinks';
 import Duck from '@/svg/Duck';
-import { RiCloseLine } from 'react-icons/ri';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { RiCloseLine } from 'react-icons/ri';
 
 export default function Navigation() {
     const router = useRouter();
@@ -37,8 +37,7 @@ export default function Navigation() {
                     Join Us
                 </Button>
                 <Duck
-                    className="absolute bottom-[-4%] right-[-10%] z-0 w-40 -scale-x-100 md:w-60 lg:right-[-5%]"
-                    opacity={0.5}
+                    className="absolute bottom-[-4%] right-[-10%] z-0 w-40 -scale-x-100 md:w-60 lg:right-[-5%] opacity-50"
                     mono
                 />
             </nav>
