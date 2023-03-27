@@ -1,9 +1,13 @@
+import Image from 'next/image';
 import Article from '@/components/Article';
 import Card from '@/components/Card';
 import Caterpillar from '@/svg/Caterpillar';
 import Diagonals from '@/svg/Diagonals';
 import Dots from '@/svg/Dots';
 import Hero from './Hero';
+import Button from '@/components/Button';
+
+const LOGO_SIZE = 150;
 
 export default function Home() {
     return (
@@ -12,7 +16,7 @@ export default function Home() {
             {/* Summary cards */}
             <section className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                 <Card
-                    className="py-3 px-5 pb-4 lg:py-5 lg:px-8"
+                    className="flex-grow py-3 px-5 pb-4 lg:py-5 lg:px-8"
                     headingClassName="bg-accent-blue"
                     heading="Learn"
                 >
@@ -23,7 +27,7 @@ export default function Home() {
                     </Article>
                 </Card>
                 <Card
-                    className="py-3 px-5 pb-4 lg:py-5 lg:px-8"
+                    className="flex-grow py-3 px-5 pb-4 lg:py-5 lg:px-8"
                     headingClassName="bg-accent-yellow"
                     heading="Socialise"
                 >
@@ -34,7 +38,7 @@ export default function Home() {
                     </Article>
                 </Card>
                 <Card
-                    className="py-3 px-5 pb-4 lg:py-5 lg:px-8"
+                    className="flex-grow py-3 px-5 pb-4 lg:py-5 lg:px-8"
                     headingClassName="bg-accent-red"
                     heading="Code"
                 >
@@ -46,7 +50,7 @@ export default function Home() {
                 </Card>
             </section>
             {/* New member information */}
-            <section className="relative flex w-full flex-col items-start pt-16 pb-24 md:pt-24 lg:pt-32">
+            <section className="relative flex w-full flex-col items-start pt-16 md:pt-24 lg:pt-32">
                 <h2 className="pb-12 text-4xl font-bold md:text-5xl lg:text-6xl">
                     New Members are <span className="text-accent-blue">Always</span> Welcome
                 </h2>
@@ -74,6 +78,51 @@ export default function Home() {
                         lg:top-[-85%] lg:h-72 lg:w-72"
                     />
                 </div>
+            </section>
+            {/* Sponsors section */}
+            <section className="pt-12 md:pt-16 lg:pt-20">
+                <h2 className="pb-3 text-4xl font-bold md:pb-4 md:text-5xl lg:text-6xl">
+                    Supported by the Industry&apos;s{' '}
+                    <span className="text-accent-blue">Greatest</span>
+                </h2>
+                <h3 className="pb-3 text-xl md:pb-6 md:text-2xl lg:pb-12 lg:text-3xl">
+                    We&apos;re proud to be supported by
+                </h3>
+                <div className="grid grid-cols-3 pb-3 md:gap-16 md:pb-6 lg:gap-24 lg:pb-12">
+                    <Image
+                        src="sponsor-logos/atlassian-compact.svg"
+                        alt="Atlassian logo"
+                        className="m-auto scale-75 lg:scale-100"
+                        width={LOGO_SIZE}
+                        height={LOGO_SIZE}
+                    />
+                    <Image
+                        src="sponsor-logos/macquarie-compact.svg"
+                        alt="Macquarie logo"
+                        className="m-auto scale-75 lg:scale-100"
+                        width={LOGO_SIZE}
+                        height={LOGO_SIZE}
+                    />
+                    <Image
+                        src="sponsor-logos/pwc-compact.svg"
+                        alt="PwC logo"
+                        className="m-auto md:scale-75 lg:scale-100"
+                        width={LOGO_SIZE}
+                        height={LOGO_SIZE}
+                    />
+                </div>
+                <Card className="flex flex-col justify-between gap-7 p-5 max-md:py-7 md:gap-10 md:p-12 lg:flex-row lg:items-center lg:gap-0">
+                    <Article className="lg:w-[70%]" heading="We'd *love* to work with you">
+                        Thinking of supporting the Computer Science Club and reaching our extremely
+                        active community of hundreds of computer science students?
+                    </Article>
+                    <Button
+                        className="bg-accent-highlight px-7 py-3 text-2xl font-bold lg:px-9 lg:py-5 lg:text-3xl"
+                        href="/contact"
+                    >
+                        Contact Us
+                    </Button>
+                </Card>
             </section>
         </main>
     );

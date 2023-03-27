@@ -25,7 +25,7 @@ export default function Card({
         <div {...intrinsicProps} className="flex flex-col">
             {headingComponent}
             <div
-                className={`flex-grow border-primary border-black bg-primary-fg shadow-solid ${
+                className={`border-primary border-black bg-primary-fg shadow-solid ${
                     className ?? ''
                 }`}
             >
