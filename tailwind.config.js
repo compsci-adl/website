@@ -25,10 +25,10 @@ module.exports = {
         primary: '4px',
       },
       boxShadow: {
-        solid: '7px 7px',
+        solid: '6px 6px',
       },
       width: {
-        responsive: 'min(80vw, 70rem)',
+        responsive: 'min(85vw, 80rem)',
       },
     },
   },
