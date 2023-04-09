@@ -22,9 +22,8 @@ export default function Article({ className, heading, children, ...props }: Arti
 
     return (
         <article
-            className={`flex flex-col gap-2 text-xl leading-8 md:text-2xl md:leading-10 ${
-                className ?? ''
-            }`}
+            className={`flex flex-col gap-2 text-lg leading-7 md:text-xl md:leading-10 ${className ?? ''
+                }`}
             {...props}
         >
             {heading !== undefined && (

@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import Button from '@/components/Button';
 import { GiHamburgerMenu } from 'react-icons/gi';
+
+import Button from '@/components/Button';
 import NavLinks from './NavLinks';
 
 export default function Navbar() {

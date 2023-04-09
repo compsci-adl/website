@@ -7,11 +7,16 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      width: {
+        responsive: 'min(85vw, 80rem)',
+      },
       fontFamily: {
         sans: ['var(--font-archivo)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        'primary-heading': ['5.5rem ', '1'],
+        'primary-heading': ['5rem ', '1'],
+        'secondary-heading': ['3rem ', '1'],
+        'tertiary-heading': ['2rem ', '1'],
       },
       colors: {
         'accent-blue': '#1BB8D1',
@@ -26,9 +31,6 @@ module.exports = {
       },
       boxShadow: {
         solid: '6px 6px',
-      },
-      width: {
-        responsive: 'min(85vw, 80rem)',
       },
     },
   },

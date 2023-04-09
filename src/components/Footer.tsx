@@ -1,7 +1,7 @@
-import { SiGithub, SiLinkedin, SiFacebook, SiInstagram, SiDiscord } from 'react-icons/si';
 import { IoMdMail } from 'react-icons/io';
-import { LINKS } from '@/util/links';
 import type { IconType } from 'react-icons/lib';
+import { SiGithub, SiLinkedin, SiFacebook, SiInstagram, SiDiscord } from 'react-icons/si';
+import { LINKS } from '@/util/links';
 
 const ICONS = new Map<(typeof LINKS)[number]['name'], IconType>([
     ['discord', SiDiscord],
@@ -22,7 +22,6 @@ export default function Footer({ className, ...props }: JSX.IntrinsicElements['f
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={`${name} link`}
             >
                 <Icon className="h-7 w-7 text-black hover:opacity-70 motion-safe:transition-opacity" />
             </a>
@@ -34,7 +33,7 @@ export default function Footer({ className, ...props }: JSX.IntrinsicElements['f
             <hr className="mb-4 h-[0.2rem] w-full bg-black" />
             <div className="md flex flex-col content-center justify-between gap-4 md:flex-row">
                 <p className="text-md lg:text-lg">
-                    &copy; The University of Adelaide Computer Science Club.
+                    &copy; 2023 The University of Adelaide Computer Science Club.
                 </p>
                 <div className="flex flex-row gap-4">{links}</div>
             </div>
