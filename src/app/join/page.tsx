@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 import Article from '@/components/Article';
 import Button from '@/components/Button';
-import { Button2 } from '@/components/Button';
 import Card from '@/components/Card';
 
 import { CheckboxInput, TextInput } from "./SignupForm";
@@ -59,18 +58,18 @@ export default function Join() {
                         {/* TODO: Ensure this is a required question */}
                         <p>Are you a student or staff of the University of Adelaide?</p>
                         <div className="flex flex-row grow-1 justify-start gap-8">
-                            <Button2
+                            <Button
                                 className="bg-accent-highlight px-5 py-2 font-bold text-xl lg:px-6 lg:py-3 lg:text-2xl"
                                 onClick={() => { setShowUniSignUp(true); setShowOtherSignUp(false) }}
                             >
                                 Yes
-                            </Button2>
-                            <Button2
+                            </Button>
+                            <Button
                                 className="bg-accent-highlight px-5 py-2 font-bold text-xl lg:px-6 lg:py-3 lg:text-2xl"
                                 onClick={() => { setShowUniSignUp(false); setShowOtherSignUp(true) }}
                             >
                                 No
-                            </Button2>
+                            </Button>
                         </div>
 
                         {/* UofA students and staff only */}

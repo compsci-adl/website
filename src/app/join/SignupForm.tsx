@@ -1,18 +1,7 @@
-import type { ReactNode } from "react";
-
-type FormProps = JSX.IntrinsicElements["form"];
 type InputProps = JSX.IntrinsicElements["input"] & {
     inputClassName?: string;
     labelTitle?: string;
 };
-
-export function Form({ className, ...props }: FormProps) {
-    return (
-        <form>
-
-        </form>
-    );
-}
 
 export function TextInput({
     className, inputClassName, labelTitle, required, placeholder, ...props }: InputProps) {
