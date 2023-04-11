@@ -6,6 +6,10 @@ const ARCHIVO = Archivo({
     display: 'swap',
 });
 
+// TODO: Add canonical URLs
+// TODO: Sitemap
+// TODO: Meta tags
+
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en" className={`${ARCHIVO.className} w-full overflow-x-hidden`}>
@@ -17,6 +21,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 
 export const metadata = {
-    title: 'CS Club',
-    description: 'Official website of the University of Adelaide Computer Science Club'
+    title: "CS Club",
+    description: "Official website of the University of Adelaide Computer Science Club"
 };

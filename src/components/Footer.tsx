@@ -22,6 +22,7 @@ export default function Footer({ className, ...props }: JSX.IntrinsicElements['f
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={name}
             >
                 <Icon className="h-7 w-7 text-black hover:opacity-70 motion-safe:transition-opacity" />
             </a>

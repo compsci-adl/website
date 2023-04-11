@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Article from '@/components/Article';
+import Button from '@/components/Button';
 import Card from '@/components/Card';
 import Caterpillar from '@/svg/Caterpillar';
 import Diagonals from '@/svg/Diagonals';
 import Dots from '@/svg/Dots';
-import Hero from './Hero';
-import Button from '@/components/Button';
-import Footer from './Footer';
 import Duck from '@/svg/Duck';
+
+import Hero from './Hero';
+import Footer from './Footer';
 
 const LOGO_SIZE = 150;
 

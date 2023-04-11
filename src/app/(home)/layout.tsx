@@ -8,3 +8,7 @@ export default function HomeLayout({ children }: RootLayoutProps) {
         </>
     );
 }
+
+export const metadata = {
+    title: "University of Adelaide Computer Science Club",
+};

@@ -17,6 +17,7 @@ export default function Contact() {
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label={name}
             >
                 <Icon className="h-12 w-12 text-black hover:opacity-70 motion-safe:transition-opacity" />
             </a>
@@ -41,6 +42,12 @@ export default function Contact() {
                 <div className="w-full flex flex-row gap-4 content-center justify-center py-4">
                     {contacts}
                 </div>
+            </section>
+
+            <section className="w-full pt-12 md:pt-16 lg:pt-20 content-center text-center">
+                <h2 className="text-xl md:text-3xl">
+                    For sponsorships, please email <a className="text-accent-blue" href="mailto:sponsorships@csclub.org.au">sponsorships@csclub.org.au</a>
+                </h2>
             </section>
 
             <Footer />

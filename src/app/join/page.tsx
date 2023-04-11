@@ -10,10 +10,6 @@ import Card from '@/components/Card';
 import { CheckboxInput, TextInput } from "./SignupForm";
 import Footer from './Footer';
 
-
-
-
-
 export default function Join() {
     const [showUniSignUp, setShowUniSignUp] = useState(false);
     const [showOtherSignUp, setShowOtherSignUp] = useState(false);

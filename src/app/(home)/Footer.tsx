@@ -1,16 +1,16 @@
-import FooterComponent from '@/components/Footer';
+import Link from 'next/link';
 import Article from '@/components/Article';
 import Button from '@/components/Button';
-import Link from 'next/link';
+import FooterComponent from '@/components/Footer';
 
 export default function Footer() {
     return (
         <section className="mg:gap-16 relative flex w-full flex-col items-start justify-center gap-10 pt-36 lg:pt-36">
-            <h1 className="text-5xl font-bold md:w-3/4 md:text-6xl lg:text-primary-heading">
+            <h1 className="text-4xl font-bold md:w-3/4 md:text-5xl lg:text-primary-heading">
                 A Community that <i>Really</i> <span className="text-accent-blue">Cares</span>
             </h1>
             <div className="flex w-full flex-col items-start justify-between max-lg:gap-16 max-md:gap-10 lg:flex-row lg:items-center">
-                <div className="z-20 flex flex-row gap-5 text-2xl font-bold md:gap-12 lg:gap-16 lg:text-4xl">
+                <div className="z-20 flex flex-row gap-5 text-xl font-bold md:gap-12 lg:gap-16 lg:text-3xl">
                     <Button className="bg-accent-highlight px-7 py-3 lg:py-5 lg:px-9" href="/join">
                         Join Us
                     </Button>
@@ -29,7 +29,7 @@ export default function Footer() {
                     </p>
                 </Article>
             </div>
-            <FooterComponent className="pt-24 md:pt-36 lg:pt-48" />
+            <FooterComponent className="pt-20 md:pt-32 lg:pt-40" />
         </section>
     );
 }
