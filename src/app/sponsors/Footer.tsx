@@ -1,7 +1,4 @@
 import FooterComponent from '@/components/Footer';
-import Article from '@/components/Article';
-import Button from '@/components/Button';
-import Link from 'next/link';
 
 export default function Footer() {
     return (

@@ -21,6 +21,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
 }
 
 export const metadata = {
-    title: "CS Club",
-    description: "Official website of the University of Adelaide Computer Science Club"
+    title: 'CS Club',
+    description: 'Official website of the University of Adelaide Computer Science Club',
 };

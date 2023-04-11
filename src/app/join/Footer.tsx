@@ -1,6 +1,3 @@
-import Link from 'next/link';
-import Article from '@/components/Article';
-import Button from '@/components/Button';
 import FooterComponent from '@/components/Footer';
 
 export default function Footer() {

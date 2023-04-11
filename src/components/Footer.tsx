@@ -17,13 +17,7 @@ export default function Footer({ className, ...props }: JSX.IntrinsicElements['f
         const Icon = ICONS.get(name);
         if (Icon === undefined) throw new Error(`Icon for link ${name} undefined`);
         return (
-            <a
-                key={name}
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={name}
-            >
+            <a key={name} href={link} target="_blank" rel="noopener noreferrer" aria-label={name}>
                 <Icon className="h-7 w-7 text-black hover:opacity-70 motion-safe:transition-opacity" />
             </a>
         );
