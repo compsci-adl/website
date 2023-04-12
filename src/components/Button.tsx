@@ -32,7 +32,7 @@ export default function Button({ children, className, href, smallShadow, ...prop
                     className={`${topLayerClassName} ${
                         smallShadow === true ? smallShadowTopLayer : ''
                     } ${className ?? ''}`}
-                    href={href}
+                    href={{ pathname: href }}
                     role="button"
                     {...props}
                 >

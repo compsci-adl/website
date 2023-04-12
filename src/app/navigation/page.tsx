@@ -1,11 +1,11 @@
 'use client';
 
-import Button from '@/components/Button';
-import NavLinks from '@/components/navigation/NavLinks';
-import Duck from '@/svg/Duck';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { RiCloseLine } from 'react-icons/ri';
+import Button from '@/components/Button';
+import NavLinks from '@/components/navigation/NavLinks';
+import Duck from '@/svg/Duck';
 
 export default function Navigation() {
     const router = useRouter();

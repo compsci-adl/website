@@ -8,7 +8,7 @@ type StyledLinkProps = {
 
 export default function StyledLink({ children, href, ...props }: StyledLinkProps) {
     return (
-        <Link href={href} className="text-accent-blue" {...props}>
+        <Link href={{ pathname: href }} className="text-accent-blue" {...props}>
             {children}
         </Link>
     );

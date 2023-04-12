@@ -92,21 +92,21 @@ export default function Home() {
                 </h3>
                 <div className="grid grid-cols-3 pb-3 md:gap-16 md:pb-6 lg:gap-24 lg:pb-12">
                     <Image
-                        src="sponsor-logos/atlassian-compact.svg"
+                        src="/sponsor-logos/atlassian-compact.svg"
                         alt="Atlassian logo"
                         className="m-auto scale-75 lg:scale-100"
                         width={LOGO_SIZE}
                         height={LOGO_SIZE}
                     />
                     <Image
-                        src="sponsor-logos/macquarie-compact.svg"
+                        src="/sponsor-logos/macquarie-compact.svg"
                         alt="Macquarie logo"
                         className="m-auto scale-75 lg:scale-100"
                         width={LOGO_SIZE}
                         height={LOGO_SIZE}
                     />
                     <Image
-                        src="sponsor-logos/pwc-compact.svg"
+                        src="/sponsor-logos/pwc-compact.svg"
                         alt="PwC logo"
                         className="m-auto md:scale-75 lg:scale-100"
                         width={LOGO_SIZE}

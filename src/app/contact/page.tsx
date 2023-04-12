@@ -1,6 +1,7 @@
 import { IoMdMail } from 'react-icons/io';
 import { SiFacebook, SiDiscord } from 'react-icons/si';
 import Footer from './Footer';
+import StyledLink from '@/components/StyledLink';
 
 const CONTACT_PLATFORMS = [
     { name: 'facebook', icon: SiFacebook, link: 'https://m.me/compsci.adl' },
@@ -38,9 +39,9 @@ export default function Contact() {
             <section className="w-full content-center pt-12 text-center md:pt-16 lg:pt-20">
                 <h2 className="text-xl md:text-3xl">
                     For sponsorships, please email{' '}
-                    <a className="text-accent-blue" href="mailto:sponsorships@csclub.org.au">
+                    <StyledLink href="mailto:sponsorships@csclub.org.au">
                         sponsorships@csclub.org.au
-                    </a>
+                    </StyledLink>
                 </h2>
             </section>
 
