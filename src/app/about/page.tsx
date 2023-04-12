@@ -1,3 +1,5 @@
+import Details from '@/components/Details';
+import StyledLink from '@/components/StyledLink';
 import Footer from './Footer';
 import ProfileCards from './ProfileCards';
 
@@ -67,7 +69,35 @@ export default function About() {
                 <h2 className="text-left text-5xl font-bold md:text-6xl lg:text-secondary-heading">
                     FAQ
                 </h2>
-                <p className="py-4">FAQ goes here.</p>
+                <Details summary="How do I become a member?">
+                    <p>
+                        You can register as a club member <StyledLink href="/join">here</StyledLink>
+                        . Fill out and submit the form.
+                    </p>
+                </Details>
+                <Details summary="How much does membership cost?">
+                    <p>
+                        <b>Club membership costs $10.</b> You can pay for membership at a club event
+                        or contact one of the committee members.
+                    </p>
+                </Details>
+                <Details summary="Does the club have a Facebook page?">
+                    <p>
+                        Yes! We have a{' '}
+                        <StyledLink href="https://www.facebook.com/compsci.adl">
+                            Facebook page
+                        </StyledLink>{' '}
+                        where we post all club events and general discussions. We also have a
+                        Discord server that has discussions and announcements for all club events.
+                    </p>
+                </Details>
+                <Details summary="How can I contact the CS Club?">
+                    <p>
+                        If you have any questions or just want to get in touch with us, then all
+                        available avenues for communication are listed on our{' '}
+                        <StyledLink href="/contact">contact page</StyledLink>.
+                    </p>
+                </Details>
             </section>
 
             <Footer />
