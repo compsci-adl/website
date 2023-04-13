@@ -11,4 +11,6 @@ export default function ContactLayout({ children }: RootLayoutProps) {
 
 export const metadata = {
     title: 'Contact - CS Club',
+    description:
+        'Contact us on Facebook, Discord or by email. For sponsorships, please email sponsorships@csclub.org.au',
 };

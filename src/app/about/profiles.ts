@@ -10,6 +10,7 @@ export const COMMITTEE_PROFILE_CARDS = [
     { name: 'Ryan Kim', role: '"Publicity Officer"' },
     { name: 'Pouya Aliabad', role: 'Business Manager' },
     { name: 'Steven Liu', role: 'Duck Lounge Liaison' },
+    // eslint-disable-next-line sonarjs/no-duplicate-string
     { name: 'Rowan Fimmano', role: 'General Committee' },
     { name: 'Chloe Walsh', role: 'General Committee' },
     { name: 'Milan Sorak', role: 'General Committee' },

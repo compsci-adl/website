@@ -1,25 +1,27 @@
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { COMPANIES } from './companies';
 import Button from '@/components/Button';
 import Footer from './Footer';
 
-export function getStaticPaths() {
-    const paths = COMPANIES.map((sponsor) => {
-        return {
-            params: { sponsor: sponsor.name },
-        };
-    });
-
-    return {
-        paths,
-        fallback: false,
-    };
-}
+// NOTE: Not supported in Nextjs 13
+// export function getStaticPaths() {
+//     const paths = COMPANIES.map((sponsor) => {
+//         return {
+//             params: { sponsor: sponsor.name },
+//         };
+//     });
+//
+//     return {
+//         paths,
+//         fallback: false,
+//     };
+// }
 
 export default function Page({ params }: { params: { sponsor: string } }) {
     const res = COMPANIES.find((element) => element.name === params.sponsor);
     if (res === undefined) {
-        return;
+        notFound();
     }
 
     return (
