@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Article from '@/components/Article';
-import Button from '@/components/Button';
+import LinkButton from '@/components/LinkButton';
 import Card from '@/components/Card';
 import Caterpillar from '@/svg/Caterpillar';
 import Diagonals from '@/svg/Diagonals';
@@ -118,12 +118,12 @@ export default function Home() {
                         Thinking of supporting the Computer Science Club and reaching our extremely
                         active community of hundreds of computer science students?
                     </Article>
-                    <Button
+                    <LinkButton
                         className="bg-accent-highlight px-7 py-3 text-2xl font-bold lg:px-9 lg:py-5 lg:text-3xl"
                         href="/contact"
                     >
                         Contact Us
-                    </Button>
+                    </LinkButton>
                     <Duck
                         className="absolute -bottom-36 right-[-8%] -z-50 h-52 w-52 -scale-y-100 -scale-x-100 fill-accent-yellow opacity-30 md:-bottom-52
                         md:right-[-5%] md:h-72 md:w-72 lg:bottom-[-17rem] lg:h-96 lg:w-96"

@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import LinkButton from '@/components/LinkButton';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/navigation/Navbar';
 
@@ -14,12 +14,12 @@ export default function NotFound() {
                     <h2 className="text-left text-5xl font-bold md:text-6xl lg:text-secondary-heading">
                         Not found
                     </h2>
-                    <Button
+                    <LinkButton
                         className="bg-accent-highlight px-5 py-2 text-xl font-bold lg:px-6 lg:py-3 lg:text-2xl"
                         href="/"
                     >
                         Go to home
-                    </Button>
+                    </LinkButton>
                 </section>
                 <section className="mg:gap-16 relative flex w-full flex-col items-start justify-center gap-10 pt-36 lg:pt-36">
                     <Footer className="pt-24 md:pt-36 lg:pt-48" />

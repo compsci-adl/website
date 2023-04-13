@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { COMPANIES } from './companies';
-import Button from '@/components/Button';
+import LinkButton from '@/components/LinkButton';
 import Footer from './Footer';
 
 // NOTE: Not supported in Nextjs 13
@@ -39,13 +39,13 @@ export default function Page({ params }: { params: { sponsor: string } }) {
                     {res.displayName}
                 </h2>
                 <p>{res.desc}</p>
-                <Button
+                <LinkButton
                     className="bg-accent-highlight px-5 py-2 text-xl font-bold lg:px-6 lg:py-3 lg:text-2xl"
                     href={res.link}
                     target="_blank"
                 >
                     Website
-                </Button>
+                </LinkButton>
             </section>
 
             <Footer />

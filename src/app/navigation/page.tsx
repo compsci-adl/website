@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { RiCloseLine } from 'react-icons/ri';
 import Button from '@/components/Button';
+import LinkButton from '@/components/LinkButton';
 import NavLinks from '@/components/navigation/NavLinks';
 import Duck from '@/svg/Duck';
 
@@ -30,12 +31,12 @@ export default function Navigation() {
                     </Button>
                 </div>
                 <NavLinks className="flex flex-col gap-7 md:gap-9" />
-                <Button
+                <LinkButton
                     className="bg-accent-highlight py-4 px-12 text-2xl font-bold md:text-3xl"
                     href="/join"
                 >
                     Join Us
-                </Button>
+                </LinkButton>
                 <Duck
                     className="absolute bottom-[-4%] right-[-10%] z-0 w-40 -scale-x-100 opacity-50 md:w-60 lg:right-[-5%]"
                     mono

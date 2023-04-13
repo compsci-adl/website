@@ -1,4 +1,4 @@
-import Button from '@/components/Button';
+import LinkButton from '@/components/LinkButton';
 import Circle from '@/svg/Circle';
 import ClubLogo from '@/svg/ClubLogo';
 import Duck from '@/svg/Duck';
@@ -19,12 +19,15 @@ export default function Hero() {
                     CODE.
                 </h1>
                 <div className="z-20 flex flex-col gap-5 text-2xl font-bold md:flex-row md:gap-12 lg:gap-16 lg:text-4xl">
-                    <Button className="bg-accent-highlight px-7 py-3 lg:py-5 lg:px-9" href="/join">
+                    <LinkButton
+                        className="bg-accent-highlight px-7 py-3 lg:py-5 lg:px-9"
+                        href="/join"
+                    >
                         Join Us
-                    </Button>
-                    <Button className="bg-primary-bg px-7 py-3 lg:py-5 lg:px-9" href="/about">
+                    </LinkButton>
+                    <LinkButton className="bg-primary-bg px-7 py-3 lg:py-5 lg:px-9" href="/about">
                         About
-                    </Button>
+                    </LinkButton>
                 </div>
             </div>
             <ClubLogo className="w-48 md:w-80 lg:w-[30rem]" />
