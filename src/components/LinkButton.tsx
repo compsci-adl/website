@@ -1,17 +1,20 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-type LinkButtonProps = JSX.IntrinsicElements['a'] & {
+// NOTE: Inheriting properties from `JSX.IntrinsicElements['a'] breaks Vercel build
+type LinkButtonProps = {
     children: ReactNode;
     className?: string;
     href: string;
     smallShadow?: boolean;
+    target?: string;
 };
 
 export default function LinkButton({
     children,
     className,
     href,
+    target,
     smallShadow,
     ...props
 }: LinkButtonProps) {
@@ -25,6 +28,7 @@ export default function LinkButton({
                 } ${className ?? ''}`}
                 href={{ pathname: href }}
                 role="button"
+                target={target}
                 {...props}
             >
                 {children}
