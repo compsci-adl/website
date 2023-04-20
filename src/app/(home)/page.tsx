@@ -10,7 +10,7 @@ import Duck from '@/svg/Duck';
 import Hero from './Hero';
 import Footer from './Footer';
 
-const LOGO_SIZE = 150;
+const LOGO_SIZE = 180;
 
 export default function Home() {
     return (
@@ -19,7 +19,7 @@ export default function Home() {
             {/* Summary cards */}
             <section className="grid grid-cols-1 gap-12 lg:grid-cols-3">
                 <Card
-                    className="flex-grow py-3 px-5 pb-4 lg:py-5 lg:px-8"
+                    className="flex-grow px-5 py-3 pb-4 lg:px-8 lg:py-5"
                     headingClassName="bg-accent-blue"
                     heading="Learn"
                 >
@@ -30,7 +30,7 @@ export default function Home() {
                     </Article>
                 </Card>
                 <Card
-                    className="flex-grow py-3 px-5 pb-4 lg:py-5 lg:px-8"
+                    className="flex-grow px-5 py-3 pb-4 lg:px-8 lg:py-5"
                     headingClassName="bg-accent-yellow"
                     heading="Socialise"
                 >
@@ -41,7 +41,7 @@ export default function Home() {
                     </Article>
                 </Card>
                 <Card
-                    className="flex-grow py-3 px-5 pb-4 lg:py-5 lg:px-8"
+                    className="flex-grow px-5 py-3 pb-4 lg:px-8 lg:py-5"
                     headingClassName="bg-accent-red"
                     heading="Code"
                 >
@@ -57,7 +57,7 @@ export default function Home() {
                 <h2 className="pb-12 text-4xl font-bold md:text-5xl lg:text-6xl">
                     New Members are <span className="text-accent-blue">Always</span> Welcome
                 </h2>
-                <Caterpillar className="absolute top-0 left-[-45%] -z-50 h-96 w-96 fill-accent-yellow opacity-30 max-lg:hidden" />
+                <Caterpillar className="absolute left-[-45%] top-0 -z-50 h-96 w-96 fill-accent-yellow opacity-30 max-lg:hidden" />
                 <Card className="relative w-5/6 p-5 pb-10 max-md:pt-7 md:w-3/4 md:p-12 md:pb-16">
                     <Article heading="Member *Perks*">
                         As a member, some of the perks you&apos;ll have access to include computer
@@ -76,7 +76,7 @@ export default function Home() {
                         </Article>
                     </Card>
                     <Dots
-                        className="absolute top-[-53%] right-[-16%] -z-50 h-56 w-56 fill-accent-blue opacity-30 max-md:top-[-80%] md:right-[-7%]
+                        className="absolute right-[-16%] top-[-53%] -z-50 h-56 w-56 fill-accent-blue opacity-30 max-md:top-[-80%] md:right-[-7%]
                         lg:top-[-85%] lg:h-72 lg:w-72"
                     />
                 </div>
@@ -125,7 +125,7 @@ export default function Home() {
                         Contact Us
                     </LinkButton>
                     <Duck
-                        className="absolute -bottom-36 right-[-8%] -z-50 h-52 w-52 -scale-y-100 -scale-x-100 fill-accent-yellow opacity-30 md:-bottom-52
+                        className="absolute -bottom-36 right-[-8%] -z-50 h-52 w-52 -scale-x-100 -scale-y-100 fill-accent-yellow opacity-30 md:-bottom-52
                         md:right-[-5%] md:h-72 md:w-72 lg:bottom-[-17rem] lg:h-96 lg:w-96"
                         mono
                     />

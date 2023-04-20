@@ -8,13 +8,13 @@ module.exports = {
   theme: {
     extend: {
       width: {
-        responsive: 'min(85vw, 80rem)',
+        responsive: 'min(80vw, 75rem)',
       },
       fontFamily: {
         sans: ['var(--font-archivo)', ...defaultTheme.fontFamily.sans],
       },
       fontSize: {
-        'primary-heading': ['5rem ', '1'],
+        'primary-heading': ['5.5rem ', '1'],
         'secondary-heading': ['3rem ', '1'],
         'tertiary-heading': ['2rem ', '1'],
       },
