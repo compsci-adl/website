@@ -18,7 +18,7 @@ export default function Navigation() {
                 gap-12 overflow-hidden border-primary border-black bg-primary-fg text-4xl shadow-solid
                 md:gap-16 md:text-5xl"
             >
-                <div className="absolute top-0 left-0 flex w-full flex-row items-center justify-between p-10">
+                <div className="absolute left-0 top-0 flex w-full flex-row items-center justify-between p-10">
                     <Link className="text-3xl font-bold md:text-4xl" href="/">
                         CS Club
                     </Link>
@@ -32,7 +32,7 @@ export default function Navigation() {
                 </div>
                 <NavLinks className="flex flex-col gap-7 md:gap-9" />
                 <LinkButton
-                    className="bg-accent-highlight py-4 px-12 text-2xl font-bold md:text-3xl"
+                    className="bg-accent-highlight px-12 py-4 text-2xl font-bold md:text-3xl"
                     href="/join"
                 >
                     Join Us

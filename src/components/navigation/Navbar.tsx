@@ -7,7 +7,7 @@ import NavLinks from './NavLinks';
 export default function Navbar() {
     return (
         <nav
-            className="fixed top-5 z-[9999] flex w-responsive items-center justify-between border-primary border-black
+            className="fixed top-7 z-[9999] flex w-responsive items-center justify-between border-primary border-black
             bg-primary-fg px-7 py-3 text-xl shadow-solid"
         >
             <Link className="text-3xl font-bold leading-[0] md:text-4xl" href="/">

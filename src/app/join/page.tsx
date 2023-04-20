@@ -34,7 +34,7 @@ export default function Join() {
 
             {/* Member sign up form */}
             <section className="w-full pt-12 md:pt-16 lg:pt-20">
-                <Card className="content-center py-10 px-5">
+                <Card className="content-center px-5 py-10">
                     <h2 className="text-center text-5xl font-bold md:text-6xl lg:text-secondary-heading">
                         New Member Sign Up
                     </h2>

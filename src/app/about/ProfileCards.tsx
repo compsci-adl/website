@@ -5,7 +5,7 @@ import { COMMITTEE_PROFILE_CARDS } from './profiles';
 export default function ProfileCards() {
     const profiles = COMMITTEE_PROFILE_CARDS.map(({ name, role }) => {
         return (
-            <Card key={name} className="min-h-[8em] py-4 px-4 xl:py-5 xl:px-8">
+            <Card key={name} className="min-h-[8em] px-4 py-4 xl:px-8 xl:py-5">
                 <h1 className="text-left text-2xl">{name}</h1>
                 <p className="pt-2">{role}</p>
             </Card>

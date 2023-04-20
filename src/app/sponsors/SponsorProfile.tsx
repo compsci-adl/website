@@ -16,7 +16,7 @@ type SponsorCardProps = {
 export function SponsorCard({ name, logo }: SponsorCardProps) {
     return (
         <Card className="relative flex flex-col">
-            <div className=" absolute top-0 left-0 z-20 flex h-full w-full flex-col bg-[#000000b3] p-8 opacity-0 hover:opacity-100">
+            <div className=" absolute left-0 top-0 z-20 flex h-full w-full flex-col bg-[#000000b3] p-8 opacity-0 hover:opacity-100">
                 <div className="m-auto">
                     <p className="text-center align-middle text-xl text-white">
                         View company profile
