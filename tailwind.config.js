@@ -25,6 +25,7 @@ module.exports = {
         'accent-highlight': '#0AD7F8',
         'primary-fg': 'white',
         'primary-bg': '#F2EFE5',
+        destructive: '#dc2626',
       },
       borderWidth: {
         primary: '4px',
