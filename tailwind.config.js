@@ -25,7 +25,11 @@ module.exports = {
         'accent-highlight': '#0AD7F8',
         'primary-fg': 'white',
         'primary-bg': '#F2EFE5',
-        destructive: '#dc2626',
+        destructive: {
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
+        },
+        ring: "hsl(var(--ring))",
       },
       borderWidth: {
         primary: '4px',
