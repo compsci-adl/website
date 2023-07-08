@@ -1,0 +1,32 @@
+name: Linting
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches: [main, master, ci]
+
+permissions:
+  contents: read
+  statuses: write
+
+jobs:
+  es-lint:
+    name: ESLint
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: eslint --ext .js,.jsx,.ts,.tsx src/**
+
+  prettier:
+    name: Prettier
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: prettier src/** --check
