@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm ci
-      - run: eslint --ext .js,.jsx,.ts,.tsx src/**
+      - run: npx eslint --ext .js,.jsx,.ts,.tsx src/**
 
   prettier:
     name: Prettier
@@ -29,4 +29,4 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
       - run: npm ci
-      - run: prettier src/** --check
+      - run: npx prettier src/** --check
