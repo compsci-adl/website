@@ -2,7 +2,10 @@ import { Archivo } from 'next/font/google';
 import '@/styles/globals.css';
 
 const ARCHIVO = Archivo({
+    variable: '--font-archivo',
     subsets: ['latin'],
+    style: ['normal'],
+    weight: ['400', '500', '700'],
     display: 'swap',
 });
 
