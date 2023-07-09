@@ -7,7 +7,9 @@
     "build": "tsec --noEmit && next build",
     "analyse": "cross-env ANALYSE=true next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\""
   },
   "dependencies": {
     "@types/node": "18.15.5",
