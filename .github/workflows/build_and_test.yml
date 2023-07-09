@@ -1,0 +1,22 @@
+name: Build and Test
+on:
+  pull_request:
+    branches:
+      - "*"
+  push:
+    branches: [main, master, ci]
+
+permissions:
+  contents: read
+  statuses: write
+
+jobs:
+  build:
+    name: Run build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+      - run: npm ci
+      - run: npm run build
