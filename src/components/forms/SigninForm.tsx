@@ -85,7 +85,7 @@ const SignInForm = () => {
                                 <div className="mt-2">
                                     <FormControl>
                                         <Input
-                                            className="border-2 border-zinc-900 rounded-none"
+                                            className="rounded-none border-2 border-zinc-900"
                                             htmlFor="email"
                                             placeholder="john@exmaple.com"
                                             {...field}
@@ -107,7 +107,7 @@ const SignInForm = () => {
                                 </FormLabel>
                                 <FormControl>
                                     <Input
-                                        className="border-2 rounded-none border-zinc-900"
+                                        className="rounded-none border-2 border-zinc-900"
                                         htmlFor="password"
                                         type="password"
                                         placeholder="password"

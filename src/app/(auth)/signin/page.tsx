@@ -1,5 +1,5 @@
 import { type Metadata } from 'next';
-import SignInForm from '@/components/forms/signin-form';
+import SignInForm from '@/components/forms/SigninForm';
 import ClubLogo from '@/svg/ClubLogo';
 
 export const metadata: Metadata = {
