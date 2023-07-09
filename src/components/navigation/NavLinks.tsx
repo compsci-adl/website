@@ -13,7 +13,10 @@ type NavLinksProps = {
 export function NavLink({ href, children }: NavLinkProps) {
     return (
         <li>
-            <Link className="hover:opacity-70 motion-safe:transition-opacity" href={href}>
+            <Link
+                className="hover:opacity-70 motion-safe:transition-opacity"
+                href={{ pathname: href }}
+            >
                 {children}
             </Link>
         </li>

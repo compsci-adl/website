@@ -1,6 +1,6 @@
 import Navbar from '@/components/navigation/Navbar';
 
-export default function HomeLayout({ children }: RootLayoutProps) {
+export default function EventsLayout({ children }: RootLayoutProps) {
     return (
         <>
             <Navbar />
@@ -10,5 +10,5 @@ export default function HomeLayout({ children }: RootLayoutProps) {
 }
 
 export const metadata = {
-    title: 'University of Adelaide Computer Science Club',
+    title: 'Events - CS Club',
 };
