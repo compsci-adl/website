@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\""
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\"",
     "migrations:generate": "drizzle-kit generate:mysql",
     "migrations:push": "node -r esbuild-register src/lib/db/syncSqlSchema.ts",
     "migrations:drop": "drizzle-kit drop --config=drizzle.config.ts"
