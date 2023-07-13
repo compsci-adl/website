@@ -1,5 +1,5 @@
-import { ClerkProvider } from '@clerk/nextjs';
 import { Archivo } from 'next/font/google';
+import { ClientProviders } from '@/app/client-providers';
 import '@/styles/globals.css';
 
 const ARCHIVO = Archivo({
@@ -13,13 +13,13 @@ const ARCHIVO = Archivo({
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <ClerkProvider>
+        <ClientProviders>
             <html lang="en" className={`${ARCHIVO.className} w-full overflow-x-hidden`}>
                 <body className="flex h-full w-full justify-center overflow-x-hidden bg-primary-bg">
                     {children}
                 </body>
             </html>
-        </ClerkProvider>
+        </ClientProviders>
     );
 }
 

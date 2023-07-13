@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 
 import LinkButton from '@/components/LinkButton';
 import NavLinks from './NavLinks';
+import { UserButton } from '@clerk/nextjs';
 
 export default function Navbar() {
     return (
@@ -21,6 +22,7 @@ export default function Navbar() {
                 >
                     Join Us
                 </LinkButton>
+                <UserButton />
                 <LinkButton
                     className="bg-accent-highlight px-1 py-1 md:px-2 md:py-2 lg:hidden"
                     href="/navigation"
