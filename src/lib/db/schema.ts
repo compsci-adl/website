@@ -1,6 +1,6 @@
 import { mysqlTable, varchar, uniqueIndex, boolean, mysqlEnum } from 'drizzle-orm/mysql-core';
 
-const members = mysqlTable(
+export default mysqlTable(
     'members',
     {
         id: varchar('id', { length: 36 }).notNull().primaryKey(), // TODO: Revise ID length
@@ -18,5 +18,3 @@ const members = mysqlTable(
         emailIndex: uniqueIndex('email_idx').on(members.email),
     })
 );
-
-export { members };

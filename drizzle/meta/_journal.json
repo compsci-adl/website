@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1689220564088,
+      "tag": "0000_clumsy_storm",
+      "breakpoints": true
+    }
+  ]
+}

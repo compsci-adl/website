@@ -1,8 +1,7 @@
 import type { Config } from 'drizzle-kit';
 
-const config: Config = {
-  schema: './src/db/schema.ts',
+export default {
+  schema: './src/lib/db/schema.ts',
   connectionString: process.env.DB_CONNECTION_URI,
-};
-
-export default config;
+  out: './drizzle',
+} satisfies Config;
