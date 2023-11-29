@@ -13,8 +13,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: pnpm ci
+      - uses: actions/setup-node@v4
+      - run: pnpm install
       - run: pnpm run lint
 
   prettier:
@@ -23,6 +23,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-      - run: pnpm ci
+      - uses: actions/setup-node@v4
+      - run: pnpm install
       - run: pnpm run format:check
