@@ -21,7 +21,6 @@
   "singleAttributePerLine": false,
   "htmlWhitespaceSensitivity": "css",
   "embeddedLanguageFormatting": "auto",
-  "jsdocSingleLineComment": false,
   "importOrderSeparation": false,
   "importOrder": [
     "<THIRD_PARTY_MODULES>",
