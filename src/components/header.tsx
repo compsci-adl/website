@@ -15,7 +15,7 @@ export default function Header() {
           Contact
         </a>
       </nav>
-      <nav className="space-x-8">
+      <nav className="space-x-8 font-bold">
         <button className="bg-orange py-2 px-4">
           Sign In
         </button>
