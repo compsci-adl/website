@@ -1,7 +1,44 @@
+'use client';
+
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useState, useEffect, useRef } from 'react';
+
 export default function Header() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const headerRef = useRef<HTMLDivElement>(null);
+
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
+    const closeMenu = (event: MouseEvent) => {
+        if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
+            setIsMenuOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', closeMenu);
+
+        return () => {
+            document.removeEventListener('mousedown', closeMenu);
+        };
+    }, []);
+
     return (
-        <header className="bg-white px-8 py-4 ml-24 flex justify-between items-center">
-            <nav className="space-x-8">
+        <header
+            ref={headerRef}
+            className={`bg-white fixed mt-8 ${
+                isMenuOpen ? 'px-6 py-6' : 'px-4 py-3'
+            } lg:px-8 md:px-4 lg:py-4 md:py-2 right-16 md:right-24 w-auto md:w-7/12 lg:w-8/12 transition-all duration-500 flex flex-col md:flex-row items-center justify-between text-sm lg:text-base border-2 border-black`}
+        >
+            {/* Menu Links */}
+            <nav
+                className={`flex flex-col ${
+                    isMenuOpen ? 'space-y-4' : 'hidden'
+                } md:flex md:flex-row md:space-x-4 lg:space-x-8 md:space-y-0 mb-4 md:mb-0`}
+            >
                 <a href="/about" className="hover:underline">
                     About
                 </a>
@@ -15,10 +52,29 @@ export default function Header() {
                     Contact
                 </a>
             </nav>
-            <nav className="space-x-8 font-bold">
-                <button className="bg-orange py-2 px-4">Sign In</button>
-                <button className="bg-yellow py-2 px-4">Join Us</button>
+
+            {/* Sign In and Join Us Buttons */}
+            <nav
+                className={`flex flex-col md:flex-row md:space-x-2 lg:space-x-8 ${
+                    isMenuOpen ? '' : 'hidden'
+                } md:block md:space-x-8 space-y-4 md:space-y-0`}
+            >
+                <button className="bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-4 border-2 border-black">
+                    Sign In
+                </button>
+                <button className="bg-yellow py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-4 border-2 border-black">
+                    Join Us
+                </button>
             </nav>
+
+            <div className="ml-auto block md:hidden">
+                {' '}
+                {/* Aligns icon to the right */}
+                {/* Hamburger Menu Icon */}
+                <button onClick={toggleMenu} className={`${isMenuOpen ? 'hidden' : ''} `}>
+                    <FontAwesomeIcon icon={faBars} size="lg" />
+                </button>
+            </div>
         </header>
     );
 }
