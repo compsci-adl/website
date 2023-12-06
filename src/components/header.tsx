@@ -69,7 +69,7 @@ export default function Header() {
             <div className="ml-auto block md:hidden">
                 {/* Hamburger Menu Icon */}
                 <button onClick={toggleMenu} className={`${isMenuOpen ? 'hidden' : ''} `}>
-                    <FaBars className="text-xl" />
+                    <FaBars className="text-xl" aria-label="Menu" />
                 </button>
             </div>
         </header>

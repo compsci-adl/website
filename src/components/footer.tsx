@@ -21,6 +21,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
+                    aria-label="Email"
                 >
                     <FaEnvelope className="text-2xl" />
                 </a>
@@ -29,6 +30,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
+                    aria-label="Github"
                 >
                     <FaGithub className="text-2xl" />
                 </a>
@@ -37,6 +39,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
+                    aria-label="Instagram"
                 >
                     <FaInstagram className="text-2xl" />
                 </a>
@@ -45,6 +48,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
+                    aria-label="Facebook"
                 >
                     <FaFacebook className="text-2xl" />
                 </a>
@@ -53,6 +57,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
+                    aria-label="Discord"
                 >
                     <FaDiscord className="text-2xl" />
                 </a>
@@ -61,6 +66,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
+                    aria-label="LinkedIn"
                 >
                     <FaLinkedin className="text-2xl" />
                 </a>
