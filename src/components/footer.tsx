@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Footer() {
     return (
-        <footer className="text-white py-4 bottom-4 border-t-2 border-white flex flex-col md:flex-row md:justify-between md:items-center transition-all duration-500 mx-16 md:mx-24 md:pb-8">
+        <footer className="relative z-20 text-white py-4 bottom-4 border-t-2 border-white flex flex-col md:flex-row md:justify-between md:items-center transition-all duration-500 mx-16 md:mx-24 md:pb-8">
             <div className="order-2 md:order-1 text-center md:text-left mb-4 md:mb-0">
                 <p>&copy; 2024 Computer Science Club.</p>
             </div>
