@@ -1,12 +1,12 @@
 import {
-    faGithub,
-    faInstagram,
-    faFacebook,
-    faDiscord,
-    faLinkedin,
-} from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+    FaEnvelope,
+    FaGithub,
+    FaInstagram,
+    FaFacebook,
+    FaDiscord,
+    FaLinkedin,
+    FaLink,
+} from 'react-icons/fa';
 
 export default function Footer() {
     return (
@@ -14,6 +14,7 @@ export default function Footer() {
             <div className="order-2 md:order-1 text-center md:text-left mb-4 md:mb-0">
                 <p>&copy; 2024 Computer Science Club.</p>
             </div>
+            {/* Social Media Links */}
             <div className="order-1 md:order-2 flex justify-center md:justify-end space-x-4 mb-4 md:mb-0">
                 <a
                     href="mailto:general@csclub.org.au"
@@ -21,7 +22,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
                 >
-                    <FontAwesomeIcon icon={faEnvelope} fixedWidth className="text-xl mt-0.5" />
+                    <FaEnvelope className="text-2xl" />
                 </a>
                 <a
                     href="https://github.com/compsci-adl"
@@ -29,7 +30,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
                 >
-                    <FontAwesomeIcon icon={faGithub} fixedWidth className="text-xl mt-0.5" />
+                    <FaGithub className="text-2xl" />
                 </a>
                 <a
                     href="https://instagram.com/compsci.adl"
@@ -37,7 +38,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
                 >
-                    <FontAwesomeIcon icon={faInstagram} fixedWidth className="text-xl mt-0.5" />
+                    <FaInstagram className="text-2xl" />
                 </a>
                 <a
                     href="https://www.facebook.com/compsci.adl"
@@ -45,7 +46,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
                 >
-                    <FontAwesomeIcon icon={faFacebook} fixedWidth className="text-xl mt-0.5" />
+                    <FaFacebook className="text-2xl" />
                 </a>
                 <a
                     href="https://discord.com/invite/UjvVxHA"
@@ -53,7 +54,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
                 >
-                    <FontAwesomeIcon icon={faDiscord} fixedWidth className="text-xl mt-0.5" />
+                    <FaDiscord className="text-2xl" />
                 </a>
                 <a
                     href="https://www.linkedin.com/company/compsci-adl"
@@ -61,7 +62,7 @@ export default function Footer() {
                     rel="noopener noreferrer"
                     className="w-10 h-10 p-1.5 bg-orange border-2 border-black text-white"
                 >
-                    <FontAwesomeIcon icon={faLinkedin} fixedWidth className="text-xl mt-0.5" />
+                    <FaLinkedin className="text-2xl" />
                 </a>
             </div>
         </footer>

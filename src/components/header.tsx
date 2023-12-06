@@ -1,8 +1,7 @@
 'use client';
 
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState, useEffect, useRef } from 'react';
+import { FaBars } from 'react-icons/fa';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -68,11 +67,9 @@ export default function Header() {
             </nav>
 
             <div className="ml-auto block md:hidden">
-                {' '}
-                {/* Aligns icon to the right */}
                 {/* Hamburger Menu Icon */}
                 <button onClick={toggleMenu} className={`${isMenuOpen ? 'hidden' : ''} `}>
-                    <FontAwesomeIcon icon={faBars} size="lg" />
+                    <FaBars className="text-xl" />
                 </button>
             </div>
         </header>
