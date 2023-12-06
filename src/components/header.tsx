@@ -54,9 +54,9 @@ export default function Header() {
 
             {/* Sign In and Join Us Buttons */}
             <nav
-                className={`flex flex-col md:flex-row md:space-x-2 lg:space-x-8 ${
+                className={`flex flex-col md:flex-row ${
                     isMenuOpen ? '' : 'hidden'
-                } md:block md:space-x-8 space-y-4 md:space-y-0`}
+                } md:block lg:space-x-8 md:space-x-4 md:space-y-0 space-y-4`}
             >
                 <button className="bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-4 border-2 border-black">
                     Sign In
