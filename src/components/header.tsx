@@ -28,7 +28,7 @@ export default function Header() {
     return (
         <header
             ref={headerRef}
-            className={`bg-white fixed z-20 mt-8 ${
+            className={`bg-white fixed z-20 mt-8 text-background ${
                 isMenuOpen ? 'px-6 py-6' : 'px-4 py-3'
             } lg:px-8 md:px-4 lg:py-4 md:py-2 right-16 md:right-24 w-auto md:w-7/12 lg:w-8/12 transition-all duration-500 flex flex-col md:flex-row items-center justify-between text-sm lg:text-base border-2 border-black`}
         >
