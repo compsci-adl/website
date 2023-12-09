@@ -8,7 +8,7 @@ export default function Home() {
     return (
         <div className="relative z-10 bg-background h-fit">
             <img
-                className="z-20 h-48 px-16 md:px-24 py-4 mt-4 fixed transition-all duration-500"
+                className="z-30 h-48 px-16 md:px-24 py-4 mt-4 fixed transition-all duration-500"
                 src="/images/logo.png"
                 alt="Computer Science Club Logo"
             />

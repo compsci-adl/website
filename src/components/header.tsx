@@ -7,6 +7,7 @@ import FancyRectangle from '../components/fancyRectangle';
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const headerRef = useRef<HTMLDivElement>(null);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -20,14 +21,30 @@ export default function Header() {
 
     useEffect(() => {
         document.addEventListener('mousedown', closeMenu);
+        window.addEventListener('scroll', handleScroll);
 
         return () => {
             document.removeEventListener('mousedown', closeMenu);
+            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
+    const handleScroll = () => {
+        const scrollPosition = window.scrollY;
+        if (scrollPosition > 0) {
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false);
+        }
+    };
+
     return (
         <header className="w-auto h-auto relative">
+            <div
+                className={`fixed w-full h-72 transition-all duration-500 z-20 ${
+                    isScrolled ? 'bg-gradient-to-b from-black from-10% to-transparent to-100%' : ''
+                } `}
+            ></div>
             <div
                 className={`fixed w-[3.75em] h-[3.75em] mt-9 md:mt-10 md:h-14 lg:h-[5.25em] lg:px-8 md:px-4 lg:py-4 md:py-2 right-14 md:right-[5.5em] lg:right-26 md:w-7/12 lg:w-8/12 transition-all duration-500 bg-purple md:bg-white border-4 border-black z-20`}
             ></div>
