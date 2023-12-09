@@ -38,7 +38,7 @@ export default function ImageCarousel() {
     }, []);
 
     return (
-        <div className="relative">
+        <div className="relative z-10">
             <FancyRectangle colour="purple" offset="8" filled={true}>
                 <div className="relative bg-white w-[66.5vw] h-[50vw] lg:w-[31.99vw] lg:h-[24vw]">
                     {images.map((image, index) => (

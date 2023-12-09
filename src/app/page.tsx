@@ -49,6 +49,37 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
+                    <section>
+                        <div className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-24">
+                            <h1 className="">New Members are</h1>
+                            <div className="bg-purple w-fit px-2 ml-2">
+                                <h1 className=" text-background">Always Welcome</h1>
+                            </div>
+                        </div>
+                        <div className="relative bg-background border-white border-2 px-4 py-4 mt-4 z-10">
+                            <p>
+                                As a member, some of the perks you’ll have access to include
+                                computer science talks and workshops, catered social events, and a
+                                wide network of other computer science students and graduates to
+                                learn from and make friends with.
+                            </p>
+                        </div>
+                        <div className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4 items-center">
+                            <h1 className="">First-Year Perks</h1>
+                            <img
+                                src={'/images/yellowStar.svg'}
+                                alt="Yellow Star"
+                                className="ml-4 h-10"
+                            />
+                        </div>
+                        <div className="relative bg-background border-white border-2 px-4 py-4 mt-4 z-10">
+                            <p>
+                                Are you a first year student? The Club runs activities at the start
+                                of the year specifically for you, giving you a chance to meet other
+                                students, and helping you ease into uni life.
+                            </p>
+                        </div>
+                    </section>
                 </main>
             </div>
             <Footer></Footer>
