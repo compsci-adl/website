@@ -57,7 +57,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="relative bg-background border-white border-2 px-6 py-6 mt-4 z-10">
-                            <p>
+                            <p className="text-xl">
                                 As a member, some of the perks you’ll have access to include
                                 computer science talks and workshops, catered social events, and a
                                 wide network of other computer science students and graduates to
@@ -73,7 +73,7 @@ export default function Home() {
                             />
                         </div>
                         <div className="relative bg-background border-white border-2 px-6 py-6 mt-4 z-10">
-                            <p>
+                            <p className="text-xl">
                                 Are you a first year student? The Club runs activities at the start
                                 of the year specifically for you, giving you a chance to meet other
                                 students, and helping you ease into uni life.
@@ -82,11 +82,15 @@ export default function Home() {
                     </section>
                     <hr className="mt-16 mb-16 h-0.5 bg-white"></hr>
                     <section>
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <div className="ml-12 md:ml-20 lg:ml-44">
+                            <Grid></Grid>
+                        </div>
+
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-xl">
                             {' '}
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
-                                    <div className="bg-purple w-full px-6 py-2 border-4 border-black">
+                                    <div className="bg-purple w-full px-6 py-6 border-4 border-black">
                                         <h3 className="text-[6vw] md:text-[3vw] text-background font-archivo-black">
                                             Learn
                                         </h3>
@@ -109,7 +113,7 @@ export default function Home() {
                             </FancyRectangle>
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
-                                    <div className="bg-yellow w-full px-6 py-2 border-4 border-black">
+                                    <div className="bg-yellow w-full px-6 py-6 border-4 border-black">
                                         <h3 className="text-[6vw] md:text-[3vw] text-background font-archivo-black">
                                             Socialise
                                         </h3>
@@ -132,7 +136,7 @@ export default function Home() {
                             </FancyRectangle>
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
-                                    <div className="bg-orange w-full px-6 py-2 border-4 border-black">
+                                    <div className="bg-orange w-full px-6 py-6 border-4 border-black">
                                         <h3 className="text-[6vw] md:text-[3vw] text-background font-archivo-black">
                                             Code
                                         </h3>
@@ -154,6 +158,35 @@ export default function Home() {
                                 </div>
                             </FancyRectangle>
                         </div>
+                    </section>
+                    <section>
+                        <div className="flex flex-row relative z-10 font-archivo-black text-[5vw] md:text-[5vw] lg:text-[3.5vw] mt-24 items-center">
+                            <img
+                                src={'/images/yellowTriangle.svg'}
+                                alt="Yellow Triangle"
+                                className="ml-0.5 mr-4"
+                            />
+                            <div>
+                                <h3>Supported By </h3>
+                                <div className="flex flex-row">
+                                    <h3 className="mr-2">Industry’s </h3>
+                                    <FancyRectangle colour="orange" offset="6" filled={false}>
+                                        <div className="bg-orange w-fit px-2">
+                                            <h2>Greatest</h2>
+                                        </div>
+                                    </FancyRectangle>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4">
+                            Tier 1 Sponsors
+                        </h3>
+                        <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4">
+                            Tier 2 Sponsors
+                        </h3>
+                        <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4">
+                            Tier 3 Sponsors
+                        </h3>
                     </section>
                 </main>
             </div>
