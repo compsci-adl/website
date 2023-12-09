@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import FancyRectangle from '../components/fancyRectangle';
 
 interface CarouselImage {
     src: string;
@@ -38,16 +39,26 @@ export default function ImageCarousel() {
 
     return (
         <div className="relative">
-            {images.map((image, index) => (
-                <div
-                    key={index}
-                    className={`absolute transition-opacity duration-1000 ease-in-out ${
-                        index === currentImageIndex ? 'opacity-100' : 'opacity-0'
-                    }`}
-                >
-                    <Image src={image.src} alt={image.alt} width={533.2} height={400} />
+            <FancyRectangle colour="purple" offset="8" filled={true}>
+                <div className="relative bg-white w-[66.5vw] h-[50vw] lg:w-[31.99vw] lg:h-[24vw]">
+                    {images.map((image, index) => (
+                        <div
+                            key={index}
+                            className={`absolute transition-opacity duration-1000 ease-in-out ${
+                                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                            }`}
+                        >
+                            <Image
+                                src={image.src}
+                                alt={image.alt}
+                                width={533.2}
+                                height={400}
+                                className="w-[66.5vw] h-[50vw] lg:w-[31.99vw] lg:h-[24vw]"
+                            />
+                        </div>
+                    ))}
                 </div>
-            ))}
+            </FancyRectangle>
         </div>
     );
 }
