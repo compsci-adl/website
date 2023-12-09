@@ -1,8 +1,9 @@
 import React from 'react';
 
+// Fancy rectangle component used in various elements taking parameters child, colour, offset and filled
 interface FancyRectangleProps {
     children: React.ReactNode;
-    colour: string; // Accept Tailwind color classes, like 'bg-yellow-500'
+    colour: string;
     offset: string;
     filled: boolean;
 }
