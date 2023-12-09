@@ -6,7 +6,7 @@ export default function Grid() {
             {Array.from({ length: 48 }).map((_, index) => (
                 <div
                     key={index}
-                    className=" w-12 h-12 md:w-20 md:h-20 lg:w-28 lg:h-28 flex items-center justify-center border-[0.5px] border-white"
+                    className="w-[9vw] h-[9vw] flex items-center justify-center border-[0.5px] border-white"
                 ></div>
             ))}
         </div>
