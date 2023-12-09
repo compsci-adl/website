@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { FaBars } from 'react-icons/fa';
+import FancyRectangle from '../components/fancyRectangle';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,21 +52,23 @@ export default function Header() {
                     Contact
                 </a>
             </nav>
-
             {/* Sign In and Join Us Buttons */}
             <nav
                 className={`flex flex-col md:flex-row ${
                     isMenuOpen ? '' : 'hidden'
-                } md:block lg:space-x-8 md:space-x-4 md:space-y-0 space-y-4`}
+                } md:flex md:space-x-4 lg:space-x-8 space-y-4 md:space-y-0`}
             >
-                <button className="bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-4 border-2 border-black">
-                    Sign In
-                </button>
-                <button className="bg-yellow py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-4 border-2 border-black">
-                    Join Us
-                </button>
+                <FancyRectangle colour="black" offset="4" filled={true}>
+                    <button className="bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold">
+                        Sign In
+                    </button>
+                </FancyRectangle>
+                <FancyRectangle colour="black" offset="4" filled={true}>
+                    <button className="bg-purple py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold">
+                        Join Us
+                    </button>
+                </FancyRectangle>
             </nav>
-
             <div className="ml-auto block md:hidden">
                 {/* Hamburger Menu Icon */}
                 <button onClick={toggleMenu} className={`${isMenuOpen ? 'hidden' : ''} `}>
