@@ -178,15 +178,68 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                        <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4">
+                        <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-16">
                             Tier 1 Sponsors
                         </h3>
+                        <div className="h-48"></div>
                         <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4">
                             Tier 2 Sponsors
                         </h3>
+                        <div className="h-48"></div>
                         <h3 className="flex flex-row relative z-10 font-archivo-black text-[3.5vw] md:text-[3vw] lg:text-[2vw] mt-4">
                             Tier 3 Sponsors
                         </h3>
+                        <div className="h-48"></div>
+                    </section>
+                    <section>
+                        <div className="h-24"></div>
+                        <div className="mb-24 md:mb-32 lg:mb-44">
+                            <Grid></Grid>
+                        </div>
+
+                        <div className="flex flex-col relative z-10 w-fit">
+                            <div className="flex flex-row relative mb-2 justify-end">
+                                <img
+                                    src={'/images/whiteDuckOutline.svg'}
+                                    alt="White Duck Outline"
+                                    className="ml-4 h-10"
+                                />
+                                <img
+                                    src={'/images/whiteDuckOutline.svg'}
+                                    alt="White Duck Outline"
+                                    className="ml-4 h-10"
+                                />
+                                <img
+                                    src={'/images/whiteDuck.svg'}
+                                    alt="White Duck"
+                                    className="ml-4 h-10"
+                                />
+                                <img
+                                    src={'/images/whiteDuck.svg'}
+                                    alt="White Duck"
+                                    className="ml-4 h-10"
+                                />
+                                <img
+                                    src={'/images/whiteDuck.svg'}
+                                    alt="White Duck"
+                                    className="ml-4 h-10"
+                                />
+                            </div>
+                            <div className="flex flex-row relative z-10">
+                                <div className="bg-orange w-10 h-auto"></div>
+                                <div className="flex flex-col relative">
+                                    <span className="bg-white text-black text-[4.5vw] lg:text-[3vw] font-archivo-black relative px-4 py-2">
+                                        Thinking about{' '}
+                                        <span className="text-orange"> Joining?</span>
+                                    </span>
+                                    <p className="bg-background text-white text-[3.5vw] lg:text-[2vw] border-2 border-white px-4 py-2">
+                                        New members are always welcome!
+                                    </p>
+                                </div>
+                            </div>{' '}
+                        </div>
+
+                        <div className="h-0 lg:h-96"></div>
                     </section>
                 </main>
             </div>
