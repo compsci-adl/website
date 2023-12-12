@@ -87,7 +87,6 @@ export default function Home() {
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-xl">
-                            {' '}
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
                                     <div className="bg-purple w-full px-6 py-6 border-4 border-black">
@@ -101,7 +100,7 @@ export default function Home() {
                                                 The club has a major focus on{' '}
                                                 <span className="relative inline-block">
                                                     education
-                                                    <div className="absolute top-0 left-0 bg-purple opacity-30 w-full h-full"></div>
+                                                    <span className="absolute top-0 left-0 bg-purple opacity-30 w-full h-full"></span>
                                                 </span>{' '}
                                                 and learning. We run workshops to assist students
                                                 with their studies and host other educational events
@@ -124,7 +123,7 @@ export default function Home() {
                                                 We are primarily a{' '}
                                                 <span className="relative inline-block">
                                                     social club.
-                                                    <div className="absolute top-0 left-0 bg-yellow opacity-30 w-full h-full"></div>
+                                                    <span className="absolute top-0 left-0 bg-yellow opacity-30 w-full h-full"></span>
                                                 </span>{' '}
                                                 Events such as meet & greets, games / movies nights,
                                                 BBQs, and pub crawls are just some of the social
@@ -146,7 +145,7 @@ export default function Home() {
                                             <p>
                                                 <span className="relative inline-block">
                                                     Coding
-                                                    <div className="absolute top-0 left-0 bg-orange opacity-30 w-full h-full"></div>
+                                                    <span className="absolute top-0 left-0 bg-orange opacity-30 w-full h-full"></span>
                                                 </span>{' '}
                                                 is what we do and love. Whether you’re looking for
                                                 some feedback on a project or have technical
