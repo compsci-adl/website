@@ -24,7 +24,7 @@ export default function Footer() {
                         href="mailto:general@csclub.org.au"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 p-1.5 bg-white border-2 border-black"
+                        className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                         aria-label="Email"
                     >
                         <FaEnvelope className="text-2xl" />
@@ -36,7 +36,7 @@ export default function Footer() {
                         href="https://github.com/compsci-adl"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 p-1.5 bg-white border-2 border-black"
+                        className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                         aria-label="Github"
                     >
                         <FaGithub className="text-2xl" />
@@ -47,7 +47,7 @@ export default function Footer() {
                         href="https://instagram.com/compsci.adl"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 p-1.5 bg-white border-2 border-black"
+                        className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                         aria-label="Instagram"
                     >
                         <FaInstagram className="text-2xl" />
@@ -59,7 +59,7 @@ export default function Footer() {
                         href="https://www.facebook.com/compsci.adl"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 p-1.5 bg-white border-2 border-black"
+                        className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                         aria-label="Facebook"
                     >
                         <FaFacebook className="text-2xl" />
@@ -71,7 +71,7 @@ export default function Footer() {
                         href="https://discord.com/invite/UjvVxHA"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 p-1.5 bg-white border-2 border-black"
+                        className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                         aria-label="Discord"
                     >
                         <FaDiscord className="text-2xl" />
@@ -83,7 +83,7 @@ export default function Footer() {
                         href="https://www.linkedin.com/company/compsci-adl"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="w-10 h-10 p-1.5 bg-white border-2 border-black"
+                        className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                         aria-label="LinkedIn"
                     >
                         <FaLinkedin className="text-2xl" />
