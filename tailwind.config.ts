@@ -13,7 +13,7 @@ const config: Config = {
         white: '#F3F3EB',
         orange: '#E1652B',
         yellow: '#FCC018',
-        purple: '#7678E6',
+        purple: '#7E7FE7',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
