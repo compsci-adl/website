@@ -39,7 +39,7 @@ export default function Header() {
     };
 
     return (
-        <header className="w-auto h-auto relative">
+        <header className="w-auto h-auto relative font-archivo">
             <div
                 className={`fixed w-full h-72 transition-all duration-500 z-20 ${
                     isScrolled ? 'bg-gradient-to-b from-black from-10% to-transparent to-100%' : ''
