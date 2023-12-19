@@ -13,7 +13,7 @@ import FancyRectangle from '../components/fancyRectangle';
 
 export default function Footer() {
     return (
-        <footer className="relative z-20 py-4 bottom-4 border-t-2 border-white flex flex-col md:flex-row md:justify-between md:items-center transition-all duration-500 mx-16 md:mx-24 md:pb-8 mt-96 lg:mt-72 font-archivo">
+        <footer className="relative z-20 py-4 bottom-4 border-t-2 border-white flex flex-col md:flex-row md:justify-between md:items-center transition-all duration-500 mx-8 md:mx-24 md:pb-8 mt-96 lg:mt-72 font-archivo">
             <div className="order-2 md:order-1 text-center md:text-left mb-4 md:mb-0 text-white">
                 <p>&copy; 2024 Computer Science Club.</p>
             </div>

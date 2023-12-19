@@ -46,13 +46,13 @@ export default function Header() {
                 } `}
             ></div>
             <div
-                className={`fixed w-[3.75em] h-[3.75em] mt-9 md:mt-10 md:h-14 lg:h-[5.25em] lg:px-8 md:px-4 lg:py-4 md:py-2 right-14 md:right-[5.5em] lg:right-26 md:w-7/12 lg:w-8/12 transition-all duration-500 bg-purple md:bg-white border-4 border-black z-20`}
+                className={`fixed w-[3.75em] h-[3.75em] mt-9 md:mt-10 md:h-14 lg:h-[5.25em] lg:px-8 md:px-4 lg:py-4 md:py-2 right-6 md:right-[5.5em] lg:right-26 md:w-7/12 lg:w-8/12 transition-all duration-500 bg-purple md:bg-white border-4 border-black z-20`}
             ></div>
             <div
                 ref={headerRef}
                 className={`bg-white fixed z-30 mt-8 text-background ${
                     isMenuOpen ? 'px-6 py-6' : 'px-4 py-3'
-                } lg:px-8 md:px-4 lg:py-4 md:py-2 right-16 md:right-24 w-auto md:w-7/12 lg:w-8/12 transition-all duration-500 flex flex-col md:flex-row items-center justify-between text-sm lg:text-base border-4 border-black`}
+                } lg:px-8 md:px-4 lg:py-4 md:py-2 right-8 md:right-24 w-auto md:w-7/12 lg:w-8/12 transition-all duration-500 flex flex-col md:flex-row items-center justify-between text-sm lg:text-base border-4 border-black`}
             >
                 {/* Menu Links */}
                 <nav
