@@ -13,7 +13,7 @@ export default function Home() {
             <Image
                 src="/images/logo.png"
                 alt="Computer Science Club Logo"
-                className="z-30 h-28 md:h-36 lg:h-48 px-8 md:px-24 py-4 mt-4 fixed transition-all duration-500"
+                className="z-30 h-28 md:h-36 lg:h-48 w-auto px-8 md:px-24 py-4 mt-4 fixed transition-all duration-500"
                 width={300}
                 height={300}
             />
