@@ -51,7 +51,7 @@ export default function Home() {
                                         filled={false}
                                     >
                                         <div className="bg-orange w-fit px-2 py-2">
-                                            <h2 className="text-xl md:text-4xl">
+                                            <h2 className="text-xl md:text-3xl">
                                                 Computer Science Club
                                             </h2>
                                         </div>
@@ -60,7 +60,7 @@ export default function Home() {
                             </div>
 
                             {/* Right side */}
-                            <div className="mt-8 lg:mt-10 lg:ml-32 w-full md:w-auto transition-all duration-500">
+                            <div className="mt-12 lg:mt-3 lg:ml-32 w-full md:w-auto transition-all duration-500">
                                 <ImageCarousel></ImageCarousel>
                             </div>
                         </div>
@@ -69,7 +69,7 @@ export default function Home() {
 
                     {/* CTA Section */}
                     <section>
-                        <div className="flex flex-col md:flex-row relative z-10 font-black text-2xl lg:text-3xl mt-24">
+                        <div className="flex flex-col md:flex-row relative z-10 font-black text-2xl lg:text-3xl mt-12 lg:mt-24">
                             <h3>New Members are</h3>
                             <div className="bg-purple w-fit px-2 md:ml-2 mt-2 md:mt-0">
                                 <h3 className=" text-background">Always Welcome</h3>
@@ -103,7 +103,7 @@ export default function Home() {
                     </section>
                     {/* **** */}
 
-                    <hr className="mt-16 mb-16 h-0.5 bg-white"></hr>
+                    <hr className="mt-8 mb-8 h-0.5 bg-white"></hr>
 
                     {/* Club info cards */}
                     <section>
@@ -111,15 +111,15 @@ export default function Home() {
                             <Grid />
                         </div>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-xl">
+                        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mr-2 text-xl">
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
-                                    <div className="bg-purple w-full px-6 py-6 border-4 border-black">
+                                    <div className="bg-purple w-full px-4 py-4 md:px-6 md:py-6 border-4 border-black">
                                         <h3 className="text-2xl lg:text-3xl text-background font-black">
                                             Learn
                                         </h3>
                                     </div>
-                                    <div className="bg-white w-fit px-6 py-6 border-4 -mt-2 border-black">
+                                    <div className="bg-white w-fit px-4 py-4 md:px-6 md:py-6 border-4 -mt-2 border-black">
                                         <div className="relative text-base md:text-xl text-black">
                                             <p>
                                                 The club has a major focus on{' '}
@@ -137,12 +137,12 @@ export default function Home() {
                             </FancyRectangle>
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
-                                    <div className="bg-yellow w-full px-6 py-6 border-4 border-black">
+                                    <div className="bg-yellow w-full px-4 py-4 md:px-6 md:py-6 border-4 border-black">
                                         <h3 className="text-2xl lg:text-3xl text-background font-black">
                                             Socialise
                                         </h3>
                                     </div>
-                                    <div className="bg-white w-fit px-6 py-6 border-4 -mt-2 border-black">
+                                    <div className="bg-white w-fit px-4 py-4 md:px-6 md:py-6 border-4 -mt-2 border-black">
                                         <div className="relative text-base md:text-xl text-black">
                                             <p>
                                                 We are primarily a{' '}
@@ -160,12 +160,12 @@ export default function Home() {
                             </FancyRectangle>
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
-                                    <div className="bg-orange w-full px-6 py-6 border-4 border-black">
+                                    <div className="bg-orange w-full px-4 py-4 md:px-6 md:py-6 border-4 border-black">
                                         <h3 className="text-2xl lg:text-3xl text-background font-black">
                                             Code
                                         </h3>
                                     </div>
-                                    <div className="bg-white w-fit px-6 py-6 border-4 -mt-2 border-black">
+                                    <div className="bg-white w-fit px-4 py-4 md:px-6 md:py-6 border-4 -mt-2 border-black">
                                         <div className="relative text-base md:text-xl text-black">
                                             <p>
                                                 <span className="relative inline-block">
@@ -187,19 +187,19 @@ export default function Home() {
 
                     {/* Sponsors Section */}
                     <section>
-                        <div className="flex flex-row relative z-10 font-black text-xl md:text-4xl lg:text-5xl mt-24 items-center">
+                        <div className="flex flex-row relative z-10 font-black text-2xl md:text-4xl lg:text-5xl mt-12 lg:mt-20 items-center">
                             <Image
                                 src="/images/yellowTriangle.svg"
                                 alt="Yellow Triangle"
-                                className="ml-0.5 mr-4"
+                                className="mr-4"
                                 width={50}
                                 height={50}
                             />
 
                             <div>
                                 <h3>Supported By </h3>
-                                <div className="flex flex-row">
-                                    <h3 className="mr-2">Industry’s </h3>
+                                <div className="flex flex-col md:flex-row">
+                                    <h3 className="mr-2 mb-2 md:mb-0">Industry’s </h3>
                                     <FancyRectangle colour="orange" offset="6" filled={false}>
                                         <div className="bg-orange w-fit px-2">
                                             <h2>Greatest</h2>
@@ -234,7 +234,7 @@ export default function Home() {
                                 <Image
                                     src="/images/whiteDuckOutline.svg"
                                     alt="White Duck Outline"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-8 md:h-10"
                                     height={50}
                                     width={50}
                                 />
@@ -242,7 +242,7 @@ export default function Home() {
                                 <Image
                                     src="/images/whiteDuckOutline.svg"
                                     alt="White Duck"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-8 md:h-10"
                                     height={50}
                                     width={50}
                                 />
@@ -250,7 +250,7 @@ export default function Home() {
                                 <Image
                                     src="/images/whiteDuck.svg"
                                     alt="White Duck"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-8 md:h-10"
                                     height={50}
                                     width={50}
                                 />
@@ -258,21 +258,21 @@ export default function Home() {
                                 <Image
                                     src="/images/whiteDuck.svg"
                                     alt="White Duck"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-8 md:h-10"
                                     height={50}
                                     width={50}
                                 />
                                 <Image
                                     src="/images/whiteDuck.svg"
                                     alt="White Duck"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-8 md:h-10"
                                     height={50}
                                     width={50}
                                 />
                                 <Image
                                     src="/images/whiteDuck.svg"
                                     alt="White Duck"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-8 md:h-10"
                                     height={50}
                                     width={50}
                                 />

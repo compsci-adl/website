@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Grid() {
     return (
-        <div className="absolute z-0 ml-12 mt-12 grid grid-cols-8">
+        <div className="absolute -z-10 ml-12 mt-12 grid grid-cols-8">
             {Array.from({ length: 48 }).map((_, index) => (
                 <div
                     key={index}

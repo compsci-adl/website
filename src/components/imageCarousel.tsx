@@ -44,7 +44,7 @@ export default function ImageCarousel() {
     }, []);
 
     return (
-        <div className="relative z-10">
+        <div className="relative z-10 lg:ml-16 mr-2">
             <FancyRectangle colour="purple" offset="8" filled={true}>
                 <div className="relative bg-white w-full h-full">
                     <div
@@ -55,8 +55,8 @@ export default function ImageCarousel() {
                         <Image
                             src={images[currentImageIndex].src}
                             alt={images[currentImageIndex].alt}
-                            width={533}
-                            height={400}
+                            width={2132}
+                            height={1600}
                             className="object-cover w-full h-full"
                         />
                     </div>
