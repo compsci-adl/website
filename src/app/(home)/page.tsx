@@ -1,22 +1,31 @@
-import FancyRectangle from '../components/fancyRectangle';
-import Footer from '../components/footer';
-import Grid from '../components/grid';
-import Header from '../components/header';
-import ImageCarousel from '../components/imageCarousel';
+import Image from 'next/image';
+
+import FancyRectangle from '../../components/fancyRectangle';
+import Footer from '../../components/footer';
+import Grid from '../../components/grid';
+import Header from '../../components/header';
+import ImageCarousel from '../../components/imageCarousel';
 
 export default function Home() {
     return (
         <div className="relative z-10 bg-background h-fit">
-            <img
-                className="z-30 h-28 md:h-36 lg:h-48 px-8 md:px-24 py-4 mt-4 fixed transition-all duration-500"
+
+            <Header />
+
+            <Image
                 src="/images/logo.png"
                 alt="Computer Science Club Logo"
+                className='z-30 h-28 md:h-36 lg:h-48 px-8 md:px-24 py-4 mt-4 fixed transition-all duration-500'
+                width={300}
+                height={300}
             />
-            <Header></Header>
+
             <div className="top-8 font-archivo text-white">
                 <div className="h-24 md:h-32 lg:h-48"></div>
                 <main className="mx-4 md:mx-20 px-4 py-8">
-                    <section className="mb-8 font-archivo-black">
+
+                {/* Hero Section */}
+                    <section className="mb-8 font-black">
                         <div className="grid grid-cols-1 lg:grid-cols-2">
                             {/* Left side */}
                             <div>
@@ -59,8 +68,11 @@ export default function Home() {
                             </div>
                         </div>
                     </section>
+                {/* **** */}
+
+                {/* CTA Section */}
                     <section>
-                        <div className="flex flex-col md:flex-row relative z-10 font-archivo-black text-2xl lg:text-3xl mt-24">
+                        <div className="flex flex-col md:flex-row relative z-10 font-black text-2xl lg:text-3xl mt-24">
                             <h3>New Members are</h3>
                             <div className="bg-purple w-fit px-2 md:ml-2 mt-2 md:mt-0">
                                 <h3 className=" text-background">Always Welcome</h3>
@@ -74,13 +86,16 @@ export default function Home() {
                                 learn from and make friends with.
                             </p>
                         </div>
-                        <div className="flex flex-row relative z-10 font-archivo-black text-2xl lg:text-3xl mt-4 items-center">
+                        <div className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-4 items-center">
                             <h3 className="">First-Year Perks</h3>
-                            <img
-                                src={'/images/yellowStar.svg'}
+                            <Image
+                                src="/images/yellowStar.svg"
                                 alt="Yellow Star"
                                 className="ml-4 h-10"
+                                width={50}
+                                height={50}
                             />
+
                         </div>
                         <div className="relative bg-background border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
                             <p className="text-base md:text-xl">
@@ -90,17 +105,21 @@ export default function Home() {
                             </p>
                         </div>
                     </section>
+                {/* **** */}
+
                     <hr className="mt-16 mb-16 h-0.5 bg-white"></hr>
+
+                {/* Club info cards */}
                     <section>
                         <div className="ml-0 md:ml-20 lg:ml-44">
-                            <Grid></Grid>
+                            <Grid />
                         </div>
 
                         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-xl">
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
                                     <div className="bg-purple w-full px-6 py-6 border-4 border-black">
-                                        <h3 className="text-2xl lg:text-3xl text-background font-archivo-black">
+                                        <h3 className="text-2xl lg:text-3xl text-background font-black">
                                             Learn
                                         </h3>
                                     </div>
@@ -123,7 +142,7 @@ export default function Home() {
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
                                     <div className="bg-yellow w-full px-6 py-6 border-4 border-black">
-                                        <h3 className="text-2xl lg:text-3xl text-background font-archivo-black">
+                                        <h3 className="text-2xl lg:text-3xl text-background font-black">
                                             Socialise
                                         </h3>
                                     </div>
@@ -146,7 +165,7 @@ export default function Home() {
                             <FancyRectangle colour="white" offset="8" filled={true}>
                                 <div className="flex flex-col">
                                     <div className="bg-orange w-full px-6 py-6 border-4 border-black">
-                                        <h3 className="text-2xl lg:text-3xl text-background font-archivo-black">
+                                        <h3 className="text-2xl lg:text-3xl text-background font-black">
                                             Code
                                         </h3>
                                     </div>
@@ -168,13 +187,20 @@ export default function Home() {
                             </FancyRectangle>
                         </div>
                     </section>
+                {/* **** */}
+
+                {/* Sponsors Section */}
                     <section>
-                        <div className="flex flex-row relative z-10 font-archivo-black text-xl md:text-4xl lg:text-5xl mt-24 items-center">
-                            <img
-                                src={'/images/yellowTriangle.svg'}
+                        <div className="flex flex-row relative z-10 font-black text-xl md:text-4xl lg:text-5xl mt-24 items-center">
+
+                            <Image
+                                src="/images/yellowTriangle.svg"
                                 alt="Yellow Triangle"
                                 className="ml-0.5 mr-4"
+                                width={50}
+                                height={50}
                             />
+
                             <div>
                                 <h3>Supported By </h3>
                                 <div className="flex flex-row">
@@ -187,19 +213,22 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                        <h3 className="flex flex-row relative z-10 font-archivo-black text-2xl lg:text-3xl mt-16">
+                        <h3 className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-16">
                             Tier 1 Sponsors
                         </h3>
                         <div className="h-48"></div>
-                        <h3 className="flex flex-row relative z-10 font-archivo-black text-2xl lg:text-3xl mt-4">
+                        <h3 className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-4">
                             Tier 2 Sponsors
                         </h3>
                         <div className="h-48"></div>
-                        <h3 className="flex flex-row relative z-10 font-archivo-black text-2xl lg:text-3xl mt-4">
+                        <h3 className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-4">
                             Tier 3 Sponsors
                         </h3>
                         <div className="h-48"></div>
+
                     </section>
+                {/* **** */}
+
                     <section>
                         <div className="h-24"></div>
                         <div className="mb-24 md:mb-32 lg:mb-44">
@@ -208,36 +237,58 @@ export default function Home() {
 
                         <div className="flex flex-col relative z-10 w-fit">
                             <div className="flex flex-row relative mb-2 justify-end">
-                                <img
-                                    src={'/images/whiteDuckOutline.svg'}
+
+                                <Image
+                                    src="/images/whiteDuckOutline.svg"
                                     alt="White Duck Outline"
                                     className="ml-4 h-10"
+                                    height={50}
+                                    width={50}
                                 />
-                                <img
-                                    src={'/images/whiteDuckOutline.svg'}
-                                    alt="White Duck Outline"
-                                    className="ml-4 h-10"
-                                />
-                                <img
-                                    src={'/images/whiteDuck.svg'}
+
+                                <Image
+                                    src="/images/whiteDuckOutline.svg"
                                     alt="White Duck"
                                     className="ml-4 h-10"
+                                    height={50}
+                                    width={50}
                                 />
-                                <img
-                                    src={'/images/whiteDuck.svg'}
+
+                                <Image
+                                    src="/images/whiteDuck.svg"
                                     alt="White Duck"
                                     className="ml-4 h-10"
+                                    height={50}
+                                    width={50}
                                 />
-                                <img
-                                    src={'/images/whiteDuck.svg'}
+
+                                <Image
+                                    src="/images/whiteDuck.svg"
                                     alt="White Duck"
                                     className="ml-4 h-10"
+                                    height={50}
+                                    width={50}
                                 />
+                                 <Image
+                                    src="/images/whiteDuck.svg"
+                                    alt="White Duck"
+                                    className="ml-4 h-10"
+                                    height={50}
+                                    width={50}
+                                />
+                                 <Image
+                                    src="/images/whiteDuck.svg"
+                                    alt="White Duck"
+                                    className="ml-4 h-10"
+                                    height={50}
+                                    width={50}
+                                />
+
                             </div>
                             <div className="flex flex-row relative z-10">
                                 <div className="bg-orange w-10 h-auto"></div>
                                 <div className="flex flex-col relative">
-                                    <span className="bg-white text-black text-2xl lg:text-3xl font-archivo-black relative px-4 py-2">
+                                    <span className="bg-white text-black text-2xl lg:text-3xl font-black relative px-4 py-2">
                                         Thinking about{' '}
                                         <span className="text-orange"> Joining?</span>
                                     </span>
