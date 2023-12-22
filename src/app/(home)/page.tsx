@@ -291,7 +291,7 @@ export default function Home() {
                             </div>{' '}
                         </div>
 
-                        <div className="h-0 lg:h-96"></div>
+                        <div className="h-[4vh] smr:h-[24vw] sm:h-[28vw] md:h-[32vw] md:max-h-[500px]"></div>
                     </section>
                 </main>
             </div>
