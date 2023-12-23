@@ -209,15 +209,15 @@ export default function Home() {
                             </div>
                         </div>
                         <h3 className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-16">
-                            Tier 1 Sponsors
+                            Gold Sponsors
                         </h3>
                         <div className="h-48"></div>
                         <h3 className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-4">
-                            Tier 2 Sponsors
+                            Silver Sponsors
                         </h3>
                         <div className="h-48"></div>
                         <h3 className="flex flex-row relative z-10 font-black text-2xl lg:text-3xl mt-4">
-                            Tier 3 Sponsors
+                            Bronze Sponsors
                         </h3>
                         <div className="h-48"></div>
                     </section>
