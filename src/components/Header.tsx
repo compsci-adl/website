@@ -80,14 +80,20 @@ export default function Header() {
                     } md:flex md:space-x-4 lg:space-x-8 space-y-4 md:space-y-0`}
                 >
                     <FancyRectangle colour="black" offset="4" filled={true}>
-                        <button className="bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
+                        <a
+                            href="/sign-in"
+                            className="block bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow"
+                        >
                             Sign In
-                        </button>
+                        </a>
                     </FancyRectangle>
                     <FancyRectangle colour="black" offset="4" filled={true}>
-                        <button className="bg-purple py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
+                        <a
+                            href="/join-us"
+                            className="block bg-purple py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow"
+                        >
                             Join Us
-                        </button>
+                        </a>
                     </FancyRectangle>
                 </nav>
                 <div className="ml-auto block md:hidden">
