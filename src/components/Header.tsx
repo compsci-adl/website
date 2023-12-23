@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { FaBars } from 'react-icons/fa';
-import FancyRectangle from '../components/fancyRectangle';
+import FancyRectangle from './FancyRectangle';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

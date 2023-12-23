@@ -8,7 +8,7 @@ import {
     FaDiscord,
     FaLinkedin,
 } from 'react-icons/fa';
-import FancyRectangle from '../components/fancyRectangle';
+import FancyRectangle from './FancyRectangle';
 
 export default function Footer() {
     return (

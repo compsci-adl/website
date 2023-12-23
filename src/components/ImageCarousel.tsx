@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import FancyRectangle from '../components/fancyRectangle';
+import FancyRectangle from './FancyRectangle';
 
 interface CarouselImage {
     src: string;
