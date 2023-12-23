@@ -13,14 +13,14 @@ export default function Home() {
             <Image
                 src="/images/logo.png"
                 alt="Computer Science Club Logo"
-                className="z-30 h-28 md:h-36 lg:h-48 w-auto px-8 md:px-24 py-4 mt-4 fixed transition-all duration-500"
+                className="z-30 h-28 md:h-36 lg:h-48 w-auto px-8 md:px-24 lg:px-36 py-4 mt-4 fixed transition-all duration-500"
                 width={300}
                 height={300}
             />
 
             <div className="top-8 font-archivo text-white">
                 <div className="h-24 md:h-32 lg:h-48"></div>
-                <main className="mx-4 md:mx-20 px-4 py-8">
+                <main className="mx-4 md:mx-20 lg:mx-32 px-4 py-8 transition-all duration-500">
                     {/* Hero Section */}
                     <section className="mb-8 font-black">
                         <div className="grid grid-cols-1 lg:grid-cols-2">
