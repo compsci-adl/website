@@ -1,8 +1,8 @@
 'use client';
 
+import FancyRectangle from '@/components/FancyRectangle';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import FancyRectangle from './FancyRectangle';
 
 interface CarouselImage {
     src: string;
@@ -12,7 +12,7 @@ interface CarouselImage {
 const images: CarouselImage[] = [
     {
         src: '/images/duckCTF.jpg',
-        alt: 'duckCTF',
+        alt: 'DuckCTF',
     },
     {
         src: '/images/pizza.jpg',
@@ -44,7 +44,7 @@ export default function ImageCarousel() {
     }, []);
 
     return (
-        <div className="relative z-10 lg:ml-16 mr-2">
+        <div className="relative z-10 mr-2">
             <FancyRectangle colour="purple" offset="8" filled={true}>
                 <div className="relative bg-white w-full h-full">
                     <div

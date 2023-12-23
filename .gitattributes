@@ -3,7 +3,9 @@
 # The above only works properly for Git 2.10+, so for older versions
 # we need to manually list the binary files we don't want modified.
 *.ico binary
-*.jpg binary
 *.jpeg binary
+*.jpg binary
 *.png binary
 *.ttf binary
+*.woff binary
+*.woff2 binary
