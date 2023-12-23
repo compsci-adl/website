@@ -1,7 +1,6 @@
+import FancyRectangle from '@/components/FancyRectangle';
+import Grid from '@/components/Grid';
 import Image from 'next/image';
-import FancyRectangle from '../../components/FancyRectangle';
-import Footer from '../../components/Footer';
-import Grid from '../../components/Grid';
 import ImageCarousel from './ImageCarousel';
 
 export default function Home() {

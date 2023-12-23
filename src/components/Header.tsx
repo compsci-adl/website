@@ -50,11 +50,11 @@ export default function Header() {
 
             <div className="w-full flex justify-center">
                 {/* <Image
-                        src="/images/logo.png"
+                        src="/logo/logo.svg"
                         alt="Computer Science Club Logo"
-                        className="z-30 h-28 md:h-36 lg:h-48 w-auto pr-2 md:pr-10 py-4 mt-4 fixed transition-all duration-500"
+                        className="z-30 h-28 md:h-36 lg:h-48 w-auto px-8 md:px-24 lg:px-36 py-4 mt-4 fixed transition-all duration-500"
                         width={300}
-                        height={300}
+                        height={390}
                     /> */}
 
                 <div
