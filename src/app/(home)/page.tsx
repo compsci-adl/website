@@ -1,5 +1,4 @@
 import FancyRectangle from '@/components/FancyRectangle';
-import Grid from '@/components/Grid';
 import Image from 'next/image';
 import ImageCarousel from './ImageCarousel';
 
@@ -12,7 +11,15 @@ export default function Home() {
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         {/* Left side */}
                         <div>
-                            <Grid />
+                            {/* Grid */}
+                            <Image
+                                src="/images/squareGrid.svg"
+                                alt="Square Grid"
+                                width={500}
+                                height={500}
+                                className="absolute -z-10 ml-8 mt-8 w-[60vw] md:w-[70vw] w-[60vw] md:w-[70vw] lg:w-[50vw] max-w-[800px]"
+                            />
+
                             <div className="relative z-10">
                                 <h1 className="text-5xl md:text-8xl">LEARN,</h1>
                                 <div className="h-2"></div>
@@ -91,9 +98,14 @@ export default function Home() {
 
                 {/* Club info cards */}
                 <section>
-                    <div className="ml-0 md:ml-20 lg:ml-44">
-                        <Grid />
-                    </div>
+                    {/* <Grid /> */}
+                    <Image
+                        src="/images/squareGrid.svg"
+                        alt="Square Grid"
+                        width={500}
+                        height={500}
+                        className="absolute -z-10 w-0 lg:w-[50vw] max-w-[800px] mt-12 lg:ml-36"
+                    />
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mr-2 text-xl">
                         <FancyRectangle colour="white" offset="8" filled={true}>
@@ -209,10 +221,17 @@ export default function Home() {
                 <section>
                     <div className="h-24"></div>
                     <div className="mb-24 md:mb-32 lg:mb-44">
-                        <Grid></Grid>
+                        {/* <Grid /> */}
+                        <Image
+                            src="/images/rectanglegrid.svg"
+                            alt="Rectangle Grid"
+                            width={500}
+                            height={500}
+                            className="absolute -z-10 w-[20em] md:w-[35em] lg:w-[35em] mt-12"
+                        />
                     </div>
 
-                    <div className="flex flex-col relative z-10 w-fit">
+                    <div className="flex flex-col relative z-10 w-fit ml-12">
                         <div className="flex flex-row relative mb-2 justify-end">
                             <Image
                                 src="/images/whiteDuckOutline.svg"
@@ -273,7 +292,7 @@ export default function Home() {
                         </div>{' '}
                     </div>
 
-                    <div className="h-[4vh] smr:h-[24vw] sm:h-[28vw] md:h-[32vw] md:max-h-[500px]"></div>
+                    <div className="h-16 smr:h-24 md:h-32 lg:h-20"></div>
                 </section>
             </main>
         </div>
