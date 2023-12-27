@@ -46,20 +46,23 @@ export default function Header() {
                 >
                     <div className={`flex flex-col w-full ${isMenuOpen ? 'px-8 py-8' : ''}`}>
                         <div className="flex flex-row items-center">
-                            <Image
-                                src="/logo/logo.svg"
-                                alt="Computer Science Club Logo"
-                                className="w-[3rem] md:w-[1.62rem] lg:w-[2.2rem] h-full"
-                                width={100}
-                                height={100}
-                            />
-                            <h1
-                                className={`text-3xl md:text-xl lg:text-2xl ml-6 md:ml-4 ${
-                                    isMenuOpen ? 'text-grey' : 'text-white'
-                                } md:text-grey font-bold`}
-                            >
-                                CS CLUB
-                            </h1>
+                            <a href="/" className="flex flex-row items-center">
+                                <Image
+                                    src="/logo/logo.svg"
+                                    alt="Computer Science Club Logo"
+                                    className="w-[3rem] md:w-[1.62rem] lg:w-[2.2rem] h-full"
+                                    width={100}
+                                    height={100}
+                                />
+                                <h1
+                                    className={`text-3xl md:text-xl lg:text-2xl ml-6 md:ml-4 ${
+                                        isMenuOpen ? 'text-grey' : 'text-white'
+                                    } md:text-grey font-bold`}
+                                >
+                                    CS CLUB
+                                </h1>
+                            </a>
+
                             <div
                                 className={`md:hidden absolute ${
                                     isMenuOpen ? 'right-8' : 'right-0'
