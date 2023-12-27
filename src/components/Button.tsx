@@ -1,4 +1,5 @@
 import FancyRectangle from '@/components/FancyRectangle';
+import { bgColours } from '@/util/colours';
 import React from 'react';
 
 interface ButtonProps {
@@ -8,16 +9,11 @@ interface ButtonProps {
 }
 
 const Button = ({ children, colour, href }: ButtonProps) => {
-    const buttonColors: { [key: string]: string } = {
-        orange: 'bg-orange hover:bg-yellow',
-        purple: 'bg-purple hover:bg-yellow',
-    };
-
     return (
         <FancyRectangle colour="black" offset="4" filled={true}>
             <a
                 href={href}
-                className={`whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 ${buttonColors[colour]}`}
+                className={`whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${bgColours[colour]}`}
             >
                 {children}
             </a>
