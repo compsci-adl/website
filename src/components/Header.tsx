@@ -4,6 +4,7 @@ import FancyRectangle from '@/components/FancyRectangle';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
+import Button from './Button';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -120,16 +121,12 @@ export default function Header() {
                                 isMenuOpen ? '' : 'hidden'
                             } md:flex md:space-x-4 lg:space-x-8 space-y-8 md:space-y-0`}
                         >
-                            <FancyRectangle colour="black" offset="4" filled={true}>
-                                <button className="bg-orange whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
-                                    Sign In
-                                </button>
-                            </FancyRectangle>
-                            <FancyRectangle colour="black" offset="4" filled={true}>
-                                <button className="bg-purple whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
-                                    Join Us
-                                </button>
-                            </FancyRectangle>
+                            <Button colour="orange" href="/sign-in">
+                                Sign In
+                            </Button>
+                            <Button colour="purple" href="/join-us">
+                                Join Us
+                            </Button>
                         </div>
                     </nav>
                 </div>
