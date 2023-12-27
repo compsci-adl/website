@@ -17,7 +17,7 @@ export default function Home() {
                                 alt="Square Grid"
                                 width={500}
                                 height={500}
-                                className="absolute -z-10 ml-8 mt-8 w-[60vw] md:w-[70vw] w-[60vw] md:w-[70vw] lg:w-[50vw] max-w-[800px]"
+                                className="absolute -z-10 ml-8 mt-8 w-[60vw] md:w-[70vw] lg:w-[50vw] max-w-[800px]"
                             />
 
                             <div className="relative z-10">
