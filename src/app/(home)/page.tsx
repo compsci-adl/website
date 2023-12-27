@@ -220,7 +220,7 @@ export default function Home() {
                 {/* CTA part 2 */}
                 <section>
                     <div className="h-24"></div>
-                    <div className="mb-[3em] md:mb-[8.75em]">
+                    <div className="mb-[3em] md:mb-[8.75em] lg:md:mb-[11.3em]">
                         {/* <Grid /> */}
                         <Image
                             src="/images/rectanglegrid.svg"
