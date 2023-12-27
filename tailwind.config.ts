@@ -8,7 +8,7 @@ const config: Config = {
         responsive: 'min(85vw, 90rem)',
       },
       colors: {
-        background: '#252020',
+        grey: '#252020',
         white: '#F3F3EB',
         orange: '#E1652B',
         yellow: '#FCC018',

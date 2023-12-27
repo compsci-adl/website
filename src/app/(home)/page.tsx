@@ -4,7 +4,7 @@ import ImageCarousel from './ImageCarousel';
 
 export default function Home() {
     return (
-        <div className="relative z-10 bg-background h-fit w-responsive top-8 text-white">
+        <div className="relative z-10 bg-grey h-fit w-responsive top-8 text-white">
             <main className="mx-4 md:mx-10 px-4 py-8">
                 {/* Hero Section */}
                 <section className="mb-8 font-black flex pt-24 md:pt-32 lg:pt-48">
@@ -32,9 +32,7 @@ export default function Home() {
                                     filled={false}
                                 >
                                     <div className="bg-yellow w-fit px-2">
-                                        <h1 className="text-5xl md:text-8xl text-background">
-                                            CODE.
-                                        </h1>
+                                        <h1 className="text-5xl md:text-8xl text-grey">CODE.</h1>
                                     </div>
                                 </FancyRectangle>
                                 <div className="h-4 md:h-8"></div>
@@ -64,10 +62,10 @@ export default function Home() {
                     <div className="flex flex-col md:flex-row relative z-10 font-black text-2xl lg:text-3xl mt-12 lg:mt-24">
                         <h3>New Members are</h3>
                         <div className="bg-purple w-fit px-2 md:ml-2 mt-2 md:mt-0">
-                            <h3 className=" text-background">Always Welcome</h3>
+                            <h3 className=" text-grey">Always Welcome</h3>
                         </div>
                     </div>
-                    <div className="relative bg-background border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
+                    <div className="relative bg-grey border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
                         <p className="text-base md:text-xl">
                             As a member, some of the perks you&apos;ll have access to include
                             computer science talks and workshops, catered social events, and a wide
@@ -85,7 +83,7 @@ export default function Home() {
                             height={50}
                         />
                     </div>
-                    <div className="relative bg-background border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
+                    <div className="relative bg-grey border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
                         <p className="text-base md:text-xl">
                             Are you a first year student? The Club runs activities at the start of
                             the year specifically for you, giving you a chance to meet other
@@ -111,7 +109,7 @@ export default function Home() {
                         <FancyRectangle colour="white" offset="8" filled={true}>
                             <div className="flex flex-col">
                                 <div className="bg-purple w-full px-4 py-4 md:px-6 md:py-6 border-4 border-black">
-                                    <h3 className="text-2xl lg:text-3xl text-background font-black">
+                                    <h3 className="text-2xl lg:text-3xl text-grey font-black">
                                         Learn
                                     </h3>
                                 </div>
@@ -134,7 +132,7 @@ export default function Home() {
                         <FancyRectangle colour="white" offset="8" filled={true}>
                             <div className="flex flex-col">
                                 <div className="bg-yellow w-full px-4 py-4 md:px-6 md:py-6 border-4 border-black">
-                                    <h3 className="text-2xl lg:text-3xl text-background font-black">
+                                    <h3 className="text-2xl lg:text-3xl text-grey font-black">
                                         Socialise
                                     </h3>
                                 </div>
@@ -157,7 +155,7 @@ export default function Home() {
                         <FancyRectangle colour="white" offset="8" filled={true}>
                             <div className="flex flex-col">
                                 <div className="bg-orange w-full px-4 py-4 md:px-6 md:py-6 border-4 border-black">
-                                    <h3 className="text-2xl lg:text-3xl text-background font-black">
+                                    <h3 className="text-2xl lg:text-3xl text-grey font-black">
                                         Code
                                     </h3>
                                 </div>
@@ -285,7 +283,7 @@ export default function Home() {
                                 <span className="bg-white text-black text-2xl lg:text-3xl font-black relative px-4 py-2">
                                     Thinking about <span className="text-orange"> Joining?</span>
                                 </span>
-                                <p className="bg-background text-white text-base lg:text-xl border-2 border-white px-4 py-2">
+                                <p className="bg-grey text-white text-base lg:text-xl border-2 border-white px-4 py-2">
                                     New members are always welcome!
                                 </p>
                             </div>

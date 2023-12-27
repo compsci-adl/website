@@ -42,7 +42,7 @@ export default function Header() {
                         isMenuOpen
                             ? 'bg-white flex-col  w-full h-full'
                             : 'flex-row mt-8 w-responsive'
-                    } md:bg-white text-background lg:px-8 md:px-4 lg:py-4 md:py-2 transition-all duration-500 flex items-center md:justify-between text-sm lg:text-base md:border-4 md:border-black md:mr-4`}
+                    } md:bg-white text-grey lg:px-8 md:px-4 lg:py-4 md:py-2 transition-all duration-500 flex items-center md:justify-between text-sm lg:text-base md:border-4 md:border-black md:mr-4`}
                 >
                     <div className={`flex flex-col w-full ${isMenuOpen ? 'px-8 py-8' : ''}`}>
                         <div className="flex flex-row items-center">
@@ -55,8 +55,8 @@ export default function Header() {
                             />
                             <h1
                                 className={`text-3xl md:text-xl lg:text-2xl ml-6 md:ml-4 ${
-                                    isMenuOpen ? 'text-background' : 'text-white'
-                                } md:text-background font-bold`}
+                                    isMenuOpen ? 'text-grey' : 'text-white'
+                                } md:text-grey font-bold`}
                             >
                                 CS CLUB
                             </h1>
@@ -89,7 +89,7 @@ export default function Header() {
                             </div>
                         </div>
                         <div
-                            className={`md:hidden w-full mt-8 h-0.5 bg-background ${
+                            className={`md:hidden w-full mt-8 h-0.5 bg-grey ${
                                 isMenuOpen ? '' : 'hidden'
                             }`}
                         ></div>

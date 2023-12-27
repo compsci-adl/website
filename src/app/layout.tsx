@@ -26,7 +26,7 @@ const archivo = Archivo({
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <html lang="en" className={archivo.className}>
-            <body className="overflow-x-hidden bg-background">
+            <body className="overflow-x-hidden bg-grey">
                 <div id="root" className="flex flex-col items-center">
                     {children}
                 </div>
