@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type {Config} from 'tailwindcss';
 
 // import defaultTheme from 'tailwindcss/defaultTheme';
 
@@ -15,10 +15,6 @@ const config: Config = {
         orange: '#E1652B',
         yellow: '#FCC018',
         purple: '#7E7FE7',
-      },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       screens: {
         smr: '480px',
