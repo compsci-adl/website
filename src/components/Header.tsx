@@ -3,7 +3,7 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
-import { FaBars } from 'react-icons/fa';
+import { IoMdClose, IoMdMenu } from 'react-icons/io';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,34 +14,21 @@ export default function Header() {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    const closeMenu = (event: MouseEvent) => {
-        if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-            setIsMenuOpen(false);
-        }
-    };
-
     useEffect(() => {
-        document.addEventListener('mousedown', closeMenu);
         window.addEventListener('scroll', handleScroll);
 
         return () => {
-            document.removeEventListener('mousedown', closeMenu);
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
-        if (scrollPosition > 0) {
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(false);
-        }
+        setIsScrolled(scrollPosition > 0);
     };
 
     return (
         <header className="z-[9999] w-full">
-            {/* Drop shadow */}
             <div
                 className={`fixed w-full h-60 transition-all duration-500 z-20 ${
                     isScrolled ? 'bg-gradient-to-b from-black from-10% to-transparent to-100%' : ''
@@ -49,83 +36,103 @@ export default function Header() {
             ></div>
 
             <div className="w-full flex justify-center">
-                {/* <Image
-                        src="/logo/logo.svg"
-                        alt="Computer Science Club Logo"
-                        className="z-30 h-28 md:h-36 lg:h-48 w-auto px-8 md:px-24 lg:px-36 py-4 mt-4 fixed transition-all duration-500"
-                        width={300}
-                        height={390}
-                    /> */}
-
                 <div
                     ref={headerRef}
-                    className={`fixed z-[9999] w-responsive flex bg-white mt-8 text-background ${
-                        isMenuOpen ? 'px-6 py-6' : 'px-4 py-3'
-                    } lg:px-8 md:px-4 lg:py-4 md:py-2 transition-all duration-500 flex flex-col md:flex-row items-center justify-between text-sm lg:text-base border-4 border-black mr-4`}
+                    className={`fixed z-[9999] md:left-auto ${
+                        isMenuOpen
+                            ? 'bg-white flex-col  w-full h-full'
+                            : 'flex-row mt-8 w-responsive'
+                    } md:bg-white text-background lg:px-8 md:px-4 lg:py-4 md:py-2 transition-all duration-500 flex items-center md:justify-between text-sm lg:text-base md:border-4 md:border-black md:mr-4`}
                 >
-                    <div>
-                        {/* <Image
-                            src="/logo/logo-text.svg"
-                            alt="Computer Science Club Logo"
-                            className=""
-                            width={232}
-                            height={52}
-                        /> */}
-                        <h1 className="text-2xl black font-bold">CS CLUB</h1>
-                    </div>
-                    <div className="flex">
-                        {/* Menu Links */}
-                        <nav
-                            className={`flex flex-col items-center ${
-                                isMenuOpen ? 'space-y-4' : 'hidden'
-                            } md:flex md:flex-row md:space-x-4 lg:space-x-8 md:space-y-0 mb-4 md:mb-0`}
-                        >
-                            <a href="/about" className="hover:underline">
-                                About
-                            </a>
-                            <a href="/events" className="hover:underline">
-                                Events
-                            </a>
-                            <a href="/sponsors" className="hover:underline">
-                                Sponsors
-                            </a>
-                            <a href="/contact" className="hover:underline">
-                                Contact
-                            </a>
-
-                            {/* Sign In and Join Us Buttons */}
+                    <div className={`flex flex-col w-full ${isMenuOpen ? 'px-8 py-8' : ''}`}>
+                        <div className="flex flex-row items-center">
+                            <Image
+                                src="/logo/logo.svg"
+                                alt="Computer Science Club Logo"
+                                className="w-[3rem] md:w-[1.62rem] lg:w-[2.2rem] h-full"
+                                width={100}
+                                height={100}
+                            />
+                            <h1
+                                className={`text-3xl md:text-xl lg:text-2xl ml-6 md:ml-4 ${
+                                    isMenuOpen ? 'text-background' : 'text-white'
+                                } md:text-background font-bold`}
+                            >
+                                CS CLUB
+                            </h1>
                             <div
-                                className={`flex flex-col md:flex-row ${
-                                    isMenuOpen ? '' : 'hidden'
-                                } md:flex md:space-x-4 lg:space-x-8 space-y-4 md:space-y-0`}
+                                className={`md:hidden absolute ${
+                                    isMenuOpen ? 'right-8' : 'right-0'
+                                }`}
                             >
                                 <FancyRectangle colour="black" offset="4" filled={true}>
-                                    <button className="bg-orange py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
-                                        Sign In
-                                    </button>
-                                </FancyRectangle>
-                                <FancyRectangle colour="black" offset="4" filled={true}>
-                                    <button className="bg-purple py-2 px-4 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
-                                        Join Us
+                                    <button
+                                        onClick={toggleMenu}
+                                        className={`${
+                                            isMenuOpen ? 'bg-orange' : 'bg-white'
+                                        } w-16 h-16 flex items-center justify-center border-4 border-black transition-all duration-300`}
+                                    >
+                                        <IoMdMenu
+                                            className={`text-4xl text-black ${
+                                                isMenuOpen ? 'hidden' : ''
+                                            }`}
+                                            aria-label="Menu"
+                                        />
+                                        <IoMdClose
+                                            className={`text-4xl text-black ${
+                                                isMenuOpen ? '' : 'hidden'
+                                            }`}
+                                            aria-label="Close"
+                                        />
                                     </button>
                                 </FancyRectangle>
                             </div>
-                        </nav>
-
-                        <div className="ml-auto block md:hidden">
-                            {/* Hamburger Menu Icon */}
-                            <button
-                                onClick={toggleMenu}
-                                className={`${isMenuOpen ? 'hidden' : ''} `}
-                            >
-                                <FaBars className="text-xl" aria-label="Menu" />
-                            </button>
                         </div>
+                        <div
+                            className={`md:hidden w-full mt-8 h-0.5 bg-background ${
+                                isMenuOpen ? '' : 'hidden'
+                            }`}
+                        ></div>
                     </div>
+
+                    <nav
+                        className={`flex flex-col items-center ${
+                            isMenuOpen ? 'mt-12 space-y-8' : 'hidden'
+                        } md:flex md:flex-row md:space-x-4 lg:space-x-8 md:space-y-0 mb-4 md:mb-0 text-4xl md:text-base`}
+                    >
+                        <a href="/about" className="hover:underline">
+                            About
+                        </a>
+                        <a href="/events" className="hover:underline">
+                            Events
+                        </a>
+                        <a href="/sponsors" className="hover:underline">
+                            Sponsors
+                        </a>
+                        <a href="/contact" className="hover:underline">
+                            Contact
+                        </a>
+                        <div
+                            className={`flex flex-col md:flex-row items-center ${
+                                isMenuOpen ? '' : 'hidden'
+                            } md:flex md:space-x-4 lg:space-x-8 space-y-8 md:space-y-0`}
+                        >
+                            <FancyRectangle colour="black" offset="4" filled={true}>
+                                <button className="bg-orange whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
+                                    Sign In
+                                </button>
+                            </FancyRectangle>
+                            <FancyRectangle colour="black" offset="4" filled={true}>
+                                <button className="bg-purple whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 hover:bg-yellow">
+                                    Join Us
+                                </button>
+                            </FancyRectangle>
+                        </div>
+                    </nav>
                 </div>
 
                 <div
-                    className={`fixed z-[9998] w-responsive h-[3.75em] mt-9 md:mt-10 md:h-14 lg:h-[5.25em] lg:px-8 md:px-4 lg:py-4 md:py-2 transition-all duration-500 bg-purple md:bg-white border-4 border-black`}
+                    className={`fixed z-[9998] w-responsive h-[3.75em] mt-9 md:mt-11 lg:mt-10 md:h-14 lg:h-[5.25em] lg:px-8 md:px-4 lg:py-4 md:py-2 transition-all duration-500 md:bg-white md:border-4 md:border-black`}
                 ></div>
             </div>
         </header>
