@@ -15,12 +15,11 @@ const Button = ({ children, colour, href }: ButtonProps) => {
 
     return (
         <FancyRectangle colour="black" offset="4" filled={true}>
-            <a href={href}>
-                <button
-                    className={`whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 ${buttonColors[colour]}`}
-                >
-                    {children}
-                </button>
+            <a
+                href={href}
+                className={`whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold transition-colors duration-300 ${buttonColors[colour]}`}
+            >
+                {children}
             </a>
         </FancyRectangle>
     );
