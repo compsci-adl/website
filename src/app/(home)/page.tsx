@@ -220,7 +220,7 @@ export default function Home() {
                 {/* CTA part 2 */}
                 <section>
                     <div className="h-24"></div>
-                    <div className="mb-24 md:mb-32 lg:mb-44">
+                    <div className="mb-[3em] md:mb-[8.75em]">
                         {/* <Grid /> */}
                         <Image
                             src="/images/rectanglegrid.svg"
@@ -231,7 +231,7 @@ export default function Home() {
                         />
                     </div>
 
-                    <div className="flex flex-col relative z-10 w-fit ml-12">
+                    <div className="flex flex-col relative z-10 w-fit ml-[2.5em] md:ml-[4.4em]">
                         <div className="flex flex-row relative mb-2 justify-end">
                             <Image
                                 src="/images/whiteDuckOutline.svg"
