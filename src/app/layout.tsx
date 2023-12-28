@@ -34,6 +34,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     borderRadius: '0',
                     fontFamily: 'var(--font-archivo)',
                 },
+                elements: {
+                    formButtonPrimary: 'hover:bg-yellow shadow-button',
+                    card: 'shadow-card border-4 border-black',
+                    formFieldInput: 'shadow-button border-2 border-black',
+                },
             }}
         >
             <html lang="en" className={archivo.className}>

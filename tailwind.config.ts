@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss';
+import type {Config} from 'tailwindcss';
 
 const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
@@ -6,6 +6,10 @@ const config: Config = {
     extend: {
       width: {
         responsive: 'min(85vw, 90rem)',
+      },
+      boxShadow: {
+        card: '10px 10px 0px 0px #7E7FE7',
+        button: '4px 4px 0px 0px #000000',
       },
       colors: {
         grey: '#252020',

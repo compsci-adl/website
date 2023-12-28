@@ -1,6 +1,7 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
+import { UserButton, useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
@@ -10,6 +11,7 @@ export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const headerRef = useRef<HTMLDivElement>(null);
     const [isScrolled, setIsScrolled] = useState(false);
+    const { isSignedIn } = useUser();
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -121,12 +123,18 @@ export default function Header() {
                                 isMenuOpen ? '' : 'hidden'
                             } md:flex md:space-x-4 lg:space-x-8 space-y-8 md:space-y-0`}
                         >
-                            <Button colour="orange" href="/sign-in">
-                                Sign In
-                            </Button>
-                            <Button colour="purple" href="/join-us">
-                                Join Us
-                            </Button>
+                            {isSignedIn ? (
+                                <UserButton afterSignOutUrl="/" />
+                            ) : (
+                                <>
+                                    <Button colour="orange" href="/sign-in">
+                                        Sign In
+                                    </Button>
+                                    <Button colour="purple" href="/join-us">
+                                        Join Us
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </nav>
                 </div>
