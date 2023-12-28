@@ -1,4 +1,5 @@
 import '@/styles/globals.css';
+import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
 import { Archivo } from 'next/font/google';
 
@@ -25,12 +26,23 @@ const archivo = Archivo({
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <html lang="en" className={archivo.className}>
-            <body className="overflow-x-hidden bg-grey">
-                <div id="root" className="flex flex-col items-center">
-                    {children}
-                </div>
-            </body>
-        </html>
+        <ClerkProvider
+            appearance={{
+                variables: {
+                    colorPrimary: '#E1652B',
+                    colorBackground: '#F3F3EB',
+                    borderRadius: '0',
+                    fontFamily: 'var(--font-archivo)',
+                },
+            }}
+        >
+            <html lang="en" className={archivo.className}>
+                <body className="overflow-x-hidden bg-grey">
+                    <div id="root" className="flex flex-col items-center">
+                        {children}
+                    </div>
+                </body>
+            </html>
+        </ClerkProvider>
     );
 }
