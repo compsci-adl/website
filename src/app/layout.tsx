@@ -1,5 +1,5 @@
 import '@/styles/globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
+import { ClerkProvider, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
 import { Archivo } from 'next/font/google';
 
