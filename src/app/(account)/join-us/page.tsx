@@ -115,7 +115,7 @@ export default function Page() {
                 <div className="h-16"></div>
                 <section>
                     <FancyRectangle colour="purple" offset="8" filled={true}>
-                        <div className="bg-white border-black border-4 text-black w-fit px-8 py-6">
+                        <div className="bg-white border-black border-4 text-black w-fit px-8 py-6 z-0">
                             <div>
                                 {!pendingVerification && (
                                     <form className="mt-4">
