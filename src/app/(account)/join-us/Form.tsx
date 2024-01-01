@@ -1,6 +1,4 @@
-import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
-import Image from 'next/image';
 import StepFour from './StepFour';
 import StepOne from './StepOne';
 import StepThree from './StepThree';

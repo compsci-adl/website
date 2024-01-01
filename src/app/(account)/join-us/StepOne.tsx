@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import Image from 'next/image';
 import React from 'react';
+import { z, ZodError } from 'zod';
 
 interface StepOneProps {
     firstName: string;
@@ -12,6 +13,26 @@ interface StepOneProps {
     nextStep: () => void;
 }
 
+// Define validation schemas
+const firstNameSchema = z
+    .string()
+    .min(1, { message: 'Please enter a first name' })
+    .regex(/^[a-zA-Z]+$/, {
+        message: 'Please enter a valid first name',
+    });
+const lastNameSchema = z
+    .string()
+    .min(1, { message: 'Please enter a last name' })
+    .regex(/^[a-zA-Z]+$/, {
+        message: 'Please enter a valid last name',
+    });
+const studentIdSchema = z
+    .string()
+    .min(1, { message: 'Please enter a student ID' })
+    .regex(/^a\d{7}$/, {
+        message: 'Please enter a valid student ID (format: aXXXXXXX)',
+    });
+
 export default function StepOne({
     firstName,
     setFirstName,
@@ -21,6 +42,30 @@ export default function StepOne({
     setStudentID,
     nextStep,
 }: StepOneProps) {
+    const [error, setError] = React.useState<string | null>(null);
+
+    const handleContinue = async () => {
+        setError(null);
+
+        try {
+            // Validate firstName, lastName, and studentID
+            firstNameSchema.parse(firstName);
+            lastNameSchema.parse(lastName);
+            studentIdSchema.parse(studentID);
+
+            // Proceed to the next step
+            nextStep();
+        } catch (error) {
+            if (error instanceof ZodError) {
+                // Get the first error message
+                const firstErrorMessage = error.errors[0].message;
+                setError(firstErrorMessage);
+            } else {
+                setError('An unknown error occurred');
+            }
+        }
+    };
+
     return (
         <div>
             {/* Heading */}
@@ -81,6 +126,7 @@ export default function StepOne({
                     onChange={(e) => setFirstName(e.target.value)}
                     id="firstName"
                     name="firstName"
+                    value={firstName}
                     type="text"
                     className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
                 />
@@ -93,6 +139,7 @@ export default function StepOne({
                     onChange={(e) => setLastName(e.target.value)}
                     id="lastName"
                     name="lastName"
+                    value={lastName}
                     type="text"
                     className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
                 />
@@ -123,15 +170,20 @@ export default function StepOne({
                     onChange={(e) => setStudentID(e.target.value)}
                     id="studentID"
                     name="studentID"
+                    value={studentID}
                     type="text"
                     className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
                 />
+                {/* Error visualisation */}
+                {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
                 {/* Button */}
                 <div className="flex justify-center space-x-4 mt-8">
                     {' '}
-                    <Button onClick={nextStep} colour="orange">
-                        Continue
-                    </Button>
+                    <div className="flex justify-center space-x-4 mt-8">
+                        <Button onClick={handleContinue} colour="orange">
+                            Continue
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>
