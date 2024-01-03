@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
-import FancyRectangle from '@/components/FancyRectangle';
-import Image from 'next/image';
-import React from 'react';
+import Field from '@/components/Field';
+import React, { useState } from 'react';
+import ProgressBar from './ProgressBar';
 
 interface StepFourProps {
     agreement: boolean;
@@ -16,57 +16,30 @@ export default function StepFour({
     handleSubmit,
     prevStep,
 }: StepFourProps) {
+    const [validationError, setValidationError] = useState<string | null>(null);
+
+    const handleSignUp = async (e: React.ChangeEvent<any>) => {
+        e.preventDefault();
+        if (!agreement) {
+            setValidationError('Please agree to the terms');
+        } else {
+            setValidationError(null);
+            await handleSubmit(e);
+        }
+    };
+
+    const toggleAgreement = () => {
+        setAgreement(!agreement);
+        setValidationError(null);
+    };
+
     return (
         <div>
             {/* Heading */}
             <h3 className="font-bold text-3xl">Background</h3>
             <p className="text-xl">Tell us about your background</p>
             {/* Progress Bar */}
-            <div className="flex items-end justify-center mt-4">
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">1</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">2</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">3</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">4</div>
-                </div>
-            </div>
+            <ProgressBar ducksFilled={4}></ProgressBar>
             {/* Form fields */}
             <div className="mt-8 mb-4">
                 <label htmlFor="agreement" className="block">
@@ -82,20 +55,22 @@ export default function StepFour({
                     id="agreement"
                     name="agreement"
                     checked={agreement}
-                    onChange={(e) => setAgreement(e.target.checked)}
+                    onChange={toggleAgreement}
                     className="ml-2"
                 />
                 <label htmlFor="agreement" className="ml-2">
                     Yes
                 </label>
             </div>
+            {/* Validation error */}
+            {validationError && <div className="text-red-500 text-sm">{validationError}</div>}
             {/* Buttons */}
             <div className="flex justify-center space-x-4 mt-8">
                 {' '}
                 <Button onClick={prevStep} colour="orange">
                     Back
                 </Button>
-                <Button onClick={handleSubmit} type="submit" colour="purple">
+                <Button onClick={handleSignUp} colour="purple">
                     Sign up
                 </Button>
             </div>

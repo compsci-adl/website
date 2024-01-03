@@ -1,7 +1,9 @@
 import Button from '@/components/Button';
-import FancyRectangle from '@/components/FancyRectangle';
-import Image from 'next/image';
-import React from 'react';
+import Field from '@/components/Field';
+import validateFields from '@/util/validation';
+import React, { useState } from 'react';
+import { z } from 'zod';
+import ProgressBar from './ProgressBar';
 
 interface StepThreeProps {
     degree: string;
@@ -16,6 +18,12 @@ interface StepThreeProps {
     nextStep: () => void;
 }
 
+// Define validation schemas
+const degreeSchema = z.string().min(1, { message: 'Please select a degree' });
+const ageBracketSchema = z.string().min(1, { message: 'Please select an age bracket' });
+const genderSchema = z.string().min(1, { message: 'Please select a gender' });
+const studentTypeSchema = z.string().min(1, { message: 'Please select a student type' });
+
 export default function StepThree({
     degree,
     setDegree,
@@ -28,147 +36,83 @@ export default function StepThree({
     prevStep,
     nextStep,
 }: StepThreeProps) {
+    const [degreeError, setDegreeError] = useState<string | null>(null);
+    const [ageBracketError, setAgeBracketError] = useState<string | null>(null);
+    const [genderError, setGenderError] = useState<string | null>(null);
+    const [studentTypeError, setStudentTypeError] = useState<string | null>(null);
+
+    const fields = [degree, ageBracket, gender, studentType];
+    const schemas = [degreeSchema, ageBracketSchema, genderSchema, studentTypeSchema];
+    const setErrors = [setDegreeError, setAgeBracketError, setGenderError, setStudentTypeError];
+
+    const handleContinue = async () => {
+        validateFields(fields, schemas, setErrors, nextStep);
+    };
+
     return (
         <div>
             {/* Heading */}
             <h3 className="font-bold text-3xl">Background</h3>
             <p className="text-xl">Tell us about your background</p>
             {/* Progress Bar */}
-            <div className="flex items-end justify-center mt-4">
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">1</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">2</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">3</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/greyDuckOutline.svg"
-                        alt="Grey Duck Outline"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">4</div>
-                </div>
-            </div>
+            <ProgressBar ducksFilled={3}></ProgressBar>
             {/* Form fields */}
-            <div className="mt-8 mb-4">
-                <label htmlFor="degree" className="block">
-                    What degree are you studying?
-                </label>
-                <select
-                    onChange={(e) => setDegree(e.target.value)}
-                    id="degree"
-                    name="degree"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                >
-                    <option value="">Select Degree</option>
-                    <option value="Bachelor of Computer Science (or Advanced)">
-                        Bachelor of Computer Science (or Advanced)
-                    </option>
-                    <option value="Bachelor of Maths & Computer Science">
-                        Bachelor of Maths & Computer Science
-                    </option>
-                    <option value="Bachelor of IT">Bachelor of IT</option>
-                    <option value="Bachelor of Software Engineering">
-                        Bachelor of Software Engineering
-                    </option>
-                    <option value="Honours, Computer Science">Honours, Computer Science</option>
-                    <option value="Masters (Coursework), Computer Science">
-                        Masters (Coursework), Computer Science
-                    </option>
-                    <option value="Masters/PhD (Research), Computer Science">
-                        Masters/PhD (Research), Computer Science
-                    </option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <label htmlFor="ageBracket" className="block">
-                    What age bracket do you fall into?
-                </label>
-                <select
-                    onChange={(e) => setAgeBracket(e.target.value)}
-                    id="ageBracket"
-                    name="ageBracket"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                >
-                    <option value="">Select Age Bracket</option>
-                    <option value="Under 20">Under 20</option>
-                    <option value="20-24">20-24</option>
-                    <option value="25-29">25-29</option>
-                    <option value="30-34">30-34</option>
-                    <option value="Over 34">Over 34</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <label htmlFor="gender" className="block">
-                    How do you identify?
-                </label>
-                <select
-                    onChange={(e) => setGender(e.target.value)}
-                    id="gender"
-                    name="gender"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                >
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                    <option value="Prefer not to say">Prefer not to say</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <label htmlFor="studentType" className="block">
-                    Are you a domestic or international student?
-                </label>
-                <select
-                    onChange={(e) => setStudentType(e.target.value)}
-                    id="studentType"
-                    name="studentType"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                >
-                    <option value="">Select Student Type</option>
-                    <option value="Domestic">Domestic</option>
-                    <option value="International">International</option>
-                </select>
-            </div>
+            <Field
+                label="What degree are you studying?"
+                value={degree}
+                onChange={(value) => setDegree(value)}
+                error={degreeError}
+                type="select"
+                options={[
+                    'Select Degree',
+                    'Bachelor of Computer Science (or Advanced)',
+                    'Bachelor of Maths & Computer Science',
+                    'Bachelor of IT',
+                    'Bachelor of Software Engineering',
+                    'Honours, Computer Science',
+                    'Masters (Coursework), Computer Science',
+                    'Masters/PhD (Research), Computer Science',
+                    'Other',
+                ]}
+            />
+            <Field
+                label="What age bracket do you fall into?"
+                value={ageBracket}
+                onChange={(value) => setAgeBracket(value)}
+                error={ageBracketError}
+                type="select"
+                options={[
+                    'Select Age Bracket',
+                    'Under 20',
+                    '20-24',
+                    '25-29',
+                    '30-34',
+                    'Over 34',
+                    'Prefer not to say',
+                ]}
+            />
+            <Field
+                label="How do you identify?"
+                value={gender}
+                onChange={(value) => setGender(value)}
+                error={genderError}
+                type="select"
+                options={['Select Gender', 'Male', 'Female', 'Other', 'Prefer not to say']}
+            />
+            <Field
+                label="Are you a domestic or international student?"
+                value={studentType}
+                onChange={(value) => setStudentType(value)}
+                error={studentTypeError}
+                type="select"
+                options={['Select Student Type', 'Domestic', 'International']}
+            />
             {/* Buttons */}
             <div className="flex justify-center space-x-4 mt-8">
-                {' '}
                 <Button onClick={prevStep} colour="orange">
                     Back
                 </Button>
-                <Button onClick={nextStep} colour="orange">
+                <Button onClick={handleContinue} colour="orange">
                     Continue
                 </Button>
             </div>
