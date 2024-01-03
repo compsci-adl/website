@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 interface FieldProps {
@@ -17,14 +17,8 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
         setShowPassword(!showPassword);
     };
 
-    const handleCheckboxChange = (option: string) => {
-        const updatedValues = value.includes(option)
-            ? value
-                  .split(',')
-                  .filter((item) => item !== option)
-                  .join(',')
-            : `${value},${option}`;
-        onChange(updatedValues);
+    const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+        onChange(e.target.checked ? 'Yes' : 'No');
     };
 
     return (
@@ -47,20 +41,15 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
                     ))}
                 </select>
             ) : type === 'checkbox' ? (
-                <div>
-                    {options.map((option, index) => (
-                        <div key={index} className="mb-2">
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    value={option}
-                                    checked={value.includes(option)}
-                                    onChange={() => handleCheckboxChange(option)}
-                                />{' '}
-                                {option}
-                            </label>
-                        </div>
-                    ))}
+                <div className="mt-4 mb-2">
+                    <label>
+                        <input
+                            type="checkbox"
+                            checked={value === 'Yes'}
+                            onChange={handleCheckboxChange}
+                        />{' '}
+                        Yes
+                    </label>
                 </div>
             ) : (
                 <div className="relative">

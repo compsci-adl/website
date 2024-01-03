@@ -1,8 +1,6 @@
 import Button from '@/components/Button';
-import FancyRectangle from '@/components/FancyRectangle';
 import Field from '@/components/Field';
 import validateFields from '@/util/validation';
-import Image from 'next/image';
 import React from 'react';
 import { z } from 'zod';
 import ProgressBar from './ProgressBar';
