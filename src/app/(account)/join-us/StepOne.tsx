@@ -1,7 +1,9 @@
 import Button from '@/components/Button';
-import Image from 'next/image';
-import React from 'react';
-import { z, ZodError } from 'zod';
+import Field from '@/components/Field';
+import validateFields from '@/util/validation';
+import React, { useState } from 'react';
+import { z } from 'zod';
+import ProgressBar from './ProgressBar';
 
 interface StepOneProps {
     firstName: string;
@@ -42,28 +44,16 @@ export default function StepOne({
     setStudentID,
     nextStep,
 }: StepOneProps) {
-    const [error, setError] = React.useState<string | null>(null);
+    const [firstNameError, setFirstNameError] = useState<string | null>(null);
+    const [lastNameError, setLastNameError] = useState<string | null>(null);
+    const [studentIDError, setStudentIDError] = useState<string | null>(null);
+
+    const fields = [firstName, lastName, studentID];
+    const schemas = [firstNameSchema, lastNameSchema, studentIdSchema];
+    const setErrors = [setFirstNameError, setLastNameError, setStudentIDError];
 
     const handleContinue = async () => {
-        setError(null);
-
-        try {
-            // Validate firstName, lastName, and studentID
-            firstNameSchema.parse(firstName);
-            lastNameSchema.parse(lastName);
-            studentIdSchema.parse(studentID);
-
-            // Proceed to the next step
-            nextStep();
-        } catch (error) {
-            if (error instanceof ZodError) {
-                // Get the first error message
-                const firstErrorMessage = error.errors[0].message;
-                setError(firstErrorMessage);
-            } else {
-                setError('An unknown error occurred');
-            }
-        }
+        validateFields(fields, schemas, setErrors, nextStep);
     };
 
     return (
@@ -72,119 +62,31 @@ export default function StepOne({
             <h3 className="font-bold text-3xl">Welcome</h3>
             <p className="text-xl">Let's get to know you!</p>
             {/* Progress Bar */}
-            <div className="flex items-end justify-center mt-4">
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/yellowDuck.svg"
-                        alt="Yellow Duck"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">1</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/greyDuckOutline.svg"
-                        alt="Grey Duck Outline"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">2</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/greyDuckOutline.svg"
-                        alt="Grey Duck Outline"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">3</div>
-                </div>
-
-                <div className="flex items-center justify-center">
-                    <Image
-                        src="/images/greyDuckOutline.svg"
-                        alt="Grey Duck Outline"
-                        className="h-10 md:h-12 scale-x-[-1]"
-                        height={100}
-                        width={100}
-                    />
-                    <div className="absolute mt-20 text-black font-bold">4</div>
-                </div>
-            </div>
+            <ProgressBar ducksFilled={1}></ProgressBar>
             {/* Form fields */}
-            <div className="mt-8 mb-4">
-                <label htmlFor="firstName" className="block">
-                    First Name
-                </label>
-                <input
-                    onChange={(e) => setFirstName(e.target.value)}
-                    id="firstName"
-                    name="firstName"
-                    value={firstName}
-                    type="text"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                />
-            </div>
-            <div className="mb-4">
-                <label htmlFor="lastName" className="block">
-                    Last Name
-                </label>
-                <input
-                    onChange={(e) => setLastName(e.target.value)}
-                    id="lastName"
-                    name="lastName"
-                    value={lastName}
-                    type="text"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                />
-            </div>
-            <div className="mb-4">
-                {/* {' '}
-                                                    <label htmlFor="isStudent" className="block">
-                                                        Are you a student at the University of
-                                                        Adelaide?
-                                                    </label>
-                                                    <input
-                                                        type="checkbox"
-                                                        id="isStudent"
-                                                        name="isStudent"
-                                                        checked={isStudent}
-                                                        onChange={(e) =>
-                                                            setIsStudent(e.target.checked)
-                                                        }
-                                                        className="ml-2"
-                                                    />
-                                                    <label htmlFor="isStudent" className="ml-2">
-                                                        Yes
-                                                    </label> */}
-                <label htmlFor="studentID" className="block">
-                    Student ID (N/A if not at University of Adelaide)
-                </label>
-                <input
-                    onChange={(e) => setStudentID(e.target.value)}
-                    id="studentID"
-                    name="studentID"
-                    value={studentID}
-                    type="text"
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
-                />
-                {/* Error visualisation */}
-                {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
-                {/* Button */}
-                <div className="flex justify-center space-x-4 mt-8">
-                    {' '}
-                    <div className="flex justify-center space-x-4 mt-8">
-                        <Button onClick={handleContinue} colour="orange">
-                            Continue
-                        </Button>
-                    </div>
-                </div>
+            <Field
+                label="First Name"
+                value={firstName}
+                onChange={(value) => setFirstName(value)}
+                error={firstNameError}
+            />
+            <Field
+                label="Last Name"
+                value={lastName}
+                onChange={(value) => setLastName(value)}
+                error={lastNameError}
+            />
+            <Field
+                label="Student ID (N/A if not at University of Adelaide)"
+                value={studentID}
+                onChange={(value) => setStudentID(value)}
+                error={studentIDError}
+            />
+            {/* Button */}
+            <div className="flex w-full mt-8 mb-4">
+                <Button onClick={handleContinue} colour="orange" width="w-[25rem]">
+                    Continue
+                </Button>
             </div>
         </div>
     );

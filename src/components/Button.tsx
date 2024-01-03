@@ -8,11 +8,15 @@ interface ButtonProps {
     href?: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     type?: 'button' | 'submit' | 'reset';
+    width?: string;
 }
 
-const Button = ({ children, colour, href, onClick }: ButtonProps) => {
+const Button = ({ children, colour, href, onClick, width }: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
+
+    const buttonStyles = `whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${bgColours[colour]}`;
+    const buttonClasses = width ? `${buttonStyles} ${width}` : buttonStyles;
 
     return (
         <FancyRectangle colour="black" offset="4" filled={true}>
@@ -24,7 +28,7 @@ const Button = ({ children, colour, href, onClick }: ButtonProps) => {
                     ) => void | Promise<void>
                 }
                 type={isAnchor ? undefined : 'button'}
-                className={`whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${bgColours[colour]}`}
+                className={buttonClasses}
             >
                 {children}
             </Component>
