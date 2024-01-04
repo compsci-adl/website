@@ -29,7 +29,7 @@ export default function Footer() {
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
+                    className="w-11 h-11 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                     aria-label={name}
                 >
                     <Icon className="text-2xl" />
