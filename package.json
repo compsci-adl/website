@@ -12,6 +12,7 @@
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\""
   },
   "dependencies": {
+    "@clerk/clerk-react": "^4.30.2",
     "@clerk/nextjs": "^4.29.1",
     "next": "14.0.3",
     "react": "^18.2.0",

@@ -68,6 +68,7 @@ export default function Page() {
             }
         } catch (err: any) {
             console.error(JSON.stringify(err, null, 2));
+            throw err;
         }
     };
 

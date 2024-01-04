@@ -1,18 +1,21 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import validateFields from '@/util/validation';
-import React, { useState } from 'react';
+import { useSignUp } from '@clerk/clerk-react';
+import React from 'react';
+import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
-import ProgressBar from './ProgressBar';
 
 interface StepOneProps {
     firstName: string;
     setFirstName: React.Dispatch<React.SetStateAction<string>>;
     lastName: string;
     setLastName: React.Dispatch<React.SetStateAction<string>>;
-    studentID: string;
-    setStudentID: React.Dispatch<React.SetStateAction<string>>;
-    nextStep: () => void;
+    emailAddress: string;
+    setEmailAddress: React.Dispatch<React.SetStateAction<string>>;
+    password: string;
+    setPassword: React.Dispatch<React.SetStateAction<string>>;
+    handleSubmit: (e: React.ChangeEvent<any>) => Promise<void>;
 }
 
 // Define validation schemas
@@ -28,41 +31,73 @@ const lastNameSchema = z
     .regex(/^[a-zA-Z]+$/, {
         message: 'Please enter a valid last name',
     });
-const studentIdSchema = z
+const emailSchema = z.string().email({ message: 'Please enter a valid email' });
+const passwordSchema = z
     .string()
-    .min(1, { message: 'Please enter a student ID' })
-    .regex(/^a\d{7}$/, {
-        message: 'Please enter a valid student ID (format: aXXXXXXX)',
-    });
+    .min(8, { message: 'Password must be at least 8 characters' })
+    .regex(/^(?=.*[a-zA-Z]).+$/, { message: 'Password must include a letter' })
+    .regex(/^(?=.*[0-9]).+$/, { message: 'Password must include a number' });
 
-export default function StepOne({
+export default function StepTwo({
     firstName,
     setFirstName,
     lastName,
     setLastName,
-    studentID,
-    setStudentID,
-    nextStep,
+    emailAddress,
+    setEmailAddress,
+    password,
+    setPassword,
+    handleSubmit,
 }: StepOneProps) {
-    const [firstNameError, setFirstNameError] = useState<string | null>(null);
-    const [lastNameError, setLastNameError] = useState<string | null>(null);
-    const [studentIDError, setStudentIDError] = useState<string | null>(null);
+    const [firstNameError, setFirstNameError] = React.useState<string | null>(null);
+    const [lastNameError, setLastNameError] = React.useState<string | null>(null);
+    const [emailError, setEmailError] = React.useState<string | null>(null);
+    const [passwordError, setPasswordError] = React.useState<string | null>(null);
 
-    const fields = [firstName, lastName, studentID];
-    const schemas = [firstNameSchema, lastNameSchema, studentIdSchema];
-    const setErrors = [setFirstNameError, setLastNameError, setStudentIDError];
+    const fields = [firstName, lastName, emailAddress, password];
+    const schemas = [firstNameSchema, lastNameSchema, emailSchema, passwordSchema];
+    const setErrors = [setFirstNameError, setLastNameError, setEmailError, setPasswordError];
 
-    const handleContinue = async () => {
-        validateFields(fields, schemas, setErrors, nextStep);
+    const { signUp } = useSignUp();
+
+    const handleSignUp = async (e: React.ChangeEvent<any>) => {
+        const isValid = validateFields(fields, schemas, setErrors);
+        if (isValid) {
+            await handleSubmit(e);
+        }
+    };
+
+    const handleGoogleSignUp = async () => {
+        try {
+            if (signUp) {
+                await signUp.authenticateWithRedirect({
+                    strategy: 'oauth_google',
+                    redirectUrl: '/sso-callback',
+                    redirectUrlComplete: '/join-us',
+                });
+            }
+        } catch (error) {
+            // Handle any errors that might occur during the sign-up process
+            console.error('Google Sign-Up Error:', error);
+        }
     };
 
     return (
         <div>
             {/* Heading */}
-            <h3 className="font-bold text-3xl">Welcome</h3>
-            <p className="text-xl">Let's get to know you!</p>
-            {/* Progress Bar */}
-            <ProgressBar ducksFilled={1}></ProgressBar>
+            <h3 className="font-bold text-3xl">Join Us</h3>
+            <p className="text-xl mb-8">Create your account</p>
+
+            <Button onClick={handleGoogleSignUp} colour="white" width="w-[25rem]">
+                <FcGoogle className="text-xl inline-block mr-2" /> Continue with Google
+            </Button>
+
+            <div className="flex items-center justify-center mt-10 my-6">
+                <div className="border-t border-grey w-full"></div>
+                <p className="mx-4 text-grey">or</p>
+                <div className="border-t border-grey w-full"></div>
+            </div>
+
             {/* Form fields */}
             <Field
                 label="First Name"
@@ -77,16 +112,33 @@ export default function StepOne({
                 error={lastNameError}
             />
             <Field
-                label="Student ID (N/A if not at University of Adelaide)"
-                value={studentID}
-                onChange={(value) => setStudentID(value)}
-                error={studentIDError}
+                label="Email"
+                value={emailAddress}
+                onChange={(value) => setEmailAddress(value)}
+                error={emailError}
             />
-            {/* Button */}
-            <div className="flex w-full mt-8 mb-4">
-                <Button onClick={handleContinue} colour="orange" width="w-[25rem]">
+            <Field
+                label="Password"
+                value={password}
+                onChange={(value) => setPassword(value)}
+                type="password"
+                error={passwordError}
+            />
+            {/* Buttons */}
+            <div className="flex justify-center space-x-4 mt-8">
+                <Button onClick={handleSignUp} colour="orange" width="w-[25rem]">
                     Continue
                 </Button>
+            </div>
+
+            {/* Sign-in option */}
+            <div className="flex mt-10">
+                <p className="text-grey">
+                    Have an account?{' '}
+                    <a href="/sign-in" className="text-orange">
+                        Sign in
+                    </a>
+                </p>
             </div>
         </div>
     );

@@ -1,8 +1,11 @@
+import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 import StepFour from './StepFour';
 import StepOne from './StepOne';
 import StepThree from './StepThree';
 import StepTwo from './StepTwo';
+import VerifyEmail from './VerifyEmail';
 
 interface FormProps {
     step: number;
@@ -72,72 +75,66 @@ export default function Form({
     return (
         <section>
             <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="bg-white border-black border-4 text-black w-fit px-10 py-8 z-0">
-                    {!pendingVerification && (
-                        <div>
-                            {step === 1 && (
+                <div className="bg-white border-black border-4 text-black w-fit px-12 py-12 z-0">
+                    <SignedOut>
+                        {!pendingVerification && (
+                            <div>
                                 <StepOne
                                     firstName={firstName}
                                     setFirstName={setFirstName}
                                     lastName={lastName}
                                     setLastName={setLastName}
-                                    studentID={studentID}
-                                    setStudentID={setStudentID}
-                                    nextStep={nextStep}
-                                ></StepOne>
-                            )}
-                            {step === 2 && (
-                                <StepTwo
                                     emailAddress={emailAddress}
                                     setEmailAddress={setEmailAddress}
                                     password={password}
                                     setPassword={setPassword}
-                                    prevStep={prevStep}
-                                    nextStep={nextStep}
-                                ></StepTwo>
-                            )}
-                            {step === 3 && (
-                                <StepThree
-                                    degree={degree}
-                                    setDegree={setDegree}
-                                    ageBracket={ageBracket}
-                                    setAgeBracket={setAgeBracket}
-                                    gender={gender}
-                                    setGender={setGender}
-                                    studentType={studentType}
-                                    setStudentType={setStudentType}
-                                    prevStep={prevStep}
-                                    nextStep={nextStep}
-                                ></StepThree>
-                            )}
-                            {step === 4 && (
-                                <StepFour
-                                    agreement={agreement}
-                                    setAgreement={setAgreement}
                                     handleSubmit={handleSubmit}
-                                    prevStep={prevStep}
-                                ></StepFour>
-                            )}
-                        </div>
-                    )}
-                    {pendingVerification && (
-                        <div className="mt-4">
-                            <form>
-                                <input
-                                    value={code}
-                                    placeholder="Code..."
-                                    onChange={(e) => setCode(e.target.value)}
-                                    className="border border-gray-300 px-3 py-2 w-full mt-1"
-                                />
-                                <button
-                                    onClick={onPressVerify}
-                                    className="bg-purple font-bold py-2 px-4 mt-2 transition-all"
-                                >
-                                    Verify Email
-                                </button>
-                            </form>
-                        </div>
-                    )}
+                                ></StepOne>
+                            </div>
+                        )}
+                        {pendingVerification && (
+                            <VerifyEmail
+                                code={code}
+                                setCode={setCode}
+                                onPressVerify={onPressVerify}
+                            />
+                        )}
+                    </SignedOut>
+                    <SignedIn>
+                        {step === 1 && (
+                            <StepTwo
+                                firstName={firstName}
+                                setFirstName={setFirstName}
+                                lastName={lastName}
+                                setLastName={setLastName}
+                                studentID={studentID}
+                                setStudentID={setStudentID}
+                                nextStep={nextStep}
+                            ></StepTwo>
+                        )}
+                        {step === 2 && (
+                            <StepThree
+                                degree={degree}
+                                setDegree={setDegree}
+                                ageBracket={ageBracket}
+                                setAgeBracket={setAgeBracket}
+                                gender={gender}
+                                setGender={setGender}
+                                studentType={studentType}
+                                setStudentType={setStudentType}
+                                prevStep={prevStep}
+                                nextStep={nextStep}
+                            ></StepThree>
+                        )}
+                        {step === 3 && (
+                            <StepFour
+                                agreement={agreement}
+                                setAgreement={setAgreement}
+                                handleSubmit={handleSubmit}
+                                prevStep={prevStep}
+                            ></StepFour>
+                        )}
+                    </SignedIn>
                 </div>
             </FancyRectangle>
         </section>
