@@ -72,7 +72,7 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
                     )}
                 </div>
             )}
-            {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
+            {error && <div className="text-red-500 text-sm mt-2 w-[25rem]">{error}</div>}
         </div>
     );
 };
