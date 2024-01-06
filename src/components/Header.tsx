@@ -124,7 +124,12 @@ export default function Header() {
                             } md:flex md:space-x-4 lg:space-x-8 space-y-8 md:space-y-0`}
                         >
                             {isSignedIn ? (
-                                <UserButton afterSignOutUrl="/" />
+                                <>
+                                    <Button colour="purple" href="/join-us">
+                                        Continue Signing Up
+                                    </Button>
+                                    <UserButton afterSignOutUrl="/" />
+                                </>
                             ) : (
                                 <>
                                     <Button colour="orange" href="/sign-in">
