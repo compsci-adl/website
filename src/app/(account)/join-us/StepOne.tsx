@@ -134,7 +134,7 @@ export default function StepTwo({
             {/* Sign-in option */}
             <div className="flex mt-10">
                 <p className="text-grey">
-                    Have an account?{' '}
+                    Already have an account?{' '}
                     <a href="/sign-in" className="text-orange">
                         Sign in
                     </a>

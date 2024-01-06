@@ -36,8 +36,8 @@ export default function StepFour({
     return (
         <div>
             {/* Heading */}
-            <h3 className="font-bold text-3xl">Background</h3>
-            <p className="text-xl">Tell us about your background</p>
+            <h3 className="font-bold text-3xl">Payment</h3>
+            <p className="text-xl">Complete membership payment</p>
             {/* Progress Bar */}
             <ProgressBar ducksFilled={4}></ProgressBar>
             {/* Form field */}

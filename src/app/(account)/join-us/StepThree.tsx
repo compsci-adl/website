@@ -46,7 +46,11 @@ export default function StepThree({
     const setErrors = [setDegreeError, setAgeBracketError, setGenderError, setStudentTypeError];
 
     const handleContinue = async () => {
-        validateFields(fields, schemas, setErrors, nextStep);
+        const isValid = validateFields(fields, schemas, setErrors);
+
+        if (isValid) {
+            await nextStep();
+        }
     };
 
     return (

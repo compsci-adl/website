@@ -1,7 +1,8 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import validateFields from '@/util/validation';
-import React, { useState } from 'react';
+import { useUser } from '@clerk/clerk-react';
+import React, { useEffect, useState } from 'react';
 import { z } from 'zod';
 import ProgressBar from './ProgressBar';
 
@@ -52,14 +53,33 @@ export default function StepOne({
     const schemas = [firstNameSchema, lastNameSchema, studentIdSchema];
     const setErrors = [setFirstNameError, setLastNameError, setStudentIDError];
 
+    const { user } = useUser();
+
     const handleContinue = async () => {
-        validateFields(fields, schemas, setErrors);
+        const isValid = validateFields(fields, schemas, setErrors);
+
+        if (isValid) {
+            await nextStep();
+        }
     };
+
+    // Fetch user's profile information on component mount
+    useEffect(() => {
+        // Check if user profile data exists
+        if (user && user.primaryEmailAddress && user.fullName) {
+            // Split the full name into first and last names
+            const [firstName, lastName] = user.fullName.split(' ');
+
+            // Set the first and last names in the state
+            setFirstName(firstName);
+            setLastName(lastName);
+        }
+    }, [user, setFirstName, setLastName]);
 
     return (
         <div>
             {/* Heading */}
-            <h3 className="font-bold text-3xl">Welcome</h3>
+            <h3 className="font-bold text-3xl">Continue Signing Up</h3>
             <p className="text-xl">Let's get to know you!</p>
             {/* Progress Bar */}
             <ProgressBar ducksFilled={2}></ProgressBar>
