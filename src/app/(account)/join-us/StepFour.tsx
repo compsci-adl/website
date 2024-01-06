@@ -6,16 +6,10 @@ import ProgressBar from './ProgressBar';
 interface StepFourProps {
     agreement: boolean;
     setAgreement: React.Dispatch<React.SetStateAction<boolean>>;
-    handleSubmit: (e: React.ChangeEvent<any>) => Promise<void>;
     prevStep: () => void;
 }
 
-export default function StepFour({
-    agreement,
-    setAgreement,
-    handleSubmit,
-    prevStep,
-}: StepFourProps) {
+export default function StepFour({ agreement, setAgreement, prevStep }: StepFourProps) {
     const [validationError, setValidationError] = useState<string | null>(null);
 
     const handleSignUp = async (e: React.ChangeEvent<any>) => {
@@ -24,7 +18,6 @@ export default function StepFour({
             setValidationError('Please agree to the terms');
         } else {
             setValidationError(null);
-            await handleSubmit(e);
         }
     };
 

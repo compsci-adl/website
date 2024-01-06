@@ -34,7 +34,6 @@ interface FormProps {
     setStudentType: React.Dispatch<React.SetStateAction<string>>;
     agreement: boolean;
     setAgreement: React.Dispatch<React.SetStateAction<boolean>>;
-    handleSubmit: (e: React.ChangeEvent<any>) => Promise<void>;
     onPressVerify: (e: React.ChangeEvent<any>) => Promise<void>;
     nextStep: () => void;
     prevStep: () => void;
@@ -67,7 +66,6 @@ export default function Form({
     setStudentType,
     agreement,
     setAgreement,
-    handleSubmit,
     onPressVerify,
     nextStep,
     prevStep,
@@ -88,7 +86,7 @@ export default function Form({
                                     setEmailAddress={setEmailAddress}
                                     password={password}
                                     setPassword={setPassword}
-                                    handleSubmit={handleSubmit}
+                                    setPendingVerification={setPendingVerification}
                                 ></StepOne>
                             </div>
                         )}
@@ -130,7 +128,6 @@ export default function Form({
                             <StepFour
                                 agreement={agreement}
                                 setAgreement={setAgreement}
-                                handleSubmit={handleSubmit}
                                 prevStep={prevStep}
                             ></StepFour>
                         )}

@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import validateFields from '@/util/validation';
-import { useSignUp } from '@clerk/clerk-react';
+import { useSignUp } from '@clerk/nextjs';
 import React from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
@@ -15,7 +15,7 @@ interface StepOneProps {
     setEmailAddress: React.Dispatch<React.SetStateAction<string>>;
     password: string;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
-    handleSubmit: (e: React.ChangeEvent<any>) => Promise<void>;
+    setPendingVerification: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 // Define validation schemas
@@ -47,7 +47,7 @@ export default function StepTwo({
     setEmailAddress,
     password,
     setPassword,
-    handleSubmit,
+    setPendingVerification,
 }: StepOneProps) {
     const [firstNameError, setFirstNameError] = React.useState<string | null>(null);
     const [lastNameError, setLastNameError] = React.useState<string | null>(null);
@@ -64,6 +64,47 @@ export default function StepTwo({
         const isValid = validateFields(fields, schemas, setErrors);
         if (isValid) {
             await handleSubmit(e);
+        }
+    };
+
+    const handleSubmit = async (e: React.ChangeEvent<any>) => {
+        e.preventDefault();
+        try {
+            if (signUp) {
+                await signUp.create({
+                    emailAddress,
+                    password,
+                    firstName,
+                    lastName,
+                });
+            }
+
+            // send the email.
+            if (signUp) {
+                await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
+            }
+
+            // change the UI to our pending section.
+            setPendingVerification(true);
+        } catch (err: any) {
+            // console.error(JSON.stringify(err, null, 2));
+            console.log(err);
+
+            if (err.errors[0].code === 'form_password_not_strong_enough') {
+                // Handle weak password error
+                console.log('not strong enough');
+                setPasswordError(
+                    'Given password is not strong enough. For account safety, please use a different password.'
+                );
+            } else if (err.errors[0].code === 'form_password_pwned') {
+                // Handle breached password error
+                console.log('pwned password');
+                setPasswordError(
+                    'Password has been found in an online data breach. For account safety, please use a different password.'
+                );
+            } else {
+                console.error(err);
+            }
         }
     };
 

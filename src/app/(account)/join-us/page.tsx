@@ -23,30 +23,6 @@ export default function Page() {
     const [studentType, setStudentType] = useState('');
     const [agreement, setAgreement] = useState(false);
 
-    const handleSubmit = async (e: React.ChangeEvent<any>) => {
-        e.preventDefault();
-        if (!isLoaded) {
-            return;
-        }
-
-        try {
-            await signUp.create({
-                emailAddress,
-                password,
-                firstName,
-                lastName,
-            });
-
-            // send the email.
-            await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
-
-            // change the UI to our pending section.
-            setPendingVerification(true);
-        } catch (err: any) {
-            console.error(JSON.stringify(err, null, 2));
-        }
-    };
-
     // This verifies the user using email code that is delivered.
     const onPressVerify = async (e: React.ChangeEvent<any>) => {
         e.preventDefault();
@@ -140,7 +116,6 @@ export default function Page() {
                     setStudentType={setStudentType}
                     agreement={agreement}
                     setAgreement={setAgreement}
-                    handleSubmit={handleSubmit}
                     onPressVerify={onPressVerify}
                     nextStep={nextStep}
                     prevStep={prevStep}
