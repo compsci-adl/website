@@ -53,6 +53,10 @@ export default function SignInForm() {
                 setEmailError("Can't find your account");
             } else if (err.errors[0].code === 'form_password_incorrect') {
                 setPasswordError('Password is incorrect. Try again, or use another method.');
+            } else if (err.errors[0].code === 'strategy_for_user_invalid') {
+                setPasswordError(
+                    'Account is not set up for password sign-in. Please sign in with Google.'
+                );
             } else {
                 console.error(err);
             }
