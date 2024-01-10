@@ -47,6 +47,7 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
                             type="checkbox"
                             checked={value === 'Yes'}
                             onChange={handleCheckboxChange}
+                            className="mr-2"
                         />{' '}
                         Yes
                     </label>

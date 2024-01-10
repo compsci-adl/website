@@ -11,6 +11,8 @@ interface StepTwoProps {
     setFirstName: React.Dispatch<React.SetStateAction<string>>;
     lastName: string;
     setLastName: React.Dispatch<React.SetStateAction<string>>;
+    studentStatus: string;
+    setStudentStatus: React.Dispatch<React.SetStateAction<string>>;
     studentID: string;
     setStudentID: React.Dispatch<React.SetStateAction<string>>;
     nextStep: () => void;
@@ -41,6 +43,8 @@ export default function StepOne({
     setFirstName,
     lastName,
     setLastName,
+    studentStatus,
+    setStudentStatus,
     studentID,
     setStudentID,
     nextStep,
@@ -49,17 +53,29 @@ export default function StepOne({
     const [lastNameError, setLastNameError] = useState<string | null>(null);
     const [studentIDError, setStudentIDError] = useState<string | null>(null);
 
-    const fields = [firstName, lastName, studentID];
-    const schemas = [firstNameSchema, lastNameSchema, studentIdSchema];
-    const setErrors = [setFirstNameError, setLastNameError, setStudentIDError];
-
     const { user } = useUser();
 
     const handleContinue = async () => {
-        const isValid = validateFields(fields, schemas, setErrors);
+        if (studentStatus == 'At The University of Adelaide') {
+            const isValid = validateFields(
+                [firstName, lastName, studentID],
+                [firstNameSchema, lastNameSchema, studentIdSchema],
+                [setFirstNameError, setLastNameError, setStudentIDError]
+            );
 
-        if (isValid) {
-            await nextStep();
+            if (isValid) {
+                await nextStep();
+            }
+        } else {
+            const isValid = validateFields(
+                [firstName, lastName],
+                [firstNameSchema, lastNameSchema],
+                [setFirstNameError, setLastNameError]
+            );
+
+            if (isValid) {
+                await nextStep();
+            }
         }
     };
 
@@ -97,11 +113,20 @@ export default function StepOne({
                 error={lastNameError}
             />
             <Field
-                label="Student ID (N/A if not at University of Adelaide)"
-                value={studentID}
-                onChange={(value) => setStudentID(value)}
-                error={studentIDError}
+                label="Are you an university student?"
+                value={studentStatus}
+                onChange={(value) => setStudentStatus(value)}
+                options={['At The University of Adelaide', 'At another university', 'No']}
+                type="select"
             />
+            {studentStatus == 'At The University of Adelaide' && (
+                <Field
+                    label="Student ID"
+                    value={studentID}
+                    onChange={(value) => setStudentID(value)}
+                    error={studentIDError}
+                />
+            )}
             {/* Button */}
             <div className="flex w-full mt-8 mb-4">
                 <Button onClick={handleContinue} colour="orange" width="w-[25rem]">

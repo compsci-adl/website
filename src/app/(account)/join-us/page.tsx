@@ -21,6 +21,7 @@ export default function Page() {
     const [ageBracket, setAgeBracket] = useState('');
     const [gender, setGender] = useState('');
     const [studentType, setStudentType] = useState('');
+    const [studentStatus, setStudentStatus] = useState('At The University of Adelaide');
     const [agreement, setAgreement] = useState(false);
 
     // This verifies the user using email code that is delivered.
@@ -104,6 +105,8 @@ export default function Page() {
                     setFirstName={setFirstName}
                     lastName={lastName}
                     setLastName={setLastName}
+                    studentStatus={studentStatus}
+                    setStudentStatus={setStudentStatus}
                     studentID={studentID}
                     setStudentID={setStudentID}
                     degree={degree}

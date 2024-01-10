@@ -22,6 +22,8 @@ interface FormProps {
     setFirstName: React.Dispatch<React.SetStateAction<string>>;
     lastName: string;
     setLastName: React.Dispatch<React.SetStateAction<string>>;
+    studentStatus: string;
+    setStudentStatus: React.Dispatch<React.SetStateAction<string>>;
     studentID: string;
     setStudentID: React.Dispatch<React.SetStateAction<string>>;
     degree: string;
@@ -54,6 +56,8 @@ export default function Form({
     setFirstName,
     lastName,
     setLastName,
+    studentStatus,
+    setStudentStatus,
     studentID,
     setStudentID,
     degree,
@@ -105,6 +109,8 @@ export default function Form({
                                 setFirstName={setFirstName}
                                 lastName={lastName}
                                 setLastName={setLastName}
+                                studentStatus={studentStatus}
+                                setStudentStatus={setStudentStatus}
                                 studentID={studentID}
                                 setStudentID={setStudentID}
                                 nextStep={nextStep}
@@ -119,6 +125,7 @@ export default function Form({
                                 gender={gender}
                                 setGender={setGender}
                                 studentType={studentType}
+                                studentStatus={studentStatus}
                                 setStudentType={setStudentType}
                                 prevStep={prevStep}
                                 nextStep={nextStep}

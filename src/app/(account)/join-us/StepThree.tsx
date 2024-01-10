@@ -12,8 +12,9 @@ interface StepThreeProps {
     setAgeBracket: React.Dispatch<React.SetStateAction<string>>;
     gender: string;
     setGender: React.Dispatch<React.SetStateAction<string>>;
-    studentType: string;
+    studentStatus: string;
     setStudentType: React.Dispatch<React.SetStateAction<string>>;
+    studentType: string;
     prevStep: () => void;
     nextStep: () => void;
 }
@@ -33,6 +34,7 @@ export default function StepThree({
     setGender,
     studentType,
     setStudentType,
+    studentStatus,
     prevStep,
     nextStep,
 }: StepThreeProps) {
@@ -41,15 +43,30 @@ export default function StepThree({
     const [genderError, setGenderError] = useState<string | null>(null);
     const [studentTypeError, setStudentTypeError] = useState<string | null>(null);
 
-    const fields = [degree, ageBracket, gender, studentType];
-    const schemas = [degreeSchema, ageBracketSchema, genderSchema, studentTypeSchema];
-    const setErrors = [setDegreeError, setAgeBracketError, setGenderError, setStudentTypeError];
-
     const handleContinue = async () => {
-        const isValid = validateFields(fields, schemas, setErrors);
+        if (
+            studentStatus == 'At The University of Adelaide' ||
+            studentStatus == 'At another university'
+        ) {
+            const isValid = validateFields(
+                [degree, ageBracket, gender, studentType],
+                [degreeSchema, ageBracketSchema, genderSchema, studentTypeSchema],
+                [setDegreeError, setAgeBracketError, setGenderError, setStudentTypeError]
+            );
 
-        if (isValid) {
-            await nextStep();
+            if (isValid) {
+                await nextStep();
+            }
+        } else {
+            const isValid = validateFields(
+                [ageBracket, gender],
+                [ageBracketSchema, genderSchema],
+                [setAgeBracketError, setGenderError]
+            );
+
+            if (isValid) {
+                await nextStep();
+            }
         }
     };
 
@@ -61,24 +78,6 @@ export default function StepThree({
             {/* Progress Bar */}
             <ProgressBar ducksFilled={3}></ProgressBar>
             {/* Form fields */}
-            <Field
-                label="What degree are you studying?"
-                value={degree}
-                onChange={(value) => setDegree(value)}
-                error={degreeError}
-                type="select"
-                options={[
-                    'Select Degree',
-                    'Bachelor of Computer Science (or Advanced)',
-                    'Bachelor of Maths & Computer Science',
-                    'Bachelor of IT',
-                    'Bachelor of Software Engineering',
-                    'Honours, Computer Science',
-                    'Masters (Coursework), Computer Science',
-                    'Masters/PhD (Research), Computer Science',
-                    'Other',
-                ]}
-            />
             <Field
                 label="What age bracket do you fall into?"
                 value={ageBracket}
@@ -103,14 +102,37 @@ export default function StepThree({
                 type="select"
                 options={['Select Gender', 'Male', 'Female', 'Other', 'Prefer not to say']}
             />
-            <Field
-                label="Are you a domestic or international student?"
-                value={studentType}
-                onChange={(value) => setStudentType(value)}
-                error={studentTypeError}
-                type="select"
-                options={['Select Student Type', 'Domestic', 'International']}
-            />
+            {(studentStatus == 'At The University of Adelaide' ||
+                studentStatus == 'At another university') && (
+                <>
+                    <Field
+                        label="What degree are you studying?"
+                        value={degree}
+                        onChange={(value) => setDegree(value)}
+                        error={degreeError}
+                        type="select"
+                        options={[
+                            'Select Degree',
+                            'Bachelor of Computer Science (or Advanced)',
+                            'Bachelor of Maths & Computer Science',
+                            'Bachelor of IT',
+                            'Bachelor of Software Engineering',
+                            'Honours, Computer Science',
+                            'Masters (Coursework), Computer Science',
+                            'Masters/PhD (Research), Computer Science',
+                            'Other',
+                        ]}
+                    />
+                    <Field
+                        label="Are you a domestic or international student?"
+                        value={studentType}
+                        onChange={(value) => setStudentType(value)}
+                        error={studentTypeError}
+                        type="select"
+                        options={['Select Student Type', 'Domestic', 'International']}
+                    />
+                </>
+            )}
             {/* Buttons */}
             <div className="flex justify-center space-x-4 mt-8">
                 <Button onClick={prevStep} colour="orange">
