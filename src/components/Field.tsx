@@ -23,7 +23,7 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
 
     return (
         <div className="mb-4">
-            <label htmlFor={label.toLowerCase()} className="block">
+            <label htmlFor={label.toLowerCase()} className="block text-lg md:text-base">
                 {label}
             </label>
             {type === 'select' ? (
@@ -60,7 +60,7 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
                         name={label.toLowerCase()}
                         value={value}
                         type={showPassword ? 'text' : type}
-                        className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
+                        className="border text-grey border-gray-300 px-3 py-2 w-full mt-1 rounded-none"
                     />
                     {type === 'password' && (
                         <button

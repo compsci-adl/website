@@ -52,7 +52,7 @@ function VerifyEmail({ code, setCode, onPressVerify }: VerifyEmailProps) {
                     className="border border-gray-300 px-3 py-2 w-full mt-1 mb-8"
                 />
                 {error && <p className="text-red-500 mb-8 relative -translate-y-4">{error}</p>}
-                <Button onClick={handleVerify} colour="orange" width="w-[25rem]">
+                <Button onClick={handleVerify} colour="orange" width="w-[19rem] md:w-[25.5rem]">
                     Verify Email
                 </Button>
             </form>

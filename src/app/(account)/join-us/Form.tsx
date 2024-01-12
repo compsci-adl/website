@@ -77,7 +77,7 @@ export default function Form({
     return (
         <section>
             <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="bg-white border-black border-4 text-black w-fit px-12 py-12 z-0">
+                <div className="bg-white border-black border-4 text-black w-full px-12 py-12 z-0">
                     <SignedOut>
                         {!pendingVerification && (
                             <div>

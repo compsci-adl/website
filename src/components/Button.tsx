@@ -15,7 +15,7 @@ const Button = ({ children, colour, href, onClick, width }: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 
-    const buttonStyles = `whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${bgColours[colour]}`;
+    const buttonStyles = `whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${bgColours[colour]} text-lg md:text-base`;
     const buttonClasses = width ? `${buttonStyles} ${width}` : buttonStyles;
 
     return (

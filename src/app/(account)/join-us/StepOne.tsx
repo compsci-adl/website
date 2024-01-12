@@ -129,7 +129,7 @@ export default function StepTwo({
             <h3 className="font-bold text-3xl">Join Us</h3>
             <p className="text-xl mb-8">Create your account</p>
 
-            <Button onClick={handleGoogleSignUp} colour="white" width="w-[25rem]">
+            <Button onClick={handleGoogleSignUp} colour="white" width="w-[19rem] md:w-[25.5rem]">
                 <FcGoogle className="text-xl inline-block mr-2" /> Continue with Google
             </Button>
 
@@ -167,14 +167,14 @@ export default function StepTwo({
             />
             {/* Buttons */}
             <div className="flex justify-center space-x-4 mt-8">
-                <Button onClick={handleSignUp} colour="orange" width="w-[25rem]">
+                <Button onClick={handleSignUp} colour="orange" width="w-[19rem] md:w-[25.5rem]">
                     Continue
                 </Button>
             </div>
 
             {/* Sign-in option */}
             <div className="flex mt-10">
-                <p className="text-grey">
+                <p className="text-grey text-lg md:text-base">
                     Already have an account?{' '}
                     <a href="/sign-in" className="text-orange">
                         Sign in

@@ -129,7 +129,7 @@ export default function StepOne({
             )}
             {/* Button */}
             <div className="flex w-full mt-8 mb-4">
-                <Button onClick={handleContinue} colour="orange" width="w-[25rem]">
+                <Button onClick={handleContinue} colour="orange" width="w-[19rem] md:w-[25.5rem]">
                     Continue
                 </Button>
             </div>

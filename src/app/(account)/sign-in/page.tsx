@@ -79,14 +79,18 @@ export default function SignInForm() {
     };
 
     return (
-        <section className="mt-64 mb-16">
+        <section className="mt-40 mb-16 mr-2">
             <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="bg-white border-black border-4 text-black w-fit px-12 py-12 z-0">
+                <div className="bg-white border-black border-4 text-black w-[24rem] md:w-[32rem] px-8 py-8 md:px-12 md:py-12 z-0">
                     {/* Heading */}
                     <h3 className="font-bold text-3xl">Sign In</h3>
                     <p className="text-xl mb-8">Sign into your account</p>
 
-                    <Button onClick={handleGoogleSignIn} colour="white" width="w-[25rem]">
+                    <Button
+                        onClick={handleGoogleSignIn}
+                        colour="white"
+                        width="w-[19rem] md:w-[25.5rem]"
+                    >
                         <FcGoogle className="text-xl inline-block mr-2" /> Continue with Google
                     </Button>
 
@@ -111,14 +115,17 @@ export default function SignInForm() {
                         />
                         {/* Forgot passwort */}
                         {/* TODO: Implement forgot password */}
-                        <a href="/forgot-password" className="text-orange flex mb-8">
+                        <a
+                            href="/forgot-password"
+                            className="text-orange flex mb-8 text-lg md:text-base"
+                        >
                             Forgot password?
                         </a>
                         <Button
                             onClick={handleSignIn}
                             type="submit"
                             colour="orange"
-                            width="w-[25rem]"
+                            width="w-[19rem] md:w-[25.5rem]"
                         >
                             Sign In
                         </Button>
@@ -126,7 +133,7 @@ export default function SignInForm() {
 
                     {/* Sign-up option */}
                     <div className="flex mt-10">
-                        <p className="text-grey">
+                        <p className="text-grey text-lg md:text-base">
                             Don't have an account yet?{' '}
                             <a href="/join-us" className="text-orange">
                                 Join Us

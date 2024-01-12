@@ -66,7 +66,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="relative bg-grey border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
-                        <p className="text-base md:text-xl">
+                        <p className="text-lg md:text-xl">
                             As a member, some of the perks you&apos;ll have access to include
                             computer science talks and workshops, catered social events, and a wide
                             network of other computer science students and graduates to learn from
@@ -84,7 +84,7 @@ export default function Home() {
                         />
                     </div>
                     <div className="relative bg-grey border-white border-2 px-4 py-4 md:px-6 md:py-6 mt-4 z-10">
-                        <p className="text-base md:text-xl">
+                        <p className="text-lg md:text-xl">
                             Are you a first year student? The Club runs activities at the start of
                             the year specifically for you, giving you a chance to meet other
                             students, and helping you ease into uni life.
@@ -114,7 +114,7 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="bg-white w-fit px-4 py-4 md:px-6 md:py-6 border-4 -mt-2 border-black">
-                                    <div className="relative text-base md:text-xl text-black">
+                                    <div className="relative text-lg md:text-xl text-black">
                                         <p>
                                             The club has a major focus on{' '}
                                             <span className="relative inline-block">
@@ -137,7 +137,7 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="bg-white w-fit px-4 py-4 md:px-6 md:py-6 border-4 -mt-2 border-black">
-                                    <div className="relative text-base md:text-xl text-black">
+                                    <div className="relative text-lg md:text-xl text-black">
                                         <p>
                                             We are primarily a{' '}
                                             <span className="relative inline-block">
@@ -160,7 +160,7 @@ export default function Home() {
                                     </h3>
                                 </div>
                                 <div className="bg-white w-fit px-4 py-4 md:px-6 md:py-6 border-4 -mt-2 border-black">
-                                    <div className="relative text-base md:text-xl text-black">
+                                    <div className="relative text-lg md:text-xl text-black">
                                         <p>
                                             <span className="relative inline-block">
                                                 Coding
@@ -283,7 +283,7 @@ export default function Home() {
                                 <span className="bg-white text-black text-2xl lg:text-3xl font-black relative px-4 py-2">
                                     Thinking about <span className="text-orange"> Joining?</span>
                                 </span>
-                                <p className="bg-grey text-white text-base lg:text-xl border-2 border-white px-4 py-2">
+                                <p className="bg-grey text-white text-lg lg:text-xl border-2 border-white px-4 py-2">
                                     New members are always welcome!
                                 </p>
                             </div>
