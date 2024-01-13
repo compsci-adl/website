@@ -11,7 +11,7 @@ interface ButtonProps {
     width?: string;
 }
 
-const Button = ({ children, colour, href, onClick, width }: ButtonProps) => {
+const Button = ({ children, colour, href, onClick, width, type }: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 
@@ -27,7 +27,7 @@ const Button = ({ children, colour, href, onClick, width }: ButtonProps) => {
                         e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>
                     ) => void | Promise<void>
                 }
-                type={isAnchor ? undefined : 'button'}
+                type={isAnchor ? undefined : type}
                 className={buttonClasses}
             >
                 {children}

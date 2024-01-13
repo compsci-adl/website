@@ -1,45 +1,48 @@
 'use client';
 
 import Button from '@/components/Button';
+import ControlledField from '@/components/ControlledField';
 import FancyRectangle from '@/components/FancyRectangle';
-import Field from '@/components/Field';
-import validateFields from '@/util/validation';
 import { useSignIn } from '@clerk/clerk-react';
-import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 
-// Define validation schemas
-const emailSchema = z
-    .string()
-    .min(1, { message: 'Please enter your email' })
-    .email({ message: 'Please enter a valid email' });
-const passwordSchema = z.string().min(1, { message: 'Please enter your password' });
+const signInSchema = z.object({
+    email: z
+        .string()
+        .min(1, { message: 'Please enter your email' })
+        .email({ message: 'Please enter a valid email' }),
+    password: z.string().min(1, { message: 'Please enter your password' }),
+});
+
+const CLERK_SIGN_IN_ERRORS = {
+    form_identifier_not_found: { field: 'email', message: "Can't find your account" },
+    form_password_incorrect: {
+        field: 'password',
+        message: 'Password is incorrect. Try again, or use another method.',
+    },
+    strategy_for_user_invalid: {
+        field: 'password',
+        message: 'Account is not set up for password sign-in. Please sign in with Google.',
+    },
+} as const;
 
 export default function SignInForm() {
     const { isLoaded, signIn, setActive } = useSignIn();
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const [emailError, setEmailError] = useState<string | null>(null);
-    const [passwordError, setPasswordError] = useState<string | null>(null);
 
-    const handleSignIn = async (e: React.ChangeEvent<any>) => {
-        e.preventDefault();
+    const form = useForm<z.infer<typeof signInSchema>>({
+        defaultValues: { email: '', password: '' },
+        resolver: zodResolver(signInSchema),
+    });
 
-        const isValid = validateFields(
-            [emailAddress, password],
-            [emailSchema, passwordSchema],
-            [setEmailError, setPasswordError]
-        );
-
-        if (!isValid) return;
-
+    const handleSignIn = form.handleSubmit(async (formData) => {
         if (!isLoaded) return;
-
         try {
             const result = await signIn.create({
-                identifier: emailAddress,
-                password,
+                identifier: formData.email,
+                password: formData.password,
             });
 
             if (result.status === 'complete') {
@@ -48,20 +51,15 @@ export default function SignInForm() {
                 console.log(result);
             }
         } catch (err: any) {
-            // Handle any errors that might occur during the sign-in process
-            if (err.errors[0].code === 'form_identifier_not_found') {
-                setEmailError("Can't find your account");
-            } else if (err.errors[0].code === 'form_password_incorrect') {
-                setPasswordError('Password is incorrect. Try again, or use another method.');
-            } else if (err.errors[0].code === 'strategy_for_user_invalid') {
-                setPasswordError(
-                    'Account is not set up for password sign-in. Please sign in with Google.'
-                );
+            const errorCode = err.errors[0].code as string;
+            if (errorCode in CLERK_SIGN_IN_ERRORS) {
+                const error = CLERK_SIGN_IN_ERRORS[errorCode as keyof typeof CLERK_SIGN_IN_ERRORS];
+                form.setError(error.field, { message: error.message });
             } else {
                 console.error(err);
             }
         }
-    };
+    });
 
     const handleGoogleSignIn = async () => {
         try {
@@ -99,19 +97,13 @@ export default function SignInForm() {
                         <p className="mx-4 text-grey">or</p>
                         <div className="border-t border-grey w-full"></div>
                     </div>
-                    <form>
-                        <Field
-                            label="Email"
-                            value={emailAddress}
-                            onChange={(value) => setEmailAddress(value)}
-                            error={emailError}
-                        />
-                        <Field
+                    <form onSubmit={handleSignIn}>
+                        <ControlledField label="Email" control={form.control} name="email" />
+                        <ControlledField
                             label="Password"
-                            value={password}
-                            onChange={(value) => setPassword(value)}
+                            control={form.control}
+                            name="password"
                             type="password"
-                            error={passwordError}
                         />
                         {/* Forgot passwort */}
                         {/* TODO: Implement forgot password */}
@@ -121,12 +113,7 @@ export default function SignInForm() {
                         >
                             Forgot password?
                         </a>
-                        <Button
-                            onClick={handleSignIn}
-                            type="submit"
-                            colour="orange"
-                            width="w-[19rem] md:w-[25.5rem]"
-                        >
+                        <Button type="submit" colour="orange" width="w-[19rem] md:w-[25.5rem]">
                             Sign In
                         </Button>
                     </form>
@@ -134,7 +121,7 @@ export default function SignInForm() {
                     {/* Sign-up option */}
                     <div className="flex mt-10">
                         <p className="text-grey text-lg md:text-base">
-                            Don't have an account yet?{' '}
+                            Don&apos;t have an account yet?{' '}
                             <a href="/join-us" className="text-orange">
                                 Join Us
                             </a>
