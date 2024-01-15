@@ -1,7 +1,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
-export default function JoinUsLayout({ children }: RootLayoutProps) {
+export default function AccountLayout({ children }: RootLayoutProps) {
     return (
         <>
             <Header />
