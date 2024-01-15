@@ -29,7 +29,7 @@ export default function UserButton() {
                 {isPopupOpen && (
                     <div
                         ref={popupRef}
-                        className="flex flex-col absolute w-44 gap-y-4 top-10 right-0 z-10 bg-white p-4 border-4 border-black"
+                        className="flex flex-col absolute w-52 md:w-44 gap-y-4 top-10 right-0 z-10 text-xl md:text-base bg-white p-4 border-4 border-black"
                     >
                         {/* Link to CS Club Drive */}
                         <a
@@ -45,7 +45,7 @@ export default function UserButton() {
                             Manage Account
                         </a>
                         {/* Sign Out */}
-                        <Button onClick={handleSignOut} colour="orange" width="w-32">
+                        <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
                             Sign Out
                         </Button>
                     </div>
