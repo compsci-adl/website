@@ -105,8 +105,6 @@ export default function SignInForm() {
                             name="password"
                             type="password"
                         />
-                        {/* Forgot passwort */}
-                        {/* TODO: Implement forgot password */}
                         <a
                             href="/forgot-password"
                             className="text-orange flex mb-8 text-lg md:text-base"

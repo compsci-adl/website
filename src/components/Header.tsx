@@ -1,11 +1,12 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
-import { UserButton, useUser } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import Button from './Button';
+import UserButton from './UserButton';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -128,7 +129,7 @@ export default function Header() {
                                     <Button colour="purple" href="/join-us">
                                         Continue Signing Up
                                     </Button>
-                                    <UserButton afterSignOutUrl="/" />
+                                    <UserButton />
                                 </>
                             ) : (
                                 <>
