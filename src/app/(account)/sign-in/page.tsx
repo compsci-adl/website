@@ -113,8 +113,6 @@ export default function SignInForm() {
                             type="password"
                             error={passwordError}
                         />
-                        {/* Forgot passwort */}
-                        {/* TODO: Implement forgot password */}
                         <a
                             href="/forgot-password"
                             className="text-orange flex mb-8 text-lg md:text-base"
@@ -134,7 +132,7 @@ export default function SignInForm() {
                     {/* Sign-up option */}
                     <div className="flex mt-10">
                         <p className="text-grey text-lg md:text-base">
-                            Don't have an account yet?{' '}
+                            Don&apos;t have an account yet?{' '}
                             <a href="/join-us" className="text-orange">
                                 Join Us
                             </a>

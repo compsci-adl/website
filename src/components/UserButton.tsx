@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import { useUser, useClerk } from '@clerk/clerk-react';
-import React, { useState, useRef, useEffect } from 'react';
+import Image from 'next/image';
+import React, { useState, useRef } from 'react';
 import FancyRectangle from './FancyRectangle';
 
 export default function UserButton() {
@@ -22,7 +23,7 @@ export default function UserButton() {
             <div className="flex relative w-11 border-2 border-black gap-y-2">
                 <button onClick={handleButtonClick}>
                     {/* Display user's profile icon */}
-                    {user && user.imageUrl && <img src={user.imageUrl} alt="Profile" />}
+                    {user && user.imageUrl && <Image src={user.imageUrl} alt="Profile" />}
                 </button>
 
                 {/* Popup menu */}
