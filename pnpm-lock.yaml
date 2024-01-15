@@ -475,7 +475,10 @@ packages:
     dev: true
 
   /@hookform/resolvers@3.3.4(react-hook-form@7.49.3):
-    resolution: {integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==}
+    resolution:
+      {
+        integrity: sha512-o5cgpGOuJYrd+iMKvkttOclgwRW86EsWJZZRC23prf0uU2i48Htq4PuT73AVb9ionFyZrwYEITuOFGF+BydEtQ==,
+      }
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
@@ -5053,8 +5056,11 @@ packages:
     dev: false
 
   /react-hook-form@7.49.3(react@18.2.0):
-    resolution: {integrity: sha512-foD6r3juidAT1cOZzpmD/gOKt7fRsDhXXZ0y28+Al1CHgX+AY1qIN9VSIIItXRq1dN68QrRwl1ORFlwjBaAqeQ==}
-    engines: {node: '>=18', pnpm: '8'}
+    resolution:
+      {
+        integrity: sha512-foD6r3juidAT1cOZzpmD/gOKt7fRsDhXXZ0y28+Al1CHgX+AY1qIN9VSIIItXRq1dN68QrRwl1ORFlwjBaAqeQ==,
+      }
+    engines: { node: '>=18', pnpm: '8' }
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
     dependencies:
