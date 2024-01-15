@@ -23,7 +23,9 @@ export default function UserButton() {
             <div className="flex relative w-11 border-2 border-black gap-y-2">
                 <button onClick={handleButtonClick}>
                     {/* Display user's profile icon */}
-                    {user && user.imageUrl && <Image src={user.imageUrl} alt="Profile" />}
+                    {user && user.imageUrl && (
+                        <Image src={user.imageUrl} alt="Profile" width={100} height={100} />
+                    )}
                 </button>
 
                 {/* Popup menu */}

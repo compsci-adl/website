@@ -1,7 +1,7 @@
-import React, { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
-interface FieldProps {
+export interface FieldProps {
     label: string;
     value: string;
     onChange: (value: string) => void;
