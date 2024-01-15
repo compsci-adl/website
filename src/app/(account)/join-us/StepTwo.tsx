@@ -96,7 +96,7 @@ export default function StepOne({
         <div>
             {/* Heading */}
             <h3 className="font-bold text-3xl">Continue Signing Up</h3>
-            <p className="text-xl">Let's get to know you!</p>
+            <p className="text-xl">Let&apos;s get to know you!</p>
             {/* Progress Bar */}
             <ProgressBar ducksFilled={2}></ProgressBar>
             {/* Form fields */}
