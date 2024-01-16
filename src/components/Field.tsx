@@ -6,11 +6,20 @@ export interface FieldProps {
     value: string;
     onChange: (value: string) => void;
     error?: string | null;
-    type?: string;
+    type?: 'text' | 'password' | 'select' | 'checkbox';
     options?: string[];
+    placeholder?: string;
 }
 
-const Field = ({ label, value, onChange, error, type = 'text', options = [] }: FieldProps) => {
+const Field = ({
+    label,
+    value,
+    onChange,
+    error,
+    type = 'text',
+    options = [],
+    placeholder,
+}: FieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility = () => {
@@ -34,6 +43,7 @@ const Field = ({ label, value, onChange, error, type = 'text', options = [] }: F
                     value={value}
                     className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
                 >
+                    {placeholder && <option value="">{placeholder}</option>}
                     {options.map((option, index) => (
                         <option key={index} value={option}>
                             {option}
