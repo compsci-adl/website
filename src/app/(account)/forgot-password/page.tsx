@@ -9,28 +9,15 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
+import { codeSchema, emailSchema, passwordSchema } from '../schema';
 
 const sendCodeSchema = z.object({
-    email: z
-        .string()
-        .min(1, { message: 'Please enter your email' })
-        .email({ message: 'Please enter a valid email' }),
+    email: emailSchema,
 });
 const resetPasswordSchema = z
     .object({
-        code: z
-            .string()
-            .min(1, { message: 'Please enter the code' })
-            .min(6, { message: 'Code must be 6 digits' })
-            .regex(/^\d+$/, {
-                message: 'Code must be numeric',
-            }),
-        password: z
-            .string()
-            .min(1, { message: 'Please enter a password' })
-            .min(8, { message: 'Password must be at least 8 characters' })
-            .regex(/^(?=.*[a-zA-Z]).+$/, { message: 'Password must include a letter' })
-            .regex(/^(?=.*[0-9]).+$/, { message: 'Password must include a number' }),
+        code: codeSchema,
+        password: passwordSchema,
         confirmPassword: z.string().min(1, { message: 'Please confirm password' }),
     })
     .refine((data) => data.password === data.confirmPassword, {
