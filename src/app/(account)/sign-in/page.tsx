@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
-import { emailSchema } from '../schema';
+import { emailSchema } from '../schemas';
 
 const signInSchema = z.object({
     email: emailSchema,

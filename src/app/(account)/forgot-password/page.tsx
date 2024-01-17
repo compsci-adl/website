@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
-import { codeSchema, emailSchema, passwordSchema } from '../schema';
+import { codeSchema, emailSchema, passwordSchema } from '../schemas';
 
 const sendCodeSchema = z.object({
     email: emailSchema,

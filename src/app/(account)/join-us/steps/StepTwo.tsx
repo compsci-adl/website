@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { firstNameSchema, lastNameSchema } from '../../schema';
+import { firstNameSchema, lastNameSchema } from '../../schemas';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
 export const STUDENT_STATUSES = [

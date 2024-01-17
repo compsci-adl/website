@@ -13,7 +13,7 @@ import {
     firstNameSchema,
     lastNameSchema,
     passwordSchema,
-} from '../../schema';
+} from '../../schemas';
 import { useSetJoinUsHeading } from '../store';
 
 const verifyEmailSchema = z.object({ code: codeSchema });
