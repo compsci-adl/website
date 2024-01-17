@@ -34,7 +34,7 @@ const STEP_INSTRUCTIONS = [
 
 export default function ForgotPasswordPage() {
     const [step, setStep] = useState(1);
-    const { signIn, setActive } = useSignIn();
+    const { isLoaded, signIn, setActive } = useSignIn();
 
     const sendCodeForm = useForm<z.infer<typeof sendCodeSchema>>({
         defaultValues: { email: '' },
@@ -46,8 +46,9 @@ export default function ForgotPasswordPage() {
     });
 
     const handleSendCode = sendCodeForm.handleSubmit(async ({ email }) => {
+        if (!isLoaded) return;
         try {
-            const result = await signIn?.create({
+            const result = await signIn.create({
                 strategy: 'reset_password_email_code',
                 identifier: email,
             });
@@ -72,17 +73,15 @@ export default function ForgotPasswordPage() {
     });
 
     const handleResetPassword = resetPasswordForm.handleSubmit(async ({ code, password }) => {
+        if (!isLoaded) return;
         try {
-            const resetResult = await signIn?.attemptFirstFactor({
+            const resetResult = await signIn.attemptFirstFactor({
                 strategy: 'reset_password_email_code',
                 code,
                 password,
             });
-
-            if (resetResult?.status === 'complete') {
-                if (setActive) {
-                    setActive({ session: resetResult.createdSessionId });
-                }
+            if (resetResult.status === 'complete') {
+                setActive({ session: resetResult.createdSessionId });
                 setStep(3);
             }
         } catch (error) {

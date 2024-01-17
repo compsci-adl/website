@@ -62,14 +62,13 @@ export default function SignInForm() {
     });
 
     const handleGoogleSignIn = async () => {
+        if (!isLoaded) return;
         try {
-            if (signIn) {
-                await signIn.authenticateWithRedirect({
-                    strategy: 'oauth_google',
-                    redirectUrl: '/sso-callback',
-                    redirectUrlComplete: '/',
-                });
-            }
+            await signIn.authenticateWithRedirect({
+                strategy: 'oauth_google',
+                redirectUrl: '/sso-callback',
+                redirectUrlComplete: '/',
+            });
         } catch (error) {
             // Handle any errors that might occur during the sign-in process
             console.error('Google Sign-In Error:', error);
