@@ -30,7 +30,7 @@ const STEP_INSTRUCTIONS = [
     'Enter your email to receive a reset code.',
     'Enter your new password and the code received in your email.',
     'Password reset complete!',
-];
+] as const;
 
 export default function ForgotPasswordPage() {
     const [step, setStep] = useState(1);
