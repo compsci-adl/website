@@ -9,12 +9,10 @@ import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
+import { emailSchema } from '../schema';
 
 const signInSchema = z.object({
-    email: z
-        .string()
-        .min(1, { message: 'Please enter your email' })
-        .email({ message: 'Please enter a valid email' }),
+    email: emailSchema,
     password: z.string().min(1, { message: 'Please enter your password' }),
 });
 
