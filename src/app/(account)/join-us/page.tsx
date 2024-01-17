@@ -1,62 +1,25 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
-import { useSignUp } from '@clerk/nextjs';
-import { useState } from 'react';
-import Form from './Form';
+import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import { useEffect } from 'react';
+import ProgressBar from './ProgressBar';
+import StepFour from './steps/StepFour';
+import StepOne from './steps/StepOne';
+import StepThree from './steps/StepThree';
+import StepTwo from './steps/StepTwo';
+import { useJoinUsHeading, useJoinUsStep } from './store';
 
-export default function Page() {
-    const { isLoaded, signUp, setActive } = useSignUp();
-    const [step, setStep] = useState(1);
+export default function JoinUsPage() {
+    const { step, setStep } = useJoinUsStep();
+    const { heading } = useJoinUsHeading();
 
-    const [emailAddress, setEmailAddress] = useState('');
-    const [password, setPassword] = useState('');
-    const [pendingVerification, setPendingVerification] = useState(false);
-    const [code, setCode] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [studentID, setStudentID] = useState('');
-    // const [isStudent, setIsStudent] = useState(false);
-    const [degree, setDegree] = useState('');
-    const [ageBracket, setAgeBracket] = useState('');
-    const [gender, setGender] = useState('');
-    const [studentType, setStudentType] = useState('');
-    const [studentStatus, setStudentStatus] = useState('At The University of Adelaide');
-    const [agreement, setAgreement] = useState(false);
-
-    // This verifies the user using email code that is delivered.
-    const onPressVerify = async (e: React.ChangeEvent<any>) => {
-        e.preventDefault();
-        if (!isLoaded) {
-            return;
+    const { isSignedIn } = useUser();
+    useEffect(() => {
+        if (isSignedIn) {
+            setStep(2);
         }
-
-        try {
-            const completeSignUp = await signUp.attemptEmailAddressVerification({
-                code,
-            });
-            if (completeSignUp.status !== 'complete') {
-                /*  investigate the response, to see if there was an error
-         or if the user needs to complete more steps.*/
-                console.log(JSON.stringify(completeSignUp, null, 2));
-            }
-            if (completeSignUp.status === 'complete') {
-                await setActive({ session: completeSignUp.createdSessionId });
-            }
-        } catch (err: any) {
-            console.error(JSON.stringify(err, null, 2));
-            throw err;
-        }
-    };
-
-    // Create functions to handle moving between steps
-    const nextStep = () => {
-        setStep(step + 1);
-    };
-
-    const prevStep = () => {
-        setStep(step - 1);
-    };
+    }, [isSignedIn]);
 
     return (
         <div className="relative z-10 bg-grey h-fit w-responsive top-32 text-white">
@@ -90,39 +53,25 @@ export default function Page() {
                     </div>
                 </section>
                 <div className="h-16"></div>
-                <Form
-                    step={step}
-                    setStep={setStep}
-                    emailAddress={emailAddress}
-                    setEmailAddress={setEmailAddress}
-                    password={password}
-                    setPassword={setPassword}
-                    pendingVerification={pendingVerification}
-                    setPendingVerification={setPendingVerification}
-                    code={code}
-                    setCode={setCode}
-                    firstName={firstName}
-                    setFirstName={setFirstName}
-                    lastName={lastName}
-                    setLastName={setLastName}
-                    studentStatus={studentStatus}
-                    setStudentStatus={setStudentStatus}
-                    studentID={studentID}
-                    setStudentID={setStudentID}
-                    degree={degree}
-                    setDegree={setDegree}
-                    ageBracket={ageBracket}
-                    setAgeBracket={setAgeBracket}
-                    gender={gender}
-                    setGender={setGender}
-                    studentType={studentType}
-                    setStudentType={setStudentType}
-                    agreement={agreement}
-                    setAgreement={setAgreement}
-                    onPressVerify={onPressVerify}
-                    nextStep={nextStep}
-                    prevStep={prevStep}
-                ></Form>
+                <section>
+                    <FancyRectangle colour="purple" offset="8" filled={true}>
+                        <div className="bg-white border-black border-4 text-black w-full px-12 py-12 z-0">
+                            <h3 className="font-bold text-3xl">{heading.title}</h3>
+                            <p className="text-xl">{heading.description}</p>
+
+                            <SignedOut>
+                                <StepOne />
+                            </SignedOut>
+                            <SignedIn>
+                                <ProgressBar step={step} />
+                                {
+                                    // eslint-disable-next-line react/jsx-key
+                                    [<StepTwo />, <StepThree />, <StepFour />][step - 2]
+                                }
+                            </SignedIn>
+                        </div>
+                    </FancyRectangle>
+                </section>
                 <div className="h-32"></div>
             </main>
         </div>

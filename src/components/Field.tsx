@@ -7,7 +7,7 @@ export interface FieldProps {
     onChange: (value: string) => void;
     error?: string | null;
     type?: 'text' | 'password' | 'select' | 'checkbox';
-    options?: string[];
+    options?: readonly string[] | string[];
     placeholder?: string;
 }
 
