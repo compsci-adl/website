@@ -41,8 +41,7 @@ export const stepThreeSchema = z.object({
         })
         .or(z.literal('')),
 });
-
-type StepThreeData = z.infer<typeof stepThreeSchema>;
+export type StepThreeData = z.infer<typeof stepThreeSchema>;
 
 /**
  * Get schema with student check
@@ -69,24 +68,20 @@ export default function StepThree() {
     });
 
     const {
-        studentInfo: { studentStatus },
-        setStudentInfo,
+        stepTwoData: { studentStatus },
+        stepThreeData,
+        setStepThreeData,
     } = useJoinUsStudentInfo();
     const { prevStep, nextStep } = useJoinUsStep();
 
     const validationSchema = getValidationSchema(studentStatus);
     const form = useForm<StepThreeData>({
-        defaultValues: {
-            ageBracket: '',
-            gender: '',
-            degree: '',
-            studentType: '',
-        } as unknown as StepThreeData,
+        defaultValues: stepThreeData,
         resolver: zodResolver(validationSchema),
     });
 
     const handleContinue = form.handleSubmit((formData) => {
-        setStudentInfo(formData);
+        setStepThreeData(formData);
         nextStep();
     });
 

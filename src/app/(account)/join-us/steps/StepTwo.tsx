@@ -27,6 +27,7 @@ export const stepTwoSchema = z.object({
         })
         .or(z.literal('')),
 });
+export type StepTwoData = z.infer<typeof stepTwoSchema>;
 
 const validationSchema = stepTwoSchema.refine(
     (data) =>
@@ -40,13 +41,10 @@ export default function StepTwo() {
         description: "Let's get to know you!",
     });
 
-    const form = useForm<z.infer<typeof stepTwoSchema>>({
-        defaultValues: {
-            firstName: '',
-            lastName: '',
-            studentStatus: 'At The University of Adelaide',
-            studentId: '',
-        },
+    const { stepTwoData, setStepTwoData } = useJoinUsStudentInfo();
+
+    const form = useForm<StepTwoData>({
+        defaultValues: stepTwoData,
         resolver: zodResolver(validationSchema),
     });
 
@@ -65,9 +63,8 @@ export default function StepTwo() {
     }, [user]);
 
     const { nextStep } = useJoinUsStep();
-    const { setStudentInfo } = useJoinUsStudentInfo();
     const handleContinue = form.handleSubmit((formData) => {
-        setStudentInfo(formData);
+        setStepTwoData(formData);
         nextStep();
     });
 

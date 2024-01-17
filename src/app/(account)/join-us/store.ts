@@ -1,8 +1,7 @@
 import { useMount } from '@/hooks/use-mount';
-import { z } from 'zod';
 import { create } from 'zustand';
-import { stepThreeSchema } from './steps/StepThree';
-import { stepTwoSchema } from './steps/StepTwo';
+import { StepThreeData } from './steps/StepThree';
+import { StepTwoData } from './steps/StepTwo';
 
 // Step
 type JoinUsStepState = {
@@ -36,23 +35,33 @@ export const useSetJoinUsHeading = (heading: Heading) => {
 };
 
 // Student Info
-const studentInfoSchema = stepTwoSchema.merge(stepThreeSchema);
-type StudentInfo = z.infer<typeof studentInfoSchema>;
-const initialStudentInfo: Record<keyof StudentInfo, string> = {
-    firstName: '',
-    lastName: '',
-    studentStatus: 'At The University of Adelaide',
-    studentId: '',
+const initialStepThreeData: Record<keyof StepThreeData, string> = {
     ageBracket: '',
     gender: '',
     degree: '',
     studentType: '',
 };
-type JoinUsStudentInfoState = {
-    studentInfo: StudentInfo;
-    setStudentInfo: (data: Partial<StudentInfo>) => void;
+const initialStepTwoData: Record<keyof StepTwoData, string> = {
+    firstName: '',
+    lastName: '',
+    studentStatus: 'At The University of Adelaide',
+    studentId: '',
 };
-export const useJoinUsStudentInfo = create<JoinUsStudentInfoState>((set) => ({
-    studentInfo: initialStudentInfo as StudentInfo,
-    setStudentInfo: (data) => set((state) => ({ studentInfo: { ...state.studentInfo, ...data } })),
+type JoinUsStudentInfoState = {
+    stepTwoData: StepTwoData;
+    stepThreeData: StepThreeData;
+    setStepTwoData: (data: StepTwoData) => void;
+    setStepThreeData: (data: StepThreeData) => void;
+    getStudentInfo: () => StepTwoData & StepThreeData;
+};
+const useJoinUsStudentInfoInner = create<JoinUsStudentInfoState>((set, get) => ({
+    stepTwoData: initialStepTwoData as StepTwoData,
+    stepThreeData: initialStepThreeData as StepThreeData,
+    setStepTwoData: (data) => set({ stepTwoData: data }),
+    setStepThreeData: (data) => set({ stepThreeData: data }),
+    getStudentInfo: () => ({ ...get().stepTwoData, ...get().stepThreeData }),
 }));
+export const useJoinUsStudentInfo = () => {
+    const { getStudentInfo, ...inner } = useJoinUsStudentInfoInner();
+    return { ...inner, studentInfo: getStudentInfo() };
+};
