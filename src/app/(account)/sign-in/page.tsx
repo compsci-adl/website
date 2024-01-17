@@ -3,12 +3,12 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import FancyRectangle from '@/components/FancyRectangle';
-import { handleClerkErrors } from '@/util/handle-clerk-errors';
 import { useSignIn } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
+import { handleClerkErrors } from '../helpers';
 
 const signInSchema = z.object({
     email: z

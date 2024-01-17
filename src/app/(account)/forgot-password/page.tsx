@@ -3,12 +3,12 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import FancyRectangle from '@/components/FancyRectangle';
-import { handleClerkErrors } from '@/util/handle-clerk-errors';
 import { useSignIn } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { handleClerkErrors } from '../helpers';
 
 const sendCodeSchema = z.object({
     email: z
