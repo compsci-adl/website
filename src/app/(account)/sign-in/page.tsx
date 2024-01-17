@@ -44,7 +44,7 @@ export default function SignInForm() {
                 {
                     code: 'form_identifier_not_found',
                     field: 'email',
-                    message: "Can't find your account",
+                    message: "Can't find your account.",
                 },
                 {
                     code: 'form_password_incorrect',
