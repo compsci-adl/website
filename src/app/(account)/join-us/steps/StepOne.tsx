@@ -37,7 +37,7 @@ function VerifyEmail() {
                 code,
             });
             if (completeSignUp.status !== 'complete') {
-                // investigate the response, to see if there was an error or if the user needs to complete more steps.
+                // Investigate the response, to see if there was an error or if the user needs to complete more steps.
                 console.log(JSON.stringify(completeSignUp, null, 2));
                 return;
             }
@@ -92,7 +92,7 @@ export default function StepOne() {
         try {
             await signUp.create(formData);
             await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
-            // change the UI to our pending section.
+            // Change the UI to our pending section.
             setPendingVerification(true);
         } catch (error) {
             handleClerkErrors(error, form, [
