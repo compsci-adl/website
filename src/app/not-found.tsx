@@ -15,7 +15,7 @@ export default function NotFound() {
                         Not found
                     </h2>
                     <Link
-                        className="px-5 py-2 text-xl font-bold lg:px-6 lg:py-3 lg:text-2x"
+                        className="px-5 py-2 text-xl font-bold lg:px-6 lg:py-3 lg:text-2xl"
                         href="/"
                     >
                         Go home
