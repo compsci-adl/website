@@ -11,4 +11,5 @@ export const env = createEnv({
     experimental__runtimeEnv: {
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
     },
+    skipValidation: process.env.SKIP_ENV_VALIDATION,
 });
