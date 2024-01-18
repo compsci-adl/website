@@ -7,7 +7,7 @@ import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../sto
 import { STUDENT_STATUSES } from './StepTwo';
 
 const DEGREES = [
-    'Bachelor of Computer Science (or Advanced)',
+    'Bachelor of Computer Science or Bachelor of Computer Science (Advanced)',
     'Bachelor of Maths & Computer Science',
     'Bachelor of IT',
     'Bachelor of Software Engineering',
