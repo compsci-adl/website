@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
-import { STUDENT_STATUSES } from './StepTwo';
+import type { STUDENT_STATUSES } from './StepTwo';
 
 const DEGREES = [
     'Bachelor of Computer Science or Bachelor of Computer Science (Advanced)',

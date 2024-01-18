@@ -1,7 +1,7 @@
 import { useMount } from '@/hooks/use-mount';
 import { create } from 'zustand';
-import { StepThreeData } from './steps/StepThree';
-import { StepTwoData } from './steps/StepTwo';
+import type { StepThreeData } from './steps/StepThree';
+import type { StepTwoData } from './steps/StepTwo';
 
 // Step
 type JoinUsStepState = {
