@@ -29,7 +29,7 @@ export const lastNameSchema = z
 export const codeSchema = z
     .string()
     .min(1, { message: 'Please enter the code' })
-    .min(6, { message: 'Code must be 6 digits' })
+    .length(6, { message: 'Code must be 6 digits' })
     .regex(/^\d+$/, {
         message: 'Code must be numeric',
     });
