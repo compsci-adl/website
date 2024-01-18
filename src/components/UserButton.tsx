@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
-import { useUser, useClerk } from '@clerk/clerk-react';
+import { useClerk, useUser } from '@clerk/clerk-react';
 import Image from 'next/image';
-import React, { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
 import FancyRectangle from './FancyRectangle';
 
 export default function UserButton() {
@@ -34,9 +34,9 @@ export default function UserButton() {
                         ref={popupRef}
                         className="flex flex-col absolute w-52 md:w-44 gap-y-4 top-10 right-0 z-10 text-xl md:text-base bg-white p-4 border-4 border-black"
                     >
-                        {/* Link to CS Club Drive */}
+                        {/* TODO(#16): Link to CS Club Drive */}
                         <a
-                            href="https://csclub.us11.list-manage.com/track/click?u=17c2b13c547b901f8405e7bec&id=246194762c&e=acbfff1500"
+                            href=""
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:underline"
