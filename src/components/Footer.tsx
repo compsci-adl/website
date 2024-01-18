@@ -29,7 +29,7 @@ export default function Footer() {
                     href={link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-10 h-10 p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
+                    className="w-fit h-fit p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                     aria-label={name}
                 >
                     <Icon className="text-2xl" />
@@ -45,7 +45,7 @@ export default function Footer() {
                     <p>&copy; 2024 The University of Adelaide Computer Science Club.</p>
                 </div>
                 {/* Social Media Links */}
-                <div className="order-1 md:order-2 flex justify-center md:justify-end space-x-3 md:space-x-4 mb-4 md:mb-0 text-black">
+                <div className="order-1 md:order-2 flex justify-center md:justify-end space-x-4 mb-4 md:mb-0 text-black">
                     {links}
                 </div>
             </div>
