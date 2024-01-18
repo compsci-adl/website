@@ -1,49 +1,49 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
+import { useUser } from '@clerk/clerk-react';
 import React, { useState } from 'react';
-import ProgressBar from './ProgressBar';
+import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
-interface StepFourProps {
-    agreement: boolean;
-    setAgreement: React.Dispatch<React.SetStateAction<boolean>>;
-    prevStep: () => void;
-}
+export default function StepFour() {
+    useSetJoinUsHeading({
+        title: 'Payment',
+        description: 'Complete membership payment',
+    });
 
-export default function StepFour({ agreement, setAgreement, prevStep }: StepFourProps) {
-    const [validationError, setValidationError] = useState<string | null>(null);
+    const [agreement, setAgreement] = useState(false);
+    const [agreementError, setAgreementError] = useState<string | null>(null);
+
+    const { prevStep } = useJoinUsStep();
+    const { studentInfo } = useJoinUsStudentInfo();
+
+    const { user } = useUser();
 
     const handleSignUp = async (e: React.ChangeEvent<any>) => {
         e.preventDefault();
         if (!agreement) {
-            setValidationError('Please agree to the terms');
-        } else {
-            setValidationError(null);
+            setAgreementError('Please agree to the terms');
+            return;
         }
+        // TODO: Payment & Database (use data below)
+        console.log({
+            studentInfo /* step 2 & 3 data */,
+            user /* email, full name, id, etc. */,
+        });
     };
 
-    const toggleAgreement = () => {
-        setAgreement(!agreement);
-        setValidationError(null);
-    };
+    const toggleAgreement = () => setAgreement(!agreement);
 
     return (
         <div>
-            {/* Heading */}
-            <h3 className="font-bold text-3xl">Payment</h3>
-            <p className="text-xl">Complete membership payment</p>
-            {/* Progress Bar */}
-            <ProgressBar ducksFilled={4}></ProgressBar>
-            {/* Form field */}
             <div className="mt-8 mb-4">
                 <Field
                     label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in my membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
                     value={agreement ? 'Yes' : 'No'}
-                    onChange={() => toggleAgreement()}
-                    error={validationError}
+                    onChange={toggleAgreement}
+                    error={agreementError}
                     type="checkbox"
                 />
             </div>
-            {/* Buttons */}
             <div className="flex justify-center space-x-4 mt-8">
                 <Button onClick={prevStep} colour="orange">
                     Back

@@ -8,26 +8,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
+import { handleClerkErrors } from '../helpers';
+import { emailSchema } from '../schemas';
 
 const signInSchema = z.object({
-    email: z
-        .string()
-        .min(1, { message: 'Please enter your email' })
-        .email({ message: 'Please enter a valid email' }),
+    email: emailSchema,
     password: z.string().min(1, { message: 'Please enter your password' }),
 });
-
-const CLERK_SIGN_IN_ERRORS = {
-    form_identifier_not_found: { field: 'email', message: "Can't find your account" },
-    form_password_incorrect: {
-        field: 'password',
-        message: 'Password is incorrect. Try again, or use another method.',
-    },
-    strategy_for_user_invalid: {
-        field: 'password',
-        message: 'Account is not set up for password sign-in. Please sign in with Google.',
-    },
-} as const;
 
 export default function SignInForm() {
     const { isLoaded, signIn, setActive } = useSignIn();
@@ -37,12 +24,12 @@ export default function SignInForm() {
         resolver: zodResolver(signInSchema),
     });
 
-    const handleSignIn = form.handleSubmit(async (formData) => {
+    const handleSignIn = form.handleSubmit(async ({ email, password }) => {
         if (!isLoaded) return;
         try {
             const result = await signIn.create({
-                identifier: formData.email,
-                password: formData.password,
+                identifier: email,
+                password,
             });
 
             if (result.status === 'complete') {
@@ -50,26 +37,36 @@ export default function SignInForm() {
             } else {
                 console.log(result);
             }
-        } catch (err: any) {
-            const errorCode = err.errors[0].code as string;
-            if (errorCode in CLERK_SIGN_IN_ERRORS) {
-                const error = CLERK_SIGN_IN_ERRORS[errorCode as keyof typeof CLERK_SIGN_IN_ERRORS];
-                form.setError(error.field, { message: error.message });
-            } else {
-                console.error(err);
-            }
+        } catch (error) {
+            handleClerkErrors(error, form, [
+                {
+                    code: 'form_identifier_not_found',
+                    field: 'email',
+                    message: "Can't find your account.",
+                },
+                {
+                    code: 'form_password_incorrect',
+                    field: 'password',
+                    message: 'Password is incorrect. Try again, or use another method.',
+                },
+                {
+                    code: 'strategy_for_user_invalid',
+                    field: 'password',
+                    message:
+                        'Account is not set up for password sign-in. Please sign in with Google.',
+                },
+            ]);
         }
     });
 
     const handleGoogleSignIn = async () => {
+        if (!isLoaded) return;
         try {
-            if (signIn) {
-                await signIn.authenticateWithRedirect({
-                    strategy: 'oauth_google',
-                    redirectUrl: '/sso-callback',
-                    redirectUrlComplete: '/',
-                });
-            }
+            await signIn.authenticateWithRedirect({
+                strategy: 'oauth_google',
+                redirectUrl: '/sso-callback',
+                redirectUrlComplete: '/',
+            });
         } catch (error) {
             // Handle any errors that might occur during the sign-in process
             console.error('Google Sign-In Error:', error);
