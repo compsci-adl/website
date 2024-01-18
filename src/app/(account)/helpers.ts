@@ -1,4 +1,4 @@
-import { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
+import type { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
 
 /**
  * Show clerk error message in form.
