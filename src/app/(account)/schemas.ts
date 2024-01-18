@@ -12,17 +12,19 @@ export const passwordSchema = z
     .regex(/^(?=.*[a-zA-Z]).+$/, { message: 'Password must include a letter' })
     .regex(/^(?=.*[0-9]).+$/, { message: 'Password must include a number' });
 
+const nameRegex = /^[a-z ,.'-]+$/i;
+
 export const firstNameSchema = z
     .string()
     .min(1, { message: 'Please enter your first name' })
-    .regex(/^[a-zA-Z]+$/, {
+    .regex(nameRegex, {
         message: 'Please enter a valid first name',
     });
 
 export const lastNameSchema = z
     .string()
     .min(1, { message: 'Please enter your last name' })
-    .regex(/^[a-zA-Z]+$/, {
+    .regex(nameRegex, {
         message: 'Please enter a valid last name',
     });
 
