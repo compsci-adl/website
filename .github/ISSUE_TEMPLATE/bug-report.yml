@@ -1,0 +1,53 @@
+name: Bug Report
+description: File a bug report
+title: '[Bug]'
+
+body:
+  - type: textarea
+    attributes:
+      label: Description of the Bug
+      description: What's the issue you encountered?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Reproduction Steps
+      description: How can the issue be reproduced?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Expected Behaviour
+      description: What do you expect to happen?
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: OS
+      placeholder: 'e.g. Windows 11'
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: Browser
+      placeholder: 'e.g. Chrome'
+    validations:
+      required: false
+
+  - type: input
+    attributes:
+      label: Device
+      placeholder: 'e.g. iPhone 15'
+    validations:
+      required: false
+
+  - type: textarea
+    attributes:
+      label: Additional Notes
+      description: Add any other notes or screenshots about the bug here.
+    validations:
+      required: false
