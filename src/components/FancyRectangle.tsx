@@ -25,9 +25,11 @@ const FancyRectangle = ({ children, colour, offset, filled }: FancyRectangleProp
                     style={offsetStyles}
                     className={`absolute right-0 bottom-0 w-full h-full ${
                         filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
-                    } -z-10`}
+                    }`}
                 ></div>
-                <div className="w-full h-full flex justify-center items-center">{children}</div>
+                <div className="w-full h-full flex justify-center items-center z-10 relative">
+                    {children}
+                </div>
             </div>
         </div>
     );
