@@ -7,15 +7,16 @@
     "build": "tsec --noEmit && next build",
     "analyse": "cross-env ANALYSE=true next build",
     "start": "next start",
-    "lint": "next lint",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml}\""
+    "lint": "cross-env SKIP_ENV_VALIDATION=true next lint",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml,mjs}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml,mjs}\""
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.30.3",
     "@clerk/nextjs": "^4.29.3",
     "@hookform/resolvers": "^3.3.4",
     "just-submit": "^0.0.7",
+    "@t3-oss/env-nextjs": "^0.7.3",
     "next": "14.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
