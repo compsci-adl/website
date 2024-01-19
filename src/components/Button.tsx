@@ -1,10 +1,11 @@
 import FancyRectangle from '@/components/FancyRectangle';
-import { bgColours } from '@/util/colours';
+import type { Colour } from '@/constants/colours';
+import { BG_COLOURS } from '@/constants/colours';
 import React from 'react';
 
 interface ButtonProps {
     children: React.ReactNode;
-    colour: string;
+    colour: Colour;
     href?: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
     type?: 'button' | 'submit' | 'reset';
@@ -15,7 +16,7 @@ const Button = ({ children, colour, href, onClick, width, type }: ButtonProps) =
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 
-    const buttonStyles = `whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${bgColours[colour]} text-lg md:text-base`;
+    const buttonStyles = `whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${BG_COLOURS[colour]} text-lg md:text-base`;
     const buttonClasses = width ? `${buttonStyles} ${width}` : buttonStyles;
 
     return (
