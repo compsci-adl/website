@@ -1,6 +1,6 @@
 name: Bug Report
 description: File a bug report
-title: "[Bug]"
+title: '[Bug]'
 
 body:
   - type: textarea
@@ -27,21 +27,21 @@ body:
   - type: input
     attributes:
       label: OS
-      placeholder: "e.g. Windows 11"
+      placeholder: 'e.g. Windows 11'
     validations:
       required: true
 
   - type: input
     attributes:
       label: Browser
-      placeholder: "e.g. Chrome"
+      placeholder: 'e.g. Chrome'
     validations:
       required: false
 
   - type: input
     attributes:
       label: Device
-      placeholder: "e.g. iPhone 15"
+      placeholder: 'e.g. iPhone 15'
     validations:
       required: false
 
