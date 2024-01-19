@@ -7,10 +7,9 @@ interface LinkProps {
     link: string;
     icon: IconType;
     colour: Colour;
-    size: `text-${string}`;
 }
 
-export default function Link({ name, link, icon: Icon, colour, size }: LinkProps) {
+export default function Link({ name, link, icon: Icon, colour }: LinkProps) {
     return (
         <FancyRectangle colour={colour} offset="4" filled={true}>
             <a
@@ -20,7 +19,7 @@ export default function Link({ name, link, icon: Icon, colour, size }: LinkProps
                 className="w-fit h-fit p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
                 aria-label={name}
             >
-                <Icon className={size} />
+                <Icon />
             </a>
         </FancyRectangle>
     );

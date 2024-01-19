@@ -9,9 +9,9 @@ export default function Footer() {
                     <p>&copy; 2024 The University of Adelaide Computer Science Club.</p>
                 </div>
                 {/* Social Media Links */}
-                <div className="order-1 md:order-2 flex justify-center md:justify-end space-x-4 mb-4 md:mb-0 text-black">
+                <div className="order-1 md:order-2 flex justify-center md:justify-end space-x-4 mb-4 md:mb-0 text-black text-2xl">
                     {LINKS.map((link, i) => (
-                        <Link {...link} colour="yellow" size="text-2xl" key={i} />
+                        <Link {...link} colour="yellow" key={i} />
                     ))}
                 </div>
             </div>
