@@ -1,3 +1,5 @@
+import Footer from '@/components/Footer';
+import Header from '@/components/Header';
 import '@/styles/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
@@ -44,7 +46,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <html lang="en" className={archivo.className}>
                 <body className="overflow-x-hidden bg-grey">
                     <div id="root" className="flex flex-col items-center">
+                        <Header />
                         {children}
+                        <Footer />
                     </div>
                 </body>
             </html>
