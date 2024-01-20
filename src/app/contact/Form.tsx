@@ -7,7 +7,7 @@ import Image from 'next/image';
 export default function Form({ className }: { className?: string }) {
     const submit = createSubmit({ fullName: 'string', email: 'string', message: 'string' });
     const handleSubmit = submit((data) => {
-        // TODO(#18): Backend
+        // TODO(#31): Email integration
         console.log(data);
     });
 
