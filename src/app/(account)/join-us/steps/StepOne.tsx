@@ -2,6 +2,7 @@ import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import { useSignUp } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
@@ -161,9 +162,9 @@ export default function StepOne() {
             <div className="flex mt-10">
                 <p className="text-grey text-lg md:text-base">
                     Already have an account?{' '}
-                    <a href="/sign-in" className="text-orange">
+                    <Link href="/sign-in" className="text-orange">
                         Sign in
-                    </a>
+                    </Link>
                 </p>
             </div>
         </div>

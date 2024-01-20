@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import FancyRectangle from './FancyRectangle';
 
@@ -44,9 +45,9 @@ export default function UserButton() {
                             CS Club Drive
                         </a>
                         {/* Link to Manage Account Page */}
-                        <a href="/manage-account" className="hover:underline">
+                        <Link href="/manage-account" className="hover:underline">
                             Manage Account
-                        </a>
+                        </Link>
                         {/* Sign Out */}
                         <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
                             Sign Out
