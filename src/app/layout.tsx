@@ -44,12 +44,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
             }}
         >
             <html lang="en" className={archivo.className}>
-                <body className="overflow-x-hidden bg-grey">
-                    <div id="root" className="flex flex-col items-center">
-                        <Header />
+                <body className="overflow-x-hidden bg-grey text-white">
+                    <Header />
+                    <div className="mx-auto min-h-screen w-responsive pt-32 md:pt-40">
                         {children}
-                        <Footer />
                     </div>
+                    <Footer />
                 </body>
             </html>
         </ClerkProvider>

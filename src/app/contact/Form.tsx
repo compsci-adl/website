@@ -28,7 +28,7 @@ export default function Form({ className }: { className?: string }) {
                 className="absolute right-[100px] top-[-48px] hidden md:block"
             />
             <form
-                className="grid h-full grid-cols-2 grid-rows-[auto_auto_minmax(12rem,_1fr)_auto] gap-4 rounded-xl bg-[#FFF] p-3 md:gap-8 md:p-6"
+                className="grid h-full grid-cols-2 grid-rows-[auto_auto_minmax(12rem,_1fr)_auto] gap-4 rounded-xl bg-[#FFF] p-3 text-black md:gap-8 md:p-6"
                 onSubmit={handleSubmit}
             >
                 <h2 className="col-span-2 border-b-2 border-black pb-1 text-2xl font-bold md:border-b-4 md:pb-2 md:text-4xl">
