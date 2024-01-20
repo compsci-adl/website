@@ -46,7 +46,7 @@ export default function ImageCarousel() {
     return (
         <div className="relative z-10 mr-2">
             <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="relative bg-white w-full h-full">
+                <div className="relative h-full w-full bg-white">
                     <div
                         className={`transition-opacity duration-500 ease-in-out ${
                             isTransitioning ? 'opacity-0' : 'opacity-100'
@@ -57,7 +57,7 @@ export default function ImageCarousel() {
                             alt={images[currentImageIndex].alt}
                             width={2132}
                             height={1600}
-                            className="object-cover w-full h-full"
+                            className="h-full w-full object-cover"
                         />
                     </div>
                 </div>

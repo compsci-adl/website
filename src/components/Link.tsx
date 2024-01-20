@@ -16,7 +16,7 @@ export default function Link({ name, link, icon: Icon, borderColour }: LinkProps
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-fit h-fit p-1.5 bg-white border-2 border-black transition-colors duration-300 hover:bg-orange hover:text-white"
+                className="h-fit w-fit border-2 border-black bg-white p-1.5 transition-colors duration-300 hover:bg-orange hover:text-white"
                 aria-label={name}
             >
                 <Icon />

@@ -42,7 +42,7 @@ const Field = ({
                     id={label.toLowerCase()}
                     name={label.toLowerCase()}
                     value={value}
-                    className="border text-grey border-gray-300 px-3 py-2 w-full mt-1"
+                    className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
                     {options.map((option, index) => (
@@ -52,7 +52,7 @@ const Field = ({
                     ))}
                 </select>
             ) : type === 'checkbox' ? (
-                <div className="mt-4 mb-2">
+                <div className="mb-2 mt-4">
                     <label>
                         <input
                             type="checkbox"
@@ -71,20 +71,20 @@ const Field = ({
                         name={label.toLowerCase()}
                         value={value}
                         type={showPassword ? 'text' : type}
-                        className="border text-grey border-gray-300 px-3 py-2 w-full mt-1 rounded-none"
+                        className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
                     />
                     {type === 'password' && (
                         <button
                             type="button"
                             onClick={togglePasswordVisibility}
-                            className="absolute top-4 right-6"
+                            className="absolute right-6 top-4"
                         >
                             {showPassword ? <IoEyeOff /> : <IoEye />}
                         </button>
                     )}
                 </div>
             )}
-            {error && <div className="text-red-500 text-sm mt-2 w-[25rem]">{error}</div>}
+            {error && <div className="mt-2 w-[25rem] text-sm text-red-500">{error}</div>}
         </div>
     );
 };
