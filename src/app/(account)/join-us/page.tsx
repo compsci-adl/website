@@ -25,9 +25,7 @@ export default function JoinUsPage() {
 
     return (
         <main className="mx-4 flex flex-col items-center gap-8 px-4 md:mx-10 md:gap-16">
-            <Title colour="purple" className="text-5xl md:text-7xl">
-                Join Us
-            </Title>
+            <Title colour="purple">Join Us</Title>
             <section>
                 <div className="relative z-10 flex flex-col text-2xl font-black md:flex-row lg:text-3xl">
                     <h3>New Members are</h3>
