@@ -11,7 +11,7 @@ export default function Title({ className, children, colour }: TitleProps) {
     return (
         <div className={className}>
             <FancyRectangle colour={colour} offset="8" filled={false}>
-                <div className={`w-fit px-2 ${BG_COLOURS[colour]}`}>
+                <div className={`w-fit p-2 ${BG_COLOURS[colour]}`}>
                     <h1 className="font-bold text-grey">{children}</h1>
                 </div>
             </FancyRectangle>
