@@ -2,6 +2,7 @@
 
 import FancyRectangle from '@/components/FancyRectangle';
 import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import Link from 'next/link';
 import { useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import StepFour from './steps/StepFour';
@@ -41,9 +42,9 @@ export default function JoinUsPage() {
                             <span className="text-yellow">Membership costs $10</span> for the full
                             year. You can pay for membership online here at our website.
                             Alternatively, you can pay at a club event or contact one of the{' '}
-                            <a href="/about" className="underline">
+                            <Link href="/about" className="underline">
                                 committee members
-                            </a>
+                            </Link>
                             .
                         </p>
                         <p className="mt-4">

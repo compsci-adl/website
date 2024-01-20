@@ -3,7 +3,8 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
-import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import Button from './Button';
 import UserButton from './UserButton';
@@ -50,7 +51,7 @@ export default function Header() {
                 >
                     <div className={`flex flex-col w-full ${isMenuOpen ? 'px-8 py-8' : ''}`}>
                         <div className="flex flex-row items-center">
-                            <a href="/" className="flex flex-row items-center">
+                            <Link href="/" className="flex flex-row items-center">
                                 <Image
                                     src="/logo/logo.svg"
                                     alt="Computer Science Club Logo"
@@ -65,7 +66,7 @@ export default function Header() {
                                 >
                                     CS CLUB
                                 </h1>
-                            </a>
+                            </Link>
 
                             <div
                                 className={`md:hidden absolute ${
@@ -107,18 +108,18 @@ export default function Header() {
                             isMenuOpen ? 'mt-12 space-y-8' : 'hidden'
                         } md:flex md:flex-row md:space-x-4 lg:space-x-8 md:space-y-0 mb-4 md:mb-0 text-4xl md:text-base`}
                     >
-                        <a href="/about" className="hover:underline">
+                        <Link href="/about" className="hover:underline">
                             About
-                        </a>
-                        <a href="/events" className="hover:underline">
+                        </Link>
+                        <Link href="/events" className="hover:underline">
                             Events
-                        </a>
-                        <a href="/sponsors" className="hover:underline">
+                        </Link>
+                        <Link href="/sponsors" className="hover:underline">
                             Sponsors
-                        </a>
-                        <a href="/contact" className="hover:underline">
+                        </Link>
+                        <Link href="/contact" className="hover:underline">
                             Contact
-                        </a>
+                        </Link>
                         <div
                             className={`flex flex-col md:flex-row items-center ${
                                 isMenuOpen ? '' : 'hidden'

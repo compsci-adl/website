@@ -5,6 +5,7 @@ import ControlledField from '@/components/ControlledField';
 import FancyRectangle from '@/components/FancyRectangle';
 import { useSignIn } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
@@ -102,12 +103,12 @@ export default function SignInForm() {
                             name="password"
                             type="password"
                         />
-                        <a
+                        <Link
                             href="/forgot-password"
                             className="text-orange flex mb-8 text-lg md:text-base"
                         >
                             Forgot password?
-                        </a>
+                        </Link>
                         <Button type="submit" colour="orange" width="w-[19rem] md:w-[25.5rem]">
                             Sign In
                         </Button>
@@ -117,9 +118,9 @@ export default function SignInForm() {
                     <div className="flex mt-10">
                         <p className="text-grey text-lg md:text-base">
                             Don&apos;t have an account yet?{' '}
-                            <a href="/join-us" className="text-orange">
+                            <Link href="/join-us" className="text-orange">
                                 Join Us
-                            </a>
+                            </Link>
                         </p>
                     </div>
                 </div>
