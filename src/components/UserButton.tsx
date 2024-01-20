@@ -21,7 +21,7 @@ export default function UserButton() {
 
     return (
         <FancyRectangle colour="black" offset="4" filled={true}>
-            <div className="flex relative w-11 border-2 border-black gap-y-2">
+            <div className="relative flex w-11 gap-y-2 border-2 border-black">
                 <button onClick={handleButtonClick}>
                     {/* Display user's profile icon */}
                     {user && user.imageUrl && (
@@ -33,7 +33,7 @@ export default function UserButton() {
                 {isPopupOpen && (
                     <div
                         ref={popupRef}
-                        className="flex flex-col absolute w-52 md:w-44 gap-y-4 top-10 right-0 z-10 text-xl md:text-base bg-white p-4 border-4 border-black"
+                        className="absolute right-0 top-10 z-10 flex w-52 flex-col gap-y-4 border-4 border-black bg-white p-4 text-xl md:w-44 md:text-base"
                     >
                         {/* TODO(#16): Link to CS Club Drive */}
                         <a

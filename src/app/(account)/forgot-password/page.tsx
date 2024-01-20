@@ -108,11 +108,11 @@ export default function ForgotPasswordPage() {
     });
 
     return (
-        <section className="mt-64 mb-16 w-[25rem]">
+        <section className="mb-16 mt-64 w-[25rem]">
             <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="bg-white border-black border-4 text-black w-fit px-12 py-12 z-0">
-                    <h3 className="font-bold text-3xl">Forgot Your Password?</h3>
-                    <p className="text-xl mb-8">{STEP_INSTRUCTIONS[step]}</p>
+                <div className="z-0 w-fit border-4 border-black bg-white px-12 py-12 text-black">
+                    <h3 className="text-3xl font-bold">Forgot Your Password?</h3>
+                    <p className="mb-8 text-xl">{STEP_INSTRUCTIONS[step]}</p>
                     {step === 1 && (
                         <form onSubmit={handleSendCode}>
                             <ControlledField

@@ -35,7 +35,7 @@ export default function StepFour() {
 
     return (
         <div>
-            <div className="mt-8 mb-4">
+            <div className="mb-4 mt-8">
                 <Field
                     label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in my membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
                     value={agreement ? 'Yes' : 'No'}
@@ -44,7 +44,7 @@ export default function StepFour() {
                     type="checkbox"
                 />
             </div>
-            <div className="flex justify-center space-x-4 mt-8">
+            <div className="mt-8 flex justify-center space-x-4">
                 <Button onClick={prevStep} colour="orange">
                     Back
                 </Button>

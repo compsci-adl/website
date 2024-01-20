@@ -2,9 +2,10 @@ import type { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
 
 /**
  * Show clerk error message in form.
+ *
  * @param error `catch` error
  * @param form `react-hook-form` instance
- * @param clerkErrors possible clerk errors
+ * @param clerkErrors Possible clerk errors
  */
 export const handleClerkErrors = <TFieldValues extends FieldValues>(
     error: any,

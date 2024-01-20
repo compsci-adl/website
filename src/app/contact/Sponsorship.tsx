@@ -5,10 +5,10 @@ import Image from 'next/image';
 export default function Sponsorship({ className }: { className?: string }) {
     return (
         <div className={`${className} space-y-6`}>
-            <div className="flex justify-between items-center">
+            <div className="flex items-center justify-between">
                 <FancyRectangle colour="orange" offset="8" filled={false}>
-                    <div className="bg-orange w-fit p-2">
-                        <h2 className="text-2xl md:text-4xl text-grey font-bold">
+                    <div className="w-fit bg-orange p-2">
+                        <h2 className="text-2xl font-bold text-grey md:text-4xl">
                             For sponsorships
                         </h2>
                     </div>
@@ -18,7 +18,7 @@ export default function Sponsorship({ className }: { className?: string }) {
                     alt="Crosses"
                     height={80}
                     width={237}
-                    className="md:w-fit w-1/3"
+                    className="w-1/3 md:w-fit"
                 />
             </div>
             <Paragraph>

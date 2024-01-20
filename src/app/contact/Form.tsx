@@ -18,40 +18,40 @@ export default function Form({ className }: { className?: string }) {
                 alt="Duck"
                 width={60}
                 height={60}
-                className="md:block hidden absolute right-[25px] top-[-48px]"
+                className="absolute right-[25px] top-[-48px] hidden md:block"
             />
             <Image
                 src="/images/whiteDuck.svg"
                 alt="Duck"
                 width={60}
                 height={60}
-                className="md:block hidden absolute right-[100px] top-[-48px]"
+                className="absolute right-[100px] top-[-48px] hidden md:block"
             />
             <form
-                className="bg-[#FFF] h-full rounded-xl md:p-6 p-3 grid grid-cols-2 md:gap-8 gap-4 grid-rows-[auto_auto_minmax(12rem,_1fr)_auto]"
+                className="grid h-full grid-cols-2 grid-rows-[auto_auto_minmax(12rem,_1fr)_auto] gap-4 rounded-xl bg-[#FFF] p-3 md:gap-8 md:p-6"
                 onSubmit={handleSubmit}
             >
-                <h2 className="col-span-2 md:text-4xl text-2xl font-bold md:pb-2 pb-1 md:border-b-4 border-b-2 border-black">
+                <h2 className="col-span-2 border-b-2 border-black pb-1 text-2xl font-bold md:border-b-4 md:pb-2 md:text-4xl">
                     Contact Us
                 </h2>
                 <input
                     name="fullName"
                     type="text"
                     placeholder="Full name"
-                    className="border-b border-black placeholder:text-neutral-500 md:text-xl text-lg focus:outline-none"
+                    className="border-b border-black text-lg placeholder:text-neutral-500 focus:outline-none md:text-xl"
                     required
                 />
                 <input
                     name="email"
                     type="email"
                     placeholder="Email"
-                    className="border-b border-black placeholder:text-neutral-500 md:text-xl text-lg focus:outline-none"
+                    className="border-b border-black text-lg placeholder:text-neutral-500 focus:outline-none md:text-xl"
                     required
                 />
                 <textarea
                     name="message"
                     placeholder="Message"
-                    className="col-span-2 md:p-6 p-2 border-2 rounded-xl border-black placeholder:text-neutral-500 md:text-xl text-lg focus:outline-none resize-none"
+                    className="col-span-2 resize-none rounded-xl border-2 border-black p-2 text-lg placeholder:text-neutral-500 focus:outline-none md:p-6 md:text-xl"
                     required
                 />
                 <div className="col-span-2 flex justify-center">

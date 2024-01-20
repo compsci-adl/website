@@ -43,9 +43,7 @@ export const stepThreeSchema = z.object({
 });
 export type StepThreeData = z.infer<typeof stepThreeSchema>;
 
-/**
- * Get schema with student check
- */
+/** Get schema with student check */
 const getValidationSchema = (studentStatus: (typeof STUDENT_STATUSES)[number]) => {
     const isStudent =
         studentStatus === 'At The University of Adelaide' ||
@@ -124,7 +122,7 @@ export default function StepThree() {
                     />
                 </>
             )}
-            <div className="flex justify-center space-x-4 mt-8">
+            <div className="mt-8 flex justify-center space-x-4">
                 <Button onClick={prevStep} colour="orange">
                     Back
                 </Button>

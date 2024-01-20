@@ -20,14 +20,14 @@ const FancyRectangle = ({ children, colour, offset, filled }: FancyRectangleProp
 
     return (
         <div className="flex items-center">
-            <div className="w-auto h-auto relative">
+            <div className="relative h-auto w-auto">
                 <div
                     style={offsetStyles}
-                    className={`absolute right-0 bottom-0 w-full h-full ${
+                    className={`absolute bottom-0 right-0 h-full w-full ${
                         filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
                     }`}
                 ></div>
-                <div className="w-full h-full flex justify-center items-center z-10 relative">
+                <div className="relative z-10 flex h-full w-full items-center justify-center">
                     {children}
                 </div>
             </div>
