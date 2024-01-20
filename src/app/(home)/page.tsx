@@ -1,4 +1,5 @@
 import FancyRectangle from '@/components/FancyRectangle';
+import Title from '@/components/Title';
 import Image from 'next/image';
 import ImageCarousel from './ImageCarousel';
 
@@ -26,15 +27,9 @@ export default function Home() {
                                 <h1 className="text-5xl md:text-8xl">SOCIALISE,</h1>
                                 <div className="h-2"></div>
 
-                                <FancyRectangle
-                                    colour="yellow"
-                                    offset="8 md:offset-16"
-                                    filled={false}
-                                >
-                                    <div className="bg-yellow w-fit px-2">
-                                        <h1 className="text-5xl md:text-8xl text-grey">CODE.</h1>
-                                    </div>
-                                </FancyRectangle>
+                                <Title className="text-5xl md:text-8xl" colour="yellow">
+                                    Code.
+                                </Title>
                                 <div className="h-4 md:h-8"></div>
                                 <FancyRectangle
                                     colour="orange"
