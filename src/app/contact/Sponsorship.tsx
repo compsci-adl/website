@@ -1,6 +1,6 @@
 import FancyRectangle from '@/components/FancyRectangle';
+import Paragraph from '@/components/Paragraph';
 import Image from 'next/image';
-import Paragraph from '../../components/Paragraph';
 
 export default function Sponsorship({ className }: { className?: string }) {
     return (

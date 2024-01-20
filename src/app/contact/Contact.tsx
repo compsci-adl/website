@@ -1,7 +1,7 @@
 import Link from '@/components/Link';
+import Paragraph from '@/components/Paragraph';
 import type { Colour } from '@/constants/colours';
 import { LINKS } from '@/data/links';
-import Paragraph from '../../components/Paragraph';
 
 const LINK_BORDER_COLOURS = {
     Email: 'yellow',

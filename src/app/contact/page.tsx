@@ -1,4 +1,4 @@
-import Title from '../../components/Title';
+import Title from '@/components/Title';
 import Contact from './Contact';
 import Form from './Form';
 import Sponsorship from './Sponsorship';
