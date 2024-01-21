@@ -3,12 +3,12 @@ import Title from '@/components/Title';
 import Image from 'next/image';
 import ImageCarousel from './ImageCarousel';
 
-export default function Home() {
+export default function HomePage() {
     return (
-        <div className="relative top-8 z-10 h-fit w-responsive bg-grey text-white">
-            <main className="mx-4 px-4 py-8 md:mx-10">
+        <div className="relative">
+            <main className="mx-4 md:mx-10">
                 {/* Hero Section */}
-                <section className="mb-8 flex pt-24 font-black md:pt-32 lg:pt-48">
+                <section className="mb-8 flex font-black">
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         {/* Left side */}
                         <div>
@@ -27,9 +27,7 @@ export default function Home() {
                                 <h1 className="text-5xl md:text-8xl">SOCIALISE,</h1>
                                 <div className="h-2"></div>
 
-                                <Title className="text-5xl md:text-8xl" colour="yellow">
-                                    Code.
-                                </Title>
+                                <Title colour="yellow">Code.</Title>
                                 <div className="h-4 md:h-8"></div>
                                 <FancyRectangle
                                     colour="orange"
@@ -278,7 +276,7 @@ export default function Home() {
                                 <span className="relative bg-white px-4 py-2 text-2xl font-black text-black lg:text-3xl">
                                     Thinking about <span className="text-orange"> Joining?</span>
                                 </span>
-                                <p className="border-2 border-white bg-grey px-4 py-2 text-lg text-white lg:text-xl">
+                                <p className="border-2 border-white bg-grey px-4 py-2 text-lg lg:text-xl">
                                     New members are always welcome!
                                 </p>
                             </div>

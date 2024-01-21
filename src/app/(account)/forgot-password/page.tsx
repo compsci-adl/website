@@ -108,9 +108,9 @@ export default function ForgotPasswordPage() {
     });
 
     return (
-        <section className="mb-16 mt-64 w-[25rem]">
+        <section className="flex justify-center">
             <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="z-0 w-fit border-4 border-black bg-white px-12 py-12 text-black">
+                <div className="z-0 w-[24rem] border-4 border-black bg-white px-8 py-8 text-black md:w-[32rem] md:px-12 md:py-12">
                     <h3 className="text-3xl font-bold">Forgot Your Password?</h3>
                     <p className="mb-8 text-xl">{STEP_INSTRUCTIONS[step]}</p>
                     {step === 1 && (
@@ -120,7 +120,7 @@ export default function ForgotPasswordPage() {
                                 control={sendCodeForm.control}
                                 name="email"
                             />
-                            <Button colour="orange" width="w-[25rem]" type="submit">
+                            <Button colour="orange" width="w-[19rem] md:w-[25rem]" type="submit">
                                 Send Code
                             </Button>
                         </form>
@@ -145,14 +145,14 @@ export default function ForgotPasswordPage() {
                                 control={resetPasswordForm.control}
                                 name="code"
                             />
-                            <Button colour="orange" width="w-[25rem]" type="submit">
+                            <Button colour="orange" width="w-[19rem] md:w-[25rem]" type="submit">
                                 Reset Password
                             </Button>
                         </form>
                     )}
 
                     {step === 3 && (
-                        <Button href="/" colour="orange" width="w-[25rem]">
+                        <Button href="/" colour="orange" width="w-[19rem] md:w-[25rem]">
                             Return to Home Page
                         </Button>
                     )}

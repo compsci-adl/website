@@ -17,7 +17,7 @@ const signInSchema = z.object({
     password: z.string().min(1, { message: 'Please enter your password' }),
 });
 
-export default function SignInForm() {
+export default function SignInPage() {
     const { isLoaded, signIn, setActive } = useSignIn();
 
     const form = useForm<z.infer<typeof signInSchema>>({
@@ -75,7 +75,7 @@ export default function SignInForm() {
     };
 
     return (
-        <section className="mb-16 mr-2 mt-40">
+        <section className="flex justify-center">
             <FancyRectangle colour="purple" offset="8" filled={true}>
                 <div className="z-0 w-[24rem] border-4 border-black bg-white px-8 py-8 text-black md:w-[32rem] md:px-12 md:py-12">
                     {/* Heading */}
@@ -109,7 +109,7 @@ export default function SignInForm() {
                         >
                             Forgot password?
                         </Link>
-                        <Button type="submit" colour="orange" width="w-[19rem] md:w-[25.5rem]">
+                        <Button type="submit" colour="orange" width="w-[19rem] md:w-[25rem]">
                             Sign In
                         </Button>
                     </form>

@@ -19,7 +19,7 @@ export default function Link({ name, link, icon: Icon, borderColour }: LinkProps
                 className="h-fit w-fit border-2 border-black bg-white p-1.5 transition-colors duration-300 hover:bg-orange hover:text-white"
                 aria-label={name}
             >
-                <Icon />
+                <Icon className="text-black" />
             </a>
         </FancyRectangle>
     );
