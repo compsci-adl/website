@@ -3,6 +3,7 @@ export const STUDENT_STATUSES = [
     'At another university',
     'No',
 ] as const;
+
 export const DEGREES = [
     'Bachelor of Computer Science or Bachelor of Computer Science (Advanced)',
     'Bachelor of Maths & Computer Science',
@@ -13,6 +14,7 @@ export const DEGREES = [
     'Masters/PhD (Research), Computer Science',
     'Other',
 ] as const;
+
 export const AGE_BRACKETS = [
     'Under 20',
     '20-24',
@@ -21,5 +23,7 @@ export const AGE_BRACKETS = [
     'Over 34',
     'Prefer not to say',
 ] as const;
+
 export const GENDERS = ['Male', 'Female', 'Other', 'Prefer not to say'] as const;
+
 export const STUDENT_TYPES = ['Domestic', 'International'] as const;
