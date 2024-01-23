@@ -28,7 +28,7 @@ export const members = sqliteTable('members', {
 
     emailPreferences: text('email_preferences', { mode: 'json' }),
 
-    membershipExpiredAt: integer('membership_expired_at', { mode: 'timestamp' }),
+    membershipExpiresAt: integer('membership_expires_at', { mode: 'timestamp' }),
 
     createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
     // TODO: `updated_at` in sqlite
