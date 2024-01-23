@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
+import { STUDENT_STATUSES } from '@/constants/student-info';
 import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
@@ -7,12 +8,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { firstNameSchema, lastNameSchema } from '../../schemas';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
-
-export const STUDENT_STATUSES = [
-    'At The University of Adelaide',
-    'At another university',
-    'No',
-] as const;
 
 export const stepTwoSchema = z.object({
     firstName: firstNameSchema,
