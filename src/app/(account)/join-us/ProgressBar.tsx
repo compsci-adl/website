@@ -9,18 +9,18 @@ function Duck({ filled, index }: { filled?: boolean; index: number }) {
             <Image
                 src={`/images/${duckImageName}`}
                 alt={duckImageAlt}
-                className="h-10 md:h-12 scale-x-[-1]"
+                className="h-10 scale-x-[-1] md:h-12"
                 height={100}
                 width={100}
             />
-            <div className="absolute mt-20 text-black font-bold">{index}</div>
+            <div className="absolute mt-20 font-bold text-black">{index}</div>
         </div>
     );
 }
 
 export default function ProgressBar({ step }: { step: number }) {
     return (
-        <div className="flex items-end justify-center mt-4 mb-12">
+        <div className="mb-12 mt-4 flex items-end justify-center">
             {new Array(step).fill(null).map((_, i) => (
                 <Duck filled index={i + 1} key={i} />
             ))}

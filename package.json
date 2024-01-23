@@ -8,8 +8,8 @@
     "analyse": "cross-env ANALYSE=true next build",
     "start": "next start",
     "lint": "cross-env SKIP_ENV_VALIDATION=true next lint",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml,mjs}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,yaml,yml,mjs}\""
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}\""
   },
   "dependencies": {
     "@clerk/clerk-react": "^4.30.3",
@@ -51,7 +51,7 @@
     "typescript": "^5.3.3"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,json,yaml,yml}": [
+    "*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}": [
       "prettier --write"
     ]
   },
