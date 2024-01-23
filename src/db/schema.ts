@@ -1,18 +1,36 @@
+import {
+    AGE_BRACKETS,
+    DEGREES,
+    GENDERS,
+    STUDENT_STATUSES,
+    STUDENT_TYPES,
+} from '@/constants/student-info';
+import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { nanoid } from 'nanoid';
 
-export const users = sqliteTable('users', {
-    clerk_id: integer('clerk_id').primaryKey(),
-    student_id: text('student_id').notNull(),
-    first_name: text('first_name').notNull(),
-    last_name: text('last_name').notNull(),
+export const members = sqliteTable('members', {
+    id: text('id')
+        .$defaultFn(() => nanoid())
+        .primaryKey(),
+
+    clerkId: text('clerk_id').notNull(),
     email: text('email').notNull(),
-    created_at: text('created_at').notNull(),
-    updated_at: text('updated_at').notNull(),
-    membership_paid_at: text('membership_paid_at').notNull(),
-    membership_expiry_at: text('membership_expiry_at').notNull(),
-    membership_status: text('membership_status').notNull(),
-    age: integer('age').notNull(),
-    gender: text('gender').notNull(),
-    degree: text('degree').notNull(),
-    student_type: text('student_type', { enum: ['Domestic', 'International'] }).notNull(),
+    firstName: text('first_name').notNull(),
+    lastName: text('last_name').notNull(),
+
+    studentStatus: text('student_status', { enum: STUDENT_STATUSES }).notNull(),
+    studentId: text('student_id'),
+    gender: text('gender', { enum: GENDERS }).notNull(),
+    ageBracket: text('age_bracket', { enum: AGE_BRACKETS }).notNull(),
+    degree: text('degree', { enum: DEGREES }),
+    studentType: text('student_type', { enum: STUDENT_TYPES }),
+
+    emailPreferences: text('email_preferences', { mode: 'json' }),
+
+    membershipExpiredAt: integer('membership_expired_at', { mode: 'timestamp' }),
+
+    createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
+    // TODO: `updated_at` in sqlite
+    // updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),
 });
