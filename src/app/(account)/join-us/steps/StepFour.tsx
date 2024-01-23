@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
-import { useUser } from '@clerk/clerk-react';
+import { fetcher } from '@/utils/fetcher';
 import React, { useState } from 'react';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
@@ -16,19 +16,19 @@ export default function StepFour() {
     const { prevStep } = useJoinUsStep();
     const { studentInfo } = useJoinUsStudentInfo();
 
-    const { user } = useUser();
-
     const handleSignUp = async (e: React.ChangeEvent<any>) => {
-        e.preventDefault();
+        setAgreementError(null);
         if (!agreement) {
             setAgreementError('Please agree to the terms');
             return;
         }
-        // TODO: Payment & Database (use data below)
-        console.log({
-            studentInfo /* step 2 & 3 data */,
-            user /* email, full name, id, etc. */,
-        });
+        // TODO(#17): Payment
+        try {
+            const res = await fetcher.post('member', { json: studentInfo }).json();
+            console.log(res);
+        } catch {
+            setAgreementError('Server error.');
+        }
     };
 
     const toggleAgreement = () => setAgreement(!agreement);
