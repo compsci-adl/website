@@ -31,4 +31,4 @@ We welcome contributions to enhance the CS Club Website! If you find any issues,
 
 ## License
 This project is licensed under the MIT License. 
-See the [LICENSE](LICENSE) file for details.
+See [LICENSE](LICENSE) for details.
