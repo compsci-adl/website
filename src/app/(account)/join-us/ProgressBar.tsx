@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
 function Duck({ filled, index }: { filled?: boolean; index: number }) {
-    const duckImageName = filled ? 'yellowDuck.svg' : 'greyDuckOutline.svg';
+    const duckImageName = filled ? 'yellow-duck.svg' : 'grey-duck-outline.svg';
     const duckImageAlt = filled ? 'Yellow Duck' : 'Grey Duck Outline';
 
     return (

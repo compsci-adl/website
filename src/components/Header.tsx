@@ -53,7 +53,7 @@ export default function Header() {
                         <div className="flex flex-row items-center">
                             <Link href="/" className="flex flex-row items-center">
                                 <Image
-                                    src="/logo/logo.svg"
+                                    src="/images/logos/logo.svg"
                                     alt="Computer Science Club Logo"
                                     className="h-full w-[3rem] md:w-[1.62rem] lg:w-[2.2rem]"
                                     width={100}

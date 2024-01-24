@@ -14,14 +14,14 @@ export default function Form({ className }: { className?: string }) {
     return (
         <div className={`${className} relative`}>
             <Image
-                src="/images/whiteDuck.svg"
+                src="/images/white-duck.svg"
                 alt="Duck"
                 width={60}
                 height={60}
                 className="absolute right-[25px] top-[-48px] hidden md:block"
             />
             <Image
-                src="/images/whiteDuck.svg"
+                src="/images/white-duck.svg"
                 alt="Duck"
                 width={60}
                 height={60}
