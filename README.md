@@ -28,3 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Contributing
 
 We welcome contributions to enhance the CS Club Website! If you find any issues, have suggestions, or want to request a feature, please follow our [Contributing Guidelines](CONTRIBUTING.md).
+
+## License
+This project is licensed under the MIT License. 
+See the [LICENSE](LICENSE) file for details.

@@ -1,6 +1,6 @@
 # Contributing Guidelines
 
-You can contribute to the University of Adelaide Computer Science Club (CS Club) website with issues, PRs, and testing of PRs. We appreciate your efforts to make our website better. Please read the entire documentation before continuing to make sure you understand all the processes. 
+You can contribute to the University of Adelaide Computer Science Club (CS Club) website with issues, PRs, and testing of PRs. We appreciate your efforts to make our website better.
 
 ## Reporting Issues 
 
@@ -41,20 +41,34 @@ Project maintainers will merge changes that both improve the project and meet ou
 
 We recommend you to use the following workflow:
 
-1. Find an existing issue or create a new one.
-    - Seek feedback from the maintainers and the community that your proposed change is a good one.
-    - Clearly state whether you plan on implementing it yourself or not. If this is the case, you can request that the issue be assigned to you. Note: The person who filed the issue and the person who implements it don't have to be the same.
-2. Create a personal fork of the repository using GitHub (if you don't already have one).
-3. In your fork, create a branch based of main (`git checkout -b <mybranch>`). Replace `<mybranch>` with a relevant name for your branch.
-4. Create and commit your changes to your branch.
-    - Commit messages should follow the guidelines in [Commit Messages](#commit-messages)
-6. Run the linting and prettier commands with `pnpm run lint` and `pnpm run format` to ensure your code follows our code quality standards.
-7. Create a pull request (PR) to merge your changes into the [compsci-adl/website](https://github.com/compsci-adl/website) repository's `main` branch.
-    - State in the description what issue or improvement your change is addressing.
-    - Check if all the Continuous Integration checks are passing. Refer to [Actions](https://github.com/compsci-adl/website/actions) to check for errors.
-8. Wait for feedback or approval of your changes from the maintainers
+1. Fork and clone the repo to your computer.
+```bash
+git clone https://github.com/YOUR_GITHUB_USERNAME/website.git
+```
+2. Create a new branch from `main` with a relevant name for a new feature or an bug you want to work on.
+```bash
+git checkout -b your-relevant-branch-name
+```
+3. Install the required packages.
+```bash
+pnpm install
+```
+4. Ensure there are no linting or formatting errors in your code.
+```bash
+pnpm run lint
+pnpm run format
+```
+5. Run the development server to see your changes in action.
+```bash
+pnpm run dev
+```
+6. Push your branch.
+```bash
+git push -u origin your-relevant-branch-name
+```
+7. Once you are happy with your changes, create a pull request (PR) with a relevant title and description to merge your changes into the [compsci-adl/website](https://github.com/compsci-adl/website) repository's `main` branch.
+8. Wait for feedback and approval of your changes from the maintainers
 9. When the maintainers have signed off, all checks are green, and there are no merge conflicts, your PR will be merged.
-    - You can safely delete the branch you used for making the change after the PR has been merged
 
 ### Commit Messages
 Before you create a PR, please check whether your commits comply with the commit conventions used for this repository.
@@ -79,9 +93,6 @@ the following categories:
 If you are interested in the detailed specification you can visit
 <https://www.conventionalcommits.org/>
 
-### Code Style
-We follow the [Airbnb Javascript Style Guide](https://github.com/airbnb/javascript) and the [Airbnb React/JSX Style Guide](https://github.com/airbnb/javascript/tree/master/react). Please take the time to familiarise yourself with these guides.
-
 ### PR - CI Process
 Automatic tests will be performed for PRs. Builds and test runs must not contain errors or have bugs properly filed against unexpected errors that are unrelated to your change.
 
@@ -89,3 +100,6 @@ If the CI build fails for any reason, the PR actions tab should be consulted for
 
 ### PR Feedback
 The maintainers and community members will provide feedback on your change. Community feedback is highly valued. When giving feedback, please be clear and concise.
+
+## License
+By contributing your code to the [compsci-adl/website](https://github.com/compsci-adl/website) repository, you agree to license  your contribution under the MIT License.
