@@ -14,7 +14,7 @@ export default function HomePage() {
                         <div>
                             {/* Grid */}
                             <Image
-                                src="/images/squareGrid.svg"
+                                src="/images/square-grid.svg"
                                 alt="Square Grid"
                                 width={500}
                                 height={500}
@@ -69,7 +69,7 @@ export default function HomePage() {
                     <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
                         <h3 className="">First-Year Perks</h3>
                         <Image
-                            src="/images/yellowStar.svg"
+                            src="/images/yellow-star.svg"
                             alt="Yellow Star"
                             className="ml-4 h-10"
                             width={50}
@@ -91,7 +91,7 @@ export default function HomePage() {
                 <section>
                     {/* <Grid /> */}
                     <Image
-                        src="/images/squareGrid.svg"
+                        src="/images/square-grid.svg"
                         alt="Square Grid"
                         width={500}
                         height={500}
@@ -175,7 +175,7 @@ export default function HomePage() {
                 <section>
                     <div className="relative z-10 mt-12 flex flex-row items-center text-2xl font-black md:text-4xl lg:mt-20 lg:text-5xl">
                         <Image
-                            src="/images/yellowTriangle.svg"
+                            src="/images/yellow-triangle.svg"
                             alt="Yellow Triangle"
                             className="mb-12 mr-4"
                             width={30}
@@ -214,7 +214,7 @@ export default function HomePage() {
                     <div className="mb-[3em] md:mb-[8.75em] lg:md:mb-[11.3em]">
                         {/* <Grid /> */}
                         <Image
-                            src="/images/rectanglegrid.svg"
+                            src="/images/rectangle-grid.svg"
                             alt="Rectangle Grid"
                             width={500}
                             height={500}
@@ -225,7 +225,7 @@ export default function HomePage() {
                     <div className="relative z-10 ml-[2.5em] flex w-fit flex-col md:ml-[4.4em]">
                         <div className="relative mb-2 flex flex-row justify-end">
                             <Image
-                                src="/images/whiteDuckOutline.svg"
+                                src="/images/white-duck-outline.svg"
                                 alt="White Duck Outline"
                                 className="ml-4 h-8 md:h-10"
                                 height={50}
@@ -233,7 +233,7 @@ export default function HomePage() {
                             />
 
                             <Image
-                                src="/images/whiteDuckOutline.svg"
+                                src="/images/white-duck-outline.svg"
                                 alt="White Duck"
                                 className="ml-4 h-8 md:h-10"
                                 height={50}
@@ -241,7 +241,7 @@ export default function HomePage() {
                             />
 
                             <Image
-                                src="/images/whiteDuck.svg"
+                                src="/images/white-duck.svg"
                                 alt="White Duck"
                                 className="ml-4 h-8 md:h-10"
                                 height={50}
@@ -249,21 +249,21 @@ export default function HomePage() {
                             />
 
                             <Image
-                                src="/images/whiteDuck.svg"
+                                src="/images/white-duck.svg"
                                 alt="White Duck"
                                 className="ml-4 h-8 md:h-10"
                                 height={50}
                                 width={50}
                             />
                             <Image
-                                src="/images/whiteDuck.svg"
+                                src="/images/white-duck.svg"
                                 alt="White Duck"
                                 className="ml-4 h-8 md:h-10"
                                 height={50}
                                 width={50}
                             />
                             <Image
-                                src="/images/whiteDuck.svg"
+                                src="/images/white-duck.svg"
                                 alt="White Duck"
                                 className="ml-4 h-8 md:h-10"
                                 height={50}

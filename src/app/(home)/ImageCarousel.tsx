@@ -2,27 +2,22 @@
 
 import FancyRectangle from '@/components/FancyRectangle';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-interface CarouselImage {
-    src: string;
-    alt: string;
-}
-
-const images: CarouselImage[] = [
+const IMAGES = [
     {
-        src: '/images/duckCTF.jpg',
+        src: '/images/home/duck-ctf.jpg',
         alt: 'DuckCTF',
     },
     {
-        src: '/images/pizza.jpg',
+        src: '/images/home/pizza.jpg',
         alt: 'Pizza',
     },
     {
-        src: '/images/cyberPanel.jpg',
+        src: '/images/home/cyber-panel.jpg',
         alt: 'Cyber Panel',
     },
-];
+] as const;
 
 export default function ImageCarousel() {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -32,7 +27,7 @@ export default function ImageCarousel() {
         setIsTransitioning(true);
         setTimeout(() => {
             setCurrentImageIndex((prevIndex) =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+                prevIndex === IMAGES.length - 1 ? 0 : prevIndex + 1
             );
             setIsTransitioning(false);
         }, 500);
@@ -53,8 +48,8 @@ export default function ImageCarousel() {
                         }`}
                     >
                         <Image
-                            src={images[currentImageIndex].src}
-                            alt={images[currentImageIndex].alt}
+                            src={IMAGES[currentImageIndex].src}
+                            alt={IMAGES[currentImageIndex].alt}
                             width={2132}
                             height={1600}
                             className="h-full w-full object-cover"

@@ -5,7 +5,7 @@ import Sponsorship from './Sponsorship';
 
 export default function ContactPage() {
     return (
-        <div className="h-full bg-[url('/images/rectangleGrid.svg')] bg-repeat-y md:bg-[length:90%_90%] md:bg-center md:bg-no-repeat">
+        <div className="h-full bg-[url('/images/rectangle-grid.svg')] bg-repeat-y md:bg-[length:90%_90%] md:bg-center md:bg-no-repeat">
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
                 <div className="grid-flow-dense justify-self-center md:col-span-2">
                     <Title colour="yellow">Contact</Title>
