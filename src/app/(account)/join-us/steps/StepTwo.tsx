@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
+import { STUDENT_STATUSES } from '@/constants/student-info';
 import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
@@ -7,12 +8,6 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { firstNameSchema, lastNameSchema } from '../../schemas';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
-
-export const STUDENT_STATUSES = [
-    'At The University of Adelaide',
-    'At another university',
-    'No',
-] as const;
 
 export const stepTwoSchema = z.object({
     firstName: firstNameSchema,
@@ -82,7 +77,7 @@ export default function StepTwo() {
             {form.watch('studentStatus') === 'At The University of Adelaide' && (
                 <ControlledField label="Student ID" control={form.control} name="studentId" />
             )}
-            <div className="flex w-full mt-8 mb-4">
+            <div className="mb-4 mt-8 flex w-full">
                 <Button colour="orange" width="w-[19rem] md:w-[25.5rem]" type="submit">
                     Continue
                 </Button>

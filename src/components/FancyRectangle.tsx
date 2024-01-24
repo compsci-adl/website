@@ -1,10 +1,11 @@
-import { bgColours, borderColours } from '@/util/colours';
+import type { Colour } from '@/constants/colours';
+import { BG_COLOURS, BORDER_COLOURS } from '@/constants/colours';
 import React from 'react';
 
 // Fancy rectangle component used in various elements taking parameters child, colour, offset and filled
 interface FancyRectangleProps {
     children: React.ReactNode;
-    colour: string;
+    colour: Colour;
     offset: string;
     filled: boolean;
 }
@@ -19,14 +20,16 @@ const FancyRectangle = ({ children, colour, offset, filled }: FancyRectangleProp
 
     return (
         <div className="flex items-center">
-            <div className="w-auto h-auto relative">
+            <div className="relative h-auto w-auto">
                 <div
                     style={offsetStyles}
-                    className={`absolute right-0 bottom-0 w-full h-full ${
-                        filled ? bgColours[colour] : borderColours[colour]
-                    } -z-10`}
+                    className={`absolute bottom-0 right-0 h-full w-full ${
+                        filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
+                    }`}
                 ></div>
-                <div className="w-full h-full flex justify-center items-center">{children}</div>
+                <div className="relative z-10 flex h-full w-full items-center justify-center">
+                    {children}
+                </div>
             </div>
         </div>
     );

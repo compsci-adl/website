@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
-import { useUser } from '@clerk/clerk-react';
+import { fetcher } from '@/utils/fetcher';
 import React, { useState } from 'react';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
@@ -16,26 +16,26 @@ export default function StepFour() {
     const { prevStep } = useJoinUsStep();
     const { studentInfo } = useJoinUsStudentInfo();
 
-    const { user } = useUser();
-
     const handleSignUp = async (e: React.ChangeEvent<any>) => {
-        e.preventDefault();
+        setAgreementError(null);
         if (!agreement) {
             setAgreementError('Please agree to the terms');
             return;
         }
-        // TODO: Payment & Database (use data below)
-        console.log({
-            studentInfo /* step 2 & 3 data */,
-            user /* email, full name, id, etc. */,
-        });
+        // TODO(#17): Payment
+        try {
+            const res = await fetcher.post('member', { json: studentInfo }).json();
+            console.log(res);
+        } catch {
+            setAgreementError('Server error.');
+        }
     };
 
     const toggleAgreement = () => setAgreement(!agreement);
 
     return (
         <div>
-            <div className="mt-8 mb-4">
+            <div className="mb-4 mt-8">
                 <Field
                     label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in my membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
                     value={agreement ? 'Yes' : 'No'}
@@ -44,7 +44,7 @@ export default function StepFour() {
                     type="checkbox"
                 />
             </div>
-            <div className="flex justify-center space-x-4 mt-8">
+            <div className="mt-8 flex justify-center space-x-4">
                 <Button onClick={prevStep} colour="orange">
                     Back
                 </Button>

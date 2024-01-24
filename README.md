@@ -15,10 +15,15 @@ cd website
 
 Next install the dependencies.
 ```bash
-pnpm install
+pnpm i
 ```
 
 Set up the keys by copying `.env.local.example` to a new file `.env.local` and replace the placeholder keys with the actual keys. Please contact the open source officers on the CS Club Discord to get these keys.
+
+Initialise the database
+```bash
+pnpm run db:push
+```
 
 Then run the development server
 

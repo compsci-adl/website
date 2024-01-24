@@ -9,9 +9,7 @@ interface ControlledFieldProps<TFieldValues extends FieldValues>
     name: FieldPath<TFieldValues>;
 }
 
-/**
- * `Field` controlled by react hook form
- */
+/** `Field` controlled by react hook form */
 const ControlledField = <TFieldValues extends FieldValues = FieldValues>({
     control,
     name,
