@@ -1,31 +1,11 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
+import type { STUDENT_STATUSES } from '@/constants/student-info';
+import { AGE_BRACKETS, DEGREES, GENDERS, STUDENT_TYPES } from '@/constants/student-info';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
-import type { STUDENT_STATUSES } from './StepTwo';
-
-const DEGREES = [
-    'Bachelor of Computer Science or Bachelor of Computer Science (Advanced)',
-    'Bachelor of Maths & Computer Science',
-    'Bachelor of IT',
-    'Bachelor of Software Engineering',
-    'Honours, Computer Science',
-    'Masters (Coursework), Computer Science',
-    'Masters/PhD (Research), Computer Science',
-    'Other',
-] as const;
-const AGE_BRACKETS = [
-    'Under 20',
-    '20-24',
-    '25-29',
-    '30-34',
-    'Over 34',
-    'Prefer not to say',
-] as const;
-const GENDERS = ['Male', 'Female', 'Other', 'Prefer not to say'] as const;
-const STUDENT_TYPES = ['Domestic', 'International'] as const;
 
 export const stepThreeSchema = z.object({
     ageBracket: z.enum(AGE_BRACKETS, {
