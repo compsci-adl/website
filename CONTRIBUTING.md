@@ -53,22 +53,33 @@ git checkout -b your-relevant-branch-name
 ```bash
 pnpm install
 ```
-4. Ensure there are no linting or formatting errors in your code.
+4. Set up the required keys:
+- Copy `.env.local.example` to a new file `.env.local`.
+- Create a [Clerk](https://clerk.com) account and make a new application within the Clerk dashboard.
+- Configure the settings to require a name, reject compromised passwords, and enforce average strength passwords. 
+- Copy the keys to `.env.local`.
+
+5. Initialise the database.
+```bash
+pnpm run db:push
+```
+
+6. Ensure there are no linting or formatting errors in your code.
 ```bash
 pnpm run lint
 pnpm run format
 ```
-5. Run the development server to see your changes in action.
+7. Run the development server to see your changes in your browser at [http://localhost:3000](http://localhost:3000).
 ```bash
 pnpm run dev
 ```
-6. Push your branch.
+8. Push your branch.
 ```bash
 git push -u origin your-relevant-branch-name
 ```
-7. Once you are happy with your changes, create a pull request (PR) with a relevant title and description to merge your changes into the [compsci-adl/website](https://github.com/compsci-adl/website) repository's `main` branch.
-8. Wait for feedback and approval of your changes from the maintainers
-9. When the maintainers have signed off, all checks are green, and there are no merge conflicts, your PR will be merged.
+9. Once you are happy with your changes, create a pull request (PR) with a relevant title and description to merge your changes into the [compsci-adl/website](https://github.com/compsci-adl/website) repository's `main` branch.
+10. Wait for feedback and approval of your changes from the maintainers
+11. When the maintainers have signed off, all checks are green, and there are no merge conflicts, your PR will be merged.
 
 ### Commit Messages
 Before you create a PR, please check whether your commits comply with the commit conventions used for this repository.
@@ -90,8 +101,15 @@ the following categories:
 - `chore`: Changes that do not fit into any of the above
   categories
 
+For example:
+```
+feat(db): Add database schema
+
+ci: Add prettier to CI workflow
+```
+
 If you are interested in the detailed specification you can visit
-<https://www.conventionalcommits.org/>
+<https://www.conventionalcommits.org/>.
 
 ### PR - CI Process
 Automatic tests will be performed for PRs. Builds and test runs must not contain errors or have bugs properly filed against unexpected errors that are unrelated to your change.

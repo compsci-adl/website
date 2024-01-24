@@ -7,17 +7,21 @@ This is the official repository for the University of Adelaide Computer Science 
 To get started, please follow these steps: 
 1. Install the dependencies.
 ```bash
-pnpm i
+pnpm install
 ```
 
-2. Set up the keys by copying `.env.local.example` to a new file `.env.local` and replace the placeholder keys with the actual keys. Please contact the open source officers on the CS Club Discord to get these keys.
+2. Set up the required keys:
+- Copy `.env.local.example` to a new file `.env.local`.
+- Create a [Clerk](https://clerk.com) account and make a new application within the Clerk dashboard.
+- Configure the settings to require a name, reject compromised passwords, and enforce average strength passwords. 
+- Copy the keys to `.env.local`.
 
-3. Initialise the database
+3. Initialise the database.
 ```bash
 pnpm run db:push
 ```
 
-4. Then run the development server
+4. Then run the development server.
 
 ```bash
 pnpm run dev
