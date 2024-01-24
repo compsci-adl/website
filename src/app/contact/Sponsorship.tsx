@@ -22,7 +22,7 @@ export default function Sponsorship({ className }: { className?: string }) {
                 />
             </div>
             <Paragraph>
-                If you’d like to partner with us, please enquire at:{' '}
+                If you&apos;d like to partner with us, please enquire at:{' '}
                 <a href="mailto:sponsorships@csclub.org.au" className="underline">
                     sponsorships@csclub.org.au
                 </a>
