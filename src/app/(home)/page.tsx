@@ -1,4 +1,5 @@
 import FancyRectangle from '@/components/FancyRectangle';
+import Sponsors from '@/components/Sponsors';
 import Title from '@/components/Title';
 import Image from 'next/image';
 import ImageCarousel from './ImageCarousel';
@@ -194,18 +195,14 @@ export default function HomePage() {
                             </div>
                         </div>
                     </div>
-                    <h3 className="relative z-10 mt-16 flex flex-row text-2xl font-black lg:text-3xl">
-                        Gold Sponsors
-                    </h3>
-                    <div className="h-48"></div>
-                    <h3 className="relative z-10 mt-4 flex flex-row text-2xl font-black lg:text-3xl">
-                        Silver Sponsors
-                    </h3>
-                    <div className="h-48"></div>
-                    <h3 className="relative z-10 mt-4 flex flex-row text-2xl font-black lg:text-3xl">
-                        Bronze Sponsors
-                    </h3>
-                    <div className="h-48"></div>
+                    <Sponsors
+                        className="relative z-10 mt-16"
+                        typeTitle={(type) => (
+                            <h3 className="text-2xl font-black capitalize lg:text-3xl">
+                                {type} Sponsors
+                            </h3>
+                        )}
+                    />
                 </section>
 
                 {/* CTA part 2 */}
