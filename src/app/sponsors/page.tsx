@@ -1,7 +1,7 @@
 import Paragraph from '@/components/Paragraph';
 import Sponsors from '@/components/Sponsors';
 import Title from '@/components/Title';
-import type { SponsorType } from '@/data/sponsors';
+import { YEAR, type SponsorType } from '@/data/sponsors';
 import Image from 'next/image';
 
 const SPONSOR_TYPE_COLORS = {
@@ -21,7 +21,7 @@ export default function SponsorsPage() {
                     height={500}
                     className="hidden w-20 md:block"
                 />
-                <Title colour="yellow">{`${new Date().getFullYear()} Sponsors`}</Title>
+                <Title colour="yellow">{`${YEAR} Sponsors`}</Title>
                 <Image
                     src="/images/yellow-duck.svg"
                     alt="Duck"

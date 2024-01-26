@@ -7,6 +7,8 @@ export type Sponsor = {
     type: SponsorType;
 };
 
+export const YEAR = 2023;
+
 // Image file should be in `/public/images/sponsors`
 export const SPONSORS: Sponsor[] = [
     {
