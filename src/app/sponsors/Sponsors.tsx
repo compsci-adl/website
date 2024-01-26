@@ -11,7 +11,7 @@ const SPONSOR_TYPE_COLORS = {
 function SponsorTypeTitle({ type }: { type: SponsorType }) {
     const color = SPONSOR_TYPE_COLORS[type];
     return (
-        <div className="flex items-center gap-5">
+        <h3 className="flex items-center gap-5">
             <div className="text-3xl font-bold md:text-4xl">
                 Our{' '}
                 <span className="capitalize" style={{ color }}>
@@ -32,16 +32,13 @@ function SponsorTypeTitle({ type }: { type: SponsorType }) {
                     style={{ backgroundColor: color }}
                 />
             </div>
-        </div>
+        </h3>
     );
 }
 
-type SponsorCardProps = Sponsor & { reverse?: boolean };
-function SponsorCard({ image, name, description, website, type, reverse }: SponsorCardProps) {
+function SponsorCard({ image, name, description, website, type }: Sponsor) {
     return (
-        <div
-            className={`flex flex-col items-stretch gap-5 ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
-        >
+        <div className="flex flex-col items-stretch gap-5">
             <Image
                 src={`/images/sponsors/${image}`}
                 alt={`${name} Logo`}
@@ -74,21 +71,17 @@ function SponsorCard({ image, name, description, website, type, reverse }: Spons
 }
 
 export default function Sponsors() {
-    let count = 0;
     return (
-        <div className="space-y-9">
+        <div className="space-y-9 md:[&>div:nth-of-type(even)]:flex-row-reverse md:[&>div:nth-of-type(odd)]:flex-row">
             {SPONSOR_TYPES.map((type) => {
                 const sponsors = getSponsors(type);
                 if (sponsors.length === 0) return;
                 return (
                     <Fragment key={type}>
                         <SponsorTypeTitle type={type} />
-                        {sponsors.map((sponsor, i) => {
-                            count++;
-                            return (
-                                <SponsorCard {...sponsor} key={i} reverse={Boolean(count % 2)} />
-                            );
-                        })}
+                        {sponsors.map((sponsor, i) => (
+                            <SponsorCard {...sponsor} key={i} />
+                        ))}
                     </Fragment>
                 );
             })}
