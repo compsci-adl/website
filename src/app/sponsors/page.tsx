@@ -12,7 +12,7 @@ const SPONSOR_TYPE_COLORS = {
 
 export default function SponsorsPage() {
     return (
-        <div className="flex flex-col items-center gap-10">
+        <main className="flex flex-col items-center gap-10">
             <div className="flex gap-8">
                 <Image
                     src="/images/yellow-duck.svg"
@@ -72,6 +72,6 @@ export default function SponsorsPage() {
                     sponsorships@csclub.org.au
                 </a>
             </Paragraph>
-        </div>
+        </main>
     );
 }
