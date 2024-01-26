@@ -41,7 +41,7 @@ function SponsorCard({ image, name, description, website, type }: Sponsor) {
         <div className="flex flex-col items-stretch gap-5">
             <Image
                 src={`/images/sponsors/${image}`}
-                alt={`${name} Logo`}
+                alt={`${name} logo`}
                 width={250}
                 height={250}
                 className="w-full shrink-0 bg-white object-contain p-4 md:w-[250px]"
@@ -52,6 +52,7 @@ function SponsorCard({ image, name, description, website, type }: Sponsor) {
                         <a
                             className="grow rounded-lg border-[3px] border-black p-2 text-xl hover:underline md:text-2xl"
                             href={website}
+                            target="_blank"
                         >
                             {name}
                         </a>
