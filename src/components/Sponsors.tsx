@@ -8,36 +8,33 @@ function SponsorCard({ image, name, description, website, type, reverse }: Spons
         <div
             className={`flex flex-col items-stretch gap-5 ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
         >
-            <div className="flex h-64 shrink-0 items-center justify-center bg-white md:h-auto md:w-64">
-                <Image
-                    src={`/images/sponsors/${image}`}
-                    alt={`${name} Logo`}
-                    width={200}
-                    height={200}
-                />
-            </div>
-            <div>
-                <FancyRectangle colour="white" offset="8" rounded>
-                    <div className="space-y-2 rounded-xl bg-white p-4 text-black md:p-6">
-                        <div className="flex items-center gap-4">
-                            <a
-                                className="grow rounded-lg border-[3px] border-black p-2 text-xl hover:underline md:text-2xl"
-                                href={website}
-                            >
-                                {name}
-                            </a>
-                            <Image
-                                src={`/images/sponsors/level-star/${type}.svg`}
-                                alt="Level Star"
-                                width={53}
-                                height={53}
-                                className="h-12 w-12 md:h-14 md:w-14"
-                            />
-                        </div>
-                        <div className="text-lg md:text-xl">{description}</div>
+            <Image
+                src={`/images/sponsors/${image}`}
+                alt={`${name} Logo`}
+                width={250}
+                height={250}
+                className="w-full shrink-0 bg-white object-contain p-4 md:w-[250px]"
+            />
+            <FancyRectangle colour="white" offset="8" rounded>
+                <div className="space-y-2 rounded-xl bg-white p-4 text-black md:p-6">
+                    <div className="flex items-center gap-4">
+                        <a
+                            className="grow rounded-lg border-[3px] border-black p-2 text-xl hover:underline md:text-2xl"
+                            href={website}
+                        >
+                            {name}
+                        </a>
+                        <Image
+                            src={`/images/sponsors/level-star/${type}.svg`}
+                            alt="Level Star"
+                            width={53}
+                            height={53}
+                            className="h-12 w-12 md:h-14 md:w-14"
+                        />
                     </div>
-                </FancyRectangle>
-            </div>
+                    <div className="text-lg md:text-xl">{description}</div>
+                </div>
+            </FancyRectangle>
         </div>
     );
 }
