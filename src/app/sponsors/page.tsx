@@ -1,14 +1,8 @@
+import Sponsors from '@/app/sponsors/Sponsors';
 import Paragraph from '@/components/Paragraph';
-import Sponsors from '@/components/Sponsors';
 import Title from '@/components/Title';
-import { YEAR, type SponsorType } from '@/data/sponsors';
+import { YEAR } from '@/data/sponsors';
 import Image from 'next/image';
-
-const SPONSOR_TYPE_COLORS = {
-    gold: '#FCC018',
-    silver: '#C3C3C3',
-    bronze: '#E8903F',
-} as const satisfies Record<SponsorType, string>;
 
 export default function SponsorsPage() {
     return (
@@ -36,35 +30,7 @@ export default function SponsorsPage() {
                 possible, fostering an environment for aspiring tech enthusiastic to excel within
                 our community.
             </div>
-            <Sponsors
-                typeTitle={(type) => {
-                    const color = SPONSOR_TYPE_COLORS[type];
-                    return (
-                        <div className="flex items-center gap-5">
-                            <div className="text-3xl font-bold md:text-4xl">
-                                Our{' '}
-                                <span className="capitalize" style={{ color }}>
-                                    {type}
-                                </span>{' '}
-                                Sponsors
-                            </div>
-                            <div
-                                className="relative hidden h-[3px] grow md:block"
-                                style={{ backgroundColor: color }}
-                            >
-                                <div
-                                    className="absolute -top-[4.5px] h-[12px] w-[12px] rotate-45"
-                                    style={{ backgroundColor: color }}
-                                />
-                                <div
-                                    className="absolute -top-[4.5px] right-0 h-[12px] w-[12px] rotate-45"
-                                    style={{ backgroundColor: color }}
-                                />
-                            </div>
-                        </div>
-                    );
-                }}
-            />
+            <Sponsors />
             <Paragraph>
                 If you&apos;d like to partner with us, please enquire at:{' '}
                 <a href="mailto:sponsorships@csclub.org.au" className="underline">

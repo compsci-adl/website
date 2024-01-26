@@ -1,4 +1,6 @@
-export type SponsorType = 'gold' | 'silver' | 'bronze';
+export const SPONSOR_TYPES = ['gold', 'silver', 'bronze'] as const;
+
+export type SponsorType = (typeof SPONSOR_TYPES)[number];
 export type Sponsor = {
     name: string;
     description: string;
@@ -10,7 +12,7 @@ export type Sponsor = {
 export const YEAR = 2023;
 
 // Image file should be in `/public/images/sponsors`
-export const SPONSORS: Sponsor[] = [
+const SPONSORS: Sponsor[] = [
     {
         name: 'Macquarie',
         image: 'macquarie-group.svg',
@@ -37,3 +39,6 @@ export const SPONSORS: Sponsor[] = [
             'Here at Atlassian we believe that behind every great human achievement, there is a team. From medicine and space travel, to disaster response and pizza deliveries, our products help teams all over the planet advance humanity through the power of software. Our mission is to help unleash the potential of every team.',
     },
 ];
+
+export const getSponsors = (type: SponsorType) =>
+    SPONSORS.filter((sponsor) => sponsor.type === type);

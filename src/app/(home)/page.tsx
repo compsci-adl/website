@@ -1,7 +1,8 @@
 import FancyRectangle from '@/components/FancyRectangle';
-import Sponsors from '@/components/Sponsors';
 import Title from '@/components/Title';
+import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
+import { Fragment } from 'react';
 import ImageCarousel from './ImageCarousel';
 
 export default function HomePage() {
@@ -184,14 +185,32 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-                <Sponsors
-                    className="relative z-10 mt-16"
-                    typeTitle={(type) => (
-                        <h3 className="text-2xl font-black capitalize lg:text-3xl">
-                            {type} Sponsors
-                        </h3>
-                    )}
-                />
+                <div className="relative z-10 mt-16 space-y-4">
+                    {SPONSOR_TYPES.map((type) => {
+                        const sponsors = getSponsors(type);
+                        if (sponsors.length === 0) return;
+                        return (
+                            <Fragment key={type}>
+                                <h3 className="text-2xl font-black capitalize lg:text-3xl">
+                                    {type} Sponsors
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {sponsors.map(({ image, website, name }, i) => (
+                                        <a href={website} key={i} className="block">
+                                            <Image
+                                                src={`/images/sponsors/${image}`}
+                                                alt={`${name} Logo`}
+                                                width={250}
+                                                height={250}
+                                                className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
+                                            />
+                                        </a>
+                                    ))}
+                                </div>
+                            </Fragment>
+                        );
+                    })}
+                </div>
             </section>
 
             {/* CTA part 2 */}
