@@ -28,7 +28,7 @@ export default function HomePage() {
                                 <h1 className="text-5xl md:text-8xl">SOCIALISE,</h1>
                                 <div className="h-2"></div>
 
-                                <Title colour="yellow">Code.</Title>
+                                <Title colour="yellow">CODE.</Title>
                                 <div className="h-4 md:h-8"></div>
                                 <FancyRectangle
                                     colour="orange"
