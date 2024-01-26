@@ -37,7 +37,6 @@ export default function SponsorsPage() {
                 our community.
             </div>
             <Sponsors
-                className="max-w-4xl"
                 typeTitle={(type) => {
                     const color = SPONSOR_TYPE_COLORS[type];
                     return (
