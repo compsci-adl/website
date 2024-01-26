@@ -10,7 +10,7 @@ export default function Title({ children, colour }: TitleProps) {
     return (
         <FancyRectangle colour={colour} offset="8" filled={false}>
             <div className={`w-fit p-2 ${BG_COLOURS[colour]}`}>
-                <h1 className="text-5xl font-bold text-grey md:text-8xl">{children}</h1>
+                <h1 className="text-center text-5xl font-bold text-grey md:text-8xl">{children}</h1>
             </div>
         </FancyRectangle>
     );
