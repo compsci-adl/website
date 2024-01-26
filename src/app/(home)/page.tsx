@@ -194,16 +194,18 @@ export default function HomePage() {
                                 <h3 className="text-2xl font-black capitalize lg:text-3xl">
                                     {type} Sponsors
                                 </h3>
-                                <div className="flex flex-wrap gap-4">
+                                <div className="flex flex-wrap gap-6">
                                     {sponsors.map(({ image, website, name }, i) => (
                                         <a href={website} key={i} className="block" target="_blank">
-                                            <Image
-                                                src={`/images/sponsors/${image}`}
-                                                alt={`${name} Logo`}
-                                                width={250}
-                                                height={250}
-                                                className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
-                                            />
+                                            <FancyRectangle colour="white" offset="10">
+                                                <Image
+                                                    src={`/images/sponsors/${image}`}
+                                                    alt={`${name} Logo`}
+                                                    width={250}
+                                                    height={250}
+                                                    className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
+                                                />
+                                            </FancyRectangle>
                                         </a>
                                     ))}
                                 </div>
