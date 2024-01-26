@@ -18,7 +18,7 @@ function SponsorCard({ image, name, description, website, type, reverse }: Spons
             </div>
             <div>
                 <FancyRectangle colour="white" offset="8" rounded>
-                    <div className="space-y-2 rounded-xl bg-white p-4 text-black">
+                    <div className="space-y-2 rounded-xl bg-white p-4 text-black md:p-6">
                         <div className="flex items-center gap-4">
                             <a
                                 className="grow rounded-lg border-[3px] border-black p-2 text-xl hover:underline md:text-2xl"
