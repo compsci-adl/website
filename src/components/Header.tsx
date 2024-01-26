@@ -35,7 +35,7 @@ export default function Header() {
     return (
         <header className="z-[9999] w-full">
             <div
-                className={`fixed z-20 h-60 w-full transition-all duration-500 ${
+                className={`fixed z-20 h-40 w-full transition-all duration-500 ${
                     isScrolled ? 'bg-gradient-to-b from-black from-10% to-transparent to-100%' : ''
                 } `}
             ></div>
