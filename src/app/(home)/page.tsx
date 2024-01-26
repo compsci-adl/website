@@ -194,7 +194,7 @@ export default function HomePage() {
                                 <h3 className="text-2xl font-black capitalize lg:text-3xl">
                                     {type} Sponsors
                                 </h3>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-4">
                                     {sponsors.map(({ image, website, name }, i) => (
                                         <a href={website} key={i} className="block" target="_blank">
                                             <Image
