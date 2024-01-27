@@ -119,7 +119,7 @@ export default function StepOne() {
             await signUp.authenticateWithRedirect({
                 strategy: 'oauth_google',
                 redirectUrl: '/sso-callback',
-                redirectUrlComplete: '/join-us',
+                redirectUrlComplete: '/join',
             });
         } catch (error) {
             // Handle any errors that might occur during the sign-up process
@@ -162,7 +162,7 @@ export default function StepOne() {
             <div className="mt-10 flex">
                 <p className="text-lg text-grey md:text-base">
                     Already have an account?{' '}
-                    <Link href="/sign-in" className="text-orange">
+                    <Link href="/signin" className="text-orange">
                         Sign in
                     </Link>
                 </p>

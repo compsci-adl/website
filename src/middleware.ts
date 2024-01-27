@@ -1,17 +1,11 @@
 import { authMiddleware } from '@clerk/nextjs';
 
+const authRoutes = ['/api/payment', '/dashboard', '/settings'];
+
 export default authMiddleware({
-    publicRoutes: [
-        '/',
-        '/not-found',
-        '/about',
-        '/events',
-        '/sponsors',
-        '/contact',
-        '/sign-in',
-        '/join-us',
-        '/forgot-password',
-    ],
+    publicRoutes: (req) => {
+        return !authRoutes.includes(req.nextUrl.pathname);
+    },
 });
 
 export const config = {
