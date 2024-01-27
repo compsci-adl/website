@@ -25,7 +25,7 @@ const SPONSORS: Sponsor[] = [
     },
     {
         name: 'Jane Street',
-        image: 'jane-street-stacked-w-registration-black.png',
+        image: 'jane-street.png',
         website: 'https://www.janestreet.com/',
         type: 'silver',
         description:
