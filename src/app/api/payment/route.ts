@@ -1,30 +1,37 @@
-import { type NextRequest } from 'next/server';
-import type { CreatePaymentLinkRequest, OrderLineItem, CreatePaymentLinkResponse } from 'square';
-import { Client, Environment } from 'square';
+/**
+ * Payment API route
+ *
+ * This route is protected, meaning only authenticated users can access this. Clerk is used to
+ * verify that the user is signed in (see `src/middleware.ts`)
+ */
+
 import { products } from '@/data/products';
+import { squareClient } from '@/lib/square';
+import { currentUser } from '@clerk/nextjs';
+import type { CreatePaymentLinkRequest, OrderLineItem, CreatePaymentLinkResponse } from 'square';
+import { z } from 'zod';
 
-const client = new Client({
-    accessToken: process.env.SQUARE_ACCESS_TOKEN,
-    environment:
-        process.env.NODE_ENV === 'production' ? Environment.Production : Environment.Sandbox,
-});
+export async function POST(request: Request) {
+    const req = await request.json();
+    const schema = z.object({
+        product: z.string().min(1),
+        customerId: z.string().min(1),
+        redirectUrl: z.string().url().min(1),
+    });
 
-const { checkoutApi } = client;
+    // Ensure user is logged in
+    const user = await currentUser();
+    if (!user) {
+        return new Response(null, { status: 401 });
+    }
 
-export async function POST(request: NextRequest) {
-    const params = request.nextUrl.searchParams;
-    const product = params.get('product');
-    const customerId = params.get('customerId');
-    const redirectUrl = params.get('redirect');
-
-    // TODO: Validate that the user is signed in
-
-    if (!product || !customerId || !redirectUrl) {
-        return new Response('Missing URL parameters', { status: 400 });
+    const result = schema.safeParse(req);
+    if (!result.success) {
+        return new Response(result.error.message, { status: 400 });
     }
 
     let lineItem: OrderLineItem;
-    if (product === 'membership') {
+    if (result.data.product === 'membership') {
         lineItem = products.membership;
     } else {
         return new Response('Product does not exist', { status: 400 });
@@ -35,12 +42,12 @@ export async function POST(request: NextRequest) {
         description: 'Payment made from CS Club website',
         order: {
             locationId: process.env.SQUARE_LOCATION_ID!,
-            customerId: customerId,
+            customerId: result.data.customerId,
             lineItems: [lineItem],
         },
         checkoutOptions: {
             allowTipping: false,
-            redirectUrl: redirectUrl,
+            redirectUrl: result.data.redirectUrl,
             askForShippingAddress: false,
             acceptedPaymentMethods: {
                 applePay: true,
@@ -53,7 +60,7 @@ export async function POST(request: NextRequest) {
         },
     };
 
-    const resp = await checkoutApi.createPaymentLink(body);
+    const resp = await squareClient.checkoutApi.createPaymentLink(body);
     const respFields: CreatePaymentLinkResponse = resp.result;
     if (resp.statusCode != 200) {
         return new Response(JSON.stringify(respFields.errors), { status: resp.statusCode });
