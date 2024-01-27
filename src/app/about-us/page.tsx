@@ -49,9 +49,9 @@ export default function AboutUs() {
                                 <p className="my-4 text-lg">
                                     The University of Adelaide Computer Science Club is a
                                     student-run club for those with an interest in computer science
-                                    or computing in general. Although we're a university club, we
-                                    welcome anyone interested in computer science and/or socializing
-                                    to join!
+                                    or computing in general. Although we&apos;re a university club,
+                                    we welcome anyone interested in computer science and/or
+                                    socializing to join!
                                 </p>
                             </div>
                         </div>
