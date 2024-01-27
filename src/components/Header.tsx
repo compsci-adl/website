@@ -35,7 +35,7 @@ export default function Header() {
     return (
         <header className="z-[9999] w-full">
             <div
-                className={`fixed z-20 h-60 w-full transition-all duration-500 ${
+                className={`fixed z-20 h-40 w-full transition-all duration-500 ${
                     isScrolled ? 'bg-gradient-to-b from-black from-10% to-transparent to-100%' : ''
                 } `}
             ></div>
@@ -53,7 +53,7 @@ export default function Header() {
                         <div className="flex flex-row items-center">
                             <Link href="/" className="flex flex-row items-center">
                                 <Image
-                                    src="/logo/logo.svg"
+                                    src="/images/logos/logo.svg"
                                     alt="Computer Science Club Logo"
                                     className="h-full w-[3rem] md:w-[1.62rem] lg:w-[2.2rem]"
                                     width={100}

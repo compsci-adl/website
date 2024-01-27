@@ -43,7 +43,7 @@ function VerifyEmail() {
                 return;
             }
             await setActive({ session: completeSignUp.createdSessionId });
-        } catch (error: any) {
+        } catch (error) {
             handleClerkErrors(error, form, [
                 { code: 'form_param_nil', field: 'code', message: 'Please enter the the code.' },
                 {

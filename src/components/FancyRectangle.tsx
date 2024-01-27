@@ -7,10 +7,11 @@ interface FancyRectangleProps {
     children: React.ReactNode;
     colour: Colour;
     offset: string;
-    filled: boolean;
+    filled?: boolean;
+    rounded?: boolean;
 }
 
-const FancyRectangle = ({ children, colour, offset, filled }: FancyRectangleProps) => {
+const FancyRectangle = ({ children, colour, offset, filled, rounded }: FancyRectangleProps) => {
     const offsetValue = parseInt(offset, 10);
 
     const offsetStyles = {
@@ -25,7 +26,7 @@ const FancyRectangle = ({ children, colour, offset, filled }: FancyRectangleProp
                     style={offsetStyles}
                     className={`absolute bottom-0 right-0 h-full w-full ${
                         filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
-                    }`}
+                    } ${rounded ? 'rounded-xl' : ''}`}
                 ></div>
                 <div className="relative z-10 flex h-full w-full items-center justify-center">
                     {children}

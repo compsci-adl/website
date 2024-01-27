@@ -16,10 +16,10 @@ export default function Link({ name, link, icon: Icon, borderColour }: LinkProps
                 href={link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="h-fit w-fit border-2 border-black bg-white p-1.5 transition-colors duration-300 hover:bg-orange hover:text-white"
+                className="h-fit w-fit border-2 border-black bg-white p-1.5 text-black transition-colors duration-300 hover:bg-orange hover:text-white"
                 aria-label={name}
             >
-                <Icon className="text-black" />
+                <Icon />
             </a>
         </FancyRectangle>
     );
