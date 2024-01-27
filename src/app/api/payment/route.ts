@@ -11,6 +11,8 @@ import { currentUser } from '@clerk/nextjs';
 import type { CreatePaymentLinkRequest, OrderLineItem, CreatePaymentLinkResponse } from 'square';
 import { z } from 'zod';
 
+// Create a Square payment link
+// See: https://developer.squareup.com/reference/square/payments-api/get-payment
 export async function POST(request: Request) {
     const req = await request.json();
     const schema = z.object({
@@ -68,4 +70,26 @@ export async function POST(request: Request) {
 
     // The URL to direct the user is accessed from `url` and `long_url`
     return Response.json(respFields.paymentLink);
+}
+
+// Get a Square payment
+// See: https://developer.squareup.com/reference/square/payments-api/get-payment
+export async function GET(request: Request) {
+    const req = await request.json();
+    const schema = z.object({
+        paymentId: z.string().min(1),
+    });
+
+    const result = schema.safeParse(req);
+    if (!result.success) {
+        return new Response(result.error.message, { status: 400 });
+    }
+
+    const resp = await squareClient.paymentsApi.getPayment(result.data.paymentId);
+    const respFields = resp.result;
+    if (resp.statusCode != 200) {
+        return new Response(JSON.stringify(respFields.errors), { status: resp.statusCode });
+    }
+
+    return Response.json(respFields.payment);
 }
