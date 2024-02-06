@@ -7,7 +7,7 @@
 
 import { db } from '@/db';
 import { members } from '@/db/schema';
-import { products } from '@/data/products';
+import { PRODUCTS } from '@/data/products';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
@@ -34,29 +34,27 @@ export async function POST(request: Request) {
         return new Response(null, { status: 401 });
     }
 
-    const result = schema.safeParse(req);
-    if (!result.success) {
-        return new Response(result.error.message, { status: 400 });
+    const reqBody = schema.safeParse(req);
+    if (!reqBody.success) {
+        return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
     }
 
-    let lineItem: OrderLineItem;
-    if (result.data.product === 'membership') {
-        lineItem = products.membership;
-    } else {
+    if (reqBody.data.product !== 'membership') {
         return new Response('Product does not exist', { status: 400 });
     }
+    const lineItem: OrderLineItem = PRODUCTS.membership;
 
     const body: CreatePaymentLinkRequest = {
         idempotencyKey: crypto.randomUUID(),
         description: 'Payment made from CS Club website',
         order: {
             locationId: env.SQUARE_LOCATION_ID!,
-            customerId: result.data.customerId,
+            customerId: reqBody.data.customerId,
             lineItems: [lineItem],
         },
         checkoutOptions: {
             allowTipping: false,
-            redirectUrl: result.data.redirectUrl,
+            redirectUrl: reqBody.data.redirectUrl,
             askForShippingAddress: false,
             acceptedPaymentMethods: {
                 applePay: true,
@@ -72,15 +70,14 @@ export async function POST(request: Request) {
     try {
         const resp = await squareClient.checkoutApi.createPaymentLink(body);
 
-        if (result.data.product === 'membership') {
+        if (reqBody.data.product === 'membership') {
             // Add user ID and payment ID to Redis cache
-            const dbRes = await db
+            const [{ id: userId }] = await db
                 .select({
                     id: members.id,
                 })
                 .from(members)
                 .where(eq(members.clerkId, user.id));
-            const userId = dbRes[0].id;
             const paymentId = resp.result.paymentLink?.orderId ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
             await redisClient.hSet(`payment:membership:${userId}`, {
@@ -116,6 +113,6 @@ export async function GET(request: NextRequest) {
         if (e instanceof ApiError) {
             return new Response(JSON.stringify(e.errors), { status: e.statusCode });
         }
-        return new Response(null, { status: 404 });
+        return new Response(null, { status: 500 });
     }
 }

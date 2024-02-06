@@ -1,6 +1,6 @@
 import type { OrderLineItem } from 'square';
 
-export const products: { [key: string]: OrderLineItem } = {
+export const PRODUCTS: { [key: string]: OrderLineItem } = {
     membership: {
         name: 'CS Club Membership 2024',
         quantity: '1',
@@ -13,4 +13,4 @@ export const products: { [key: string]: OrderLineItem } = {
             currency: 'AUD',
         },
     },
-};
+} as const satisfies Record<string, OrderLineItem>;

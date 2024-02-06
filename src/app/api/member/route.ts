@@ -16,16 +16,15 @@ export async function POST(request: Request) {
         return new Response(null, { status: 401 });
     }
 
-    const member = schema.safeParse(req);
-    if (!member.success) {
-        return new Response(null, { status: 400 });
+    const reqBody = schema.safeParse(req);
+    if (!reqBody.success) {
+        return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
     }
 
-    // TODO(#17): Payment
     await db.insert(members).values({
         clerkId: user.id,
         email: user.emailAddresses[0].emailAddress,
-        ...member.data,
+        ...reqBody.data,
     });
     return Response.json({ success: true });
 }
