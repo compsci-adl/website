@@ -5,11 +5,14 @@
  * verify that the user is signed in (see `src/middleware.ts`)
  */
 
+import { db } from '@/db';
+import { members } from '@/db/schema';
 import { products } from '@/data/products';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
+import { eq } from 'drizzle-orm';
 import type { NextRequest } from 'next/server';
 import type { CreatePaymentLinkRequest, OrderLineItem } from 'square';
 import { ApiError } from 'square';
@@ -69,14 +72,22 @@ export async function POST(request: Request) {
     try {
         const resp = await squareClient.checkoutApi.createPaymentLink(body);
 
-        // Add user ID and payment ID to Redis cache
-        const userId = user.id; // TODO: Should we use Clerk ID or get ID from metadata
-        const paymentId = resp.result.paymentLink?.orderId ?? '';
-        const createdAt = resp.result.paymentLink?.createdAt ?? '';
-        await redisClient.hSet(`payment:membership:${userId}`, {
-            paymentId: paymentId,
-            createdAt: createdAt,
-        });
+        if (result.data.product === 'membership') {
+            // Add user ID and payment ID to Redis cache
+            const dbRes = await db
+                .select({
+                    id: members.id,
+                })
+                .from(members)
+                .where(eq(members.clerkId, user.id));
+            const userId = dbRes[0].id;
+            const paymentId = resp.result.paymentLink?.orderId ?? '';
+            const createdAt = resp.result.paymentLink?.createdAt ?? '';
+            await redisClient.hSet(`payment:membership:${userId}`, {
+                paymentId: paymentId,
+                createdAt: createdAt,
+            });
+        }
 
         // The URL to direct the user is accessed from `url` and `long_url`
         return Response.json(resp.result.paymentLink);

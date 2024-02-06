@@ -1,6 +1,9 @@
+import { db } from '@/db';
+import { members } from '@/db/schema';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
+import { eq } from 'drizzle-orm';
 import { redirect } from 'next/navigation';
 import { ApiError } from 'square';
 import { z } from 'zod';
@@ -36,7 +39,13 @@ export async function PUT(request: Request) {
 
     try {
         // Get payment ID from Redis cache
-        const userId = user.id; // TODO: Should we use Clerk ID or get ID from metadata
+        const dbRes = await db
+            .select({
+                id: members.id,
+            })
+            .from(members)
+            .where(eq(members.clerkId, user.id));
+        const userId = dbRes[0].id;
         const paymentId = await redisClient.hGet(`payment:membership:${userId}`, 'paymentId');
         if (!paymentId) {
             return new Response('Membership payment for the user does not exist', { status: 404 });
@@ -45,7 +54,12 @@ export async function PUT(request: Request) {
         const resp = await squareClient.paymentsApi.getPayment(paymentId);
         const respFields = resp.result;
         if (respFields.payment?.status === 'COMPLETED') {
-            // TODO: Update user database with the membership expiry date
+            const now = new Date();
+            const expiryDate = new Date(now.setFullYear(now.getFullYear() + 1));
+            await db
+                .update(members)
+                .set({ membershipExpiresAt: expiryDate })
+                .where(eq(members.id, userId));
         } else {
             return new Response('Payment has not been made', { status: 404 });
         }
