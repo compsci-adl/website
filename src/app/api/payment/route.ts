@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     if (reqBody.data.product !== 'membership') {
         return new Response('Product does not exist', { status: 400 });
     }
-    const lineItem: OrderLineItem = PRODUCTS.membership;
+    const lineItem = PRODUCTS.membership;
 
     const body: CreatePaymentLinkRequest = {
         idempotencyKey: crypto.randomUUID(),
