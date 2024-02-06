@@ -1,6 +1,6 @@
 import { authMiddleware } from '@clerk/nextjs';
 
-const authRoutes = ['/api/payment', '/dashboard', '/settings'];
+const authRoutes = ['/account', '/dashboard', '/settings'];
 
 export default authMiddleware({
     publicRoutes: (req) => {

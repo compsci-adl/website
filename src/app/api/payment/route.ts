@@ -6,13 +6,17 @@
  */
 
 import { products } from '@/data/products';
+import { env } from '@/env.mjs';
+import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
-import type { CreatePaymentLinkRequest, OrderLineItem, CreatePaymentLinkResponse } from 'square';
+import type { NextRequest } from 'next/server';
+import type { CreatePaymentLinkRequest, OrderLineItem } from 'square';
+import { ApiError } from 'square';
 import { z } from 'zod';
 
 // Create a Square payment link
-// See: https://developer.squareup.com/reference/square/payments-api/get-payment
+// See: https://developer.squareup.com/reference/square/checkout-api/create-payment-link
 export async function POST(request: Request) {
     const req = await request.json();
     const schema = z.object({
@@ -43,7 +47,7 @@ export async function POST(request: Request) {
         idempotencyKey: crypto.randomUUID(),
         description: 'Payment made from CS Club website',
         order: {
-            locationId: process.env.SQUARE_LOCATION_ID!,
+            locationId: env.SQUARE_LOCATION_ID!,
             customerId: result.data.customerId,
             lineItems: [lineItem],
         },
@@ -62,34 +66,45 @@ export async function POST(request: Request) {
         },
     };
 
-    const resp = await squareClient.checkoutApi.createPaymentLink(body);
-    const respFields: CreatePaymentLinkResponse = resp.result;
-    if (resp.statusCode != 200) {
-        return new Response(JSON.stringify(respFields.errors), { status: resp.statusCode });
-    }
+    try {
+        const resp = await squareClient.checkoutApi.createPaymentLink(body);
 
-    // The URL to direct the user is accessed from `url` and `long_url`
-    return Response.json(respFields.paymentLink);
+        // Add user ID and payment ID to Redis cache
+        const userId = user.id; // TODO: Should we use Clerk ID or get ID from metadata
+        const paymentId = resp.result.paymentLink?.orderId ?? '';
+        const createdAt = resp.result.paymentLink?.createdAt ?? '';
+        await redisClient.hSet(`payment:membership:${userId}`, {
+            paymentId: paymentId,
+            createdAt: createdAt,
+        });
+
+        // The URL to direct the user is accessed from `url` and `long_url`
+        return Response.json(resp.result.paymentLink);
+    } catch (e) {
+        if (e instanceof ApiError) {
+            return new Response(JSON.stringify(e.errors), { status: e.statusCode });
+        }
+        return new Response(null, { status: 500 });
+    }
 }
 
 // Get a Square payment
 // See: https://developer.squareup.com/reference/square/payments-api/get-payment
-export async function GET(request: Request) {
-    const req = await request.json();
-    const schema = z.object({
-        paymentId: z.string().min(1),
-    });
+export async function GET(request: NextRequest) {
+    const params = request.nextUrl.searchParams;
+    const paymentId = params.get('paymentId');
 
-    const result = schema.safeParse(req);
-    if (!result.success) {
-        return new Response(result.error.message, { status: 400 });
+    if (!paymentId) {
+        return new Response('Square payment ID must be provided', { status: 400 });
     }
 
-    const resp = await squareClient.paymentsApi.getPayment(result.data.paymentId);
-    const respFields = resp.result;
-    if (resp.statusCode != 200) {
-        return new Response(JSON.stringify(respFields.errors), { status: resp.statusCode });
+    try {
+        const resp = await squareClient.paymentsApi.getPayment(paymentId);
+        return Response.json(resp.result.payment);
+    } catch (e) {
+        if (e instanceof ApiError) {
+            return new Response(JSON.stringify(e.errors), { status: e.statusCode });
+        }
+        return new Response(null, { status: 404 });
     }
-
-    return Response.json(respFields.payment);
 }
