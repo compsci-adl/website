@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
-import { fetcher } from '@/utils/fetcher';
+import { fetcher } from '@/lib/fetcher';
 import React, { useState } from 'react';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 

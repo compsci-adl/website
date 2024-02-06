@@ -118,7 +118,7 @@ export default function SignInPage() {
                     <div className="mt-10 flex">
                         <p className="text-lg text-grey md:text-base">
                             Don&apos;t have an account yet?{' '}
-                            <Link href="/join-us" className="text-orange">
+                            <Link href="/join" className="text-orange">
                                 Join Us
                             </Link>
                         </p>

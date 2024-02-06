@@ -35,7 +35,7 @@ When you are ready to submit a request, please use the [Feature Request issue te
 
 ## Contributing Changes
 
-Project maintainers will merge changes that both improve the project and meet our code quality standards. 
+Project maintainers will merge changes that both improve the project and meet our code quality standards. For more information regarding specific topics, please consult the [documentation](/docs/).
 
 ### Suggested Workflow
 
@@ -56,7 +56,8 @@ pnpm install
 4. Set up the required keys:
 - Copy `.env.local.example` to a new file `.env.local`.
 - Create a [Clerk](https://clerk.com) account and make a new application within the Clerk dashboard.
-- Configure the settings to require a name, reject compromised passwords, and enforce average strength passwords. 
+- Configure the settings to require a name, reject compromised passwords, and enforce average strength passwords.
+- Create a new Redis database. This can be local or using a service like Vercel KV.
 - Copy the keys to `.env.local`.
 
 5. Initialise the database.
