@@ -3,6 +3,124 @@ import FancyRectangle from '@/components/FancyRectangle';
 import Image from 'next/image';
 import Paragraph from '@/components/Paragraph';
 
+const committeeMembers = [
+    {
+        name: 'David Maslov',
+        position: 'President',
+        isExecComittee: true,
+    },
+    {
+        name: 'Cubie',
+        position: 'Vice-President',
+        isExecComittee: true,
+    },
+    {
+        name: 'Christian',
+        position: 'Treasurer',
+        isExecComittee: true,
+    },
+    {
+        name: 'Ray Okamoto',
+        position: 'Secretary',
+        isExecComittee: true,
+    },
+    {
+        name: 'Milan',
+        position: 'Partnerships & Sponsorships Manager',
+        isExecComittee: true,
+    },
+    {
+        name: 'F. Umar',
+        position: 'Partnerships & Sponsorships Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'Pouya',
+        position: 'Partnerships & Sponsorships Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'Bowen Sun',
+        position: 'Business Manager',
+        isExecComittee: false,
+    },
+    {
+        name: 'Willard Gorman',
+        position: 'Duck Lounge Liaison',
+        isExecComittee: false,
+    },
+    {
+        name: 'Mischa Sarac',
+        position: 'Equity Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'S. Bhatta',
+        position: 'Artificial Intelligence Representative',
+        isExecComittee: false,
+    },
+    {
+        name: 'Will Johnston',
+        position: 'Cybersecurity Representative',
+        isExecComittee: false,
+    },
+    {
+        name: 'Khanh',
+        position: 'Data Science Representative',
+        isExecComittee: false,
+    },
+    {
+        name: 'Jonty Leslie',
+        position: 'Distributed Systems & Networking Representative',
+        isExecComittee: false,
+    },
+    {
+        name: 'Joshua Goldsworthy Callaway',
+        position: 'Information Technology Representative',
+        isExecComittee: false,
+    },
+    {
+        name: 'Dino Macri',
+        position: 'Software Engineering Representative',
+        isExecComittee: false,
+    },
+    {
+        name: 'Yuhan Wang',
+        position: 'Graphic Designer',
+        isExecComittee: false,
+    },
+    {
+        name: 'Darcy',
+        position: 'Social Media Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'M. Klaric',
+        position: 'Social Media Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'Phoenix Pereira',
+        position: 'Open Source Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'Rishi Adhikari',
+        position: 'Open Source Officer',
+        isExecComittee: false,
+    },
+    {
+        name: 'Cuinn Kemp',
+        position: 'General Committee',
+        isExecComittee: false,
+    },
+    {
+        name: 'Timothy Choi',
+        position: 'General Committee',
+        isExecComittee: false,
+    },
+];
+
 export default function AboutUs() {
     return (
         <div className="relative">
@@ -228,6 +346,31 @@ export default function AboutUs() {
                             width={50}
                             height={50}
                         />
+                    </section>
+                    <section className="mt-8">
+                        <div className="flex w-fit bg-orange px-2 lg:mb-0">
+                            <h2 className="text-5xl font-bold">Committee Members</h2>
+                        </div>
+                        <div className="mb-2 mr-2 mt-8 grid auto-rows-fr grid-cols-2 gap-10 lg:grid-cols-4">
+                            {committeeMembers.map((member, index) => (
+                                <FancyRectangle
+                                    key={index}
+                                    colour={member.isExecComittee ? 'yellow' : 'white'}
+                                    offset={'8'}
+                                    filled={true}
+                                    rounded={true}
+                                    fullWidth={true}
+                                    fullHeight={true}
+                                >
+                                    <div
+                                        className={`h-full w-full rounded-xl border-2 border-${member.isExecComittee ? 'yellow' : 'white'} flex flex-col justify-center bg-grey p-4`}
+                                    >
+                                        <h3 className="text-2xl font-bold">{member.name}</h3>
+                                        <p>{member.position}</p>
+                                    </div>
+                                </FancyRectangle>
+                            ))}
+                        </div>
                     </section>
                 </div>
             </main>
