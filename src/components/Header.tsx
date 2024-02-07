@@ -127,17 +127,17 @@ export default function Header() {
                         >
                             {isSignedIn ? (
                                 <>
-                                    <Button colour="purple" href="/join-us">
+                                    <Button colour="purple" href="/join">
                                         Continue Signing Up
                                     </Button>
                                     <UserButton />
                                 </>
                             ) : (
                                 <>
-                                    <Button colour="orange" href="/sign-in">
+                                    <Button colour="orange" href="/signin">
                                         Sign In
                                     </Button>
-                                    <Button colour="purple" href="/join-us">
+                                    <Button colour="purple" href="/join">
                                         Join Us
                                     </Button>
                                 </>

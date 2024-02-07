@@ -10,18 +10,21 @@ export async function POST(request: Request) {
         clerkId: z.undefined(),
         email: z.undefined(),
     });
-    const member = schema.parse(req);
 
     const user = await currentUser();
     if (!user) {
         return new Response(null, { status: 401 });
     }
 
-    // TODO(#17): Payment
+    const reqBody = schema.safeParse(req);
+    if (!reqBody.success) {
+        return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
+    }
+
     await db.insert(members).values({
         clerkId: user.id,
         email: user.emailAddresses[0].emailAddress,
-        ...member,
+        ...reqBody.data,
     });
     return Response.json({ success: true });
 }
