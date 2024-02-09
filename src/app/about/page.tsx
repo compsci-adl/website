@@ -5,121 +5,122 @@ import Paragraph from '@/components/Paragraph';
 import Ducks from '@/components/Ducks';
 import FAQ from './FAQ';
 
+// List of committee members with name, role and whether they are part of the executive committee
 const committeeMembers = [
     {
         name: 'David Maslov',
         position: 'President',
-        isExecComittee: true,
+        isExecCommittee: true,
     },
     {
         name: 'Cubie',
         position: 'Vice-President',
-        isExecComittee: true,
+        isExecCommittee: true,
     },
     {
         name: 'Christian',
         position: 'Treasurer',
-        isExecComittee: true,
+        isExecCommittee: true,
     },
     {
         name: 'Ray Okamoto',
         position: 'Secretary',
-        isExecComittee: true,
+        isExecCommittee: true,
     },
     {
         name: 'Milan',
         position: 'Partnerships & Sponsorships Manager',
-        isExecComittee: true,
+        isExecCommittee: true,
     },
     {
         name: 'F. Umar',
         position: 'Partnerships & Sponsorships Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Pouya',
         position: 'Partnerships & Sponsorships Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Bowen Sun',
         position: 'Business Manager',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Willard Gorman',
         position: 'Duck Lounge Liaison',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Mischa Sarac',
         position: 'Equity Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'S. Bhatta',
         position: 'Artificial Intelligence Representative',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Will Johnston',
         position: 'Cybersecurity Representative',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Khanh',
         position: 'Data Science Representative',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Jonty Leslie',
         position: 'Distributed Systems & Networking Representative',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Joshua Goldsworthy Callaway',
         position: 'Information Technology Representative',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Dino Macri',
         position: 'Software Engineering Representative',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Yuhan Wang',
         position: 'Graphic Designer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Darcy',
         position: 'Social Media Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'M. Klaric',
         position: 'Social Media Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Phoenix Pereira',
         position: 'Open Source Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Rishi Adhikari',
         position: 'Open Source Officer',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Cuinn Kemp',
         position: 'General Committee',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
     {
         name: 'Timothy Choi',
         position: 'General Committee',
-        isExecComittee: false,
+        isExecCommittee: false,
     },
 ];
 
@@ -130,6 +131,7 @@ export default function AboutUs() {
                 <div className="mb-8 flex justify-center">
                     <Title colour="orange">About Us</Title>
                 </div>
+                {/* Basic Description */}
                 <section className="flex flex-col gap-10 md:flex-row">
                     {/* Grid */}
                     <Image
@@ -137,9 +139,9 @@ export default function AboutUs() {
                         alt="Square Grid"
                         width={500}
                         height={500}
-                        className="absolute -z-10 ml-8 mt-8 w-[60vw] max-w-[800px] md:w-[70vw] lg:w-[50vw]"
+                        className="absolute -z-10 ml-8 mt-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
                     />
-                    <div className="flex">
+                    <div className="mr-2 flex">
                         <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
                             <Image
                                 src={'/images/about/meet-and-greet.jpg'}
@@ -184,15 +186,16 @@ export default function AboutUs() {
                         </div>
                     </div>
                 </section>
+                {/* Member Perks */}
                 <section className="flex flex-col gap-10 md:flex-row">
-                    <div>
+                    <div className="mr-2 md:w-[54vw]">
                         <div className="mb-4 flex flex-row flex-wrap text-2xl font-black md:mt-6 lg:mt-12 lg:text-3xl">
                             <h3 className="mb-2 mr-2 md:mb-0">Members will have </h3>
                             <div className="flex items-center">
                                 <div className="mb-2 w-fit bg-yellow px-2 md:mb-0">
                                     <h3 className="text-grey">access</h3>
                                 </div>
-                                <h3 className="ml-2">to</h3>
+                                <h3 className="mb-2 ml-2 md:mb-0">to</h3>
                             </div>
                         </div>
                         <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
@@ -251,6 +254,7 @@ export default function AboutUs() {
                         ></Image>
                     </div>
                 </section>
+                {/* Competitions & Projects */}
                 <section className="mt-10 flex flex-col gap-10 md:flex-row">
                     <div className="flex h-fit flex-row self-center border-b-2 border-t-2 border-white bg-grey px-4">
                         <Image
@@ -280,6 +284,7 @@ export default function AboutUs() {
                         </FancyRectangle>
                     </div>
                 </section>
+                {/* Welcome to join */}
                 <section className="mt-10 grid flex-col gap-6 md:grid-cols-3">
                     <Image
                         src={'/images/about/cocktail-night.jpg'}
@@ -327,6 +332,7 @@ export default function AboutUs() {
                         height={50}
                     />
                 </section>
+                {/* Committee Members */}
                 <section className="mt-8">
                     {/* Grid */}
                     <Image
@@ -343,7 +349,7 @@ export default function AboutUs() {
                         {committeeMembers.map((member, index) => (
                             <FancyRectangle
                                 key={index}
-                                colour={member.isExecComittee ? 'yellow' : 'white'}
+                                colour={member.isExecCommittee ? 'yellow' : 'white'}
                                 offset={'8'}
                                 filled={true}
                                 rounded={true}
@@ -351,7 +357,7 @@ export default function AboutUs() {
                                 fullHeight={true}
                             >
                                 <div
-                                    className={`h-full w-full rounded-xl border-2 border-${member.isExecComittee ? 'yellow' : 'white'} flex flex-col justify-center bg-grey p-4`}
+                                    className={`h-full w-full rounded-xl border-2 border-${member.isExecCommittee ? 'yellow' : 'white'} flex flex-col justify-center bg-grey p-4`}
                                 >
                                     <h3 className="text-2xl font-bold">{member.name}</h3>
                                     <p>{member.position}</p>
@@ -370,7 +376,6 @@ export default function AboutUs() {
                     <div className="mt-8"></div>
                     <div className="flex flex-col gap-x-16 gap-y-8 lg:flex-row">
                         {/* FAQ */}
-                        {/* TODO: Replace website links for prod */}
                         <div className="mb-8 mr-2 flex flex-col justify-items-center gap-12 lg:w-full">
                             {/* Grid */}
                             <Image
@@ -386,7 +391,7 @@ export default function AboutUs() {
                                 answer={
                                     <p>
                                         You can register as a club member on our website{' '}
-                                        <a href="http://localhost:3000/join" className="underline">
+                                        <a href="/join" className="underline">
                                             here
                                         </a>
                                         . Create an account by filling in your information, then
@@ -455,10 +460,7 @@ export default function AboutUs() {
                                     <p>
                                         If you have any questions or just want to get in touch with
                                         us, visit our{' '}
-                                        <a
-                                            href="http://localhost:3000/contact"
-                                            className="underline"
-                                        >
+                                        <a href="/contact" className="underline">
                                             contact page
                                         </a>{' '}
                                         or send a message in our{' '}
