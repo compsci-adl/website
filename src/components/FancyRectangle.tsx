@@ -32,7 +32,7 @@ const FancyRectangle = ({
     return (
         <div className="flex items-center">
             <div
-                className={`relative  ${fullWidth ? 'h-full' : 'h-auto'} ${fullWidth ? 'w-full' : 'w-auto'}`}
+                className={`relative ${fullHeight ? 'h-full' : 'h-auto'} ${fullWidth ? 'w-full' : 'w-auto'}`}
             >
                 <div
                     style={offsetStyles}
