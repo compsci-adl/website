@@ -108,7 +108,7 @@ export default function Header() {
                             isMenuOpen ? 'mt-12 space-y-8' : 'hidden'
                         } mb-4 text-4xl md:mb-0 md:flex md:flex-row md:space-x-4 md:space-y-0 md:text-base lg:space-x-8`}
                     >
-                        <Link href="/about-us" className="hover:underline">
+                        <Link href="/about" className="hover:underline">
                             About Us
                         </Link>
                         <Link href="/events" className="hover:underline">

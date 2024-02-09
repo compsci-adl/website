@@ -142,7 +142,7 @@ export default function AboutUs() {
                     <div className="flex">
                         <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
                             <Image
-                                src={'/images/about-us/meet-and-greet.jpg'}
+                                src={'/images/about/meet-and-greet.jpg'}
                                 alt={'Meet and Greet'}
                                 width={1210}
                                 height={800}
@@ -243,7 +243,7 @@ export default function AboutUs() {
                     <div>
                         <Image src="/images/crosses.svg" alt="Crosses" height={80} width={237} />
                         <Image
-                            src={'/images/about-us/duck-ctf.jpg'}
+                            src={'/images/about/duck-ctf.jpg'}
                             alt={'Duck CTF'}
                             width={500}
                             height={500}
@@ -271,7 +271,7 @@ export default function AboutUs() {
                     <div className="mr-2 flex justify-center lg:justify-end">
                         <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
                             <Image
-                                src={'/images/about-us/quiz-night.jpg'}
+                                src={'/images/about/quiz-night.jpg'}
                                 alt={'Quiz Night'}
                                 width={1317}
                                 height={750}
@@ -282,21 +282,21 @@ export default function AboutUs() {
                 </section>
                 <section className="mt-10 grid flex-col gap-6 md:grid-cols-3">
                     <Image
-                        src={'/images/about-us/cocktail-night.jpg'}
+                        src={'/images/about/cocktail-night.jpg'}
                         alt={'Cocktail Night'}
                         width={500}
                         height={500}
                         className="rounded-xl border-2 border-white"
                     ></Image>
                     <Image
-                        src={'/images/about-us/duck-ctf-2.jpg'}
+                        src={'/images/about/duck-ctf-2.jpg'}
                         alt={'Duck CTF 2'}
                         width={500}
                         height={500}
                         className="rounded-xl border-2 border-white"
                     ></Image>
                     <Image
-                        src={'/images/about-us/ai-panel.jpg'}
+                        src={'/images/about/ai-panel.jpg'}
                         alt={'AI Panel'}
                         width={500}
                         height={500}
@@ -478,14 +478,14 @@ export default function AboutUs() {
                         </div>
                         <div className="flex flex-col gap-8">
                             <Image
-                                src={'/images/about-us/o-week.jpg'}
+                                src={'/images/about/o-week.jpg'}
                                 alt={'O Week'}
                                 width={1055.5}
                                 height={500}
                                 className="rounded-xl border-2 border-white"
                             ></Image>
                             <Image
-                                src={'/images/about-us/women-in-cs.jpg'}
+                                src={'/images/about/women-in-cs.jpg'}
                                 alt={'Women in CS'}
                                 width={1342}
                                 height={500}
