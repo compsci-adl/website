@@ -1,3 +1,9 @@
+type CommitteeMember = {
+    name: string;
+    position: string;
+    isExecCommittee: boolean;
+};
+
 // List of committee members with name, role and whether they are part of the
 // executive committee
 export const COMMITTEE_MEMBERS = [
@@ -116,4 +122,4 @@ export const COMMITTEE_MEMBERS = [
         position: 'General Committee',
         isExecCommittee: false,
     },
-] as const;
+] as const satisfies CommitteeMember[];

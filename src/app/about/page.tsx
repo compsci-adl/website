@@ -1,11 +1,11 @@
-import Title from '@/components/Title';
-import FancyRectangle from '@/components/FancyRectangle';
-import Image from 'next/image';
-import Paragraph from '@/components/Paragraph';
 import Ducks from '@/components/Ducks';
-import FAQ from './FAQ';
+import FancyRectangle from '@/components/FancyRectangle';
+import Paragraph from '@/components/Paragraph';
+import Title from '@/components/Title';
+import { COMMITTEE_MEMBERS } from '@/data/committee-members';
 import { LINKS } from '@/data/links';
-import { COMMITTEE_MEMBERS } from '@/data/committeeMembers';
+import Image from 'next/image';
+import FAQ from './FAQ';
 
 export default function AboutUs() {
     return (
