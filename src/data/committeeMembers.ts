@@ -1,6 +1,6 @@
 // List of committee members with name, role and whether they are part of the
 // executive committee
-export const committeeMembers = [
+export const COMMITTEE_MEMBERS = [
     {
         name: 'David Maslov',
         position: 'President',
