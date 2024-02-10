@@ -5,7 +5,7 @@ import Paragraph from '@/components/Paragraph';
 import Ducks from '@/components/Ducks';
 import FAQ from './FAQ';
 import { LINKS } from '@/data/links';
-import { committeeMembers } from '@/data/committeeMembers';
+import { COMMITTEE_MEMBERS } from '@/data/committeeMembers';
 
 export default function AboutUs() {
     return (
@@ -229,7 +229,7 @@ export default function AboutUs() {
                         <h2 className="text-5xl font-bold">Committee Members</h2>
                     </div>
                     <div className="mb-2 mr-2 mt-8 grid auto-rows-fr grid-cols-2 gap-10 lg:grid-cols-4">
-                        {committeeMembers.map((member, index) => (
+                        {COMMITTEE_MEMBERS.map((member, index) => (
                             <FancyRectangle
                                 key={index}
                                 colour={member.isExecCommittee ? 'yellow' : 'white'}
