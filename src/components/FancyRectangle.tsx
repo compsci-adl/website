@@ -9,9 +9,19 @@ interface FancyRectangleProps {
     offset: string;
     filled?: boolean;
     rounded?: boolean;
+    fullWidth?: boolean;
+    fullHeight?: boolean;
 }
 
-const FancyRectangle = ({ children, colour, offset, filled, rounded }: FancyRectangleProps) => {
+const FancyRectangle = ({
+    children,
+    colour,
+    offset,
+    filled,
+    rounded,
+    fullWidth,
+    fullHeight,
+}: FancyRectangleProps) => {
     const offsetValue = parseInt(offset, 10);
 
     const offsetStyles = {
@@ -21,7 +31,9 @@ const FancyRectangle = ({ children, colour, offset, filled, rounded }: FancyRect
 
     return (
         <div className="flex items-center">
-            <div className="relative h-auto w-auto">
+            <div
+                className={`relative ${fullHeight ? 'h-full' : 'h-auto'} ${fullWidth ? 'w-full' : 'w-auto'}`}
+            >
                 <div
                     style={offsetStyles}
                     className={`absolute bottom-0 right-0 h-full w-full ${

@@ -1,3 +1,4 @@
+import Ducks from '@/components/Ducks';
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { CAROUSEL_IMAGES } from '@/data/home';
@@ -231,53 +232,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative z-10 ml-[2.5em] flex w-fit flex-col md:ml-[4.4em]">
-                    <div className="relative mb-2 flex flex-row justify-end">
-                        <Image
-                            src="/images/white-duck-outline.svg"
-                            alt="White Duck Outline"
-                            className="ml-4 h-8 md:h-10"
-                            height={50}
-                            width={50}
-                        />
-
-                        <Image
-                            src="/images/white-duck-outline.svg"
-                            alt="White Duck"
-                            className="ml-4 h-8 md:h-10"
-                            height={50}
-                            width={50}
-                        />
-
-                        <Image
-                            src="/images/white-duck.svg"
-                            alt="White Duck"
-                            className="ml-4 h-8 md:h-10"
-                            height={50}
-                            width={50}
-                        />
-
-                        <Image
-                            src="/images/white-duck.svg"
-                            alt="White Duck"
-                            className="ml-4 h-8 md:h-10"
-                            height={50}
-                            width={50}
-                        />
-                        <Image
-                            src="/images/white-duck.svg"
-                            alt="White Duck"
-                            className="ml-4 h-8 md:h-10"
-                            height={50}
-                            width={50}
-                        />
-                        <Image
-                            src="/images/white-duck.svg"
-                            alt="White Duck"
-                            className="ml-4 h-8 md:h-10"
-                            height={50}
-                            width={50}
-                        />
-                    </div>
+                    <Ducks size={'small'}></Ducks>
                     <div className="relative z-10 flex flex-row">
                         <div className="h-auto w-10 bg-orange"></div>
                         <div className="relative flex flex-col">
