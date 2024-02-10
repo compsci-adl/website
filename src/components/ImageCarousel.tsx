@@ -1,25 +1,18 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
+import type { Colour } from '@/constants/colours';
+import { useMount } from '@/hooks/use-mount';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
-const IMAGES = [
-    {
-        src: '/images/home/duck-ctf.jpg',
-        alt: 'DuckCTF',
-    },
-    {
-        src: '/images/home/pizza.jpg',
-        alt: 'Pizza',
-    },
-    {
-        src: '/images/home/cyber-panel.jpg',
-        alt: 'Cyber Panel',
-    },
-] as const;
+export type Image = { src: string; alt: string };
+interface ImageCarouselProps {
+    images: Image[];
+    colour: Colour;
+}
 
-export default function ImageCarousel() {
+export default function ImageCarousel({ images, colour }: ImageCarouselProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -27,20 +20,20 @@ export default function ImageCarousel() {
         setIsTransitioning(true);
         setTimeout(() => {
             setCurrentImageIndex((prevIndex) =>
-                prevIndex === IMAGES.length - 1 ? 0 : prevIndex + 1
+                prevIndex === images.length - 1 ? 0 : prevIndex + 1
             );
             setIsTransitioning(false);
         }, 500);
     };
 
-    useEffect(() => {
+    useMount(() => {
         const interval = setInterval(goToNextImage, 5000); // Change image every 5 seconds
         return () => clearInterval(interval);
-    }, []);
+    });
 
     return (
         <div className="relative z-10 mr-2">
-            <FancyRectangle colour="purple" offset="8" filled={true}>
+            <FancyRectangle colour={colour} offset="8" filled={true}>
                 <div className="relative h-full w-full bg-white">
                     <div
                         className={`transition-opacity duration-500 ease-in-out ${
@@ -48,8 +41,8 @@ export default function ImageCarousel() {
                         }`}
                     >
                         <Image
-                            src={IMAGES[currentImageIndex].src}
-                            alt={IMAGES[currentImageIndex].alt}
+                            src={images[currentImageIndex].src}
+                            alt={images[currentImageIndex].alt}
                             width={2132}
                             height={1600}
                             className="h-full w-full object-cover"

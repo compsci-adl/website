@@ -1,9 +1,10 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
+import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
 import { Fragment } from 'react';
-import ImageCarousel from './ImageCarousel';
+import ImageCarousel from '../../components/ImageCarousel';
 
 export default function HomePage() {
     return (
@@ -40,7 +41,7 @@ export default function HomePage() {
 
                     {/* Right side */}
                     <div className="mt-12 w-full transition-all duration-500 md:w-auto lg:ml-20 lg:mt-0">
-                        <ImageCarousel />
+                        <ImageCarousel images={CAROUSEL_IMAGES} colour="purple" />
                     </div>
                 </div>
             </section>
