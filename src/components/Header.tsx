@@ -109,7 +109,7 @@ export default function Header() {
                         } mb-4 text-4xl md:mb-0 md:flex md:flex-row md:space-x-4 md:space-y-0 md:text-base lg:space-x-8`}
                     >
                         <Link href="/about" className="hover:underline">
-                            About Us
+                            About
                         </Link>
                         <Link href="/events" className="hover:underline">
                             Events
