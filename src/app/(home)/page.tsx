@@ -42,7 +42,17 @@ export default function HomePage() {
 
                     {/* Right side */}
                     <div className="mt-12 w-full transition-all duration-500 md:w-auto lg:ml-20 lg:mt-0">
-                        <ImageCarousel images={CAROUSEL_IMAGES} colour="purple" />
+                        <div className="relative z-10 mr-2">
+                            <FancyRectangle colour="purple" offset="8" filled={true}>
+                                <div className="relative h-full w-full bg-white">
+                                    <ImageCarousel
+                                        images={CAROUSEL_IMAGES}
+                                        width={2132}
+                                        height={1600}
+                                    />
+                                </div>
+                            </FancyRectangle>
+                        </div>
                     </div>
                 </div>
             </section>
