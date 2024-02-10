@@ -251,7 +251,7 @@ export default function AboutUs() {
                     <Ducks size={'large'}></Ducks>
                 </section>
                 <section className="mt-8 md:mt-0">
-                    <FancyRectangle colour="purple" offset="8 md:offset-16" filled={false}>
+                    <FancyRectangle colour="purple" offset="8" filled={false}>
                         <div className="w-fit bg-purple px-2 py-2">
                             <h2 className="text-4xl font-bold text-grey md:text-5xl">FAQ</h2>
                         </div>

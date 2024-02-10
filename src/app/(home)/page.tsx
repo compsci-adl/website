@@ -32,7 +32,7 @@ export default function HomePage() {
 
                             <Title colour="yellow">CODE.</Title>
                             <div className="h-4 md:h-8"></div>
-                            <FancyRectangle colour="orange" offset="8 md:offset-16" filled={false}>
+                            <FancyRectangle colour="orange" offset="8" filled={false}>
                                 <div className="w-fit bg-orange px-2 py-2">
                                     <h2 className="text-xl md:text-3xl">Computer Science Club</h2>
                                 </div>
