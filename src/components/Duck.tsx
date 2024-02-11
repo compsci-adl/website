@@ -15,7 +15,7 @@ export default function Duck({ colour, outline, size = 60, className }: DuckProp
                 alt={`${colour} duck${outline ? ' outline' : ''}`}
                 width={size}
                 height={size}
-                className={`${className} cursor-pointer transition-transform duration-200 active:scale-y-75`}
+                className={`${className} cursor-pointer transition-transform duration-200 active:translate-y-2 active:scale-y-75`}
             />
         </div>
     );
