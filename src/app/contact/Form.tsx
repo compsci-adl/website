@@ -13,8 +13,10 @@ export default function Form({ className }: { className?: string }) {
 
     return (
         <div className={`${className} relative`}>
-            <Duck colour="white" className="absolute right-[25px] top-[-48px] hidden md:block" />
-            <Duck colour="white" className="absolute right-[25px] top-[-48px] hidden md:block" />
+            <div className="absolute right-[25px] top-[-48px] gap-6 md:flex">
+                <Duck colour="white" />
+                <Duck colour="white" />
+            </div>
             <form
                 className="grid h-full grid-cols-2 grid-rows-[auto_auto_minmax(12rem,_1fr)_auto] gap-4 rounded-xl bg-[#FFF] p-3 text-black md:gap-8 md:p-6"
                 onSubmit={handleSubmit}

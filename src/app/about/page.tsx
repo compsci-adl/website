@@ -248,12 +248,12 @@ export default function AboutUs() {
                             </FancyRectangle>
                         ))}
                     </div>
-                    <div className="relative mb-2 mt-8 flex flex-row justify-end space-x-4">
-                        <Duck colour="white" outline className="h-12 md:h-16" />
-                        <Duck colour="white" outline className="h-12 md:h-16" />
-                        <Duck colour="white" className="h-12 md:h-16" />
-                        <Duck colour="white" className="h-12 md:h-16" />
-                        <Duck colour="white" className="h-12 md:h-16" />
+                    <div className="relative mb-2 mt-8 flex flex-row justify-end space-x-4 *:h-12 md:*:h-16">
+                        <Duck colour="white" outline />
+                        <Duck colour="white" outline />
+                        <Duck colour="white" />
+                        <Duck colour="white" />
+                        <Duck colour="white" />
                     </div>
                 </section>
                 <section className="mt-8 md:mt-0">
