@@ -6,7 +6,7 @@ import Info from './Info';
 export default function EventsPage() {
     return (
         <main className="relative grid grid-cols-5 gap-y-12 text-lg md:text-xl">
-            <Info className="col-span-5 border-white md:col-span-2 md:mb-0 md:border-r-4 md:pr-4" />
+            <Info className="col-span-5 border-white md:col-span-2 md:border-r-4 md:pr-4" />
             <FridayNight className="order-3 col-span-5 md:order-2 md:col-span-3 md:pl-8" />
             <Events className="order-2 col-span-5 md:order-3" />
             <div className="absolute -z-10 mt-8 hidden space-y-44 md:block">
