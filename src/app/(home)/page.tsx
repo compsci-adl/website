@@ -1,4 +1,4 @@
-import Ducks from '@/components/Ducks';
+import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { CAROUSEL_IMAGES } from '@/data/home';
@@ -242,7 +242,13 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative z-10 ml-[2.5em] flex w-fit flex-col md:ml-[4.4em]">
-                    <Ducks size={'small'}></Ducks>
+                    <div className="relative mb-2 flex flex-row justify-end space-x-4">
+                        <Duck colour="white" outline className="h-8 md:h-10" />
+                        <Duck colour="white" outline className="h-8 md:h-10" />
+                        <Duck colour="white" className="h-8 md:h-10" />
+                        <Duck colour="white" className="h-8 md:h-10" />
+                        <Duck colour="white" className="h-8 md:h-10" />
+                    </div>
                     <div className="relative z-10 flex flex-row">
                         <div className="h-auto w-10 bg-orange"></div>
                         <div className="relative flex flex-col">

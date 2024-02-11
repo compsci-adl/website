@@ -1,6 +1,6 @@
+import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import Paragraph from '@/components/Paragraph';
-import Image from 'next/image';
 import { FiCalendar, FiClock, FiMapPin } from 'react-icons/fi';
 import { IoTriangleSharp } from 'react-icons/io5';
 
@@ -33,20 +33,6 @@ function Info({ className }: { className?: string }) {
                     <div className="col-span-3 ml-auto h-1 w-[calc(100%-1rem)] bg-white" />
                 </div>
             </div>
-        </div>
-    );
-}
-
-function Duck({ colour, outline }: { colour: 'white' | 'yellow'; outline?: boolean }) {
-    return (
-        <div>
-            <Image
-                src={`/images/${colour}-duck${outline ? '-outline' : ''}.svg`}
-                alt={`${colour} duck${outline ? ' outline' : ''}`}
-                width={60}
-                height={60}
-                className="cursor-pointer transition-transform duration-200 active:scale-y-75"
-            />
         </div>
     );
 }

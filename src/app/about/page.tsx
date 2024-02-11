@@ -1,4 +1,4 @@
-import Ducks from '@/components/Ducks';
+import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
@@ -248,7 +248,13 @@ export default function AboutUs() {
                             </FancyRectangle>
                         ))}
                     </div>
-                    <Ducks size={'large'}></Ducks>
+                    <div className="relative mb-2 mt-8 flex flex-row justify-end space-x-4">
+                        <Duck colour="white" outline className="h-12 md:h-16" />
+                        <Duck colour="white" outline className="h-12 md:h-16" />
+                        <Duck colour="white" className="h-12 md:h-16" />
+                        <Duck colour="white" className="h-12 md:h-16" />
+                        <Duck colour="white" className="h-12 md:h-16" />
+                    </div>
                 </section>
                 <section className="mt-8 md:mt-0">
                     <FancyRectangle colour="purple" offset="8" filled={false}>
