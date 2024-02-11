@@ -13,7 +13,7 @@ export default function Info({ className }: { className?: string }) {
                     the year.
                 </p>
                 <p className="hidden md:block">
-                    For futher information, take a look at some of the events below!
+                    For further information, take a look at some of the events below!
                 </p>
             </div>
             <FancyRectangle colour="white" offset="16" filled={true} rounded>

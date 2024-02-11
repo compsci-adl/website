@@ -1,11 +1,11 @@
 import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
+import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
 import { Fragment } from 'react';
-import ImageCarousel from '../../components/ImageCarousel';
 
 export default function HomePage() {
     return (

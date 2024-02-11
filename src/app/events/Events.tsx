@@ -30,8 +30,8 @@ function EventCard({ event, index }: { event: Event; index: number }) {
                 />
                 <div className="grow space-y-2 md:space-y-4">
                     <div className="flex gap-6 font-bold">
-                        <div className="grow md:space-y-2">
-                            <h4 className="text-2xl md:border-b-[3px]  md:border-black md:pb-1 md:text-3xl">
+                        <div className="grow space-y-2">
+                            <h4 className="text-2xl md:border-b-[3px] md:border-black md:pb-1 md:text-3xl">
                                 {event.title}
                             </h4>
                             <div className="flex gap-2">
