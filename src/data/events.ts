@@ -13,11 +13,10 @@ type Month =
     | 'OCT'
     | 'NOV'
     | 'DEC';
-type Time = `${number}:${number}${'am' | 'pm'}`;
 export type Event = {
     title: string;
     date: { month: Month; day: number };
-    time: `${Time} - ${Time}`;
+    time: string;
     location: string;
     details: string;
     image: string;
