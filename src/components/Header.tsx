@@ -1,10 +1,11 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
+import { useMount } from '@/hooks/use-mount';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import Button from './Button';
 import UserButton from './UserButton';
@@ -19,7 +20,7 @@ export default function Header() {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    useEffect(() => {
+    useMount(() => {
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
 
@@ -27,7 +28,7 @@ export default function Header() {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    });
 
     const closeMenu = () => {
         setIsMenuOpen(false);
