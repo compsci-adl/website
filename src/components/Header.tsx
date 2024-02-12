@@ -1,10 +1,12 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
+import { BREAKPOINTS } from '@/constants/breakpoints';
+import { useMount } from '@/hooks/use-mount';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import Button from './Button';
 import UserButton from './UserButton';
@@ -19,13 +21,25 @@ export default function Header() {
         setIsMenuOpen(!isMenuOpen);
     };
 
-    useEffect(() => {
+    useMount(() => {
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    });
+
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    const handleResize = () => {
+        if (window.innerWidth >= BREAKPOINTS.md) {
+            setIsMenuOpen(false);
+        }
+    };
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
@@ -108,16 +122,16 @@ export default function Header() {
                             isMenuOpen ? 'mt-12 space-y-8' : 'hidden'
                         } mb-4 text-4xl md:mb-0 md:flex md:flex-row md:space-x-4 md:space-y-0 md:text-base lg:space-x-8`}
                     >
-                        <Link href="/about" className="hover:underline">
+                        <Link href="/about" className="hover:underline" onClick={closeMenu}>
                             About
                         </Link>
-                        <Link href="/events" className="hover:underline">
+                        <Link href="/events" className="hover:underline" onClick={closeMenu}>
                             Events
                         </Link>
-                        <Link href="/sponsors" className="hover:underline">
+                        <Link href="/sponsors" className="hover:underline" onClick={closeMenu}>
                             Sponsors
                         </Link>
-                        <Link href="/contact" className="hover:underline">
+                        <Link href="/contact" className="hover:underline" onClick={closeMenu}>
                             Contact
                         </Link>
                         <div
@@ -127,17 +141,17 @@ export default function Header() {
                         >
                             {isSignedIn ? (
                                 <>
-                                    <Button colour="purple" href="/join">
+                                    <Button colour="purple" href="/join" onClick={closeMenu}>
                                         Continue Signing Up
                                     </Button>
                                     <UserButton />
                                 </>
                             ) : (
                                 <>
-                                    <Button colour="orange" href="/signin">
+                                    <Button colour="orange" href="/signin" onClick={closeMenu}>
                                         Sign In
                                     </Button>
-                                    <Button colour="purple" href="/join">
+                                    <Button colour="purple" href="/join" onClick={closeMenu}>
                                         Join Us
                                     </Button>
                                 </>
