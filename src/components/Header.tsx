@@ -21,11 +21,19 @@ export default function Header() {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', handleResize);
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+    const handleResize = () => {
+        if (window.innerWidth >= 768) {
+            setIsMenuOpen(false);
+        }
+    };
 
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
