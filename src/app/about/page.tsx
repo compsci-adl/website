@@ -1,11 +1,11 @@
-import Title from '@/components/Title';
+import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
-import Image from 'next/image';
 import Paragraph from '@/components/Paragraph';
-import Ducks from '@/components/Ducks';
-import FAQ from './FAQ';
+import Title from '@/components/Title';
+import { COMMITTEE_MEMBERS } from '@/data/committee-members';
 import { LINKS } from '@/data/links';
-import { COMMITTEE_MEMBERS } from '@/data/committeeMembers';
+import Image from 'next/image';
+import FAQ from './FAQ';
 
 export default function AboutUs() {
     return (
@@ -248,10 +248,16 @@ export default function AboutUs() {
                             </FancyRectangle>
                         ))}
                     </div>
-                    <Ducks size={'large'}></Ducks>
+                    <div className="relative mb-2 mt-8 flex flex-row justify-end space-x-4 *:h-12 md:*:h-16">
+                        <Duck colour="white" outline />
+                        <Duck colour="white" outline />
+                        <Duck colour="white" />
+                        <Duck colour="white" />
+                        <Duck colour="white" />
+                    </div>
                 </section>
                 <section className="mt-8 md:mt-0">
-                    <FancyRectangle colour="purple" offset="8 md:offset-16" filled={false}>
+                    <FancyRectangle colour="purple" offset="8" filled={false}>
                         <div className="w-fit bg-purple px-2 py-2">
                             <h2 className="text-4xl font-bold text-grey md:text-5xl">FAQ</h2>
                         </div>

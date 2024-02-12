@@ -6,7 +6,7 @@ import React from 'react';
 interface FancyRectangleProps {
     children: React.ReactNode;
     colour: Colour;
-    offset: string;
+    offset: `${number}`;
     filled?: boolean;
     rounded?: boolean;
     fullWidth?: boolean;

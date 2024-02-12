@@ -1,6 +1,6 @@
 import type { OrderLineItem } from 'square';
 
-export const PRODUCTS: { [key: string]: OrderLineItem } = {
+export const PRODUCTS = {
     membership: {
         name: 'CS Club Membership 2024',
         quantity: '1',

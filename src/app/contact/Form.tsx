@@ -1,8 +1,8 @@
 'use client';
 
 import Button from '@/components/Button';
+import Duck from '@/components/Duck';
 import { createSubmit } from 'just-submit';
-import Image from 'next/image';
 
 export default function Form({ className }: { className?: string }) {
     const submit = createSubmit({ fullName: 'string', email: 'string', message: 'string' });
@@ -13,20 +13,10 @@ export default function Form({ className }: { className?: string }) {
 
     return (
         <div className={`${className} relative`}>
-            <Image
-                src="/images/white-duck.svg"
-                alt="Duck"
-                width={60}
-                height={60}
-                className="absolute right-[25px] top-[-48px] hidden md:block"
-            />
-            <Image
-                src="/images/white-duck.svg"
-                alt="Duck"
-                width={60}
-                height={60}
-                className="absolute right-[100px] top-[-48px] hidden md:block"
-            />
+            <div className="absolute right-[25px] top-[-48px] gap-6 md:flex">
+                <Duck colour="white" />
+                <Duck colour="white" />
+            </div>
             <form
                 className="grid h-full grid-cols-2 grid-rows-[auto_auto_minmax(12rem,_1fr)_auto] gap-4 rounded-xl bg-[#FFF] p-3 text-black md:gap-8 md:p-6"
                 onSubmit={handleSubmit}

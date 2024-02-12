@@ -4,10 +4,9 @@
  * This route is protected, meaning only authenticated users can access this. Clerk is used to
  * verify that the user is signed in (see `src/middleware.ts`)
  */
-
+import { PRODUCTS } from '@/data/products';
 import { db } from '@/db';
 import { members } from '@/db/schema';
-import { PRODUCTS } from '@/data/products';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';

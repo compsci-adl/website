@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
 import FancyRectangle from '@/components/FancyRectangle';
 import type { Colour } from '@/constants/colours';
+import { useState } from 'react';
 import { IoTriangleSharp } from 'react-icons/io5';
 
 interface FAQProps {

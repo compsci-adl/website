@@ -1,10 +1,11 @@
+import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
+import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
+import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
 import { Fragment } from 'react';
-import ImageCarousel from './ImageCarousel';
-import Ducks from '@/components/Ducks';
 
 export default function HomePage() {
     return (
@@ -31,7 +32,7 @@ export default function HomePage() {
 
                             <Title colour="yellow">CODE.</Title>
                             <div className="h-4 md:h-8"></div>
-                            <FancyRectangle colour="orange" offset="8 md:offset-16" filled={false}>
+                            <FancyRectangle colour="orange" offset="8" filled={false}>
                                 <div className="w-fit bg-orange px-2 py-2">
                                     <h2 className="text-xl md:text-3xl">Computer Science Club</h2>
                                 </div>
@@ -41,7 +42,17 @@ export default function HomePage() {
 
                     {/* Right side */}
                     <div className="mt-12 w-full transition-all duration-500 md:w-auto lg:ml-20 lg:mt-0">
-                        <ImageCarousel />
+                        <div className="relative z-10 mr-2">
+                            <FancyRectangle colour="purple" offset="8" filled={true}>
+                                <div className="relative h-full w-full bg-white">
+                                    <ImageCarousel
+                                        images={CAROUSEL_IMAGES}
+                                        width={2132}
+                                        height={1600}
+                                    />
+                                </div>
+                            </FancyRectangle>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -231,7 +242,13 @@ export default function HomePage() {
                 </div>
 
                 <div className="relative z-10 ml-[2.5em] flex w-fit flex-col md:ml-[4.4em]">
-                    <Ducks size={'small'}></Ducks>
+                    <div className="relative mb-2 flex flex-row justify-end space-x-4 *:h-8 md:*:h-10">
+                        <Duck colour="white" outline />
+                        <Duck colour="white" outline />
+                        <Duck colour="white" />
+                        <Duck colour="white" />
+                        <Duck colour="white" />
+                    </div>
                     <div className="relative z-10 flex flex-row">
                         <div className="h-auto w-10 bg-orange"></div>
                         <div className="relative flex flex-col">
