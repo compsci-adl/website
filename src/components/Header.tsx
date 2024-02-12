@@ -1,6 +1,7 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
+import { BREAKPOINTS } from '@/constants/breakpoints';
 import { useMount } from '@/hooks/use-mount';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
@@ -35,7 +36,7 @@ export default function Header() {
     };
 
     const handleResize = () => {
-        if (window.innerWidth >= 768) {
+        if (window.innerWidth >= BREAKPOINTS.md) {
             setIsMenuOpen(false);
         }
     };
