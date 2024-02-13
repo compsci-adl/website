@@ -44,9 +44,9 @@ export default function UserButton() {
                         >
                             CS Club Drive
                         </a>
-                        {/* Link to Manage Account Page */}
-                        <Link href="/manage-account" className="hover:underline">
-                            Manage Account
+                        {/* Link to Settings Page */}
+                        <Link href="/settings" className="hover:underline">
+                            Settings
                         </Link>
                         {/* Sign Out */}
                         <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
