@@ -1,50 +1,58 @@
+import { useUser } from '@clerk/nextjs';
+import { useForm } from 'react-hook-form';
+import AccountSettings from './AccountSettings';
+import MembershipSettings from './MembershipSettings';
+import NotificationsSettings from './NotificationsSettings';
+import PersonalInfoSettings from './PersonalInfoSettings';
+
 interface SettingsProps {
     selectedTab: string;
+    setSelectedTab: (tab: string) => void;
 }
 
-export default function Settings({ selectedTab }: SettingsProps) {
+export default function Settings({ selectedTab, setSelectedTab }: SettingsProps) {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+    const { user } = useUser();
+
+    const handleGoToMembership = () => {
+        setSelectedTab('membership');
+    };
+
+    const onSubmit = (data: any) => {
+        // TODO: Send data to Clerk via API
+        console.log(data);
+    };
+
     const renderSettings = () => {
         switch (selectedTab) {
             case 'account':
                 return (
-                    <div>
-                        {/* Account settings */}
-                        <h2>Change Email</h2>
-                        <h2>Change Password</h2>
-                        <h2>Change Linked Google Account</h2>
-                        <h2>Delete Account</h2>
-                    </div>
+                    <AccountSettings
+                        user={user}
+                        register={register}
+                        handleSubmit={handleSubmit}
+                        errors={errors}
+                        onSubmit={onSubmit}
+                        handleGoToMembership={handleGoToMembership}
+                    />
                 );
             case 'personalInfo':
                 return (
-                    <div>
-                        {/* Personal info settings */}
-                        <h2>Update Name</h2>
-                        <h2>Update Age</h2>
-                        <h2>Update Gender</h2>
-                        <h2>Update Degree</h2>
-                        <h2>Update Student Type</h2>
-                        <h2>Update Student Status</h2>
-                        <h2>Update Student Number</h2>
-                    </div>
+                    <PersonalInfoSettings
+                        register={register}
+                        handleSubmit={handleSubmit}
+                        errors={errors}
+                        onSubmit={onSubmit}
+                    />
                 );
             case 'membership':
-                return (
-                    <div>
-                        {/* Membership settings */}
-                        <h2>Membership Status</h2>
-                        <h2>Pay Membership Fee</h2>
-                    </div>
-                );
+                return <MembershipSettings />;
             case 'notifications':
-                return (
-                    <div>
-                        {/* Notifications settings */}
-                        <h2>Enable Email Notifications</h2>
-                        <h2>Upcoming Events</h2>
-                        <h2>Newsletter</h2>
-                    </div>
-                );
+                return <NotificationsSettings />;
             default:
                 return null;
         }
