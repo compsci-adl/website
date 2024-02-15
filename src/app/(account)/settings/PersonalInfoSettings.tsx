@@ -2,6 +2,7 @@ import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import { AGE_BRACKETS, GENDERS, STUDENT_TYPES, STUDENT_STATUSES } from '@/constants/student-info';
 import { useMount } from '@/hooks/use-mount';
+import { useUser } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -23,9 +24,10 @@ const personalInfoSchema = z.object({
 });
 
 export default function PersonalInfoSettings() {
+    const { user } = useUser();
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        firstName: user?.firstName || '',
+        lastName: user?.lastName || '',
         ageBracket: '',
         gender: '',
         studentType: '',
@@ -62,10 +64,8 @@ export default function PersonalInfoSettings() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-            <div>
-                <h2 className="text-2xl font-bold">Change Personal Info</h2>
-                <div className="mb-2 border-b-2 border-black"></div>
-            </div>
+            <h2 className="text-2xl font-bold">Change Personal Info</h2>
+            <div className="mb-2 border-b-2 border-black"></div>
             <ControlledField
                 label="First Name"
                 name="firstName"
