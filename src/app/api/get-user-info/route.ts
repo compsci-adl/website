@@ -12,6 +12,8 @@ export async function GET(request: Request) {
     try {
         const userData = await db
             .select({
+                firstName: members.firstName,
+                lastName: members.lastName,
                 ageBracket: members.ageBracket,
                 gender: members.gender,
                 studentType: members.studentType,
