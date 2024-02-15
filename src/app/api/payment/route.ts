@@ -77,7 +77,7 @@ export async function POST(request: Request) {
                 })
                 .from(members)
                 .where(eq(members.clerkId, user.id));
-            const paymentId = resp.result.paymentLink?.orderId ?? '';
+            const paymentId = resp.result.paymentLink?.id ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
             await redisClient.hSet(`payment:membership:${userId}`, {
                 paymentId: paymentId,

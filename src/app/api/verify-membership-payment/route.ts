@@ -50,9 +50,9 @@ export async function PUT(request: Request) {
             return new Response('Membership payment for the user does not exist', { status: 404 });
         }
 
-        const resp = await squareClient.paymentsApi.getPayment(paymentId);
+        const resp = await squareClient.checkoutApi.retrievePaymentLink(paymentId);
         const respFields = resp.result;
-        if (respFields.payment?.status !== 'COMPLETED') {
+        if (!respFields.paymentLink || respFields.paymentLink.id !== paymentId) {
             return new Response('Payment has not been made', { status: 404 });
         }
 
