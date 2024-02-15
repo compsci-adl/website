@@ -71,5 +71,5 @@ export default function Settings({ selectedTab, setSelectedTab }: SettingsProps)
         }
     };
 
-    return <div className="flex">{renderSettings()}</div>;
+    return <div className="flex w-full">{renderSettings()}</div>;
 }

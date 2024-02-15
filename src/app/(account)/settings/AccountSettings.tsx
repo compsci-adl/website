@@ -63,8 +63,7 @@ export default function AccountSettings({
                         Membership Status: <span className="text-orange">Payment Required</span>
                     </h2>
 
-                    <div className="mb-2 border-b-2 border-black"></div>
-                    {/* TODO: Check Membership status and display relevant message */}
+                    <div className="mb-6 border-b-2 border-black"></div>
                     <p>
                         Finalise your membership by{' '}
                         <span

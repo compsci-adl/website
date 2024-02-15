@@ -83,7 +83,7 @@ export default function MembershipSettings({
         <div>
             {membershipStatus !== null && (
                 <div>
-                    <h2 className="text-2xl font-bold">
+                    <h2 className=" text-2xl font-bold">
                         Membership Status:{' '}
                         <span
                             className={
@@ -95,7 +95,7 @@ export default function MembershipSettings({
                             {membershipStatus}
                         </span>
                     </h2>
-                    <div className="mb-2 border-b-2 border-black"></div>
+                    <div className="mb-6 border-b-2 border-black"></div>
                     {membershipStatus === 'Payment Required' && (
                         <>
                             <p>
@@ -107,7 +107,7 @@ export default function MembershipSettings({
                                 .
                             </p>
                             <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
-                            <div className="mb-4 border-b-2 border-black"></div>
+                            <div className="mb-6 border-b-2 border-black"></div>
                             <Button type="submit" colour="orange" onClick={handlePayment}>
                                 Pay Online
                             </Button>
