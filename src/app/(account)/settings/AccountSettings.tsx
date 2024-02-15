@@ -84,7 +84,7 @@ export default function AccountSettings({
                     type="email"
                     defaultValue={user?.primaryEmailAddress?.toString()}
                     {...register('email')}
-                    className="border-2 border-black p-2"
+                    className="border border-gray-300 p-2"
                 />
                 {errors.email && <span>Email is required</span>}
                 <Button type="submit" colour="orange">
@@ -103,7 +103,7 @@ export default function AccountSettings({
                         type="password"
                         placeholder={'Old Password'}
                         {...register('oldPassword')}
-                        className="border-2 border-black p-2"
+                        className="border border-gray-300 p-2"
                     />
                     {errors.oldPassword && <span>Old Password is required</span>}
                 </div>
@@ -116,7 +116,7 @@ export default function AccountSettings({
                         type="password"
                         placeholder={'New Password'}
                         {...register('newPassword')}
-                        className="border-2 border-black p-2"
+                        className="border border-gray-300 p-2"
                     />
                     {errors.newPassword && <span>New Password is required</span>}
                 </div>
@@ -129,7 +129,7 @@ export default function AccountSettings({
                         type="password"
                         placeholder={'Confirm Password'}
                         {...register('confirmPassword')}
-                        className="border-2 border-black p-2"
+                        className="border border-gray-300 p-2"
                     />
                     {errors.confirmPassword && <span>Confirm Password is required</span>}
                 </div>
