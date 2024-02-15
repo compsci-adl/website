@@ -10,6 +10,7 @@ export interface FieldProps {
     type?: 'text' | 'password' | 'select' | 'checkbox';
     options?: readonly string[] | string[];
     placeholder?: string;
+    defaultValue?: string;
 }
 
 const Field = ({
@@ -20,6 +21,7 @@ const Field = ({
     type = 'text',
     options = [],
     placeholder,
+    defaultValue,
 }: FieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -41,12 +43,11 @@ const Field = ({
                     onChange={(e) => onChange(e.target.value)}
                     id={label.toLowerCase()}
                     name={label.toLowerCase()}
-                    value={value}
                     className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
                     {options.map((option, index) => (
-                        <option key={index} value={option}>
+                        <option key={index} value={option} selected={option === defaultValue}>
                             {option}
                         </option>
                     ))}
@@ -69,8 +70,8 @@ const Field = ({
                         onChange={(e) => onChange(e.target.value)}
                         id={label.toLowerCase()}
                         name={label.toLowerCase()}
-                        value={value}
                         type={showPassword ? 'text' : type}
+                        defaultValue={defaultValue}
                         className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
                     />
                     {type === 'password' && (
