@@ -1,4 +1,5 @@
 import { useUser } from '@clerk/nextjs';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import AccountSettings from './AccountSettings';
 import MembershipSettings from './MembershipSettings';
@@ -17,6 +18,8 @@ export default function Settings({ selectedTab, setSelectedTab }: SettingsProps)
         formState: { errors },
     } = useForm();
     const { user } = useUser();
+    const [membershipStatus, setMembershipStatus] = useState('Checking...');
+    const [membershipExpirationDate, setMembershipExpirationDate] = useState('');
 
     const handleGoToMembership = () => {
         setSelectedTab('membership');
@@ -38,6 +41,9 @@ export default function Settings({ selectedTab, setSelectedTab }: SettingsProps)
                         errors={errors}
                         onSubmit={onSubmit}
                         handleGoToMembership={handleGoToMembership}
+                        membershipStatus={membershipStatus}
+                        setMembershipStatus={setMembershipStatus}
+                        setMembershipExpirationDate={setMembershipExpirationDate}
                     />
                 );
             case 'personalInfo':
@@ -50,7 +56,14 @@ export default function Settings({ selectedTab, setSelectedTab }: SettingsProps)
                     />
                 );
             case 'membership':
-                return <MembershipSettings />;
+                return (
+                    <MembershipSettings
+                        membershipStatus={membershipStatus}
+                        setMembershipStatus={setMembershipStatus}
+                        membershipExpirationDate={membershipExpirationDate}
+                        setMembershipExpirationDate={setMembershipExpirationDate}
+                    />
+                );
             case 'notifications':
                 return <NotificationsSettings />;
             default:

@@ -1,4 +1,6 @@
 import Button from '@/components/Button';
+import { useMount } from '@/hooks/use-mount';
+import { formatDate } from '@/lib/formatDate';
 
 interface AccountSettingsProps {
     user: any;
@@ -7,6 +9,9 @@ interface AccountSettingsProps {
     errors: any;
     onSubmit: (data: any) => void;
     handleGoToMembership: () => void;
+    membershipStatus: string;
+    setMembershipStatus: (status: string) => void;
+    setMembershipExpirationDate: (date: string) => void;
 }
 
 export default function AccountSettings({
@@ -16,27 +21,62 @@ export default function AccountSettings({
     errors,
     onSubmit,
     handleGoToMembership,
+    membershipStatus,
+    setMembershipStatus,
+    setMembershipExpirationDate,
 }: AccountSettingsProps) {
+    useMount(() => {
+        const verifyMembershipPayment = async () => {
+            console.log('Verifying membership payment');
+            try {
+                const response = await fetch('/api/verify-membership-payment', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        redirectUrl: window.location.href,
+                    }),
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setMembershipStatus('Paid');
+                    const expirationDate = formatDate(data.membershipExpiresAt);
+                    setMembershipExpirationDate(expirationDate);
+                } else {
+                    setMembershipStatus('Payment Required');
+                }
+            } catch (error) {
+                console.error('Error verifying membership payment:', error);
+            }
+        };
+
+        verifyMembershipPayment();
+    });
+
     return (
         <div className="flex flex-col gap-8">
-            <div>
-                <h2 className="text-2xl font-bold">
-                    Membership Status: <span className="text-orange">Payment Required</span>
-                </h2>
+            {membershipStatus === 'Payment Required' && (
+                <div>
+                    <h2 className="text-2xl font-bold">
+                        Membership Status: <span className="text-orange">Payment Required</span>
+                    </h2>
 
-                <div className="mb-2 border-b-2 border-black"></div>
-                {/* TODO: Check Membership status and display relevant message */}
-                <p>
-                    Finalise your membership by{' '}
-                    <span
-                        className="cursor-pointer font-bold text-purple"
-                        onClick={handleGoToMembership}
-                    >
-                        clicking here
-                    </span>{' '}
-                    and completing the required payment.
-                </p>
-            </div>
+                    <div className="mb-2 border-b-2 border-black"></div>
+                    {/* TODO: Check Membership status and display relevant message */}
+                    <p>
+                        Finalise your membership by{' '}
+                        <span
+                            className="cursor-pointer font-bold text-purple"
+                            onClick={handleGoToMembership}
+                        >
+                            clicking here
+                        </span>{' '}
+                        and completing the required payment.
+                    </p>
+                </div>
+            )}
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-bold">Change Email</h2>
                 <div className="mb-2 border-b-2 border-black"></div>

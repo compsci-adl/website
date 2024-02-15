@@ -1,11 +1,22 @@
 import Button from '@/components/Button';
 import { useMount } from '@/hooks/use-mount';
+import { formatDate } from '@/lib/formatDate';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
-import { useState } from 'react';
 
-export default function MembershipSettings({}) {
-    const [membershipStatus, setMembershipStatus] = useState('Payment Required');
+interface MembershipSettingsProps {
+    membershipStatus: string;
+    setMembershipStatus: (status: string) => void;
+    membershipExpirationDate: string;
+    setMembershipExpirationDate: (date: string) => void;
+}
+
+export default function MembershipSettings({
+    membershipStatus,
+    setMembershipStatus,
+    membershipExpirationDate,
+    setMembershipExpirationDate,
+}: MembershipSettingsProps) {
     const { user } = useUser();
 
     useMount(() => {
@@ -23,7 +34,12 @@ export default function MembershipSettings({}) {
                 });
 
                 if (response.ok) {
+                    const data = await response.json();
                     setMembershipStatus('Paid');
+                    const expirationDate = formatDate(data.membershipExpiresAt);
+                    setMembershipExpirationDate(expirationDate);
+                } else {
+                    setMembershipStatus('Payment Required');
                 }
             } catch (error) {
                 console.error('Error verifying membership payment:', error);
@@ -65,31 +81,46 @@ export default function MembershipSettings({}) {
 
     return (
         <div>
-            <div>
-                <h2 className="text-2xl font-bold">
-                    Membership Status:{' '}
-                    <span className={membershipStatus === 'Paid' ? 'text-grey' : 'text-orange'}>
-                        {membershipStatus}
-                    </span>
-                </h2>
-                <div className="mb-2 border-b-2 border-black"></div>
-                {membershipStatus === 'Payment Required' && (
-                    <p>
-                        Finalise your membership by completing the required payment either online
-                        below, at a club event, or contact one of the{' '}
-                        <Link href="/about" className="underline">
-                            committee members
-                        </Link>
-                        .
-                    </p>
-                )}
-                {membershipStatus === 'Paid' && <p>You are a CS Club member!</p>}
-            </div>
-            <h2 className="text-2xl font-bold">Pay Membership Fee</h2>
-            <div className="mb-2 border-b-2 border-black"></div>
-            <Button type="submit" colour="orange" onClick={handlePayment}>
-                Complete Payment
-            </Button>
+            {membershipStatus !== null && (
+                <div>
+                    <h2 className="text-2xl font-bold">
+                        Membership Status:{' '}
+                        <span
+                            className={
+                                membershipStatus === 'Payment Required'
+                                    ? 'text-orange'
+                                    : 'text-grey'
+                            }
+                        >
+                            {membershipStatus}
+                        </span>
+                    </h2>
+                    <div className="mb-2 border-b-2 border-black"></div>
+                    {membershipStatus === 'Payment Required' && (
+                        <>
+                            <p>
+                                Finalise your membership by completing the required payment either
+                                online below, at a club event, or contact one of the{' '}
+                                <Link href="/about" className="underline">
+                                    committee members
+                                </Link>
+                                .
+                            </p>
+                            <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
+                            <div className="mb-4 border-b-2 border-black"></div>
+                            <Button type="submit" colour="orange" onClick={handlePayment}>
+                                Pay Online
+                            </Button>
+                        </>
+                    )}
+                    {membershipStatus === 'Paid' && (
+                        <p>
+                            You are a CS Club member! Your membership expires on{' '}
+                            <span className="font-bold">{membershipExpirationDate}</span>.
+                        </p>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

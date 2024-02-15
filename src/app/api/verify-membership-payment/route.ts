@@ -38,6 +38,19 @@ export async function PUT(request: Request) {
     }
 
     try {
+        // Get user's membership expiry date from the database
+        const [{ membershipExpiresAt }] = await db
+            .select({
+                membershipExpiresAt: members.membershipExpiresAt,
+            })
+            .from(members)
+            .where(eq(members.clerkId, user.id));
+
+        // If membership expiry date exists, return the existing date
+        if (membershipExpiresAt) {
+            return new Response(JSON.stringify({ membershipExpiresAt }), { status: 200 });
+        }
+
         // Get payment ID from Redis cache
         const [{ id: userId }] = await db
             .select({
