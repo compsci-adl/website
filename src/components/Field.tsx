@@ -10,7 +10,6 @@ export interface FieldProps {
     type?: 'text' | 'password' | 'select' | 'checkbox';
     options?: readonly string[] | string[];
     placeholder?: string;
-    defaultValue?: string;
 }
 
 const Field = ({
@@ -21,7 +20,6 @@ const Field = ({
     type = 'text',
     options = [],
     placeholder,
-    defaultValue,
 }: FieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -71,7 +69,7 @@ const Field = ({
                         id={label.toLowerCase()}
                         name={label.toLowerCase()}
                         type={showPassword ? 'text' : type}
-                        defaultValue={defaultValue}
+                        value={value}
                         className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
                     />
                     {type === 'password' && (
