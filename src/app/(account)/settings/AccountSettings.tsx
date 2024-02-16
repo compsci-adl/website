@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import { useMount } from '@/hooks/use-mount';
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@/utils/format-date';
 
 interface AccountSettingsProps {
     user: any;
