@@ -6,14 +6,14 @@
  */
 import { PRODUCTS } from '@/data/products';
 import { db } from '@/db';
-import { members } from '@/db/schema';
+import { memberTable } from '@/db/schema';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm';
 import type { NextRequest } from 'next/server';
-import type { CreatePaymentLinkRequest, OrderLineItem } from 'square';
+import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
 import { z } from 'zod';
 
@@ -73,10 +73,10 @@ export async function POST(request: Request) {
             // Add user ID and payment ID to Redis cache
             const [{ id: userId }] = await db
                 .select({
-                    id: members.id,
+                    id: memberTable.id,
                 })
-                .from(members)
-                .where(eq(members.clerkId, user.id));
+                .from(memberTable)
+                .where(eq(memberTable.clerkId, user.id));
             const paymentId = resp.result.paymentLink?.id ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
             await redisClient.hSet(`payment:membership:${userId}`, {

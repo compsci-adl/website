@@ -1,5 +1,5 @@
 import { db } from '@/db';
-import { members } from '@/db/schema';
+import { memberTable } from '@/db/schema';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
@@ -41,23 +41,23 @@ export async function PUT(request: Request) {
         // Get user's membership expiry date from the database
         const [{ membershipExpiresAt }] = await db
             .select({
-                membershipExpiresAt: members.membershipExpiresAt,
+                membershipExpiresAt: memberTable.membershipExpiresAt,
             })
-            .from(members)
-            .where(eq(members.clerkId, user.id));
+            .from(memberTable)
+            .where(eq(memberTable.clerkId, user.id));
 
         // If membership expiry date exists, return the existing date
         if (membershipExpiresAt) {
-            return new Response(JSON.stringify({ membershipExpiresAt }), { status: 200 });
+            return Response.json({ membershipExpiresAt });
         }
 
         // Get payment ID from Redis cache
         const [{ id: userId }] = await db
             .select({
-                id: members.id,
+                id: memberTable.id,
             })
-            .from(members)
-            .where(eq(members.clerkId, user.id));
+            .from(memberTable)
+            .where(eq(memberTable.clerkId, user.id));
         const paymentId = await redisClient.hGet(`payment:membership:${userId}`, 'paymentId');
         if (!paymentId) {
             return new Response('Membership payment for the user does not exist', { status: 404 });
@@ -72,9 +72,9 @@ export async function PUT(request: Request) {
         const now = new Date();
         const expiryDate = new Date(now.setFullYear(now.getFullYear() + 1));
         await db
-            .update(members)
+            .update(memberTable)
             .set({ membershipExpiresAt: expiryDate })
-            .where(eq(members.id, userId));
+            .where(eq(memberTable.id, userId));
     } catch (e) {
         if (e instanceof ApiError) {
             return new Response(JSON.stringify(e.errors), { status: e.statusCode });
