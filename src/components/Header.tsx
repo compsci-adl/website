@@ -69,12 +69,12 @@ export default function Header() {
                                 <Image
                                     src="/images/logos/logo.svg"
                                     alt="Computer Science Club Logo"
-                                    className="h-full w-[3rem] md:w-[1.62rem] lg:w-[2.2rem]"
+                                    className="h-full w-[3rem] md:w-[2rem] lg:w-[2.5rem]"
                                     width={100}
                                     height={100}
                                 />
                                 <h1
-                                    className={`ml-6 text-3xl md:ml-4 md:text-xl lg:text-2xl ${
+                                    className={`ml-2 text-3xl md:text-xl lg:text-2xl ${
                                         isMenuOpen ? 'text-grey' : 'text-white'
                                     } font-bold md:text-grey`}
                                 >
