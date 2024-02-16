@@ -7,29 +7,24 @@ interface ButtonProps {
     children: React.ReactNode;
     colour: Colour;
     href?: string;
-    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>;
+    onClick?: () => void;
     type?: 'button' | 'submit' | 'reset';
     width?: string;
+    loading?: boolean;
 }
 
-const Button = ({ children, colour, href, onClick, width, type }: ButtonProps) => {
+const Button = ({ children, colour, href, onClick, width, type, loading }: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 
-    const buttonStyles = `whitespace-nowrap py-4 px-12 md:py-1 md:px-2 lg:py-2 lg:px-6 border-2 border-black font-bold hover:bg-yellow transition-colors duration-300 ${BG_COLOURS[colour]} text-lg md:text-base`;
-    const buttonClasses = width ? `${buttonStyles} ${width}` : buttonStyles;
-
     return (
-        <FancyRectangle colour="black" offset="4" filled={true}>
+        <FancyRectangle colour="black" offset="4" filled>
             <Component
                 href={isAnchor ? href : undefined}
-                onClick={
-                    onClick as (
-                        e: React.MouseEvent<HTMLButtonElement> | React.MouseEvent<HTMLAnchorElement>
-                    ) => void | Promise<void>
-                }
+                onClick={onClick}
                 type={isAnchor ? undefined : type}
-                className={buttonClasses}
+                className={`${width} ${BG_COLOURS[colour]} ${isAnchor ? 'hover:bg-yellow' : 'hover:enabled:bg-yellow'} whitespace-nowrap border-2 border-black px-12 py-4 text-lg font-bold transition-colors duration-300 disabled:cursor-wait disabled:grayscale md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2`}
+                disabled={loading}
             >
                 {children}
             </Component>

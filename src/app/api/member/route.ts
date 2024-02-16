@@ -1,12 +1,12 @@
 import { db } from '@/db';
-import { members } from '@/db/schema';
+import { memberTable } from '@/db/schema';
 import { currentUser } from '@clerk/nextjs';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
 export async function POST(request: Request) {
     const req = await request.json();
-    const schema = createInsertSchema(members, {
+    const schema = createInsertSchema(memberTable, {
         clerkId: z.undefined(),
         email: z.undefined(),
     });
@@ -21,7 +21,7 @@ export async function POST(request: Request) {
         return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
     }
 
-    await db.insert(members).values({
+    await db.insert(memberTable).values({
         clerkId: user.id,
         email: user.emailAddresses[0].emailAddress,
         ...reqBody.data,

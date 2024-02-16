@@ -9,7 +9,7 @@ import { sql } from 'drizzle-orm';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { nanoid } from 'nanoid';
 
-export const members = sqliteTable('members', {
+export const memberTable = sqliteTable('members', {
     id: text('id')
         .$defaultFn(() => nanoid())
         .primaryKey(),
@@ -23,8 +23,8 @@ export const members = sqliteTable('members', {
     studentId: text('student_id'),
     gender: text('gender', { enum: GENDERS }).notNull(),
     ageBracket: text('age_bracket', { enum: AGE_BRACKETS }).notNull(),
-    degree: text('degree', { enum: DEGREES }),
-    studentType: text('student_type', { enum: STUDENT_TYPES }),
+    degree: text('degree', { enum: [...DEGREES, ''] }),
+    studentType: text('student_type', { enum: [...STUDENT_TYPES, ''] }),
 
     emailPreferences: text('email_preferences', { mode: 'json' }),
 
