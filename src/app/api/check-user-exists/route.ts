@@ -1,7 +1,5 @@
-import { db } from '@/db';
-import { memberTable } from '@/db/schema';
+import { checkUserExists } from '@/db/queries';
 import { currentUser } from '@clerk/nextjs';
-import { eq } from 'drizzle-orm';
 
 export async function GET() {
     const user = await currentUser();
@@ -9,9 +7,6 @@ export async function GET() {
         return new Response(null, { status: 401 });
     }
 
-    const existingUser = await db
-        .select({ id: memberTable.id })
-        .from(memberTable)
-        .where(eq(memberTable.clerkId, user.id));
-    return Response.json({ exists: existingUser.length > 0 });
+    const exists = await checkUserExists(user.id);
+    return Response.json({ exists });
 }
