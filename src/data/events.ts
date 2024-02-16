@@ -24,59 +24,61 @@ export type Event = {
 
 export const EVENTS: Event[] = [
     {
-        title: 'Game Night',
-        date: { month: 'SEP', day: 5 },
-        time: '7:00pm - 10:00pm',
-        location: 'Student Lounge',
-        details: 'Join us for a fun-filled evening of board games and video games!',
-        image: 'aaa.jpg',
-    },
-    {
-        title: 'Workshop: Introduction to Machine Learning',
-        date: { month: 'OCT', day: 15 },
-        time: '3:00pm - 5:00pm',
-        location: 'Computer Science Lab',
-        details: 'Learn the basics of machine learning and build your own model!',
-        image: 'bbb.jpg',
-    },
-    {
-        title: 'Career Fair',
-        date: { month: 'NOV', day: 10 },
-        time: '10:00am - 2:00pm',
-        location: 'Campus Center',
-        details: 'Connect with top companies and explore job opportunities in the tech industry!',
-        image: 'ccc.jpg',
-    },
-    {
-        title: 'Guest Speaker: Cybersecurity Trends',
-        date: { month: 'DEC', day: 3 },
-        time: '6:00pm - 8:00pm',
-        location: 'Lecture Hall',
+        title: 'Meet and Greet',
+        date: { month: 'MAR', day: 1 },
+        time: '5:00pm - 9:00pm',
+        location: 'Engineering and Maths EM105',
         details:
-            'Learn about the latest trends and challenges in cybersecurity from our guest speaker.',
-        image: 'aaa.jpg',
+            "Come hang out and meet the Computer Science Club's committee and members in your first week of the new academic year!\nWe have board games in collaboration with the GAMES Club and our club owned Nintendo Switch.\nFood and drinks will also be provided.",
+        image: 'meet-and-greet.jpg',
     },
     {
-        title: 'Holiday Party',
-        date: { month: 'DEC', day: 18 },
-        time: '7:30pm - 10:30pm',
-        location: 'Student Lounge',
-        details: 'Celebrate the holiday season with food, music, and games!',
-        image: 'bbb.jpg',
+        title: 'Insight Into Industry',
+        date: { month: 'MAR', day: 6 },
+        time: '6:00pm - 9:00pm',
+        location: 'Ingkarni Wardli 715',
+        details:
+            'Unsure of what jobs are available in the tech industry? Or looking to find out more about where your expertise could take you? If so, come along and gain insights into what a career in the industry might look like.',
+        image: 'insight-into-industry.jpg',
+    },
+    {
+        title: 'Quiz Night',
+        date: { month: 'MAR', day: 8 },
+        time: '5:00pm - 9:00pm',
+        location: 'TBD',
+        details: 'Join us for a night of quizzical encounters! Free food and prizes to come!',
+        image: 'quiz-night.jpg',
+    },
+    {
+        title: 'Industry Night',
+        date: { month: 'APR', day: 2 },
+        time: '6:00pm - 9:00pm',
+        location: 'The National Wine Centre, Hickinbotham Hall',
+        details: 'Connect with top companies and explore job opportunities in the tech industry!',
+        image: 'industry-night.jpg',
+    },
+    {
+        title: 'LaTeX Workshop',
+        date: { month: 'APR', day: 4 },
+        time: '5:00pm - 7:00pm',
+        location: 'Ingkarni Wardli 218',
+        details:
+            'Do you want to create pretty documents? Is Word destroying your assignments when you move images around? Look no further than LaTeX, the academic typesetting tool created by the great Donald Knuth, and the solution to all your maths assignments.',
+        image: 'latex-workshop.jpg',
     },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
     {
         src: '/images/home/duck-ctf.jpg',
-        alt: 'DuckCTF',
+        alt: 'DuckCTF 2023',
     },
     {
         src: '/images/home/pizza.jpg',
-        alt: 'Pizza',
+        alt: 'Pizza at the 2023 Meet and Greet',
     },
     {
         src: '/images/home/cyber-panel.jpg',
-        alt: 'Cyber Panel',
+        alt: 'Cyber Panel 2023',
     },
 ];
