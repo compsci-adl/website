@@ -23,7 +23,7 @@ export default function Header() {
     };
 
     const clerkUser = useUser();
-    const checkUserExists = useSWR<{ exists: boolean }>('check-user-exists', fetcher.get, {
+    const checkUserExists = useSWR<{ exists: boolean }>('check-user-exists', fetcher.get.query, {
         isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
     });
 

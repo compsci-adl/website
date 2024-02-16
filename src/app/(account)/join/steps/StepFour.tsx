@@ -19,7 +19,7 @@ export default function StepFour() {
     const { studentInfo } = useJoinUsStudentInfo();
 
     const router = useRouter();
-    const createMember = useSWRMutation('member', fetcher.post, {
+    const createMember = useSWRMutation('member', fetcher.post.mutate, {
         onError: () => {
             setAgreementError('Server error.');
         },
