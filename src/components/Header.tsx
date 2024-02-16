@@ -3,24 +3,31 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { BREAKPOINTS } from '@/constants/breakpoints';
 import { useMount } from '@/hooks/use-mount';
+import { fetcher } from '@/lib/fetcher';
 import { useUser } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
+import useSWR from 'swr';
 import Button from './Button';
 import UserButton from './UserButton';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const headerRef = useRef<HTMLDivElement>(null);
-    const [isScrolled, setIsScrolled] = useState(false);
-    const { isSignedIn } = useUser();
-
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
 
+    const clerkUser = useUser();
+    const checkUserExists = useSWR<{ exists: boolean }>('check-user-exists', fetcher.get, {
+        isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
+    });
+
+    const [isScrolled, setIsScrolled] = useState(false);
     useMount(() => {
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('resize', handleResize);
@@ -30,22 +37,17 @@ export default function Header() {
             window.removeEventListener('resize', handleResize);
         };
     });
-
-    const closeMenu = () => {
-        setIsMenuOpen(false);
-    };
-
     const handleResize = () => {
         if (window.innerWidth >= BREAKPOINTS.md) {
             setIsMenuOpen(false);
         }
     };
-
     const handleScroll = () => {
         const scrollPosition = window.scrollY;
         setIsScrolled(scrollPosition > 0);
     };
 
+    const isLoading = !clerkUser.isLoaded || checkUserExists.isLoading;
     return (
         <header className="z-[9999] w-full">
             <div
@@ -56,7 +58,6 @@ export default function Header() {
 
             <div className="flex w-full justify-center">
                 <div
-                    ref={headerRef}
                     className={`fixed z-[9999] md:left-auto ${
                         isMenuOpen
                             ? 'h-full w-full  flex-col bg-white'
@@ -139,23 +140,32 @@ export default function Header() {
                                 isMenuOpen ? '' : 'hidden'
                             } space-y-8 md:flex md:space-x-4 md:space-y-0 lg:space-x-8`}
                         >
-                            {isSignedIn ? (
-                                <>
-                                    <Button colour="purple" href="/join" onClick={closeMenu}>
-                                        Continue Signing Up
-                                    </Button>
-                                    <UserButton />
-                                </>
-                            ) : (
-                                <>
-                                    <Button colour="orange" href="/signin" onClick={closeMenu}>
-                                        Sign In
-                                    </Button>
-                                    <Button colour="purple" href="/join" onClick={closeMenu}>
-                                        Join Us
-                                    </Button>
-                                </>
-                            )}
+                            {!isLoading &&
+                                (clerkUser.isSignedIn ? (
+                                    <>
+                                        {!checkUserExists.data?.exists && (
+                                            <Button
+                                                colour="purple"
+                                                href="/join"
+                                                onClick={closeMenu}
+                                            >
+                                                Continue Signing Up
+                                            </Button>
+                                        )}
+                                        <UserButton
+                                            userExists={Boolean(checkUserExists.data?.exists)}
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <Button colour="orange" href="/signin" onClick={closeMenu}>
+                                            Sign In
+                                        </Button>
+                                        <Button colour="purple" href="/join" onClick={closeMenu}>
+                                            Join Us
+                                        </Button>
+                                    </>
+                                ))}
                         </div>
                     </nav>
                 </div>

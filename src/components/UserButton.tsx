@@ -1,37 +1,14 @@
 import Button from '@/components/Button';
-import { useMount } from '@/hooks/use-mount';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import FancyRectangle from './FancyRectangle';
 
-export default function UserButton() {
+export default function UserButton({ userExists }: { userExists: boolean }) {
     const { user } = useUser();
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const [userFound, setUserFound] = useState(false);
-    const popupRef = useRef(null);
     const { signOut } = useClerk();
-
-    useMount(() => {
-        const checkUserExists = async () => {
-            try {
-                const response = await fetch('/api/check-user-exists');
-                if (response.ok) {
-                    const data = await response.json();
-                    const userExists = data.exists;
-                    setUserFound(userExists);
-                    console.log('User exists:', userExists);
-                } else {
-                    console.error('Failed to fetch user existence status:', response.status);
-                }
-            } catch (error) {
-                console.error('Error checking user existence:', error);
-            }
-        };
-
-        checkUserExists();
-    });
 
     const handleButtonClick = () => {
         setPopupOpen(!isPopupOpen);
@@ -53,12 +30,9 @@ export default function UserButton() {
 
                 {/* Popup menu */}
                 {isPopupOpen && (
-                    <div
-                        ref={popupRef}
-                        className="absolute right-0 top-10 z-10 flex w-52 flex-col gap-y-4 border-4 border-black bg-white p-4 text-xl md:w-44 md:text-base"
-                    >
+                    <div className="absolute right-0 top-10 z-10 flex w-52 flex-col gap-y-4 border-4 border-black bg-white p-4 text-xl md:w-44 md:text-base">
                         {/* Only show options if finished sign up */}
-                        {userFound && (
+                        {userExists && (
                             <>
                                 {/* TODO(#16): Link to CS Club Drive */}
                                 <a
