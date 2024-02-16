@@ -9,7 +9,7 @@ import Settings from './Settings';
 import Sidebar from './Sidebar';
 
 export default function SettingsPage() {
-    const [selectedTab, setSelectedTab] = useState('account');
+    const [selectedTab, setSelectedTab] = useState('membership');
     const [userFound, setUserFound] = useState('');
 
     useMount(() => {
