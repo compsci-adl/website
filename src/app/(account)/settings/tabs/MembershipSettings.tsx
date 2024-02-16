@@ -1,89 +1,55 @@
 import Button from '@/components/Button';
-import { useMount } from '@/hooks/use-mount';
+import { fetcher } from '@/lib/fetcher';
 import { formatDate } from '@/utils/format-date';
 import { useUser } from '@clerk/nextjs';
 import Link from 'next/link';
+import { useState } from 'react';
+import type { PaymentLink } from 'square';
+import useSWR from 'swr';
+import useSWRMutation from 'swr/mutation';
 
-interface MembershipSettingsProps {
-    membershipStatus: string;
-    setMembershipStatus: (status: string) => void;
-    membershipExpirationDate: string;
-    setMembershipExpirationDate: (date: string) => void;
-}
+type MembershipStatus = 'Checking...' | 'Paid' | 'Payment Required';
 
-export default function MembershipSettings({
-    membershipStatus,
-    setMembershipStatus,
-    membershipExpirationDate,
-    setMembershipExpirationDate,
-}: MembershipSettingsProps) {
+export default function MembershipSettings() {
     const { user } = useUser();
 
-    useMount(() => {
-        const verifyMembershipPayment = async () => {
-            console.log('Verifying membership payment');
-            try {
-                const response = await fetch('/api/verify-membership-payment', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        redirectUrl: window.location.href,
-                    }),
-                });
+    const [membershipStatus, setMembershipStatus] = useState<MembershipStatus>('Checking...');
+    const [membershipExpirationDate, setMembershipExpirationDate] = useState('');
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setMembershipStatus('Paid');
-                    const expirationDate = formatDate(data.membershipExpiresAt);
-                    setMembershipExpirationDate(expirationDate);
-                } else {
-                    setMembershipStatus('Payment Required');
-                }
-            } catch (error) {
-                console.error('Error verifying membership payment:', error);
-            }
-        };
+    useSWR<{ membershipExpiresAt: string }>(
+        ['verify-membership-payment', { json: { redirectUrl: window.location.href } }],
+        fetcher.put.query,
+        {
+            onSuccess: (data) => {
+                setMembershipStatus('Paid');
+                const expirationDate = formatDate(data.membershipExpiresAt);
+                setMembershipExpirationDate(expirationDate);
+            },
+            onError: () => {
+                setMembershipStatus('Payment Required');
+            },
+        }
+    );
 
-        verifyMembershipPayment();
+    const pay = useSWRMutation('payment', fetcher.post.mutate, {
+        onSuccess: async (data: PaymentLink) => {
+            window.location.href = data.url!;
+        },
     });
 
     const handlePayment = async () => {
-        try {
-            if (!user || !user.id) {
-                console.error('User not authenticated or ID not available');
-                return;
-            }
-
-            const response = await fetch('/api/payment', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    product: 'membership',
-                    customerId: user.id,
-                    redirectUrl: window.location.href,
-                }),
-            });
-
-            if (response.ok) {
-                const paymentLink = await response.json();
-                window.location.href = paymentLink.url;
-            } else {
-                console.error('Failed to create payment link');
-            }
-        } catch (error) {
-            console.error('Error creating payment link:', error);
-        }
+        pay.trigger({
+            product: 'membership',
+            customerId: user!.id,
+            redirectUrl: window.location.href,
+        });
     };
 
     return (
         <div>
             {membershipStatus !== null && (
                 <div>
-                    <h2 className=" text-2xl font-bold">
+                    <h2 className="text-2xl font-bold">
                         Membership Status:{' '}
                         <span
                             className={
