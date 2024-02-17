@@ -5,10 +5,14 @@
  * verify that the user is signed in (see `src/middleware.ts`)
  */
 import { PRODUCTS } from '@/data/products';
+import { db } from '@/db';
+import { updateMemberExpiryDate } from '@/db/queries';
+import { memberTable } from '@/db/schema';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
+import { eq } from 'drizzle-orm';
 import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
 import { z } from 'zod';
@@ -83,4 +87,33 @@ export async function POST(request: Request) {
         }
         return new Response(null, { status: 500 });
     }
+}
+
+// Update member's payment status via admin console
+export async function PUT(request: Request) {
+    const req = await request.json();
+    const schema = z.object({
+        id: z.string().min(1),
+        paid: z.boolean(),
+    });
+
+    const user = await currentUser();
+    if (!user?.publicMetadata.isAdmin) {
+        return new Response(null, { status: 401 });
+    }
+
+    const reqBody = schema.safeParse(req);
+    if (!reqBody.success) {
+        return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
+    }
+
+    if (reqBody.data.paid) {
+        await updateMemberExpiryDate(reqBody.data.id, 'id');
+    } else {
+        await db
+            .update(memberTable)
+            .set({ membershipExpiresAt: null })
+            .where(eq(memberTable.id, reqBody.data.id));
+    }
+    return Response.json({ success: true });
 }

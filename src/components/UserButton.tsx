@@ -18,14 +18,13 @@ export default function UserButton({ userExists }: { userExists: boolean }) {
         await signOut();
     };
 
+    if (!user) return <></>;
+
     return (
         <FancyRectangle colour="black" offset="4" filled={true}>
             <div className="relative flex w-11 gap-y-2 border-2 border-black">
                 <button onClick={handleButtonClick}>
-                    {/* Display user's profile icon */}
-                    {user && user.imageUrl && (
-                        <Image src={user.imageUrl} alt="Profile" width={100} height={100} />
-                    )}
+                    <Image src={user.imageUrl} alt="Profile" width={100} height={100} />
                 </button>
 
                 {/* Popup menu */}
@@ -46,6 +45,11 @@ export default function UserButton({ userExists }: { userExists: boolean }) {
                                 <Link href="/settings" className="hover:underline">
                                     Settings
                                 </Link>
+                                {user.publicMetadata.isAdmin && (
+                                    <Link href="/admin" className="hover:underline">
+                                        Admin Panel
+                                    </Link>
+                                )}
                             </>
                         )}
                         {/* Sign Out */}
