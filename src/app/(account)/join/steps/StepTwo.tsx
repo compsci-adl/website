@@ -44,17 +44,10 @@ export default function StepTwo() {
     });
 
     const { user } = useUser();
-    // Fetch user's profile information on component mount
     useEffect(() => {
-        // Check if user profile data exists
-        if (user && user.primaryEmailAddress && user.fullName) {
-            // Split the full name into first and last names
-            const [firstName, lastName] = user.fullName.split(' ');
-            // Set the first and last names in the state
-            form.setValue('firstName', firstName);
-            form.setValue('lastName', lastName);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        if (!user) return;
+        form.setValue('firstName', String(user.firstName));
+        form.setValue('lastName', String(user.lastName));
     }, [user]);
 
     const { nextStep } = useJoinUsStep();

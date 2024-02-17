@@ -2,13 +2,12 @@ import Button from '@/components/Button';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import FancyRectangle from './FancyRectangle';
 
-export default function UserButton() {
+export default function UserButton({ userExists }: { userExists: boolean }) {
     const { user } = useUser();
     const [isPopupOpen, setPopupOpen] = useState(false);
-    const popupRef = useRef(null);
     const { signOut } = useClerk();
 
     const handleButtonClick = () => {
@@ -31,23 +30,24 @@ export default function UserButton() {
 
                 {/* Popup menu */}
                 {isPopupOpen && (
-                    <div
-                        ref={popupRef}
-                        className="absolute right-0 top-10 z-10 flex w-52 flex-col gap-y-4 border-4 border-black bg-white p-4 text-xl md:w-44 md:text-base"
-                    >
-                        {/* TODO(#16): Link to CS Club Drive */}
-                        <a
-                            href=""
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline"
-                        >
-                            CS Club Drive
-                        </a>
-                        {/* Link to Manage Account Page */}
-                        <Link href="/manage-account" className="hover:underline">
-                            Manage Account
-                        </Link>
+                    <div className="absolute right-0 top-10 z-10 flex w-52 flex-col gap-y-4 border-4 border-black bg-white p-4 text-xl md:w-44 md:text-base">
+                        {/* Only show options if finished sign up */}
+                        {userExists && (
+                            <>
+                                {/* TODO(#16): Link to CS Club Drive */}
+                                <a
+                                    href=""
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:underline"
+                                >
+                                    CS Club Drive
+                                </a>
+                                <Link href="/settings" className="hover:underline">
+                                    Settings
+                                </Link>
+                            </>
+                        )}
                         {/* Sign Out */}
                         <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
                             Sign Out

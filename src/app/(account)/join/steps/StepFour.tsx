@@ -1,7 +1,9 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
 import { fetcher } from '@/lib/fetcher';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import useSWRMutation from 'swr/mutation';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
 export default function StepFour() {
@@ -16,19 +18,23 @@ export default function StepFour() {
     const { prevStep } = useJoinUsStep();
     const { studentInfo } = useJoinUsStudentInfo();
 
-    const handleSignUp = async (e: React.ChangeEvent<any>) => {
+    const router = useRouter();
+    const createMember = useSWRMutation('member', fetcher.post.mutate, {
+        onError: () => {
+            setAgreementError('Server error.');
+        },
+        onSuccess: () => {
+            router.push('/settings');
+        },
+    });
+
+    const handleSignUp = async () => {
         setAgreementError(null);
         if (!agreement) {
             setAgreementError('Please agree to the terms');
             return;
         }
-        // TODO(#17): Payment
-        try {
-            const res = await fetcher.post('member', { json: studentInfo }).json();
-            console.log(res);
-        } catch {
-            setAgreementError('Server error.');
-        }
+        createMember.trigger(studentInfo);
     };
 
     const toggleAgreement = () => setAgreement(!agreement);
@@ -48,7 +54,7 @@ export default function StepFour() {
                 <Button onClick={prevStep} colour="orange">
                     Back
                 </Button>
-                <Button onClick={handleSignUp} colour="purple">
+                <Button onClick={handleSignUp} colour="purple" loading={createMember.isMutating}>
                     Sign up
                 </Button>
             </div>

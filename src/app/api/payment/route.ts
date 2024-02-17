@@ -5,15 +5,12 @@
  * verify that the user is signed in (see `src/middleware.ts`)
  */
 import { PRODUCTS } from '@/data/products';
-import { db } from '@/db';
-import { members } from '@/db/schema';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
-import { eq } from 'drizzle-orm';
 import type { NextRequest } from 'next/server';
-import type { CreatePaymentLinkRequest, OrderLineItem } from 'square';
+import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
 import { z } from 'zod';
 
@@ -70,16 +67,10 @@ export async function POST(request: Request) {
         const resp = await squareClient.checkoutApi.createPaymentLink(body);
 
         if (reqBody.data.product === 'membership') {
-            // Add user ID and payment ID to Redis cache
-            const [{ id: userId }] = await db
-                .select({
-                    id: members.id,
-                })
-                .from(members)
-                .where(eq(members.clerkId, user.id));
-            const paymentId = resp.result.paymentLink?.orderId ?? '';
+            // Add Clerk ID and payment ID to Redis cache
+            const paymentId = resp.result.paymentLink?.id ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
-            await redisClient.hSet(`payment:membership:${userId}`, {
+            await redisClient.hSet(`payment:membership:${user.id}`, {
                 paymentId: paymentId,
                 createdAt: createdAt,
             });

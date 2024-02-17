@@ -41,7 +41,6 @@ const Field = ({
                     onChange={(e) => onChange(e.target.value)}
                     id={label.toLowerCase()}
                     name={label.toLowerCase()}
-                    value={value}
                     className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
@@ -69,8 +68,8 @@ const Field = ({
                         onChange={(e) => onChange(e.target.value)}
                         id={label.toLowerCase()}
                         name={label.toLowerCase()}
-                        value={value}
                         type={showPassword ? 'text' : type}
+                        value={value}
                         className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
                     />
                     {type === 'password' && (
