@@ -70,16 +70,10 @@ export async function POST(request: Request) {
         const resp = await squareClient.checkoutApi.createPaymentLink(body);
 
         if (reqBody.data.product === 'membership') {
-            // Add user ID and payment ID to Redis cache
-            const [{ id: userId }] = await db
-                .select({
-                    id: memberTable.id,
-                })
-                .from(memberTable)
-                .where(eq(memberTable.clerkId, user.id));
+            // Add Clerk ID and payment ID to Redis cache
             const paymentId = resp.result.paymentLink?.id ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
-            await redisClient.hSet(`payment:membership:${userId}`, {
+            await redisClient.hSet(`payment:membership:${user.id}`, {
                 paymentId: paymentId,
                 createdAt: createdAt,
             });
