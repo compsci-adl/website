@@ -37,8 +37,9 @@ const verifyMembershipPayment = async (clerkId: string) => {
         return { paid: false as const };
     }
 
+    // Set expiry date to be the January 1st of the following year
     const now = new Date();
-    const expiryDate = new Date(now.setFullYear(now.getFullYear() + 1));
+    const expiryDate = new Date(`${now.getFullYear() + 1}-01-01`);
     await db
         .update(memberTable)
         .set({ membershipExpiresAt: expiryDate })
