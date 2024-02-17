@@ -9,7 +9,6 @@ import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
-import type { NextRequest } from 'next/server';
 import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
 import { z } from 'zod';
@@ -78,27 +77,6 @@ export async function POST(request: Request) {
 
         // The URL to direct the user is accessed from `url` and `long_url`
         return Response.json(resp.result.paymentLink);
-    } catch (e) {
-        if (e instanceof ApiError) {
-            return new Response(JSON.stringify(e.errors), { status: e.statusCode });
-        }
-        return new Response(null, { status: 500 });
-    }
-}
-
-// Get a Square payment
-// See: https://developer.squareup.com/reference/square/payments-api/get-payment
-export async function GET(request: NextRequest) {
-    const params = request.nextUrl.searchParams;
-    const paymentId = params.get('paymentId');
-
-    if (!paymentId) {
-        return new Response('Square payment ID must be provided', { status: 400 });
-    }
-
-    try {
-        const resp = await squareClient.paymentsApi.getPayment(paymentId);
-        return Response.json(resp.result.payment);
     } catch (e) {
         if (e instanceof ApiError) {
             return new Response(JSON.stringify(e.errors), { status: e.statusCode });
