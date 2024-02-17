@@ -5,13 +5,10 @@
  * verify that the user is signed in (see `src/middleware.ts`)
  */
 import { PRODUCTS } from '@/data/products';
-import { db } from '@/db';
-import { memberTable } from '@/db/schema';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { currentUser } from '@clerk/nextjs';
-import { eq } from 'drizzle-orm';
 import type { NextRequest } from 'next/server';
 import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
