@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import type { MembershipPayment } from './page';
@@ -22,9 +23,17 @@ export default function Settings({ settingData }: { settingData: SettingData }) 
     const [tab, setTab] = useState<TabNames>('Membership');
     const Tab = SETTING_TABS[tab];
 
+    const { refresh } = useRouter();
+
     return (
         <>
-            <Sidebar currentTab={tab} onTabChange={(tab) => setTab(tab)} />
+            <Sidebar
+                currentTab={tab}
+                onTabChange={(tab) => {
+                    setTab(tab);
+                    refresh();
+                }}
+            />
             <div className="flex w-full">
                 <Tab settingData={settingData} />
             </div>
