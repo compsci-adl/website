@@ -12,10 +12,10 @@ export type SettingData = { membershipPayment: MembershipPayment };
 export type SettingTabProps = { settingData: SettingData };
 type SettingTabComponent = ({ settingData }: SettingTabProps) => React.ReactNode;
 const SETTING_TABS = {
-    Account: () => <></>,
-    'Personal Info': () => <></>,
+    Account: () => <div>WIP</div>,
+    'Personal Info': () => <div>WIP</div>,
     Membership: MembershipSettings,
-    Notifications: () => <></>,
+    Notifications: () => <div>WIP</div>,
 } as const satisfies Record<TabNames, SettingTabComponent>;
 
 export default function Settings({ settingData }: { settingData: SettingData }) {
