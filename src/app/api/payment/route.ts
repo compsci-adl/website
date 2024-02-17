@@ -89,6 +89,7 @@ export async function POST(request: Request) {
     }
 }
 
+// Update member's payment status for admin
 export async function PUT(request: Request) {
     const req = await request.json();
     const schema = z.object({
