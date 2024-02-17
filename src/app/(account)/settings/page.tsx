@@ -43,6 +43,10 @@ const verifyMembershipPayment = async (clerkId: string) => {
         .update(memberTable)
         .set({ membershipExpiresAt: expiryDate })
         .where(eq(memberTable.id, clerkId));
+
+    // Delete key from Redis since it is no longer needed
+    await redisClient.del(`payment:membership:${clerkId}`);
+
     return { paid: true as const, membershipExpiresAt: expiryDate };
 };
 export type MembershipPayment = Awaited<ReturnType<typeof verifyMembershipPayment>>;
