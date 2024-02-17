@@ -15,6 +15,7 @@ const verifyMembershipPayment = async (clerkId: string) => {
     // Get user's membership expiry date from the database
     const [{ membershipExpiresAt }] = await db
         .select({
+            id: memberTable.id,
             membershipExpiresAt: memberTable.membershipExpiresAt,
         })
         .from(memberTable)
@@ -43,7 +44,7 @@ const verifyMembershipPayment = async (clerkId: string) => {
     await db
         .update(memberTable)
         .set({ membershipExpiresAt: expiryDate })
-        .where(eq(memberTable.id, clerkId));
+        .where(eq(memberTable.clerkId, clerkId));
 
     // Delete key from Redis since it is no longer needed
     await redisClient.del(`payment:membership:${clerkId}`);
