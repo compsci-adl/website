@@ -1,7 +1,7 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { db } from '@/db';
-import { checkUserExists } from '@/db/queries';
+import { checkUserExists, updateMemberExpiryDate } from '@/db/queries';
 import { memberTable } from '@/db/schema';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
@@ -39,12 +39,7 @@ const verifyMembershipPayment = async (clerkId: string) => {
     }
 
     // Set expiry date to be the January 1st of the following year
-    const now = new Date();
-    const expiryDate = new Date(`${now.getFullYear() + 1}-01-01`);
-    await db
-        .update(memberTable)
-        .set({ membershipExpiresAt: expiryDate })
-        .where(eq(memberTable.clerkId, clerkId));
+    const expiryDate = updateMemberExpiryDate(clerkId, 'clerkId');
 
     // Delete key from Redis since it is no longer needed
     await redisClient.del(`payment:membership:${clerkId}`);

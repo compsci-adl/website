@@ -30,7 +30,9 @@ export const memberTable = sqliteTable('members', {
 
     membershipExpiresAt: integer('membership_expires_at', { mode: 'timestamp' }),
 
-    createdAt: text('created_at').default(sql`CURRENT_TIMESTAMP`),
+    createdAt: text('created_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
     // TODO: `updated_at` in sqlite
     // updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),
 });
