@@ -14,11 +14,13 @@ export default function Info({ className }: { className?: string }) {
                 </p>
                 <p>For further information, take a look at some of the events below!</p>
             </div>
-            <FancyRectangle colour="white" offset="16" filled={true} rounded>
-                <div className="relative h-full w-full rounded bg-white p-1">
-                    <ImageCarousel images={CAROUSEL_IMAGES} width={400} height={300} />
-                </div>
-            </FancyRectangle>
+            <div className="mb-4 mr-4">
+                <FancyRectangle colour="white" offset="16" filled={true} rounded>
+                    <div className="relative h-full w-full rounded bg-white p-1">
+                        <ImageCarousel images={CAROUSEL_IMAGES} width={400} height={300} />
+                    </div>
+                </FancyRectangle>
+            </div>
         </section>
     );
 }

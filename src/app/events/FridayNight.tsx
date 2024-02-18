@@ -83,7 +83,9 @@ export default function FridayNight({ className }: { className?: string }) {
                 <Info className="grow" />
                 <Ducks />
             </div>
-            <Details />
+            <div className="mb-4 mr-4">
+                <Details />
+            </div>
         </section>
     );
 }

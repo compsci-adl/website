@@ -5,7 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       width: {
-        responsive: 'min(85vw, 90rem)',
+        responsive: 'min(75vw, 90rem)',
       },
       boxShadow: {
         card: '10px 10px 0px 0px #7E7FE7',

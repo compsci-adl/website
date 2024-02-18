@@ -12,7 +12,7 @@ export default function AboutUs() {
         <main className="relative">
             <div className="h-full">
                 <div className="mb-8 flex justify-center">
-                    <Title colour="orange">About</Title>
+                    <Title colour="orange">About Us</Title>
                 </div>
                 {/* Basic Description */}
                 <section className="flex flex-col gap-10 md:flex-row">
@@ -60,7 +60,7 @@ export default function AboutUs() {
                                 width={30}
                                 height={30}
                             />
-                            <p className="my-4 text-lg">
+                            <p className="my-4 text-lg md:text-xl">
                                 The University of Adelaide Computer Science Club is a student-run
                                 club for those with an interest in computer science or computing in
                                 general. Although we&apos;re a university club, we welcome anyone
@@ -228,7 +228,7 @@ export default function AboutUs() {
                     <div className="flex w-fit bg-orange px-2 lg:mb-0">
                         <h2 className="text-5xl font-bold">Committee Members</h2>
                     </div>
-                    <div className="mb-2 mr-2 mt-8 grid auto-rows-fr grid-cols-2 gap-10 lg:grid-cols-4">
+                    <div className="mb-2 mr-2 mt-8 grid auto-rows-fr grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
                         {COMMITTEE_MEMBERS.map((member, index) => (
                             <FancyRectangle
                                 key={index}
