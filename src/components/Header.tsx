@@ -27,6 +27,14 @@ export default function Header() {
         isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
     });
 
+    const checkUserPaid = useSWR<{ paid: boolean }>(
+        ['verify-membership-payment'],
+        fetcher.get.query,
+        {
+            isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
+        }
+    );
+
     const [isScrolled, setIsScrolled] = useState(false);
     useMount(() => {
         window.addEventListener('scroll', handleScroll);
@@ -154,6 +162,7 @@ export default function Header() {
                                         )}
                                         <UserButton
                                             userExists={Boolean(checkUserExists.data?.exists)}
+                                            userPaid={Boolean(checkUserPaid.data?.paid)}
                                         />
                                     </>
                                 ) : (

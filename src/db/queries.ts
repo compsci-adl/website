@@ -19,3 +19,20 @@ export const updateMemberExpiryDate = async (id: string, idType: 'clerkId' | 'id
         .where(eq(memberTable[idType], id));
     return expiryDate;
 };
+
+export const verifyMembershipPayment = async (clerkUserId: string) => {
+    const [{ membershipExpiresAt }] = await db
+        .select({
+            id: memberTable.id,
+            membershipExpiresAt: memberTable.membershipExpiresAt,
+        })
+        .from(memberTable)
+        .where(eq(memberTable.clerkId, clerkUserId));
+
+    console.log(membershipExpiresAt);
+
+    if (membershipExpiresAt) {
+        return true;
+    }
+    return false;
+};
