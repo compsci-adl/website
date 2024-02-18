@@ -29,8 +29,6 @@ export const verifyMembershipPayment = async (clerkUserId: string) => {
         .from(memberTable)
         .where(eq(memberTable.clerkId, clerkUserId));
 
-    console.log(membershipExpiresAt);
-
     if (membershipExpiresAt) {
         return true;
     }
