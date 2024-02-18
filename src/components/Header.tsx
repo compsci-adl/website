@@ -156,6 +156,15 @@ export default function Header() {
                                                 Continue Signing Up
                                             </Button>
                                         )}
+                                        {!checkUserPaid.data?.paid && (
+                                            <Button
+                                                colour="orange"
+                                                href="/settings"
+                                                onClick={closeMenu}
+                                            >
+                                                Continue to payment
+                                            </Button>
+                                        )}
                                         <UserButton
                                             userExists={Boolean(checkUserExists.data?.exists)}
                                             userPaid={Boolean(checkUserPaid.data?.paid)}
