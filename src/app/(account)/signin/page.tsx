@@ -6,6 +6,7 @@ import FancyRectangle from '@/components/FancyRectangle';
 import { useSignIn } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
@@ -25,6 +26,8 @@ export default function SignInPage() {
         resolver: zodResolver(signInSchema),
     });
 
+    const router = useRouter();
+
     const handleSignIn = form.handleSubmit(async ({ email, password }) => {
         if (!isLoaded) return;
         try {
@@ -35,6 +38,7 @@ export default function SignInPage() {
 
             if (result.status === 'complete') {
                 await setActive({ session: result.createdSessionId });
+                router.push('/');
             } else {
                 console.log(result);
             }
