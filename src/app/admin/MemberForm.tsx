@@ -18,7 +18,7 @@ function MemberDetail({ member }: { member: Member }) {
         },
     });
     const handlePaymentChange = () => {
-        updatePayment.trigger({ id: member.id, paid: !member.paid });
+        updatePayment.trigger({ id: member.id, paid: !payment });
     };
 
     return (
@@ -58,7 +58,6 @@ export default function MemberForm({ members }: { members: Member[] }) {
                 displayOptionStr={getMemberStr}
                 placeholder="Search for a member by email or name..."
                 notFoundMessage="No members found"
-                className="grow"
             />
             <div className="flex justify-center">
                 {selectedMember ? (
