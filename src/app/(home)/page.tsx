@@ -108,13 +108,7 @@ export default function HomePage() {
                 />
 
                 <div className="mr-2 grid auto-rows-fr grid-cols-1 gap-8 text-xl lg:grid-cols-3">
-                    <FancyRectangle
-                        colour="white"
-                        offset="8"
-                        filled={true}
-                        fullWidth={true}
-                        fullHeight={true}
-                    >
+                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
                         <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-purple px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">Learn</h3>
@@ -135,13 +129,7 @@ export default function HomePage() {
                             </div>
                         </div>
                     </FancyRectangle>
-                    <FancyRectangle
-                        colour="white"
-                        offset="8"
-                        filled={true}
-                        fullWidth={true}
-                        fullHeight={true}
-                    >
+                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
                         <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-yellow px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">
@@ -164,13 +152,7 @@ export default function HomePage() {
                             </div>
                         </div>
                     </FancyRectangle>
-                    <FancyRectangle
-                        colour="white"
-                        offset="8"
-                        filled={true}
-                        fullWidth={true}
-                        fullHeight={true}
-                    >
+                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
                         <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-orange px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">Code</h3>
