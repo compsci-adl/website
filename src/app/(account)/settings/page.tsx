@@ -39,7 +39,7 @@ const verifyMembershipPayment = async (clerkId: string) => {
     }
 
     // Set expiry date to be the January 1st of the following year
-    const expiryDate = updateMemberExpiryDate(clerkId, 'clerkId');
+    const expiryDate = await updateMemberExpiryDate(clerkId, 'clerkId');
 
     // Delete key from Redis since it is no longer needed
     await redisClient.del(`payment:membership:${clerkId}`);
