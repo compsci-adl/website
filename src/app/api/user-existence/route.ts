@@ -1,4 +1,4 @@
-import { checkUserExists } from '@/db/queries';
+import { checkUserExists } from '@/server/check-user-exists';
 import { currentUser } from '@clerk/nextjs';
 
 export async function GET() {
