@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import { env } from '@/env.mjs';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -26,8 +27,6 @@ export default function UserButton({
 
     if (!user) return <></>;
 
-    const driveLink = process.env.NEXT_PUBLIC_DRIVE_LINK;
-
     return (
         <FancyRectangle colour="black" offset="4" filled={true}>
             <div className="relative flex w-11 gap-y-2 border-2 border-black">
@@ -41,9 +40,9 @@ export default function UserButton({
                         {/* Only show settings if finished sign up and show drive link if membership paid */}
                         {userExists && (
                             <>
-                                {driveLink && userPaid && (
+                                {userPaid && (
                                     <Link
-                                        href={driveLink}
+                                        href={env.NEXT_PUBLIC_DRIVE_LINK}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="hover:underline"
