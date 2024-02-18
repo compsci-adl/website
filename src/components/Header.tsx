@@ -28,12 +28,7 @@ export default function Header() {
     });
 
     const checkUserPaid = useSWR<{ paid: boolean }>(['payment'], fetcher.get.query, {
-        isPaused: () => {
-            if (clerkUser.isLoaded && !clerkUser.isSignedIn) {
-                return true;
-            }
-            return !checkUserExists.data?.exists;
-        },
+        isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
     });
 
     const [isScrolled, setIsScrolled] = useState(false);
@@ -161,16 +156,15 @@ export default function Header() {
                                                 Continue Signing Up
                                             </Button>
                                         )}
-                                        {checkUserExists.data?.exists &&
-                                            !checkUserPaid.data?.paid && (
-                                                <Button
-                                                    colour="orange"
-                                                    href="/settings"
-                                                    onClick={closeMenu}
-                                                >
-                                                    Continue to payment
-                                                </Button>
-                                            )}
+                                        {!checkUserPaid.data?.paid && (
+                                            <Button
+                                                colour="orange"
+                                                href="/settings"
+                                                onClick={closeMenu}
+                                            >
+                                                Continue to payment
+                                            </Button>
+                                        )}
                                         <UserButton
                                             userExists={Boolean(checkUserExists.data?.exists)}
                                             userPaid={Boolean(checkUserPaid.data?.paid)}
