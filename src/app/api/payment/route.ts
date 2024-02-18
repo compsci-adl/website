@@ -119,6 +119,7 @@ export async function PUT(request: Request) {
     return Response.json({ success: true });
 }
 
+// Get membership payment status
 export async function GET() {
     const user = await currentUser();
     if (!user) {
