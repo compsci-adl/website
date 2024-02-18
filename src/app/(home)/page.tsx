@@ -30,7 +30,9 @@ export default function HomePage() {
                             <h1 className="text-5xl md:text-8xl">SOCIALISE,</h1>
                             <div className="h-2"></div>
 
-                            <Title colour="yellow">CODE.</Title>
+                            <Title colour="yellow" font="font-black">
+                                CODE.
+                            </Title>
                             <div className="h-4 md:h-8"></div>
                             <FancyRectangle colour="orange" offset="8" filled={false}>
                                 <div className="w-fit bg-orange px-2 py-2">
@@ -41,7 +43,7 @@ export default function HomePage() {
                     </div>
 
                     {/* Right side */}
-                    <div className="mt-12 w-full transition-all duration-500 md:w-auto lg:ml-20 lg:mt-0">
+                    <div className="mt-12 w-full transition-all duration-500 md:w-auto lg:ml-10 lg:mt-0">
                         <div className="relative z-10 mr-2">
                             <FancyRectangle colour="purple" offset="8" filled={true}>
                                 <div className="relative h-full w-full bg-white">
@@ -105,13 +107,13 @@ export default function HomePage() {
                     className="absolute -z-10 mt-12 w-0 max-w-[800px] lg:ml-36 lg:w-[50vw]"
                 />
 
-                <div className="mr-2 grid grid-cols-1 gap-8 text-xl lg:grid-cols-3">
-                    <FancyRectangle colour="white" offset="8" filled={true}>
-                        <div className="flex flex-col">
+                <div className="mr-2 grid auto-rows-fr grid-cols-1 gap-8 text-xl lg:grid-cols-3">
+                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
+                        <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-purple px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">Learn</h3>
                             </div>
-                            <div className="-mt-2 w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
+                            <div className="-mt-2 h-full w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
                                 <div className="relative text-lg text-black md:text-xl">
                                     <p>
                                         The club has a major focus on{' '}
@@ -127,14 +129,14 @@ export default function HomePage() {
                             </div>
                         </div>
                     </FancyRectangle>
-                    <FancyRectangle colour="white" offset="8" filled={true}>
-                        <div className="flex flex-col">
+                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
+                        <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-yellow px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">
                                     Socialise
                                 </h3>
                             </div>
-                            <div className="-mt-2 w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
+                            <div className="-mt-2 h-full w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
                                 <div className="relative text-lg text-black md:text-xl">
                                     <p>
                                         We are primarily a{' '}
@@ -150,12 +152,12 @@ export default function HomePage() {
                             </div>
                         </div>
                     </FancyRectangle>
-                    <FancyRectangle colour="white" offset="8" filled={true}>
-                        <div className="flex flex-col">
+                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
+                        <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-orange px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">Code</h3>
                             </div>
-                            <div className="-mt-2 w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
+                            <div className="-mt-2 h-full w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
                                 <div className="relative text-lg text-black md:text-xl">
                                     <p>
                                         <span className="relative inline-block">

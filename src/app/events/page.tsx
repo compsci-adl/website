@@ -15,7 +15,7 @@ export default function EventsPage() {
                     alt="Rectangle Grid"
                     width={750}
                     height={750}
-                    className="ml-40 max-w-full md:w-[50vw]"
+                    className="ml-40 max-w-full opacity-40 md:w-[50vw]"
                 />
                 <Image
                     src="/images/rectangle-grid.svg"
