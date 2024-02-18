@@ -28,7 +28,12 @@ export default function Header() {
     });
 
     const checkUserPaid = useSWR<{ paid: boolean }>(['payment'], fetcher.get.query, {
-        isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
+        isPaused: () => {
+            if (clerkUser.isLoaded && !clerkUser.isSignedIn) {
+                return true;
+            }
+            return !checkUserExists.data?.exists;
+        },
     });
 
     const [isScrolled, setIsScrolled] = useState(false);
