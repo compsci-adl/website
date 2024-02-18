@@ -31,7 +31,7 @@ export default function Header() {
         ['verify-membership-payment'],
         fetcher.get.query,
         {
-            isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
+            isPaused: () => clerkUser.isLoaded && clerkUser.isSignedIn,
         }
     );
 
