@@ -1,11 +1,18 @@
 import Button from '@/components/Button';
+import { env } from '@/env.mjs';
 import { useClerk, useUser } from '@clerk/clerk-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import FancyRectangle from './FancyRectangle';
 
-export default function UserButton({ userExists }: { userExists: boolean }) {
+export default function UserButton({
+    userExists,
+    userPaid,
+}: {
+    userExists: boolean;
+    userPaid: boolean;
+}) {
     const { user } = useUser();
     const [isPopupOpen, setPopupOpen] = useState(false);
     const { signOut } = useClerk();
@@ -30,18 +37,19 @@ export default function UserButton({ userExists }: { userExists: boolean }) {
                 {/* Popup menu */}
                 {isPopupOpen && (
                     <div className="absolute right-0 top-10 z-10 flex w-52 flex-col gap-y-4 border-4 border-black bg-white p-4 text-xl md:w-44 md:text-base">
-                        {/* Only show options if finished sign up */}
+                        {/* Only show settings if finished sign up and show drive link if membership paid */}
                         {userExists && (
                             <>
-                                {/* TODO(#16): Link to CS Club Drive */}
-                                <a
-                                    href=""
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="hover:underline"
-                                >
-                                    CS Club Drive
-                                </a>
+                                {userPaid && (
+                                    <Link
+                                        href={env.NEXT_PUBLIC_DRIVE_LINK}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:underline"
+                                    >
+                                        CS Club Drive
+                                    </Link>
+                                )}
                                 <Link href="/settings" className="hover:underline">
                                     Settings
                                 </Link>

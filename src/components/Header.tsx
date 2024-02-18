@@ -23,7 +23,11 @@ export default function Header() {
     };
 
     const clerkUser = useUser();
-    const checkUserExists = useSWR<{ exists: boolean }>(['check-user-exists'], fetcher.get.query, {
+    const checkUserExists = useSWR<{ exists: boolean }>(['user-existence'], fetcher.get.query, {
+        isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
+    });
+
+    const checkUserPaid = useSWR<{ paid: boolean }>(['payment'], fetcher.get.query, {
         isPaused: () => clerkUser.isLoaded && !clerkUser.isSignedIn,
     });
 
@@ -152,8 +156,18 @@ export default function Header() {
                                                 Continue Signing Up
                                             </Button>
                                         )}
+                                        {!checkUserPaid.data?.paid && (
+                                            <Button
+                                                colour="orange"
+                                                href="/settings"
+                                                onClick={closeMenu}
+                                            >
+                                                Continue to payment
+                                            </Button>
+                                        )}
                                         <UserButton
                                             userExists={Boolean(checkUserExists.data?.exists)}
+                                            userPaid={Boolean(checkUserPaid.data?.paid)}
                                         />
                                     </>
                                 ) : (
