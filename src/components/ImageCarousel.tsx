@@ -31,18 +31,31 @@ export default function ImageCarousel({ images, width, height }: ImageCarouselPr
     });
 
     return (
-        <div
-            className={`transition-opacity duration-500 ease-in-out ${
-                isTransitioning ? 'opacity-0' : 'opacity-100'
-            }`}
-        >
-            <Image
-                src={images[currentImageIndex].src}
-                alt={images[currentImageIndex].alt}
-                width={width}
-                height={height}
-                className="h-full w-full object-cover"
-            />
-        </div>
+        <>
+            {images.map((image, i) => (
+                <Image
+                    key={i}
+                    src={image.src}
+                    alt={image.alt}
+                    width={width}
+                    height={height}
+                    className="hidden"
+                    priority
+                />
+            ))}
+            <div
+                className={`transition-opacity duration-500 ease-in-out ${
+                    isTransitioning ? 'opacity-0' : 'opacity-100'
+                }`}
+            >
+                <Image
+                    src={images[currentImageIndex].src}
+                    alt={images[currentImageIndex].alt}
+                    width={width}
+                    height={height}
+                    className="h-full w-full object-cover"
+                />
+            </div>
+        </>
     );
 }
