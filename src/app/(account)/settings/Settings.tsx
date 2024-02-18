@@ -1,9 +1,9 @@
 'use client';
 
+import type { MembershipPayment } from '@/server/verify-membership-payment';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
-import type { MembershipPayment } from './page';
 import MembershipSettings from './tabs/MembershipSettings';
 
 export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
