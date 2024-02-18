@@ -7,7 +7,7 @@ import { updateMemberExpiryDate } from './update-member-expiry-date';
 
 export const verifyMembershipPayment = async (clerkId: string) => {
     // Get user's membership expiry date from the database
-    const [{ membershipExpiresAt }] = await db
+    const [member] = await db
         .select({
             id: memberTable.id,
             membershipExpiresAt: memberTable.membershipExpiresAt,
@@ -15,8 +15,8 @@ export const verifyMembershipPayment = async (clerkId: string) => {
         .from(memberTable)
         .where(eq(memberTable.clerkId, clerkId));
     // If membership expiry date exists, return the existing date
-    if (membershipExpiresAt) {
-        return { paid: true as const, membershipExpiresAt };
+    if (member && member.membershipExpiresAt) {
+        return { paid: true as const, membershipExpiresAt: member.membershipExpiresAt };
     }
 
     const paymentId = await redisClient.hGet(`payment:membership:${clerkId}`, 'paymentId');
