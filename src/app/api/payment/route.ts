@@ -48,7 +48,7 @@ export async function POST(request: Request) {
         idempotencyKey: crypto.randomUUID(),
         description: 'Payment made from CS Club website',
         order: {
-            locationId: env.SQUARE_LOCATION_ID!,
+            locationId: env.SQUARE_LOCATION_ID,
             customerId: reqBody.data.customerId,
             lineItems: [lineItem],
         },
@@ -72,12 +72,9 @@ export async function POST(request: Request) {
 
         if (reqBody.data.product === 'membership') {
             // Add Clerk ID and payment ID to Redis cache
-            const paymentId = resp.result.paymentLink?.id ?? '';
+            const orderId = resp.result.paymentLink?.orderId ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
-            await redisClient.hSet(`payment:membership:${user.id}`, {
-                paymentId: paymentId,
-                createdAt: createdAt,
-            });
+            await redisClient.hSet(`payment:membership:${user.id}`, { orderId, createdAt });
         }
 
         // The URL to direct the user is accessed from `url` and `long_url`

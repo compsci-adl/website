@@ -19,16 +19,18 @@ export const verifyMembershipPayment = async (clerkId: string) => {
         return { paid: true as const, membershipExpiresAt: member.membershipExpiresAt };
     }
 
-    const paymentId = await redisClient.hGet(`payment:membership:${clerkId}`, 'paymentId');
-    if (!paymentId) {
+    const orderId = await redisClient.hGet(`payment:membership:${clerkId}`, 'orderId');
+    if (!orderId) {
         // Membership payment for the user does not exist
         return { paid: false as const };
     }
 
-    const resp = await squareClient.checkoutApi.retrievePaymentLink(paymentId);
-    const respFields = resp.result;
-    if (!respFields.paymentLink || respFields.paymentLink.id !== paymentId) {
-        // Payment has not been made
+    try {
+        const orderRes = await squareClient.ordersApi.retrieveOrder(orderId);
+        if (orderRes.result.order?.state !== 'COMPLETED') {
+            return { paid: false as const };
+        }
+    } catch {
         return { paid: false as const };
     }
 
