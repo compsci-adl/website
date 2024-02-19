@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
@@ -5,6 +6,7 @@ import Title from '@/components/Title';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Fragment } from 'react';
 
 export default function HomePage() {
@@ -189,7 +191,7 @@ export default function HomePage() {
 
                     <div>
                         <h3>Supported By </h3>
-                        <div className="flex flex-col md:flex-row">
+                        <div className="flex flex-col smr:flex-row">
                             <h3 className="mb-2 mr-2 md:mb-0">Industry&apos;s </h3>
                             <FancyRectangle colour="orange" offset="6" filled={false}>
                                 <div className="w-fit bg-orange px-2">
@@ -205,10 +207,10 @@ export default function HomePage() {
                         if (sponsors.length === 0) return;
                         return (
                             <Fragment key={type}>
-                                <h3 className="text-2xl font-black capitalize lg:text-3xl">
+                                <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
                                     {type} Sponsors
                                 </h3>
-                                <div className="flex flex-wrap gap-6 pb-2">
+                                <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
                                     {sponsors.map(({ image, website, name }, i) => (
                                         <a href={website} key={i} className="block" target="_blank">
                                             <FancyRectangle colour="white" offset="10">
@@ -230,41 +232,47 @@ export default function HomePage() {
             </section>
 
             {/* CTA part 2 */}
-            <section>
+            <section className="mb-[1em] lg:mb-[6em] xl:mb-[10em]">
                 <div className="h-24"></div>
-                <div className="mb-[3em] md:mb-[8.75em] lg:md:mb-[11.3em]">
+                <div className="mb-[3em] md:mb-[8em] lg:mb-[6em]">
                     {/* <Grid /> */}
                     <Image
                         src="/images/rectangle-grid.svg"
                         alt="Rectangle Grid"
                         width={500}
                         height={500}
-                        className="absolute -z-10 mt-12 w-[20em] md:w-[35em] lg:w-[35em]"
+                        className="absolute -z-10 mt-10 w-[25em] md:w-[40em] lg:w-[45em]"
                     />
                 </div>
 
-                <div className="relative z-10 ml-[2.5em] flex w-fit flex-col md:ml-[4.4em]">
-                    <div className="relative mb-2 flex flex-row justify-end space-x-4 *:h-8 md:*:h-10">
-                        <Duck colour="white" outline />
-                        <Duck colour="white" outline />
-                        <Duck colour="white" />
-                        <Duck colour="white" />
-                        <Duck colour="white" />
-                    </div>
-                    <div className="relative z-10 flex flex-row">
-                        <div className="h-auto w-10 bg-orange"></div>
-                        <div className="relative flex flex-col">
-                            <span className="relative bg-white px-4 py-2 text-2xl font-black text-black lg:text-3xl">
-                                Thinking about <span className="text-orange"> Joining?</span>
-                            </span>
-                            <p className="border-2 border-white bg-grey px-4 py-2 text-lg lg:text-xl">
-                                New members are always welcome!
-                            </p>
+                <div className="z-10">
+                    <div className="relative z-10 w-fit xl:ml-12">
+                        <div className="relative mb-2 flex flex-row justify-end space-x-4 *:h-8 md:*:h-10">
+                            <Duck colour="white" outline />
+                            <Duck colour="white" outline />
+                            <Duck colour="white" />
+                            <Duck colour="white" />
+                            <Duck colour="white" />
                         </div>
-                    </div>{' '}
+                        <div className="relative z-10 flex flex-row">
+                            <div className="h-auto w-16 bg-orange"></div>
+                            <div className="relative flex flex-col">
+                                <span className="relative bg-white py-8 pl-4 pr-16 text-3xl font-black text-black lg:pr-32 lg:text-6xl">
+                                    Thinking about <span className="text-orange">Joining?</span>
+                                </span>
+                                <p className="border-2 border-white bg-grey py-6 pl-4 pr-16 text-lg lg:pr-32 lg:text-2xl">
+                                    New members are always welcome.{' '}
+                                    <Link
+                                        className="font-bold underline hover:text-yellow"
+                                        href={'/join'}
+                                    >
+                                        Join us today!
+                                    </Link>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <div className="h-16 smr:h-24 md:h-32 lg:h-20"></div>
             </section>
         </main>
     );
