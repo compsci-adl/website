@@ -1,5 +1,6 @@
 'use client';
 
+import { useClerk } from '@clerk/clerk-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
@@ -8,6 +9,7 @@ import FancyRectangle from '../FancyRectangle';
 import { Links, MenuLinks } from './components/Links';
 import LogoTitle from './components/LogoTitle';
 import ScrollShader from './components/ScrollShader';
+import { SignInJoinMobile } from './components/SignInJoin';
 
 export default function HeaderMobileClient({
     data,
@@ -21,6 +23,12 @@ export default function HeaderMobileClient({
         setIsMenuOpen(!isMenuOpen);
     };
     const closeMenu = () => {
+        setIsMenuOpen(false);
+    };
+
+    const { signOut } = useClerk();
+    const handleSignOut = async () => {
+        await signOut();
         setIsMenuOpen(false);
     };
 
@@ -50,7 +58,7 @@ export default function HeaderMobileClient({
                             ) : (
                                 <IoMdMenu aria-label="Menu" />
                             )}
-                            {data.nextStep !== null && !isMenuOpen && (
+                            {data.isSignedIn && data.nextStep !== null && !isMenuOpen && (
                                 <span className="absolute -right-2 -top-2 z-50 flex h-3 w-3">
                                     <div className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
                                     <div className="relative inline-flex h-3 w-3 rounded-full bg-red-500" />
@@ -65,7 +73,7 @@ export default function HeaderMobileClient({
                         <div className="mt-12 flex flex-col items-center gap-8 text-4xl text-grey">
                             <Links onClick={closeMenu} />
                             <div className="mt-4 h-0.5 w-full bg-grey" />
-                            {data.nextStep === 'signup' && (
+                            {data.isSignedIn && data.nextStep === 'signup' && (
                                 <Link
                                     href="/join"
                                     className="block font-bold underline"
@@ -74,7 +82,7 @@ export default function HeaderMobileClient({
                                     Continue Signing Up
                                 </Link>
                             )}
-                            {data.nextStep === 'payment' && (
+                            {data.isSignedIn && data.nextStep === 'payment' && (
                                 <Link
                                     href="/settings"
                                     className="block font-bold underline"
@@ -83,7 +91,16 @@ export default function HeaderMobileClient({
                                     Continue to payment
                                 </Link>
                             )}
+
                             <MenuLinks data={data} onClick={closeMenu} />
+
+                            {/* Links for sign up, sign in, sign out */}
+                            {!data.isSignedIn && <SignInJoinMobile onClick={closeMenu} />}
+                            {data.isSignedIn && (
+                                <Link href="/" onClick={handleSignOut}>
+                                    Sign Out
+                                </Link>
+                            )}
                         </div>
                     </>
                 )}
