@@ -52,7 +52,12 @@ export default function MembershipSettings({
                     </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
                     <div className="mb-6 border-b-2 border-black"></div>
-                    <Button type="submit" colour="orange" onClick={handlePayment}>
+                    <Button
+                        type="submit"
+                        colour="orange"
+                        onClick={handlePayment}
+                        loading={pay.isMutating}
+                    >
                         Pay Online
                     </Button>
                 </>

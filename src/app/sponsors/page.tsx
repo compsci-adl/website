@@ -3,6 +3,11 @@ import Duck from '@/components/Duck';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
 import { YEAR } from '@/data/sponsors';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+    title: 'Sponsors',
+};
 
 export default function SponsorsPage() {
     return (

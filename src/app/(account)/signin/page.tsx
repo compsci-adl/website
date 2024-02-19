@@ -6,12 +6,17 @@ import FancyRectangle from '@/components/FancyRectangle';
 import { useSignIn } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
 import { emailSchema } from '../schemas';
+
+// export const metadata: Metadata = {
+//     title: 'Sign In',
+// };
 
 const signInSchema = z.object({
     email: emailSchema,
@@ -28,6 +33,7 @@ export default function SignInPage() {
 
     const [signInLoading, setSignInLoading] = useState(false);
 
+    const router = useRouter();
     const handleSignIn = form.handleSubmit(async ({ email, password }) => {
         if (!isLoaded) return;
 
@@ -41,7 +47,8 @@ export default function SignInPage() {
 
             if (result.status === 'complete') {
                 await setActive({ session: result.createdSessionId });
-                location.href = '/';
+                router.push('/');
+                router.refresh();
             } else {
                 console.log(result);
             }

@@ -12,7 +12,11 @@ import StepThree from './steps/StepThree';
 import StepTwo from './steps/StepTwo';
 import { useJoinUsHeading, useJoinUsStep } from './store';
 
-export default function JoinUsPage() {
+// export const metadata: Metadata = {
+//     title: 'Join',
+// };
+
+export default function JoinPage() {
     const { step, setStep } = useJoinUsStep();
     const { heading } = useJoinUsHeading();
 
