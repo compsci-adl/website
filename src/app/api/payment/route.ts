@@ -11,7 +11,6 @@ import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
-import { verifyMembershipPayment } from '@/server/verify-membership-payment';
 import { currentUser } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm';
 import type { CreatePaymentLinkRequest } from 'square';
@@ -114,15 +113,4 @@ export async function PUT(request: Request) {
             .where(eq(memberTable.id, reqBody.data.id));
     }
     return Response.json({ success: true });
-}
-
-// Get membership payment status
-export async function GET() {
-    const user = await currentUser();
-    if (!user) {
-        return new Response(null, { status: 401 });
-    }
-
-    const { paid } = await verifyMembershipPayment(user.id);
-    return Response.json({ paid });
 }
