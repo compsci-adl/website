@@ -45,8 +45,14 @@ export default function ForgotPasswordPage() {
         resolver: zodResolver(resetPasswordSchema),
     });
 
+    const [sendCodeLoading, setSendCodeLoading] = useState(false);
+    const [resetPasswordLoading, setResetPasswordLoading] = useState(false);
+
     const handleSendCode = sendCodeForm.handleSubmit(async ({ email }) => {
         if (!isLoaded) return;
+
+        setSendCodeLoading(true);
+
         try {
             const result = await signIn.create({
                 strategy: 'reset_password_email_code',
@@ -70,10 +76,15 @@ export default function ForgotPasswordPage() {
                 },
             ]);
         }
+
+        setSendCodeLoading(false);
     });
 
     const handleResetPassword = resetPasswordForm.handleSubmit(async ({ code, password }) => {
         if (!isLoaded) return;
+
+        setResetPasswordLoading(true);
+
         try {
             const resetResult = await signIn.attemptFirstFactor({
                 strategy: 'reset_password_email_code',
@@ -105,6 +116,8 @@ export default function ForgotPasswordPage() {
                 },
             ]);
         }
+
+        setResetPasswordLoading(false);
     });
 
     return (
@@ -120,7 +133,12 @@ export default function ForgotPasswordPage() {
                                 control={sendCodeForm.control}
                                 name="email"
                             />
-                            <Button colour="orange" width="w-[19rem] md:w-[25rem]" type="submit">
+                            <Button
+                                colour="orange"
+                                width="w-[19rem] md:w-[25rem]"
+                                type="submit"
+                                loading={sendCodeLoading}
+                            >
                                 Send Code
                             </Button>
                         </form>
@@ -145,7 +163,12 @@ export default function ForgotPasswordPage() {
                                 control={resetPasswordForm.control}
                                 name="code"
                             />
-                            <Button colour="orange" width="w-[19rem] md:w-[25rem]" type="submit">
+                            <Button
+                                colour="orange"
+                                width="w-[19rem] md:w-[25rem]"
+                                type="submit"
+                                loading={resetPasswordLoading}
+                            >
                                 Reset Password
                             </Button>
                         </form>

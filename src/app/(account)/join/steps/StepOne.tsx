@@ -31,8 +31,13 @@ function VerifyEmail() {
 
     const { isLoaded, signUp, setActive } = useSignUp();
 
+    const [verifyEmailLoading, setVerifyEmailLoading] = useState(false);
+
     const handleVerify = form.handleSubmit(async ({ code }) => {
         if (!isLoaded) return;
+
+        setVerifyEmailLoading(true);
+
         try {
             const completeSignUp = await signUp.attemptEmailAddressVerification({
                 code,
@@ -53,13 +58,20 @@ function VerifyEmail() {
                 },
             ]);
         }
+
+        setVerifyEmailLoading(false);
     });
 
     return (
         <div className="mt-4">
             <form onSubmit={handleVerify}>
                 <ControlledField label="Code" control={form.control} name="code" />
-                <Button colour="orange" width="w-[19rem] md:w-[25.5rem]" type="submit">
+                <Button
+                    colour="orange"
+                    width="w-[19rem] md:w-[25.5rem]"
+                    type="submit"
+                    loading={verifyEmailLoading}
+                >
                     Verify Email
                 </Button>
             </form>
@@ -88,8 +100,13 @@ export default function StepOne() {
     const { signUp, isLoaded } = useSignUp();
     const [pendingVerification, setPendingVerification] = useState(false);
 
+    const [emailJoinLoading, setEmailJoinLoading] = useState(false);
+
     const handleSignUp = form.handleSubmit(async (formData) => {
         if (!isLoaded) return;
+
+        setEmailJoinLoading(true);
+
         try {
             await signUp.create(formData);
             await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
@@ -111,6 +128,8 @@ export default function StepOne() {
                 },
             ]);
         }
+
+        setEmailJoinLoading(false);
     });
 
     const handleGoogleSignUp = async () => {
@@ -152,7 +171,12 @@ export default function StepOne() {
                     name="password"
                 />
                 <div className="mt-8 flex justify-center space-x-4">
-                    <Button colour="orange" width="w-[19rem] md:w-[25.5rem]" type="submit">
+                    <Button
+                        colour="orange"
+                        width="w-[19rem] md:w-[25.5rem]"
+                        type="submit"
+                        loading={emailJoinLoading}
+                    >
                         Continue
                     </Button>
                 </div>
