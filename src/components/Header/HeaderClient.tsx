@@ -12,7 +12,7 @@ import FancyRectangle from '../FancyRectangle';
 import { Links, MenuLinks } from './components/Links';
 import LogoTitle from './components/LogoTitle';
 import ScrollShader from './components/ScrollShader';
-import SignInJoin from './components/SignInJoin';
+import { SignInJoin } from './components/SignInJoin';
 
 function UserButton({ data }: { data: HeaderData }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
