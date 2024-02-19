@@ -8,8 +8,9 @@ import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../sto
 
 export default function StepFour() {
     useSetJoinUsHeading({
-        title: 'Payment',
-        description: 'Complete membership payment',
+        title: 'Confirm Terms',
+        description:
+            'You must read and agree to the terms and proceed to complete the membership payment.',
     });
 
     const [agreement, setAgreement] = useState(false);
@@ -42,8 +43,9 @@ export default function StepFour() {
     return (
         <div>
             <div className="mb-4 mt-8">
+                {/* TODO: Add links to codes of conduct */}
                 <Field
-                    label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in my membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
+                    label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in your membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You also acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
                     value={agreement ? 'Yes' : 'No'}
                     onChange={toggleAgreement}
                     error={agreementError}
