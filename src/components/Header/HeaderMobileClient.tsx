@@ -95,9 +95,18 @@ export default function HeaderMobileClient({
                             <MenuLinks data={data} onClick={closeMenu} />
 
                             {/* Links for sign up, sign in, sign out */}
-                            {!data.isSignedIn && <SignInJoinMobile onClick={closeMenu} />}
+                            {!data.isSignedIn && (
+                                <SignInJoinMobile
+                                    className="block hover:underline"
+                                    onClick={closeMenu}
+                                />
+                            )}
                             {data.isSignedIn && (
-                                <Link href="/" onClick={handleSignOut}>
+                                <Link
+                                    href="/"
+                                    className="block hover:underline"
+                                    onClick={handleSignOut}
+                                >
                                     Sign Out
                                 </Link>
                             )}
