@@ -6,6 +6,7 @@ import Title from '@/components/Title';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Fragment } from 'react';
 
 export default function HomePage() {
@@ -244,8 +245,8 @@ export default function HomePage() {
                     />
                 </div>
 
-                <div className="z-10 flex flex-col gap-20 xl:flex-row">
-                    <div className="relative z-10 flex w-fit flex-col xl:ml-12">
+                <div className="z-10">
+                    <div className="relative z-10 w-fit xl:ml-12">
                         <div className="relative mb-2 flex flex-row justify-end space-x-4 *:h-8 md:*:h-10">
                             <Duck colour="white" outline />
                             <Duck colour="white" outline />
@@ -259,23 +260,16 @@ export default function HomePage() {
                                 <span className="relative bg-white py-8 pl-4 pr-16 text-3xl font-black text-black lg:pr-32 lg:text-6xl">
                                     Thinking about <span className="text-orange">Joining?</span>
                                 </span>
-                                <p className="border-2 border-white bg-grey py-4 pl-4 pr-16 text-lg lg:pr-32 lg:text-xl">
-                                    New members are always welcome!
+                                <p className="border-2 border-white bg-grey py-6 pl-4 pr-16 text-lg lg:pr-32 lg:text-2xl">
+                                    New members are always welcome.{' '}
+                                    <Link
+                                        className="font-bold underline hover:text-yellow"
+                                        href={'/join'}
+                                    >
+                                        Join us today!
+                                    </Link>
                                 </p>
                             </div>
-                        </div>{' '}
-                    </div>
-
-                    <div className="h-fill flex flex-row justify-center py-4 xl:flex-col">
-                        <div className="w-fit">
-                            <Button
-                                colour="purple"
-                                href="/join"
-                                width="w-64"
-                                font="text-center text-black text-xl md:text-4xl lg:text-5xl"
-                            >
-                                Join Us
-                            </Button>
                         </div>
                     </div>
                 </div>
