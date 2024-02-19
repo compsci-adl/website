@@ -15,8 +15,8 @@ export default function SponsorsPage() {
             <div className="max-w-3xl border-x-4 border-white p-2 text-center text-lg md:p-5 md:text-2xl">
                 The <b>University of Adelaide Computer Science Club</b> are proudly supported by our{' '}
                 <b>generous sponsors</b>. Their unwavering support make events and workshops
-                possible, fostering an environment for aspiring tech enthusiastic to excel within
-                our community.
+                possible, fostering an environment for aspiring tech enthusiasts to excel within our
+                community.
             </div>
             <Sponsors />
             <Paragraph>
