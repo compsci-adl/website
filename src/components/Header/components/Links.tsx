@@ -17,9 +17,11 @@ export function MenuLinks({ data, onClick }: { data: HeaderData; onClick?: () =>
                     CS Club Drive
                 </Link>
             )}
-            <Link href="/settings" className="block hover:underline" onClick={onClick}>
-                Settings
-            </Link>
+            {data.isSignedIn && (
+                <Link href="/settings" className="block hover:underline" onClick={onClick}>
+                    Settings
+                </Link>
+            )}
             {data.isAdmin && (
                 <Link href="/admin" className="block hover:underline" onClick={onClick}>
                     Admin Panel
