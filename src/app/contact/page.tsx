@@ -1,7 +1,12 @@
 import Title from '@/components/Title';
+import type { Metadata } from 'next';
 import Contact from './Contact';
 import Form from './Form';
 import Sponsorship from './Sponsorship';
+
+export const metadata: Metadata = {
+    title: 'Contact',
+};
 
 export default function ContactPage() {
     return (

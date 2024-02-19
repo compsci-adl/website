@@ -2,8 +2,13 @@ import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { db } from '@/db';
 import { currentUser } from '@clerk/nextjs';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import MemberForm from './MemberForm';
+
+export const metadata: Metadata = {
+    title: 'Admin Panel',
+};
 
 const queryMembers = async () => {
     const dbMembers = await db.query.memberTable.findMany({

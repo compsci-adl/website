@@ -1,7 +1,12 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Events from './Events';
 import FridayNight from './FridayNight';
 import Info from './Info';
+
+export const metadata: Metadata = {
+    title: 'Events',
+};
 
 export default function EventsPage() {
     return (

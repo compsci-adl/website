@@ -7,7 +7,10 @@ import { Archivo } from 'next/font/google';
 
 export const metadata: Metadata = {
     icons: '/favicon.ico',
-    title: 'Computer Science Club',
+    title: {
+        template: '%s | Computer Science Club',
+        default: 'Computer Science Club',
+    },
     description:
         'The University of Adelaide Computer Science Club is a student-run club for those with an interest in computer science or computing in general.',
 };
