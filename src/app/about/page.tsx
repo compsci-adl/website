@@ -4,10 +4,15 @@ import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
 import { COMMITTEE_MEMBERS } from '@/data/committee-members';
 import { LINKS } from '@/data/links';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import FAQ from './FAQ';
 
-export default function AboutUs() {
+export const metadata: Metadata = {
+    title: 'About',
+};
+
+export default function AboutPage() {
     return (
         <main className="relative">
             <div className="h-full">

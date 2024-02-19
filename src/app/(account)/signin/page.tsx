@@ -5,6 +5,7 @@ import ControlledField from '@/components/ControlledField';
 import FancyRectangle from '@/components/FancyRectangle';
 import { useSignIn } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -13,6 +14,10 @@ import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
 import { emailSchema } from '../schemas';
+
+export const metadata: Metadata = {
+    title: 'Sign In',
+};
 
 const signInSchema = z.object({
     email: emailSchema,

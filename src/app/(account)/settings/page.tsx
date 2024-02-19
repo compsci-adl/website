@@ -3,9 +3,14 @@ import Title from '@/components/Title';
 import { checkUserExists } from '@/server/check-user-exists';
 import { verifyMembershipPayment } from '@/server/verify-membership-payment';
 import { currentUser } from '@clerk/nextjs';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import Settings from './Settings';
+
+export const metadata: Metadata = {
+    title: 'Settings',
+};
 
 export default async function SettingsPage() {
     const user = await currentUser();
