@@ -1,4 +1,3 @@
-import Button from '@/components/Button';
 import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
