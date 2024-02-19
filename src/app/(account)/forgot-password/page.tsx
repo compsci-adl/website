@@ -11,6 +11,11 @@ import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
 import { codeSchema, emailSchema, passwordSchema } from '../schemas';
 
+// export const metadata: Metadata = {
+//     title: 'Forgot Password',
+//     robots: { index: false, follow: false },
+// };
+
 const sendCodeSchema = z.object({
     email: emailSchema,
 });

@@ -14,6 +14,10 @@ import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
 import { emailSchema } from '../schemas';
 
+// export const metadata: Metadata = {
+//     title: 'Sign In',
+// };
+
 const signInSchema = z.object({
     email: emailSchema,
     password: z.string().min(1, { message: 'Please enter your password' }),
