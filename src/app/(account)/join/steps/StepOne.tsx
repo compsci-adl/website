@@ -3,6 +3,7 @@ import ControlledField from '@/components/ControlledField';
 import { useSignUp } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
@@ -33,6 +34,7 @@ function VerifyEmail() {
 
     const [verifyEmailLoading, setVerifyEmailLoading] = useState(false);
 
+    const router = useRouter();
     const handleVerify = form.handleSubmit(async ({ code }) => {
         if (!isLoaded) return;
 
@@ -48,6 +50,7 @@ function VerifyEmail() {
                 return;
             }
             await setActive({ session: completeSignUp.createdSessionId });
+            router.refresh();
         } catch (error) {
             handleClerkErrors(error, form, [
                 { code: 'form_param_nil', field: 'code', message: 'Please enter the the code.' },
