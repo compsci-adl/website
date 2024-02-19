@@ -61,7 +61,7 @@ export default function StepTwo() {
             <ControlledField label="First Name" control={form.control} name="firstName" />
             <ControlledField label="Last Name" control={form.control} name="lastName" />
             <ControlledField
-                label="Are you an university student?"
+                label="Are you a university student?"
                 control={form.control}
                 name="studentStatus"
                 options={STUDENT_STATUSES}
