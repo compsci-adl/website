@@ -58,14 +58,14 @@ function Details() {
                     <li>Need to blow off some steam from a long week of studying?</li>
                     <li>Wanna hang out with like-minded students?</li>
                     <li>
-                        Want to be the final boss on Super Smash Bro&apos;s? or would just like some
+                        Want to beat the final boss on Super Smash Bros? Or do you just want some
                         free food every now and then?
                     </li>
                 </ul>
                 <p>
                     Come down to the{' '}
                     <span className="font-bold text-yellow">Duck Lounge (EM110)</span> in the
-                    Engineering and Mathematics Building for some games!
+                    Engineering and Maths building for some games!
                 </p>
                 <p className="font-bold">
                     NOTE: Free food will be provided on the last Friday of every month. One free
