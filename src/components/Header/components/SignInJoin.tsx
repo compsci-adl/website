@@ -14,13 +14,19 @@ export function SignInJoin() {
     );
 }
 
-export function SignInJoinMobile({ onClick }: { onClick?: () => void }) {
+export function SignInJoinMobile({
+    className,
+    onClick,
+}: {
+    className: string;
+    onClick?: () => void;
+}) {
     return (
         <>
-            <Link onClick={onClick} href="/signin">
+            <Link onClick={onClick} className={className} href="/signin">
                 Sign In
             </Link>
-            <Link onClick={onClick} href="/join">
+            <Link onClick={onClick} className={className} href="/join">
                 Join Us
             </Link>
         </>
