@@ -64,7 +64,7 @@ export default function AboutUs() {
                                 The University of Adelaide Computer Science Club is a student-run
                                 club for those with an interest in computer science or computing in
                                 general. Although we&apos;re a university club, we welcome anyone
-                                interested in computer science and/or socializing to join!
+                                interested in computer science and/or socialising to join!
                             </p>
                         </div>
                     </div>
@@ -87,7 +87,7 @@ export default function AboutUs() {
                                     <li>
                                         The{' '}
                                         <span className="font-bold text-yellow">Duck Lounge</span>{' '}
-                                        (located at EM110)
+                                        (located at Engineering and Maths EM110)
                                     </li>
                                     <li>
                                         Frequent computer science talks on a diverse range of topics
@@ -118,9 +118,9 @@ export default function AboutUs() {
                                         throughout the year
                                     </li>
                                     <li>
-                                        Lest not forget, a{' '}
+                                        And let&apos;s not forget, a{' '}
                                         <span className=" font-bold text-yellow">pub crawl</span>{' '}
-                                        each semester to celebrate our studies
+                                        each year to celebrate our studies
                                     </li>
                                 </ul>
                             </Paragraph>
@@ -147,7 +147,7 @@ export default function AboutUs() {
                             width={30}
                             height={30}
                         />
-                        <p className="my-4 text-lg">
+                        <p className="my-4 text-lg lg:text-xl">
                             The club runs various competitions throughout the year, offering members
                             a chance to have fun and win prizes. These have included programming and
                             video game competitions. The club also coordinates projects among club
@@ -295,9 +295,9 @@ export default function AboutUs() {
                                     <div>
                                         <p>
                                             Members will have access to the Duck Lounge, a diverse
-                                            range of educational talks and workshops, social nights,
-                                            and a wide network of other computer science students
-                                            and graduates.
+                                            range of educational talks, workshops and resources,
+                                            social nights, and a wide network of other computer
+                                            science students and graduates.
                                         </p>
                                     </div>
                                 }
@@ -309,7 +309,8 @@ export default function AboutUs() {
                                     <p>
                                         Club membership costs $10 for the full year. You can pay for
                                         membership either online on our website, or in person at a
-                                        club event or the duck lounge.
+                                        club event or the Duck Lounge by speaking to one of the
+                                        committee members.
                                     </p>
                                 }
                                 colour={'purple'}
@@ -319,8 +320,9 @@ export default function AboutUs() {
                                 answer={
                                     <p>
                                         The Duck Lounge is located at EM110 in the Engineering and
-                                        Mathematics Building. It has a study space with power
-                                        outlets and couches, along with a Nintendo Switch for games.
+                                        Maths building. It has a study space with power outlets and
+                                        couches, along with a Nintendo Switch for games. We also
+                                        sell snacks and drinks at affordable prices.
                                     </p>
                                 }
                                 colour={'orange'}
