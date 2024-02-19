@@ -58,6 +58,7 @@ export default function MembershipSettings({
                         onClick={handlePayment}
                         width="w-full"
                         size="small"
+                        loading={pay.isMutating}
                     >
                         Pay Online
                     </Button>
