@@ -190,7 +190,7 @@ export default function HomePage() {
 
                     <div>
                         <h3>Supported By </h3>
-                        <div className="flex flex-col md:flex-row">
+                        <div className="flex flex-col smr:flex-row">
                             <h3 className="mb-2 mr-2 md:mb-0">Industry&apos;s </h3>
                             <FancyRectangle colour="orange" offset="6" filled={false}>
                                 <div className="w-fit bg-orange px-2">
@@ -206,10 +206,10 @@ export default function HomePage() {
                         if (sponsors.length === 0) return;
                         return (
                             <Fragment key={type}>
-                                <h3 className="text-2xl font-black capitalize lg:text-3xl">
+                                <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
                                     {type} Sponsors
                                 </h3>
-                                <div className="flex flex-wrap gap-6 pb-2">
+                                <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
                                     {sponsors.map(({ image, website, name }, i) => (
                                         <a href={website} key={i} className="block" target="_blank">
                                             <FancyRectangle colour="white" offset="10">
