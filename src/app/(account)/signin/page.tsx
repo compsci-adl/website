@@ -6,6 +6,7 @@ import FancyRectangle from '@/components/FancyRectangle';
 import { useSignIn } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { FcGoogle } from 'react-icons/fc';
 import { z } from 'zod';
@@ -25,8 +26,13 @@ export default function SignInPage() {
         resolver: zodResolver(signInSchema),
     });
 
+    const [signInLoading, setSignInLoading] = useState(false);
+
     const handleSignIn = form.handleSubmit(async ({ email, password }) => {
         if (!isLoaded) return;
+
+        setSignInLoading(true);
+
         try {
             const result = await signIn.create({
                 identifier: email,
@@ -59,6 +65,8 @@ export default function SignInPage() {
                 },
             ]);
         }
+
+        setSignInLoading(false);
     });
 
     const handleGoogleSignIn = async () => {
@@ -110,7 +118,12 @@ export default function SignInPage() {
                         >
                             Forgot password?
                         </Link>
-                        <Button type="submit" colour="orange" width="w-[19rem] md:w-[25rem]">
+                        <Button
+                            type="submit"
+                            colour="orange"
+                            width="w-[19rem] md:w-[25rem]"
+                            loading={signInLoading}
+                        >
                             Sign In
                         </Button>
                     </form>
