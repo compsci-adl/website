@@ -1,6 +1,7 @@
+import Link from 'next/link';
 import Button from '../../Button';
 
-export default function SignInJoin() {
+export function SignInJoin() {
     return (
         <>
             <Button colour="orange" href="/signin">
@@ -9,6 +10,19 @@ export default function SignInJoin() {
             <Button colour="purple" href="/join">
                 Join Us
             </Button>
+        </>
+    );
+}
+
+export function SignInJoinMobile({ onClick }: { onClick?: () => void }) {
+    return (
+        <>
+            <Link onClick={onClick} href="/signin">
+                Sign In
+            </Link>
+            <Link onClick={onClick} href="/join">
+                Join Us
+            </Link>
         </>
     );
 }
