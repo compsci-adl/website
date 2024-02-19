@@ -5,17 +5,16 @@ import ControlledField from '@/components/ControlledField';
 import FancyRectangle from '@/components/FancyRectangle';
 import { useSignIn } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
-import type { Metadata } from 'next';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { handleClerkErrors } from '../helpers';
 import { codeSchema, emailSchema, passwordSchema } from '../schemas';
 
-export const metadata: Metadata = {
-    title: 'Forgot Password',
-    robots: { index: false, follow: false },
-};
+// export const metadata: Metadata = {
+//     title: 'Forgot Password',
+//     robots: { index: false, follow: false },
+// };
 
 const sendCodeSchema = z.object({
     email: emailSchema,

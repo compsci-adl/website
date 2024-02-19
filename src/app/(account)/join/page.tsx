@@ -3,7 +3,6 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import ProgressBar from './ProgressBar';
@@ -13,9 +12,9 @@ import StepThree from './steps/StepThree';
 import StepTwo from './steps/StepTwo';
 import { useJoinUsHeading, useJoinUsStep } from './store';
 
-export const metadata: Metadata = {
-    title: 'Join',
-};
+// export const metadata: Metadata = {
+//     title: 'Join',
+// };
 
 export default function JoinPage() {
     const { step, setStep } = useJoinUsStep();
