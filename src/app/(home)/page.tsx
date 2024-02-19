@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
@@ -230,41 +231,54 @@ export default function HomePage() {
             </section>
 
             {/* CTA part 2 */}
-            <section>
+            <section className="mb-[1em] lg:mb-[6em] xl:mb-[10em]">
                 <div className="h-24"></div>
-                <div className="mb-[3em] md:mb-[8.75em] lg:md:mb-[11.3em]">
+                <div className="mb-[3em] md:mb-[8em] lg:mb-[6em]">
                     {/* <Grid /> */}
                     <Image
                         src="/images/rectangle-grid.svg"
                         alt="Rectangle Grid"
                         width={500}
                         height={500}
-                        className="absolute -z-10 mt-12 w-[20em] md:w-[35em] lg:w-[35em]"
+                        className="absolute -z-10 mt-10 w-[25em] md:w-[40em] lg:w-[45em]"
                     />
                 </div>
 
-                <div className="relative z-10 ml-[2.5em] flex w-fit flex-col md:ml-[4.4em]">
-                    <div className="relative mb-2 flex flex-row justify-end space-x-4 *:h-8 md:*:h-10">
-                        <Duck colour="white" outline />
-                        <Duck colour="white" outline />
-                        <Duck colour="white" />
-                        <Duck colour="white" />
-                        <Duck colour="white" />
-                    </div>
-                    <div className="relative z-10 flex flex-row">
-                        <div className="h-auto w-10 bg-orange"></div>
-                        <div className="relative flex flex-col">
-                            <span className="relative bg-white px-4 py-2 text-2xl font-black text-black lg:text-3xl">
-                                Thinking about <span className="text-orange"> Joining?</span>
-                            </span>
-                            <p className="border-2 border-white bg-grey px-4 py-2 text-lg lg:text-xl">
-                                New members are always welcome!
-                            </p>
+                <div className="z-10 flex flex-col gap-20 xl:flex-row">
+                    <div className="relative z-10 flex w-fit flex-col xl:ml-12">
+                        <div className="relative mb-2 flex flex-row justify-end space-x-4 *:h-8 md:*:h-10">
+                            <Duck colour="white" outline />
+                            <Duck colour="white" outline />
+                            <Duck colour="white" />
+                            <Duck colour="white" />
+                            <Duck colour="white" />
                         </div>
-                    </div>{' '}
-                </div>
+                        <div className="relative z-10 flex flex-row">
+                            <div className="h-auto w-16 bg-orange"></div>
+                            <div className="relative flex flex-col">
+                                <span className="relative bg-white py-8 pl-4 pr-16 text-3xl font-black text-black lg:pr-32 lg:text-6xl">
+                                    Thinking about <span className="text-orange">Joining?</span>
+                                </span>
+                                <p className="border-2 border-white bg-grey py-4 pl-4 pr-16 text-lg lg:pr-32 lg:text-xl">
+                                    New members are always welcome!
+                                </p>
+                            </div>
+                        </div>{' '}
+                    </div>
 
-                <div className="h-16 smr:h-24 md:h-32 lg:h-20"></div>
+                    <div className="h-fill flex flex-row justify-center py-4 xl:flex-col">
+                        <div className="w-fit">
+                            <Button
+                                colour="purple"
+                                href="/join"
+                                width="w-64"
+                                font="text-center text-black text-xl md:text-4xl lg:text-5xl"
+                            >
+                                Join Us
+                            </Button>
+                        </div>
+                    </div>
+                </div>
             </section>
         </main>
     );
