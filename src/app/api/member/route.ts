@@ -4,6 +4,8 @@ import { currentUser } from '@clerk/nextjs';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
+export const runtime = 'edge';
+
 export async function POST(request: Request) {
     const req = await request.json();
     const schema = createInsertSchema(memberTable, {

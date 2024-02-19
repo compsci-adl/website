@@ -17,6 +17,8 @@ import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
 import { z } from 'zod';
 
+export const runtime = 'edge';
+
 // Create a Square payment link
 // See: https://developer.squareup.com/reference/square/checkout-api/create-payment-link
 export async function POST(request: Request) {
