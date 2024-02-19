@@ -8,6 +8,7 @@ import MemberForm from './MemberForm';
 
 export const metadata: Metadata = {
     title: 'Admin Panel',
+    robots: { index: false, follow: false },
 };
 
 const queryMembers = async () => {

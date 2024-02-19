@@ -10,6 +10,7 @@ import Settings from './Settings';
 
 export const metadata: Metadata = {
     title: 'Settings',
+    robots: { index: false, follow: false },
 };
 
 export default async function SettingsPage() {
