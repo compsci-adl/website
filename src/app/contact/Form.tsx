@@ -13,7 +13,7 @@ export default function Form({ className }: { className?: string }) {
 
     return (
         <div className={`${className} relative`}>
-            <div className="absolute right-[25px] top-[-48px] gap-6 md:flex">
+            <div className="absolute right-[25px] top-[-48px] hidden gap-6 md:flex">
                 <Duck colour="white" />
                 <Duck colour="white" />
             </div>
