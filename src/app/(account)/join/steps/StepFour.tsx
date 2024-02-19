@@ -26,6 +26,7 @@ export default function StepFour() {
         },
         onSuccess: () => {
             router.push('/settings');
+            router.refresh();
         },
     });
 
