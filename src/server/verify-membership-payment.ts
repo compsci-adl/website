@@ -26,20 +26,26 @@ export const verifyMembershipPayment = async (clerkId: string) => {
     }
 
     try {
+        // Get order details
         const orderRes = await squareClient.ordersApi.retrieveOrder(orderId);
-        if (orderRes.result.order?.state !== 'COMPLETED') {
-            return { paid: false as const };
+
+        // Get payment ID from the order
+        const paymentId = orderRes.result.order?.tenders?.[0]?.paymentId;
+
+        // If payment ID exists, payment was successful
+        if (paymentId) {
+            // Set expiry date to be the January 1st of the following year
+            const expiryDate = await updateMemberExpiryDate(clerkId, 'clerkId');
+
+            // Delete key from Redis since it is no longer needed
+            await redisClient.del(`payment:membership:${clerkId}`);
+
+            return { paid: true as const, membershipExpiresAt: expiryDate };
         }
+
+        return { paid: false as const };
     } catch {
         return { paid: false as const };
     }
-
-    // Set expiry date to be the January 1st of the following year
-    const expiryDate = await updateMemberExpiryDate(clerkId, 'clerkId');
-
-    // Delete key from Redis since it is no longer needed
-    await redisClient.del(`payment:membership:${clerkId}`);
-
-    return { paid: true as const, membershipExpiresAt: expiryDate };
 };
 export type MembershipPayment = Awaited<ReturnType<typeof verifyMembershipPayment>>;
