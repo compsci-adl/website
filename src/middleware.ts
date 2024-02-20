@@ -1,13 +1,14 @@
-import { authMiddleware } from '@clerk/nextjs';
-
-const authRoutes = ['/account', '/dashboard', '/settings', '/admin'];
-
-export default authMiddleware({
+		import { authMiddleware } from '@clerk/nextjs';
+		
+		const authRoutes = ['/account', '/dashboard', '/settings', '/admin'];
+		
+		export default authMiddleware({
     publicRoutes: (req) => {
-        return !authRoutes.includes(req.nextUrl.pathname);
+return !authRoutes.includes(req.nextUrl.pathname);
     },
-});
-
-export const config = {
+		});
+		
+		export const config = {
     matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
-};
+		};
+		
