@@ -108,9 +108,9 @@ export default function ForgotPasswordPage() {
     });
 
     return (
-        <section className="flex justify-center">
-            <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="z-0 w-[24rem] border-4 border-black bg-white px-8 py-8 text-black md:w-[32rem] md:px-12 md:py-12">
+        <section className="w-full max-w-lg">
+            <FancyRectangle colour="purple" offset="8" filled={true} fullWidth={true}>
+                <div className="z-0 w-full border-4 border-black bg-white p-8 text-black md:p-12">
                     <h3 className="text-3xl font-bold">Forgot Your Password?</h3>
                     <p className="mb-8 text-xl">{STEP_INSTRUCTIONS[step]}</p>
                     {step === 1 && (

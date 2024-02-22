@@ -34,7 +34,7 @@ export default function Settings({ settingData }: { settingData: SettingData }) 
                     refresh();
                 }}
             />
-            <div className="flex w-full">
+            <div className="flex w-full md:col-span-2">
                 <Tab settingData={settingData} />
             </div>
         </>

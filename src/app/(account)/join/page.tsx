@@ -49,11 +49,11 @@ export default function JoinUsPage() {
                     </p>
                 </div>
             </section>
-            <section>
-                <FancyRectangle colour="purple" offset="8" filled={true}>
-                    <div className="z-0 w-full border-4 border-black bg-white px-12 py-12 text-black">
+            <section className="w-full max-w-lg">
+                <FancyRectangle colour="purple" offset="8" filled={true} fullWidth={true}>
+                    <div className="z-0 w-full border-4 border-black bg-white p-8 text-black md:p-12">
                         <h3 className="text-3xl font-bold">{heading.title}</h3>
-                        <p className="text-xl">{heading.description}</p>
+                        <p className="mb-8 text-xl">{heading.description}</p>
 
                         <SignedOut>
                             <StepOne />

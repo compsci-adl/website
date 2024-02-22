@@ -29,15 +29,18 @@ interface SidebarProps {
 
 export default function Sidebar({ currentTab, onTabChange }: SidebarProps) {
     return (
-        <div className="flex w-48 flex-col space-y-4 border-r-2 border-grey">
-            {TAB_NAMES.map((tab, i) => (
-                <SidebarTab
-                    currentTab={currentTab}
-                    onTabChange={onTabChange}
-                    tabName={tab}
-                    key={i}
-                />
-            ))}
+        <div className="flex flex-col md:flex-row md:justify-between">
+            <div className="flex flex-col gap-y-4">
+                {TAB_NAMES.map((tab, i) => (
+                    <SidebarTab
+                        currentTab={currentTab}
+                        onTabChange={onTabChange}
+                        tabName={tab}
+                        key={i}
+                    />
+                ))}
+            </div>
+            <div className="my-4 border-b-2 border-grey md:my-0 md:mr-4 md:border-r-2"></div>
         </div>
     );
 }
