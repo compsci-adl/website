@@ -28,7 +28,7 @@ export default function UserButton({
     if (!user) return <></>;
 
     return (
-        <FancyRectangle colour="black" offset="4" filled={true}>
+        <FancyRectangle colour="black" offset="4" filled>
             <div className="relative flex w-11 gap-y-2 border-2 border-black">
                 <button onClick={handleButtonClick}>
                     <Image src={user.imageUrl} alt="Profile" width={100} height={100} />

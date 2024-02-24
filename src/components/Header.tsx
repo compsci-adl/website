@@ -92,7 +92,7 @@ export default function Header() {
                                     isMenuOpen ? 'right-8' : 'right-0'
                                 }`}
                             >
-                                <FancyRectangle colour="black" offset="4" filled={true}>
+                                <FancyRectangle colour="black" offset="4" filled>
                                     <button
                                         onClick={toggleMenu}
                                         className={`${

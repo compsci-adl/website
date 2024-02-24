@@ -20,7 +20,7 @@ export default async function SettingsPage() {
                 <Title colour="purple">Settings</Title>
             </div>
             <section className="w-full max-w-lg">
-                <FancyRectangle colour="purple" offset="8" filled={true} fullWidth={true}>
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
                     <div className="z-0 grid w-full border-4 border-black bg-white p-8 text-black md:grid-cols-3 md:p-12">
                         {exists ? (
                             <Settings settingData={{ membershipPayment }} />

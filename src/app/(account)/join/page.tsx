@@ -50,7 +50,7 @@ export default function JoinUsPage() {
                 </div>
             </section>
             <section className="w-full max-w-lg">
-                <FancyRectangle colour="purple" offset="8" filled={true} fullWidth={true}>
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
                     <div className="z-0 w-full border-4 border-black bg-white p-8 text-black md:p-12">
                         <h3 className="text-3xl font-bold">{heading.title}</h3>
                         <p className="mb-8 text-xl">{heading.description}</p>

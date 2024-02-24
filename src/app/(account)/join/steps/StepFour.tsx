@@ -53,14 +53,14 @@ export default function StepFour() {
                 />
             </div>
             <div className="grid grid-cols-2 gap-4">
-                <Button onClick={prevStep} colour="orange" width="w-full" isFormButton={true}>
+                <Button onClick={prevStep} colour="orange" width="w-full" size="small">
                     Back
                 </Button>
                 <Button
                     onClick={handleSignUp}
                     colour="purple"
                     width="w-full"
-                    isFormButton={true}
+                    size="small"
                     loading={createMember.isMutating}
                 >
                     Sign up

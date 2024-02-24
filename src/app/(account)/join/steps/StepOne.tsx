@@ -131,7 +131,7 @@ export default function StepOne() {
 
     return (
         <div>
-            <Button onClick={handleGoogleSignUp} colour="white" width="w-full" isFormButton={true}>
+            <Button onClick={handleGoogleSignUp} colour="white" width="w-full" size="small">
                 <FcGoogle className="mb-0.5 mr-2 inline-block text-xl" />
                 Continue with Google
             </Button>
@@ -153,7 +153,7 @@ export default function StepOne() {
                     name="password"
                 />
                 <div className="mt-8">
-                    <Button colour="orange" width="w-full" type="submit" isFormButton={true}>
+                    <Button colour="orange" width="w-full" type="submit" size="small">
                         Continue
                     </Button>
                 </div>

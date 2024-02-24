@@ -19,7 +19,7 @@ const FAQ = ({ question, answer, colour }: FAQProps) => {
     };
 
     return (
-        <FancyRectangle colour="white" filled={true} rounded={true} offset={'8'} fullWidth={true}>
+        <FancyRectangle colour="white" filled rounded offset={'8'} fullWidth>
             <div className="flex w-full flex-col">
                 <div
                     className={`flex h-full w-full flex-col justify-center rounded-xl border-2 bg-${colour} border-white p-4`}

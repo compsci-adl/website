@@ -57,7 +57,7 @@ export default function MembershipSettings({
                         colour="orange"
                         onClick={handlePayment}
                         width="w-full"
-                        isFormButton={true}
+                        size="small"
                     >
                         Pay Online
                     </Button>

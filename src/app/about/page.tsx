@@ -25,7 +25,7 @@ export default function AboutUs() {
                         className="absolute -z-10 ml-8 mt-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
                     />
                     <div className="mr-2 flex">
-                        <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Image
                                 src={'/images/about/meet-and-greet.jpg'}
                                 alt={'Meet and Greet'}
@@ -81,7 +81,7 @@ export default function AboutUs() {
                                 <h3 className="mb-2 ml-2 md:mb-0">to</h3>
                             </div>
                         </div>
-                        <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Paragraph>
                                 <ul className="ml-6 list-disc">
                                     <li>
@@ -156,7 +156,7 @@ export default function AboutUs() {
                         </p>
                     </div>
                     <div className="mr-2 flex justify-center lg:justify-end">
-                        <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Image
                                 src={'/images/about/quiz-night.jpg'}
                                 alt={'Quiz Night'}
@@ -234,10 +234,10 @@ export default function AboutUs() {
                                 key={index}
                                 colour={member.isExecCommittee ? 'yellow' : 'white'}
                                 offset={'8'}
-                                filled={true}
-                                rounded={true}
-                                fullWidth={true}
-                                fullHeight={true}
+                                filled
+                                rounded
+                                fullWidth
+                                fullHeight
                             >
                                 <div
                                     className={`h-full w-full rounded-xl border-2 border-${member.isExecCommittee ? 'yellow' : 'white'} flex flex-col justify-center bg-grey p-4`}

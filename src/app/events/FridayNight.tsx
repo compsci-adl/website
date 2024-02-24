@@ -52,7 +52,7 @@ function Ducks() {
 
 function Details() {
     return (
-        <FancyRectangle colour="white" offset="16" filled={true} rounded>
+        <FancyRectangle colour="white" offset="16" filled rounded>
             <Paragraph className="space-y-8">
                 <ul className="ml-6 list-disc">
                     <li>Need to blow off some steam from a long week of studying?</li>
