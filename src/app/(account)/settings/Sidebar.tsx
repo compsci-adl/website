@@ -10,7 +10,7 @@ function SidebarTab({ tabName, currentTab, onTabChange }: SidebarTabProps) {
     const selected = currentTab === tabName;
     return (
         <button
-            className={`text-left ${selected ? 'cursor-default font-bold' : 'hover:underline'}`}
+            className={`text-left md:text-right ${selected ? 'cursor-default font-bold' : 'hover:underline'}`}
             onClick={() => {
                 if (!selected) {
                     onTabChange(tabName);
@@ -29,8 +29,8 @@ interface SidebarProps {
 
 export default function Sidebar({ currentTab, onTabChange }: SidebarProps) {
     return (
-        <div className="flex flex-col md:flex-row md:justify-between">
-            <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col md:flex-row md:place-content-end">
+            <div className="mr-4 flex flex-col gap-y-4">
                 {TAB_NAMES.map((tab, i) => (
                     <SidebarTab
                         currentTab={currentTab}
