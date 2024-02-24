@@ -53,11 +53,17 @@ export default function StepFour() {
                     type="checkbox"
                 />
             </div>
-            <div className="mt-8 flex justify-center space-x-4">
-                <Button onClick={prevStep} colour="orange">
+            <div className="grid grid-cols-2 gap-4">
+                <Button onClick={prevStep} colour="orange" width="w-full" size="small">
                     Back
                 </Button>
-                <Button onClick={handleSignUp} colour="purple" loading={createMember.isMutating}>
+                <Button
+                    onClick={handleSignUp}
+                    colour="purple"
+                    width="w-full"
+                    size="small"
+                    loading={createMember.isMutating}
+                >
                     Sign up
                 </Button>
             </div>

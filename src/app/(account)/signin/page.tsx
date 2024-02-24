@@ -91,61 +91,65 @@ export default function SignInPage() {
     };
 
     return (
-        <section className="flex justify-center">
-            <FancyRectangle colour="purple" offset="8" filled={true}>
-                <div className="z-0 w-[24rem] border-4 border-black bg-white px-8 py-8 text-black md:w-[32rem] md:px-12 md:py-12">
-                    {/* Heading */}
-                    <h3 className="text-3xl font-bold">Sign In</h3>
-                    <p className="mb-8 text-xl">Sign into your account</p>
+        <main className="flex flex-col items-center">
+            <section className="w-full max-w-lg">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="z-0 w-full border-4 border-black bg-white px-12 py-12 text-black">
+                        {/* Heading */}
+                        <h3 className="text-3xl font-bold">Sign In</h3>
+                        <p className="mb-8 text-xl">Sign into your account</p>
 
-                    <Button
-                        onClick={handleGoogleSignIn}
-                        colour="white"
-                        width="w-[19rem] md:w-[25.5rem]"
-                    >
-                        <FcGoogle className="mr-2 inline-block text-xl" /> Continue with Google
-                    </Button>
-
-                    <div className="my-6 mt-10 flex items-center justify-center">
-                        <div className="w-full border-t border-grey"></div>
-                        <p className="mx-4 text-grey">or</p>
-                        <div className="w-full border-t border-grey"></div>
-                    </div>
-                    <form onSubmit={handleSignIn}>
-                        <ControlledField label="Email" control={form.control} name="email" />
-                        <ControlledField
-                            label="Password"
-                            control={form.control}
-                            name="password"
-                            type="password"
-                        />
-                        <Link
-                            href="/forgot-password"
-                            className="mb-8 flex text-lg text-orange md:text-base"
-                        >
-                            Forgot password?
-                        </Link>
                         <Button
-                            type="submit"
-                            colour="orange"
-                            width="w-[19rem] md:w-[25rem]"
-                            loading={signInLoading}
+                            onClick={handleGoogleSignIn}
+                            colour="white"
+                            width="w-full"
+                            size="small"
                         >
-                            Sign In
+                            <FcGoogle className="mr-2 inline-block text-xl" /> Continue with Google
                         </Button>
-                    </form>
 
-                    {/* Sign-up option */}
-                    <div className="mt-10 flex">
-                        <p className="text-lg text-grey md:text-base">
-                            Don&apos;t have an account yet?{' '}
-                            <Link href="/join" className="text-orange">
-                                Join Us
+                        <div className="my-6 mt-10 flex items-center justify-center">
+                            <div className="w-full border-t border-grey" />
+                            <p className="mx-4 text-grey">or</p>
+                            <div className="w-full border-t border-grey" />
+                        </div>
+                        <form onSubmit={handleSignIn}>
+                            <ControlledField label="Email" control={form.control} name="email" />
+                            <ControlledField
+                                label="Password"
+                                control={form.control}
+                                name="password"
+                                type="password"
+                            />
+                            <Link
+                                href="/forgot-password"
+                                className="mb-8 flex text-lg text-orange md:text-base"
+                            >
+                                Forgot password?
                             </Link>
-                        </p>
+                            <Button
+                                type="submit"
+                                colour="orange"
+                                width="w-full"
+                                size="small"
+                                loading={signInLoading}
+                            >
+                                Sign In
+                            </Button>
+                        </form>
+
+                        {/* Sign-up option */}
+                        <div className="mt-10 flex">
+                            <p className="text-lg text-grey md:text-base">
+                                Don&apos;t have an account yet?{' '}
+                                <Link href="/join" className="text-orange">
+                                    Join Us
+                                </Link>
+                            </p>
+                        </div>
                     </div>
-                </div>
-            </FancyRectangle>
-        </section>
+                </FancyRectangle>
+            </section>
+        </main>
     );
 }

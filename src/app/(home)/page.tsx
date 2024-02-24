@@ -27,14 +27,14 @@ export default function HomePage() {
 
                         <div className="relative z-10">
                             <h1 className="text-5xl md:text-8xl">LEARN,</h1>
-                            <div className="h-2"></div>
+                            <div className="h-2" />
                             <h1 className="text-5xl md:text-8xl">SOCIALISE,</h1>
-                            <div className="h-2"></div>
+                            <div className="h-2" />
 
                             <Title colour="yellow" font="font-black">
                                 CODE.
                             </Title>
-                            <div className="h-4 md:h-8"></div>
+                            <div className="h-4 md:h-8" />
                             <FancyRectangle colour="orange" offset="8" filled={false}>
                                 <div className="w-fit bg-orange px-2 py-2">
                                     <h2 className="text-xl md:text-3xl">Computer Science Club</h2>
@@ -46,7 +46,7 @@ export default function HomePage() {
                     {/* Right side */}
                     <div className="mt-12 w-full transition-all duration-500 md:w-auto lg:ml-10 lg:mt-0">
                         <div className="relative z-10 mr-2">
-                            <FancyRectangle colour="purple" offset="8" filled={true}>
+                            <FancyRectangle colour="purple" offset="8" filled>
                                 <div className="relative h-full w-full bg-white">
                                     <ImageCarousel
                                         images={CAROUSEL_IMAGES}
@@ -232,7 +232,7 @@ export default function HomePage() {
 
             {/* CTA part 2 */}
             <section className="mb-[1em] lg:mb-[6em] xl:mb-[10em]">
-                <div className="h-24"></div>
+                <div className="h-24" />
                 <div className="mb-[3em] md:mb-[8em] lg:mb-[6em]">
                     {/* <Grid /> */}
                     <Image
@@ -254,7 +254,7 @@ export default function HomePage() {
                             <Duck colour="white" />
                         </div>
                         <div className="relative z-10 flex flex-row">
-                            <div className="h-auto w-16 bg-orange"></div>
+                            <div className="h-auto w-16 bg-orange" />
                             <div className="relative flex flex-col">
                                 <span className="relative bg-white py-8 pl-4 pr-16 text-3xl font-black text-black lg:pr-32 lg:text-6xl">
                                     Thinking about <span className="text-orange">Joining?</span>

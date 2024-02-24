@@ -11,20 +11,31 @@ interface ButtonProps {
     type?: 'button' | 'submit' | 'reset';
     width?: string;
     loading?: boolean;
+    size?: 'base' | 'small';
     font?: string;
 }
 
-const Button = ({ children, colour, href, onClick, width, type, loading, font }: ButtonProps) => {
+const Button = ({
+    children,
+    colour,
+    href,
+    onClick,
+    width,
+    type,
+    loading,
+    font,
+    size = 'base',
+}: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 
     return (
-        <FancyRectangle colour="black" offset="4" filled>
+        <FancyRectangle colour="black" offset="4" filled fullWidth>
             <Component
                 href={isAnchor ? href : undefined}
                 onClick={onClick}
                 type={isAnchor ? undefined : type}
-                className={`${width} ${font ?? 'text-lg md:text-base'} ${BG_COLOURS[colour]} ${isAnchor ? 'hover:bg-yellow' : 'hover:enabled:bg-yellow'} whitespace-nowrap border-2 border-black px-12 py-4 font-bold transition-colors duration-300 disabled:cursor-wait disabled:grayscale md:px-2 md:py-1 lg:px-6 lg:py-2`}
+                className={`${width} ${font ?? 'text-lg md:text-base'} ${BG_COLOURS[colour]} ${isAnchor ? 'hover:bg-yellow' : 'hover:enabled:bg-yellow'} whitespace-nowrap border-2 border-black  ${size == 'base' ? 'px-16 text-lg' : 'px-4 text-sm'} py-4 font-bold transition-colors duration-300 disabled:cursor-wait disabled:grayscale md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2`}
                 disabled={loading}
             >
                 {children}

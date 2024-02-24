@@ -28,7 +28,7 @@ export default function JoinPage() {
     }, [isSignedIn]);
 
     return (
-        <main className="mx-4 flex flex-col items-center gap-8 px-4 md:mx-10 md:gap-16">
+        <main className="flex flex-col items-center gap-8 md:gap-16">
             <Title colour="purple">Join Us</Title>
             <section>
                 <div className="relative z-10 flex flex-col text-2xl font-black md:flex-row lg:text-3xl">
@@ -53,11 +53,11 @@ export default function JoinPage() {
                     </p>
                 </div>
             </section>
-            <section>
-                <FancyRectangle colour="purple" offset="8" filled={true}>
-                    <div className="z-0 w-full border-4 border-black bg-white px-12 py-12 text-black">
+            <section className="w-full max-w-lg">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="z-0 w-full border-4 border-black bg-white p-8 text-black md:p-12">
                         <h3 className="text-3xl font-bold">{heading.title}</h3>
-                        <p className="text-xl">{heading.description}</p>
+                        <p className="mb-8 text-xl">{heading.description}</p>
 
                         <SignedOut>
                             <StepOne />

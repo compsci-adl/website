@@ -63,7 +63,7 @@ export default function AccountSettings({
                         Membership Status: <span className="text-orange">Payment Required</span>
                     </h2>
 
-                    <div className="mb-6 border-b-2 border-black"></div>
+                    <div className="mb-6 border-b-2 border-black" />
                     <p>
                         Finalise your membership by{' '}
                         <span
@@ -78,7 +78,7 @@ export default function AccountSettings({
             )}
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-bold">Change Email</h2>
-                <div className="mb-2 border-b-2 border-black"></div>
+                <div className="mb-2 border-b-2 border-black" />
                 <p className="font-bold">Email address</p>
                 <input
                     type="email"
@@ -93,7 +93,7 @@ export default function AccountSettings({
             </form>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-bold">Change Password</h2>
-                <div className="mb-2 border-b-2 border-black"></div>
+                <div className="mb-2 border-b-2 border-black" />
                 <div className="flex flex-col gap-2">
                     <label htmlFor="oldPassword" className="font-bold">
                         Old Password
@@ -139,7 +139,7 @@ export default function AccountSettings({
             </form>
             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
                 <h2 className="text-2xl font-bold">Change Linked Google Account</h2>
-                <div className="mb-2 border-b-2 border-black"></div>
+                <div className="mb-2 border-b-2 border-black" />
                 <p className="font-bold">Link Status: </p>
             </form>
         </div>
