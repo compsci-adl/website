@@ -106,8 +106,7 @@ export default function SignInPage() {
                             size="small"
                         >
                             <FcGoogle className="mr-2 inline-block text-xl" /> Continue with Google
-                            Forgot password?
-                        </Link>
+                        </Button>
 
                         <div className="my-6 mt-10 flex items-center justify-center">
                             <div className="w-full border-t border-grey"></div>
