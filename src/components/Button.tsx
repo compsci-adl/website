@@ -26,6 +26,10 @@ const Button = ({
     font,
     size = 'base',
 }: ButtonProps) => {
+    font?: string;
+}
+
+const Button = ({ children, colour, href, onClick, width, type, loading, font }: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 

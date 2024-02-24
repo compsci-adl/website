@@ -3,9 +3,10 @@ import { memberTable } from '@/db/schema';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { eq } from 'drizzle-orm';
+import { cache } from 'react';
 import { updateMemberExpiryDate } from './update-member-expiry-date';
 
-export const verifyMembershipPayment = async (clerkId: string) => {
+export const verifyMembershipPayment = cache(async (clerkId: string) => {
     // Get user's membership expiry date from the database
     const [member] = await db
         .select({
@@ -47,5 +48,5 @@ export const verifyMembershipPayment = async (clerkId: string) => {
     } catch {
         return { paid: false as const };
     }
-};
+});
 export type MembershipPayment = Awaited<ReturnType<typeof verifyMembershipPayment>>;
