@@ -109,9 +109,9 @@ export default function SignInPage() {
                         </Button>
 
                         <div className="my-6 mt-10 flex items-center justify-center">
-                            <div className="w-full border-t border-grey"></div>
+                            <div className="w-full border-t border-grey" />
                             <p className="mx-4 text-grey">or</p>
-                            <div className="w-full border-t border-grey"></div>
+                            <div className="w-full border-t border-grey" />
                         </div>
                         <form onSubmit={handleSignIn}>
                             <ControlledField label="Email" control={form.control} name="email" />

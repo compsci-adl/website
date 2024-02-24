@@ -39,7 +39,7 @@ const FancyRectangle = ({
                     className={`absolute bottom-0 right-0 h-full w-full ${
                         filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
                     } ${rounded ? 'rounded-xl' : ''}`}
-                ></div>
+                />
                 <div className="relative z-10 flex h-full w-full items-center justify-center">
                     {children}
                 </div>

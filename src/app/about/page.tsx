@@ -267,7 +267,7 @@ export default function AboutPage() {
                             <h2 className="text-4xl font-bold text-grey md:text-5xl">FAQ</h2>
                         </div>
                     </FancyRectangle>
-                    <div className="mt-8"></div>
+                    <div className="mt-8" />
                     <div className="flex flex-col gap-x-16 gap-y-8 lg:flex-row">
                         {/* FAQ */}
                         <div className="mb-8 mr-2 flex flex-col justify-items-center gap-12 lg:w-full">

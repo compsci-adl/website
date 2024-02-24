@@ -40,7 +40,7 @@ export default function Sidebar({ currentTab, onTabChange }: SidebarProps) {
                     />
                 ))}
             </div>
-            <div className="my-4 border-b-2 border-grey md:my-0 md:mr-4 md:border-r-2"></div>
+            <div className="my-4 border-b-2 border-grey md:my-0 md:mr-4 md:border-r-2" />
         </div>
     );
 }

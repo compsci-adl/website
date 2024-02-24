@@ -159,9 +159,9 @@ export default function StepOne() {
             </Button>
 
             <div className="my-6 mt-10 flex items-center justify-center">
-                <div className="w-full border-t border-grey"></div>
+                <div className="w-full border-t border-grey" />
                 <p className="mx-4 text-grey">or</p>
-                <div className="w-full border-t border-grey"></div>
+                <div className="w-full border-t border-grey" />
             </div>
 
             <form onSubmit={handleSignUp}>
