@@ -34,7 +34,7 @@ export default function MembershipSettings({
                     {payment.paid ? 'Paid' : 'Payment Required'}
                 </span>
             </h2>
-            <div className="mb-6 border-b-2 border-black"></div>
+            <div className="mb-6 border-b-2 border-black" />
             {payment.paid ? (
                 <p>
                     You are a CS Club member! Your membership expires on{' '}
@@ -51,11 +51,13 @@ export default function MembershipSettings({
                         .
                     </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
-                    <div className="mb-6 border-b-2 border-black"></div>
+                    <div className="mb-6 border-b-2 border-black" />
                     <Button
                         type="submit"
                         colour="orange"
                         onClick={handlePayment}
+                        width="w-full md:w-42"
+                        size="small"
                         loading={pay.isMutating}
                     >
                         Pay Online

@@ -14,7 +14,7 @@ export default function NotificationsSettings() {
         <div className="relative flex w-full flex-col gap-10">
             <div>
                 <h2 className="text-2xl font-bold">Change Email Notification Settings</h2>
-                <div className="mb-2 border-b-2 border-black"></div>
+                <div className="mb-2 border-b-2 border-black" />
             </div>
             <div className="items-left flex flex-col gap-4 md:flex-row">
                 <h2 className="text-lg font-semibold">Enable Email Notifications</h2>

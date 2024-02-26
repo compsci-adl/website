@@ -26,7 +26,7 @@ export default function Settings({ settingData }: { settingData: SettingData }) 
     const { refresh } = useRouter();
 
     return (
-        <>
+        <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
             <Sidebar
                 currentTab={tab}
                 onTabChange={(tab) => {
@@ -34,9 +34,9 @@ export default function Settings({ settingData }: { settingData: SettingData }) 
                     refresh();
                 }}
             />
-            <div className="flex w-full">
+            <div className="w-full">
                 <Tab settingData={settingData} />
             </div>
-        </>
+        </div>
     );
 }

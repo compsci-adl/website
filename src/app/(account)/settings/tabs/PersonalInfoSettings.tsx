@@ -65,7 +65,7 @@ export default function PersonalInfoSettings() {
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
             <h2 className="text-2xl font-bold">Change Personal Info</h2>
-            <div className="mb-2 border-b-2 border-black"></div>
+            <div className="mb-2 border-b-2 border-black" />
             <ControlledField label="First Name" name="firstName" control={control} type="text" />
             <ControlledField label="Last Name" name="lastName" control={control} type="text" />
             <ControlledField

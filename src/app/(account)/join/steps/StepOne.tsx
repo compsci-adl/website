@@ -153,14 +153,15 @@ export default function StepOne() {
 
     return (
         <div>
-            <Button onClick={handleGoogleSignUp} colour="white" width="w-[19rem] md:w-[25.5rem]">
-                <FcGoogle className="mr-2 inline-block text-xl" /> Continue with Google
+            <Button onClick={handleGoogleSignUp} colour="white" width="w-full" size="small">
+                <FcGoogle className="mb-0.5 mr-2 inline-block text-xl" />
+                Continue with Google
             </Button>
 
             <div className="my-6 mt-10 flex items-center justify-center">
-                <div className="w-full border-t border-grey"></div>
+                <div className="w-full border-t border-grey" />
                 <p className="mx-4 text-grey">or</p>
-                <div className="w-full border-t border-grey"></div>
+                <div className="w-full border-t border-grey" />
             </div>
 
             <form onSubmit={handleSignUp}>
@@ -173,11 +174,12 @@ export default function StepOne() {
                     control={form.control}
                     name="password"
                 />
-                <div className="mt-8 flex justify-center space-x-4">
+                <div className="mt-8">
                     <Button
                         colour="orange"
-                        width="w-[19rem] md:w-[25.5rem]"
+                        width="w-full"
                         type="submit"
+                        size="small"
                         loading={emailJoinLoading}
                     >
                         Continue
