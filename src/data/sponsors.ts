@@ -40,6 +40,14 @@ const SPONSORS: Sponsor[] = [
             'At Macquarie, we’re connecting people and data, building platforms and applications, and designing tomorrow’s technology solutions. We have market leading expertise, so where could a career in Technology at Macquarie take you? Join our leaders and graduates to gain first-hand insights into a career in Technology.',
     },
     {
+        name: 'Citadel Securities',
+        image: 'citadel-securities.png',
+        website: 'https://www.citadelsecurities.com/',
+        type: 'bronze',
+        description:
+            'Citadel Securities is the next-generation capital markets firm. We create efficient ways for buyers and sellers to come together; we innovative ways to price and absorb risk; and we develop new technologies to transform markets. Integrating deep financial, mathematical and engineering expertise, Citadel Securities delivers critical liquidity to central banks, financial institutions, government agencies, corporations, insurers and sovereign wealth funds.',
+    },
+    {
         name: 'The University of Adelaide School of Computer and Mathematical Sciences',
         image: 'adelaide.svg',
         website: 'https://set.adelaide.edu.au/computer-and-mathematical-sciences/',
