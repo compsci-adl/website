@@ -23,29 +23,29 @@ export type Event = {
 };
 
 export const EVENTS: Event[] = [
-    {
-        title: 'Meet and Greet',
-        date: { month: 'MAR', day: 1 },
-        time: '5:00pm - 9:00pm',
-        location: 'Engineering and Maths EM105',
-        details:
-            "Come hang out and meet the Computer Science Club's committee and members in your first week of the new academic year!\nWe have board games in collaboration with the GAMES Club and our club owned Nintendo Switch.\nFood and drinks will also be provided.",
-        image: 'meet-and-greet.jpg',
-    },
-    {
-        title: 'Insight Into Industry',
-        date: { month: 'MAR', day: 6 },
-        time: '6:00pm - 9:00pm',
-        location: 'Ingkarni Wardli 715',
-        details:
-            'Unsure of what jobs are available in the tech industry? Or looking to find out more about where your expertise could take you? If so, come along and gain insights into what a career in the industry might look like.',
-        image: 'insight-into-industry.jpg',
-    },
+    // {
+    //     title: 'Meet and Greet',
+    //     date: { month: 'MAR', day: 1 },
+    //     time: '5:00pm - 9:00pm',
+    //     location: 'Engineering and Maths EM105',
+    //     details:
+    //         "Come hang out and meet the Computer Science Club's committee and members in your first week of the new academic year!\nWe have board games in collaboration with the GAMES Club and our club owned Nintendo Switch.\nFood and drinks will also be provided.",
+    //     image: 'meet-and-greet.jpg',
+    // },
+    // {
+    //     title: 'Insight Into Industry',
+    //     date: { month: 'MAR', day: 6 },
+    //     time: '6:00pm - 9:00pm',
+    //     location: 'Ingkarni Wardli 715',
+    //     details:
+    //         'Unsure of what jobs are available in the tech industry? Or looking to find out more about where your expertise could take you? If so, come along and gain insights into what a career in the industry might look like.',
+    //     image: 'insight-into-industry.jpg',
+    // },
     {
         title: 'Quiz Night',
         date: { month: 'MAR', day: 8 },
         time: '5:00pm - 9:00pm',
-        location: 'TBD',
+        location: 'Ingkarni Wardli 715',
         details: 'Join us for a night of quizzical encounters! Free food and prizes to come!',
         image: 'quiz-night.jpg',
     },
