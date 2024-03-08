@@ -44,8 +44,8 @@ export const EVENTS: Event[] = [
     {
         title: 'Quiz Night',
         date: { month: 'MAR', day: 8 },
-        time: '5:00pm - 9:00pm',
-        location: 'Ingkarni Wardli 715',
+        time: '6:00pm - 9:00pm',
+        location: 'Ingkarni Wardli 218',
         details: 'Join us for a night of quizzical encounters! Free food and prizes to come!',
         image: 'quiz-night.jpg',
     },
