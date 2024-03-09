@@ -13,6 +13,7 @@ interface ButtonProps {
     loading?: boolean;
     size?: 'base' | 'small';
     font?: string;
+    fullWidth?: boolean;
 }
 
 const Button = ({
@@ -25,12 +26,13 @@ const Button = ({
     loading,
     font,
     size = 'base',
+    fullWidth,
 }: ButtonProps) => {
     const isAnchor = !!href;
     const Component = isAnchor ? 'a' : 'button';
 
     return (
-        <FancyRectangle colour="black" offset="4" filled fullWidth>
+        <FancyRectangle colour="black" offset="4" filled fullWidth={fullWidth}>
             <Component
                 href={isAnchor ? href : undefined}
                 onClick={onClick}

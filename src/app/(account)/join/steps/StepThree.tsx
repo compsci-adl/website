@@ -103,10 +103,10 @@ export default function StepThree() {
                 </>
             )}
             <div className="grid grid-cols-2 gap-4">
-                <Button onClick={prevStep} colour="orange" width="w-full" size="small">
+                <Button onClick={prevStep} colour="orange" width="w-full" size="small" fullWidth>
                     Back
                 </Button>
-                <Button type="submit" colour="orange" width="w-full" size="small">
+                <Button type="submit" colour="orange" width="w-full" size="small" fullWidth>
                     Continue
                 </Button>
             </div>

@@ -70,7 +70,7 @@ export default function StepTwo() {
             {form.watch('studentStatus') === 'At The University of Adelaide' && (
                 <ControlledField label="Student ID" control={form.control} name="studentId" />
             )}
-            <Button colour="orange" width="w-full" size="small" type="submit">
+            <Button colour="orange" width="w-full" size="small" type="submit" fullWidth>
                 Continue
             </Button>
         </form>
