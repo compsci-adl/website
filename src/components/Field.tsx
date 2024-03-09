@@ -42,6 +42,7 @@ const Field = ({
                     id={label.toLowerCase()}
                     name={label.toLowerCase()}
                     className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
+                    value={value}
                 >
                     {placeholder && <option value="">{placeholder}</option>}
                     {options.map((option, index) => (
