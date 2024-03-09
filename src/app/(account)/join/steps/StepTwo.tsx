@@ -5,23 +5,10 @@ import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { firstNameSchema, lastNameSchema } from '../../schemas';
+import type { z } from 'zod';
+import { stepTwoSchema } from '../../schemas';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
-export const stepTwoSchema = z.object({
-    firstName: firstNameSchema,
-    lastName: lastNameSchema,
-    studentStatus: z.enum(STUDENT_STATUSES, {
-        errorMap: () => ({ message: 'Please select a valid status' }),
-    }),
-    studentId: z
-        .string()
-        .regex(/^a\d{7}$/, {
-            message: 'Please enter a valid student ID (format: aXXXXXXX)',
-        })
-        .or(z.literal('')),
-});
 export type StepTwoData = z.infer<typeof stepTwoSchema>;
 
 const validationSchema = stepTwoSchema.refine(

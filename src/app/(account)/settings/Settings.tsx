@@ -1,22 +1,24 @@
 'use client';
 
-import type { MembershipPayment } from '@/server/verify-membership-payment';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
+import type { SettingData } from './page';
+import AccountSettings from './tabs/AccountSettings';
 import MembershipSettings from './tabs/MembershipSettings';
+import NotificationsSettings from './tabs/NotificationsSettings';
+import PersonalInfoSettings from './tabs/PersonalInfoSettings';
 
 export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
 export type TabNames = (typeof TAB_NAMES)[number];
 
-export type SettingData = { membershipPayment: MembershipPayment };
 export type SettingTabProps = { settingData: SettingData };
 type SettingTabComponent = ({ settingData }: SettingTabProps) => React.ReactNode;
 const SETTING_TABS = {
-    Account: () => <div>Coming soon</div>,
-    'Personal Info': () => <div>Coming soon</div>,
+    Account: AccountSettings,
+    'Personal Info': PersonalInfoSettings,
     Membership: MembershipSettings,
-    Notifications: () => <div>Coming soon</div>,
+    Notifications: NotificationsSettings,
 } as const satisfies Record<TabNames, SettingTabComponent>;
 
 export default function Settings({ settingData }: { settingData: SettingData }) {

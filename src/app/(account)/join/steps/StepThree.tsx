@@ -4,23 +4,10 @@ import type { STUDENT_STATUSES } from '@/constants/student-info';
 import { AGE_BRACKETS, DEGREES, GENDERS, STUDENT_TYPES } from '@/constants/student-info';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import type { z } from 'zod';
+import { stepThreeSchema } from '../../schemas';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
 
-export const stepThreeSchema = z.object({
-    ageBracket: z.enum(AGE_BRACKETS, {
-        errorMap: () => ({ message: 'Please select an age bracket' }),
-    }),
-    gender: z.enum(GENDERS, { errorMap: () => ({ message: 'Please select a gender' }) }),
-    degree: z
-        .enum(DEGREES, { errorMap: () => ({ message: 'Please select a degree' }) })
-        .or(z.literal('')),
-    studentType: z
-        .enum(STUDENT_TYPES, {
-            errorMap: () => ({ message: 'Please select a student type' }),
-        })
-        .or(z.literal('')),
-});
 export type StepThreeData = z.infer<typeof stepThreeSchema>;
 
 /** Get schema with student check */
