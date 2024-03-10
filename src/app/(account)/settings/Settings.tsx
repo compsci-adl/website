@@ -6,7 +6,6 @@ import Sidebar from './Sidebar';
 import type { SettingData } from './page';
 import AccountSettings from './tabs/AccountSettings';
 import MembershipSettings from './tabs/MembershipSettings';
-import NotificationsSettings from './tabs/NotificationsSettings';
 import PersonalInfoSettings from './tabs/PersonalInfoSettings';
 
 export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
@@ -18,7 +17,9 @@ const SETTING_TABS = {
     Account: AccountSettings,
     'Personal Info': PersonalInfoSettings,
     Membership: MembershipSettings,
-    Notifications: NotificationsSettings,
+    // TODO(#31): Email notifications (enable tab like below)
+    // Notifications: NotificationsSettings,
+    Notifications: () => <div>Coming soon</div>,
 } as const satisfies Record<TabNames, SettingTabComponent>;
 
 export default function Settings({ settingData }: { settingData: SettingData }) {
