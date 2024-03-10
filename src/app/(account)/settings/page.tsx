@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 const getSettingData = async (userId: string) => {
     const membershipPayment = await verifyMembershipPayment(userId);
 
-    const personalInfo = await db.query.memberTable.findFirst({
+    const { email, ...personalInfo } = (await db.query.memberTable.findFirst({
         where: (members, { eq }) => eq(members.clerkId, userId),
         columns: {
             firstName: true,
@@ -28,10 +28,11 @@ const getSettingData = async (userId: string) => {
             studentStatus: true,
             studentId: true,
             degree: true,
+            email: true,
         },
-    });
+    }))!;
 
-    return { membershipPayment, personalInfo };
+    return { membershipPayment, personalInfo, email };
 };
 export type SettingData = Awaited<ReturnType<typeof getSettingData>>;
 

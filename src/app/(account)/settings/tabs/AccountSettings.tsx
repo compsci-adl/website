@@ -1,147 +1,202 @@
 import Button from '@/components/Button';
-import { useMount } from '@/hooks/use-mount';
-import { formatDate } from '@/utils/format-date';
+import ControlledField from '@/components/ControlledField';
+import { fetcher } from '@/lib/fetcher';
+import { useUser } from '@clerk/clerk-react';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import useSWRMutation from 'swr/mutation';
+import { z } from 'zod';
+import { codeSchema as code, passwordSchema as passwdSchema } from '../../schemas';
+import type { SettingTabProps } from '../Settings';
 
-interface AccountSettingsProps {
-    user: any;
-    register: any;
-    handleSubmit: any;
-    errors: any;
-    onSubmit: (data: any) => void;
-    handleGoToMembership: () => void;
-    membershipStatus: string;
-    setMembershipStatus: (status: string) => void;
-    setMembershipExpirationDate: (date: string) => void;
-}
+const emailSchema = z.object({
+    email: z.string().email(),
+});
+const codeSchema = z.object({ code });
+function ChangeEmail({ email: currentEmail }: { email: string }) {
+    const { user } = useUser();
+    const [isLoading, setIsLoading] = useState(false);
+    const [isCodeSent, setIsCodeSent] = useState(false);
 
-export default function AccountSettings({
-    user,
-    register,
-    handleSubmit,
-    errors,
-    onSubmit,
-    handleGoToMembership,
-    membershipStatus,
-    setMembershipStatus,
-    setMembershipExpirationDate,
-}: AccountSettingsProps) {
-    useMount(() => {
-        const verifyMembershipPayment = async () => {
-            console.log('Verifying membership payment');
-            try {
-                const response = await fetch('/api/verify-membership-payment', {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        redirectUrl: window.location.href,
-                    }),
-                });
+    const emailForm = useForm<z.infer<typeof emailSchema>>({
+        defaultValues: { email: '' },
+        resolver: zodResolver(emailSchema),
+    });
+    const newEmail = emailForm.getValues('email');
+    const handleSendCode = emailForm.handleSubmit(async (data) => {
+        setIsLoading(true);
 
-                if (response.ok) {
-                    const data = await response.json();
-                    setMembershipStatus('Paid');
-                    const expirationDate = formatDate(data.membershipExpiresAt);
-                    setMembershipExpirationDate(expirationDate);
-                } else {
-                    setMembershipStatus('Payment Required');
-                }
-            } catch (error) {
-                console.error('Error verifying membership payment:', error);
-            }
-        };
+        // Avoid creating duplicate email addresses. Find email address (unverified) first.
+        let newEmailInst = user?.emailAddresses.find(
+            ({ emailAddress }) => emailAddress === data.email
+        );
+        if (!newEmailInst) {
+            newEmailInst = await user?.createEmailAddress({ email: data.email });
+        }
+        await newEmailInst?.prepareVerification({ strategy: 'email_code' });
 
-        verifyMembershipPayment();
+        setIsLoading(false);
+        setIsCodeSent(true);
+    });
+
+    const codeForm = useForm<z.infer<typeof codeSchema>>({
+        defaultValues: { code: '' },
+        resolver: zodResolver(codeSchema),
+    });
+    const updateEmail = useSWRMutation('member/email', fetcher.patch.mutate, {});
+    const handleUpdateEmail = codeForm.handleSubmit(async ({ code }) => {
+        setIsLoading(true);
+
+        const newEmailInst = user?.emailAddresses.find(
+            ({ emailAddress }) => emailAddress === newEmail
+        );
+        try {
+            await newEmailInst?.attemptVerification({ code });
+        } catch {
+            codeForm.setError('code', {
+                message: 'Incorrect Code. Please enter the code from your new email.',
+            });
+            setIsLoading(false);
+            return;
+        }
+        await updateEmail.trigger({ code, email: newEmail });
+
+        setIsLoading(false);
+        window.location.reload();
     });
 
     return (
-        <div className="flex flex-col gap-8">
-            {membershipStatus === 'Payment Required' && (
-                <div>
-                    <h2 className="text-2xl font-bold">
-                        Membership Status: <span className="text-orange">Payment Required</span>
-                    </h2>
-
-                    <div className="mb-6 border-b-2 border-black" />
-                    <p>
-                        Finalise your membership by{' '}
-                        <span
-                            className="cursor-pointer font-bold text-purple"
-                            onClick={handleGoToMembership}
-                        >
-                            clicking here
-                        </span>{' '}
-                        and completing the required payment.
-                    </p>
-                </div>
+        <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Change Email</h2>
+            <div className="mb-2 border-b-2 border-black" />
+            <div>
+                Current Email: <b>{currentEmail}</b>
+            </div>
+            {!isCodeSent && (
+                <form onSubmit={handleSendCode}>
+                    <ControlledField control={emailForm.control} name="email" label="New Email" />
+                    <Button colour="orange" loading={isLoading}>
+                        Send Code
+                    </Button>
+                </form>
             )}
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                <h2 className="text-2xl font-bold">Change Email</h2>
-                <div className="mb-2 border-b-2 border-black" />
-                <p className="font-bold">Email address</p>
-                <input
-                    type="email"
-                    defaultValue={user?.primaryEmailAddress?.toString()}
-                    {...register('email')}
-                    className="border border-gray-300 p-2"
-                />
-                {errors.email && <span>Email is required</span>}
-                <Button type="submit" colour="orange">
-                    Update email
+            {isCodeSent && (
+                <>
+                    <div>
+                        New Email: <b>{newEmail}</b>
+                    </div>
+                    <form onSubmit={handleUpdateEmail}>
+                        <ControlledField control={codeForm.control} name="code" label="Code" />
+                        <Button
+                            type="submit"
+                            colour="orange"
+                            loading={updateEmail.isMutating || isLoading}
+                        >
+                            Update email
+                        </Button>
+                    </form>
+                </>
+            )}
+        </div>
+    );
+}
+
+const passwordSchema = z
+    .object({
+        oldPassword: z.string().min(1, { message: 'Please enter your password' }),
+        newPassword: passwdSchema,
+        confirmPassword: passwdSchema,
+    })
+    .refine((data) => data.newPassword === data.confirmPassword, {
+        message: 'Passwords do not match',
+        path: ['confirmPassword'],
+    });
+function ChangePassword() {
+    const { user } = useUser();
+
+    const form = useForm<z.infer<typeof passwordSchema>>({
+        defaultValues: { oldPassword: '', newPassword: '', confirmPassword: '' },
+        resolver: zodResolver(passwordSchema),
+    });
+    const handleSubmit = form.handleSubmit((data) => {
+        user?.updatePassword({ newPassword: data.newPassword, currentPassword: data.oldPassword });
+    });
+
+    return (
+        <form className="space-y-4" onSubmit={handleSubmit}>
+            <h2 className="text-2xl font-bold">Change Password</h2>
+            <div className="mb-2 border-b-2 border-black" />
+            <ControlledField
+                control={form.control}
+                name="oldPassword"
+                label="Old Password"
+                type="password"
+            />
+            <ControlledField
+                control={form.control}
+                name="newPassword"
+                label="New Password"
+                type="password"
+            />
+            <ControlledField
+                control={form.control}
+                name="confirmPassword"
+                label="Confirm Password"
+                type="password"
+            />
+            <Button type="submit" colour="orange">
+                Update password
+            </Button>
+        </form>
+    );
+}
+
+function ChangeGoogle() {
+    const { user } = useUser();
+    const google = user?.verifiedExternalAccounts.find(({ provider }) => provider === 'google');
+
+    const handleLink = async () => {
+        const unverifiedGoogle = await user?.createExternalAccount({
+            strategy: 'oauth_google',
+            redirectUrl: '/settings',
+        });
+        window.location.replace(unverifiedGoogle!.verification!.externalVerificationRedirectURL!);
+    };
+    const handleRemove = async () => {
+        await google?.destroy();
+        window.location.reload();
+    };
+
+    return (
+        <div className="space-y-4">
+            <h2 className="text-2xl font-bold">Linked Google Account</h2>
+            <div className="mb-2 border-b-2 border-black" />
+            {!google && (
+                <Button colour="orange" onClick={handleLink}>
+                    Link
                 </Button>
-            </form>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                <h2 className="text-2xl font-bold">Change Password</h2>
-                <div className="mb-2 border-b-2 border-black" />
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="oldPassword" className="font-bold">
-                        Old Password
-                    </label>
-                    <input
-                        id="oldPassword"
-                        type="password"
-                        placeholder={'Old Password'}
-                        {...register('oldPassword')}
-                        className="border border-gray-300 p-2"
-                    />
-                    {errors.oldPassword && <span>Old Password is required</span>}
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="newPassword" className="font-bold">
-                        New Password
-                    </label>
-                    <input
-                        id="newPassword"
-                        type="password"
-                        placeholder={'New Password'}
-                        {...register('newPassword')}
-                        className="border border-gray-300 p-2"
-                    />
-                    {errors.newPassword && <span>New Password is required</span>}
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor="confirmPassword" className="font-bold">
-                        Confirm Password
-                    </label>
-                    <input
-                        id="confirmPassword"
-                        type="password"
-                        placeholder={'Confirm Password'}
-                        {...register('confirmPassword')}
-                        className="border border-gray-300 p-2"
-                    />
-                    {errors.confirmPassword && <span>Confirm Password is required</span>}
-                </div>
-                <Button type="submit" colour="orange">
-                    Update password
-                </Button>
-            </form>
-            <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
-                <h2 className="text-2xl font-bold">Change Linked Google Account</h2>
-                <div className="mb-2 border-b-2 border-black" />
-                <p className="font-bold">Link Status: </p>
-            </form>
+            )}
+            {google && (
+                <>
+                    <div>
+                        Linked Account: <b>{google?.emailAddress}</b>
+                    </div>
+                    <Button colour="lightGrey" onClick={handleRemove}>
+                        Remove
+                    </Button>
+                </>
+            )}
+        </div>
+    );
+}
+
+export default function AccountSettings({ settingData: { email } }: SettingTabProps) {
+    return (
+        <div className="space-y-8">
+            <ChangeEmail email={email} />
+            <ChangePassword />
+            <ChangeGoogle />
         </div>
     );
 }
