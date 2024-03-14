@@ -101,14 +101,6 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'General Committee',
     },
     {
-        name: 'Joshua Goldsworthy Callaway',
-        position: 'General Committee',
-    },
-    {
-        name: 'Dino Macri',
-        position: 'General Committee',
-    },
-    {
         name: 'Cuinn Kemp',
         position: 'General Committee',
     },
