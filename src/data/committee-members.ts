@@ -1,7 +1,7 @@
 type CommitteeMember = {
     name: string;
     position: string;
-    isExecCommittee: boolean;
+    exec?: boolean;
 };
 
 // List of committee members with name, role and whether they are part of the
