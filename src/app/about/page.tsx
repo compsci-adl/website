@@ -237,7 +237,7 @@ export default function AboutPage() {
                         {COMMITTEE_MEMBERS.map((member, index) => (
                             <FancyRectangle
                                 key={index}
-                                colour={member.isExecCommittee ? 'yellow' : 'white'}
+                                colour={member.exec ? 'yellow' : 'white'}
                                 offset={'8'}
                                 filled
                                 rounded
@@ -245,7 +245,7 @@ export default function AboutPage() {
                                 fullHeight
                             >
                                 <div
-                                    className={`h-full w-full rounded-xl border-2 border-${member.isExecCommittee ? 'yellow' : 'white'} flex flex-col justify-center bg-grey p-4`}
+                                    className={`h-full w-full rounded-xl border-2 ${member.exec ? 'border-yellow' : 'border-white'} flex flex-col justify-center bg-grey p-4`}
                                 >
                                     <h3 className="text-2xl font-bold">{member.name}</h3>
                                     <p>{member.position}</p>
