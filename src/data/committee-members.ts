@@ -53,22 +53,6 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Equity Officer',
     },
     {
-        name: 'S. Bhatta',
-        position: 'Artificial Intelligence Representative',
-    },
-    {
-        name: 'Will Johnston',
-        position: 'Cybersecurity Representative',
-    },
-    {
-        name: 'Khanh',
-        position: 'Data Science Representative',
-    },
-    {
-        name: 'Jonty Leslie',
-        position: 'Distributed Systems & Networking Representative',
-    },
-    {
         name: 'Maged Gayed',
         position: 'First Year Representative',
     },
@@ -99,6 +83,22 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
     {
         name: 'Yeyang (Justin) Sun',
         position: 'Open Source Officer',
+    },
+    {
+        name: 'S. Bhatta',
+        position: 'General Committee',
+    },
+    {
+        name: 'Will Johnston',
+        position: 'General Committee',
+    },
+    {
+        name: 'Khanh',
+        position: 'General Committee',
+    },
+    {
+        name: 'Jonty Leslie',
+        position: 'General Committee',
     },
     {
         name: 'Joshua Goldsworthy Callaway',
