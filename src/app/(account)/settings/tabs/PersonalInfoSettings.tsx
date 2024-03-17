@@ -8,6 +8,7 @@ import {
     STUDENT_TYPES,
 } from '@/constants/student-info';
 import { fetcher } from '@/lib/fetcher';
+import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
@@ -24,11 +25,14 @@ export default function PersonalInfoSettings({
     });
     const studentStatus = form.watch('studentStatus');
 
-    const updateInfo = useSWRMutation('member', fetcher.put.mutate);
+    const { user } = useUser();
 
     return (
         <form
-            onSubmit={form.handleSubmit((data) => updateInfo.trigger(data))}
+            onSubmit={form.handleSubmit(async (data) => {
+                await user?.update({ firstName: data.firstName, lastName: data.lastName });
+                await updateInfo.trigger(data);
+            })}
             className="flex flex-col gap-4"
         >
             <h2 className="text-2xl font-bold">Change Personal Info</h2>
