@@ -8,15 +8,15 @@ import AccountSettings from './tabs/AccountSettings';
 import MembershipSettings from './tabs/MembershipSettings';
 import PersonalInfoSettings from './tabs/PersonalInfoSettings';
 
-export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
+export const TAB_NAMES = ['Membership', 'Account', 'Personal Info', 'Notifications'] as const;
 export type TabNames = (typeof TAB_NAMES)[number];
 
 export type SettingTabProps = { settingData: SettingData };
 type SettingTabComponent = ({ settingData }: SettingTabProps) => React.ReactNode;
 const SETTING_TABS = {
+    Membership: MembershipSettings,
     Account: AccountSettings,
     'Personal Info': PersonalInfoSettings,
-    Membership: MembershipSettings,
     // TODO(#31): Email notifications (enable tab like below)
     // Notifications: NotificationsSettings,
     Notifications: () => <div>Coming soon</div>,
