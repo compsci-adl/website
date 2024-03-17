@@ -10,6 +10,7 @@ import {
 import { fetcher } from '@/lib/fetcher';
 import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import type { z } from 'zod';
@@ -25,7 +26,24 @@ export default function PersonalInfoSettings({
     });
     const studentStatus = form.watch('studentStatus');
 
+    const [result, setResult] = useState<null | 'success' | 'error'>(null);
+    useEffect(() => {
+        if (form.formState.isDirty) {
+            setResult(null);
+        }
+    }, [form.formState.isDirty]);
+
     const { user } = useUser();
+    const updateInfo = useSWRMutation('member', fetcher.put.mutate, {
+        onSuccess: () => {
+            form.reset(form.getValues());
+            setResult('success');
+        },
+        onError: () => {
+            form.reset(info as z.infer<typeof infoSchema>);
+            setResult('error');
+        },
+    });
 
     return (
         <form
@@ -82,9 +100,20 @@ export default function PersonalInfoSettings({
             {studentStatus === 'At The University of Adelaide' && (
                 <ControlledField label="Student ID" name="studentId" control={form.control} />
             )}
-            <Button type="submit" colour="orange" loading={updateInfo.isMutating}>
+            <Button
+                type="submit"
+                colour="orange"
+                loading={updateInfo.isMutating}
+                disabled={!form.formState.isDirty}
+            >
                 Update personal info
             </Button>
+            {result === 'success' && (
+                <div className="font-bold text-green-700">
+                    Successfully updated your personal information!
+                </div>
+            )}
+            {result === 'error' && <div className="font-bold text-red-500">Update Error.</div>}
         </form>
     );
 }

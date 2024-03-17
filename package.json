@@ -21,6 +21,7 @@
     "@hookform/resolvers": "^3.3.4",
     "@libsql/client": "0.4.0-pre.7",
     "@t3-oss/env-nextjs": "^0.7.3",
+    "clsx": "^2.1.0",
     "drizzle-orm": "^0.29.3",
     "drizzle-zod": "^0.5.1",
     "just-submit": "^0.0.7",
