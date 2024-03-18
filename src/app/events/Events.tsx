@@ -71,16 +71,15 @@ export default function Events({ className }: { className?: string }) {
     // Convert event date and check if upcoming event
     const upcomingEvents = EVENTS.filter((event) => {
         const eventDate = new Date(
-            `${event.date.year} ${event.date.month} ${event.date.day} ${event.endTime}`
+            `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
         );
-        console.log('event: ' + eventDate);
         return eventDate >= currentDate;
     });
 
     // Convert event date, check if past event and reverse events
     const pastEvents = EVENTS.filter((event) => {
         const eventDate = new Date(
-            `${event.date.year} ${event.date.month} ${event.date.day} ${event.endTime}`
+            `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
         );
         return eventDate < currentDate;
     }).reverse();
