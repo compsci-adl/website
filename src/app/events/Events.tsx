@@ -3,13 +3,13 @@ import { EVENTS, type Event } from '@/data/events';
 import Image from 'next/image';
 import { FiClock, FiMapPin } from 'react-icons/fi';
 
-function Title() {
+function Title({ title }: { title: string }) {
     return (
         <div className="flex justify-center">
             <FancyRectangle colour="yellow" offset="8">
                 <div className="w-fit bg-yellow p-2">
                     <h2 className="text-center text-4xl font-bold text-grey md:text-6xl">
-                        Upcoming Events
+                        {title}
                     </h2>
                 </div>
             </FancyRectangle>
@@ -17,7 +17,15 @@ function Title() {
     );
 }
 
-function EventCard({ event, index }: { event: Event; index: number }) {
+function EventCard({
+    event,
+    index,
+    isPastEvent,
+}: {
+    event: Event;
+    index: number;
+    isPastEvent?: boolean;
+}) {
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black md:flex-row">
@@ -26,7 +34,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
                     alt={`${event.title}`}
                     width={450}
                     height={450}
-                    className="w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px]"
+                    className={`w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px] ${isPastEvent ? 'grayscale filter' : ''}`}
                 />
                 <div className="grow space-y-2 md:space-y-4">
                     <div className="flex gap-6 font-bold">
@@ -44,7 +52,7 @@ function EventCard({ event, index }: { event: Event; index: number }) {
                             </div>
                         </div>
                         <div
-                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]}`}
+                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]}  ${isPastEvent ? 'grayscale filter' : ''}`}
                         >
                             <div>{event.date.month}</div>
                             <div>{event.date.day}</div>
@@ -58,12 +66,40 @@ function EventCard({ event, index }: { event: Event; index: number }) {
 }
 
 export default function Events({ className }: { className?: string }) {
+    const currentDate = new Date(); // Current timestamp
+
+    // Convert event date and check if upcoming event
+    const upcomingEvents = EVENTS.filter((event) => {
+        const eventDate = new Date(
+            `${event.date.year} ${event.date.month} ${event.date.day} ${event.endTime}`
+        );
+        console.log('event: ' + eventDate);
+        return eventDate >= currentDate;
+    });
+
+    // Convert event date, check if past event and reverse events
+    const pastEvents = EVENTS.filter((event) => {
+        const eventDate = new Date(
+            `${event.date.year} ${event.date.month} ${event.date.day} ${event.endTime}`
+        );
+        return eventDate < currentDate;
+    }).reverse();
+
     return (
         <section className={`${className} space-y-8`}>
-            <Title />
-            {EVENTS.map((event, i) => (
+            <Title title="Upcoming Events" />
+            {upcomingEvents.map((event, i) => (
                 <EventCard key={i} index={i} event={event} />
             ))}
+
+            {pastEvents.length > 0 && (
+                <>
+                    <Title title="Past Events" />
+                    {pastEvents.map((event, i) => (
+                        <EventCard key={i} index={i} event={event} isPastEvent={true} />
+                    ))}
+                </>
+            )}
         </section>
     );
 }
