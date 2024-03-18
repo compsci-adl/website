@@ -34,7 +34,7 @@ function EventCard({
                     alt={`${event.title}`}
                     width={450}
                     height={450}
-                    className={`w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px] ${isPastEvent ? 'grayscale filter' : ''}`}
+                    className={`w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px] ${isPastEvent ? 'grayscale' : ''}`}
                 />
                 <div className="grow space-y-2 md:space-y-4">
                     <div className="flex gap-6 font-bold">
@@ -52,7 +52,7 @@ function EventCard({
                             </div>
                         </div>
                         <div
-                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]}  ${isPastEvent ? 'grayscale filter' : ''}`}
+                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]} ${isPastEvent ? 'grayscale' : ''}`}
                         >
                             <div>{event.date.month}</div>
                             <div>{event.date.day}</div>
