@@ -3,10 +3,11 @@ import ControlledField from '@/components/ControlledField';
 import { fetcher } from '@/lib/fetcher';
 import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { z } from 'zod';
+import { handleClerkErrors } from '../../helpers';
 import { codeSchema as code, passwordSchema as passwdSchema } from '../../schemas';
 import type { SettingTabProps } from '../Settings';
 
@@ -130,8 +131,40 @@ function ChangePassword() {
         defaultValues: { oldPassword: '', newPassword: '', confirmPassword: '' },
         resolver: zodResolver(passwordSchema),
     });
-    const handleSubmit = form.handleSubmit((data) => {
-        user?.updatePassword({ newPassword: data.newPassword, currentPassword: data.oldPassword });
+
+    const [success, setSuccess] = useState(false);
+    useEffect(() => {
+        if (form.formState.isDirty) {
+            setSuccess(false);
+        }
+    }, [form.formState.isDirty]);
+
+    const handleSubmit = form.handleSubmit(async (data) => {
+        try {
+            await user?.updatePassword({
+                newPassword: data.newPassword,
+                // FIXME: Clerk 422 error "current_password is not a valid parameter for this request"
+                currentPassword: data.oldPassword,
+            });
+            form.reset();
+            setSuccess(true);
+        } catch (error) {
+            // TODO: More error messages for changing password
+            handleClerkErrors(error, form, [
+                {
+                    code: 'form_password_not_strong_enough',
+                    field: 'newPassword',
+                    message:
+                        'Given password is not strong enough. For account safety, please use a different password.',
+                },
+                {
+                    code: 'form_password_pwned',
+                    field: 'newPassword',
+                    message:
+                        'Password has been found in an online data breach. For account safety, please use a different password.',
+                },
+            ]);
+        }
     });
 
     return (
