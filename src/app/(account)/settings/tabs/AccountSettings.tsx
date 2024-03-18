@@ -86,6 +86,10 @@ function ChangeEmail({ email: currentEmail }: { email: string }) {
                     <Button colour="orange" loading={isLoading}>
                         Send Code
                     </Button>
+                    <div className="mt-4">
+                        A verification email containing a code will be sent for you to confirm your
+                        new email address
+                    </div>
                 </form>
             )}
             {isCodeSent && (
