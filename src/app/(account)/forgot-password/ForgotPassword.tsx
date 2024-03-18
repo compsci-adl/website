@@ -104,7 +104,7 @@ export default function ForgotPassword() {
                         'Given password is not strong enough. For account safety, please use a different password.',
                 },
                 {
-                    code: 'form_password_not_strong_enough',
+                    code: 'form_password_pwned',
                     field: 'password',
                     message:
                         'Password has been found in an online data breach. For account safety, please use a different password.',
