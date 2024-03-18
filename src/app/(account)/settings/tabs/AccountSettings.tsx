@@ -191,7 +191,7 @@ function ChangeGoogle() {
             {google && (
                 <>
                     <div>
-                        Linked Account: <b>{google?.emailAddress}</b>
+                        Linked Account: <b>{google.emailAddress}</b>
                     </div>
                     <Button colour="lightGrey" onClick={handleRemove}>
                         Remove
