@@ -159,6 +159,9 @@ function ChangePassword() {
             <Button type="submit" colour="orange">
                 Update password
             </Button>
+            {success && (
+                <div className="font-bold text-green-700">Successfully updated your password</div>
+            )}
         </form>
     );
 }
