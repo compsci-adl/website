@@ -25,6 +25,13 @@ function ChangeEmail({ email: currentEmail }: { email: string }) {
     });
     const newEmail = emailForm.getValues('email');
     const handleSendCode = emailForm.handleSubmit(async (data) => {
+        if (data.email === currentEmail) {
+            emailForm.setError('email', {
+                message: 'New email cannot be the same as current email',
+            });
+            return;
+        }
+
         setIsLoading(true);
 
         // Avoid creating duplicate email addresses. Find email address (unverified) first.
