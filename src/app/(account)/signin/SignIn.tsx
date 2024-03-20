@@ -100,6 +100,7 @@ export default function SignIn() {
                             colour="white"
                             width="w-full"
                             size="small"
+                            fullWidth
                         >
                             <FcGoogle className="mr-2 inline-block text-xl" /> Continue with Google
                         </Button>
@@ -129,6 +130,7 @@ export default function SignIn() {
                                 width="w-full"
                                 size="small"
                                 loading={signInLoading}
+                                fullWidth
                             >
                                 Sign In
                             </Button>

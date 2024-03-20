@@ -74,6 +74,7 @@ function VerifyEmail() {
                     width="w-[19rem] md:w-[25.5rem]"
                     type="submit"
                     loading={verifyEmailLoading}
+                    fullWidth
                 >
                     Verify Email
                 </Button>
@@ -153,7 +154,13 @@ export default function StepOne() {
 
     return (
         <div>
-            <Button onClick={handleGoogleSignUp} colour="white" width="w-full" size="small">
+            <Button
+                onClick={handleGoogleSignUp}
+                colour="white"
+                width="w-full"
+                size="small"
+                fullWidth
+            >
                 <FcGoogle className="mb-0.5 mr-2 inline-block text-xl" />
                 Continue with Google
             </Button>
@@ -181,6 +188,7 @@ export default function StepOne() {
                         type="submit"
                         size="small"
                         loading={emailJoinLoading}
+                        fullWidth
                     >
                         Continue
                     </Button>

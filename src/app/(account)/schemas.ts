@@ -1,3 +1,10 @@
+import {
+    AGE_BRACKETS,
+    DEGREES,
+    GENDERS,
+    STUDENT_STATUSES,
+    STUDENT_TYPES,
+} from '@/constants/student-info';
 import { z } from 'zod';
 
 export const emailSchema = z
@@ -35,3 +42,34 @@ export const codeSchema = z
     .regex(/^\d+$/, {
         message: 'Code must be numeric',
     });
+
+export const stepTwoSchema = z.object({
+    firstName: firstNameSchema,
+    lastName: lastNameSchema,
+    studentStatus: z.enum(STUDENT_STATUSES, {
+        errorMap: () => ({ message: 'Please select a valid status' }),
+    }),
+    studentId: z
+        .string()
+        .regex(/^a\d{7}$/, {
+            message: 'Please enter a valid student ID (format: aXXXXXXX)',
+        })
+        .or(z.literal('')),
+});
+
+export const stepThreeSchema = z.object({
+    ageBracket: z.enum(AGE_BRACKETS, {
+        errorMap: () => ({ message: 'Please select an age bracket' }),
+    }),
+    gender: z.enum(GENDERS, { errorMap: () => ({ message: 'Please select a gender' }) }),
+    degree: z
+        .enum(DEGREES, { errorMap: () => ({ message: 'Please select a degree' }) })
+        .or(z.literal('')),
+    studentType: z
+        .enum(STUDENT_TYPES, {
+            errorMap: () => ({ message: 'Please select a student type' }),
+        })
+        .or(z.literal('')),
+});
+
+export const infoSchema = stepTwoSchema.merge(stepThreeSchema);
