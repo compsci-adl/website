@@ -19,6 +19,7 @@ export type Event = {
     time: string;
     location: string;
     details: string;
+    url?: URL;
     image: string;
 };
 
@@ -55,6 +56,7 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'The National Wine Centre, Hickinbotham Hall',
         details: 'Connect with top companies and explore job opportunities in the tech industry!',
+        url: new URL('https://events.humanitix.com/computer-science-club-industry-night'),
         image: 'industry-night.jpg',
     },
     // {

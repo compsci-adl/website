@@ -51,6 +51,16 @@ function EventCard({ event, index }: { event: Event; index: number }) {
                         </div>
                     </div>
                     <div>{event.details}</div>
+                    {event.url && (
+                        <a
+                            href={event.url.toString()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-bold hover:underline"
+                        >
+                            Sign up here!
+                        </a>
+                    )}
                 </div>
             </div>
         </FancyRectangle>
