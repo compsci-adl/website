@@ -40,6 +40,14 @@ const SPONSORS: Sponsor[] = [
             'At Macquarie, we’re connecting people and data, building platforms and applications, and designing tomorrow’s technology solutions. We have market leading expertise, so where could a career in Technology at Macquarie take you? Join our leaders and graduates to gain first-hand insights into a career in Technology.',
     },
     {
+        name: 'Swordfish Computing',
+        image: 'swordfish.svg',
+        website: 'https://www.swordfish.com.au/',
+        type: 'silver',
+        description:
+            'Swordfish was established in 1999 with the goal of providing specialist Computer Systems Engineering, Software Engineering, and Modelling, Simulation and Analysis (MS&A) services in support of Defence Research and Development (R&D) programs within Defence.',
+    },
+    {
         name: 'Citadel Securities',
         image: 'citadel-securities.png',
         website: 'https://www.citadelsecurities.com/',
