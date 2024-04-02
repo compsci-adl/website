@@ -19,6 +19,7 @@ export type Event = {
     time: string;
     location: string;
     details: string;
+    url?: URL;
     image: string;
 };
 
@@ -55,17 +56,18 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'The National Wine Centre, Hickinbotham Hall',
         details: 'Connect with top companies and explore job opportunities in the tech industry!',
+        url: new URL('https://events.humanitix.com/computer-science-club-industry-night'),
         image: 'industry-night.jpg',
     },
-    {
-        title: 'LaTeX Workshop',
-        date: { year: 2024, month: 'APR', day: 4, endTime: '19:00' },
-        time: '5:00pm - 7:00pm',
-        location: 'Ingkarni Wardli 218',
-        details:
-            'Do you want to create pretty documents? Is Word destroying your assignments when you move images around? Look no further than LaTeX, the academic typesetting tool created by the great Donald Knuth, and the solution to all your maths assignments.',
-        image: 'latex-workshop.jpg',
-    },
+    // {
+    //     title: 'LaTeX Workshop',
+    //     date: { month: 'APR', day: 4 },
+    //     time: '5:00pm - 7:00pm',
+    //     location: 'Ingkarni Wardli 218',
+    //     details:
+    //         'Do you want to create pretty documents? Is Word destroying your assignments when you move images around? Look no further than LaTeX, the academic typesetting tool created by the great Donald Knuth, and the solution to all your maths assignments.',
+    //     image: 'latex-workshop.jpg',
+    // },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
