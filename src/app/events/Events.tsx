@@ -82,10 +82,14 @@ export default function Events({ className }: { className?: string }) {
 
     return (
         <section className={`${className} space-y-8`}>
-            <Title>{'Upcoming Events'}</Title>
-            {upcomingEvents.map((event, i) => (
-                <EventCard key={i} index={i} event={event} />
-            ))}
+            {upcomingEvents.length > 0 && (
+                <>
+                    <Title>{'Upcoming Events'}</Title>
+                    {upcomingEvents.map((event, i) => (
+                        <EventCard key={i} index={i} event={event} />
+                    ))}
+                </>
+            )}
 
             {pastEvents.length > 0 && (
                 <>
