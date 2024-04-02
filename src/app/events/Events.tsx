@@ -1,15 +1,16 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { EVENTS, type Event } from '@/data/events';
+import { getUpcomingEvents, getPastEvents } from '@/utils/get-events-date';
 import Image from 'next/image';
 import { FiClock, FiMapPin } from 'react-icons/fi';
 
-function Title({ title }: { title: string }) {
+function Title({ children }: { children: string }) {
     return (
         <div className="flex justify-center">
             <FancyRectangle colour="yellow" offset="8">
                 <div className="w-fit bg-yellow p-2">
                     <h2 className="text-center text-4xl font-bold text-grey md:text-6xl">
-                        {title}
+                        {children}
                     </h2>
                 </div>
             </FancyRectangle>
@@ -66,34 +67,19 @@ function EventCard({
 }
 
 export default function Events({ className }: { className?: string }) {
-    const currentDate = new Date(); // Current timestamp
-
-    // Convert event date and check if upcoming event
-    const upcomingEvents = EVENTS.filter((event) => {
-        const eventDate = new Date(
-            `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
-        );
-        return eventDate >= currentDate;
-    });
-
-    // Convert event date, check if past event and reverse events
-    const pastEvents = EVENTS.filter((event) => {
-        const eventDate = new Date(
-            `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
-        );
-        return eventDate < currentDate;
-    }).reverse();
+    const upcomingEvents = getUpcomingEvents(EVENTS);
+    const pastEvents = getPastEvents(EVENTS);
 
     return (
         <section className={`${className} space-y-8`}>
-            <Title title="Upcoming Events" />
+            <Title children="Upcoming Events" />
             {upcomingEvents.map((event, i) => (
                 <EventCard key={i} index={i} event={event} />
             ))}
 
             {pastEvents.length > 0 && (
                 <>
-                    <Title title="Past Events" />
+                    <Title children="Past Events" />
                     {pastEvents.map((event, i) => (
                         <EventCard key={i} index={i} event={event} isPastEvent={true} />
                     ))}
