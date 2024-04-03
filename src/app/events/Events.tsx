@@ -1,6 +1,5 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { EVENTS, type Event } from '@/data/events';
-import { getUpcomingEvents, getPastEvents } from '@/utils/get-events-date';
 import Image from 'next/image';
 import { FiClock, FiMapPin } from 'react-icons/fi';
 
@@ -76,26 +75,31 @@ function EventCard({
     );
 }
 
+const getEventDate = (event: Event) => {
+    return new Date(
+        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
+    );
+};
+const CURRENT_DATE = new Date();
+const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
+const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE);
 export default function Events({ className }: { className?: string }) {
-    const upcomingEvents = getUpcomingEvents(EVENTS);
-    const pastEvents = getPastEvents(EVENTS);
-
     return (
         <section className={`${className} space-y-8`}>
-            {upcomingEvents.length > 0 && (
+            {UPCOMING_EVENTS.length > 0 && (
                 <>
-                    <Title>{'Upcoming Events'}</Title>
-                    {upcomingEvents.map((event, i) => (
+                    <Title>Upcoming Events</Title>
+                    {UPCOMING_EVENTS.map((event, i) => (
                         <EventCard key={i} index={i} event={event} />
                     ))}
                 </>
             )}
 
-            {pastEvents.length > 0 && (
+            {PAST_EVENTS.length > 0 && (
                 <>
-                    <Title>{'Past Events'}</Title>
-                    {pastEvents.map((event, i) => (
-                        <EventCard key={i} index={i} event={event} isPastEvent={true} />
+                    <Title>Past Events</Title>
+                    {PAST_EVENTS.map((event, i) => (
+                        <EventCard key={i} index={i} event={event} isPastEvent />
                     ))}
                 </>
             )}
