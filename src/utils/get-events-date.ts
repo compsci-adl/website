@@ -11,7 +11,7 @@ export function getUpcomingEvents(EVENTS: Event[]): Event[] {
     });
 }
 
-// Convert event date and return past events in reversed order
+// Convert event date and return past events with the most recent event first
 export function getPastEvents(EVENTS: Event[]): Event[] {
     const currentDate = new Date();
     return EVENTS.filter((event) => {
