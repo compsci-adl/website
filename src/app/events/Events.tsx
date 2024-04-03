@@ -82,7 +82,7 @@ const getEventDate = (event: Event) => {
 };
 const CURRENT_DATE = new Date();
 const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
-const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE);
+const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE).reverse(); // Most recent event first
 export default function Events({ className }: { className?: string }) {
     return (
         <section className={`${className} space-y-8`}>
