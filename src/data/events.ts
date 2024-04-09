@@ -19,7 +19,7 @@ export type Event = {
     time: string;
     location: string;
     details: string;
-    url?: URL;
+    url?: { href: URL; text?: string };
     image: string;
 };
 
@@ -56,18 +56,33 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'The National Wine Centre, Hickinbotham Hall',
         details: 'Connect with top companies and explore job opportunities in the tech industry!',
-        url: new URL('https://events.humanitix.com/computer-science-club-industry-night'),
+        url: {
+            href: new URL('https://events.humanitix.com/computer-science-club-industry-night'),
+            text: 'Sign up here!',
+        },
         image: 'industry-night.jpg',
     },
-    // {
-    //     title: 'LaTeX Workshop',
-    //     date: { month: 'APR', day: 4 },
-    //     time: '5:00pm - 7:00pm',
-    //     location: 'Ingkarni Wardli 218',
-    //     details:
-    //         'Do you want to create pretty documents? Is Word destroying your assignments when you move images around? Look no further than LaTeX, the academic typesetting tool created by the great Donald Knuth, and the solution to all your maths assignments.',
-    //     image: 'latex-workshop.jpg',
-    // },
+    {
+        title: 'LaTeX Workshop',
+        date: { year: 2024, month: 'APR', day: 24, endTime: '19:00' },
+        time: '5:00pm - 7:00pm',
+        location: 'Ingkarni Wardli 218',
+        details:
+            'Do you want to create pretty documents? Is Word destroying your assignments when you move images around? Look no further than LaTeX, the academic typesetting tool created by the great Donald Knuth, and the solution to all your maths assignments.',
+        image: 'latex-workshop.jpg',
+    },
+    {
+        title: 'Duck Duck Booze: Pub Crawl',
+        date: { year: 2024, month: 'MAY', day: 10, endTime: '23:00' },
+        time: '5:30pm - 11:00pm',
+        location: 'UniBar Adelaide and various bars in Adelaide',
+        details: 'Our annual pub crawl! More details to come soon.',
+        url: {
+            href: new URL('https://csclub-adl.square.site/product/cs-club-pub-crawl-2024-shirt/54'),
+            text: 'Preorder shirts now!',
+        },
+        image: 'upcoming-event.jpg',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [

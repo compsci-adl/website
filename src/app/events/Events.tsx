@@ -61,12 +61,12 @@ function EventCard({
                     <div>{event.details}</div>
                     {event.url && (
                         <a
-                            href={event.url.toString()}
+                            href={event.url.href.toString()}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="font-bold hover:underline"
                         >
-                            Sign up here!
+                            {event.url.text ?? 'Click here!'}
                         </a>
                     )}
                 </div>
