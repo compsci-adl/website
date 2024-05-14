@@ -1,27 +1,16 @@
-import {
-    Body,
-    Button,
-    Column,
-    Container,
-    Head,
-    Heading,
-    Hr,
-    Html,
-    Img,
-    Preview,
-    Row,
-    Section,
-    Text,
-} from '@react-email/components';
+import { Body, Button, Column, Container, Head, Heading, Hr, Html, Img, Preview, Row, Section, Text } from '@react-email/components';
 import * as React from 'react';
 import { FaDiscord, FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+
 
 interface WelcomeEmailProps {
     userFirstname: string;
     onedriveLink: string;
 }
 
-const baseUrl = process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '';
+const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+    : 'http://localhost:3000';
 
 export const WelcomeEmail = ({ userFirstname, onedriveLink }: WelcomeEmailProps) => (
     <Html>
@@ -30,7 +19,7 @@ export const WelcomeEmail = ({ userFirstname, onedriveLink }: WelcomeEmailProps)
         <Body style={main}>
             <Container style={container}>
                 <Img
-                    src={`${baseUrl}/static/images/logo.png`}
+                    src={`${baseUrl}/images/logos/logo.png`}
                     width="170"
                     height="50"
                     alt="CS Club Logo"
