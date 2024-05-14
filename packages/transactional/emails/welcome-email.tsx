@@ -30,7 +30,7 @@ export const WelcomeEmail = ({ userFirstname, onedriveLink }: WelcomeEmailProps)
         <Body style={main}>
             <Container style={container}>
                 <Img
-                    src={`${baseUrl}/static/cslogo.svg`}
+                    src={`${baseUrl}/static/images/logo.png`}
                     width="170"
                     height="50"
                     alt="CS Club Logo"
