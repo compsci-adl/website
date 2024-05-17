@@ -18,7 +18,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         exec: true,
     },
     {
-        name: 'Christian',
+        name: 'Christian Dianos',
         position: 'Treasurer',
         exec: true,
     },
