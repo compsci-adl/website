@@ -31,13 +31,13 @@ export function MenuLinks({ data, onClick }: { data: HeaderData; onClick?: () =>
     );
 }
 
-const LINKS = ['about', 'events', 'sponsors', 'contact'];
+const LINKS = ['about', 'events', 'sponsors', 'contact', 'open source'];
 export function Links({ onClick }: { onClick?: () => void }) {
     return (
         <>
             {LINKS.map((link, i) => (
                 <Link
-                    href={`/${link}`}
+                    href={link === 'open source' ? '/open-source' : `/${link}`}
                     className="block capitalize hover:underline"
                     onClick={onClick}
                     key={i}
