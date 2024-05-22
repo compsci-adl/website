@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     title: 'Open Source',
 };
 
-export default function AboutPage() {
+export default function OpenSourcePage() {
     return (
         <main className="relative">
             <div className="h-full">
@@ -16,7 +16,7 @@ export default function AboutPage() {
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">
-                        <h2 className="mb-4 text-2xl font-bold ">Who is the Open Source Team?</h2>
+                        <h2 className="mb-4 text-2xl font-bold">Who is the Open Source Team?</h2>
                         <p className="text-lg md:text-xl">
                             The CS Club Open Source Team is a place for creative and inventive
                             students who want to build innovative open-source software together. We
@@ -39,7 +39,7 @@ export default function AboutPage() {
                     </section>
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
-                        <div className="order-2 col-span-5 space-y-8 md:order-3">
+                        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
                             {PROJECTS.map((project, i) => (
                                 <ProjectCard key={i} index={i} project={project} />
                             ))}
