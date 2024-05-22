@@ -21,9 +21,7 @@ export default function OpenSourcePage() {
                             The CS Club Open Source Team is a place for creative and inventive
                             students who want to build innovative open-source software together. We
                             are a new team currently working on a few projects, but we have many
-                            more exciting projects planned for the future! Within our team,
-                            you&apos;ll find various projects, ranging from various web apps to
-                            Discord bots.
+                            more exciting projects planned for the future!
                         </p>
                         <p className="mt-2 text-lg md:text-xl">
                             The open-source managers are{' '}
