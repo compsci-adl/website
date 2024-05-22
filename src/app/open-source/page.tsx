@@ -12,7 +12,7 @@ export default function OpenSourcePage() {
         <main className="relative">
             <div className="h-full">
                 <div className="mb-8 flex justify-center">
-                    <Title colour="orange">Open Source</Title>
+                    <Title colour="purple">Open Source</Title>
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">

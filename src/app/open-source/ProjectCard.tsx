@@ -31,7 +31,7 @@ export default function ProjectCard({ project }: { project: Project; index: numb
                         </div>
                     </div>
                     <Button
-                        colour={'purple'}
+                        colour="orange"
                         href={project.githubLink}
                         width="w-full"
                         size="small"
