@@ -23,17 +23,6 @@ export default function OpenSourcePage() {
                             are a new team currently working on a few projects, but we have many
                             more exciting projects planned for the future!
                         </p>
-                        <p className="mt-2 text-lg md:text-xl">
-                            The open-source managers are{' '}
-                            <a href="https://github.com/phoenixpereira" className="underline">
-                                Phoenix Pereira
-                            </a>{' '}
-                            and{' '}
-                            <a href="https://github.com/jsun969" className="underline">
-                                Justin Sun
-                            </a>
-                            .
-                        </p>
                     </section>
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
@@ -77,6 +66,27 @@ export default function OpenSourcePage() {
                                 className="underline"
                             >
                                 Code of Conduct
+                            </a>
+                            .
+                        </p>
+                    </section>
+                    <section className="mb-8">
+                        <h2 className="mb-4 text-2xl font-bold">Contact Us</h2>
+                        <p className="mt-2 text-lg md:text-xl">
+                            The open-source managers are{' '}
+                            <a href="https://github.com/phoenixpereira" className="underline">
+                                Phoenix Pereira
+                            </a>{' '}
+                            and{' '}
+                            <a href="https://github.com/jsun969" className="underline">
+                                Justin Sun
+                            </a>
+                            .
+                        </p>
+                        <p className="mt-2 text-lg md:text-xl">
+                            If you have any queries, please contact us via{' '}
+                            <a className="underline" href="mailto:dev@csclub.org.au">
+                                dev@csclub.org.au
                             </a>
                             .
                         </p>
