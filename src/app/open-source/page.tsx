@@ -28,7 +28,7 @@ export default function OpenSourcePage() {
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
                             {PROJECTS.map((project, i) => (
-                                <ProjectCard key={i} index={i} project={project} />
+                                <ProjectCard key={i} project={project} />
                             ))}
                         </div>
                     </section>

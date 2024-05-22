@@ -4,7 +4,7 @@ import type { Project } from '@/data/projects';
 import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
 
-export default function ProjectCard({ project }: { project: Project; index: number }) {
+export default function ProjectCard({ project }: { project: Project }) {
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="w-full gap-6 rounded-xl bg-white p-4 text-black">
