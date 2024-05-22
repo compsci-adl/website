@@ -1,14 +1,8 @@
 import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
+import type { Project } from '@/data/projects';
 import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
-
-interface Project {
-    title: string;
-    description: string;
-    image: string;
-    githubLink: string;
-}
 
 export default function ProjectCard({ project }: { project: Project; index: number }) {
     return (
