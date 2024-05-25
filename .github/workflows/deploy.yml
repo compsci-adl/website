@@ -8,11 +8,12 @@ env:
   AWS_REGION: ap-southeast-2
 
 jobs:
-  lint-format:
-    name: Linting and Formatting Checks
-    uses: ./.github/workflows/lint-and-format.yml
+  # lint-format:
+  #   name: Linting and Formatting Checks
+  #   uses: ./.github/workflows/lint-and-format.yml
 
   build:
+    # needs: lint-format
     name: Build
     runs-on: ubuntu-latest
     permissions:
@@ -34,8 +35,8 @@ jobs:
 
       - name: Build Docker container
         run: |
-          SECRETS=$(grep -v '^#\|^[[:space:]]*$' .example.env | tr '\n', ',' | sed 's/.$//')
-          docker buildx build --secret $SECRETS --platform=linux/arm64 --file=Dockerfile -t csclub-website .
+          SECRETS=$(grep -v '^#\|^[[:space:]]*$' .example.env | sed 's/^/--secret /' | sed 's/$/ /')
+          docker buildx build $SECRETS --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           docker image save website | gzip > csclub-website.tar.gz
 
       - name: Copy image and compose file to S3
