@@ -30,13 +30,22 @@ jobs:
           role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Get env file
-        run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/.example.env .
-
       - name: Build Docker container
         run: |
-          SECRETS=$(grep -v '^#\|^[[:space:]]*$' .example.env | sed 's/^/--secret /' | sed 's/$/ /')
-          docker buildx build $SECRETS --platform=linux/arm64 --file=Dockerfile -t csclub-website .
+          docker buildx build \
+            --secret id=CLERK_SECRET_KEY,src="ABC123" \
+            --secret id=DATABASE_AUTH_TOKEN,src="ABC123" \
+            --secret id=DATABASE_URL,src="ABC123" \
+            --secret id=NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL,src="ABC123" \
+            --secret id=NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL,src="ABC123" \
+            --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,src="ABC123" \
+            --secret id=NEXT_PUBLIC_CLERK_SIGN_IN_URL,src="ABC123" \
+            --secret id=NEXT_PUBLIC_CLERK_SIGN_UP_URL,src="ABC123" \
+            --secret id=NEXT_PUBLIC_DRIVE_LINK,src="https://example.com" \
+            --secret id=REDIS_URI,src="ABC123" \
+            --secret id=SQUARE_ACCESS_TOKEN,src="ABC123" \
+            --secret id=SQUARE_LOCATION_ID,src="ABC123" \
+            --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           docker image save website | gzip > csclub-website.tar.gz
 
       - name: Copy image and compose file to S3
