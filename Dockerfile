@@ -8,14 +8,16 @@ COPY package.json ./
 # Build
 FROM node:18-bookworm-slim as build
 
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="${PATH}:${PNPM_HOME}"
+
 WORKDIR /app
 
 COPY --from=deps /tmp ./
 COPY pnpm-lock.yaml ./
 
-RUN npm install -g pnpm && \
-    pnpm setup && \
-    pnpm install
+RUN npm install -g pnpm \
+    && pnpm install
 
 COPY . .
 
@@ -25,14 +27,15 @@ RUN --mount=type=secret,id=SKIP_ENV_VALIDATION \
 # Final deployment image
 FROM node:18-bookworm-slim
 
-RUN npm install -g pnpm && \
-    pnpm setup
+ENV PNPM_HOME="/root/.local/share/pnpm"
+ENV PATH="${PATH}:${PNPM_HOME}"
+ENV NODE_ENV production
+
+RUN npm install -g pnpm
 
 WORKDIR /app
 
 COPY --from=build /app /app
-
-ENV NODE_ENV production
 
 EXPOSE 80
 
