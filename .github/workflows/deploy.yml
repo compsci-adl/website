@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    name: Deploy to EC2
+    name: Deploy to S3
     runs-on: self-hosted
 
     steps:
