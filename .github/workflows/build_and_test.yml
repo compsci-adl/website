@@ -1,10 +1,9 @@
 name: Build and Test
 
 on:
-  workflow_run:
-    workflows: [Prettier]
-    types:
-      - completed
+  pull_request:
+    branches:
+      - '*'
 
 jobs:
   build:
@@ -44,6 +43,19 @@ jobs:
         run: pnpm install
 
       - name: Build
+        env:
+          CLERK_SECRET_KEY: ${{ env.CLERK_SECRET_KEY }}
+          DATABASE_AUTH_TOKEN: ${{ env.DATABASE_AUTH_TOKEN }}
+          DATABASE_URL: ${{ env.DATABASE_URL }}
+          NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: ${{ env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL }}
+          NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: ${{ env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_CLERK_SIGN_IN_URL: ${{ env.NEXT_PUBLIC_CLERK_SIGN_IN_URL }}
+          NEXT_PUBLIC_CLERK_SIGN_UP_URL: ${{ env.NEXT_PUBLIC_CLERK_SIGN_UP_URL }}
+          NEXT_PUBLIC_DRIVE_LINK: ${{ env.NEXT_PUBLIC_DRIVE_LINK }}
+          REDIS_URI: ${{ env.REDIS_URI }}
+          SQUARE_ACCESS_TOKEN: ${{ env.SQUARE_ACCESS_TOKEN }}
+          SQUARE_LOCATION: ${{ env.SQUARE_LOCATION }}
         run: pnpm run build
 
       - name: Run tests
