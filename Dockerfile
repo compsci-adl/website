@@ -8,7 +8,8 @@ COPY package.json ./
 # Build
 FROM node:18-bookworm-slim as build
 
-RUN curl -fsSL https://get.pnpm.io/install.sh | sh -
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 WORKDIR /app
 
@@ -25,7 +26,8 @@ RUN --mount=type=secret,id=SKIP_ENV_VALIDATION \
 # Final deployment image
 FROM node:18-bookworm-slim
 
-RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://get.pnpm.io/install.sh | sh -
 
 WORKDIR /app
 
