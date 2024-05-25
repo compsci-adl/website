@@ -1,0 +1,64 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main, ci-aws] # ci-aws is temporary
+
+env:
+  AWS_REGION: ap-southeast-2
+
+jobs:
+  lint-format:
+    name: Linting and Formatting Checks
+    uses: ./.github/workflows/lint-and-format.yml
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Get env file
+        run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/.example.env .
+
+      - name: Build Docker container
+        run: |
+          SECRETS=$(grep -v '^#\|^[[:space:]]*$' .example.env | tr '\n', ',' | sed 's/.$//')
+          docker buildx build --secret $SECRETS --platform=linux/arm64 --file=Dockerfile -t csclub-website .
+          docker image save website | gzip > csclub-website.tar.gz
+
+      - name: Copy image and compose file to S3
+        run: |
+          aws s3 cp ./website.tar.gz s3://${{ secrets.AWS_S3_BUCKET }}/website/
+          aws s3 cp ./docker-compose.yml s3://${{ secrets.AWS_S3_BUCKET }}/website/
+
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy on EC2
+        env:
+          KEY: ${{ secrets.SSH_EC2_KEY }}
+          HOSTNAME: ${{ secrets.SSH_EC2_HOSTNAME }}
+          USER: ${{ secrets.SSH_EC2_USER }}
+        run: |
+          echo "$KEY" > private_key && chmod 600 private_key
+          ssh -v -o StrictHostKeyChecking=no -i private_key ${USER}@${HOSTNAME} '
+            cd ~/website
+            aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/csclub-website.tar.gz .
+            aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/docker-compose.yml .
+            docker load -i csclub-website.tar.gz
+            docker compose up -d
+          '

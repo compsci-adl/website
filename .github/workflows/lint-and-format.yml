@@ -1,10 +1,6 @@
-name: Lint
+name: Linting and Formatting Checks
 on:
-  pull_request:
-    branches:
-      - '*'
-  push:
-    branches: [main, ci]
+  workflow_call:
 
 jobs:
   es-lint:
@@ -12,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - run: pnpm install
       - run: pnpm run lint
 
@@ -24,9 +20,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
         with:
-          version: 8
+          version: 9
       - run: pnpm install
       - run: pnpm run format:check

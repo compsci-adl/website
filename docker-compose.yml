@@ -1,0 +1,9 @@
+version: '3'
+services:
+  website:
+    image: csclub-website:latest
+    container_name: csclub-website
+    env_file:
+      - .env.local
+    ports:
+      - 80:3000
