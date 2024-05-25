@@ -1,12 +1,12 @@
 # Cache package.json
-FROM node:20-bookworm-slim as deps
+FROM arm64v8/node:18-bookworm-slim as deps
 
 WORKDIR /tmp
 
 COPY package.json ./
 
 # Build
-FROM node:18-bookworm-slim as build
+FROM arm64v8/node:18-bookworm-slim as build
 
 RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
 
@@ -23,7 +23,7 @@ RUN --mount=type=secret,id=SKIP_ENV_VALIDATION \
     pnpm run build
 
 # Final deployment image
-FROM node:18-bookworm-slim
+FROM arm64v8/node:18-bookworm-slim
 
 RUN wget -qO- https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
 
