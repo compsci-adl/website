@@ -9,6 +9,7 @@ jobs:
   build:
     name: Run build and test
     runs-on: ubuntu-latest
+    environment: Build and Test
 
     steps:
       - name: Checkout repository

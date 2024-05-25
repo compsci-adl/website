@@ -10,6 +10,7 @@ jobs:
   deploy:
     name: Deploy to S3
     runs-on: self-hosted
+    environment: Deploy
 
     steps:
       - name: Checkout code
