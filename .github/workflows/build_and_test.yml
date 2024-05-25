@@ -1,13 +1,14 @@
 name: Build and Test
 
 on:
-  pull_request:
-    branches:
-      - '*'
+  workflow_run:
+    workflows: [Prettier]
+    types:
+      - completed
 
 jobs:
   build:
-    name: Run build and test
+    name: Build and Test
     runs-on: ubuntu-latest
     environment: Build and Test
 
