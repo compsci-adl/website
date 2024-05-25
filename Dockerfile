@@ -9,7 +9,7 @@ COPY package.json ./
 FROM node:18-bookworm-slim as build
 
 RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://get.pnpm.io/install.sh | sh -
+    curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
 
 WORKDIR /app
 
@@ -27,7 +27,7 @@ RUN --mount=type=secret,id=SKIP_ENV_VALIDATION \
 FROM node:18-bookworm-slim
 
 RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://get.pnpm.io/install.sh | sh -
+    curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
 
 WORKDIR /app
 
