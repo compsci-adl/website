@@ -1,8 +1,10 @@
 name: Deploy
 
 on:
-  push:
-    branches: [production, aws]
+  workflow_run:
+    workflows: ["Build and Test"]
+    types:
+      - completed
 
 jobs:
   deploy:
