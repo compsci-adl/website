@@ -8,15 +8,14 @@ COPY package.json ./
 # Build
 FROM node:18-bookworm-slim as build
 
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
-
 WORKDIR /app
 
 COPY --from=deps /tmp ./
 COPY pnpm-lock.yaml ./
 
-RUN pnpm install
+RUN npm install -g pnpm && \
+    pnpm setup && \
+    pnpm install
 
 COPY . .
 
@@ -26,8 +25,8 @@ RUN --mount=type=secret,id=SKIP_ENV_VALIDATION \
 # Final deployment image
 FROM node:18-bookworm-slim
 
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://get.pnpm.io/install.sh | ENV="$HOME/.shrc" SHELL="$(which sh)" sh -
+RUN npm install -g pnpm && \
+    pnpm setup
 
 WORKDIR /app
 
