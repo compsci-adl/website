@@ -37,8 +37,8 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ap-southwest-2
-          SOURCE_DIR: "cs-club-website.tar"
-          DEST_DIR: "docker-images/"
+          SOURCE_DIR: 'cs-club-website.tar'
+          DEST_DIR: 'docker-images/'
 
       - name: Deploy to EC2
         env:
