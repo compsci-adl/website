@@ -30,6 +30,9 @@ jobs:
           role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
+      - name: Install arm64 support for Docker
+        run: docker run --privileged --rm tonistiigi/binfmt --install arm64
+
       - name: Build Docker container
         run: |
           docker buildx build \
