@@ -33,18 +33,7 @@ jobs:
       - name: Build Docker container
         run: |
           docker buildx build \
-            --secret id=CLERK_SECRET_KEY,src="ABC123" \
-            --secret id=DATABASE_AUTH_TOKEN,src="ABC123" \
-            --secret id=DATABASE_URL,src="ABC123" \
-            --secret id=NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL,src="ABC123" \
-            --secret id=NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL,src="ABC123" \
-            --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,src="ABC123" \
-            --secret id=NEXT_PUBLIC_CLERK_SIGN_IN_URL,src="ABC123" \
-            --secret id=NEXT_PUBLIC_CLERK_SIGN_UP_URL,src="ABC123" \
-            --secret id=NEXT_PUBLIC_DRIVE_LINK,src="https://example.com" \
-            --secret id=REDIS_URI,src="ABC123" \
-            --secret id=SQUARE_ACCESS_TOKEN,src="ABC123" \
-            --secret id=SQUARE_LOCATION_ID,src="ABC123" \
+            --secret id=SKIP_ENV_VALIDATION,env=true \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           docker image save website | gzip > csclub-website.tar.gz
 
