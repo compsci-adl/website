@@ -36,7 +36,6 @@ jobs:
       - name: Build Docker container
         run: |
           docker buildx build \
-            --secret id=SKIP_ENV_VALIDATION,env=true \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           docker image save website | gzip > csclub-website.tar.gz
 

@@ -10,6 +10,7 @@ FROM node:18-bookworm-slim as build
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
+ENV SKIP_ENV_VALIDATION=true
 
 WORKDIR /app
 
@@ -21,8 +22,7 @@ RUN npm install -g pnpm \
 
 COPY . .
 
-RUN --mount=type=secret,id=SKIP_ENV_VALIDATION \
-    pnpm run build
+RUN pnpm run build
 
 # Final deployment image
 FROM node:18-bookworm-slim
