@@ -1,0 +1,58 @@
+name: Deploy
+
+on:
+  push:
+    branches: [production, aws]
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
+          path: .next
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build -t cs-club-website:latest .
+
+      - name: Save Docker image to file
+        run: docker save cs-club-website:latest -o cs-club-website.tar
+
+      - name: Upload Docker image to S3
+        uses: jakejarvis/s3-sync-action@v0.5.1
+        with:
+          args: --acl public-read --follow-symlinks
+        env:
+          AWS_S3_BUCKET: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ap-southwest-2
+          SOURCE_DIR: "cs-club-website.tar"
+          DEST_DIR: "docker-images/"
+
+      - name: Deploy to EC2
+        env:
+          EC2_USER: ${{ secrets.EC2_USER }}
+          EC2_HOST: ${{ secrets.EC2_HOST }}
+          S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_HOST << 'EOF'
+            sudo yum install -y aws-cli docker
+            aws s3 cp s3://$S3_BUCKET_NAME/docker-images/cs-club-website.tar cs-club-website.tar
+            docker load -i cs-club-website.tar
+            docker stop cs-club-website || true
+            docker rm cs-club-website || true
+            docker run -d --name cs-club-website -p 80:3000 cs-club-website:latest
+          EOF
