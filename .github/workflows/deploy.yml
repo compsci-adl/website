@@ -47,7 +47,7 @@ jobs:
 
       - name: Copy image and compose file to S3
         run: |
-          aws s3 cp ./website.tar.gz s3://${{ secrets.AWS_S3_BUCKET }}/website/
+          aws s3 cp ./csclub-website.tar.gz s3://${{ secrets.AWS_S3_BUCKET }}/website/
           aws s3 cp ./docker-compose.yml s3://${{ secrets.AWS_S3_BUCKET }}/website/
 
   deploy:
