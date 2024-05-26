@@ -12,12 +12,6 @@ ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
 ENV SKIP_ENV_VALIDATION=true
 
-# Needed for build
-ENV NEXT_PUBLIC_CLERK_SIGN_IN_URL="/signin"
-ENV NEXT_PUBLIC_CLERK_SIGN_UP_URL="/join"
-ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL="/"
-ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL="/"
-
 WORKDIR /app
 
 COPY --from=deps /tmp ./
@@ -28,7 +22,8 @@ RUN npm install -g pnpm \
 
 COPY . .
 
-RUN pnpm run build
+RUN --mount=type=secret,id=DATABASE_URL \
+    pnpm run build
 
 # Final deployment image
 FROM node:18-bookworm-slim AS runner

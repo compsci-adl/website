@@ -16,6 +16,7 @@ jobs:
     # needs: lint-format
     name: Build
     runs-on: [self-hosted, ARM64] # Since deployment is on arm64
+    environment: Production
     permissions:
       id-token: write
       contents: read
@@ -34,8 +35,11 @@ jobs:
       #   run: docker run --privileged --rm tonistiigi/binfmt --install arm64
 
       - name: Build Docker container
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: |
           docker buildx build \
+            --secret id=DATABASE_URL,env=${DATABASE_URL} \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           docker image save website | gzip > csclub-website.tar.gz
 
@@ -48,6 +52,7 @@ jobs:
     needs: build
     name: Deploy
     runs-on: ubuntu-latest
+    environment: Production
     steps:
       - name: Deploy on EC2
         env:
