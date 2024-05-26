@@ -1,9 +1,13 @@
 version: '3'
 services:
-  website:
+  csclub-website:
     image: csclub-website:latest
     container_name: csclub-website
     env_file:
       - .env.local
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - PORT=3000
     ports:
-      - 80:3000
+      - 3000:3000
