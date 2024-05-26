@@ -22,7 +22,10 @@ RUN npm install -g pnpm \
 
 COPY . .
 
-RUN --mount=type=secret,id=DATABASE_URL \
+RUN --mount=type=secret,id=DATABASE_URL,target=/run/secrets/DATABASE_URL \
+    --mount=type=secret,id=REDIS_URI,target=/run/secrets/REDIS_URI \
+    DATABASE_URL=$(cat /run/secrets/DATABASE_URL) \
+    REDIS_URI=$(cat /run/secrets/REDIS_URI) \
     pnpm run build
 
 # Final deployment image

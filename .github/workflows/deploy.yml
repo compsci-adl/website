@@ -37,9 +37,11 @@ jobs:
       - name: Build Docker container
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REDIS_URI: ${{ secrets.REDIS_URI }}
         run: |
           docker buildx build \
-            --secret id=DATABASE_URL,env=${DATABASE_URL} \
+            --secret id=DATABASE_URL \
+            --secret id=REDIS_URI \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           docker image save website | gzip > csclub-website.tar.gz
 
