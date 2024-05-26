@@ -15,7 +15,7 @@ jobs:
   build:
     # needs: lint-format
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, ec2-arm64]
     permissions:
       id-token: write
       contents: read
@@ -30,8 +30,8 @@ jobs:
           role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
-      - name: Install arm64 support for Docker
-        run: docker run --privileged --rm tonistiigi/binfmt --install arm64
+      # - name: Install arm64 support for Docker
+      #   run: docker run --privileged --rm tonistiigi/binfmt --install arm64
 
       - name: Build Docker container
         run: |
