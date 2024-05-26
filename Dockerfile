@@ -41,6 +41,6 @@ WORKDIR /app
 
 COPY --from=builder /app /app
 
-EXPOSE 80
+EXPOSE $PORT
 
 CMD [ "pnpm", "run", "start" ]
