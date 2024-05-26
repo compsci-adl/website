@@ -69,4 +69,5 @@ jobs:
             aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/docker-compose.yml .
             docker load -i csclub-website.tar.gz
             docker compose up -d
+            docker restart csclub-website
           '

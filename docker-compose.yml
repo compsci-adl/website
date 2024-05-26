@@ -12,3 +12,7 @@ services:
       - 3000:3000
     networks:
       - csclub
+
+networks:
+  csclub:
+    external: true
