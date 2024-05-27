@@ -1,0 +1,33 @@
+name: Development - Pull Request
+on:
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  lint-format:
+    name: Linting and Formatting Checks
+    uses: ./.github/workflows/lint-and-format.yml
+
+  build:
+    needs: lint-format
+    name: Build
+    runs-on: ubuntu-latest
+    environment: Development
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker container
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REDIS_URI: ${{ secrets.REDIS_URI }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+        run: |
+          docker buildx build \
+            --secret id=DATABASE_URL \
+            --secret id=REDIS_URI \
+            --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
+            --secret id=NEXT_PUBLIC_DRIVE_LINK \
+            --file=Dockerfile -t csclub-website .
