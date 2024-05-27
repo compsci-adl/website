@@ -1,19 +1,19 @@
-name: Deploy
+name: Production
 
 on:
   push:
-    branches: [main, ci-aws] # ci-aws is temporary
+    branches: [main]
 
 env:
   AWS_REGION: ap-southeast-2
 
 jobs:
-  # lint-format:
-  #   name: Linting and Formatting Checks
-  #   uses: ./.github/workflows/lint-and-format.yml
+  lint-format:
+    name: Linting and Formatting Checks
+    uses: ./.github/workflows/lint-and-format.yml
 
   build:
-    # needs: lint-format
+    needs: lint-format
     name: Build
     runs-on: [self-hosted, ARM64] # Since deployment is on arm64
     environment: Production

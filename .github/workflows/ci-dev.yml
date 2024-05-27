@@ -1,0 +1,11 @@
+name: Development
+on:
+  push:
+    branches:
+      - '**'
+      - '!main'
+
+jobs:
+  lint-format:
+    name: Linting and Formatting Checks
+    uses: ./.github/workflows/lint-and-format.yml
