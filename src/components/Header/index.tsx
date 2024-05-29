@@ -1,6 +1,6 @@
 import { checkUserExists } from '@/server/check-user-exists';
 import { verifyMembershipPayment } from '@/server/verify-membership-payment';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import HeaderClient from './HeaderClient';
 import HeaderMobileClient from './HeaderMobileClient';
 

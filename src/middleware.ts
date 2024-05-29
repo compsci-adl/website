@@ -1,11 +1,19 @@
-import { authMiddleware } from '@clerk/nextjs';
+// import { authMiddleware } from '@clerk/nextjs';
+// const authRoutes = ['/settings', '/admin'];
+// export default authMiddleware({
+//     publicRoutes: (req) => !authRoutes.includes(req.url),
+// });
+// export const config = {
+//     matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+// };
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-const authRoutes = ['/settings', '/admin'];
+const isProtectedRoute = createRouteMatcher(['/settings(.*)', '/admin(.*)']);
 
-export default authMiddleware({
-    publicRoutes: (req) => !authRoutes.includes(req.url),
+export default clerkMiddleware((auth, req) => {
+    if (isProtectedRoute(req)) auth().protect();
 });
 
 export const config = {
-    matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
+    matcher: ['/((?!.*\\..*|_next).*)', '/(.*)'],
 };

@@ -11,7 +11,7 @@ import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import { eq } from 'drizzle-orm';
 import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
