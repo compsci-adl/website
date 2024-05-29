@@ -1,6 +1,6 @@
 import { db } from '@/db';
 import { memberTable } from '@/db/schema';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 

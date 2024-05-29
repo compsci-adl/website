@@ -2,7 +2,7 @@ import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { checkUserExists } from '@/server/check-user-exists';
 import { verifyMembershipPayment } from '@/server/verify-membership-payment';
-import { currentUser } from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

@@ -25,8 +25,6 @@ COPY . .
 # Needed for build
 ENV NEXT_PUBLIC_CLERK_SIGN_IN_URL=/signin
 ENV NEXT_PUBLIC_CLERK_SIGN_UP_URL=/join
-ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
 RUN --mount=type=secret,id=DATABASE_URL,target=/run/secrets/DATABASE_URL \
     --mount=type=secret,id=REDIS_URI,target=/run/secrets/REDIS_URI \
