@@ -47,7 +47,7 @@ jobs:
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
-          docker image save website | gzip > csclub-website.tar.gz
+          docker image save csclub-website | gzip > csclub-website.tar.gz
 
       - name: Copy image and compose file to S3
         run: |
