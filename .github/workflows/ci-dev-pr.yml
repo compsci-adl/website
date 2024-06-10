@@ -31,3 +31,8 @@ jobs:
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
             --file=Dockerfile -t csclub-website .
+          docker image save website | gzip > csclub-website.tar.gz
+      
+      - name: Print size of csclub-website.tar.gz
+        run: |
+          du -sh csclub-website.tar.gz
