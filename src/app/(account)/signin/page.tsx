@@ -1,4 +1,4 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { currentUser } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import SignIn from './SignIn';
