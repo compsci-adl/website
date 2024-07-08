@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
+import Tag from '@/components/Tag';
 import type { Project } from '@/data/projects';
 import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
@@ -23,6 +24,11 @@ export default function ProjectCard({ project }: { project: Project }) {
                             </h4>
                             <p>{project.description}</p>
                         </div>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                        {project.techStack.map((tech, i) => (
+                            <Tag key={i} name={tech} borderColour="lightGrey" />
+                        ))}
                     </div>
                     <Button
                         colour="orange"
