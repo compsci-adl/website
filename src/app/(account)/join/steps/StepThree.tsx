@@ -102,11 +102,11 @@ export default function StepThree() {
                     />
                 </>
             )}
-            <div className="mt-8 flex justify-center space-x-4">
-                <Button onClick={prevStep} colour="orange">
+            <div className="grid grid-cols-2 gap-4">
+                <Button onClick={prevStep} colour="orange" width="w-full" size="small">
                     Back
                 </Button>
-                <Button type="submit" colour="orange">
+                <Button type="submit" colour="orange" width="w-full" size="small">
                     Continue
                 </Button>
             </div>

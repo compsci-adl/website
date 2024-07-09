@@ -21,27 +21,25 @@ export default async function SettingsPage() {
     const membershipPayment = await verifyMembershipPayment(user.id);
 
     return (
-        <div className="flex flex-col">
+        <main className="flex flex-col items-center gap-8 md:gap-16">
             <div className="flex justify-center">
                 <Title colour="purple">Settings</Title>
             </div>
-            <section className="mt-12 flex justify-center">
-                <FancyRectangle colour="purple" offset="8" filled>
-                    <div className="z-0 flex w-fit gap-8 border-4 border-black bg-white px-8 py-8 text-black md:w-[48rem] md:px-12 md:py-12">
-                        {exists ? (
-                            <Settings settingData={{ membershipPayment }} />
-                        ) : (
-                            <h2 className="text-2xl">
-                                Please finishing{' '}
-                                <Link href="/join" className="font-bold text-purple">
-                                    signing up
-                                </Link>{' '}
-                                first.
-                            </h2>
-                        )}
-                    </div>
+            <section className="w-full max-w-[62rem]">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    {exists ? (
+                        <Settings settingData={{ membershipPayment }} />
+                    ) : (
+                        <h2 className="text-2xl">
+                            Please finishing{' '}
+                            <Link href="/join" className="font-bold text-purple">
+                                signing up
+                            </Link>{' '}
+                            first.
+                        </h2>
+                    )}
                 </FancyRectangle>
             </section>
-        </div>
+        </main>
     );
 }

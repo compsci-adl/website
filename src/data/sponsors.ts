@@ -40,6 +40,30 @@ const SPONSORS: Sponsor[] = [
             'At Macquarie, we’re connecting people and data, building platforms and applications, and designing tomorrow’s technology solutions. We have market leading expertise, so where could a career in Technology at Macquarie take you? Join our leaders and graduates to gain first-hand insights into a career in Technology.',
     },
     {
+        name: 'Swordfish Computing',
+        image: 'swordfish.svg',
+        website: 'https://www.swordfish.com.au/',
+        type: 'silver',
+        description:
+            'Swordfish was established in 1999 with the goal of providing specialist Computer Systems Engineering, Software Engineering, and Modelling, Simulation and Analysis (MS&A) services in support of Defence Research and Development (R&D) programs within Defence.',
+    },
+    {
+        name: 'Citadel Securities',
+        image: 'citadel-securities.png',
+        website: 'https://www.citadelsecurities.com/',
+        type: 'bronze',
+        description:
+            'Citadel Securities is the next-generation capital markets firm. We create efficient ways for buyers and sellers to come together; we innovative ways to price and absorb risk; and we develop new technologies to transform markets. Integrating deep financial, mathematical and engineering expertise, Citadel Securities delivers critical liquidity to central banks, financial institutions, government agencies, corporations, insurers and sovereign wealth funds.',
+    },
+    {
+        name: 'PwC',
+        image: 'pricewaterhouse-coopers.svg',
+        website: 'https://www.pwc.com.au',
+        type: 'bronze',
+        description:
+            'At PwC, our purpose is to build trust in society and solve important problems. In our increasingly complex world, we work with businesses, government and the community to deliver solutions and sustained outcomes. To help Australia continue to thrive and grow. We’re a network of firms in 152 countries with over 328,000 people. PwC is one of the top 50 brands worldwide and PwC Australia is among LinkedIn’s top companies for where Australians want to work.',
+    },
+    {
         name: 'The University of Adelaide School of Computer and Mathematical Sciences',
         image: 'adelaide.svg',
         website: 'https://set.adelaide.edu.au/computer-and-mathematical-sciences/',

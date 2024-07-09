@@ -1,0 +1,77 @@
+name: Production
+
+on:
+  push:
+    branches: [main]
+
+env:
+  AWS_REGION: ap-southeast-2
+
+jobs:
+  lint-format:
+    name: Linting and Formatting Checks
+    uses: ./.github/workflows/lint-and-format.yml
+
+  build:
+    needs: lint-format
+    name: Build
+    runs-on: [self-hosted, ARM64] # Since deployment is on arm64
+    environment: Production
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # - name: Install arm64 support for Docker
+      #   run: docker run --privileged --rm tonistiigi/binfmt --install arm64
+
+      - name: Build Docker container
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REDIS_URI: ${{ secrets.REDIS_URI }}
+          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+        run: |
+          docker buildx build \
+            --secret id=DATABASE_URL \
+            --secret id=REDIS_URI \
+            --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
+            --secret id=NEXT_PUBLIC_DRIVE_LINK \
+            --platform=linux/arm64 --file=Dockerfile -t csclub-website .
+          docker image save csclub-website | gzip > csclub-website.tar.gz
+
+      - name: Copy image and compose file to S3
+        run: |
+          aws s3 cp ./csclub-website.tar.gz s3://${{ secrets.AWS_S3_BUCKET }}/website/
+          aws s3 cp ./docker-compose.yml s3://${{ secrets.AWS_S3_BUCKET }}/website/
+
+  deploy:
+    needs: build
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - name: Deploy on EC2
+        env:
+          KEY: ${{ secrets.SSH_EC2_KEY }}
+          HOSTNAME: ${{ secrets.SSH_EC2_HOSTNAME }}
+          USER: ${{ secrets.SSH_EC2_USER }}
+        run: |
+          echo "$KEY" > private_key && chmod 600 private_key
+          ssh -v -o StrictHostKeyChecking=no -i private_key ${USER}@${HOSTNAME} '
+            cd ~/website
+            aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/csclub-website.tar.gz .
+            aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/docker-compose.yml .
+            docker load -i csclub-website.tar.gz
+            docker compose up -d
+            docker restart csclub-website
+          '

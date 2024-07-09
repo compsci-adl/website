@@ -30,7 +30,7 @@ export default function AboutPage() {
                         className="absolute -z-10 ml-8 mt-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
                     />
                     <div className="mr-2 flex">
-                        <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Image
                                 src={'/images/about/meet-and-greet.jpg'}
                                 alt={'Meet and Greet'}
@@ -86,7 +86,7 @@ export default function AboutPage() {
                                 <h3 className="mb-2 ml-2 md:mb-0">to</h3>
                             </div>
                         </div>
-                        <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Paragraph>
                                 <ul className="ml-6 list-disc">
                                     <li>
@@ -161,7 +161,7 @@ export default function AboutPage() {
                         </p>
                     </div>
                     <div className="mr-2 flex justify-center lg:justify-end">
-                        <FancyRectangle colour={'purple'} offset={'8'} filled={true} rounded={true}>
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
                             <Image
                                 src={'/images/about/quiz-night.jpg'}
                                 alt={'Quiz Night'}
@@ -237,15 +237,15 @@ export default function AboutPage() {
                         {COMMITTEE_MEMBERS.map((member, index) => (
                             <FancyRectangle
                                 key={index}
-                                colour={member.isExecCommittee ? 'yellow' : 'white'}
+                                colour={member.exec ? 'yellow' : 'white'}
                                 offset={'8'}
-                                filled={true}
-                                rounded={true}
-                                fullWidth={true}
-                                fullHeight={true}
+                                filled
+                                rounded
+                                fullWidth
+                                fullHeight
                             >
                                 <div
-                                    className={`h-full w-full rounded-xl border-2 border-${member.isExecCommittee ? 'yellow' : 'white'} flex flex-col justify-center bg-grey p-4`}
+                                    className={`h-full w-full rounded-xl border-2 ${member.exec ? 'border-yellow' : 'border-white'} flex flex-col justify-center bg-grey p-4`}
                                 >
                                     <h3 className="text-2xl font-bold">{member.name}</h3>
                                     <p>{member.position}</p>
@@ -267,7 +267,7 @@ export default function AboutPage() {
                             <h2 className="text-4xl font-bold text-grey md:text-5xl">FAQ</h2>
                         </div>
                     </FancyRectangle>
-                    <div className="mt-8"></div>
+                    <div className="mt-8" />
                     <div className="flex flex-col gap-x-16 gap-y-8 lg:flex-row">
                         {/* FAQ */}
                         <div className="mb-8 mr-2 flex flex-col justify-items-center gap-12 lg:w-full">

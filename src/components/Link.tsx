@@ -11,7 +11,7 @@ interface LinkProps {
 
 export default function Link({ name, link, icon: Icon, borderColour }: LinkProps) {
     return (
-        <FancyRectangle colour={borderColour} offset="4" filled={true}>
+        <FancyRectangle colour={borderColour} offset="4" filled>
             <a
                 href={link}
                 target="_blank"
