@@ -73,10 +73,11 @@ export default function HeaderClient({
             <ScrollShader />
             <div className="mx-auto mt-8 w-responsive">
                 <div className="flex items-center justify-between gap-8 border-4 border-black bg-white px-8 py-4 text-grey">
-                    <LogoTitle titleColor="text-grey" className="grow" />
+                    <div className="flex flex-shrink items-center">
+                        <LogoTitle titleColor="text-grey" className="grow" />
+                    </div>
                     <div className="flex items-center md:gap-4">
                         <Links />
-
                         <div className="flex gap-4 md:flex-col md:justify-center lg:flex-row lg:items-center">
                             {data.nextStep === 'signup' && (
                                 <Button colour="purple" href="/join">
