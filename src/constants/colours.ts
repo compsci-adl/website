@@ -28,6 +28,6 @@ export const TECH_COLORS: { [key: string]: string } = {
     Python: '#64B550',
     React: '#ED8C9B',
     Supabase: '#5DBBB5',
-    'Tailwind CSS': '#8876BE',
+    'Tailwind CSS': '#907FC3',
     TypeScript: '#ACCB00',
 };
