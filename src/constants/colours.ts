@@ -22,7 +22,7 @@ export const BORDER_COLOURS = {
 
 export const TECH_COLORS: { [key: string]: string } = {
     'Beautiful Soup': '#F69800',
-    'Discord.py': '#5E74C7',
+    'Discord.py': '#7387CE',
     'Fast API': '#F6BF00',
     'Next.js': '#B17CA6',
     Python: '#64B550',
