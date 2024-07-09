@@ -1,8 +1,8 @@
 import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
 import Tag from '@/components/Tag';
+import { TECH_COLORS } from '@/constants/colours';
 import type { Project } from '@/data/projects';
-import { TECH_COLORS } from '@/data/projects';
 import Image from 'next/image';
 import { FaGithub } from 'react-icons/fa';
 
