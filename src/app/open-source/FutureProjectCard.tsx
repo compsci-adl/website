@@ -7,7 +7,7 @@ export default function ProjectCard({ project }: { project: FutureProject }) {
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="w-full gap-6 rounded-xl bg-white p-4 text-black">
-                <div className="mt-4 space-y-2 md:space-y-4">
+                <div className="space-y-2 md:space-y-4">
                     <div className="gap-6">
                         <div className="space-y-2">
                             <h4 className="text-2xl font-bold md:pb-1 md:text-3xl">
