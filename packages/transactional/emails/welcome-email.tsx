@@ -1,7 +1,20 @@
-import { Body, Button, Column, Container, Head, Heading, Hr, Html, Img, Preview, Row, Section, Text } from '@react-email/components';
+import {
+    Body,
+    Button,
+    Column,
+    Container,
+    Head,
+    Heading,
+    Hr,
+    Html,
+    Img,
+    Preview,
+    Row,
+    Section,
+    Text,
+} from '@react-email/components';
 import * as React from 'react';
 import { FaDiscord, FaFacebook, FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
-
 
 interface WelcomeEmailProps {
     userFirstname: string;
