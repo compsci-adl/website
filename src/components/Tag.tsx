@@ -1,17 +1,15 @@
-import type { Colour } from '@/constants/colours';
-import FancyRectangle from './FancyRectangle';
-
 interface TagProps {
     name: string;
-    borderColour: Colour;
+    backgroundColor: string;
 }
 
-export default function Tag({ name, borderColour }: TagProps) {
+export default function Tag({ name, backgroundColor }: TagProps) {
     return (
-        <FancyRectangle colour={borderColour} offset="4" filled>
-            <div className="h-fit w-fit border-2 border-black bg-white p-1.5 text-black transition-colors duration-300 hover:bg-orange hover:text-white">
-                <span>{name}</span>
-            </div>
-        </FancyRectangle>
+        <div
+            className={`h-fit w-fit rounded-xl border border-slate-500 px-3 py-1.5 text-white`}
+            style={{ backgroundColor }}
+        >
+            <span>{name}</span>
+        </div>
     );
 }
