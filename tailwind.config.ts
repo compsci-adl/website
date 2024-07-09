@@ -20,6 +20,7 @@ const config: Config = {
       },
       screens: {
         smr: '480px',
+        strange: '1169px',
       },
     },
   },

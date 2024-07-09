@@ -93,7 +93,7 @@ export default function HeaderClient({
                         </div>
                     </div>
                 </div>
-                <div className="relative -right-[0.5rem] -top-[7.5rem] -z-10 h-[8rem] w-responsive border-4 border-black bg-white lg:-top-[4.75rem] lg:h-[5.25rem]" />
+                <div className="relative -right-[0.5rem] -top-[7.5rem] -z-10 h-[8rem] w-responsive border-4 border-black bg-white lg:-top-[6rem] lg:h-[6.5rem] strange:-top-[4.75rem] strange:h-[5.25rem]" />
             </div>
         </header>
     );
