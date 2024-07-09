@@ -6,15 +6,6 @@ export interface Project {
     techStack: string[];
 }
 
-export const TECH_COLORS: { [key: string]: string } = {
-    'Next.js': '#B17CA6',
-    React: '#ED8C9B',
-    TypeScript: '#ACCB00',
-    'Tailwind CSS': '#8876BE',
-    Python: '#64B550',
-    'Discord.py': '#5E74C7',
-};
-
 export const PROJECTS: Project[] = [
     {
         title: 'CS Club Website',

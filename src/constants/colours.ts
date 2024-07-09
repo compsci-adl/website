@@ -19,3 +19,15 @@ export const BORDER_COLOURS = {
     orange: 'border-orange border-2',
     purple: 'border-purple border-2',
 } as const satisfies Record<Colour, string>;
+
+export const TECH_COLORS: { [key: string]: string } = {
+    'Beautiful Soup': '#F69800',
+    'Discord.py': '#5E74C7',
+    'Fast API': '#F6BF00',
+    'Next.js': '#B17CA6',
+    Python: '#64B550',
+    React: '#ED8C9B',
+    Supabase: '#5DBBB5',
+    'Tailwind CSS': '#8876BE',
+    TypeScript: '#ACCB00',
+};
