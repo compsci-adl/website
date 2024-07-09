@@ -6,7 +6,7 @@ interface TagProps {
 export default function Tag({ name, backgroundColor }: TagProps) {
     return (
         <div
-            className={`h-fit w-fit rounded-xl border border-slate-500 px-3 py-1.5 text-white`}
+            className={`h-fit w-fit rounded-xl border-2 border-black px-3 py-1.5 text-white`}
             style={{ backgroundColor }}
         >
             <span>{name}</span>
