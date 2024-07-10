@@ -21,7 +21,6 @@ export const BORDER_COLOURS = {
 } as const satisfies Record<Colour, string>;
 
 export const TECH_COLORS: { [key: string]: string } = {
-    'Beautiful Soup': '#F69800',
     'Discord.py': '#7387CE',
     FastAPI: '#F6BF00',
     'Next.js': '#B17CA6',
