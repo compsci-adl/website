@@ -1,3 +1,5 @@
+import type { TechStack } from '@/constants/tech-stack';
+
 export type Colour = 'black' | 'grey' | 'lightGrey' | 'white' | 'yellow' | 'orange' | 'purple';
 
 export const BG_COLOURS = {
@@ -19,3 +21,31 @@ export const BORDER_COLOURS = {
     orange: 'border-orange border-2',
     purple: 'border-purple border-2',
 } as const satisfies Record<Colour, string>;
+
+export const TECH_COLORS = {
+    'Discord.py': '#7387CE',
+    FastAPI: '#F6BF00',
+    'Next.js': '#B17CA6',
+    Python: '#64B550',
+    React: '#ED8C9B',
+    Supabase: '#5DBBB5',
+    'Tailwind CSS': '#907FC3',
+    TypeScript: '#ACCB00',
+} as const satisfies Record<TechStack, string>;
+
+/**
+ * Based on code from matfin. Source: https://stackoverflow.com/a/44615197/24033621, licensed under
+ * CC BY-SA 3.0.
+ *
+ * @param {string} backgroundColor - The hex color string to calculate contrast for.
+ * @returns {string} - The contrast color, either '#000000' (black) or '#FFFFFF' (white).
+ */
+export const getContrastColor = (backgroundColor: string): string => {
+    const hex = backgroundColor.replace(/^#/, '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    const textColor = luminance > 0.5 ? '#000000' : '#FFFFFF';
+    return textColor;
+};
