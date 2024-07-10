@@ -20,9 +20,10 @@ const config: Config = {
       },
       screens: {
         smr: '480px',
-        'md-lg': '1169px', // There was a mysterious break point around 1169px in HeaderClient.tsx,
+        // There was a mysterious break point around 1169px in HeaderClient.tsx,
         //so a custom breakpoint is create to overwrite it
         //and now a CSS pattern can be applied with this breakpoint.
+        'md-lg': '1169px',
       },
     },
   },
