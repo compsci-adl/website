@@ -1,9 +1,20 @@
+const TECH_STACK = [
+    'Python',
+    'FastAPI',
+    'TypeScript',
+    'Next.js',
+    'React',
+    'Tailwind CSS',
+    'Discord.py',
+] as const;
+export type TechStack = (typeof TECH_STACK)[number];
+
 export interface Project {
     title: string;
     description: string;
     image: string;
     githubLink: string;
-    techStack: string[];
+    techStack: TechStack[];
 }
 
 export const PROJECTS: Project[] = [
