@@ -36,7 +36,6 @@ export const TECH_COLORS: { [key: string]: string } = {
  * code from matfin. Source: https://stackoverflow.com/a/44615197/24033621, licensed under CC BY-SA
  * 3.0.
  */
-
 export const getContrastColor = function (backgroundColor: string) {
     const hex = backgroundColor.replace(/^#/, '');
     const r = parseInt(hex.substring(0, 2), 16);
