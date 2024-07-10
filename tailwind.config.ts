@@ -21,8 +21,8 @@ const config: Config = {
       screens: {
         smr: '480px',
         customBreakpointHandler: '1169px', // There was a mysterious break point around 1169px in HeaderClient.tsx,
-        //so I created this custom breakpoint to overwrite it
-        //since I can design a CSS pattern with this breakpoint.
+        //so a custom breakpoint is create to overwrite it
+        //and now a CSS pattern can be applied with this breakpoint.
       },
     },
   },
