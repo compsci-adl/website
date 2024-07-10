@@ -16,9 +16,9 @@ export default function ProjectCard({ project }: { project: FutureProject }) {
                             <p>{project.description}</p>
                         </div>
                     </div>
-                    {project.techStack.length !== 0 && (
+                    {project.techStacks.length !== 0 && (
                         <div className="flex flex-wrap gap-3">
-                            {project.techStack.map((tech, i) => (
+                            {project.techStacks.map((tech, i) => (
                                 <Tag key={i} name={tech} backgroundColor={TECH_COLORS[tech]} />
                             ))}
                         </div>
