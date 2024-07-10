@@ -9,7 +9,7 @@ export const FUTURE_PROJECTS: FutureProject[] = [
         title: 'Courses API',
         description:
             'Scrapes course info from the UofA website and provides course data for other projects through an API endpoint.',
-        techStack: ['Python', 'Fast API'],
+        techStack: ['Python', 'FastAPI'],
     },
     {
         title: 'MyTimetable',
