@@ -32,11 +32,13 @@ export const TECH_COLORS: { [key: string]: string } = {
 };
 
 /**
- * Calculates the perceived luminance and returns black or white as the contrast color. Based on
- * code from matfin. Source: https://stackoverflow.com/a/44615197/24033621, licensed under CC BY-SA
- * 3.0.
+ * Based on code from matfin. Source: https://stackoverflow.com/a/44615197/24033621, licensed under
+ * CC BY-SA 3.0.
+ *
+ * @param {string} backgroundColor - The hex color string to calculate contrast for.
+ * @returns {string} - The contrast color, either '#000000' (black) or '#FFFFFF' (white).
  */
-export const getContrastColor = (backgroundColor: string) => {
+export const getContrastColor = (backgroundColor: string): string => {
     const hex = backgroundColor.replace(/^#/, '');
     const r = parseInt(hex.substring(0, 2), 16);
     const g = parseInt(hex.substring(2, 4), 16);
