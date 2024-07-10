@@ -1,6 +1,8 @@
 import Title from '@/components/Title';
+import { FUTURE_PROJECTS } from '@/data/future-projects';
 import { PROJECTS } from '@/data/projects';
 import type { Metadata } from 'next';
+import FutureProjectCard from './FutureProjectCard';
 import ProjectCard from './ProjectCard';
 
 export const metadata: Metadata = {
@@ -29,6 +31,14 @@ export default function OpenSourcePage() {
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
                             {PROJECTS.map((project, i) => (
                                 <ProjectCard key={i} project={project} />
+                            ))}
+                        </div>
+                    </section>
+                    <section className="mb-8">
+                        <h2 className="mb-4 text-2xl font-bold">Future Projects</h2>
+                        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
+                            {FUTURE_PROJECTS.map((project, i) => (
+                                <FutureProjectCard key={i} project={project} />
                             ))}
                         </div>
                     </section>
