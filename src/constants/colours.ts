@@ -1,3 +1,5 @@
+import type { TechStack } from '@/constants/tech-stack';
+
 export type Colour = 'black' | 'grey' | 'lightGrey' | 'white' | 'yellow' | 'orange' | 'purple';
 
 export const BG_COLOURS = {
@@ -20,7 +22,7 @@ export const BORDER_COLOURS = {
     purple: 'border-purple border-2',
 } as const satisfies Record<Colour, string>;
 
-export const TECH_COLORS: { [key: string]: string } = {
+export const TECH_COLORS = {
     'Discord.py': '#7387CE',
     FastAPI: '#F6BF00',
     'Next.js': '#B17CA6',
@@ -29,7 +31,7 @@ export const TECH_COLORS: { [key: string]: string } = {
     Supabase: '#5DBBB5',
     'Tailwind CSS': '#907FC3',
     TypeScript: '#ACCB00',
-};
+} as const satisfies Record<TechStack, string>;
 
 /**
  * Based on code from matfin. Source: https://stackoverflow.com/a/44615197/24033621, licensed under

@@ -1,13 +1,4 @@
-const TECH_STACK = [
-    'Python',
-    'FastAPI',
-    'TypeScript',
-    'Next.js',
-    'React',
-    'Tailwind CSS',
-    'Discord.py',
-] as const;
-export type TechStack = (typeof TECH_STACK)[number];
+import type { TechStack } from '@/constants/tech-stack';
 
 export interface Project {
     title: string;

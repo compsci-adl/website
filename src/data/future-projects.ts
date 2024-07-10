@@ -1,7 +1,9 @@
+import type { TechStack } from '@/constants/tech-stack';
+
 export interface FutureProject {
     title: string;
     description: string;
-    techStack: string[];
+    techStack: TechStack[];
 }
 
 export const FUTURE_PROJECTS: FutureProject[] = [
