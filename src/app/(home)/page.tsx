@@ -26,9 +26,9 @@ export default function HomePage() {
                         />
 
                         <div className="relative z-10">
-                            <h1 className="text-5xl md:text-8xl">LEARN,</h1>
+                            <h1 className="text-5xl lg:text-7xl 2xl:text-8xl">LEARN,</h1>
                             <div className="h-2" />
-                            <h1 className="text-5xl md:text-8xl">SOCIALISE,</h1>
+                            <h1 className="text-5xl lg:text-7xl 2xl:text-8xl">SOCIALISE,</h1>
                             <div className="h-2" />
 
                             <Title colour="yellow" font="font-black">

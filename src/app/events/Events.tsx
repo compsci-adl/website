@@ -28,7 +28,7 @@ function EventCard({
 }) {
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
-            <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black md:flex-row">
+            <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
                 <Image
                     src={`/images/events/${event.image}`}
                     alt={`${event.title}`}
