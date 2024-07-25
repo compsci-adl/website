@@ -92,7 +92,7 @@ export const EVENTS: Event[] = [
     {
         title: 'Intro to Git and GitHub Workshop',
         date: { year: 2024, month: 'JUL', day: 31, endTime: '20:00' },
-        time: '6:00pm-8:00pm',
+        time: '6:00pm - 8:00pm',
         location: 'Ingkarni Wardli 218 CAT Suite',
         details:
             'Learn the basics of version control, deal with annoying merge conflicts, and integrate these tools with Visual Studio Code. Learn more about our Open Source Team and see how they collaborate using these tools on their projects. Perfect for beginners and those looking to enhance their development skills or join the Open Source Team!',
