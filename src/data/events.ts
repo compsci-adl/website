@@ -76,11 +76,8 @@ export const EVENTS: Event[] = [
         date: { year: 2024, month: 'MAY', day: 10, endTime: '23:00' },
         time: '5:30pm - 11:00pm',
         location: 'UniBar Adelaide and various bars in Adelaide',
-        details: 'Our annual pub crawl! More details to come soon.',
-        url: {
-            href: new URL('https://csclub-adl.square.site/product/cs-club-pub-crawl-2024-shirt/54'),
-            text: 'Preorder shirts now!',
-        },
+        details:
+            'Join us for a night of hopping from one watering hole to the next, spreading good vibes and great drinks all around.',
         image: 'pub-crawl.png',
     },
     {
@@ -90,7 +87,7 @@ export const EVENTS: Event[] = [
         location: 'Engineering and Maths 110 & 105',
         details:
             "Ready to launch into the semester with a blast? Join us at our Meet & Greet! Whether you're new or missed us at O'Week, this event is for you! Get ready for Friday Night Games, free food and drinks, and you'll get to meet our committee and fellow members! Don't miss out!",
-        image: 'party-time.png',
+        image: 'meet-and-greet-s2.png',
     },
     {
         title: 'Intro to Git and GitHub Workshop',
@@ -99,7 +96,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli 218 CAT Suite',
         details:
             'Learn the basics of version control, deal with annoying merge conflicts, and integrate these tools with Visual Studio Code. Learn more about our Open Source Team and see how they collaborate using these tools on their projects. Perfect for beginners and those looking to enhance their development skills or join the Open Source Team!',
-        image: 'git-gud.png',
+        image: 'git-and-github-workshop.png',
     },
 ];
 
