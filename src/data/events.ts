@@ -91,7 +91,7 @@ export const EVENTS: Event[] = [
     },
     {
         title: 'Intro to Git and GitHub Workshop',
-        date: { year: 2024, month: 'JUL', day: 31, endTime: '21:00' },
+        date: { year: 2024, month: 'JUL', day: 31, endTime: '20:00' },
         time: '6:00pm-8:00pm',
         location: 'Ingkarni Wardli 218 CAT Suite',
         details:
