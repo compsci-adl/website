@@ -28,7 +28,7 @@ export const EVENTS: Event[] = [
         title: 'Meet and Greet',
         date: { year: 2024, month: 'MAR', day: 1, endTime: '21:00' },
         time: '5:00pm - 9:00pm',
-        location: 'Engineering and Maths 105',
+        location: 'Engineering and Maths EM105',
         details:
             "Come hang out and meet the Computer Science Club's committee and members in your first week of the new academic year!\nWe have board games in collaboration with the GAMES Club and our club owned Nintendo Switch.\nFood and drinks will also be provided.",
         image: 'meet-and-greet.jpg',
@@ -84,7 +84,7 @@ export const EVENTS: Event[] = [
         title: 'Meet and Greet',
         date: { year: 2024, month: 'JUL', day: 26, endTime: '21:00' },
         time: '5:00pm - 9:00pm',
-        location: 'Engineering and Maths 110 & 105',
+        location: 'Engineering and Maths EM110 & EM105',
         details:
             "Ready to launch into the semester with a blast? Join us at our Meet & Greet! Whether you're new or missed us at O'Week, this event is for you! Get ready for Friday Night Games, free food and drinks, and you'll get to meet our committee and fellow members! Don't miss out!",
         image: 'meet-and-greet-s2.png',
