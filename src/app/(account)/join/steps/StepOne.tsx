@@ -132,8 +132,7 @@ export default function StepOne() {
                 {
                     code: 'form_email_already_exists',
                     field: 'emailAddress',
-                    message:
-                        'The email provided is already connected to an existing account.',
+                    message: 'The email provided is already connected to an existing account.',
                 },
             ]);
         }
