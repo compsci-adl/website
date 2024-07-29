@@ -129,6 +129,11 @@ export default function StepOne() {
                     message:
                         'Password has been found in an online data breach. For account safety, please use a different password.',
                 },
+                {
+                    code: 'form_identifier_exists',
+                    field: 'emailAddress',
+                    message: 'The email provided is already connected to an existing account.',
+                },
             ]);
         }
 
