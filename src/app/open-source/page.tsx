@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import Title from '@/components/Title';
 import { FUTURE_PROJECTS } from '@/data/future-projects';
 import { PROJECTS } from '@/data/projects';
@@ -25,6 +26,16 @@ export default function OpenSourcePage() {
                             are a new team currently working on a few projects, but we have many
                             more exciting projects planned for the future!
                         </p>
+                    </section>
+                    <section className="mb-8 flex justify-center text-black">
+                        <Button
+                            type="button"
+                            colour="orange"
+                            width="w-full"
+                            href="https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform"
+                        >
+                            Join Us Now
+                        </Button>
                     </section>
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
