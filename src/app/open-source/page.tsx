@@ -27,7 +27,7 @@ export default function OpenSourcePage() {
                             more exciting projects planned for the future!
                         </p>
                     </section>
-                    <section className="mb-8">
+                    <section className="mb-8 flex justify-center text-black">
                         <Button
                             type="button"
                             colour="orange"
