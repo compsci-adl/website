@@ -1,15 +1,16 @@
+// the list below is sorted in alphabetical order by tech stack name
 export const TECH_STACK = [
-    'Python',
-    'FastAPI',
-    'TypeScript',
-    'React',
-    'Next.js',
-    'Tailwind CSS',
-    'Supabase',
     'Discord.py',
-    'Requests',
-    'Vite',
-    'Pragmatic Drag & Drop',
+    'FastAPI',
+    'Next.js',
     'NextUI',
+    'Pragmatic Drag & Drop',
+    'Python',
+    'React',
+    'Requests',
+    'Supabase',
+    'Tailwind CSS',
+    'TypeScript',
+    'Vite',
 ] as const;
 export type TechStack = (typeof TECH_STACK)[number];
