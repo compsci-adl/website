@@ -17,7 +17,7 @@ export const FUTURE_PROJECTS: FutureProject[] = [
         title: 'MyTimetable',
         description:
             'An interactive drag-and-drop timetable scheduler to help UofA students optimise their weekly timetable.',
-        techStacks: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS'],
+        techStacks: ['TypeScript', 'React', 'Vite', 'Pragmatic Drag & Drop', 'NextUI', 'Tailwind CSS'],
     },
     {
         title: 'MyStudyPlan',
@@ -28,6 +28,6 @@ export const FUTURE_PROJECTS: FutureProject[] = [
     {
         title: 'MyCourseReviews',
         description: 'Allows students to share reviews and rate UofA courses.',
-        techStacks: ['TypeScript', 'React', 'Vite', 'Pragmatic Drag & Drop', 'NextUI', 'Tailwind CSS'],
+        techStacks: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'Supabase'],
     },
 ];
