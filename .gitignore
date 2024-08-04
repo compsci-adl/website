@@ -39,5 +39,3 @@ next-env.d.ts
 # SQLite dev database
 *.db
 *.sqlite
-
-dump.rdb
