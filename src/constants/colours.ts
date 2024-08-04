@@ -31,6 +31,10 @@ export const TECH_COLORS = {
     Supabase: '#5DBBB5',
     'Tailwind CSS': '#907FC3',
     TypeScript: '#ACCB00',
+    Requests: '#FFD166',
+    Vite: '#646464',
+    'Pragmatic Drag & Drop': '#FF6F61',
+    NextUI: '#A8DADC',
 } as const satisfies Record<TechStack, string>;
 
 /**
