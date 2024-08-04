@@ -1,4 +1,4 @@
-import { getContrastColor } from '@/constants/colours';
+import { getContrastColor } from "@/constants/colours";
 
 interface TagProps {
     name: string;

@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Button from '../../Button';
+import Link from "next/link";
+import Button from "../../Button";
 
 export function SignInJoin() {
     return (

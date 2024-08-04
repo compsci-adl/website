@@ -1,13 +1,14 @@
-'use client';
+"use client";
 
-import Autocomplete from '@/components/Autocomplete';
-import { fetcher } from '@/lib/fetcher';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import useSWRMutation from 'swr/mutation';
-import type { Member } from './page';
+import Autocomplete from "@/components/Autocomplete";
+import { fetcher } from "@/lib/fetcher";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import useSWRMutation from "swr/mutation";
+import type { Member } from "./page";
 
-const getMemberStr = (member: Member) => `${member.email} - ${member.firstName} ${member.lastName}`;
+const getMemberStr = (member: Member) =>
+    `${member.email} - ${member.firstName} ${member.lastName}`;
 
 function MemberDetail({ member }: { member: Member }) {
     const [payment, setPayment] = useState(member.paid);
@@ -17,7 +18,7 @@ function MemberDetail({ member }: { member: Member }) {
     }, [member.id]);
 
     const router = useRouter();
-    const updatePayment = useSWRMutation('payment', fetcher.put.mutate, {
+    const updatePayment = useSWRMutation("payment", fetcher.put.mutate, {
         onSuccess: () => {
             setPayment(!payment);
             router.refresh();

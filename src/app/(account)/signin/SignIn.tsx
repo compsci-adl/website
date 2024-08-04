@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import ControlledField from '@/components/ControlledField';
-import FancyRectangle from '@/components/FancyRectangle';
-import { useSignIn } from '@clerk/clerk-react';
-import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { FcGoogle } from 'react-icons/fc';
-import { z } from 'zod';
-import { handleClerkErrors } from '../helpers';
-import { emailSchema } from '../schemas';
+import Button from "@/components/Button";
+import ControlledField from "@/components/ControlledField";
+import FancyRectangle from "@/components/FancyRectangle";
+import { useSignIn } from "@clerk/clerk-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { FcGoogle } from "react-icons/fc";
+import { z } from "zod";
+import { handleClerkErrors } from "../helpers";
+import { emailSchema } from "../schemas";
 
 const signInSchema = z.object({
     email: emailSchema,
-    password: z.string().min(1, { message: 'Please enter your password' }),
+    password: z.string().min(1, { message: "Please enter your password" }),
 });
 
 export default function SignIn() {
     const { isLoaded, signIn, setActive } = useSignIn();
 
     const form = useForm<z.infer<typeof signInSchema>>({
-        defaultValues: { email: '', password: '' },
+        defaultValues: { email: "", password: "" },
         resolver: zodResolver(signInSchema),
     });
 
@@ -41,9 +41,9 @@ export default function SignIn() {
                 password,
             });
 
-            if (result.status === 'complete') {
+            if (result.status === "complete") {
                 await setActive({ session: result.createdSessionId });
-                router.push('/');
+                router.push("/");
                 router.refresh();
             } else {
                 console.log(result);
@@ -51,20 +51,21 @@ export default function SignIn() {
         } catch (error) {
             handleClerkErrors(error, form, [
                 {
-                    code: 'form_identifier_not_found',
-                    field: 'email',
+                    code: "form_identifier_not_found",
+                    field: "email",
                     message: "Can't find your account.",
                 },
                 {
-                    code: 'form_password_incorrect',
-                    field: 'password',
-                    message: 'Password is incorrect. Try again, or use another method.',
+                    code: "form_password_incorrect",
+                    field: "password",
+                    message:
+                        "Password is incorrect. Try again, or use another method.",
                 },
                 {
-                    code: 'strategy_for_user_invalid',
-                    field: 'password',
+                    code: "strategy_for_user_invalid",
+                    field: "password",
                     message:
-                        'Account is not set up for password sign-in. Please sign in with Google.',
+                        "Account is not set up for password sign-in. Please sign in with Google.",
                 },
             ]);
         }
@@ -76,13 +77,13 @@ export default function SignIn() {
         if (!isLoaded) return;
         try {
             await signIn.authenticateWithRedirect({
-                strategy: 'oauth_google',
-                redirectUrl: '/sso-callback',
-                redirectUrlComplete: '/',
+                strategy: "oauth_google",
+                redirectUrl: "/sso-callback",
+                redirectUrlComplete: "/",
             });
         } catch (error) {
             // Handle any errors that might occur during the sign-in process
-            console.error('Google Sign-In Error:', error);
+            console.error("Google Sign-In Error:", error);
         }
     };
 
@@ -101,7 +102,8 @@ export default function SignIn() {
                             width="w-full"
                             size="small"
                         >
-                            <FcGoogle className="mr-2 inline-block text-xl" /> Continue with Google
+                            <FcGoogle className="mr-2 inline-block text-xl" />{" "}
+                            Continue with Google
                         </Button>
 
                         <div className="my-6 mt-10 flex items-center justify-center">
@@ -110,7 +112,11 @@ export default function SignIn() {
                             <div className="w-full border-t border-grey" />
                         </div>
                         <form onSubmit={handleSignIn}>
-                            <ControlledField label="Email" control={form.control} name="email" />
+                            <ControlledField
+                                label="Email"
+                                control={form.control}
+                                name="email"
+                            />
                             <ControlledField
                                 label="Password"
                                 control={form.control}
@@ -137,7 +143,7 @@ export default function SignIn() {
                         {/* Sign-up option */}
                         <div className="mt-10 flex">
                             <p className="text-lg text-grey md:text-base">
-                                Don&apos;t have an account yet?{' '}
+                                Don&apos;t have an account yet?{" "}
                                 <Link href="/join" className="text-orange">
                                     Join Us
                                 </Link>

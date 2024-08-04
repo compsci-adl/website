@@ -1,11 +1,15 @@
 ### Description
-*Briefly describe the purpose of this pull request.*
+
+_Briefly describe the purpose of this pull request._
 
 ### Changes Made
-*Provide a list of changes made in this pull request.*
+
+_Provide a list of changes made in this pull request._
 
 ### Related Issues
-*Reference any related issues using keywords like "Fixes #issue-number".*
+
+_Reference any related issues using keywords like "Fixes #issue-number"._
 
 ### Additional Notes
-*Add any other notes or screenshots that might be helpful for the reviewers.*
+
+_Add any other notes or screenshots that might be helpful for the reviewers._

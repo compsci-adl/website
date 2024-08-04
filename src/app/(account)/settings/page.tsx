@@ -1,15 +1,15 @@
-import FancyRectangle from '@/components/FancyRectangle';
-import Title from '@/components/Title';
-import { checkUserExists } from '@/server/check-user-exists';
-import { verifyMembershipPayment } from '@/server/verify-membership-payment';
-import { currentUser } from '@clerk/nextjs';
-import type { Metadata } from 'next';
-import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import Settings from './Settings';
+import FancyRectangle from "@/components/FancyRectangle";
+import Title from "@/components/Title";
+import { checkUserExists } from "@/server/check-user-exists";
+import { verifyMembershipPayment } from "@/server/verify-membership-payment";
+import { currentUser } from "@clerk/nextjs";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import Settings from "./Settings";
 
 export const metadata: Metadata = {
-    title: 'Settings',
+    title: "Settings",
     robots: { index: false, follow: false },
 };
 
@@ -31,10 +31,13 @@ export default async function SettingsPage() {
                         <Settings settingData={{ membershipPayment }} />
                     ) : (
                         <h2 className="text-2xl">
-                            Please finishing{' '}
-                            <Link href="/join" className="font-bold text-purple">
+                            Please finishing{" "}
+                            <Link
+                                href="/join"
+                                className="font-bold text-purple"
+                            >
                                 signing up
-                            </Link>{' '}
+                            </Link>{" "}
                             first.
                         </h2>
                     )}

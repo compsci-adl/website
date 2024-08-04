@@ -1,22 +1,27 @@
-import { SPONSOR_TYPES, getSponsors, type Sponsor, type SponsorType } from '@/data/sponsors';
-import Image from 'next/image';
-import { Fragment } from 'react';
-import FancyRectangle from '../../components/FancyRectangle';
+import {
+    SPONSOR_TYPES,
+    getSponsors,
+    type Sponsor,
+    type SponsorType,
+} from "@/data/sponsors";
+import Image from "next/image";
+import { Fragment } from "react";
+import FancyRectangle from "../../components/FancyRectangle";
 
 const SPONSOR_TYPE_COLORS = {
-    gold: '#FCC018',
-    silver: '#C3C3C3',
-    bronze: '#E8903F',
+    gold: "#FCC018",
+    silver: "#C3C3C3",
+    bronze: "#E8903F",
 } as const satisfies Record<SponsorType, string>;
 function SponsorTypeTitle({ type }: { type: SponsorType }) {
     const color = SPONSOR_TYPE_COLORS[type];
     return (
         <h3 className="flex items-center gap-5">
             <div className="text-3xl font-bold md:text-4xl">
-                Our{' '}
+                Our{" "}
                 <span className="capitalize" style={{ color }}>
                     {type}
-                </span>{' '}
+                </span>{" "}
                 Sponsors
             </div>
             <div
@@ -36,11 +41,18 @@ function SponsorTypeTitle({ type }: { type: SponsorType }) {
     );
 }
 type SponsorCardProps = Sponsor & { reverse?: boolean };
-function SponsorCard({ image, name, description, website, type, reverse }: SponsorCardProps) {
+function SponsorCard({
+    image,
+    name,
+    description,
+    website,
+    type,
+    reverse,
+}: SponsorCardProps) {
     return (
         <FancyRectangle colour="white" offset="8" rounded>
             <div
-                className={`flex flex-col items-stretch gap-5 rounded-xl bg-white p-4 text-black md:p-6 ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
+                className={`flex flex-col items-stretch gap-5 rounded-xl bg-white p-4 text-black md:p-6 ${reverse ? "md:flex-row-reverse" : "md:flex-row"}`}
             >
                 <Image
                     src={`/images/sponsors/${image}`}
@@ -84,7 +96,11 @@ export default function Sponsors() {
                     <Fragment key={type}>
                         <SponsorTypeTitle type={type} />
                         {sponsors.map((sponsor, i) => (
-                            <SponsorCard {...sponsor} key={i} reverse={Boolean(count++ % 2)} />
+                            <SponsorCard
+                                {...sponsor}
+                                key={i}
+                                reverse={Boolean(count++ % 2)}
+                            />
                         ))}
                     </Fragment>
                 );

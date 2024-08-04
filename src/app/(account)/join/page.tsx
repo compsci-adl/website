@@ -1,11 +1,11 @@
-import { checkUserExists } from '@/server/check-user-exists';
-import { currentUser } from '@clerk/nextjs';
-import type { Metadata } from 'next';
-import { redirect } from 'next/navigation';
-import Join from './Join';
+import { checkUserExists } from "@/server/check-user-exists";
+import { currentUser } from "@clerk/nextjs";
+import type { Metadata } from "next";
+import { redirect } from "next/navigation";
+import Join from "./Join";
 
 export const metadata: Metadata = {
-    title: 'Join',
+    title: "Join",
 };
 
 export default async function JoinPage() {
@@ -13,7 +13,7 @@ export default async function JoinPage() {
     if (user) {
         const userExists = await checkUserExists(user.id);
         if (userExists) {
-            redirect('/settings');
+            redirect("/settings");
         }
     }
     return <Join />;

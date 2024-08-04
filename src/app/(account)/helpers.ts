@@ -1,4 +1,4 @@
-import type { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
+import type { FieldPath, FieldValues, UseFormReturn } from "react-hook-form";
 
 /**
  * Show clerk error message in form.
@@ -10,7 +10,11 @@ import type { FieldPath, FieldValues, UseFormReturn } from 'react-hook-form';
 export const handleClerkErrors = <TFieldValues extends FieldValues>(
     error: any,
     form: UseFormReturn<TFieldValues>,
-    clerkErrors: Array<{ code: string; field: FieldPath<TFieldValues>; message: string }>
+    clerkErrors: Array<{
+        code: string;
+        field: FieldPath<TFieldValues>;
+        message: string;
+    }>,
 ) => {
     const errorCode: string | undefined = error?.errors[0]?.code;
     if (!errorCode) {

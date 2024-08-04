@@ -1,3 +1,3 @@
 declare type RootLayoutProps = {
-    children: import('react').ReactNode;
+    children: import("react").ReactNode;
 };

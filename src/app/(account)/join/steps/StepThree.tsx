@@ -1,48 +1,63 @@
-import Button from '@/components/Button';
-import ControlledField from '@/components/ControlledField';
-import type { STUDENT_STATUSES } from '@/constants/student-info';
-import { AGE_BRACKETS, DEGREES, GENDERS, STUDENT_TYPES } from '@/constants/student-info';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
+import Button from "@/components/Button";
+import ControlledField from "@/components/ControlledField";
+import type { STUDENT_STATUSES } from "@/constants/student-info";
+import {
+    AGE_BRACKETS,
+    DEGREES,
+    GENDERS,
+    STUDENT_TYPES,
+} from "@/constants/student-info";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import {
+    useJoinUsStep,
+    useJoinUsStudentInfo,
+    useSetJoinUsHeading,
+} from "../store";
 
 export const stepThreeSchema = z.object({
     ageBracket: z.enum(AGE_BRACKETS, {
-        errorMap: () => ({ message: 'Please select an age bracket' }),
+        errorMap: () => ({ message: "Please select an age bracket" }),
     }),
-    gender: z.enum(GENDERS, { errorMap: () => ({ message: 'Please select a gender' }) }),
+    gender: z.enum(GENDERS, {
+        errorMap: () => ({ message: "Please select a gender" }),
+    }),
     degree: z
-        .enum(DEGREES, { errorMap: () => ({ message: 'Please select a degree' }) })
-        .or(z.literal('')),
+        .enum(DEGREES, {
+            errorMap: () => ({ message: "Please select a degree" }),
+        })
+        .or(z.literal("")),
     studentType: z
         .enum(STUDENT_TYPES, {
-            errorMap: () => ({ message: 'Please select a student type' }),
+            errorMap: () => ({ message: "Please select a student type" }),
         })
-        .or(z.literal('')),
+        .or(z.literal("")),
 });
 export type StepThreeData = z.infer<typeof stepThreeSchema>;
 
 /** Get schema with student check */
-const getValidationSchema = (studentStatus: (typeof STUDENT_STATUSES)[number]) => {
+const getValidationSchema = (
+    studentStatus: (typeof STUDENT_STATUSES)[number],
+) => {
     const isStudent =
-        studentStatus === 'At The University of Adelaide' ||
-        studentStatus === 'At another university';
+        studentStatus === "At The University of Adelaide" ||
+        studentStatus === "At another university";
     return stepThreeSchema
-        .refine((data) => (isStudent ? data.degree !== '' : true), {
-            message: 'Please select a degree',
-            path: ['degree'],
+        .refine((data) => (isStudent ? data.degree !== "" : true), {
+            message: "Please select a degree",
+            path: ["degree"],
         })
-        .refine((data) => (isStudent ? data.studentType !== '' : true), {
-            message: 'Please select a student type',
-            path: ['studentType'],
+        .refine((data) => (isStudent ? data.studentType !== "" : true), {
+            message: "Please select a student type",
+            path: ["studentType"],
         });
 };
 
 export default function StepThree() {
     useSetJoinUsHeading({
-        title: 'Background',
-        description: 'Tell us about your background',
+        title: "Background",
+        description: "Tell us about your background",
     });
 
     const {
@@ -81,8 +96,8 @@ export default function StepThree() {
                 placeholder="Select Gender"
                 options={GENDERS}
             />
-            {(studentStatus === 'At The University of Adelaide' ||
-                studentStatus === 'At another university') && (
+            {(studentStatus === "At The University of Adelaide" ||
+                studentStatus === "At another university") && (
                 <>
                     <ControlledField
                         label="What degree are you studying?"
@@ -103,10 +118,20 @@ export default function StepThree() {
                 </>
             )}
             <div className="grid grid-cols-2 gap-4">
-                <Button onClick={prevStep} colour="orange" width="w-full" size="small">
+                <Button
+                    onClick={prevStep}
+                    colour="orange"
+                    width="w-full"
+                    size="small"
+                >
                     Back
                 </Button>
-                <Button type="submit" colour="orange" width="w-full" size="small">
+                <Button
+                    type="submit"
+                    colour="orange"
+                    width="w-full"
+                    size="small"
+                >
                     Continue
                 </Button>
             </div>

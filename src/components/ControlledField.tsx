@@ -1,10 +1,10 @@
-import type { Control, FieldPath, FieldValues } from 'react-hook-form';
-import { useController } from 'react-hook-form';
-import type { FieldProps } from './Field';
-import Field from './Field';
+import type { Control, FieldPath, FieldValues } from "react-hook-form";
+import { useController } from "react-hook-form";
+import type { FieldProps } from "./Field";
+import Field from "./Field";
 
 interface ControlledFieldProps<TFieldValues extends FieldValues>
-    extends Omit<FieldProps, 'value' | 'onChange' | 'error'> {
+    extends Omit<FieldProps, "value" | "onChange" | "error"> {
     control: Control<TFieldValues>;
     name: FieldPath<TFieldValues>;
 }
