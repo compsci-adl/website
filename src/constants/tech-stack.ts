@@ -7,5 +7,9 @@ export const TECH_STACK = [
     'Tailwind CSS',
     'Supabase',
     'Discord.py',
+    'Requests',
+    'Pragmatic Drag & Drop',
+    'Vite',
+    'NextUI'
 ] as const;
 export type TechStack = (typeof TECH_STACK)[number];

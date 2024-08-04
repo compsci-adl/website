@@ -11,7 +11,7 @@ export const FUTURE_PROJECTS: FutureProject[] = [
         title: 'Courses API',
         description:
             'Scrapes course info from the UofA website and provides course data for other projects through an API endpoint.',
-        techStacks: ['Python', 'FastAPI'],
+        techStacks: ['Python', 'FastAPI', 'Requests'],
     },
     {
         title: 'MyTimetable',
@@ -23,11 +23,11 @@ export const FUTURE_PROJECTS: FutureProject[] = [
         title: 'MyStudyPlan',
         description:
             'A UofA degree planner that allows you to explore and validate your degree structure.',
-        techStacks: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS'],
+        techStacks: ['TypeScript', 'React', 'Vite', 'Tailwind CSS'],
     },
     {
         title: 'MyCourseReviews',
         description: 'Allows students to share reviews and rate UofA courses.',
-        techStacks: ['TypeScript', 'React', 'Next.js', 'Tailwind CSS', 'Supabase'],
+        techStacks: ['TypeScript', 'React', 'Vite', 'Pragmatic Drag & Drop', 'NextUI', 'Tailwind CSS'],
     },
 ];
