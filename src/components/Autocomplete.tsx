@@ -1,6 +1,6 @@
-import { Combobox } from '@headlessui/react';
-import { useState } from 'react';
-import { IoCaretDown, IoCheckmark } from 'react-icons/io5';
+import { Combobox } from "@headlessui/react";
+import { useState } from "react";
+import { IoCaretDown, IoCheckmark } from "react-icons/io5";
 
 interface AutocompleteProps<TOption> {
     value: TOption | null;
@@ -20,12 +20,14 @@ export default function Autocomplete<TOption>({
     notFoundMessage,
     className,
 }: AutocompleteProps<TOption>) {
-    const [query, setQuery] = useState('');
+    const [query, setQuery] = useState("");
     const filteredOptions =
-        query === ''
+        query === ""
             ? options
             : options.filter((option) =>
-                  displayOptionStr(option).toLowerCase().includes(query.toLowerCase())
+                  displayOptionStr(option)
+                      .toLowerCase()
+                      .includes(query.toLowerCase()),
               );
 
     return (
@@ -36,7 +38,7 @@ export default function Autocomplete<TOption>({
                         onChange={(e) => setQuery(e.target.value)}
                         className="w-full border border-gray-300 px-3 py-2 text-grey"
                         displayValue={(option: TOption | null) =>
-                            option ? displayOptionStr(option) : ''
+                            option ? displayOptionStr(option) : ""
                         }
                         placeholder={placeholder}
                     />
@@ -45,9 +47,9 @@ export default function Autocomplete<TOption>({
                     </Combobox.Button>
                 </div>
                 <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
-                    {filteredOptions.length === 0 && query !== '' ? (
+                    {filteredOptions.length === 0 && query !== "" ? (
                         <div className="relative select-none px-4 py-2 text-grey">
-                            {notFoundMessage ?? 'No results found'}
+                            {notFoundMessage ?? "No results found"}
                         </div>
                     ) : (
                         filteredOptions.map((option, i) => (
@@ -56,7 +58,9 @@ export default function Autocomplete<TOption>({
                                 value={option}
                                 className={({ active }) =>
                                     `relative cursor-default select-none py-2 pl-10 pr-4 ${
-                                        active ? 'bg-grey text-white' : 'text-black'
+                                        active
+                                            ? "bg-grey text-white"
+                                            : "text-black"
                                     }`
                                 }
                             >

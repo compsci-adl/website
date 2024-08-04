@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useMount } from '@/hooks/use-mount';
-import Image from 'next/image';
-import { useState } from 'react';
+import { useMount } from "@/hooks/use-mount";
+import Image from "next/image";
+import { useState } from "react";
 
 export type Image = { src: string; alt: string };
 interface ImageCarouselProps {
@@ -11,7 +11,11 @@ interface ImageCarouselProps {
     height: number;
 }
 
-export default function ImageCarousel({ images, width, height }: ImageCarouselProps) {
+export default function ImageCarousel({
+    images,
+    width,
+    height,
+}: ImageCarouselProps) {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -19,7 +23,7 @@ export default function ImageCarousel({ images, width, height }: ImageCarouselPr
         setIsTransitioning(true);
         setTimeout(() => {
             setCurrentImageIndex((prevIndex) =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+                prevIndex === images.length - 1 ? 0 : prevIndex + 1,
             );
             setIsTransitioning(false);
         }, 500);
@@ -45,7 +49,7 @@ export default function ImageCarousel({ images, width, height }: ImageCarouselPr
             ))}
             <div
                 className={`transition-opacity duration-500 ease-in-out ${
-                    isTransitioning ? 'opacity-0' : 'opacity-100'
+                    isTransitioning ? "opacity-0" : "opacity-100"
                 }`}
             >
                 <Image

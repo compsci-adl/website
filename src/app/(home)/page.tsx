@@ -1,12 +1,12 @@
-import Duck from '@/components/Duck';
-import FancyRectangle from '@/components/FancyRectangle';
-import ImageCarousel from '@/components/ImageCarousel';
-import Title from '@/components/Title';
-import { CAROUSEL_IMAGES } from '@/data/home';
-import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
-import Image from 'next/image';
-import Link from 'next/link';
-import { Fragment } from 'react';
+import Duck from "@/components/Duck";
+import FancyRectangle from "@/components/FancyRectangle";
+import ImageCarousel from "@/components/ImageCarousel";
+import Title from "@/components/Title";
+import { CAROUSEL_IMAGES } from "@/data/home";
+import { SPONSOR_TYPES, getSponsors } from "@/data/sponsors";
+import Image from "next/image";
+import Link from "next/link";
+import { Fragment } from "react";
 
 export default function HomePage() {
     return (
@@ -26,18 +26,28 @@ export default function HomePage() {
                         />
 
                         <div className="relative z-10">
-                            <h1 className="text-5xl lg:text-7xl 2xl:text-8xl">LEARN,</h1>
+                            <h1 className="text-5xl lg:text-7xl 2xl:text-8xl">
+                                LEARN,
+                            </h1>
                             <div className="h-2" />
-                            <h1 className="text-5xl lg:text-7xl 2xl:text-8xl">SOCIALISE,</h1>
+                            <h1 className="text-5xl lg:text-7xl 2xl:text-8xl">
+                                SOCIALISE,
+                            </h1>
                             <div className="h-2" />
 
                             <Title colour="yellow" font="font-black">
                                 CODE.
                             </Title>
                             <div className="h-4 md:h-8" />
-                            <FancyRectangle colour="orange" offset="8" filled={false}>
+                            <FancyRectangle
+                                colour="orange"
+                                offset="8"
+                                filled={false}
+                            >
                                 <div className="w-fit bg-orange px-2 py-2">
-                                    <h2 className="text-xl md:text-3xl">Computer Science Club</h2>
+                                    <h2 className="text-xl md:text-3xl">
+                                        Computer Science Club
+                                    </h2>
                                 </div>
                             </FancyRectangle>
                         </div>
@@ -70,10 +80,11 @@ export default function HomePage() {
                 </div>
                 <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
                     <p className="text-lg md:text-xl">
-                        As a member, some of the perks you&apos;ll have access to include computer
-                        science talks and workshops, catered social events, and a wide network of
-                        other computer science students and graduates to learn from and make friends
-                        with.
+                        As a member, some of the perks you&apos;ll have access
+                        to include computer science talks and workshops, catered
+                        social events, and a wide network of other computer
+                        science students and graduates to learn from and make
+                        friends with.
                     </p>
                 </div>
                 <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
@@ -88,9 +99,10 @@ export default function HomePage() {
                 </div>
                 <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
                     <p className="text-lg md:text-xl">
-                        Are you a first year student? The Club runs activities at the start of the
-                        year specifically for you, giving you a chance to meet other students, and
-                        helping you ease into uni life.
+                        Are you a first year student? The Club runs activities
+                        at the start of the year specifically for you, giving
+                        you a chance to meet other students, and helping you
+                        ease into uni life.
                     </p>
                 </div>
             </section>
@@ -109,28 +121,43 @@ export default function HomePage() {
                 />
 
                 <div className="mr-2 grid auto-rows-fr grid-cols-1 gap-8 text-xl lg:grid-cols-3">
-                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
+                    <FancyRectangle
+                        colour="white"
+                        offset="8"
+                        filled
+                        fullWidth
+                        fullHeight
+                    >
                         <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-purple px-4 py-4 md:px-6 md:py-6">
-                                <h3 className="text-2xl font-black text-grey lg:text-3xl">Learn</h3>
+                                <h3 className="text-2xl font-black text-grey lg:text-3xl">
+                                    Learn
+                                </h3>
                             </div>
                             <div className="-mt-2 h-full w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
                                 <div className="relative text-lg text-black md:text-xl">
                                     <p>
-                                        The club has a major focus on{' '}
+                                        The club has a major focus on{" "}
                                         <span className="relative inline-block">
                                             education
                                             <span className="absolute left-0 top-0 h-full w-full bg-purple opacity-30"></span>
-                                        </span>{' '}
-                                        and learning. We run workshops to assist students with their
-                                        studies and host other educational events such as talks and
-                                        guest lectures.
+                                        </span>{" "}
+                                        and learning. We run workshops to assist
+                                        students with their studies and host
+                                        other educational events such as talks
+                                        and guest lectures.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </FancyRectangle>
-                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
+                    <FancyRectangle
+                        colour="white"
+                        offset="8"
+                        filled
+                        fullWidth
+                        fullHeight
+                    >
                         <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-yellow px-4 py-4 md:px-6 md:py-6">
                                 <h3 className="text-2xl font-black text-grey lg:text-3xl">
@@ -140,23 +167,32 @@ export default function HomePage() {
                             <div className="-mt-2 h-full w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
                                 <div className="relative text-lg text-black md:text-xl">
                                     <p>
-                                        We are primarily a{' '}
+                                        We are primarily a{" "}
                                         <span className="relative inline-block">
                                             social club.
                                             <span className="absolute left-0 top-0 h-full w-full bg-yellow opacity-30"></span>
-                                        </span>{' '}
-                                        Events such as meet & greets, games / movies nights, BBQs,
-                                        and pub crawls are just some of the social events the club
+                                        </span>{" "}
+                                        Events such as meet & greets, games /
+                                        movies nights, BBQs, and pub crawls are
+                                        just some of the social events the club
                                         runs each year.
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </FancyRectangle>
-                    <FancyRectangle colour="white" offset="8" filled fullWidth fullHeight>
+                    <FancyRectangle
+                        colour="white"
+                        offset="8"
+                        filled
+                        fullWidth
+                        fullHeight
+                    >
                         <div className="flex h-full flex-col">
                             <div className="w-full border-4 border-black bg-orange px-4 py-4 md:px-6 md:py-6">
-                                <h3 className="text-2xl font-black text-grey lg:text-3xl">Code</h3>
+                                <h3 className="text-2xl font-black text-grey lg:text-3xl">
+                                    Code
+                                </h3>
                             </div>
                             <div className="-mt-2 h-full w-fit border-4 border-black bg-white px-4 py-4 md:px-6 md:py-6">
                                 <div className="relative text-lg text-black md:text-xl">
@@ -164,10 +200,12 @@ export default function HomePage() {
                                         <span className="relative inline-block">
                                             Coding
                                             <span className="absolute left-0 top-0 h-full w-full bg-orange opacity-30"></span>
-                                        </span>{' '}
-                                        is what we do and love. Whether you&apos;re looking for some
-                                        feedback on a project or have technical questions, the club
-                                        is a great way to meet and learn from others.
+                                        </span>{" "}
+                                        is what we do and love. Whether
+                                        you&apos;re looking for some feedback on
+                                        a project or have technical questions,
+                                        the club is a great way to meet and
+                                        learn from others.
                                     </p>
                                 </div>
                             </div>
@@ -191,8 +229,14 @@ export default function HomePage() {
                     <div>
                         <h3>Supported By </h3>
                         <div className="flex flex-col smr:flex-row">
-                            <h3 className="mb-2 mr-2 md:mb-0">Industry&apos;s </h3>
-                            <FancyRectangle colour="orange" offset="6" filled={false}>
+                            <h3 className="mb-2 mr-2 md:mb-0">
+                                Industry&apos;s{" "}
+                            </h3>
+                            <FancyRectangle
+                                colour="orange"
+                                offset="6"
+                                filled={false}
+                            >
                                 <div className="w-fit bg-orange px-2">
                                     <h2>Greatest</h2>
                                 </div>
@@ -210,19 +254,29 @@ export default function HomePage() {
                                     {type} Sponsors
                                 </h3>
                                 <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
-                                    {sponsors.map(({ image, website, name }, i) => (
-                                        <a href={website} key={i} className="block" target="_blank">
-                                            <FancyRectangle colour="white" offset="10">
-                                                <Image
-                                                    src={`/images/sponsors/${image}`}
-                                                    alt={`${name} Logo`}
-                                                    width={250}
-                                                    height={250}
-                                                    className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
-                                                />
-                                            </FancyRectangle>
-                                        </a>
-                                    ))}
+                                    {sponsors.map(
+                                        ({ image, website, name }, i) => (
+                                            <a
+                                                href={website}
+                                                key={i}
+                                                className="block"
+                                                target="_blank"
+                                            >
+                                                <FancyRectangle
+                                                    colour="white"
+                                                    offset="10"
+                                                >
+                                                    <Image
+                                                        src={`/images/sponsors/${image}`}
+                                                        alt={`${name} Logo`}
+                                                        width={250}
+                                                        height={250}
+                                                        className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
+                                                    />
+                                                </FancyRectangle>
+                                            </a>
+                                        ),
+                                    )}
                                 </div>
                             </Fragment>
                         );
@@ -257,13 +311,16 @@ export default function HomePage() {
                             <div className="h-auto w-16 bg-orange" />
                             <div className="relative flex flex-col">
                                 <span className="relative bg-white py-8 pl-4 pr-16 text-3xl font-black text-black lg:pr-32 lg:text-6xl">
-                                    Thinking about <span className="text-orange">Joining?</span>
+                                    Thinking about{" "}
+                                    <span className="text-orange">
+                                        Joining?
+                                    </span>
                                 </span>
                                 <p className="border-2 border-white bg-grey py-6 pl-4 pr-16 text-lg lg:pr-32 lg:text-2xl">
-                                    New members are always welcome.{' '}
+                                    New members are always welcome.{" "}
                                     <Link
                                         className="font-bold underline hover:text-yellow"
-                                        href={'/join'}
+                                        href={"/join"}
                                     >
                                         Join us today!
                                     </Link>

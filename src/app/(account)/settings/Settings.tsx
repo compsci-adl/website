@@ -1,26 +1,37 @@
-'use client';
+"use client";
 
-import type { MembershipPayment } from '@/server/verify-membership-payment';
-import { useRouter } from 'next/navigation';
-import React, { useState } from 'react';
-import Sidebar from './Sidebar';
-import MembershipSettings from './tabs/MembershipSettings';
+import type { MembershipPayment } from "@/server/verify-membership-payment";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import Sidebar from "./Sidebar";
+import MembershipSettings from "./tabs/MembershipSettings";
 
-export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
+export const TAB_NAMES = [
+    "Account",
+    "Personal Info",
+    "Membership",
+    "Notifications",
+] as const;
 export type TabNames = (typeof TAB_NAMES)[number];
 
 export type SettingData = { membershipPayment: MembershipPayment };
 export type SettingTabProps = { settingData: SettingData };
-type SettingTabComponent = ({ settingData }: SettingTabProps) => React.ReactNode;
+type SettingTabComponent = ({
+    settingData,
+}: SettingTabProps) => React.ReactNode;
 const SETTING_TABS = {
     Account: () => <div>Coming soon</div>,
-    'Personal Info': () => <div>Coming soon</div>,
+    "Personal Info": () => <div>Coming soon</div>,
     Membership: MembershipSettings,
     Notifications: () => <div>Coming soon</div>,
 } as const satisfies Record<TabNames, SettingTabComponent>;
 
-export default function Settings({ settingData }: { settingData: SettingData }) {
-    const [tab, setTab] = useState<TabNames>('Membership');
+export default function Settings({
+    settingData,
+}: {
+    settingData: SettingData;
+}) {
+    const [tab, setTab] = useState<TabNames>("Membership");
     const Tab = SETTING_TABS[tab];
 
     const { refresh } = useRouter();

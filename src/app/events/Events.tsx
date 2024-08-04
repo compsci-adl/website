@@ -1,7 +1,7 @@
-import FancyRectangle from '@/components/FancyRectangle';
-import { EVENTS, type Event } from '@/data/events';
-import Image from 'next/image';
-import { FiClock, FiMapPin } from 'react-icons/fi';
+import FancyRectangle from "@/components/FancyRectangle";
+import { EVENTS, type Event } from "@/data/events";
+import Image from "next/image";
+import { FiClock, FiMapPin } from "react-icons/fi";
 
 function Title({ children }: { children: string }) {
     return (
@@ -34,7 +34,7 @@ function EventCard({
                     alt={`${event.title}`}
                     width={450}
                     height={450}
-                    className={`w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px] ${isPastEvent ? 'grayscale' : ''}`}
+                    className={`w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px] ${isPastEvent ? "grayscale" : ""}`}
                 />
                 <div className="grow space-y-2 md:space-y-4">
                     <div className="flex gap-6 font-bold">
@@ -52,7 +52,7 @@ function EventCard({
                             </div>
                         </div>
                         <div
-                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]} ${isPastEvent ? 'grayscale' : ''}`}
+                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${["bg-orange", "bg-yellow", "bg-purple"][index % 3]} ${isPastEvent ? "grayscale" : ""}`}
                         >
                             <div>{event.date.month}</div>
                             <div>{event.date.day}</div>
@@ -66,7 +66,7 @@ function EventCard({
                             rel="noopener noreferrer"
                             className="font-bold hover:underline"
                         >
-                            {event.url.text ?? 'Click here!'}
+                            {event.url.text ?? "Click here!"}
                         </a>
                     )}
                 </div>
@@ -77,12 +77,16 @@ function EventCard({
 
 const getEventDate = (event: Event) => {
     return new Date(
-        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
+        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`,
     );
 };
 const CURRENT_DATE = new Date();
-const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
-const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE).reverse(); // Most recent event first
+const UPCOMING_EVENTS = EVENTS.filter(
+    (event) => getEventDate(event) >= CURRENT_DATE,
+);
+const PAST_EVENTS = EVENTS.filter(
+    (event) => getEventDate(event) < CURRENT_DATE,
+).reverse(); // Most recent event first
 export default function Events({ className }: { className?: string }) {
     return (
         <section className={`${className} space-y-8`}>
@@ -99,7 +103,12 @@ export default function Events({ className }: { className?: string }) {
                 <>
                     <Title>Past Events</Title>
                     {PAST_EVENTS.map((event, i) => (
-                        <EventCard key={i} index={i} event={event} isPastEvent />
+                        <EventCard
+                            key={i}
+                            index={i}
+                            event={event}
+                            isPastEvent
+                        />
                     ))}
                 </>
             )}

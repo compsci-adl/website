@@ -1,16 +1,16 @@
-'use client';
+"use client";
 
-import FancyRectangle from '@/components/FancyRectangle';
-import Title from '@/components/Title';
-import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
-import Link from 'next/link';
-import { useEffect } from 'react';
-import ProgressBar from './ProgressBar';
-import StepFour from './steps/StepFour';
-import StepOne from './steps/StepOne';
-import StepThree from './steps/StepThree';
-import StepTwo from './steps/StepTwo';
-import { useJoinUsHeading, useJoinUsStep } from './store';
+import FancyRectangle from "@/components/FancyRectangle";
+import Title from "@/components/Title";
+import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
+import Link from "next/link";
+import { useEffect } from "react";
+import ProgressBar from "./ProgressBar";
+import StepFour from "./steps/StepFour";
+import StepOne from "./steps/StepOne";
+import StepThree from "./steps/StepThree";
+import StepTwo from "./steps/StepTwo";
+import { useJoinUsHeading, useJoinUsStep } from "./store";
 
 export default function Join() {
     const { step, setStep } = useJoinUsStep();
@@ -35,17 +35,21 @@ export default function Join() {
                 </div>
                 <div className="mt-8 border-2 border-white px-4 py-4">
                     <p>
-                        <span className="text-yellow">Membership costs $10</span> for the full year.
-                        You can pay for membership online here at our website. Alternatively, you
-                        can pay at a club event or contact one of the{' '}
+                        <span className="text-yellow">
+                            Membership costs $10
+                        </span>{" "}
+                        for the full year. You can pay for membership online
+                        here at our website. Alternatively, you can pay at a
+                        club event or contact one of the{" "}
                         <Link href="/about" className="underline">
                             committee members
                         </Link>
                         .
                     </p>
                     <p className="mt-4">
-                        Create an <span className="text-orange">account below</span> to start the
-                        registration process.
+                        Create an{" "}
+                        <span className="text-orange">account below</span> to
+                        start the registration process.
                     </p>
                 </div>
             </section>
@@ -62,7 +66,9 @@ export default function Join() {
                             <ProgressBar step={step} />
                             {
                                 // eslint-disable-next-line react/jsx-key
-                                [<StepTwo />, <StepThree />, <StepFour />][step - 2]
+                                [<StepTwo />, <StepThree />, <StepFour />][
+                                    step - 2
+                                ]
                             }
                         </SignedIn>
                     </div>

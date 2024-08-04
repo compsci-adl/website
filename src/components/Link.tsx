@@ -1,6 +1,6 @@
-import type { Colour } from '@/constants/colours';
-import type { IconType } from 'react-icons';
-import FancyRectangle from './FancyRectangle';
+import type { Colour } from "@/constants/colours";
+import type { IconType } from "react-icons";
+import FancyRectangle from "./FancyRectangle";
 
 interface LinkProps {
     name: string;
@@ -9,7 +9,12 @@ interface LinkProps {
     borderColour: Colour;
 }
 
-export default function Link({ name, link, icon: Icon, borderColour }: LinkProps) {
+export default function Link({
+    name,
+    link,
+    icon: Icon,
+    borderColour,
+}: LinkProps) {
     return (
         <FancyRectangle colour={borderColour} offset="4" filled>
             <a

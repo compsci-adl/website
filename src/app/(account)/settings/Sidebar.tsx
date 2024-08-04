@@ -1,4 +1,4 @@
-import { TAB_NAMES, type TabNames } from './Settings';
+import { TAB_NAMES, type TabNames } from "./Settings";
 
 interface SidebarTabProps {
     tabName: TabNames;
@@ -10,7 +10,7 @@ function SidebarTab({ tabName, currentTab, onTabChange }: SidebarTabProps) {
     const selected = currentTab === tabName;
     return (
         <button
-            className={`text-nowrap text-xl md:text-base ${selected ? 'cursor-default font-bold' : 'hover:underline'}`}
+            className={`text-nowrap text-xl md:text-base ${selected ? "cursor-default font-bold" : "hover:underline"}`}
             onClick={() => {
                 if (!selected) {
                     onTabChange(tabName);
@@ -28,7 +28,11 @@ interface SidebarProps {
     className?: string;
 }
 
-export default function Sidebar({ currentTab, onTabChange, className }: SidebarProps) {
+export default function Sidebar({
+    currentTab,
+    onTabChange,
+    className,
+}: SidebarProps) {
     return (
         <div
             className={`${className} flex flex-col items-center gap-4 overflow-y-scroll border-2 border-grey p-2 md:items-end md:overflow-visible md:border-y-0 md:border-l-0 md:border-r-2 md:py-0 md:pl-0 md:pr-8`}

@@ -1,18 +1,18 @@
-'use client';
+"use client";
 
-import { useClerk } from '@clerk/clerk-react';
-import { Transition } from '@headlessui/react';
-import Image from 'next/image';
-import { useRouter } from 'next/navigation';
-import { useRef, useState } from 'react';
-import { useOnClickOutside } from 'usehooks-ts';
-import type { HeaderData } from '.';
-import Button from '../Button';
-import FancyRectangle from '../FancyRectangle';
-import { Links, MenuLinks } from './components/Links';
-import LogoTitle from './components/LogoTitle';
-import ScrollShader from './components/ScrollShader';
-import { SignInJoin } from './components/SignInJoin';
+import { useClerk } from "@clerk/clerk-react";
+import { Transition } from "@headlessui/react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useRef, useState } from "react";
+import { useOnClickOutside } from "usehooks-ts";
+import type { HeaderData } from ".";
+import Button from "../Button";
+import FancyRectangle from "../FancyRectangle";
+import { Links, MenuLinks } from "./components/Links";
+import LogoTitle from "./components/LogoTitle";
+import ScrollShader from "./components/ScrollShader";
+import { SignInJoin } from "./components/SignInJoin";
 
 function UserButton({ data }: { data: HeaderData }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
@@ -29,16 +29,24 @@ function UserButton({ data }: { data: HeaderData }) {
     const router = useRouter();
     const handleSignOut = async () => {
         await signOut();
-        router.push('/');
+        router.push("/");
         router.refresh();
     };
 
-    const userExists = data.nextStep !== 'signup';
+    const userExists = data.nextStep !== "signup";
     return (
         <FancyRectangle colour="black" offset="4" filled>
-            <div className="relative flex w-11 gap-y-2 border-2 border-black" ref={ref}>
+            <div
+                className="relative flex w-11 gap-y-2 border-2 border-black"
+                ref={ref}
+            >
                 <button onClick={handleButtonClick}>
-                    <Image src={data.avatar!} alt="Profile" width={100} height={100} />
+                    <Image
+                        src={data.avatar!}
+                        alt="Profile"
+                        width={100}
+                        height={100}
+                    />
                 </button>
                 <Transition
                     show={isMenuOpen}
@@ -50,8 +58,14 @@ function UserButton({ data }: { data: HeaderData }) {
                     leaveTo="opacity-0 scale-90"
                 >
                     <div className="absolute right-0 top-10 z-50 w-44 space-y-4 border-4 border-black bg-white p-4">
-                        {userExists && <MenuLinks data={data} onClick={closeMenu} />}
-                        <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
+                        {userExists && (
+                            <MenuLinks data={data} onClick={closeMenu} />
+                        )}
+                        <Button
+                            onClick={handleSignOut}
+                            colour="orange"
+                            width="w-40 md:w-32"
+                        >
                             Sign Out
                         </Button>
                     </div>
@@ -79,17 +93,21 @@ export default function HeaderClient({
                     <div className="flex items-center md:gap-4">
                         <Links />
                         <div className="flex gap-4 md:flex-col md:justify-center lg:flex-row lg:items-center">
-                            {data.nextStep === 'signup' && (
+                            {data.nextStep === "signup" && (
                                 <Button colour="purple" href="/join">
                                     Continue Signing Up
                                 </Button>
                             )}
-                            {data.nextStep === 'payment' && (
+                            {data.nextStep === "payment" && (
                                 <Button colour="orange" href="/settings">
                                     Continue to payment
                                 </Button>
                             )}
-                            {data.isSignedIn ? <UserButton data={data} /> : <SignInJoin />}
+                            {data.isSignedIn ? (
+                                <UserButton data={data} />
+                            ) : (
+                                <SignInJoin />
+                            )}
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
-import type { Metadata } from 'next';
-import ForgotPassword from './ForgotPassword';
+import type { Metadata } from "next";
+import ForgotPassword from "./ForgotPassword";
 
 export const metadata: Metadata = {
-    title: 'Forgot Password',
+    title: "Forgot Password",
     robots: { index: false, follow: false },
 };
 export default function ForgotPasswordPage() {

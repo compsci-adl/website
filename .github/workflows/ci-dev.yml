@@ -2,8 +2,8 @@ name: Development
 on:
   push:
     branches:
-      - '**'
-      - '!main'
+      - "**"
+      - "!main"
 
 jobs:
   lint-format:

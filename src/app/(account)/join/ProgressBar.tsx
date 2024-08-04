@@ -1,9 +1,13 @@
-import Duck from '@/components/Duck';
+import Duck from "@/components/Duck";
 
 function Progress({ filled, index }: { filled?: boolean; index: number }) {
     return (
         <div className="flex items-center justify-center">
-            <Duck colour={filled ? 'yellow' : 'grey'} outline={!filled} className="h-10 md:h-12" />
+            <Duck
+                colour={filled ? "yellow" : "grey"}
+                outline={!filled}
+                className="h-10 md:h-12"
+            />
             <div className="absolute mt-20 font-bold text-black">{index}</div>
         </div>
     );

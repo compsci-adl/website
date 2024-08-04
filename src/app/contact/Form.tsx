@@ -1,11 +1,15 @@
-'use client';
+"use client";
 
-import Button from '@/components/Button';
-import Duck from '@/components/Duck';
-import { createSubmit } from 'just-submit';
+import Button from "@/components/Button";
+import Duck from "@/components/Duck";
+import { createSubmit } from "just-submit";
 
 export default function Form({ className }: { className?: string }) {
-    const submit = createSubmit({ fullName: 'string', email: 'string', message: 'string' });
+    const submit = createSubmit({
+        fullName: "string",
+        email: "string",
+        message: "string",
+    });
     const handleSubmit = submit((data) => {
         // TODO(#31): Email integration
         console.log(data);
