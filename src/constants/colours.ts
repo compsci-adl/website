@@ -27,15 +27,15 @@ export const TECH_COLORS = {
     'Discord.py': '#7387CE',
     FastAPI: '#F6BF00',
     NextUI: '#A8DADC',
-    'Next.js': '#B17CA6',
+    'Next.js': '#B17CA6', 
     'Pragmatic Drag & Drop': '#FF6F61',
     Python: '#64B550',
     React: '#ED8C9B',
-    Requests: '#FFD166',
+    Requests: '#017DFA',
     Supabase: '#5DBBB5',
     'Tailwind CSS': '#907FC3',
     TypeScript: '#ACCB00',
-    Vite: '#646464',
+    Vite: '#FFA500',
 } as const satisfies Record<TechStack, string>;
 
 /**
