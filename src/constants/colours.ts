@@ -27,7 +27,7 @@ export const TECH_COLORS = {
     'Discord.py': '#7387CE',
     FastAPI: '#F6BF00',
     NextUI: '#A8DADC',
-    'Next.js': '#B17CA6', 
+    'Next.js': '#B17CA6',
     'Pragmatic Drag & Drop': '#FF6F61',
     Python: '#64B550',
     React: '#ED8C9B',
