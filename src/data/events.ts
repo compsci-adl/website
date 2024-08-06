@@ -107,6 +107,15 @@ export const EVENTS: Event[] = [
             "We've got some special surprise guests flying over from Melbourne as well as $150 worth of prizes!! The competition is aimed at beginners, so it’s a perfect chance to get a taste of competitive programming. It’s a 1.5 hour comp with 6 beginner-level programming problems ICPC-style where teams of 1-3 earn more points by solving a problem faster and with fewer submissions. The competition will take place on Codeforces where you can use all popular languages: C++, C, Python, Java, Rust, Haskell, Javascript, etc. There will also be free food!!",
         image: 'beginner-competition.png',
     },
+    {
+        title: 'Clubsland',
+        date: { year: 2024, month: 'AUG', day: 7, endTime: '15:00' },
+        time: '11:00am - 3:00pm',
+        location: 'Hub Central',
+        details:
+            "Missed us at O'Week? Well you're in luck, because we are back again for Clubsland! This is yet another chance to meet the committee and ask any questions you have about the club! So come along and have a chat. Find out why you should sign up to the CS Club and potentially make new friends!  See you there!",
+        image: 'clubsland.png',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
