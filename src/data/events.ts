@@ -116,6 +116,15 @@ export const EVENTS: Event[] = [
             "Missed us at O'Week? Well you're in luck, because we are back again for Clubsland! This is yet another chance to meet the committee and ask any questions you have about the club! So come along and have a chat. Find out why you should sign up to the CS Club and potentially make new friends!  See you there!",
         image: 'clubsland.png',
     },
+    {
+        title: 'Pandas Workshop',
+        date: { year: 2024, month: 'AUG', day: 13, endTime: '20:00' },
+        time: '5:00pm - 8:00pm',
+        location: 'Ingkarni Wardli B16',
+        details:
+            'Ready to dive into data analysis? Join us for the introductory Pandas Workshop! Learn the basics of data science and data analysis in this workshop, and discover how you can use these skills in machine learning. Perfect for beginners, this workshop will introduce you to the roadmap for your journey into artificial intelligence and data science.',
+        image: 'pandas-workshop.png',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
