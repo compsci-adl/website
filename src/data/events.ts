@@ -125,6 +125,15 @@ export const EVENTS: Event[] = [
             'Ready to dive into data analysis? Join us for the introductory Pandas Workshop! Learn the basics of data science and data analysis in this workshop, and discover how you can use these skills in machine learning. Perfect for beginners, this workshop will introduce you to the roadmap for your journey into artificial intelligence and data science.',
         image: 'pandas-workshop.png',
     },
+    {
+        title: 'Intro to CTF Workshop!',
+        date: { year: 2024, month: 'AUG', day: 20, endTime: '19:30' },
+        time: '5:30pm - 7:30pm',
+        location: 'Ingkarni Wardli B16',
+        details:
+            "Whether you're a novice or a seasoned coder, this workshop is designed to equip you with the skills you need to excel in Capture The Flag competitions. We'll cover the essentials, from understanding challenges to decoding the toughest puzzles, so you can be ready for our upcoming DuckCTF!",
+        image: 'ctf-workshop.png',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
