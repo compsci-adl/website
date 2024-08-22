@@ -1,5 +1,6 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { EVENTS, type Event } from '@/data/events';
+import { DateTime } from 'luxon';
 import Image from 'next/image';
 import { FiClock, FiMapPin } from 'react-icons/fi';
 
@@ -76,14 +77,19 @@ function EventCard({
 }
 
 const getEventDate = (event: Event) => {
-    return new Date(
-        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
-    );
+    const dateStr = `${event.date.year}-${event.date.month}-${event.date.day}T${event.date.endTime}`;
+    const eventDate = DateTime.fromFormat(dateStr, "yyyy-MMM-d'T'HH:mm", {
+        zone: 'Australia/Adelaide',
+    });
+
+    return eventDate.toJSDate();
 };
-const CURRENT_DATE = new Date();
-const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
-const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE).reverse(); // Most recent event first
+
 export default function Events({ className }: { className?: string }) {
+    const CURRENT_DATE = new Date();
+    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
+    const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE).reverse(); // Most recent event first
+
     return (
         <section className={`${className} space-y-8`}>
             {UPCOMING_EVENTS.length > 0 && (

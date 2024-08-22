@@ -23,6 +23,7 @@ export type Event = {
     image: string;
 };
 
+// Times are in Australian Central Standard Time (ACST)
 export const EVENTS: Event[] = [
     {
         title: 'Meet and Greet',
