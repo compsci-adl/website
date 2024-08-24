@@ -127,13 +127,26 @@ export const EVENTS: Event[] = [
         image: 'pandas-workshop.png',
     },
     {
-        title: 'Intro to CTF Workshop!',
+        title: 'Intro to CTF Workshop',
         date: { year: 2024, month: 'AUG', day: 20, endTime: '19:30' },
         time: '5:30pm - 7:30pm',
         location: 'Ingkarni Wardli B16',
         details:
             "Whether you're a novice or a seasoned coder, this workshop is designed to equip you with the skills you need to excel in Capture The Flag competitions. We'll cover the essentials, from understanding challenges to decoding the toughest puzzles, so you can be ready for our upcoming DuckCTF!",
         image: 'ctf-workshop.png',
+    },
+    {
+        title: 'DuckCTF',
+        date: { year: 2024, month: 'AUG', day: 29, endTime: '20:00' },
+        time: '5:30pm - 8:00pm',
+        location: 'Australian Cyber Collaboration Centre (ACCC)',
+        details:
+            'Join us for DuckCTF, our premier Capture The Flag competition designed to challenge and sharpen your cybersecurity skills. Form your team of 3 and be ready to solve complex problems while learning valuable new techniques. On-site spaces are limited, but contestants can also join remotely.',
+        url: {
+            href: new URL('https://events.humanitix.com/duckctf'),
+            text: 'Register Now! (In-person tickets are sold out)',
+        },
+        image: 'duck-ctf.png',
     },
 ];
 
