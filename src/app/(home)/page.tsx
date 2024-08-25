@@ -2,11 +2,54 @@ import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
+import { EVENTS, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import { FiClock, FiMapPin } from 'react-icons/fi';
+
+function UpcomingEventCard({ event, index }: { event: Event; index: number }) {
+    return (
+        <FancyRectangle colour="white" offset="8" rounded fullWidth>
+            <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
+                <div className="grow space-y-2 md:space-y-4">
+                    <div className="flex gap-6">
+                        <div
+                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 text-xl ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]}`}
+                        >
+                            <div>{event.date.month}</div>
+                            <div>{event.date.day}</div>
+                        </div>
+                        <div className="grow space-y-2 text-2xl">
+                            <h4 className=" md:border-b-[3px] md:border-black md:pb-1 ">
+                                {event.title}
+                            </h4>
+                            <div className="flex gap-2">
+                                <FiClock size={26} />
+                                <span>{event.time}</span>
+                            </div>
+                            <div className="flex gap-2">
+                                <FiMapPin size={26} />
+                                <span>{event.location}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </FancyRectangle>
+    );
+}
+
+const getEventDate = (event: Event) => {
+    return new Date(
+        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
+    );
+};
+
+const CURRENT_DATE = new Date();
+const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
 
 export default function HomePage() {
     return (
@@ -62,36 +105,63 @@ export default function HomePage() {
 
             {/* CTA Section */}
             <section>
-                <div className="relative z-10 mt-12 flex flex-col text-2xl font-black md:flex-row lg:mt-24 lg:text-3xl">
-                    <h3>New Members are</h3>
-                    <div className="mt-2 w-fit bg-purple px-2 md:ml-2 md:mt-0">
-                        <h3 className=" text-grey">Always Welcome</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div
+                        className={`flex flex-col justify-around ${UPCOMING_EVENTS.length === 0 ? 'lg:col-span-2' : ''}`}
+                    >
+                        <div>
+                            <div className="relative z-10 mt-12 flex flex-col text-2xl font-black md:flex-row lg:mt-24 lg:text-3xl">
+                                <h3>New Members are</h3>
+                                <div className="mt-2 w-fit bg-purple px-2 md:ml-2 md:mt-0">
+                                    <h3 className=" text-grey">Always Welcome</h3>
+                                </div>
+                            </div>
+                            <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
+                                <p className="text-lg md:text-xl">
+                                    As a member, some of the perks you&apos;ll have access to
+                                    include computer science talks and workshops, catered social
+                                    events, and a wide network of other computer science students
+                                    and graduates to learn from and make friends with.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
+                                <h3 className="">First-Year Perks</h3>
+                                <Image
+                                    src="/images/yellow-star.svg"
+                                    alt="Yellow Star"
+                                    className="ml-4 h-10"
+                                    width={50}
+                                    height={50}
+                                />
+                            </div>
+                            <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
+                                <p className="text-lg md:text-xl">
+                                    Are you a first year student? The Club runs activities at the
+                                    start of the year specifically for you, giving you a chance to
+                                    meet other students, and helping you ease into uni life.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
-                    <p className="text-lg md:text-xl">
-                        As a member, some of the perks you&apos;ll have access to include computer
-                        science talks and workshops, catered social events, and a wide network of
-                        other computer science students and graduates to learn from and make friends
-                        with.
-                    </p>
-                </div>
-                <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
-                    <h3 className="">First-Year Perks</h3>
-                    <Image
-                        src="/images/yellow-star.svg"
-                        alt="Yellow Star"
-                        className="ml-4 h-10"
-                        width={50}
-                        height={50}
-                    />
-                </div>
-                <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
-                    <p className="text-lg md:text-xl">
-                        Are you a first year student? The Club runs activities at the start of the
-                        year specifically for you, giving you a chance to meet other students, and
-                        helping you ease into uni life.
-                    </p>
+
+                    {/* <div className="relative z-10 mt-12 text-2xl font-black md:flex-row lg:ml-4 lg:mt-24 lg:text-3xl"> */}
+                    {UPCOMING_EVENTS.length > 0 && (
+                        <div className="relative z-10 mt-12 text-2xl font-black md:flex-row lg:ml-4 lg:mt-24 lg:text-3xl">
+                            <div className="flex justify-end">
+                                <h3>Upcoming Events</h3>
+                            </div>
+
+                            <div className="mt-4  space-y-6">
+                                {UPCOMING_EVENTS.map((event, i) => (
+                                    <UpcomingEventCard key={i} event={event} index={i} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                    {/* </div> */}
                 </div>
             </section>
 
