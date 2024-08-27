@@ -13,7 +13,7 @@ importers:
         version: 4.32.2(react@18.3.1)
       '@clerk/nextjs':
         specifier: ^4.31.3
-        version: 4.31.4(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 4.31.3(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@headlessui/react':
         specifier: ^1.7.19
         version: 1.7.19(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -61,7 +61,7 @@ importers:
         version: 4.12.0(react@18.3.1)
       redis:
         specifier: ^4.6.14
-        version: 4.7.0
+        version: 4.6.14
       sharp:
         specifier: ^0.33.4
         version: 0.33.4
@@ -281,8 +281,8 @@ packages:
       karma-requirejs: '>=1.0.0'
       karma-sourcemap-loader: '>=0.3.0'
 
-  '@clerk/backend@0.38.13':
-    resolution: {integrity: sha512-K6ftfgVmxiA6Bio/0W+Ama/sDVaI8xBV8SbtOHYLARD2k3lpLM3HDnAVPx3AjyDHygsXmhbj/5Ag5o7+EKSCAg==}
+  '@clerk/backend@0.38.12':
+    resolution: {integrity: sha512-04FGNgS2AkrmFoYfRw6EWHyUoqGaS9RXnI9GxxfI97YYdgVDpwMmMQ8c4Hiyr+PBUUhVhLyrlhIpnLRe/YqfEQ==}
     engines: {node: '>=14'}
 
   '@clerk/clerk-react@4.32.2':
@@ -291,18 +291,12 @@ packages:
     peerDependencies:
       react: '>=16'
 
-  '@clerk/clerk-react@4.32.3':
-    resolution: {integrity: sha512-qLKazE3ERUcQwzIaRzLH7BszConlTRsDZuW5hDrFA4T3KNv5ReaFP7W2nW+dvfCz1UC6RC3E4622k1fmfXC6+A==}
-    engines: {node: '>=14'}
-    peerDependencies:
-      react: '>=16'
-
-  '@clerk/clerk-sdk-node@4.13.21':
-    resolution: {integrity: sha512-g9cCaw2ySR/CVFhE5IhL7FC5YdHUFtq8/TUkM8WB5PaxEKV+dhl+JdDJRHFXQm0JwT7inm1pgNXgmyc2eOgRhg==}
+  '@clerk/clerk-sdk-node@4.13.20':
+    resolution: {integrity: sha512-p4d6riN566pyjq3mrU6viYevsKh4u8RbnJiGTRVn7F3joZk1RAtcZXFHrwiMp22jnypROa9KWu2ffe7z+2KUeA==}
     engines: {node: '>=14'}
 
-  '@clerk/nextjs@4.31.4':
-    resolution: {integrity: sha512-gjuzT01vXi68kLWYUXuLHlBicCsCGU6qtRkRmXFrEU4TpA8o8pc6L8SwJkbwoAGHruFgPtjhaxXE2YM9Ty/Vag==}
+  '@clerk/nextjs@4.31.3':
+    resolution: {integrity: sha512-D/zQ3vKfpt+8d+A8KiJOP1A5vJ+ntHcCkcTCGfecEuekNw0N3w6nawGOMwv0TZYyNhb17uZNWi2rCK7AQIx5JA==}
     engines: {node: '>=14'}
     peerDependencies:
       next: '>=10'
@@ -319,10 +313,6 @@ packages:
 
   '@clerk/types@3.65.2':
     resolution: {integrity: sha512-MX56SpyjHvKi5ZbLSkINOOecFXR+fzRqa6tHlXry7sNDgemU/0UCWn2KwxyO+/O3QspQPe0m8vqkvP53iGYw/Q==}
-    engines: {node: '>=14'}
-
-  '@clerk/types@3.65.3':
-    resolution: {integrity: sha512-q2BvCBK3H9SxLyoSsybAFTcbW6s50JPY8JACFqzenBbByOyolgIXPJNE0MStUUnNc7lRrPDkoLuZZf71X7JqIw==}
     engines: {node: '>=14'}
 
   '@colors/colors@1.5.0':
@@ -975,8 +965,8 @@ packages:
     peerDependencies:
       '@redis/client': ^1.0.0
 
-  '@redis/client@1.6.0':
-    resolution: {integrity: sha512-aR0uffYI700OEEH4gYnitAnv3vzVGXCFvYfdpu/CJKvk4pHfLPEy/JSZyrpQ+15WhXe1yJRXLtfQ84s4mEXnPg==}
+  '@redis/client@1.5.16':
+    resolution: {integrity: sha512-X1a3xQ5kEMvTib5fBrHKh6Y+pXbeKXqziYuxOUo1ojQNECg4M5Etd1qqyhMap+lFUOAh8S7UYevgJHOm4A+NOg==}
     engines: {node: '>=14'}
 
   '@redis/graph@1.1.1':
@@ -984,18 +974,18 @@ packages:
     peerDependencies:
       '@redis/client': ^1.0.0
 
-  '@redis/json@1.0.7':
-    resolution: {integrity: sha512-6UyXfjVaTBTJtKNG4/9Z8PSpKE6XgSyEb8iwaqDcy+uKrd/DGYHTWkUdnQDyzm727V7p21WUMhsqz5oy65kPcQ==}
+  '@redis/json@1.0.6':
+    resolution: {integrity: sha512-rcZO3bfQbm2zPRpqo82XbW8zg4G/w4W3tI7X8Mqleq9goQjAGLL7q/1n1ZX4dXEAmORVZ4s1+uKLaUOg7LrUhw==}
     peerDependencies:
       '@redis/client': ^1.0.0
 
-  '@redis/search@1.2.0':
-    resolution: {integrity: sha512-tYoDBbtqOVigEDMAcTGsRlMycIIjwMCgD8eR2t0NANeQmgK/lvxNAvYyb6bZDD4frHRhIHkJu2TBRvB0ERkOmw==}
+  '@redis/search@1.1.6':
+    resolution: {integrity: sha512-mZXCxbTYKBQ3M2lZnEddwEAks0Kc7nauire8q20oA0oA/LoA+E/b5Y5KZn232ztPb1FkIGqo12vh3Lf+Vw5iTw==}
     peerDependencies:
       '@redis/client': ^1.0.0
 
-  '@redis/time-series@1.1.0':
-    resolution: {integrity: sha512-c1Q99M5ljsIuc4YdaCwfUEXsofakb9c8+Zse2qxTadu8TalLXuAESzLvFAvNVbkmSlvlzIQOLpBCmWI9wTOt+g==}
+  '@redis/time-series@1.0.5':
+    resolution: {integrity: sha512-IFjIgTusQym2B5IZJG3XKr5llka7ey84fw/NOYqESP5WUfQs9zz1ww/9+qoz4ka/S6KcGBodzlCeZ5UImKbscg==}
     peerDependencies:
       '@redis/client': ^1.0.0
 
@@ -3166,8 +3156,8 @@ packages:
     resolution: {integrity: sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==}
     engines: {node: '>=8.10.0'}
 
-  redis@4.7.0:
-    resolution: {integrity: sha512-zvmkHEAdGMn+hMRXuMBtu4Vo5P6rHQjLoHftu+lBqq8ZTA3RCVC/WzD790bkKKiNFp7d5/9PcSD19fJyyRvOdQ==}
+  redis@4.6.14:
+    resolution: {integrity: sha512-GrNg/e33HtsQwNXL7kJT+iNFPSwE1IPmd7wzV3j4f2z0EYxZfZE7FVTmUysgAtqQQtg5NXF5SNLR9OdO/UHOfw==}
 
   reflect.getprototypeof@1.0.6:
     resolution: {integrity: sha512-fmfw4XgoDke3kdI6h4xcUz1dG8uaiv5q9gcEwLS4Pnth2kxT+GZ7YehS1JTMGBQmtV7Y4GFGbs2re2NqhdozUg==}
@@ -3966,10 +3956,10 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@clerk/backend@0.38.13(react@18.3.1)':
+  '@clerk/backend@0.38.12(react@18.3.1)':
     dependencies:
       '@clerk/shared': 1.4.1(react@18.3.1)
-      '@clerk/types': 3.65.3
+      '@clerk/types': 3.65.2
       '@peculiar/webcrypto': 1.4.1
       '@types/node': 16.18.6
       cookie: 0.5.0
@@ -3987,18 +3977,11 @@ snapshots:
       react: 18.3.1
       tslib: 2.4.1
 
-  '@clerk/clerk-react@4.32.3(react@18.3.1)':
+  '@clerk/clerk-sdk-node@4.13.20(react@18.3.1)':
     dependencies:
+      '@clerk/backend': 0.38.12(react@18.3.1)
       '@clerk/shared': 1.4.1(react@18.3.1)
-      '@clerk/types': 3.65.3
-      react: 18.3.1
-      tslib: 2.4.1
-
-  '@clerk/clerk-sdk-node@4.13.21(react@18.3.1)':
-    dependencies:
-      '@clerk/backend': 0.38.13(react@18.3.1)
-      '@clerk/shared': 1.4.1(react@18.3.1)
-      '@clerk/types': 3.65.3
+      '@clerk/types': 3.65.2
       '@types/cookies': 0.7.7
       '@types/express': 4.17.14
       '@types/node-fetch': 2.6.2
@@ -4008,13 +3991,13 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@clerk/nextjs@4.31.4(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@clerk/nextjs@4.31.3(next@14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
-      '@clerk/backend': 0.38.13(react@18.3.1)
-      '@clerk/clerk-react': 4.32.3(react@18.3.1)
-      '@clerk/clerk-sdk-node': 4.13.21(react@18.3.1)
+      '@clerk/backend': 0.38.12(react@18.3.1)
+      '@clerk/clerk-react': 4.32.2(react@18.3.1)
+      '@clerk/clerk-sdk-node': 4.13.20(react@18.3.1)
       '@clerk/shared': 1.4.1(react@18.3.1)
-      '@clerk/types': 3.65.3
+      '@clerk/types': 3.65.2
       next: 14.2.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       path-to-regexp: 6.2.1
       react: 18.3.1
@@ -4030,10 +4013,6 @@ snapshots:
       react: 18.3.1
 
   '@clerk/types@3.65.2':
-    dependencies:
-      csstype: 3.1.1
-
-  '@clerk/types@3.65.3':
     dependencies:
       csstype: 3.1.1
 
@@ -4495,31 +4474,31 @@ snapshots:
 
   '@protobufjs/utf8@1.1.0': {}
 
-  '@redis/bloom@1.2.0(@redis/client@1.6.0)':
+  '@redis/bloom@1.2.0(@redis/client@1.5.16)':
     dependencies:
-      '@redis/client': 1.6.0
+      '@redis/client': 1.5.16
 
-  '@redis/client@1.6.0':
+  '@redis/client@1.5.16':
     dependencies:
       cluster-key-slot: 1.1.2
       generic-pool: 3.9.0
       yallist: 4.0.0
 
-  '@redis/graph@1.1.1(@redis/client@1.6.0)':
+  '@redis/graph@1.1.1(@redis/client@1.5.16)':
     dependencies:
-      '@redis/client': 1.6.0
+      '@redis/client': 1.5.16
 
-  '@redis/json@1.0.7(@redis/client@1.6.0)':
+  '@redis/json@1.0.6(@redis/client@1.5.16)':
     dependencies:
-      '@redis/client': 1.6.0
+      '@redis/client': 1.5.16
 
-  '@redis/search@1.2.0(@redis/client@1.6.0)':
+  '@redis/search@1.1.6(@redis/client@1.5.16)':
     dependencies:
-      '@redis/client': 1.6.0
+      '@redis/client': 1.5.16
 
-  '@redis/time-series@1.1.0(@redis/client@1.6.0)':
+  '@redis/time-series@1.0.5(@redis/client@1.5.16)':
     dependencies:
-      '@redis/client': 1.6.0
+      '@redis/client': 1.5.16
 
   '@rushstack/eslint-patch@1.10.3': {}
 
@@ -6956,14 +6935,14 @@ snapshots:
     dependencies:
       picomatch: 2.3.1
 
-  redis@4.7.0:
+  redis@4.6.14:
     dependencies:
-      '@redis/bloom': 1.2.0(@redis/client@1.6.0)
-      '@redis/client': 1.6.0
-      '@redis/graph': 1.1.1(@redis/client@1.6.0)
-      '@redis/json': 1.0.7(@redis/client@1.6.0)
-      '@redis/search': 1.2.0(@redis/client@1.6.0)
-      '@redis/time-series': 1.1.0(@redis/client@1.6.0)
+      '@redis/bloom': 1.2.0(@redis/client@1.5.16)
+      '@redis/client': 1.5.16
+      '@redis/graph': 1.1.1(@redis/client@1.5.16)
+      '@redis/json': 1.0.6(@redis/client@1.5.16)
+      '@redis/search': 1.1.6(@redis/client@1.5.16)
+      '@redis/time-series': 1.0.5(@redis/client@1.5.16)
 
   reflect.getprototypeof@1.0.6:
     dependencies:
