@@ -78,7 +78,7 @@ export default function HomePage() {
                         className={`flex flex-col justify-around ${UPCOMING_EVENTS.length === 0 ? 'lg:col-span-2' : ''}`}
                     >
                         <div>
-                            <div className="relative z-10 mt-12 flex flex-col text-2xl font-black lg:mt-24 lg:text-3xl">
+                            <div className="relative z-10 mt-12 flex flex-col text-2xl font-black lg:mt-12 lg:text-3xl">
                                 <h3>New Members are</h3>
                                 <div className="mt-2 w-fit bg-purple px-2 ">
                                     <h3 className=" text-grey">Always Welcome</h3>
@@ -116,12 +116,12 @@ export default function HomePage() {
                     </div>
 
                     {UPCOMING_EVENTS.length > 0 && (
-                        <div className="relative z-10 mt-12 text-2xl font-black md:flex-row lg:ml-10 lg:mt-24 lg:text-3xl">
-                            <div className="flex md:justify-end">
+                        <div className="relative z-10 mt-12 text-2xl font-black md:flex-row lg:ml-10 lg:mt-12 lg:text-3xl">
+                            <div className="flex lg:justify-end">
                                 <h3>Upcoming Events</h3>
                             </div>
 
-                            <div className="mt-4  space-y-6">
+                            <div className="mt-4 space-y-6">
                                 {UPCOMING_EVENTS.map((event, i) => (
                                     <UpcomingEventCard key={i} event={event} index={i} />
                                 ))}
