@@ -2,11 +2,22 @@ import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
+import { EVENTS, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
+import UpcomingEventCard from './UpcomingEventCard';
+
+const getEventDate = (event: Event) => {
+    return new Date(
+        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
+    );
+};
+
+const CURRENT_DATE = new Date();
+const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
 
 export default function HomePage() {
     return (
@@ -62,36 +73,61 @@ export default function HomePage() {
 
             {/* CTA Section */}
             <section>
-                <div className="relative z-10 mt-12 flex flex-col text-2xl font-black md:flex-row lg:mt-24 lg:text-3xl">
-                    <h3>New Members are</h3>
-                    <div className="mt-2 w-fit bg-purple px-2 md:ml-2 md:mt-0">
-                        <h3 className=" text-grey">Always Welcome</h3>
+                <div className="grid grid-cols-1 lg:grid-cols-2">
+                    <div
+                        className={`flex flex-col justify-around ${UPCOMING_EVENTS.length === 0 ? 'lg:col-span-2' : ''}`}
+                    >
+                        <div>
+                            <div className="relative z-10 mt-12 flex flex-col text-2xl font-black lg:mt-12 lg:text-3xl">
+                                <h3>New Members are</h3>
+                                <div className="mt-2 w-fit bg-purple px-2 ">
+                                    <h3 className=" text-grey">Always Welcome</h3>
+                                </div>
+                            </div>
+                            <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
+                                <p className="text-lg md:text-xl">
+                                    As a member, some of the perks you&apos;ll have access to
+                                    include computer science talks and workshops, catered social
+                                    events, and a wide network of other computer science students
+                                    and graduates to learn from and make friends with.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
+                                <h3 className="">First-Year Perks</h3>
+                                <Image
+                                    src="/images/yellow-star.svg"
+                                    alt="Yellow Star"
+                                    className="ml-4 h-10"
+                                    width={50}
+                                    height={50}
+                                />
+                            </div>
+                            <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
+                                <p className="text-lg md:text-xl">
+                                    Are you a first year student? The Club runs activities at the
+                                    start of the year specifically for you, giving you a chance to
+                                    meet other students, and helping you ease into uni life.
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
-                    <p className="text-lg md:text-xl">
-                        As a member, some of the perks you&apos;ll have access to include computer
-                        science talks and workshops, catered social events, and a wide network of
-                        other computer science students and graduates to learn from and make friends
-                        with.
-                    </p>
-                </div>
-                <div className="relative z-10 mt-4 flex flex-row items-center text-2xl font-black lg:text-3xl">
-                    <h3 className="">First-Year Perks</h3>
-                    <Image
-                        src="/images/yellow-star.svg"
-                        alt="Yellow Star"
-                        className="ml-4 h-10"
-                        width={50}
-                        height={50}
-                    />
-                </div>
-                <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
-                    <p className="text-lg md:text-xl">
-                        Are you a first year student? The Club runs activities at the start of the
-                        year specifically for you, giving you a chance to meet other students, and
-                        helping you ease into uni life.
-                    </p>
+
+                    {UPCOMING_EVENTS.length > 0 && (
+                        <div className="relative z-10 mt-12 text-2xl font-black md:flex-row lg:ml-10 lg:mt-12 lg:text-3xl">
+                            <div className="flex lg:justify-end">
+                                <h3>Upcoming Events</h3>
+                            </div>
+
+                            <div className="mt-4 space-y-6">
+                                {UPCOMING_EVENTS.map((event, i) => (
+                                    <UpcomingEventCard key={i} event={event} index={i} />
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
 
