@@ -15,7 +15,7 @@ jobs:
   build:
     needs: lint-format
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, ARM64] # Since deployment is on arm64
     environment: Production
     permissions:
       id-token: write
