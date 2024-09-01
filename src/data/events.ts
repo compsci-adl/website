@@ -142,11 +142,20 @@ export const EVENTS: Event[] = [
         location: 'Australian Cyber Collaboration Centre (ACCC)',
         details:
             'Join us for DuckCTF, our premier Capture The Flag competition designed to challenge and sharpen your cybersecurity skills. Form your team of 3 and be ready to solve complex problems while learning valuable new techniques. On-site spaces are limited, but contestants can also join remotely.',
-        url: {
-            href: new URL('https://events.humanitix.com/duckctf'),
-            text: 'Register Now! (In-person tickets are sold out)',
-        },
         image: 'duck-ctf.png',
+    },
+    {
+        title: 'Grad Mixer',
+        date: { year: 2024, month: 'SEP', day: 6, endTime: '21:00' },
+        time: '6:00pm - 9:00pm',
+        location: 'The Gallery, Level 2, 30 Waymouth St',
+        details:
+            'Join us for an evening of networking with students, alumni, and industry professionals in fields like software development, AI, and cybersecurity. Expand your network, share experiences, and explore new opportunities while enjoying light refreshments in a relaxed atmosphere.',
+        url: {
+            href: new URL('https://events.humanitix.com/cs-club-2024-grad-mixer'),
+            text: 'Get your tickets for $15 per person!',
+        },
+        image: 'grad-mixer.png',
     },
 ];
 
