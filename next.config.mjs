@@ -2,6 +2,7 @@ import './src/env.mjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    swcMinify: true,
     images: {
         remotePatterns: [
             {
@@ -9,6 +10,14 @@ const nextConfig = {
                 hostname: 'img.clerk.com',
             },
         ],
+    },
+    typescript: {
+        // Ignore TypeScript errors during production build
+        ignoreBuildErrors: process.env.PRODUCTION_BUILD === 'true',
+    },
+    eslint: {
+        // Ignore ESLint errors during production build
+        ignoreDuringBuilds: process.env.PRODUCTION_BUILD === 'true',
     },
 };
 

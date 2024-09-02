@@ -1,12 +1,12 @@
 # Cache package.json
-FROM node:18-bookworm-slim AS deps
+FROM node:22-bookworm-slim AS deps
 
 WORKDIR /tmp
 
 COPY package.json ./
 
 # Build
-FROM node:18-bookworm-slim AS builder
+FROM node:22-bookworm-slim AS builder
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
@@ -39,11 +39,11 @@ RUN --mount=type=secret,id=DATABASE_URL,target=/run/secrets/DATABASE_URL \
     pnpm run build
 
 # Final deployment image
-FROM node:18-bookworm-slim AS runner
+FROM node:22-bookworm-slim AS runner
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
-ENV NODE_ENV production
+ENV NODE_ENV=production
 ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
 ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 

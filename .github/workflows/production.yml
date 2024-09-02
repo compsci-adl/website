@@ -15,7 +15,7 @@ jobs:
   build:
     needs: lint-format
     name: Build
-    runs-on: [self-hosted, ARM64] # Since deployment is on arm64
+    runs-on: ubuntu-latest
     environment: Production
     permissions:
       id-token: write
@@ -31,8 +31,21 @@ jobs:
           role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
           aws-region: ${{ env.AWS_REGION }}
 
-      # - name: Install arm64 support for Docker
-      #   run: docker run --privileged --rm tonistiigi/binfmt --install arm64
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up QEMU for ARM64
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: linux/arm64
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
 
       - name: Build Docker container
         env:
@@ -40,14 +53,24 @@ jobs:
           REDIS_URI: ${{ secrets.REDIS_URI }}
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+          PRODUCTION_BUILD: 'true'
         run: |
           docker buildx build \
+            --platform linux/arm64 \
+            --tag csclub-website:latest \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
             --secret id=DATABASE_URL \
             --secret id=REDIS_URI \
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
-            --platform=linux/arm64 --file=Dockerfile -t csclub-website .
-          docker image save csclub-website | gzip > csclub-website.tar.gz
+            --file=Dockerfile -t csclub-website .
+            docker image save csclub-website | gzip > csclub-website.tar.gz
+
+      - name: Save Docker cache
+        if: success()
+        run: |
+          rsync -a --delete /tmp/.buildx-cache-new/ /tmp/.buildx-cache/
 
       - name: Copy image and compose file to S3
         run: |
