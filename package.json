@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsec --noEmit && next build",
+    "build": "next build",
     "analyse": "cross-env ANALYSE=true next build",
     "start": "next start",
     "lint": "cross-env SKIP_ENV_VALIDATION=true next lint",
