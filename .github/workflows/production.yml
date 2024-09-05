@@ -56,17 +56,15 @@ jobs:
           PRODUCTION_BUILD: 'true'
         run: |
           docker buildx build \
-            --platform linux/arm64 \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
             --secret id=DATABASE_URL \
             --secret id=REDIS_URI \
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
-            --file=Dockerfile \
-            --tag csclub-website:latest \
-            --output type=tar,dest=csclub-website.tar.gz \
-            .
+            --output type=docker,dest=csclub-website.tar \
+            --platform=linux/arm64 --file=Dockerfile -t csclub-website .
+          gzip csclub-website.tar
 
       - name: Save Docker cache
         if: success()
