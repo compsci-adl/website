@@ -57,10 +57,6 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'The National Wine Centre, Hickinbotham Hall',
         details: 'Connect with top companies and explore job opportunities in the tech industry!',
-        url: {
-            href: new URL('https://events.humanitix.com/computer-science-club-industry-night'),
-            text: 'Sign up here!',
-        },
         image: 'industry-night.jpg',
     },
     {
@@ -156,6 +152,15 @@ export const EVENTS: Event[] = [
             text: 'Get your tickets for $15 per person!',
         },
         image: 'grad-mixer.png',
+    },
+    {
+        title: 'Data Driven Future',
+        date: { year: 2024, month: 'SEP', day: 11, endTime: '20:30' },
+        time: '6:30pm - 8:30pm',
+        location: 'Ingkarni Wardli 715',
+        details:
+            'Join us for "Data Driven Future" - An AI and Data Science Panel! Discover insights from top minds in AI and data science as they explore the future of technology, machine learning, and innovation. Whether you\'re curious about AI\'s impact on industries, new research, or real-world applications, this panel is for you!',
+        image: 'ai-panel.png',
     },
 ];
 
