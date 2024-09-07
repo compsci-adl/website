@@ -25,11 +25,11 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
 
     return (
         <div className="mt-4 flex justify-between">
-            <Button onClick={handlePreviousPage} colour={'orange'}>
+            <Button onClick={handlePreviousPage} colour={'orange'} size="small">
                 Previous
             </Button>
-            <span className="self-center text-lg">Page {currentPage}</span>
-            <Button onClick={handleNextPage} colour={'orange'}>
+            <span className="self-center text-lg font-bold">Page {currentPage}</span>
+            <Button onClick={handleNextPage} colour={'orange'} size="small">
                 Next
             </Button>
         </div>
