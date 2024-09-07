@@ -1,5 +1,6 @@
 'use client';
 
+import Button from '@/components/Button';
 import { useRouter } from 'next/navigation';
 
 interface PaginationControlsProps {
@@ -11,7 +12,6 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
     const router = useRouter();
 
     const handleNextPage = () => {
-        console.log(totalPages);
         if (currentPage < totalPages) {
             router.push(`/admin?page=${currentPage + 1}`);
         }
@@ -25,21 +25,13 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
 
     return (
         <div className="mt-4 flex justify-between">
-            <button
-                onClick={handlePreviousPage}
-                disabled={currentPage <= 1}
-                className="rounded bg-gray-300 px-4 py-2 text-black"
-            >
+            <Button onClick={handlePreviousPage} colour={'orange'}>
                 Previous
-            </button>
+            </Button>
             <span className="self-center text-lg">Page {currentPage}</span>
-            <button
-                onClick={handleNextPage}
-                disabled={currentPage >= totalPages}
-                className="rounded bg-gray-300 px-4 py-2 text-black"
-            >
+            <Button onClick={handleNextPage} colour={'orange'}>
                 Next
-            </button>
+            </Button>
         </div>
     );
 }

@@ -58,8 +58,8 @@ export default async function AdminPage({ searchParams }: { searchParams?: { pag
             <FancyRectangle colour="purple" offset="8" filled fullWidth>
                 <div className="w-full border-4 border-black bg-white px-8 py-8 text-black md:px-12 md:py-12">
                     <MemberForm members={members} />
+                    <PaginationControls currentPage={page} totalPages={totalPages} />
                 </div>
-                <PaginationControls currentPage={page} totalPages={totalPages} />
             </FancyRectangle>
         </div>
     );
