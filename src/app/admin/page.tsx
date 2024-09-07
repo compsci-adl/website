@@ -4,9 +4,15 @@ import { db } from '@/db';
 import { memberTable } from '@/db/schema';
 import { currentUser } from '@clerk/nextjs';
 import { desc, count } from 'drizzle-orm';
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import MemberForm from './MemberForm';
 import PaginationControls from './PaginationControls';
+
+export const metadata: Metadata = {
+    title: 'Admin Panel',
+    robots: { index: false, follow: false },
+};
 
 const limit = 50;
 
