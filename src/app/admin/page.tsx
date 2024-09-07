@@ -3,7 +3,7 @@ import Title from '@/components/Title';
 import { db } from '@/db';
 import { memberTable } from '@/db/schema';
 import { currentUser } from '@clerk/nextjs';
-import { count } from 'drizzle-orm';
+import { desc, count } from 'drizzle-orm';
 import { notFound } from 'next/navigation';
 import MemberForm from './MemberForm';
 import PaginationControls from './PaginationControls';
@@ -25,6 +25,7 @@ async function fetchMembers(page: number) {
         },
         limit: limit,
         offset: skip,
+        orderBy: desc(memberTable.createdAt),
     });
 
     // Fetch total number of members to calculate total pages
