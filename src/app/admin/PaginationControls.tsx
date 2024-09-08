@@ -35,10 +35,7 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
     const endPage = Math.min(totalPages, currentPage + pageWindowSize);
 
     // Ensure we have enough pages on both sides of the current page
-    const displayPages = [];
-    for (let i = startPage; i <= endPage; i++) {
-        displayPages.push(i);
-    }
+    const displayPages = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
     return (
         <div className="mt-4 flex items-center justify-center space-x-2">

@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     robots: { index: false, follow: false },
 };
 
-const limit = 50;
+const PAGE_SIZE = 50;
 
 const queryMembers = async (page: number) => {
-    const skip = (page - 1) * limit;
+    const skip = (page - 1) * PAGE_SIZE;
 
     // Fetch members with pagination
     const dbMembers = await db.query.memberTable.findMany({
@@ -29,7 +29,7 @@ const queryMembers = async (page: number) => {
             membershipExpiresAt: true,
             createdAt: true,
         },
-        limit: limit,
+        limit: PAGE_SIZE,
         offset: skip,
         orderBy: desc(memberTable.createdAt),
     });
@@ -37,7 +37,7 @@ const queryMembers = async (page: number) => {
     // Fetch total number of members to calculate total pages
     const totalMembersResult = await db.select({ count: count() }).from(memberTable);
     const totalMembers = totalMembersResult[0]?.count || 0;
-    const totalPages = Math.ceil(totalMembers / limit);
+    const totalPages = Math.ceil(totalMembers / PAGE_SIZE);
     return {
         members: dbMembers.map(({ membershipExpiresAt, ...member }) => ({
             ...member,
