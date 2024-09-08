@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const limit = 50;
 
-async function fetchMembers(page: number) {
+const queryMembers = async (page: number) => {
     const skip = (page - 1) * limit;
 
     // Fetch members with pagination
@@ -46,7 +46,16 @@ async function fetchMembers(page: number) {
         page,
         totalPages,
     };
-}
+};
+
+export type Member = {
+    paid: boolean;
+    id: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    createdAt: string;
+};
 
 export default async function AdminPage({ searchParams }: { searchParams?: { page?: string } }) {
     const user = await currentUser();
@@ -55,7 +64,7 @@ export default async function AdminPage({ searchParams }: { searchParams?: { pag
     }
 
     const page = parseInt(searchParams?.page || '1', 10);
-    const { members, totalPages } = await fetchMembers(page);
+    const { members, totalPages } = await queryMembers(page);
 
     return (
         <div className="space-y-8">
