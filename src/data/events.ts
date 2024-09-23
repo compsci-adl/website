@@ -147,10 +147,6 @@ export const EVENTS: Event[] = [
         location: 'The Gallery, Level 2, 30 Waymouth St',
         details:
             'Join us for an evening of networking with students, alumni, and industry professionals in fields like software development, AI, and cybersecurity. Expand your network, share experiences, and explore new opportunities while enjoying light refreshments in a relaxed atmosphere.',
-        url: {
-            href: new URL('https://events.humanitix.com/cs-club-2024-grad-mixer'),
-            text: 'Get your tickets for $15 per person!',
-        },
         image: 'grad-mixer.png',
     },
     {
@@ -161,6 +157,21 @@ export const EVENTS: Event[] = [
         details:
             'Join us for "Data Driven Future" - An AI and Data Science Panel! Discover insights from top minds in AI and data science as they explore the future of technology, machine learning, and innovation. Whether you\'re curious about AI\'s impact on industries, new research, or real-world applications, this panel is for you!',
         image: 'ai-panel.png',
+    },
+    {
+        title: 'Annual General Meeting',
+        date: { year: 2024, month: 'OCT', day: 15, endTime: '21:00' },
+        time: '5:30pm - 9:00pm',
+        location: 'Scott Theatre',
+        details:
+            "The CS Club's Annual General Meeting is approaching! This is your chance to elect our new committee for 2025. Nominations are open until Friday 11th October at 23:59.",
+        url: {
+            href: new URL(
+                'https://docs.google.com/forms/d/e/1FAIpQLSd0nAouaPh8TRyz8pItF2bcLCm4Bi4_xDud6cw0HH7MnNLBZg/viewform?fbclid=PAZXh0bgNhZW0CMTEAAaZF3D8zf2jET2YAJ0s50YyUz6-qFpTnoCRMS7NPErcPCRLIaM9qiQ_bNew_aem_D0My1hTxpvGf8y2bB4FOSQ&pli=1'
+            ),
+            text: 'Nominate yourself for the 2025 CS Club committee!',
+        },
+        image: 'agm.png',
     },
 ];
 
