@@ -36,6 +36,8 @@ export const TECH_COLORS = {
     'Tailwind CSS': '#907FC3',
     TypeScript: '#ACCB00',
     Vite: '#FFA500',
+    'C++': '#5E96D0',
+    OpenGL: '#FFA500',
 } as const satisfies Record<TechStack, string>;
 
 /**
