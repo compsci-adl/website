@@ -159,7 +159,7 @@ export const EVENTS: Event[] = [
         image: 'ai-panel.png',
     },
     {
-        title: 'Cybersecurity Panel: Hacking the Industry ',
+        title: 'Cybersecurity Panel: Hacking the Industry',
         date: { year: 2024, month: 'OCT', day: 8, endTime: '20:30' },
         time: '6:30pm - 8:30pm',
         location: 'Ingkarni Wardli 715',
@@ -181,6 +181,19 @@ export const EVENTS: Event[] = [
             text: 'Nominate yourself for the 2025 CS Club committee!',
         },
         image: 'agm.png',
+    },
+    {
+        title: 'Defence Connect',
+        date: { year: 2024, month: 'OCT', day: 18, endTime: '19:00' },
+        time: '5:30pm - 7:00pm',
+        location: 'TBC',
+        details:
+            "In collaboration, the Adelaide Uni Space Society, Engineering Society and Computer Science Club present to you another industry event. If you are interested in South Australia's growing Defence Industry and want to get involved and grow your network, this is the only event you need to be at!",
+        url: {
+            href: new URL('https://events.humanitix.com/defence-connnect-panel-uofa'),
+            text: 'Get your tickets!',
+        },
+        image: 'defence-connect.png',
     },
 ];
 
