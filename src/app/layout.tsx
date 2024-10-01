@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { env } from '@/env.mjs';
 import '@/styles/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
@@ -51,7 +52,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 <Script
                     defer
                     src="https://umami.csclub.org.au/script.js"
-                    data-website-id="f49d14d9-2912-4225-8204-95fd981eab94"
+                    data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
                 />
                 <body className="overflow-x-hidden bg-grey text-white">
                     <Header />
