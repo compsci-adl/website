@@ -1,9 +1,11 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
+import { env } from '@/env.mjs';
 import '@/styles/globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
 import { Archivo } from 'next/font/google';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
     icons: '/favicon.ico',
@@ -47,6 +49,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
             }}
         >
             <html lang="en" className={archivo.className}>
+                <Script
+                    defer
+                    src="https://umami.csclub.org.au/script.js"
+                    data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+                />
                 <body className="overflow-x-hidden bg-grey text-white">
                     <Header />
                     <div className="mx-auto min-h-screen w-responsive pb-6 pt-32 md:pt-40">

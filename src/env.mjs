@@ -21,6 +21,7 @@ export const env = createEnv({
         NEXT_PUBLIC_CLERK_SIGN_UP_URL: z.literal('/join'),
         NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: z.literal('/'),
         NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: z.literal('/'),
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().optional(),
     },
     experimental__runtimeEnv: {
         NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
@@ -29,6 +30,7 @@ export const env = createEnv({
         NEXT_PUBLIC_CLERK_SIGN_UP_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL,
         NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL: process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL,
         NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: process.env.NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL,
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
     },
     skipValidation: process.env.SKIP_ENV_VALIDATION,
 });

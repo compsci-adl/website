@@ -26,10 +26,12 @@ jobs:
           REDIS_URI: ${{ secrets.REDIS_URI }}
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
         run: |
           docker buildx build \
             --secret id=DATABASE_URL \
             --secret id=REDIS_URI \
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
+            --secret id=NEXT_PUBLIC_UMAMI_WEBSITE_ID \
             --file=Dockerfile -t csclub-website .
