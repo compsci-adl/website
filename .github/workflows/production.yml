@@ -53,6 +53,7 @@ jobs:
           REDIS_URI: ${{ secrets.REDIS_URI }}
           NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
           PRODUCTION_BUILD: 'true'
         run: |
           docker buildx build \
@@ -62,6 +63,7 @@ jobs:
             --secret id=REDIS_URI \
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
+            --secret id=NEXT_PUBLIC_UMAMI_WEBSITE_ID \
             --output type=docker,dest=csclub-website.tar \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           gzip csclub-website.tar
