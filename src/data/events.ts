@@ -159,6 +159,15 @@ export const EVENTS: Event[] = [
         image: 'ai-panel.png',
     },
     {
+        title: 'Cybersecurity Panel: Hacking the Industry ',
+        date: { year: 2024, month: 'OCT', day: 8, endTime: '20:30' },
+        time: '6:30pm - 8:30pm',
+        location: 'Ingkarni Wardli 715',
+        details:
+            'Join us for an exclusive panel featuring industry experts from cybersecurity, digital forensics, and reverse engineering! Dive deep into the world of cyber defense, learn about the latest trends, and gain insights from seasoned professionals.',
+        image: 'cyber-panel.png',
+    },
+    {
         title: 'Annual General Meeting',
         date: { year: 2024, month: 'OCT', day: 15, endTime: '21:00' },
         time: '5:30pm - 9:00pm',
