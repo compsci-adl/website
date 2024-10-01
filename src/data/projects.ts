@@ -23,4 +23,35 @@ export const PROJECTS: Project[] = [
         githubLink: 'https://github.com/compsci-adl/duckbot',
         techStacks: ['Python', 'Discord.py'],
     },
+    {
+        title: 'Voxel Game Engine + Game',
+        description:
+            'A voxel game engine made from scratch that will be used to make a rouge-like game.',
+        image: 'voxel-engine.png',
+        githubLink: 'https://github.com/compsci-adl/voxel-engine',
+        techStacks: ['C++', 'OpenGL'],
+    },
+    {
+        title: 'Courses API',
+        description:
+            'Scrapes course info from the UofA website and provides course data for other projects through an API endpoint.',
+        image: 'courses-api.png',
+        githubLink: 'https://github.com/compsci-adl/courses-api',
+        techStacks: ['Python', 'FastAPI', 'Requests'],
+    },
+    {
+        title: 'MyTimetable',
+        description:
+            'An interactive drag-and-drop timetable scheduler to help UofA students optimise their weekly timetable.',
+        image: 'mytimetable.png',
+        githubLink: 'https://github.com/compsci-adl/mytimetable',
+        techStacks: [
+            'TypeScript',
+            'React',
+            'Vite',
+            'Pragmatic Drag & Drop',
+            'NextUI',
+            'Tailwind CSS',
+        ],
+    },
 ];

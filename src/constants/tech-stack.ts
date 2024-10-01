@@ -12,5 +12,7 @@ export const TECH_STACK = [
     'Tailwind CSS',
     'TypeScript',
     'Vite',
+    'C++',
+    'OpenGL',
 ] as const;
 export type TechStack = (typeof TECH_STACK)[number];
