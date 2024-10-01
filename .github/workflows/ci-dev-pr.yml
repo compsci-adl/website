@@ -1,4 +1,5 @@
 name: Development - Pull Request
+
 on:
   pull_request_target:
     branches:
@@ -12,13 +13,17 @@ jobs:
   build:
     needs: lint-format
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     environment: Development
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Set up Docker Buildx (for ARM64)
+        run: |
+          brew install docker docker-buildx
 
       - name: Build Docker container
         env:
@@ -28,6 +33,7 @@ jobs:
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
         run: |
           docker buildx build \
+            --platform linux/arm64 \
             --secret id=DATABASE_URL \
             --secret id=REDIS_URI \
             --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
