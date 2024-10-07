@@ -4,7 +4,7 @@ import Tag from '@/components/Tag';
 import { TECH_COLORS } from '@/constants/colours';
 import type { Project } from '@/data/projects';
 import Image from 'next/image';
-import { FaGithub } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
 export default function ProjectCard({ project }: { project: Project }) {
     return (
@@ -41,6 +41,18 @@ export default function ProjectCard({ project }: { project: Project }) {
                         <FaGithub className="mr-2 inline-block text-xl md:text-2xl" />
                         View on GitHub
                     </Button>
+                    {project.websiteLink && (
+                        <Button
+                            colour="purple"
+                            href={project.websiteLink}
+                            width="w-full"
+                            size="small"
+                            targetBlank={true}
+                        >
+                            <FaExternalLinkAlt className="mr-2 inline-block text-xl md:text-2xl" />
+                            Visit now
+                        </Button>
+                    )}
                 </div>
             </div>
         </FancyRectangle>
