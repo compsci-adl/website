@@ -24,6 +24,7 @@ const config: Config = {
         // so a custom breakpoint was created to overwrite it
         // and now a CSS pattern can be applied with this breakpoint.
         'md-lg': '1169px',
+        'lg-xl': '1300px',
       },
     },
   },
