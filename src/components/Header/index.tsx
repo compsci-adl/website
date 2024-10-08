@@ -36,7 +36,6 @@ export default async function Header() {
 
     return (
         <>
-            {/* prettier-ignore */}
             <HeaderClient data={headerData} className="hidden lg-xl:block" />
             <HeaderMobileClient data={headerData} className="lg-xl:hidden" />
         </>
