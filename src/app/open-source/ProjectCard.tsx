@@ -31,28 +31,35 @@ export default function ProjectCard({ project }: { project: Project }) {
                             <Tag key={i} name={tech} backgroundColor={TECH_COLORS[tech]} />
                         ))}
                     </div>
-                    <Button
-                        colour="orange"
-                        href={project.githubLink}
-                        width="w-full"
-                        size="small"
-                        targetBlank={true}
-                    >
-                        <FaGithub className="mr-2 inline-block text-xl md:text-2xl" />
-                        View on GitHub
-                    </Button>
-                    {project.websiteLink && (
-                        <Button
-                            colour="purple"
-                            href={project.websiteLink}
-                            width="w-full"
-                            size="small"
-                            targetBlank={true}
-                        >
-                            <FaExternalLinkAlt className="mr-2 inline-block text-xl md:text-2xl" />
-                            Visit now
-                        </Button>
-                    )}
+                    <div className="flex w-full flex-col gap-4 lg-xl:flex-row">
+                        <div className="flex-1">
+                            <Button
+                                colour="orange"
+                                href={project.githubLink}
+                                width="w-full"
+                                size="small"
+                                targetBlank={true}
+                            >
+                                <FaGithub className="mr-2 inline-block text-xl md:text-2xl" />
+                                View on GitHub
+                            </Button>
+                        </div>
+
+                        {project.websiteLink && (
+                            <div className="flex-1">
+                                <Button
+                                    colour="purple"
+                                    href={project.websiteLink}
+                                    width="w-full"
+                                    size="small"
+                                    targetBlank={true}
+                                >
+                                    <FaExternalLinkAlt className="mr-2 inline-block text-xl md:text-2xl" />
+                                    Visit now
+                                </Button>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </FancyRectangle>
