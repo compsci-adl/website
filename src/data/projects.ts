@@ -5,6 +5,7 @@ export interface Project {
     description: string;
     image: string;
     githubLink: string;
+    websiteLink?: string;
     techStacks: TechStack[];
 }
 
@@ -45,6 +46,7 @@ export const PROJECTS: Project[] = [
             'An interactive drag-and-drop timetable scheduler to help UofA students optimise their weekly timetable.',
         image: 'mytimetable.png',
         githubLink: 'https://github.com/compsci-adl/mytimetable',
+        websiteLink: 'https://mytimetable.csclub.org.au/',
         techStacks: [
             'TypeScript',
             'React',
