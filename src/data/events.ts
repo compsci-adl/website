@@ -173,13 +173,7 @@ export const EVENTS: Event[] = [
         time: '5:30pm - 9:00pm',
         location: 'Scott Theatre',
         details:
-            "The CS Club's Annual General Meeting is approaching! This is your chance to elect our new committee for 2025. Nominations are open until Friday 11th October at 23:59.",
-        url: {
-            href: new URL(
-                'https://docs.google.com/forms/d/e/1FAIpQLSd0nAouaPh8TRyz8pItF2bcLCm4Bi4_xDud6cw0HH7MnNLBZg/viewform?fbclid=PAZXh0bgNhZW0CMTEAAaZF3D8zf2jET2YAJ0s50YyUz6-qFpTnoCRMS7NPErcPCRLIaM9qiQ_bNew_aem_D0My1hTxpvGf8y2bB4FOSQ&pli=1'
-            ),
-            text: 'Nominate yourself for the 2025 CS Club committee!',
-        },
+            "The CS Club's Annual General Meeting is approaching! This is your chance to elect our new committee for 2025.",
         image: 'agm.png',
     },
     {
