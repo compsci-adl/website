@@ -176,19 +176,6 @@ export const EVENTS: Event[] = [
             "The CS Club's Annual General Meeting is approaching! This is your chance to elect our new committee for 2025.",
         image: 'agm.png',
     },
-    {
-        title: 'Defence Connect',
-        date: { year: 2024, month: 'OCT', day: 18, endTime: '19:00' },
-        time: '5:30pm - 7:00pm',
-        location: 'TBC',
-        details:
-            "In collaboration, the Adelaide Uni Space Society, Engineering Society and Computer Science Club present to you another industry event. If you are interested in South Australia's growing Defence Industry and want to get involved and grow your network, this is the only event you need to be at!",
-        url: {
-            href: new URL('https://events.humanitix.com/defence-connnect-panel-uofa'),
-            text: 'Get your tickets!',
-        },
-        image: 'defence-connect.png',
-    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
