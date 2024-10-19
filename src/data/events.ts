@@ -176,6 +176,19 @@ export const EVENTS: Event[] = [
             "The CS Club's Annual General Meeting is approaching! This is your chance to elect our new committee for 2025.",
         image: 'agm.png',
     },
+    {
+        title: 'TECH.TONIC',
+        date: { year: 2024, month: 'NOV', day: 22, endTime: '23:00' },
+        time: '6:30pm - 11:00pm',
+        location: 'The Astor Hotel, 437 Pulteney St',
+        details:
+            'Join us for a retro-inspired cocktail night! This collaboration between the CS Club and AMESS offers food, drinks, and good vibes. Celebrate the end of the semester, relax, or enjoy a fun night out with friends!',
+        image: 'techtonic.png',
+        url: {
+            href: new URL('https://events.humanitix.com/tech-tonic-or-amess-x-csc-cocktail-night'),
+            text: 'Get your tickets before they sell out!',
+        },
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
