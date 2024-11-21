@@ -85,7 +85,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Events Officer',
     },
     {
-        name: 'Jennifer',
+        name: 'Jennifer Bao Tien Tran',
         position: 'Events Officer',
     },
     {
