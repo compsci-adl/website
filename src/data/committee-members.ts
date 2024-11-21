@@ -57,7 +57,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Social Media & Marketing Manager',
     },
     {
-        name: 'Lalisa',
+        name: 'Lalisa Thaiprasert',
         position: 'Social Media & Marketing Officer',
     },
     {
@@ -73,7 +73,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Open Source Officer',
     },
     {
-        name: 'Austin Huppatz ',
+        name: 'Austin Huppatz',
         position: 'Open Source Officer',
     },
     {
@@ -85,11 +85,11 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Events Officer',
     },
     {
-        name: 'Jennifer  ',
+        name: 'Jennifer',
         position: 'Events Officer',
     },
     {
-        name: 'Lloyd  ',
+        name: 'LLoyd Draysey',
         position: 'Events Officer',
     },
     {
