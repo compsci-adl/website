@@ -4,6 +4,8 @@ import Title from '@/components/Title';
 import { FUTURE_PROJECTS } from '@/data/future-projects';
 import { PROJECTS } from '@/data/projects';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import FutureProjectCard from './FutureProjectCard';
 import ProjectCard from './ProjectCard';
 
@@ -54,18 +56,26 @@ export default function OpenSourcePage() {
                                     exciting projects planned for the future!
                                 </p>
                             </div>
+                            <div className="flex flex-row">
+                                <Image
+                                    src="/images/yellow-triangle.svg"
+                                    alt="Yellow Triangle"
+                                    className="mb-12 mr-4"
+                                    width={40}
+                                    height={40}
+                                />
+                                <Link
+                                    className="text-lg font-bold underline md:text-3xl"
+                                    href={
+                                        'https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform'
+                                    }
+                                >
+                                    Join the Open Source Team!
+                                </Link>
+                            </div>
                         </div>
                     </section>
-                    <section className="mb-8 flex justify-center text-black">
-                        <Button
-                            type="button"
-                            colour="orange"
-                            width="w-full"
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform"
-                        >
-                            Join Us Now
-                        </Button>
-                    </section>
+
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
