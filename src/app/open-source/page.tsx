@@ -20,37 +20,40 @@ export default function OpenSourcePage() {
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">
-                        <div className="relative z-10 w-1/2 ">
-                            <div className="relative flex flex-row justify-end space-x-4 *:h-8">
-                                <Duck colour="white" outline size={40} />
-                                <Duck colour="white" outline size={40} />
-                                <Duck colour="white" size={40} />
-                                <Duck colour="white" size={40} />
-                                <Duck colour="white" size={40} />
-                            </div>
-                            <div className="relative z-10 flex flex-row">
-                                <div className="h-auto w-12 bg-orange" />
-                                <div className="relative flex flex-col">
-                                    <span className="relative bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
-                                        Who is the
-                                    </span>
-                                    <span className="border-2 border-white py-6 pl-4 pr-16 text-2xl underline lg:pr-36 lg:text-3xl">
-                                        Open Source Team?
-                                    </span>
+                        <div className="flex flex-col space-y-6">
+                            <div className="w-1/2 ">
+                                <div className="relative flex flex-row justify-end space-x-4 *:h-8">
+                                    <Duck colour="white" outline size={40} />
+                                    <Duck colour="white" outline size={40} />
+                                    <Duck colour="white" size={40} />
+                                    <Duck colour="white" size={40} />
+                                    <Duck colour="white" size={40} />
+                                </div>
+                                <div className="relative z-10 flex flex-row">
+                                    <div className="h-auto w-12 bg-orange" />
+                                    <div className="relative flex flex-1 flex-col">
+                                        <span className="relative bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
+                                            Who is the
+                                        </span>
+                                        <span className="whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl underline lg:pr-36 lg:text-3xl">
+                                            Open Source Team?
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="relative w-1/2 rounded-xl border-2 border-white px-4 py-6 md:px-6 md:py-6">
-                            <p className="text-lg md:text-xl">
-                                The{' '}
-                                <span className="font-bold text-yellow">
-                                    CS Club Open Source Team
-                                </span>{' '}
-                                a place for creative and inventive students who want to build
-                                innovative open-source software together. We are a new team
-                                currently working on a few projects, but we have many more exciting
-                                projects planned for the future!
-                            </p>
+
+                            <div className="w-1/2 rounded-xl border-2 border-white px-4 py-6 md:px-6 md:py-6">
+                                <p className="text-lg md:text-xl">
+                                    The{' '}
+                                    <span className="font-bold text-yellow">
+                                        CS Club Open Source Team
+                                    </span>{' '}
+                                    a place for creative and inventive students who want to build
+                                    innovative open-source software together. We are a new team
+                                    currently working on a few projects, but we have many more
+                                    exciting projects planned for the future!
+                                </p>
+                            </div>
                         </div>
                     </section>
                     <section className="mb-8 flex justify-center text-black">
