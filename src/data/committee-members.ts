@@ -81,7 +81,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Events Manager',
     },
     {
-        name: 'Shahid Hussain  ',
+        name: 'Shahid Hussain',
         position: 'Events Officer',
     },
     {
@@ -101,7 +101,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Postgraduate Representative',
     },
     {
-        name: 'Matilda Cotton ',
+        name: 'Matilda Cotton',
         position: 'Human Resources Officer',
     },
     {
