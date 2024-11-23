@@ -1,5 +1,5 @@
-import Button from '@/components/Button';
 import Duck from '@/components/Duck';
+import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { FUTURE_PROJECTS } from '@/data/future-projects';
 import { PROJECTS } from '@/data/projects';
@@ -22,56 +22,69 @@ export default function OpenSourcePage() {
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">
-                        <div className="flex flex-col space-y-6">
-                            <div className="w-1/2 ">
-                                <div className="relative flex flex-row justify-end space-x-4 *:h-8">
-                                    <Duck colour="white" outline size={40} />
-                                    <Duck colour="white" outline size={40} />
-                                    <Duck colour="white" size={40} />
-                                    <Duck colour="white" size={40} />
-                                    <Duck colour="white" size={40} />
-                                </div>
-                                <div className="relative z-10 flex flex-row">
-                                    <div className="h-auto w-12 bg-orange" />
-                                    <div className="relative flex flex-1 flex-col">
-                                        <span className="relative bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
-                                            Who is the
-                                        </span>
-                                        <span className="whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl underline lg:pr-36 lg:text-3xl">
-                                            Open Source Team?
-                                        </span>
+                        <div className="flex gap-x-8 md:flex-col lg:flex-row">
+                            <div className="relative z-10 flex flex-1 flex-col space-y-6">
+                                <div className="md:w-[600px] lg:w-[500px] ">
+                                    <div className="relative flex flex-row justify-end space-x-4 *:h-8">
+                                        <Duck colour="white" outline size={40} />
+                                        <Duck colour="white" outline size={40} />
+                                        <Duck colour="white" size={40} />
+                                        <Duck colour="white" size={40} />
+                                        <Duck colour="white" size={40} />
+                                    </div>
+                                    <div className="relative flex flex-row">
+                                        <div className="w-12 bg-orange" />
+                                        <div className="relative flex flex-1 flex-col">
+                                            <span className="relative z-[2] bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
+                                                Who is the
+                                            </span>
+                                            <span className="relative z-[2]  whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl underline lg:pr-36 lg:text-3xl">
+                                                Open Source Team?
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="w-1/2 rounded-xl border-2 border-white px-4 py-6 md:px-6 md:py-6">
-                                <p className="text-lg md:text-xl">
-                                    The{' '}
-                                    <span className="font-bold text-yellow">
-                                        CS Club Open Source Team
-                                    </span>{' '}
-                                    a place for creative and inventive students who want to build
-                                    innovative open-source software together. We are a new team
-                                    currently working on a few projects, but we have many more
-                                    exciting projects planned for the future!
-                                </p>
+                                <div className="rounded-xl border-2 border-white px-4 py-6 md:w-[600px] md:px-6 md:py-6 lg:w-[500px]">
+                                    <p className="text-lg md:text-xl">
+                                        The{' '}
+                                        <span className="font-bold text-yellow">
+                                            CS Club Open Source Team
+                                        </span>{' '}
+                                        is a place for creative and inventive students who want to
+                                        build innovative open-source software together. We are a new
+                                        team currently working on a few projects, but we have many
+                                        more exciting projects planned for the future!
+                                    </p>
+                                </div>
+                                <div className="flex flex-row">
+                                    <Image
+                                        src="/images/yellow-triangle.svg"
+                                        alt="Yellow Triangle"
+                                        className=" mr-4"
+                                        width={40}
+                                        height={40}
+                                    />
+                                    <Link
+                                        className="text-lg font-bold underline md:text-3xl"
+                                        href={
+                                            'https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform'
+                                        }
+                                    >
+                                        Join the Open Source Team!
+                                    </Link>
+                                </div>
                             </div>
-                            <div className="flex flex-row">
-                                <Image
-                                    src="/images/yellow-triangle.svg"
-                                    alt="Yellow Triangle"
-                                    className="mb-12 mr-4"
-                                    width={40}
-                                    height={40}
-                                />
-                                <Link
-                                    className="text-lg font-bold underline md:text-3xl"
-                                    href={
-                                        'https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform'
-                                    }
-                                >
-                                    Join the Open Source Team!
-                                </Link>
+                            <div className="relative z-0 mt-8 md:w-auto">
+                                <FancyRectangle colour={'white'} offset={'20'} filled rounded>
+                                    <Image
+                                        src={'/images/opensource/csclub_open_source-2.png'}
+                                        alt={'Open source'}
+                                        width={500}
+                                        height={500}
+                                        className="rounded-xl border-2 border-white bg-grey md:w-full"
+                                    ></Image>
+                                </FancyRectangle>
                             </div>
                         </div>
                     </section>
