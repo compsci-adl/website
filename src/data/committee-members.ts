@@ -45,7 +45,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Design Manager',
     },
     {
-        name: 'Prefei',
+        name: 'Prefei Ren',
         position: 'Graphic Officer',
     },
     {
