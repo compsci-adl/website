@@ -22,7 +22,7 @@ export default function OpenSourcePage() {
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">
-                        <div className="flex gap-x-8 md:flex-col lg:flex-row">
+                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
                             <div className="relative z-10 flex flex-1 flex-col space-y-6">
                                 <div className="md:w-[600px] lg:w-[500px] ">
                                     <div className="relative flex flex-row justify-end space-x-4 *:h-8">
@@ -38,13 +38,12 @@ export default function OpenSourcePage() {
                                             <span className="relative z-[2] bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
                                                 Who is the
                                             </span>
-                                            <span className="relative z-[2]  whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl underline lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-[2]  whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold underline lg:pr-36 lg:text-3xl">
                                                 Open Source Team?
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-
                                 <div className="rounded-xl border-2 border-white px-4 py-6 md:w-[600px] md:px-6 md:py-6 lg:w-[500px]">
                                     <p className="text-lg md:text-xl">
                                         The{' '}
@@ -57,29 +56,27 @@ export default function OpenSourcePage() {
                                         more exciting projects planned for the future!
                                     </p>
                                 </div>
-                                <div className="flex flex-row">
+                                <div className="flex flex-row items-center">
                                     <Image
                                         src="/images/yellow-triangle.svg"
                                         alt="Yellow Triangle"
-                                        className=" mr-4"
+                                        className="mr-4"
                                         width={40}
                                         height={40}
                                     />
                                     <Link
                                         className="text-lg font-bold underline md:text-3xl"
-                                        href={
-                                            'https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform'
-                                        }
+                                        href="https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform"
                                     >
                                         Join the Open Source Team!
                                     </Link>
                                 </div>
                             </div>
-                            <div className="relative z-0 mt-8 md:w-auto">
+                            <div className="relative z-0 w-full lg:mt-8">
                                 <FancyRectangle colour={'white'} offset={'20'} filled rounded>
                                     <Image
-                                        src={'/images/opensource/csclub_open_source-2.png'}
-                                        alt={'Open source'}
+                                        src="/images/opensource/opensource.png"
+                                        alt="Open source"
                                         width={500}
                                         height={500}
                                         className="rounded-xl border-2 border-white bg-grey md:w-full"
@@ -88,7 +85,6 @@ export default function OpenSourcePage() {
                             </div>
                         </div>
                     </section>
-
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
