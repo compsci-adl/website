@@ -28,6 +28,11 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         exec: true,
     },
     {
+        name: 'David Maslov',
+        position: 'Executive Advisor',
+        exec: true,
+    },
+    {
         name: 'Zac Anderson',
         position: 'Partnerships & Sponsorships Manager',
         exec: true,
