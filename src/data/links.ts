@@ -6,6 +6,7 @@ import {
     FaInstagram,
     FaLinkedin,
     FaTiktok,
+    FaYoutube,
 } from 'react-icons/fa';
 
 export const LINKS = [
@@ -16,4 +17,5 @@ export const LINKS = [
     { name: 'Facebook', link: 'https://www.facebook.com/compsci.adl/', icon: FaFacebook },
     { name: 'Discord', link: 'https://discord.gg/UjvVxHA', icon: FaDiscord },
     { name: 'LinkedIn', link: 'https://www.linkedin.com/company/compsci-adl/', icon: FaLinkedin },
+    { name: 'Youtube', link: 'https://www.youtube.com/@csclub-adl', icon: FaYoutube },
 ] as const;

@@ -11,6 +11,7 @@ const LINK_BORDER_COLOURS = {
     Facebook: 'orange',
     Discord: 'purple',
     LinkedIn: 'yellow',
+    Youtube: 'orange',
 } as const satisfies Record<(typeof LINKS)[number]['name'], Colour>;
 
 export default function Contact({ className }: { className?: string }) {
