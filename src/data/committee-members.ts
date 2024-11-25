@@ -51,11 +51,11 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
     },
     {
         name: 'Prefei Ren',
-        position: 'Graphic Officer',
+        position: 'Design Officer',
     },
     {
         name: 'Lucy Fidock',
-        position: 'Graphic Officer',
+        position: 'Design Officer',
     },
     {
         name: 'Omar Badr',
