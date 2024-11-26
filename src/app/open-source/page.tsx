@@ -22,9 +22,9 @@ export default function OpenSourcePage() {
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">
-                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+                        <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
                             <div className="relative z-10 flex flex-1 flex-col space-y-6">
-                                <div className="md:w-[600px] lg:w-[500px] ">
+                                <div className="max-w-[600px] xl:w-[500px]">
                                     <div className="relative flex flex-row justify-end space-x-4 *:h-8">
                                         <Duck colour="white" outline size={40} />
                                         <Duck colour="white" outline size={40} />
@@ -44,7 +44,7 @@ export default function OpenSourcePage() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="rounded-xl border-2 border-white px-4 py-6 md:w-[600px] md:px-6 md:py-6 lg:w-[500px]">
+                                <div className="max-w-[600px] rounded-xl border-2 border-white px-4 py-6 md:px-6 md:py-6 xl:w-[500px]">
                                     <p className="text-lg md:text-xl">
                                         The{' '}
                                         <span className="font-bold text-yellow">
@@ -65,14 +65,14 @@ export default function OpenSourcePage() {
                                         height={40}
                                     />
                                     <Link
-                                        className="text-lg font-bold underline md:text-3xl"
+                                        className="text-lg font-bold underline sm:text-2xl md:text-3xl"
                                         href="https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform"
                                     >
                                         Join the Open Source Team!
                                     </Link>
                                 </div>
                             </div>
-                            <div className="relative z-0 w-full lg:mt-8">
+                            <div className="relative z-0 w-full xl:mt-8">
                                 <FancyRectangle colour={'white'} offset={'20'} filled rounded>
                                     <Image
                                         src="/images/opensource/opensource.png"
@@ -142,13 +142,17 @@ export default function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Contact Us</h2>
                         <p className="mt-2 text-lg md:text-xl">
-                            The open-source managers are{' '}
+                            The Open Source & Infrastructure Manager is{' '}
                             <a href="https://github.com/phoenixpereira" className="underline">
                                 Phoenix Pereira
                             </a>{' '}
-                            and{' '}
+                            and the Open Source Officers are{' '}
                             <a href="https://github.com/jsun969" className="underline">
                                 Justin Sun
+                            </a>{' '}
+                            and{' '}
+                            <a href="https://github.com/AustinH-adl" className="underline">
+                                Austin Huppatz
                             </a>
                             .
                         </p>
