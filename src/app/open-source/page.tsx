@@ -38,7 +38,7 @@ export default function OpenSourcePage() {
                                             <span className="relative z-[2] bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
                                                 Who is the
                                             </span>
-                                            <span className="relative z-[2]  whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold underline lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-[2] whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold underline lg:pr-36 lg:text-3xl">
                                                 Open Source Team?
                                             </span>
                                         </div>
