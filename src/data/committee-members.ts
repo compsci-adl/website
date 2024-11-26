@@ -8,12 +8,12 @@ type CommitteeMember = {
 // executive committee
 export const COMMITTEE_MEMBERS: CommitteeMember[] = [
     {
-        name: 'David Maslov',
+        name: 'Yaman Ashqar',
         position: 'President',
         exec: true,
     },
     {
-        name: 'Cubie',
+        name: 'Leo Li',
         position: 'Vice-President',
         exec: true,
     },
@@ -28,96 +28,89 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         exec: true,
     },
     {
-        name: 'Milan',
+        name: 'David Maslov',
+        position: 'Executive Advisor',
+        exec: true,
+    },
+    {
+        name: 'Zac Anderson',
         position: 'Partnerships & Sponsorships Manager',
         exec: true,
     },
     {
-        name: 'F. Umar',
+        name: 'Patrick Thompson',
         position: 'Partnerships & Sponsorships Officer',
     },
     {
-        name: 'Pouya',
+        name: 'Olivia Aston',
         position: 'Partnerships & Sponsorships Officer',
-    },
-    {
-        name: 'Bowen Sun',
-        position: 'Business Manager',
-    },
-    {
-        name: 'Willard Gorman',
-        position: 'Duck Lounge Liaison',
-    },
-    {
-        name: 'Mischa Sarac',
-        position: 'Equity Officer',
-    },
-    {
-        name: 'Maged Gayed',
-        position: 'First Year Representative',
     },
     {
         name: 'Yuhan Wang',
-        position: 'Graphic Designer',
+        position: 'Design Manager',
     },
     {
-        name: 'M. Klaric',
-        position: 'Graphic Designer',
+        name: 'Prefei Ren',
+        position: 'Design Officer',
     },
     {
-        name: 'Darcy',
-        position: 'Social Media Officer',
-    },
-    {
-        name: 'Yaman Ashqar',
-        position: 'Social Media Officer',
+        name: 'Lucy Fidock',
+        position: 'Design Officer',
     },
     {
         name: 'Omar Badr',
-        position: 'Social Media Officer',
+        position: 'Social Media & Marketing Manager',
+    },
+    {
+        name: 'Lalisa Thaiprasert',
+        position: 'Social Media & Marketing Officer',
+    },
+    {
+        name: 'Jessica Hu',
+        position: 'Social Media & Marketing Officer',
     },
     {
         name: 'Phoenix Pereira',
+        position: 'Open Source & Infrastructure Manager',
+    },
+    {
+        name: 'Justin Sun',
         position: 'Open Source Officer',
     },
     {
-        name: 'Yeyang (Justin) Sun',
+        name: 'Austin Huppatz',
         position: 'Open Source Officer',
     },
     {
-        name: 'S. Bhatta',
-        position: 'General Committee',
+        name: 'Willard Gorman',
+        position: 'Events Manager',
     },
     {
-        name: 'Will Johnston',
-        position: 'General Committee',
+        name: 'Shahid Hussain',
+        position: 'Events Officer',
     },
     {
-        name: 'Khanh',
-        position: 'General Committee',
+        name: 'Jennifer Bao Tien Tran',
+        position: 'Events Officer',
     },
     {
-        name: 'Jonty Leslie',
-        position: 'General Committee',
+        name: 'Lloyd',
+        position: 'Events Officer',
     },
     {
-        name: 'Cuinn Kemp',
-        position: 'General Committee',
+        name: 'Shreeshail',
+        position: 'Events Officer',
     },
     {
-        name: 'Timothy Choi',
-        position: 'General Committee',
+        name: 'Syeda Ramisa',
+        position: 'Postgraduate Representative',
     },
     {
-        name: 'Leo Li',
-        position: 'General Committee',
+        name: 'Matilda Cotton',
+        position: 'Human Resources Officer',
     },
     {
-        name: 'Zachary Anderson',
-        position: 'General Committee',
-    },
-    {
-        name: 'Mansi Patel',
-        position: 'General Committee',
+        name: 'Ben Signorelli',
+        position: 'Duck Lounge Liaison',
     },
 ];
