@@ -1,8 +1,11 @@
-import Button from '@/components/Button';
+import Duck from '@/components/Duck';
+import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { FUTURE_PROJECTS } from '@/data/future-projects';
 import { PROJECTS } from '@/data/projects';
 import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import FutureProjectCard from './FutureProjectCard';
 import ProjectCard from './ProjectCard';
 
@@ -19,23 +22,68 @@ export default function OpenSourcePage() {
                 </div>
                 <div className="container mx-auto px-4">
                     <section className="mb-8">
-                        <h2 className="mb-4 text-2xl font-bold">Who is the Open Source Team?</h2>
-                        <p className="text-lg md:text-xl">
-                            The CS Club Open Source Team is a place for creative and inventive
-                            students who want to build innovative open-source software together. We
-                            are a new team currently working on a few projects, but we have many
-                            more exciting projects planned for the future!
-                        </p>
-                    </section>
-                    <section className="mb-8 flex justify-center text-black">
-                        <Button
-                            type="button"
-                            colour="orange"
-                            width="w-full"
-                            href="https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform"
-                        >
-                            Join Us Now
-                        </Button>
+                        <div className="grid grid-cols-1 gap-8 xl:grid-cols-2">
+                            <div className="relative z-10 flex flex-1 flex-col space-y-6">
+                                <div className="max-w-[600px] xl:w-[500px]">
+                                    <div className="relative flex flex-row justify-end space-x-4 *:h-8">
+                                        <Duck colour="white" outline size={40} />
+                                        <Duck colour="white" outline size={40} />
+                                        <Duck colour="white" size={40} />
+                                        <Duck colour="white" size={40} />
+                                        <Duck colour="white" size={40} />
+                                    </div>
+                                    <div className="relative flex flex-row">
+                                        <div className="w-12 bg-orange" />
+                                        <div className="relative flex flex-1 flex-col">
+                                            <span className="relative z-[2] bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
+                                                Who is the
+                                            </span>
+                                            <span className="relative z-[2] whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold underline lg:pr-36 lg:text-3xl">
+                                                Open Source Team?
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="max-w-[600px] rounded-xl border-2 border-white px-4 py-6 md:px-6 md:py-6 xl:w-[500px]">
+                                    <p className="text-lg md:text-xl">
+                                        The{' '}
+                                        <span className="font-bold text-yellow">
+                                            CS Club Open Source Team
+                                        </span>{' '}
+                                        is a place for creative and inventive students who want to
+                                        build innovative open-source software together. We are a new
+                                        team currently working on a few projects, but we have many
+                                        more exciting projects planned for the future!
+                                    </p>
+                                </div>
+                                <div className="flex flex-row items-center">
+                                    <Image
+                                        src="/images/yellow-triangle.svg"
+                                        alt="Yellow Triangle"
+                                        className="mr-4"
+                                        width={40}
+                                        height={40}
+                                    />
+                                    <Link
+                                        className="text-lg font-bold underline sm:text-2xl md:text-3xl"
+                                        href="https://docs.google.com/forms/d/e/1FAIpQLSe2uvnn4qW95yJ7TzyDo7QMjzhkawvdERRDmeBLMwloi-nqjg/viewform"
+                                    >
+                                        Join the Open Source Team!
+                                    </Link>
+                                </div>
+                            </div>
+                            <div className="relative z-0 w-full xl:mt-8">
+                                <FancyRectangle colour={'white'} offset={'20'} filled rounded>
+                                    <Image
+                                        src="/images/opensource/opensource.png"
+                                        alt="Open source"
+                                        width={500}
+                                        height={500}
+                                        className="rounded-xl border-2 border-white bg-grey md:w-full"
+                                    ></Image>
+                                </FancyRectangle>
+                            </div>
+                        </div>
                     </section>
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
@@ -94,13 +142,17 @@ export default function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Contact Us</h2>
                         <p className="mt-2 text-lg md:text-xl">
-                            The open-source managers are{' '}
+                            The Open Source & Infrastructure Manager is{' '}
                             <a href="https://github.com/phoenixpereira" className="underline">
                                 Phoenix Pereira
                             </a>{' '}
-                            and{' '}
+                            and the Open Source Officers are{' '}
                             <a href="https://github.com/jsun969" className="underline">
                                 Justin Sun
+                            </a>{' '}
+                            and{' '}
+                            <a href="https://github.com/AustinH-adl" className="underline">
+                                Austin Huppatz
                             </a>
                             .
                         </p>
