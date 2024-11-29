@@ -10,8 +10,8 @@
     "lint": "cross-env SKIP_ENV_VALIDATION=true next lint",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}\"",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}\"",
-    "db:generate": "drizzle-kit generate:sqlite",
-    "db:push": "drizzle-kit push:sqlite",
+    "db:generate": "drizzle-kit generate",
+    "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
@@ -26,6 +26,7 @@
     "just-submit": "^0.0.8",
     "ky": "^1.7.2",
     "luxon": "^3.5.0",
+    "md5": "^2.3.0",
     "nanoid": "^5.0.9",
     "next": "14.2.18",
     "next-auth": "5.0.0-beta.25",

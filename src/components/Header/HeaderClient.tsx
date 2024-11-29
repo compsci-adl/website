@@ -1,6 +1,6 @@
 'use client';
 
-import { useClerk } from '@clerk/clerk-react';
+import { logout } from '@/lib/actions';
 import { Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
@@ -25,10 +25,9 @@ function UserButton({ data }: { data: HeaderData }) {
         setMenuOpen(!isMenuOpen);
     };
 
-    const { signOut } = useClerk();
     const router = useRouter();
     const handleSignOut = async () => {
-        await signOut();
+        await logout();
         router.push('/');
         router.refresh();
     };

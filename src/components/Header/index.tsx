@@ -1,29 +1,45 @@
+import { auth } from '@/auth';
 import { checkUserExists } from '@/server/check-user-exists';
 import { verifyMembershipPayment } from '@/server/verify-membership-payment';
-// import { currentUser } from '@clerk/nextjs';
+import md5 from 'md5';
 import HeaderClient from './HeaderClient';
 import HeaderMobileClient from './HeaderMobileClient';
 
 const getHeaderData = async () => {
-    // const user = await currentUser();
-    // if (!user) {
-    //     return { isSignedIn: false as const };
-    // }
+    // Function to get the Gravatar URL based on user's email
+    const getGravatarUrl = (email: string) => {
+        const gravatarHash = md5(email.trim().toLowerCase());
+        return `https://www.gravatar.com/avatar/${gravatarHash}?d=identicon`;
+    };
+
+    const session = await auth();
+    if (!session?.user) {
+        return { isSignedIn: false as const };
+    }
+
+    console.log('user', session.user);
 
     let nextStep: 'signup' | 'payment' | null = null;
-    // const exists = await checkUserExists(user.id);
-    // if (exists) {
-    //     const membershipPayment = await verifyMembershipPayment(user.id);
-    //     if (!membershipPayment.paid) {
-    //         nextStep = 'payment';
-    //     }
-    // } else {
-    //     nextStep = 'signup';
-    // }
+
+    const userId = session.user.id ?? '';
+    const exists = await checkUserExists(userId);
+    if (exists) {
+        const membershipPayment = await verifyMembershipPayment(userId);
+        if (!membershipPayment.paid) {
+            nextStep = 'payment';
+        }
+    } else {
+        nextStep = 'signup';
+    }
+
+    console.log('nextStep', nextStep);
+
+    // Generate avatar URL using the email from the token
+    const avatar = session.user?.email ? getGravatarUrl(session.user?.email) : '';
 
     return {
         isSignedIn: true as const,
-        // avatar: user.imageUrl,
+        avatar: avatar,
         // isAdmin: (user.publicMetadata.isAdmin as boolean | undefined) ?? false,
         nextStep,
         isMember: nextStep === null,

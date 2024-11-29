@@ -30,7 +30,7 @@ export default function Join() {
                 <div className="relative z-10 flex flex-col text-2xl font-black md:flex-row lg:text-3xl">
                     <h3>New Members are</h3>
                     <div className="mt-2 w-fit bg-purple px-2 md:ml-2 md:mt-0">
-                        <h3 className=" text-grey">Always Welcome</h3>
+                        <h3 className="text-grey">Always Welcome</h3>
                     </div>
                 </div>
                 <div className="mt-8 border-2 border-white px-4 py-4">

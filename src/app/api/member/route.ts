@@ -1,20 +1,20 @@
 import { db } from '@/db';
 import { memberTable } from '@/db/schema';
-import { currentUser } from '@clerk/nextjs';
+// import { currentUser } from '@clerk/nextjs';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
 export async function POST(request: Request) {
     const req = await request.json();
     const schema = createInsertSchema(memberTable, {
-        clerkId: z.undefined(),
+        keycloakID: z.undefined(),
         email: z.undefined(),
     });
 
-    const user = await currentUser();
-    if (!user) {
-        return new Response(null, { status: 401 });
-    }
+    // const user = await currentUser();
+    // if (!user) {
+    //     return new Response(null, { status: 401 });
+    // }
 
     const reqBody = schema.safeParse(req);
     if (!reqBody.success) {
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     }
 
     await db.insert(memberTable).values({
-        clerkId: user.id,
+        keycloakID: user.id,
         email: user.emailAddresses[0].emailAddress,
         ...reqBody.data,
     });

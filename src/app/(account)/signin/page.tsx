@@ -9,7 +9,6 @@ export const metadata: Metadata = {
 
 export default async function SignIn() {
     const session = await auth();
-    console.log(session);
     if (session) redirect('/settings');
     return (
         <form
