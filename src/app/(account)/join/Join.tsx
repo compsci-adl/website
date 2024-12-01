@@ -2,7 +2,7 @@
 
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
-import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import ProgressBar from './ProgressBar';
@@ -15,13 +15,13 @@ import { useJoinUsHeading, useJoinUsStep } from './store';
 export default function Join() {
     const { step, setStep } = useJoinUsStep();
     const { heading } = useJoinUsHeading();
+    const { data: session } = useSession();
 
-    const { isSignedIn } = useUser();
     useEffect(() => {
-        if (isSignedIn) {
+        if (session?.user) {
             setStep(2);
         }
-    }, [isSignedIn]);
+    }, [session?.user]);
 
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">
@@ -55,16 +55,17 @@ export default function Join() {
                         <h3 className="text-3xl font-bold">{heading.title}</h3>
                         <p className="mb-8 text-xl">{heading.description}</p>
 
-                        <SignedOut>
-                            <StepOne />
-                        </SignedOut>
-                        <SignedIn>
-                            <ProgressBar step={step} />
-                            {
-                                // eslint-disable-next-line react/jsx-key
-                                [<StepTwo />, <StepThree />, <StepFour />][step - 2]
-                            }
-                        </SignedIn>
+                        {!session?.user && <StepOne />}
+
+                        {session?.user && (
+                            <>
+                                <ProgressBar step={step} />
+                                {
+                                    // eslint-disable-next-line react/jsx-key
+                                    [<StepTwo />, <StepThree />, <StepFour />][step - 2]
+                                }
+                            </>
+                        )}
                     </div>
                 </FancyRectangle>
             </section>

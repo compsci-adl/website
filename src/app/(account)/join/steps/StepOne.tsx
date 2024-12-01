@@ -1,6 +1,6 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
-import { useSignUp } from '@clerk/nextjs';
+// import { useSignUp } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -30,37 +30,37 @@ function VerifyEmail() {
         resolver: zodResolver(verifyEmailSchema),
     });
 
-    const { isLoaded, signUp, setActive } = useSignUp();
+    // const { isLoaded, signUp, setActive } = useSignUp();
 
     const [verifyEmailLoading, setVerifyEmailLoading] = useState(false);
 
     const router = useRouter();
     const handleVerify = form.handleSubmit(async ({ code }) => {
-        if (!isLoaded) return;
+        // if (!isLoaded) return;
 
         setVerifyEmailLoading(true);
 
-        try {
-            const completeSignUp = await signUp.attemptEmailAddressVerification({
-                code,
-            });
-            if (completeSignUp.status !== 'complete') {
-                // Investigate the response, to see if there was an error or if the user needs to complete more steps.
-                console.log(JSON.stringify(completeSignUp, null, 2));
-                return;
-            }
-            await setActive({ session: completeSignUp.createdSessionId });
-            router.refresh();
-        } catch (error) {
-            handleClerkErrors(error, form, [
-                { code: 'form_param_nil', field: 'code', message: 'Please enter the the code.' },
-                {
-                    code: 'form_code_incorrect',
-                    field: 'code',
-                    message: 'Incorrect Code. Please enter the code from your email.',
-                },
-            ]);
-        }
+        // try {
+        //     const completeSignUp = await signUp.attemptEmailAddressVerification({
+        //         code,
+        //     });
+        //     if (completeSignUp.status !== 'complete') {
+        //         // Investigate the response, to see if there was an error or if the user needs to complete more steps.
+        //         console.log(JSON.stringify(completeSignUp, null, 2));
+        //         return;
+        //     }
+        //     await setActive({ session: completeSignUp.createdSessionId });
+        //     router.refresh();
+        // } catch (error) {
+        //     handleClerkErrors(error, form, [
+        //         { code: 'form_param_nil', field: 'code', message: 'Please enter the the code.' },
+        //         {
+        //             code: 'form_code_incorrect',
+        //             field: 'code',
+        //             message: 'Incorrect Code. Please enter the code from your email.',
+        //         },
+        //     ]);
+        // }
 
         setVerifyEmailLoading(false);
     });
@@ -100,58 +100,58 @@ export default function StepOne() {
         resolver: zodResolver(stepOneSchema),
     });
 
-    const { signUp, isLoaded } = useSignUp();
+    // const { signUp, isLoaded } = useSignUp();
     const [pendingVerification, setPendingVerification] = useState(false);
 
     const [emailJoinLoading, setEmailJoinLoading] = useState(false);
 
     const handleSignUp = form.handleSubmit(async (formData) => {
-        if (!isLoaded) return;
+        // if (!isLoaded) return;
 
         setEmailJoinLoading(true);
 
-        try {
-            await signUp.create(formData);
-            await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
-            // Change the UI to our pending section.
-            setPendingVerification(true);
-        } catch (error) {
-            handleClerkErrors(error, form, [
-                {
-                    code: 'form_password_not_strong_enough',
-                    field: 'password',
-                    message:
-                        'Given password is not strong enough. For account safety, please use a different password.',
-                },
-                {
-                    code: 'form_password_pwned',
-                    field: 'password',
-                    message:
-                        'Password has been found in an online data breach. For account safety, please use a different password.',
-                },
-                {
-                    code: 'form_identifier_exists',
-                    field: 'emailAddress',
-                    message: 'The email provided is already connected to an existing account.',
-                },
-            ]);
-        }
+        // try {
+        //     await signUp.create(formData);
+        //     await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
+        //     // Change the UI to our pending section.
+        //     setPendingVerification(true);
+        // } catch (error) {
+        //     handleClerkErrors(error, form, [
+        //         {
+        //             code: 'form_password_not_strong_enough',
+        //             field: 'password',
+        //             message:
+        //                 'Given password is not strong enough. For account safety, please use a different password.',
+        //         },
+        //         {
+        //             code: 'form_password_pwned',
+        //             field: 'password',
+        //             message:
+        //                 'Password has been found in an online data breach. For account safety, please use a different password.',
+        //         },
+        //         {
+        //             code: 'form_identifier_exists',
+        //             field: 'emailAddress',
+        //             message: 'The email provided is already connected to an existing account.',
+        //         },
+        //     ]);
+        // }
 
         setEmailJoinLoading(false);
     });
 
     const handleGoogleSignUp = async () => {
-        if (!isLoaded) return;
-        try {
-            await signUp.authenticateWithRedirect({
-                strategy: 'oauth_google',
-                redirectUrl: '/sso-callback',
-                redirectUrlComplete: '/join',
-            });
-        } catch (error) {
-            // Handle any errors that might occur during the sign-up process
-            console.error('Google Sign-Up Error:', error);
-        }
+        // if (!isLoaded) return;
+        // try {
+        //     await signUp.authenticateWithRedirect({
+        //         strategy: 'oauth_google',
+        //         redirectUrl: '/sso-callback',
+        //         redirectUrlComplete: '/join',
+        //     });
+        // } catch (error) {
+        //     // Handle any errors that might occur during the sign-up process
+        //     console.error('Google Sign-Up Error:', error);
+        // }
     };
 
     if (pendingVerification) return <VerifyEmail />;

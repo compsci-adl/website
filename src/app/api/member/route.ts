@@ -1,20 +1,22 @@
+import { auth } from '@/auth';
 import { db } from '@/db';
 import { memberTable } from '@/db/schema';
-// import { currentUser } from '@clerk/nextjs';
+import { Table } from 'drizzle-orm';
 import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
 export async function POST(request: Request) {
+    console.log('POST /api/member');
     const req = await request.json();
-    const schema = createInsertSchema(memberTable, {
-        keycloakID: z.undefined(),
+    const schema = createInsertSchema(memberTable as unknown as Table, {
+        keycloakId: z.undefined(),
         email: z.undefined(),
     });
 
-    // const user = await currentUser();
-    // if (!user) {
-    //     return new Response(null, { status: 401 });
-    // }
+    const session = await auth();
+    if (!session?.user) {
+        return new Response(null, { status: 401 });
+    }
 
     const reqBody = schema.safeParse(req);
     if (!reqBody.success) {
@@ -22,8 +24,13 @@ export async function POST(request: Request) {
     }
 
     await db.insert(memberTable).values({
-        keycloakID: user.id,
-        email: user.emailAddresses[0].emailAddress,
+        keycloakId: session.user.id ?? '',
+        email: session.user.email ?? '',
+        firstName: reqBody.data.firstName ?? '',
+        lastName: reqBody.data.lastName ?? '',
+        studentStatus: reqBody.data.studentStatus ?? '',
+        gender: reqBody.data.gender ?? '',
+        ageBracket: reqBody.data.ageBracket ?? '',
         ...reqBody.data,
     });
     return Response.json({ success: true });

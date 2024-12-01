@@ -17,8 +17,6 @@ const getHeaderData = async () => {
         return { isSignedIn: false as const };
     }
 
-    console.log('user', session.user);
-
     let nextStep: 'signup' | 'payment' | null = null;
 
     const userId = session.user.id ?? '';
@@ -31,8 +29,6 @@ const getHeaderData = async () => {
     } else {
         nextStep = 'signup';
     }
-
-    console.log('nextStep', nextStep);
 
     // Generate avatar URL using the email from the token
     const avatar = session.user?.email ? getGravatarUrl(session.user?.email) : '';
