@@ -4,6 +4,7 @@
  * This route is protected, meaning only authenticated users can access this. Clerk is used to
  * verify that the user is signed in (see `src/middleware.ts`)
  */
+import { auth } from '@/auth';
 import { PRODUCTS } from '@/data/products';
 import { db } from '@/db';
 import { memberTable } from '@/db/schema';
@@ -11,7 +12,6 @@ import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
 import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
-import { currentUser } from '@clerk/nextjs';
 import { eq } from 'drizzle-orm';
 import type { CreatePaymentLinkRequest } from 'square';
 import { ApiError } from 'square';
@@ -28,8 +28,8 @@ export async function POST(request: Request) {
     });
 
     // Ensure user is logged in
-    const user = await currentUser();
-    if (!user) {
+    const session = await auth();
+    if (!session?.user) {
         return new Response(null, { status: 401 });
     }
 
@@ -73,7 +73,10 @@ export async function POST(request: Request) {
             // Add Clerk ID and payment ID to Redis cache
             const orderId = resp.result.paymentLink?.orderId ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
-            await redisClient.hSet(`payment:membership:${user.id}`, { orderId, createdAt });
+            await redisClient.hSet(`payment:membership:${session?.user.id}`, {
+                orderId,
+                createdAt,
+            });
         }
 
         // The URL to direct the user is accessed from `url` and `long_url`
@@ -94,10 +97,10 @@ export async function PUT(request: Request) {
         paid: z.boolean(),
     });
 
-    const user = await currentUser();
-    if (!user?.publicMetadata.isAdmin) {
-        return new Response(null, { status: 401 });
-    }
+    // const session = await auth();
+    // if (!session?.user?.publicMetadata.isAdmin) {
+    //     return new Response(null, { status: 401 });
+    // }
 
     const reqBody = schema.safeParse(req);
     if (!reqBody.success) {

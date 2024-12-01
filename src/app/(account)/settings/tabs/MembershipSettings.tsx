@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { fetcher } from '@/lib/fetcher';
 import { formatDate } from '@/utils/format-date';
-import { useUser } from '@clerk/clerk-react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import type { PaymentLink } from 'square';
 import useSWRMutation from 'swr/mutation';
@@ -10,7 +10,7 @@ import type { SettingTabProps } from '../Settings';
 export default function MembershipSettings({
     settingData: { membershipPayment: payment },
 }: SettingTabProps) {
-    const { user } = useUser();
+    const { data: session } = useSession();
 
     const pay = useSWRMutation('payment', fetcher.post.mutate, {
         onSuccess: async (data: PaymentLink) => {
@@ -21,7 +21,7 @@ export default function MembershipSettings({
     const handlePayment = async () => {
         pay.trigger({
             product: 'membership',
-            customerId: user!.id,
+            customerId: session?.user!.id,
             redirectUrl: window.location.href,
         });
     };
