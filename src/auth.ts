@@ -1,6 +1,5 @@
-import NextAuth, { User as NextAuthUser } from 'next-auth';
+import NextAuth from 'next-auth';
 import { Session } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
 import Keycloak from 'next-auth/providers/keycloak';
 
 interface ExtendedSession extends Session {
@@ -20,12 +19,12 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         async jwt({ token, user, profile }) {
             // Add user information to the JWT token
             if (user) {
-                token.id = user.id;
                 token.email = user.email;
                 token.name = user.name;
             }
 
             if (profile) {
+                token.id = profile.sub;
                 token.firstName = profile.given_name;
                 token.lastName = profile.family_name;
                 if (profile.isCommittee) {
