@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 export default async function JoinPage() {
     const session = await auth();
+    console.log(session);
 
     if (session?.user) {
         if (session?.user.id) {

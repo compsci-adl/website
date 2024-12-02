@@ -97,10 +97,10 @@ export async function PUT(request: Request) {
         paid: z.boolean(),
     });
 
-    // const session = await auth();
-    // if (!session?.user?.publicMetadata.isAdmin) {
-    //     return new Response(null, { status: 401 });
-    // }
+    const session = await auth();
+    if (!(session?.user as any).isCommittee) {
+        return new Response(null, { status: 401 });
+    }
 
     const reqBody = schema.safeParse(req);
     if (!reqBody.success) {

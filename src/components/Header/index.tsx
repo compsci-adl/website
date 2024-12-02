@@ -36,7 +36,7 @@ const getHeaderData = async () => {
     return {
         isSignedIn: true as const,
         avatar: avatar,
-        // isAdmin: (user.publicMetadata.isAdmin as boolean | undefined) ?? false,
+        isAdmin: ((session?.user as any).isCommittee as boolean | undefined) ?? false,
         nextStep,
         isMember: nextStep === null,
     };

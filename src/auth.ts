@@ -10,6 +10,7 @@ interface ExtendedSession extends Session {
         name?: string;
         firstName?: string;
         lastName?: string;
+        isCommittee?: boolean;
     };
 }
 
@@ -23,9 +24,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.email = user.email;
                 token.name = user.name;
             }
+
             if (profile) {
                 token.firstName = profile.given_name;
                 token.lastName = profile.family_name;
+                if (profile.isCommittee) {
+                    token.isCommittee = profile.isCommittee;
+                }
             }
             return token;
         },
@@ -40,6 +45,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     | undefined;
                 (session.user as ExtendedSession['user']).lastName = token.lastName as
                     | string
+                    | undefined;
+                (session.user as ExtendedSession['user']).isCommittee = token.isCommittee as
+                    | boolean
                     | undefined;
             }
             return session;
