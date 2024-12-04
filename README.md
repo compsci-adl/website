@@ -12,7 +12,7 @@ To get started, please follow these steps:
 pnpm install
 ```
 
-2. Copy `.env.local.example` to a new file `.env.local` and set required environment variables (check `/docs` folder if you don't know how to edit it)
+2. Copy `.env.local.example` to a new file `.env.local` and set required environment variables (check the onboarding confluence for contributing https://csclub.atlassian.net/wiki/spaces/website/pages/3309570/Onboarding)
 
 3. Initialise the database.
 
