@@ -40,13 +40,15 @@ export default async function SettingsPage() {
                     {exists ? (
                         <Settings settingData={{ membershipPayment }} />
                     ) : (
-                        <h2 className="text-2xl">
-                            Please finishing{' '}
-                            <Link href="/join" className="font-bold text-purple">
-                                signing up
-                            </Link>{' '}
-                            first.
-                        </h2>
+                        <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                            <h2 className="text-xl">
+                                Please finish{' '}
+                                <Link href="/join" className="font-bold text-purple">
+                                    signing up
+                                </Link>{' '}
+                                first.
+                            </h2>
+                        </div>
                     )}
                 </FancyRectangle>
             </section>
