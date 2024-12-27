@@ -184,10 +184,6 @@ export const EVENTS: Event[] = [
         details:
             'Join us for a retro-inspired cocktail night! This collaboration between the CS Club and AMESS offers food, drinks, and good vibes. Celebrate the end of the semester, relax, or enjoy a fun night out with friends!',
         image: 'techtonic.png',
-        url: {
-            href: new URL('https://events.humanitix.com/tech-tonic-or-amess-x-csc-cocktail-night'),
-            text: 'Get your tickets before they sell out!',
-        },
     },
 ];
 
