@@ -11,12 +11,10 @@ export const metadata: Metadata = {
 export default async function JoinPage() {
     const session = await auth();
 
-    if (session?.user) {
-        if (session?.user.id) {
-            const userExists = await checkUserExists(session.user.id);
-            if (userExists) {
-                redirect('/settings');
-            }
+    if (session?.user && session?.user.id) {
+        const userExists = await checkUserExists(session.user.id);
+        if (userExists) {
+            redirect('/settings');
         }
     }
     return <Join />;

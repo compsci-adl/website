@@ -13,17 +13,20 @@ export const metadata: Metadata = {
     robots: { index: false, follow: false },
 };
 
+type MembershipPayment =
+    | { paid: true; membershipExpiresAt: Date }
+    | { paid: false; membershipExpiresAt?: undefined };
+
 export default async function SettingsPage() {
     const session = await auth();
-    var exists = false;
-    var membershipPayment:
-        | { paid: true; membershipExpiresAt: Date }
-        | { paid: false; membershipExpiresAt?: undefined } = {
+    if (!session?.user) return notFound();
+
+    let exists = false;
+
+    let membershipPayment: MembershipPayment = {
         paid: false,
         membershipExpiresAt: undefined,
     };
-
-    if (!session?.user) return notFound();
 
     if (session?.user.id) {
         exists = await checkUserExists(session.user.id);

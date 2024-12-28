@@ -2,8 +2,8 @@ import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import { AGE_BRACKETS, GENDERS, STUDENT_STATUSES, STUDENT_TYPES } from '@/constants/student-info';
 import { useMount } from '@/hooks/use-mount';
-// import { useUser } from '@clerk/nextjs';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -24,10 +24,10 @@ const personalInfoSchema = z.object({
 });
 
 export default function PersonalInfoSettings() {
-    // const { user } = useUser();
+    const session = useSession();
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        firstName: session.data?.user.firstName || '',
+        lastName: session.data?.user.lastName || '',
         ageBracket: '',
         gender: '',
         studentType: '',
