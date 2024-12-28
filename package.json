@@ -44,6 +44,7 @@
     "@next/env": "^15.0.3",
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/luxon": "^3.4.2",
+    "@types/md5": "^2.3.5",
     "@types/node": "^22.10.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",

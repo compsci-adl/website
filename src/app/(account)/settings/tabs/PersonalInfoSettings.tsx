@@ -26,8 +26,8 @@ const personalInfoSchema = z.object({
 export default function PersonalInfoSettings() {
     // const { user } = useUser();
     const [formData, setFormData] = useState({
-        // firstName: user?.firstName || '',
-        // lastName: user?.lastName || '',
+        firstName: '',
+        lastName: '',
         ageBracket: '',
         gender: '',
         studentType: '',

@@ -33,21 +33,7 @@ const archivo = Archivo({
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <SessionProvider
-            appearance={{
-                variables: {
-                    colorPrimary: '#E1652B',
-                    colorBackground: '#F3F3EB',
-                    borderRadius: '0',
-                    fontFamily: 'var(--font-archivo)',
-                },
-                elements: {
-                    formButtonPrimary: 'hover:bg-yellow shadow-button',
-                    cardBox: 'shadow-card border-4 border-black',
-                    formFieldInput: 'shadow-button border-2 border-black',
-                },
-            }}
-        >
+        <SessionProvider>
             <html lang="en" className={archivo.className}>
                 <Script
                     defer
