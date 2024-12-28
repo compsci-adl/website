@@ -15,8 +15,6 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
-    "@clerk/clerk-react": "^4.32.4",
-    "@clerk/nextjs": "^4.31.6",
     "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "^3.9.1",
     "@libsql/client": "0.14.0",
