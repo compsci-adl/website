@@ -31,8 +31,6 @@ FROM node:20-bookworm-slim AS runner
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
 ENV NODE_ENV=production
-ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
-ENV NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
 RUN npm install -g pnpm
 
