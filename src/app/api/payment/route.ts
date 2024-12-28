@@ -1,7 +1,7 @@
 /**
  * Payment API route
  *
- * This route is protected, meaning only authenticated users can access this. Clerk is used to
+ * This route is protected, meaning only authenticated users can access this. Auth.js is used to
  * verify that the user is signed in (see `src/middleware.ts`)
  */
 import { auth } from '@/auth';
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
         const resp = await squareClient.checkoutApi.createPaymentLink(body);
 
         if (reqBody.data.product === 'membership') {
-            // Add Clerk ID and payment ID to Redis cache
+            // Add Keycloak ID and payment ID to Redis cache
             const orderId = resp.result.paymentLink?.orderId ?? '';
             const createdAt = resp.result.paymentLink?.createdAt ?? '';
             await redisClient.hSet(`payment:membership:${session?.user.id}`, {
