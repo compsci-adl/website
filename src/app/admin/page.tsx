@@ -61,7 +61,7 @@ export default async function AdminPage({ searchParams }: { searchParams?: { pag
     const session = await auth();
     if (!session?.user) {
         return notFound();
-    } else if (!(session?.user as any).isCommittee) {
+    } else if (!(session?.user).isCommittee) {
         return notFound();
     }
 

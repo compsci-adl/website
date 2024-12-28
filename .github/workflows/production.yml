@@ -49,9 +49,13 @@ jobs:
 
       - name: Build Docker container
         env:
+          AUTH_KEYCLOAK_ID: ${{ secrets.AUTH_KEYCLOAK_ID }}
+          AUTH_KEYCLOAK_SECRET: ${{ secrets.AUTH_KEYCLOAK_SECRET }}
+          AUTH_KEYCLOAK_ISSUER: ${{ secrets.AUTH_KEYCLOAK_ISSUER }}
+          NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
+          NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           REDIS_URI: ${{ secrets.REDIS_URI }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
           NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
           PRODUCTION_BUILD: 'true'
@@ -59,9 +63,13 @@ jobs:
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
+            --secret id=AUTH_KEYCLOAK_ID \
+            --secret id=AUTH_KEYCLOAK_SECRET \
+            --secret id=AUTH_KEYCLOAK_ISSUER \
+            --secret id=NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI \
+            --secret id=NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER \
             --secret id=DATABASE_URL \
             --secret id=REDIS_URI \
-            --secret id=NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
             --secret id=NEXT_PUBLIC_UMAMI_WEBSITE_ID \
             --output type=docker,dest=csclub-website.tar \

@@ -98,7 +98,9 @@ export async function PUT(request: Request) {
     });
 
     const session = await auth();
-    if (!(session?.user as any).isCommittee) {
+    if (!session?.user) {
+        return new Response(null, { status: 401 });
+    } else if (!(session?.user).isCommittee) {
         return new Response(null, { status: 401 });
     }
 
