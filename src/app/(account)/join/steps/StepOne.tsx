@@ -1,16 +1,16 @@
 import Button from '@/components/Button';
 import { env } from '@/env.mjs';
+import { useMount } from '@/hooks/use-mount';
 import { signIn } from 'next-auth/react';
-import { useEffect } from 'react';
 import { useSetJoinUsHeading } from '../store';
 
 export default function StepOne() {
-    useEffect(() => {
+    useMount(() => {
         const urlParams = new URLSearchParams(window.location.search);
         if (urlParams.has('registered')) {
             signIn('keycloak', { redirectTo: '/join' });
         }
-    }, []);
+    });
 
     useSetJoinUsHeading({
         title: 'Join Us',

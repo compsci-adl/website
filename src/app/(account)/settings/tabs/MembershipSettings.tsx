@@ -48,7 +48,8 @@ export default function MembershipSettings({
                         <Link href="/about" className="underline">
                             committee members
                         </Link>
-                        .
+                        . Membership for 2025 will expire on{' '}
+                        <span className="font-bold">01/01/2026</span>.
                     </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
                     <div className="mb-6 border-b-2 border-black" />

@@ -20,14 +20,16 @@ const getHeaderData = async () => {
     let nextStep: 'signup' | 'payment' | null = null;
 
     const userId = session.user.id ?? '';
-    const exists = await checkUserExists(userId);
-    if (exists) {
-        const membershipPayment = await verifyMembershipPayment(userId);
-        if (!membershipPayment.paid) {
-            nextStep = 'payment';
+    if (userId) {
+        const exists = await checkUserExists(userId);
+        if (exists) {
+            const membershipPayment = await verifyMembershipPayment(userId);
+            if (!membershipPayment.paid) {
+                nextStep = 'payment';
+            }
+        } else {
+            nextStep = 'signup';
         }
-    } else {
-        nextStep = 'signup';
     }
 
     // Generate avatar URL using the email from the token

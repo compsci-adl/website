@@ -59,9 +59,7 @@ export type Member = {
 
 export default async function AdminPage({ searchParams }: { searchParams?: { page?: string } }) {
     const session = await auth();
-    if (!session?.user) {
-        return notFound();
-    } else if (!(session?.user).isCommittee) {
+    if (!session?.user?.isCommittee) {
         return notFound();
     }
 
