@@ -4,7 +4,7 @@ import { drizzle } from 'drizzle-orm/libsql';
 import * as schema from './schema';
 
 const client = createClient({
-    url: env.DATABASE_URL,
+    url: env.DATABASE_URL || 'libsql://localhost:8080',
     authToken: env.DATABASE_AUTH_TOKEN,
 });
 
