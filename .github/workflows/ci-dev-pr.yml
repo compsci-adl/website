@@ -3,6 +3,7 @@ on:
   pull_request_target:
     branches:
       - main
+      - 2025
 
 jobs:
   lint-format:
