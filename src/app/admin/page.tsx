@@ -1,8 +1,8 @@
+import { auth } from '@/auth';
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { db } from '@/db';
 import { memberTable } from '@/db/schema';
-import { currentUser } from '@clerk/nextjs';
 import { desc, count } from 'drizzle-orm';
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -58,8 +58,8 @@ export type Member = {
 };
 
 export default async function AdminPage({ searchParams }: { searchParams?: { page?: string } }) {
-    const user = await currentUser();
-    if (!user?.publicMetadata.isAdmin) {
+    const session = await auth();
+    if (!session?.user?.isCommittee) {
         return notFound();
     }
 

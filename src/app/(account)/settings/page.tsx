@@ -1,8 +1,8 @@
+import { auth } from '@/auth';
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { checkUserExists } from '@/server/check-user-exists';
 import { verifyMembershipPayment } from '@/server/verify-membership-payment';
-import { currentUser } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -13,12 +13,25 @@ export const metadata: Metadata = {
     robots: { index: false, follow: false },
 };
 
-export default async function SettingsPage() {
-    const user = await currentUser();
-    if (!user) return notFound();
+type MembershipPayment =
+    | { paid: true; membershipExpiresAt: Date }
+    | { paid: false; membershipExpiresAt?: undefined };
 
-    const exists = await checkUserExists(user.id);
-    const membershipPayment = await verifyMembershipPayment(user.id);
+export default async function SettingsPage() {
+    const session = await auth();
+    if (!session?.user) return notFound();
+
+    let exists = false;
+
+    let membershipPayment: MembershipPayment = {
+        paid: false,
+        membershipExpiresAt: undefined,
+    };
+
+    if (session?.user.id) {
+        exists = await checkUserExists(session.user.id);
+        membershipPayment = await verifyMembershipPayment(session.user.id);
+    }
 
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">
@@ -30,13 +43,15 @@ export default async function SettingsPage() {
                     {exists ? (
                         <Settings settingData={{ membershipPayment }} />
                     ) : (
-                        <h2 className="text-2xl">
-                            Please finishing{' '}
-                            <Link href="/join" className="font-bold text-purple">
-                                signing up
-                            </Link>{' '}
-                            first.
-                        </h2>
+                        <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                            <h2 className="text-xl">
+                                Please finish{' '}
+                                <Link href="/join" className="font-bold text-purple">
+                                    signing up
+                                </Link>{' '}
+                                first.
+                            </h2>
+                        </div>
                     )}
                 </FancyRectangle>
             </section>

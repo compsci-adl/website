@@ -39,16 +39,7 @@ const Button = ({
                 type={isAnchor ? undefined : type}
                 target={isAnchor && targetBlank ? '_blank' : undefined}
                 rel={isAnchor && targetBlank ? 'noopener noreferrer' : undefined}
-                className={`
-                    ${width} ${font ?? 'text-lg md:text-base'} ${BG_COLOURS[colour]} 
-                    ${isAnchor ? 'hover:bg-yellow' : 'hover:enabled:bg-yellow'} 
-                    whitespace-nowrap border-2 border-black 
-                    ${size === 'base' ? 'px-16 text-lg' : 'px-4 text-sm'} flex 
-                    items-center justify-center py-4 
-                    font-bold transition-colors 
-                    duration-300 disabled:cursor-wait disabled:grayscale md:px-2 md:py-1
-                    md:text-base lg:px-6 lg:py-2
-                `}
+                className={` ${width} ${font ?? 'text-lg md:text-base'} ${BG_COLOURS[colour]} ${isAnchor ? 'hover:bg-yellow' : 'hover:enabled:bg-yellow'} whitespace-nowrap border-2 border-black ${size === 'base' ? 'px-16 text-lg' : 'px-4 text-sm'} flex items-center justify-center py-4 font-bold transition-colors duration-300 disabled:cursor-wait disabled:grayscale md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2`}
                 disabled={loading}
             >
                 {children}

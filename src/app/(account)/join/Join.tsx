@@ -2,7 +2,7 @@
 
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
-import { SignedIn, SignedOut, useUser } from '@clerk/nextjs';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import ProgressBar from './ProgressBar';
@@ -15,13 +15,13 @@ import { useJoinUsHeading, useJoinUsStep } from './store';
 export default function Join() {
     const { step, setStep } = useJoinUsStep();
     const { heading } = useJoinUsHeading();
+    const { data: session } = useSession();
 
-    const { isSignedIn } = useUser();
     useEffect(() => {
-        if (isSignedIn) {
+        if (session?.user) {
             setStep(2);
         }
-    }, [isSignedIn]);
+    }, [session?.user]);
 
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">
@@ -30,7 +30,7 @@ export default function Join() {
                 <div className="relative z-10 flex flex-col text-2xl font-black md:flex-row lg:text-3xl">
                     <h3>New Members are</h3>
                     <div className="mt-2 w-fit bg-purple px-2 md:ml-2 md:mt-0">
-                        <h3 className=" text-grey">Always Welcome</h3>
+                        <h3 className="text-grey">Always Welcome</h3>
                     </div>
                 </div>
                 <div className="mt-8 border-2 border-white px-4 py-4">
@@ -55,16 +55,17 @@ export default function Join() {
                         <h3 className="text-3xl font-bold">{heading.title}</h3>
                         <p className="mb-8 text-xl">{heading.description}</p>
 
-                        <SignedOut>
-                            <StepOne />
-                        </SignedOut>
-                        <SignedIn>
-                            <ProgressBar step={step} />
-                            {
-                                // eslint-disable-next-line react/jsx-key
-                                [<StepTwo />, <StepThree />, <StepFour />][step - 2]
-                            }
-                        </SignedIn>
+                        {!session?.user && <StepOne />}
+
+                        {session?.user && (
+                            <>
+                                <ProgressBar step={step} />
+                                {
+                                    // eslint-disable-next-line react/jsx-key
+                                    [<StepTwo />, <StepThree />, <StepFour />][step - 2]
+                                }
+                            </>
+                        )}
                     </div>
                 </FancyRectangle>
             </section>

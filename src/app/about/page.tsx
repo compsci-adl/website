@@ -124,7 +124,7 @@ export default function AboutPage() {
                                     </li>
                                     <li>
                                         And let&apos;s not forget, a{' '}
-                                        <span className=" font-bold text-yellow">pub crawl</span>{' '}
+                                        <span className="font-bold text-yellow">pub crawl</span>{' '}
                                         each year to celebrate our studies
                                     </li>
                                 </ul>

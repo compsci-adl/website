@@ -1,8 +1,8 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import { STUDENT_STATUSES } from '@/constants/student-info';
-import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -43,12 +43,15 @@ export default function StepTwo() {
         resolver: zodResolver(validationSchema),
     });
 
-    const { user } = useUser();
+    const { data: session } = useSession();
+
     useEffect(() => {
-        if (!user) return;
-        form.setValue('firstName', String(user.firstName));
-        form.setValue('lastName', String(user.lastName));
-    }, [user]);
+        if (!session) return;
+        if (session.user) {
+            form.setValue('firstName', String(session.user.firstName));
+            form.setValue('lastName', String(session.user.lastName));
+        }
+    }, [session?.user]);
 
     const { nextStep } = useJoinUsStep();
     const handleContinue = form.handleSubmit((formData) => {

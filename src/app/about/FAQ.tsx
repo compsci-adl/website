@@ -35,7 +35,7 @@ const FAQ = ({ question, answer, colour }: FAQProps) => {
                         <div className="text-2xl font-bold text-grey">{question}</div>
                     </div>
                 </div>
-                {showAnswer && <div className="mx-8 my-4  text-grey">{answer}</div>}
+                {showAnswer && <div className="mx-8 my-4 text-grey">{answer}</div>}
             </div>
         </FancyRectangle>
     );

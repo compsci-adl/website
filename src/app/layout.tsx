@@ -2,8 +2,8 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { env } from '@/env.mjs';
 import '@/styles/globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata, Viewport } from 'next';
+import { SessionProvider } from 'next-auth/react';
 import { Archivo } from 'next/font/google';
 import Script from 'next/script';
 
@@ -33,21 +33,7 @@ const archivo = Archivo({
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (
-        <ClerkProvider
-            appearance={{
-                variables: {
-                    colorPrimary: '#E1652B',
-                    colorBackground: '#F3F3EB',
-                    borderRadius: '0',
-                    fontFamily: 'var(--font-archivo)',
-                },
-                elements: {
-                    formButtonPrimary: 'hover:bg-yellow shadow-button',
-                    cardBox: 'shadow-card border-4 border-black',
-                    formFieldInput: 'shadow-button border-2 border-black',
-                },
-            }}
-        >
+        <SessionProvider>
             <html lang="en" className={archivo.className}>
                 <Script
                     defer
@@ -62,6 +48,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     <Footer />
                 </body>
             </html>
-        </ClerkProvider>
+        </SessionProvider>
     );
 }
