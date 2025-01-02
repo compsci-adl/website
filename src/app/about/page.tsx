@@ -221,7 +221,7 @@ export default function AboutPage() {
                     />
                 </section>
                 {/* Committee Members */}
-                <section className="mt-8">
+                <section id="committee" className="mt-8">
                     {/* Grid */}
                     <Image
                         src="/images/rectangle-grid.svg"
