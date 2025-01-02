@@ -16,63 +16,64 @@ export default function Email() {
                     type="text/css"
                 />
             </Head>
-            <Body style={styles.body}>
-                <Container style={styles.emailContainer}>
-                    <div style={styles.header}>
-                        <table style={styles.tableFullWidth}>
+            <Body className="m-0 bg-[#f3f3eb] p-0 font-sans text-black">
+                <Container className="bg-[#f3f3eb]">
+                    {/* Header Section */}
+                    <div className="bg-[#f3f3eb] p-2.5 text-center">
+                        <table className="w-full border-collapse">
                             <tr>
-                                <td style={styles.centerAlign}>
+                                <td className="text-center">
                                     <Img
-                                        style={styles.logo}
+                                        className="inline-block max-h-[60px]"
                                         src="images/light/cs-club.png"
                                         alt="CS Club"
-                                        className="light"
                                     />
                                     <Img
-                                        style={styles.logo}
+                                        className="inline-block max-h-[60px]"
                                         src="images/dark/cs-club.png"
                                         alt="CS Club"
-                                        className="dark"
                                     />
                                 </td>
                             </tr>
                         </table>
                     </div>
 
-                    <div style={styles.emailContentContainer}>
-                        <table style={styles.contentBg}>
+                    {/* Email Content Section */}
+                    <div className="mx-10 my-2">
+                        <table className="w-full">
                             <tr>
-                                <td style={styles.lightCell}></td>
-                                <td style={styles.lightCell}></td>
-                                <td style={styles.edge}></td>
+                                <td className="bg-[#f3f3eb]"></td>
+                                <td className="bg-[#f3f3eb]"></td>
+                                <td className="bg-[#7e7fe7]"></td>
                             </tr>
                             <tr>
-                                <td style={styles.lightCell}></td>
-                                <td style={styles.emailContent}>
-                                    <p style={styles.paragraph}>Test</p>
+                                <td className="bg-[#f3f3eb]"></td>
+                                <td className="bg-[#252020] p-5">
+                                    <p className="text-white">Test</p>
                                 </td>
-                                <td style={styles.darkCell}></td>
+                                <td className="bg-[#252020]"></td>
                             </tr>
                             <tr>
                                 <td></td>
-                                <td style={styles.darkCell}></td>
-                                <td style={styles.darkCell}></td>
+                                <td className="bg-[#252020]"></td>
+                                <td className="bg-[#252020]"></td>
                             </tr>
                         </table>
                     </div>
 
-                    <div style={styles.footer}>
-                        <div style={styles.socialIcons}>
-                            <table style={styles.iconsTable}>
+                    {/* Footer Section */}
+                    <div className="bg-[#f3f3eb] p-5 text-center">
+                        <div className="text-center">
+                            <table className="mx-auto table-fixed">
                                 <tr>
                                     <td>
                                         <a
                                             href="https://csclub.org.au"
                                             aria-label="Website"
-                                            style={styles.socialLink}
+                                            className="inline-block p-2"
                                         >
                                             <Img
-                                                style={styles.icons}
+                                                className="h-6 w-6"
                                                 src="images/light/website.png"
                                                 alt="Website"
                                             />
@@ -82,10 +83,10 @@ export default function Email() {
                                         <a
                                             href="https://github.com/compsci-adl"
                                             aria-label="GitHub"
-                                            style={styles.socialLink}
+                                            className="inline-block p-2"
                                         >
                                             <Img
-                                                style={styles.icons}
+                                                className="h-6 w-6"
                                                 src="images/light/github.png"
                                                 alt="GitHub"
                                             />
@@ -95,10 +96,10 @@ export default function Email() {
                                         <a
                                             href="https://www.instagram.com/csclub.adl"
                                             aria-label="Instagram"
-                                            style={styles.socialLink}
+                                            className="inline-block p-2"
                                         >
                                             <Img
-                                                style={styles.icons}
+                                                className="h-6 w-6"
                                                 src="images/light/instagram.png"
                                                 alt="Instagram"
                                             />
@@ -108,10 +109,10 @@ export default function Email() {
                                         <a
                                             href="https://www.tiktok.com/@csclub.adl"
                                             aria-label="TikTok"
-                                            style={styles.socialLink}
+                                            className="inline-block p-2"
                                         >
                                             <Img
-                                                style={styles.icons}
+                                                className="h-6 w-6"
                                                 src="images/light/tiktok.png"
                                                 alt="TikTok"
                                             />
@@ -120,7 +121,7 @@ export default function Email() {
                                 </tr>
                             </table>
                         </div>
-                        <p style={styles.footerText}>
+                        <p className="text-sm text-black">
                             © 2025 The University of Adelaide Computer Science Club.
                         </p>
                     </div>
@@ -129,75 +130,3 @@ export default function Email() {
         </Html>
     );
 }
-
-const styles = {
-    body: {
-        margin: 0,
-        padding: 0,
-        fontFamily: 'Arial, sans-serif',
-        backgroundColor: '#f3f3eb',
-        color: '#000000',
-    },
-    emailContainer: {
-        backgroundColor: '#f3f3eb',
-    },
-    header: {
-        backgroundColor: '#f3f3eb',
-        padding: '10px 20px',
-        textAlign: 'center',
-    },
-    emailContentContainer: {
-        margin: '10px 10%',
-    },
-    emailContent: {
-        backgroundColor: '#252020',
-        padding: '20px',
-    },
-    footer: {
-        backgroundColor: '#f3f3eb',
-        padding: '20px 0',
-        textAlign: 'center',
-    },
-    footerText: {
-        fontSize: '14px',
-        color: '#000000',
-    },
-    socialIcons: {
-        textAlign: 'center',
-    },
-    iconsTable: {
-        margin: '0 auto',
-        tableLayout: 'fixed',
-    },
-    icons: {
-        width: '24px',
-        height: '24px',
-    },
-    socialLink: {
-        textDecoration: 'none',
-        display: 'inline-block',
-        padding: '10px',
-    },
-    paragraph: {
-        color: '#FFFFFF',
-    },
-    lightCell: {
-        backgroundColor: '#f3f3eb',
-    },
-    darkCell: {
-        backgroundColor: '#252020',
-    },
-    edge: {
-        backgroundColor: '#7e7fe7',
-    },
-    logo: {
-        maxHeight: '60px',
-    },
-    tableFullWidth: {
-        width: '100%',
-        borderCollapse: 'collapse',
-    },
-    centerAlign: {
-        textAlign: 'center',
-    },
-};

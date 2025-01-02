@@ -1,4 +1,4 @@
-import Email from '@/email/welcome';
+import Email from '@/emails/welcome';
 import type { SendEmailCommandInput } from '@aws-sdk/client-ses';
 import { SES } from '@aws-sdk/client-ses';
 import { render } from '@react-email/components';

@@ -1,0 +1,58 @@
+export const socialLinks = [
+    {
+        href: 'https://csclub.org.au',
+        alt: 'Website',
+        lightSrc: 'https://csclub.org.au/images/email/light/website.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/website.png',
+        ariaLabel: 'Website',
+    },
+    {
+        href: 'https://github.com/compsci-adl',
+        alt: 'GitHub',
+        lightSrc: 'https://csclub.org.au/images/email/light/github.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/github.png',
+        ariaLabel: 'GitHub',
+    },
+    {
+        href: 'https://www.instagram.com/csclub.adl',
+        alt: 'Instagram',
+        lightSrc: 'https://csclub.org.au/images/email/light/instagram.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/instagram.png',
+        ariaLabel: 'Instagram',
+    },
+    {
+        href: 'https://www.tiktok.com/@csclub.adl',
+        alt: 'TikTok',
+        lightSrc: 'https://csclub.org.au/images/email/light/tiktok.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/tiktok.png',
+        ariaLabel: 'TikTok',
+    },
+    {
+        href: 'https://www.facebook.com/compsci.adl',
+        alt: 'Facebook',
+        lightSrc: 'https://csclub.org.au/images/email/light/facebook.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/facebook.png',
+        ariaLabel: 'Facebook',
+    },
+    {
+        href: 'https://discord.gg/UjvVxHA',
+        alt: 'Discord',
+        lightSrc: 'https://csclub.org.au/images/email/light/discord.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/discord.png',
+        ariaLabel: 'Discord',
+    },
+    {
+        href: 'https://www.linkedin.com/company/compsci-adl',
+        alt: 'LinkedIn',
+        lightSrc: 'https://csclub.org.au/images/email/light/linkedin.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/linkedin.png',
+        ariaLabel: 'LinkedIn',
+    },
+    {
+        href: 'https://www.youtube.com/@csclub-adl',
+        alt: 'YouTube',
+        lightSrc: 'https://csclub.org.au/images/email/light/youtube.png',
+        darkSrc: 'https://csclub.org.au/images/email/dark/youtube.png',
+        ariaLabel: 'YouTube',
+    },
+];
