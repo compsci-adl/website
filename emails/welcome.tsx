@@ -131,7 +131,21 @@ export default function Email({ firstName }: EmailProps) {
                         {/* Footer */}
                         <div className="mb-12 bg-white px-5 text-center dark:bg-grey">
                             <div>
-                                <table className="mx-auto border-collapse border-spacing-0">
+                                <table className="mx-auto hidden border-collapse border-spacing-0 md:table">
+                                    <tr>
+                                        {socialLinks.map((link, index) => (
+                                            <SocialIcon
+                                                key={index}
+                                                href={link.href}
+                                                alt={link.alt}
+                                                lightSrc={link.lightSrc}
+                                                darkSrc={link.darkSrc}
+                                                ariaLabel={link.ariaLabel}
+                                            />
+                                        ))}
+                                    </tr>
+                                </table>
+                                <table className="mx-auto table border-collapse border-spacing-0 md:hidden">
                                     <tr>
                                         {socialLinks.slice(0, 4).map((link, index) => (
                                             <SocialIcon
