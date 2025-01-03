@@ -1,9 +1,11 @@
+import { auth } from '@/auth';
 import Email from '@/emails/welcome';
 import { env } from '@/env.mjs';
 import { render } from '@react-email/components';
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 import React from 'react';
+import { z } from 'zod';
 
 const transporter = nodemailer.createTransport({
     host: env.SMTP_HOST,
@@ -15,21 +17,32 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-export async function POST(req: Request) {
+export async function POST(request: Request) {
     try {
-        const { recipientEmail, firstName } = await req.json();
-        if (!recipientEmail) {
-            return NextResponse.json({ error: 'Recipient email is required' }, { status: 400 });
-        }
-        if (!firstName) {
-            return NextResponse.json({ error: 'First name is required' }, { status: 400 });
+        const req = await request.json();
+        const schema = z.object({
+            recipientEmail: z.string().min(1),
+            firstName: z.string().min(1),
+        });
+
+        // Ensure user is logged in
+        const session = await auth();
+        if (!session?.user) {
+            return new Response(null, { status: 401 });
         }
 
-        const emailHtml = await render(React.createElement(Email, { firstName }));
+        const reqBody = schema.safeParse(req);
+        if (!reqBody.success) {
+            return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
+        }
+
+        const emailHtml = await render(
+            React.createElement(Email, { firstName: reqBody.data.firstName })
+        );
 
         const options = {
             from: 'noreply@csclub.org.au',
-            to: recipientEmail,
+            to: reqBody.data.recipientEmail,
             subject: 'Welcome to the CS Club!',
             html: emailHtml,
         };
