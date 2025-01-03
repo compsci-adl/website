@@ -253,7 +253,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                     members, or...
                 </p>
                 <a href="mailto:contact@csclub.org.au">
-                    <button className="border-t-0.5 dynamicBorder mt-2 rounded-xl border-[3px] border-solid bg-yellow px-7 py-2 font-bold text-grey">
+                    <button className="border-t-0.5 dynamicBorder mt-2 rounded-2xl border-[3px] border-solid bg-yellow px-10 py-2 text-base font-bold text-grey">
                         Send an email!
                     </button>
                 </a>
