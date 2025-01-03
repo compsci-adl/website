@@ -13,10 +13,9 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "email:dev": "email dev"
+    "email:dev": "email dev --dir=src/emails"
   },
   "dependencies": {
-    "@aws-sdk/client-ses": "^3.716.0",
     "@headlessui/react": "^2.2.0",
     "@hookform/resolvers": "^3.9.1",
     "@libsql/client": "0.14.0",
@@ -31,6 +30,7 @@
     "nanoid": "^5.0.9",
     "next": "14.2.22",
     "next-auth": "5.0.0-beta.25",
+    "nodemailer": "^6.9.16",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-email": "^3.0.4",

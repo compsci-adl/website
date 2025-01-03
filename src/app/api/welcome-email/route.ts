@@ -1,43 +1,42 @@
 import Email from '@/emails/welcome';
-import type { SendEmailCommandInput } from '@aws-sdk/client-ses';
-import { SES } from '@aws-sdk/client-ses';
+import { env } from '@/env.mjs';
 import { render } from '@react-email/components';
 import { NextResponse } from 'next/server';
+import nodemailer from 'nodemailer';
 import React from 'react';
 
-const ses = new SES({ region: process.env.AWS_SES_REGION });
+const transporter = nodemailer.createTransport({
+    host: env.SMTP_HOST,
+    port: 465,
+    secure: true,
+    auth: {
+        user: env.SMTP_USER,
+        pass: env.SMTP_PASS,
+    },
+});
 
 export async function POST(req: Request) {
     try {
-        const emailHtml = await render(React.createElement(Email));
-
-        const { recipientEmail } = await req.json();
+        const { recipientEmail, firstName } = await req.json();
         if (!recipientEmail) {
             return NextResponse.json({ error: 'Recipient email is required' }, { status: 400 });
         }
+        if (!firstName) {
+            return NextResponse.json({ error: 'First name is required' }, { status: 400 });
+        }
 
-        const params: SendEmailCommandInput = {
-            Source: 'noreply@csclub.org.au',
-            Destination: {
-                ToAddresses: [recipientEmail],
-            },
-            Message: {
-                Body: {
-                    Html: {
-                        Charset: 'UTF-8',
-                        Data: emailHtml,
-                    },
-                },
-                Subject: {
-                    Charset: 'UTF-8',
-                    Data: 'Welcome to the CS Club!',
-                },
-            },
+        const emailHtml = await render(React.createElement(Email, { firstName }));
+
+        const options = {
+            from: 'noreply@csclub.org.au',
+            to: recipientEmail,
+            subject: 'Welcome to the CS Club!',
+            html: emailHtml,
         };
 
-        const result = await ses.sendEmail(params);
+        await transporter.sendMail(options);
 
-        return NextResponse.json({ message: 'Email sent successfully', result });
+        return NextResponse.json({ message: 'Email sent successfully' });
     } catch (error) {
         console.error('Error sending email:', error);
         return NextResponse.json(
