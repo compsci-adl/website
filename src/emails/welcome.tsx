@@ -108,22 +108,22 @@ export default function Email({ firstName }: EmailProps) {
                         {/* Email Content */}
                         <div className="mx-6 mb-8 mt-4 md:mx-10">
                             <table className="w-full border-spacing-0">
-                                <tr className="h-[0.3935rem] w-2">
+                                <tr className="h-[8px] w-[8px] p-0">
                                     <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
                                     <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="block h-[0.3rem] w-[0.375rem]"></td>
+                                    <td className="block w-[8px] p-0"></td>
                                 </tr>
                                 <tr>
-                                    <td className="dynamicBorder h-[0.3rem] w-[0.3rem] border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
+                                    <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
                                     <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
                                         <EmailBody firstName={firstName} />
                                     </td>
-                                    <td className="h-[0.3rem] w-[0.3rem] bg-purple"></td>
+                                    <td className="bg-purple p-0"></td>
                                 </tr>
-                                <tr className="h-2 w-2">
+                                <tr className="h-[8px]">
                                     <td></td>
-                                    <td className="bg-purple"></td>
-                                    <td className="bg-purple"></td>
+                                    <td className="bg-purple p-0"></td>
+                                    <td className="bg-purple p-0"></td>
                                 </tr>
                             </table>
                         </div>

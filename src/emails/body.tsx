@@ -101,7 +101,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                             </td>
                         </tr>
                         <tr className="w-full md:hidden">
-                            <td className="my-auto mr-4 w-full pl-5" colSpan={2}>
+                            <td className="my-auto mr-3 w-full pl-5" colSpan={2}>
                                 <table className="w-full border-spacing-0">
                                     <tr>
                                         <td
@@ -115,16 +115,16 @@ export default function EmailBody({ firstName }: BodyProps) {
                                                 alt="Duck Lounge"
                                             />
                                         </td>
-                                        <td className="h-1 w-1"></td>
+                                        <td className="h-2"></td>
                                     </tr>
                                     <tr>
-                                        <td className="bg-purple pr-1"></td>
+                                        <td className="bg-purple pl-0 pr-[8px]"></td>
                                         <td></td>
                                     </tr>
                                 </table>
                                 <table className="w-full border-spacing-0">
                                     <tr>
-                                        <td className="h-1 w-1"></td>
+                                        <td className="h-[8px] w-2 p-0"></td>
                                         <td className="mr-1 bg-purple" colSpan={2}></td>
                                         <td className="w-[0.01rem]"></td>
                                     </tr>
@@ -147,16 +147,16 @@ export default function EmailBody({ firstName }: BodyProps) {
                                     alt="Duck Lounge"
                                 />
                             </td>
-                            <td className="h-1 w-1"></td>
+                            <td className="h-2"></td>
                         </tr>
                         <tr>
-                            <td className="bg-purple pr-1"></td>
+                            <td className="bg-purple pl-0 pr-[8px]"></td>
                             <td></td>
                         </tr>
                     </table>
                     <table className="w-full border-spacing-0">
                         <tr>
-                            <td className="h-1 w-1"></td>
+                            <td className="h-[8px] w-2 p-0"></td>
                             <td className="mr-1 bg-purple" colSpan={2}></td>
                             <td className="w-[0.01rem]"></td>
                         </tr>
