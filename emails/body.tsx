@@ -1,21 +1,25 @@
 import { Img } from '@react-email/components';
 import * as React from 'react';
 
-export default function EmailBody() {
+export interface BodyProps {
+    firstName: string;
+}
+
+export default function EmailBody({ firstName }: BodyProps) {
     return (
-        <div className="">
+        <div>
             <picture>
                 <source
                     srcSet="https://csclub.org.au/images/email/light/welcome.png"
                     media="(prefers-color-scheme: dark)"
                 />
                 <Img
-                    className="light w-full sm:w-screen sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[60rem]"
+                    className="light w-full sm:w-screen sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[50rem]"
                     src="https://csclub.org.au/images/email/dark/welcome.png"
                     alt="Welcome to the CS Club!"
                 />
                 <Img
-                    className="dark w-full sm:w-screen sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[60rem]"
+                    className="dark w-full sm:w-screen sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[50rem]"
                     src="https://csclub.org.au/images/email/light/welcome.png"
                     alt="Welcome to the CS Club!"
                 />
@@ -26,7 +30,7 @@ export default function EmailBody() {
                         <h2>{'>'}</h2>
                     </td>
                     <td>
-                        <h2>Welcome, _____________ !</h2>
+                        <h2>Welcome, {firstName}!</h2>
                         <div className="border-t-0.5 dynamicBorder h-0.5 w-full border-x-0 border-b-0 border-solid"></div>
                     </td>
                 </tr>
@@ -65,10 +69,10 @@ export default function EmailBody() {
                                 <h2>{'>'}</h2>
                             </td>
                             <td className="md:pr-8">
-                                <h2 className="ml-0.5 text-grey dark:text-white">
+                                <h2 className="ml-[0.2rem] text-grey dark:text-white">
                                     Where is the Duck Lounge?
                                 </h2>
-                                <div className="border-t-0.5 dynamicBorder ml-[0.225rem] h-0.5 border-x-0 border-b-0 border-solid"></div>
+                                <div className="border-t-0.5 dynamicBorder ml-[0.2rem] h-0.5 border-x-0 border-b-0 border-solid"></div>
                             </td>
                         </tr>
                         <tr>
@@ -97,11 +101,11 @@ export default function EmailBody() {
                             </td>
                         </tr>
                         <tr className="w-full md:hidden">
-                            <td className="my-auto ml-7 mr-4 w-full" colSpan={2}>
+                            <td className="my-auto mr-4 w-full pl-5" colSpan={2}>
                                 <table className="w-full border-spacing-0">
                                     <tr>
                                         <td
-                                            className="border-t-0.5 dynamicBorder w-full border-[3px] border-x-0 border-b-0 border-solid p-0"
+                                            className="border-t-0.5 dynamicBorder w-full border-[3px] border-solid p-0"
                                             rowSpan={2}
                                             colSpan={2}
                                         >
@@ -133,7 +137,7 @@ export default function EmailBody() {
                     <table className="w-full border-spacing-0">
                         <tr>
                             <td
-                                className="border-t-0.5 dynamicBorder w-full border-[3px] border-x-0 border-b-0 border-solid p-0"
+                                className="border-t-0.5 dynamicBorder w-full border-[3px] border-solid p-0"
                                 rowSpan={2}
                                 colSpan={2}
                             >
@@ -162,7 +166,7 @@ export default function EmailBody() {
             <div className="border-t-0.5 dynamicBorder mx-auto my-8 h-0.5 w-1/4 border-x-0 border-b-0 border-solid"></div>
             <table className="w-full text-grey dark:text-white" style={{ borderSpacing: '1rem' }}>
                 <tr>
-                    <td className="border-t-0.5 dynamicBorder w-1/2 border-[3px] border-x-0 border-b-0 border-solid">
+                    <td className="border-t-0.5 dynamicBorder w-1/2 border-[3px] border-solid">
                         <table className="box-border-4 w-full">
                             <tr>
                                 <h2 className="text-center">{'+  Upcoming Events  +'}</h2>
@@ -177,7 +181,7 @@ export default function EmailBody() {
                             </tr>
                         </table>
                     </td>
-                    <td className="border-t-0.5 dynamicBorder hidden w-1/2 border-[3px] border-x-0 border-b-0 border-solid md:table-cell">
+                    <td className="border-t-0.5 dynamicBorder hidden w-1/2 border-[3px] border-solid md:table-cell">
                         <table className="box-border-4 w-full">
                             <tr>
                                 <h2 className="text-center">{'+  Club OneDrive  +'}</h2>
@@ -206,7 +210,7 @@ export default function EmailBody() {
                     </td>
                 </tr>
                 <tr className="md:hidden">
-                    <td className="border-t-0.5 dynamicBorder w-1/2 border-[3px] border-x-0 border-b-0 border-solid">
+                    <td className="border-t-0.5 dynamicBorder w-1/2 border-[3px] border-solid">
                         <table className="box-border-4 w-full">
                             <tr>
                                 <h2 className="text-center">{'+  Club OneDrive  +'}</h2>
@@ -249,7 +253,7 @@ export default function EmailBody() {
                     members, or...
                 </p>
                 <a href="mailto:contact@csclub.org.au">
-                    <button className="border-t-0.5 dynamicBorder mt-2 rounded-xl border-[3px] border-x-0 border-b-0 border-solid bg-yellow px-7 py-2 font-bold text-grey">
+                    <button className="border-t-0.5 dynamicBorder mt-2 rounded-xl border-[3px] border-solid bg-yellow px-7 py-2 font-bold text-grey">
                         Send an email!
                     </button>
                 </a>

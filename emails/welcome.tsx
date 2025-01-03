@@ -14,7 +14,11 @@ import EmailBody from './body';
 import { socialLinks } from './links';
 import SocialIcon from './socialIcon';
 
-export default function Email() {
+export interface EmailProps {
+    firstName: string;
+}
+
+export default function Email({ firstName }: EmailProps) {
     const currentYear = new Date().getFullYear();
 
     return (
@@ -107,16 +111,16 @@ export default function Email() {
                                 <tr className="h-[0.3935rem] w-2">
                                     <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
                                     <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="h-[0.3rem] w-[0.3rem]"></td>
+                                    <td className="block h-[0.3rem] w-[0.375rem]"></td>
                                 </tr>
                                 <tr>
                                     <td className="dynamicBorder h-[0.3rem] w-[0.3rem] border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 dark:bg-grey">
-                                        <EmailBody />
+                                    <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
+                                        <EmailBody firstName={firstName} />
                                     </td>
                                     <td className="h-[0.3rem] w-[0.3rem] bg-purple"></td>
                                 </tr>
-                                <tr className="h-[0.3935rem] w-2">
+                                <tr className="h-2 w-2">
                                     <td></td>
                                     <td className="bg-purple"></td>
                                     <td className="bg-purple"></td>
