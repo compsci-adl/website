@@ -199,7 +199,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                                     </a>{' '}
                                     to access or{' '}
                                     <a
-                                        href="https://csclub.org.au"
+                                        href={process.env.NEXT_PUBLIC_DRIVE_LINK}
                                         className="font-bold text-purple underline"
                                     >
                                         click this link!
