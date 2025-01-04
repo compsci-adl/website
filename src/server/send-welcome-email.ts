@@ -33,7 +33,7 @@ export const sendWelcomeEmail = async (
     const emailHtml = await render(React.createElement(Email, { firstName }));
 
     const options = {
-        from: 'noreply@csclub.org.au',
+        from: env.SMTP_EMAIL_ADDRESS,
         to: recipientEmail,
         subject: 'Welcome to the CS Club!',
         html: emailHtml,

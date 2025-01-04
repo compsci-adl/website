@@ -16,6 +16,7 @@ export const env = createEnv({
         SMTP_HOST: z.string().min(1).optional(),
         SMTP_USER: z.string().min(1).optional(),
         SMTP_PASS: z.string().min(1).optional(),
+        SMTP_EMAIL_ADDRESS: z.string().min(1).optional(),
     },
     client: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: z.string().url().min(1).optional(),
