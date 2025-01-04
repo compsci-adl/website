@@ -6,7 +6,6 @@ import {
     STUDENT_TYPES,
 } from '@/constants/student-info';
 import { sql } from 'drizzle-orm';
-import { boolean } from 'drizzle-orm/mysql-core';
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 import { nanoid } from 'nanoid';
 
@@ -28,7 +27,7 @@ export const memberTable = sqliteTable('members', {
     studentType: text('student_type', { enum: [...STUDENT_TYPES, ''] }),
 
     emailPreferences: text('email_preferences', { mode: 'json' }),
-    welcomeEmailSent: boolean('welcome_email_sent').default(false),
+    welcomeEmailSent: integer('welcome_email_sent').default(0),
 
     membershipExpiresAt: integer('membership_expires_at', { mode: 'timestamp' }),
 

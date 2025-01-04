@@ -44,7 +44,7 @@ export const sendWelcomeEmail = async (
     try {
         await db
             .update(memberTable)
-            .set({ welcomeEmailSent: true })
+            .set({ welcomeEmailSent: 1 })
             .where(eq(memberTable.keycloakId, keycloakId));
     } catch (dbError) {
         console.error('Error updating member table:', dbError);
