@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
 import { checkUserExists } from '@/server/check-user-exists';
+import { sendWelcomeEmail } from '@/server/send-welcome-email';
 import { verifyMembershipPayment } from '@/server/verify-membership-payment';
 import type { Metadata } from 'next';
 import Link from 'next/link';
@@ -14,8 +15,8 @@ export const metadata: Metadata = {
 };
 
 type MembershipPayment =
-    | { paid: true; membershipExpiresAt: Date }
-    | { paid: false; membershipExpiresAt?: undefined };
+    | { paid: true; membershipExpiresAt: Date; welcomeEmailSent?: boolean }
+    | { paid: false; membershipExpiresAt?: undefined; welcomeEmailSent?: undefined };
 
 export default async function SettingsPage() {
     const session = await auth();
@@ -31,6 +32,8 @@ export default async function SettingsPage() {
     if (session?.user.id) {
         exists = await checkUserExists(session.user.id);
         membershipPayment = await verifyMembershipPayment(session.user.id);
+        if (membershipPayment.paid && session.user.email && session.user.firstName)
+            await sendWelcomeEmail(session.user.id, session.user.email, session.user.firstName);
     }
 
     return (
