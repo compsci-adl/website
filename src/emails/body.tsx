@@ -95,7 +95,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                                         href="https://studentvip.com.au/adelaide-uni/north-terrace/maps/127019"
                                         className="font-bold text-orange underline"
                                     >
-                                        here's a map!
+                                        here&apos;s a map!
                                     </a>
                                 </p>
                             </td>
