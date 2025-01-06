@@ -6,7 +6,10 @@ export const updateMemberExpiryDate = async (id: string, idType: 'keycloakId' | 
     const expiryDate = new Date(`2026-01-01`);
     await db
         .update(memberTable)
-        .set({ membershipExpiresAt: expiryDate })
+        .set({
+            membershipExpiresAt: expiryDate,
+            welcomeEmailSent: 0,
+        })
         .where(eq(memberTable[idType], id));
     return expiryDate;
 };
