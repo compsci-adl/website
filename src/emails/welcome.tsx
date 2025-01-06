@@ -1,3 +1,4 @@
+import { LINKS } from '@/data/links';
 import {
     Head,
     Html,
@@ -11,7 +12,6 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 import EmailBody from './body';
-import { socialLinks } from './links';
 import SocialIcon from './socialIcon';
 
 export interface EmailProps {
@@ -20,6 +20,20 @@ export interface EmailProps {
 
 export default function Email({ firstName }: EmailProps) {
     const currentYear = new Date().getFullYear();
+
+    interface IconSrcParams {
+        type: 'light' | 'dark';
+        name: string;
+    }
+
+    const getIconSrc = ({ type, name }: IconSrcParams): string => {
+        const lowerCaseName = name.toLowerCase();
+        if (type === 'light') {
+            return `https://csclub.org.au/images/email/light/${lowerCaseName}.png`;
+        } else {
+            return `https://csclub.org.au/images/email/dark/${lowerCaseName}.png`;
+        }
+    };
 
     return (
         <Tailwind
@@ -92,12 +106,12 @@ export default function Email({ firstName }: EmailProps) {
                                     <Column className="text-center">
                                         <Img
                                             className="light max-h-[60px]"
-                                            src="https://csclub.org.au/images/email/light/logo.png"
+                                            src={getIconSrc({ type: 'light', name: 'logo' })}
                                             alt="CS Club"
                                         />
                                         <Img
                                             className="dark max-h-[60px]"
-                                            src="https://csclub.org.au/images/email/dark/logo.png"
+                                            src={getIconSrc({ type: 'dark', name: 'logo' })}
                                             alt="CS Club"
                                         />
                                     </Column>
@@ -133,28 +147,40 @@ export default function Email({ firstName }: EmailProps) {
                             <div>
                                 <table className="mx-auto hidden border-collapse border-spacing-0 md:table">
                                     <tr>
-                                        {socialLinks.map((link, index) => (
+                                        {LINKS.map((link, index) => (
                                             <SocialIcon
                                                 key={index}
-                                                href={link.href}
-                                                alt={link.alt}
-                                                lightSrc={link.lightSrc}
-                                                darkSrc={link.darkSrc}
-                                                ariaLabel={link.ariaLabel}
+                                                href={link.link}
+                                                alt={link.name}
+                                                lightSrc={getIconSrc({
+                                                    type: 'light',
+                                                    name: link.name,
+                                                })}
+                                                darkSrc={getIconSrc({
+                                                    type: 'dark',
+                                                    name: link.name,
+                                                })}
+                                                ariaLabel={link.name}
                                             />
                                         ))}
                                     </tr>
                                 </table>
                                 <table className="mx-auto table border-collapse border-spacing-0 md:hidden">
                                     <tr>
-                                        {socialLinks.slice(0, 4).map((link, index) => (
+                                        {LINKS.slice(0, 4).map((link, index) => (
                                             <SocialIcon
                                                 key={index}
-                                                href={link.href}
-                                                alt={link.alt}
-                                                lightSrc={link.lightSrc}
-                                                darkSrc={link.darkSrc}
-                                                ariaLabel={link.ariaLabel}
+                                                href={link.link}
+                                                alt={link.name}
+                                                lightSrc={getIconSrc({
+                                                    type: 'light',
+                                                    name: link.name,
+                                                })}
+                                                darkSrc={getIconSrc({
+                                                    type: 'dark',
+                                                    name: link.name,
+                                                })}
+                                                ariaLabel={link.name}
                                             />
                                         ))}
                                     </tr>
@@ -162,14 +188,20 @@ export default function Email({ firstName }: EmailProps) {
                                     <tr className="h-4"></tr>
 
                                     <tr>
-                                        {socialLinks.slice(4).map((link, index) => (
+                                        {LINKS.slice(4).map((link, index) => (
                                             <SocialIcon
                                                 key={index}
-                                                href={link.href}
-                                                alt={link.alt}
-                                                lightSrc={link.lightSrc}
-                                                darkSrc={link.darkSrc}
-                                                ariaLabel={link.ariaLabel}
+                                                href={link.link}
+                                                alt={link.name}
+                                                lightSrc={getIconSrc({
+                                                    type: 'light',
+                                                    name: link.name,
+                                                })}
+                                                darkSrc={getIconSrc({
+                                                    type: 'dark',
+                                                    name: link.name,
+                                                })}
+                                                ariaLabel={link.name}
                                             />
                                         ))}
                                     </tr>

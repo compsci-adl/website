@@ -2,20 +2,10 @@ import { db } from '@/db';
 import { memberTable } from '@/db/schema';
 import Email from '@/emails/welcome';
 import { env } from '@/env.mjs';
+import { transporter } from '@/lib/email';
 import { render } from '@react-email/components';
 import { eq } from 'drizzle-orm';
-import nodemailer from 'nodemailer';
 import React from 'react';
-
-const transporter = nodemailer.createTransport({
-    host: env.SMTP_HOST,
-    port: 465,
-    secure: true,
-    auth: {
-        user: env.SMTP_USER,
-        pass: env.SMTP_PASS,
-    },
-});
 
 export const sendWelcomeEmail = async (
     keycloakId: string,
