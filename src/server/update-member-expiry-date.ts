@@ -9,7 +9,7 @@ export const updateMemberExpiryDate = async (id: string, idType: 'keycloakId' | 
         .update(memberTable)
         .set({
             membershipExpiresAt: expiryDate,
-            welcomeEmailSent: 0,
+            welcomeEmailSent: false,
         })
         .where(eq(memberTable[idType], id));
     return expiryDate;

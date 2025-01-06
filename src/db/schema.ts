@@ -27,7 +27,7 @@ export const memberTable = sqliteTable('members', {
     studentType: text('student_type', { enum: [...STUDENT_TYPES, ''] }),
 
     emailPreferences: text('email_preferences', { mode: 'json' }),
-    welcomeEmailSent: integer('welcome_email_sent').default(0),
+    welcomeEmailSent: integer('welcome_email_sent', { mode: 'boolean' }),
 
     membershipExpiresAt: integer('membership_expires_at', { mode: 'timestamp' }),
 
