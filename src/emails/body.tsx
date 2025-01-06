@@ -39,11 +39,13 @@ export default function EmailBody({ firstName }: BodyProps) {
                 <p>
                     We host events all year round where you can connect with other like-minded
                     students, develop your skills and network with industry professionals. As a
-                    member you’ll enjoy <strong>free entry</strong> to all our events. Bring a
-                    friend along, but keep in mind the $5 entry for non-members for any event!
+                    member you’ll enjoy <strong>free or discounted entry</strong> to most of our
+                    events. Some larger events, such as Industry Night, may have additional costs.
+                    Bring a friend along, but keep in mind the $5 entry for non-members for most
+                    events!
                 </p>
                 <p>
-                    The best way to keep up to date on what’s happening in our club is through out
+                    The best way to keep up to date on what’s happening in our club is through our
                     Discord server, social media accounts, and our{' '}
                     <a href="https://csclub.org.au" className="font-bold text-orange underline">
                         website
@@ -53,11 +55,11 @@ export default function EmailBody({ firstName }: BodyProps) {
                         href="https://csclub.org.au/about#committee"
                         className="font-bold text-purple underline"
                     >
-                        committee
+                        committee member
                     </a>{' '}
-                    member about your sign-up yet, please pop in to the Duck Lounge (Engineering and
-                    Maths EM110) to get your cool ducky ID sticker & verify your membership
-                    payment!.
+                    about your sign-up yet, please pop in to the Duck Lounge (Engineering and Maths
+                    EM110) to get your cool ducky sticker for your uni ID card & verify your
+                    membership payment!.
                 </p>
                 <p>And of course, we hope to see you at our events and meet you very soon!</p>
             </div>
@@ -81,7 +83,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                                     What is the Duck Lounge? Where is the Duck Lounge? Who is the
                                     Duck Lounge? More truer questions have never been asked. Our CS
                                     Club has it’s very own
-                                    <strong> student lounge</strong> in the Engineering and Maths
+                                    <strong>student lounge</strong> in the Engineering and Maths
                                     Building in room 110 (EM110).
                                 </p>
                                 <p>
