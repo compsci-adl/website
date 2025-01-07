@@ -11,6 +11,7 @@ import { memberTable } from '@/db/schema';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
+import { sendWelcomeEmail } from '@/server/send-welcome-email';
 import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
 import { eq } from 'drizzle-orm';
 import type { CreatePaymentLinkRequest } from 'square';
@@ -109,6 +110,19 @@ export async function PUT(request: Request) {
 
     if (reqBody.data.paid) {
         await updateMemberExpiryDate(reqBody.data.id, 'id');
+
+        const user = await db
+            .select()
+            .from(memberTable)
+            .where(eq(memberTable.id, reqBody.data.id))
+            .then((rows) => rows[0]);
+        if (user && !user.welcomeEmailSent) {
+            await sendWelcomeEmail(
+                user.keycloakId as string,
+                user.email as string,
+                user.firstName as string
+            );
+        }
     } else {
         await db
             .update(memberTable)

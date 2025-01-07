@@ -19,7 +19,7 @@ export default function StepOne() {
 
     const handleSignUp = () => {
         const redirectUri = `${env.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI}?registered`;
-        const authUrl = `${env.AUTH_KEYCLOAK_ISSUER}/protocol/openid-connect/registrations?response_type=code&client_id=website&redirect_uri=${redirectUri}&scope=openid+profile+email`;
+        const authUrl = `${env.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER}/protocol/openid-connect/registrations?response_type=code&client_id=website&redirect_uri=${redirectUri}&scope=openid+profile+email`;
         window.location.href = authUrl;
     };
 

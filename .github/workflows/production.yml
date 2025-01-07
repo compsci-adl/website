@@ -52,6 +52,10 @@ jobs:
           AUTH_KEYCLOAK_ID: ${{ secrets.AUTH_KEYCLOAK_ID }}
           AUTH_KEYCLOAK_SECRET: ${{ secrets.AUTH_KEYCLOAK_SECRET }}
           AUTH_KEYCLOAK_ISSUER: ${{ secrets.AUTH_KEYCLOAK_ISSUER }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_EMAIL_ADDRESS: ${{ secrets.SMTP_EMAIL_ADDRESS }}
           NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
           NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
@@ -66,6 +70,10 @@ jobs:
             --secret id=AUTH_KEYCLOAK_ID \
             --secret id=AUTH_KEYCLOAK_SECRET \
             --secret id=AUTH_KEYCLOAK_ISSUER \
+            --secret id=SMTP_HOST \
+            --secret id=SMTP_USER \
+            --secret id=SMTP_PASS \
+            --secret id=SMTP_EMAIL_ADDRESS \
             --secret id=NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI \
             --secret id=NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER \
             --secret id=DATABASE_URL \
