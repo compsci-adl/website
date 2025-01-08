@@ -12,6 +12,13 @@ import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../sto
 export const stepTwoSchema = z.object({
     firstName: firstNameSchema,
     lastName: lastNameSchema,
+    phoneNumber: z
+        .string()
+        .regex(/^0\d{9}$/, {
+            message: 'Please enter a valid Australian phone number',
+        })
+        .optional()
+        .or(z.literal('')),
     studentStatus: z.enum(STUDENT_STATUSES, {
         errorMap: () => ({ message: 'Please select a valid status' }),
     }),
@@ -63,6 +70,11 @@ export default function StepTwo() {
         <form onSubmit={handleContinue}>
             <ControlledField label="First Name" control={form.control} name="firstName" />
             <ControlledField label="Last Name" control={form.control} name="lastName" />
+            <ControlledField
+                label="Phone Number (optional)"
+                control={form.control}
+                name="phoneNumber"
+            />
             <ControlledField
                 label="Are you a university student?"
                 control={form.control}

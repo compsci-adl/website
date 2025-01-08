@@ -15,7 +15,7 @@ export default function ProgressBar({ step }: { step: number }) {
             {new Array(step).fill(null).map((_, i) => (
                 <Progress filled index={i + 1} key={i} />
             ))}
-            {new Array(4 - step).fill(null).map((_, i) => (
+            {new Array(5 - step).fill(null).map((_, i) => (
                 <Progress index={step + i + 1} key={i} />
             ))}
         </div>
