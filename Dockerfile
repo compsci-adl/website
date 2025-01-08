@@ -22,7 +22,6 @@ RUN npm install -g pnpm \
 
 COPY . .
 
-# Needed for build
 RUN pnpm run build
 
 # Final deployment image

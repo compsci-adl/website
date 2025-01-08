@@ -13,6 +13,10 @@ export const env = createEnv({
         SQUARE_ACCESS_TOKEN: z.string().min(1),
         SQUARE_LOCATION_ID: z.string().min(1),
         REDIS_URI: z.string().min(1),
+        SMTP_HOST: z.string().min(1).optional(),
+        SMTP_USER: z.string().min(1).optional(),
+        SMTP_PASS: z.string().min(1).optional(),
+        SMTP_EMAIL_ADDRESS: z.string().min(1).optional(),
     },
     client: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: z.string().url().min(1).optional(),
