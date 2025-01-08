@@ -1,6 +1,6 @@
 import { auth } from '@/auth';
 import { db } from '@/db';
-import { notificationsTable } from '@/db/schema';
+import { notificationsTable, memberTable } from '@/db/schema';
 import { eq, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
@@ -24,12 +24,21 @@ export async function GET(request: Request) {
     }
 
     try {
-        const memberNotifications = await db
-            .select()
-            .from(notificationsTable)
-            .where(eq(notificationsTable.keycloakId, validation.data.id))
-            .limit(1)
-            .get();
+        // Fetch member notifications and phone number
+        const [memberNotifications, member] = await Promise.all([
+            db
+                .select()
+                .from(notificationsTable)
+                .where(eq(notificationsTable.keycloakId, validation.data.id))
+                .limit(1)
+                .get(),
+            db
+                .select({ phoneNumber: memberTable.phoneNumber })
+                .from(memberTable)
+                .where(eq(memberTable.keycloakId, validation.data.id))
+                .limit(1)
+                .get(),
+        ]);
 
         if (!memberNotifications) {
             return new Response(JSON.stringify({ error: 'Member notifications not found' }), {
@@ -37,7 +46,13 @@ export async function GET(request: Request) {
             });
         }
 
-        return new Response(JSON.stringify(memberNotifications), {
+        // Combine notifications and phone number in the response
+        const response = {
+            ...memberNotifications,
+            hasPhoneNumber: !!member?.phoneNumber,
+        };
+
+        return new Response(JSON.stringify(response), {
             status: 200,
             headers: { 'Content-Type': 'application/json' },
         });

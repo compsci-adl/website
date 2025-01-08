@@ -12,6 +12,8 @@ type CategoryTypes = 'newsletters' | 'clubEventsAndAnnouncements' | 'sponsorNoti
 export default function NotificationsSettings() {
     const { data: session } = useSession();
     const userId = session?.user?.id;
+    const [saveSuccess, setSaveSuccess] = useState(false);
+    const [hasPhoneNumber, setHasPhoneNumber] = useState(false);
 
     const [notifications, setNotifications] = useState({
         email: {
@@ -52,6 +54,7 @@ export default function NotificationsSettings() {
                 },
             };
 
+            setHasPhoneNumber(data.hasPhoneNumber);
             setNotifications(parsedNotifications);
         },
         onError: (error) => {
@@ -66,11 +69,11 @@ export default function NotificationsSettings() {
     });
 
     const updateNotifications = useSWRMutation('notifications', fetcher.put.mutate, {
-        onError: () => {
-            console.error('Failed to update notification settings');
-        },
+        onError: () => console.error('Failed to update notification settings'),
         onSuccess: () => {
             console.log('Successfully updated notification settings');
+            setSaveSuccess(true);
+            setTimeout(() => setSaveSuccess(false), 5000);
         },
     });
 
@@ -87,7 +90,6 @@ export default function NotificationsSettings() {
 
         try {
             await updateNotifications.trigger(payload);
-            console.log('Saved notification settings:', notifications);
         } catch (error) {
             console.error('Error saving notification settings:', error);
         }
@@ -103,7 +105,30 @@ export default function NotificationsSettings() {
         }));
     };
 
-    console.log(fetchedNotifications.isMutating);
+    const capitalise = (str: string) => {
+        if (str === 'email') return 'Email';
+        if (str === 'sms') return 'SMS';
+        return str.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());
+    };
+
+    const renderNotifications = (type: NotificationTypes) => (
+        <div key={type} className="mb-6">
+            <h2 className="text-lg font-semibold">{capitalise(type)}</h2>
+            {['newsletters', 'clubEventsAndAnnouncements', 'sponsorNotifications'].map(
+                (category) => (
+                    <div key={category} className="flex items-center justify-between">
+                        <p className="capitalize">{capitalise(category)}</p>
+                        <Field
+                            label=""
+                            type="toggle"
+                            value={notifications[type][category as CategoryTypes]}
+                            onChange={() => handleToggle(type, category as CategoryTypes)}
+                        />
+                    </div>
+                )
+            )}
+        </div>
+    );
 
     return (
         <div className="relative flex w-full flex-col gap-4">
@@ -113,45 +138,9 @@ export default function NotificationsSettings() {
             </div>
             <div className="items-left flex flex-col gap-4 md:flex-row">
                 <div className="w-full">
-                    {['email', 'sms'].map((type) => (
-                        <div key={type} className="mb-6">
-                            <h2 className="text-lg font-semibold">
-                                {type === 'sms'
-                                    ? type.toUpperCase()
-                                    : type.charAt(0).toUpperCase() + type.slice(1)}
-                            </h2>
-                            {[
-                                'newsletters',
-                                'clubEventsAndAnnouncements',
-                                'sponsorNotifications',
-                            ].map((category) => (
-                                <div key={category} className="flex items-center justify-between">
-                                    <p className="capitalize">
-                                        {category.replace(/([A-Z])/g, ' $1')}
-                                    </p>
-                                    <div>
-                                        {notifications[type as NotificationTypes] && (
-                                            <Field
-                                                label=""
-                                                type="toggle"
-                                                value={
-                                                    notifications[type as NotificationTypes][
-                                                        category as CategoryTypes
-                                                    ]
-                                                }
-                                                onChange={() =>
-                                                    handleToggle(
-                                                        type as NotificationTypes,
-                                                        category as CategoryTypes
-                                                    )
-                                                }
-                                            />
-                                        )}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    ))}
+                    {['email', ...(hasPhoneNumber ? ['sms'] : [])].map((type) =>
+                        renderNotifications(type as NotificationTypes)
+                    )}
                 </div>
             </div>
             <Button
@@ -163,6 +152,9 @@ export default function NotificationsSettings() {
             >
                 Save
             </Button>
+            {saveSuccess && (
+                <p className="mt-2 text-orange">Notification settings saved successfully!</p>
+            )}
         </div>
     );
 }
