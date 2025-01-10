@@ -10,6 +10,7 @@ export interface FieldProps {
     type?: 'text' | 'password' | 'select' | 'checkbox' | 'toggle';
     options?: readonly string[] | string[];
     placeholder?: string;
+    longLabel?: string;
 }
 
 const Field = ({
@@ -20,6 +21,7 @@ const Field = ({
     type = 'text',
     options = [],
     placeholder,
+    longLabel,
 }: FieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -105,6 +107,7 @@ const Field = ({
                     )}
                 </div>
             )}
+            {longLabel && !error && <div className="mt-2 text-sm text-gray-500">{longLabel}</div>}
             {error && <div className="mt-2 w-[25rem] text-sm text-red-500">{error}</div>}
         </div>
     );
