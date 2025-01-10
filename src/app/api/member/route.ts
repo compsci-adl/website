@@ -5,8 +5,6 @@ import { createInsertSchema } from 'drizzle-zod';
 import { z } from 'zod';
 
 export async function POST(request: Request) {
-    console.log('POST /api/member');
-
     try {
         const req = await request.json();
 
@@ -28,8 +26,6 @@ export async function POST(request: Request) {
             return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
         }
 
-        console.log('Valid request body:', reqBody.data);
-
         const memberData = {
             keycloakId: session.user.id ?? '',
             email: session.user.email ?? '',
@@ -40,9 +36,12 @@ export async function POST(request: Request) {
 
         const notificationsData = req.notifications;
 
-        console.log('Notifications data:', notificationsData);
-
-        if (session.user.id && notificationsData) {
+        if (!session.user.id || !notificationsData) {
+            return new Response(
+                JSON.stringify({ error: 'Member Keycloak ID missing or no notifications data' }),
+                { status: 400 }
+            );
+        } else {
             await db.insert(notificationsTable).values({
                 keycloakId: session.user.id,
                 emailNewsletters: notificationsData.email?.newsletters ?? false,
@@ -54,13 +53,6 @@ export async function POST(request: Request) {
                     notificationsData.sms?.clubEventsAndAnnouncements ?? false,
                 smsSponsorNotifications: notificationsData.sms?.sponsorNotifications ?? false,
             });
-
-            console.log('Inserted notifications for the new member into the database');
-        } else {
-            return new Response(
-                JSON.stringify({ error: 'Member Keycloak ID missing or no notifications data' }),
-                { status: 400 }
-            );
         }
 
         return new Response(JSON.stringify({ success: true }), { status: 200 });

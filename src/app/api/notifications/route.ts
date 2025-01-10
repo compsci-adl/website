@@ -115,8 +115,6 @@ export async function PUT(request: Request) {
             })
             .where(eq(notificationsTable.keycloakId, reqBody.data.id));
 
-        console.log('Notifications updated successfully');
-
         return Response.json({ success: true });
     } catch (error) {
         console.error('Error updating notifications:', error);

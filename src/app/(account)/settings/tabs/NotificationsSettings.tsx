@@ -71,7 +71,6 @@ export default function NotificationsSettings() {
     const updateNotifications = useSWRMutation('notifications', fetcher.put.mutate, {
         onError: () => console.error('Failed to update notification settings'),
         onSuccess: () => {
-            console.log('Successfully updated notification settings');
             setSaveSuccess(true);
             setTimeout(() => setSaveSuccess(false), 5000);
         },
