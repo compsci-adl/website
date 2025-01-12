@@ -105,9 +105,10 @@ export default function NotificationsSettings() {
     };
 
     const capitalise = (str: string) => {
-        if (str === 'email') return 'Email';
-        if (str === 'sms') return 'SMS';
-        return str.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());
+        return str
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/^./, (s) => s.toUpperCase())
+            .replace('Sms', 'SMS');
     };
 
     const renderNotifications = (type: NotificationTypes) => (
