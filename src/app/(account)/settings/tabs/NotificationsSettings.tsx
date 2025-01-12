@@ -6,8 +6,20 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 
-type NotificationTypes = 'email' | 'sms' | 'push';
-type CategoryTypes = 'newsletters' | 'clubEventsAndAnnouncements' | 'sponsorNotifications';
+const notificationTypeNames = {
+    email: 'Email',
+    sms: 'SMS',
+    push: 'Push',
+};
+
+const categoryNames = {
+    newsletters: 'Newsletters',
+    clubEventsAndAnnouncements: 'Club Events and Announcements',
+    sponsorNotifications: 'Sponsor Notifications',
+};
+
+type NotificationTypes = keyof typeof notificationTypeNames;
+type CategoryTypes = keyof typeof categoryNames;
 
 export default function NotificationsSettings() {
     const { data: session } = useSession();
@@ -104,29 +116,20 @@ export default function NotificationsSettings() {
         }));
     };
 
-    const capitalise = (str: string) => {
-        return str
-            .replace(/([A-Z])/g, ' $1')
-            .replace(/^./, (s) => s.toUpperCase())
-            .replace('Sms', 'SMS');
-    };
-
     const renderNotifications = (type: NotificationTypes) => (
         <div key={type} className="mb-6">
-            <h2 className="text-lg font-semibold">{capitalise(type)}</h2>
-            {['newsletters', 'clubEventsAndAnnouncements', 'sponsorNotifications'].map(
-                (category) => (
-                    <div key={category} className="flex items-center justify-between">
-                        <p className="capitalize">{capitalise(category)}</p>
-                        <Field
-                            label=""
-                            type="toggle"
-                            value={notifications[type][category as CategoryTypes]}
-                            onChange={() => handleToggle(type, category as CategoryTypes)}
-                        />
-                    </div>
-                )
-            )}
+            <h2 className="text-lg font-semibold">{notificationTypeNames[type]}</h2>
+            {Object.keys(categoryNames).map((category) => (
+                <div key={category} className="flex items-center justify-between">
+                    <p>{categoryNames[category as CategoryTypes]}</p>
+                    <Field
+                        label=""
+                        type="toggle"
+                        value={notifications[type][category as CategoryTypes]}
+                        onChange={() => handleToggle(type, category as CategoryTypes)}
+                    />
+                </div>
+            ))}
         </div>
     );
 
