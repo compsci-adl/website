@@ -27,7 +27,6 @@ export default function AccountSettings({
 }: AccountSettingsProps) {
     useMount(() => {
         const verifyMembershipPayment = async () => {
-            console.log('Verifying membership payment');
             try {
                 const response = await fetch('/api/verify-membership-payment', {
                     method: 'PUT',

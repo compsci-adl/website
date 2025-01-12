@@ -16,6 +16,7 @@ export const memberTable = sqliteTable('members', {
 
     keycloakId: text('keycloak_id').notNull().unique(),
     email: text('email').notNull(),
+    phoneNumber: text('phone_number'),
     firstName: text('first_name').notNull(),
     lastName: text('last_name').notNull(),
 
@@ -26,7 +27,6 @@ export const memberTable = sqliteTable('members', {
     degree: text('degree', { enum: [...DEGREES, ''] }),
     studentType: text('student_type', { enum: [...STUDENT_TYPES, ''] }),
 
-    emailPreferences: text('email_preferences', { mode: 'json' }),
     welcomeEmailSent: integer('welcome_email_sent', { mode: 'boolean' }),
 
     membershipExpiresAt: integer('membership_expires_at', { mode: 'timestamp' }),
@@ -34,6 +34,58 @@ export const memberTable = sqliteTable('members', {
     createdAt: text('created_at')
         .default(sql`CURRENT_TIMESTAMP`)
         .notNull(),
-    // TODO: `updated_at` in sqlite
-    // updatedAt: text('updated_at').default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: text('updated_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
+});
+
+export const notificationsTable = sqliteTable('notifications', {
+    id: text('id')
+        .$defaultFn(() => nanoid())
+        .primaryKey(),
+    keycloakId: text('keycloak_id')
+        .notNull()
+        .references(() => memberTable.keycloakId),
+    emailNewsletters: integer('email_newsletters', { mode: 'boolean' })
+        .$default(() => false)
+        .notNull(),
+    emailClubEventsAndAnnouncements: integer('email_club_events_and_announcements', {
+        mode: 'boolean',
+    })
+        .$default(() => false)
+        .notNull(),
+    emailSponsorNotifications: integer('email_sponsor_notifications', { mode: 'boolean' })
+        .$default(() => false)
+        .notNull(),
+
+    smsNewsletters: integer('sms_newsletters', { mode: 'boolean' })
+        .$default(() => false)
+        .notNull(),
+    smsClubEventsAndAnnouncements: integer('sms_club_events_and_announcements', {
+        mode: 'boolean',
+    })
+        .$default(() => false)
+        .notNull(),
+    smsSponsorNotifications: integer('sms_sponsor_notifications', { mode: 'boolean' })
+        .$default(() => false)
+        .notNull(),
+
+    pushNewsletters: integer('push_newsletters', { mode: 'boolean' })
+        .$default(() => false)
+        .notNull(),
+    pushClubEventsAndAnnouncements: integer('push_club_events_and_announcements', {
+        mode: 'boolean',
+    })
+        .$default(() => false)
+        .notNull(),
+    pushSponsorNotifications: integer('push_sponsor_notifications', { mode: 'boolean' })
+        .$default(() => false)
+        .notNull(),
+
+    createdAt: text('created_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
+    updatedAt: text('updated_at')
+        .default(sql`CURRENT_TIMESTAMP`)
+        .notNull(),
 });

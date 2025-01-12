@@ -4,12 +4,13 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 export interface FieldProps {
     label: string;
-    value: string;
+    value: string | boolean;
     onChange: (value: string) => void;
     error?: string | null;
-    type?: 'text' | 'password' | 'select' | 'checkbox';
+    type?: 'text' | 'password' | 'select' | 'checkbox' | 'toggle';
     options?: readonly string[] | string[];
     placeholder?: string;
+    longLabel?: string;
 }
 
 const Field = ({
@@ -20,6 +21,7 @@ const Field = ({
     type = 'text',
     options = [],
     placeholder,
+    longLabel,
 }: FieldProps) => {
     const [showPassword, setShowPassword] = useState(false);
 
@@ -62,6 +64,28 @@ const Field = ({
                         Yes
                     </label>
                 </div>
+            ) : type === 'toggle' ? (
+                <div className="mb-2 mt-4">
+                    <label className="relative flex cursor-pointer flex-row items-center">
+                        <button
+                            type="button"
+                            onClick={() =>
+                                handleCheckboxChange({
+                                    target: { checked: !value },
+                                } as ChangeEvent<HTMLInputElement>)
+                            }
+                            className={`flex h-7 w-14 cursor-pointer border-2 border-black ${
+                                value ? 'bg-orange' : 'bg-gray-300'
+                            } transition-all duration-200 ease-in-out`}
+                        >
+                            <div
+                                className={`m-0.5 flex h-5 w-5 transform border-2 border-black bg-white transition-all duration-200 ease-in-out ${
+                                    value ? 'translate-x-7' : 'translate-x-0'
+                                }`}
+                            ></div>
+                        </button>
+                    </label>
+                </div>
             ) : (
                 <div className="relative">
                     <input
@@ -69,7 +93,7 @@ const Field = ({
                         id={label.toLowerCase()}
                         name={label.toLowerCase()}
                         type={showPassword ? 'text' : type}
-                        value={value}
+                        value={typeof value === 'boolean' ? value.toString() : value}
                         className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
                     />
                     {type === 'password' && (
@@ -83,6 +107,7 @@ const Field = ({
                     )}
                 </div>
             )}
+            {longLabel && !error && <div className="mt-2 text-sm text-gray-500">{longLabel}</div>}
             {error && <div className="mt-2 w-[25rem] text-sm text-red-500">{error}</div>}
         </div>
     );

@@ -6,6 +6,7 @@ import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import ProgressBar from './ProgressBar';
+import StepFive from './steps/StepFive';
 import StepFour from './steps/StepFour';
 import StepOne from './steps/StepOne';
 import StepThree from './steps/StepThree';
@@ -62,7 +63,9 @@ export default function Join() {
                                 <ProgressBar step={step} />
                                 {
                                     // eslint-disable-next-line react/jsx-key
-                                    [<StepTwo />, <StepThree />, <StepFour />][step - 2]
+                                    [<StepTwo />, <StepThree />, <StepFour />, <StepFive />][
+                                        step - 2
+                                    ]
                                 }
                             </>
                         )}
