@@ -33,18 +33,18 @@ const Field = ({
         onChange(e.target.checked ? 'Yes' : 'No');
     };
 
-    const labelString = typeof label === 'string' ? label : ''; // Ensure label is a string for attributes
+    const labelString = typeof label === 'string' ? label.toLowerCase() : ''; // Ensure label is a string for attributes
 
     return (
         <div className="mb-4">
-            <label htmlFor={labelString.toLowerCase()} className="block text-lg md:text-base">
+            <label htmlFor={labelString} className="block text-lg md:text-base">
                 {label}
             </label>
             {type === 'select' ? (
                 <select
                     onChange={(e) => onChange(e.target.value)}
-                    id={labelString.toLowerCase()}
-                    name={labelString.toLowerCase()}
+                    id={labelString}
+                    name={labelString}
                     className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
@@ -92,8 +92,8 @@ const Field = ({
                 <div className="relative">
                     <input
                         onChange={(e) => onChange(e.target.value)}
-                        id={labelString.toLowerCase()}
-                        name={labelString.toLowerCase()}
+                        id={labelString}
+                        name={labelString}
                         type={showPassword ? 'text' : type}
                         value={typeof value === 'boolean' ? value.toString() : value}
                         className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
