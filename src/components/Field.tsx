@@ -1,9 +1,9 @@
-import type { ChangeEvent } from 'react';
+import type { ChangeEvent, ReactNode } from 'react';
 import { useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 export interface FieldProps {
-    label: string;
+    label: string | ReactNode;
     value: string | boolean;
     onChange: (value: string) => void;
     error?: string | null;
@@ -33,16 +33,18 @@ const Field = ({
         onChange(e.target.checked ? 'Yes' : 'No');
     };
 
+    const labelString = typeof label === 'string' ? label : ''; // Ensure label is a string for attributes
+
     return (
         <div className="mb-4">
-            <label htmlFor={label.toLowerCase()} className="block text-lg md:text-base">
+            <label htmlFor={labelString.toLowerCase()} className="block text-lg md:text-base">
                 {label}
             </label>
             {type === 'select' ? (
                 <select
                     onChange={(e) => onChange(e.target.value)}
-                    id={label.toLowerCase()}
-                    name={label.toLowerCase()}
+                    id={labelString.toLowerCase()}
+                    name={labelString.toLowerCase()}
                     className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
@@ -90,8 +92,8 @@ const Field = ({
                 <div className="relative">
                     <input
                         onChange={(e) => onChange(e.target.value)}
-                        id={label.toLowerCase()}
-                        name={label.toLowerCase()}
+                        id={labelString.toLowerCase()}
+                        name={labelString.toLowerCase()}
                         type={showPassword ? 'text' : type}
                         value={typeof value === 'boolean' ? value.toString() : value}
                         className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"

@@ -56,9 +56,34 @@ export default function StepFive() {
     return (
         <div>
             <div className="mb-4 mt-8">
-                {/* TODO: Add links to codes of conduct */}
                 <Field
-                    label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in your membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You also acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
+                    label={
+                        <>
+                            By submitting this form, you agree to abide by the{' '}
+                            <a
+                                href="https://www.adelaide.edu.au/policies/2323"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-orange underline"
+                            >
+                                University Code of Conduct
+                            </a>{' '}
+                            and the{' '}
+                            <a
+                                href="https://github.com/compsci-adl/Constitution/blob/master/CS_Club_Constitution.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-orange underline"
+                            >
+                                Computer Science Club Constitution
+                            </a>
+                            . You acknowledge that failure to adhere to these rules may result in
+                            your membership being suspended or revoked following formal procedures
+                            outlined in the Constitution. You also acknowledge that services and
+                            events offered by the Club may change at any time upon our discretion
+                            without notice.
+                        </>
+                    }
                     value={agreement ? 'Yes' : 'No'}
                     onChange={toggleAgreement}
                     error={agreementError}
