@@ -68,7 +68,13 @@ export const useJoinUsStudentInfo = () => {
 };
 
 // Notifications
-type CategoryTypes = 'newsletters' | 'clubEventsAndAnnouncements' | 'sponsorNotifications';
+export const categoryNames = {
+    newsletters: 'Newsletters',
+    clubEventsAndAnnouncements: 'Club Events and Announcements',
+    sponsorNotifications: 'Sponsor Notifications',
+};
+
+export type CategoryTypes = keyof typeof categoryNames;
 
 interface NotificationsState {
     email: Record<CategoryTypes, boolean>;

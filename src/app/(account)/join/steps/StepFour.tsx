@@ -1,5 +1,7 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
+import type { CategoryTypes } from '../store';
+import { categoryNames } from '../store';
 import {
     useJoinUsStep,
     useJoinUsStudentInfo,
@@ -8,7 +10,6 @@ import {
 } from '../store';
 
 type NotificationTypes = 'email' | 'sms';
-type CategoryTypes = 'newsletters' | 'clubEventsAndAnnouncements' | 'sponsorNotifications';
 
 export default function StepFour() {
     useSetJoinUsHeading({
@@ -41,36 +42,22 @@ export default function StepFour() {
     return (
         <div>
             <div className="mb-4 mt-8">
-                {['email'].map((type) => (
+                {(['email'] as NotificationTypes[]).map((type) => (
                     <div key={type} className="mb-6">
                         <h2 className="text-lg font-semibold capitalize">{type}</h2>
-                        {['newsletters', 'clubEventsAndAnnouncements', 'sponsorNotifications'].map(
-                            (category) => (
-                                <div key={category} className="flex items-center justify-between">
-                                    <p className="capitalize">
-                                        {category.replace(/([A-Z])/g, ' $1')}
-                                    </p>
-
-                                    <div>
-                                        <Field
-                                            label=""
-                                            type="toggle"
-                                            value={
-                                                notifications[type as NotificationTypes][
-                                                    category as CategoryTypes
-                                                ]
-                                            }
-                                            onChange={() =>
-                                                toggleNotification(
-                                                    type as NotificationTypes,
-                                                    category as CategoryTypes
-                                                )
-                                            }
-                                        />
-                                    </div>
+                        {(Object.keys(categoryNames) as CategoryTypes[]).map((category) => (
+                            <div key={category} className="flex items-center justify-between">
+                                <p>{categoryNames[category]}</p>
+                                <div>
+                                    <Field
+                                        label=""
+                                        type="toggle"
+                                        value={notifications[type][category]}
+                                        onChange={() => toggleNotification(type, category)}
+                                    />
                                 </div>
-                            )
-                        )}
+                            </div>
+                        ))}
                     </div>
                 ))}
             </div>
@@ -79,26 +66,19 @@ export default function StepFour() {
                 <div className="mb-4 mt-8">
                     <div className="mb-6">
                         <h2 className="text-lg font-semibold">SMS</h2>
-                        {['newsletters', 'clubEventsAndAnnouncements', 'sponsorNotifications'].map(
-                            (category) => (
-                                <div key={category} className="flex items-center justify-between">
-                                    <p className="capitalize">
-                                        {category.replace(/([A-Z])/g, ' $1')}
-                                    </p>
-
-                                    <div>
-                                        <Field
-                                            label=""
-                                            type="toggle"
-                                            value={notifications['sms'][category as CategoryTypes]}
-                                            onChange={() =>
-                                                toggleNotification('sms', category as CategoryTypes)
-                                            }
-                                        />
-                                    </div>
+                        {(Object.keys(categoryNames) as CategoryTypes[]).map((category) => (
+                            <div key={category} className="flex items-center justify-between">
+                                <p>{categoryNames[category]}</p>
+                                <div>
+                                    <Field
+                                        label=""
+                                        type="toggle"
+                                        value={notifications['sms'][category]}
+                                        onChange={() => toggleNotification('sms', category)}
+                                    />
                                 </div>
-                            )
-                        )}
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}
