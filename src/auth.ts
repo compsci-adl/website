@@ -1,5 +1,6 @@
+import jwt from 'jsonwebtoken';
 import NextAuth from 'next-auth';
-import { Session } from 'next-auth';
+import type { Session } from 'next-auth';
 import Keycloak from 'next-auth/providers/keycloak';
 
 interface ExtendedSession extends Session {
@@ -16,8 +17,16 @@ interface ExtendedSession extends Session {
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [Keycloak],
     callbacks: {
-        async jwt({ token, user, profile }) {
+        async jwt({ token, user, account, profile }) {
             // Add user information to the JWT token
+            if (account?.access_token) {
+                const decodedToken = jwt.decode(account?.access_token);
+                if (decodedToken && typeof decodedToken !== 'string') {
+                    if (decodedToken?.realm_access?.roles.includes('restricted-access')) {
+                        token.isCommittee = true;
+                    }
+                }
+            }
             if (user) {
                 token.email = user.email;
                 token.name = user.name;
@@ -27,9 +36,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                 token.id = profile.sub;
                 token.firstName = profile.given_name;
                 token.lastName = profile.family_name;
-                if (profile.isCommittee) {
-                    token.isCommittee = profile.isCommittee;
-                }
             }
             return token;
         },
