@@ -1,15 +1,41 @@
 # Keycloak
 
-## Getting started
+## Starting Keycloak
+1. Navigate to the `keycloak` directory and start Keycloak by running `docker compose up`.
+2. Open your browser and go to `http://localhost:8080` to access the Keycloak admin console. Log in using the admin credentials specified in the Docker Compose file.
+3. Create a new realm by following these steps:
+    - Click on `master` in the sidebar.
+    - Click the **Create realm** button.
+    - Enter a name for the new realm and save.
 
-1. Follow the initial setup for [Keycloak](https://www.keycloak.org/getting-started/getting-started-docker) using Docker.
-2. Create a new Realm.
+## Realm Setup
+1. Go to the realm you created and click on **Realm settings** in the sidebar.
+2. Click on the **Login** tab and enable the following options:
+    - User registration
+    - Forgot password
+    - Email as username
+    - Login with email
+    - Verify Email
+3. Next, go to the **Email** tab and enter the information for:
+    - **From**
+    - **From display name**
+    - **Host**
+    - **Port**
+    - Enable **SSL**
+    - Toggle **Authentication** and enter your SMTP username and password.
 
-## Committee accounts
+## Client Setup
+1. Inside the realm you just created, click on **Clients** in the sidebar and click on the **Create client** button.
+2. Set the **Client Id**, enable **Client authentication**, and set all of the following:
+    - **Root URL**: `http://localhost:3000/`
+    - **Home URL**: `http://localhost:3000/`
+    - **Valid redirect URIs**: `http://localhost:3000/*`
+    - **Valid post logout redirect URIs**: `http://localhost:3000/*`
+    - **Web origins**: `http://localhost:3000/*`
+3. Go to the **Credentials** tab and copy the **Client Secret** along with the **Client Id** you set before to the `.env` file in the CS Club website code.
 
-1. Go to the realm you created, click on `Realm settings` in the sidebar, and set `Unmanaged Attributes` to `Enabled`.
-2. Click on `Client Scopes` in the sidebar and create a client scope with name `isCommittee`.
-3. Go to the `Mappers` tab and add a new mapper by configuration with `Name: isCommittee, User Attribute: isCommittee, Token Claim Name: isCommittee, Claim JSON Type: boolean` and ensure `Add to ID token` is enabled.
-4. Click on `Users` in the sidebar.
-5. Select the user you want and go to the `Attributes` tab.
-6. Add the attribute `Key: isCommittee, Value: true`.
+## Admin Accounts
+1. Click on **Realm roles** in the sidebar and create a new role called `restricted-access`.
+2. Click on **Users** in the sidebar.
+3. Select the user you want and go to the **Role mapping** tab.
+4. Click on **Filter by clients** to switch to **Filter by realm roles** and click on `restricted-access` to assign the role.
