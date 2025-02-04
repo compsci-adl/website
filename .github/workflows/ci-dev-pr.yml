@@ -22,6 +22,15 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Build Docker container
+        env:
+          NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
+          NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
+          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
         run: |
           docker buildx build \
+            --secret id=NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI \
+            --secret id=NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER \
+            --secret id=NEXT_PUBLIC_DRIVE_LINK \
+            --secret id=NEXT_PUBLIC_UMAMI_WEBSITE_ID \
             --file=Dockerfile -t csclub-website .
