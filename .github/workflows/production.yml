@@ -85,6 +85,7 @@ jobs:
           NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
           NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_AUTH_TOKEN: ${{ secrets.DATABASE_AUTH_TOKEN }}
           REDIS_URI: ${{ secrets.REDIS_URI }}
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
           NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
@@ -92,6 +93,8 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           SMTP_EMAIL_ADDRESS: ${{ secrets.SMTP_EMAIL_ADDRESS }}
+          SQUARE_ACCESS_TOKEN: ${{ secrets.SQUARE_ACCESS_TOKEN }}
+          SQUARE_LOCATION_ID: ${{ secrets.SQUARE_LOCATION_ID }}
         run: |
           echo "$KEY" > private_key && chmod 600 private_key
           ssh -v -o StrictHostKeyChecking=no -i private_key ${USER}@${HOSTNAME} '
@@ -104,6 +107,7 @@ jobs:
             echo NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI=${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }} >> .env.local
             echo NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER=${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }} >> .env.local
             echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env.local
+            echo DATABASE_AUTH_TOKEN=${{ secrets.DATABASE_AUTH_TOKEN }} >> .env.local
             echo REDIS_URI=${{ secrets.REDIS_URI }} >> .env.local
             echo NEXT_PUBLIC_DRIVE_LINK=${{ secrets.NEXT_PUBLIC_DRIVE_LINK }} >> .env.local
             echo NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }} >> .env.local
@@ -111,6 +115,8 @@ jobs:
             echo SMTP_USER=${{ secrets.SMTP_USER }} >> .env.local
             echo SMTP_PASS=${{ secrets.SMTP_PASS }} >> .env.local
             echo SMTP_EMAIL_ADDRESS=${{ secrets.SMTP_EMAIL_ADDRESS }} >> .env.local
+            echo SQUARE_ACCESS_TOKEN=${{ secrets.SQUARE_ACCESS_TOKEN }} >> .env.local
+            echo SQUARE_LOCATION_ID=${{ secrets.SQUARE_LOCATION_ID }} >> .env.local
             docker load -i csclub-website.tar.gz
             docker compose up -d
             docker restart csclub-website
