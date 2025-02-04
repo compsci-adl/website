@@ -15,8 +15,8 @@ export const verifyMembershipPayment = cache(async (keycloakId: string) => {
         })
         .from(memberTable)
         .where(eq(memberTable.keycloakId, keycloakId));
-    // If membership expiry date exists, return the existing date
-    if (member && member.membershipExpiresAt) {
+    // If membership expiry date exists and hasn't passed, user has paid
+    if (member && member.membershipExpiresAt && new Date(member.membershipExpiresAt) > new Date()) {
         return { paid: true as const, membershipExpiresAt: member.membershipExpiresAt };
     }
 
