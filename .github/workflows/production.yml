@@ -49,37 +49,11 @@ jobs:
 
       - name: Build Docker container
         env:
-          AUTH_KEYCLOAK_ID: ${{ secrets.AUTH_KEYCLOAK_ID }}
-          AUTH_KEYCLOAK_SECRET: ${{ secrets.AUTH_KEYCLOAK_SECRET }}
-          AUTH_KEYCLOAK_ISSUER: ${{ secrets.AUTH_KEYCLOAK_ISSUER }}
-          SMTP_HOST: ${{ secrets.SMTP_HOST }}
-          SMTP_USER: ${{ secrets.SMTP_USER }}
-          SMTP_PASS: ${{ secrets.SMTP_PASS }}
-          SMTP_EMAIL_ADDRESS: ${{ secrets.SMTP_EMAIL_ADDRESS }}
-          NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
-          NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          REDIS_URI: ${{ secrets.REDIS_URI }}
-          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
-          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
           PRODUCTION_BUILD: 'true'
         run: |
           docker buildx build \
             --cache-from=type=local,src=/tmp/.buildx-cache \
             --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
-            --secret id=AUTH_KEYCLOAK_ID \
-            --secret id=AUTH_KEYCLOAK_SECRET \
-            --secret id=AUTH_KEYCLOAK_ISSUER \
-            --secret id=SMTP_HOST \
-            --secret id=SMTP_USER \
-            --secret id=SMTP_PASS \
-            --secret id=SMTP_EMAIL_ADDRESS \
-            --secret id=NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI \
-            --secret id=NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER \
-            --secret id=DATABASE_URL \
-            --secret id=REDIS_URI \
-            --secret id=NEXT_PUBLIC_DRIVE_LINK \
-            --secret id=NEXT_PUBLIC_UMAMI_WEBSITE_ID \
             --output type=docker,dest=csclub-website.tar \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           gzip csclub-website.tar
@@ -105,12 +79,38 @@ jobs:
           KEY: ${{ secrets.SSH_EC2_KEY }}
           HOSTNAME: ${{ secrets.SSH_EC2_HOSTNAME }}
           USER: ${{ secrets.SSH_EC2_USER }}
+          AUTH_KEYCLOAK_ID: ${{ secrets.AUTH_KEYCLOAK_ID }}
+          AUTH_KEYCLOAK_SECRET: ${{ secrets.AUTH_KEYCLOAK_SECRET }}
+          AUTH_KEYCLOAK_ISSUER: ${{ secrets.AUTH_KEYCLOAK_ISSUER }}
+          NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
+          NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          REDIS_URI: ${{ secrets.REDIS_URI }}
+          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
+          NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASS: ${{ secrets.SMTP_PASS }}
+          SMTP_EMAIL_ADDRESS: ${{ secrets.SMTP_EMAIL_ADDRESS }}
         run: |
           echo "$KEY" > private_key && chmod 600 private_key
           ssh -v -o StrictHostKeyChecking=no -i private_key ${USER}@${HOSTNAME} '
             cd ~/website
             aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/csclub-website.tar.gz .
             aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/website/docker-compose.yml .
+            echo AUTH_KEYCLOAK_ID=${{ secrets.AUTH_KEYCLOAK_ID }} > .env.local
+            echo AUTH_KEYCLOAK_SECRET=${{ secrets.AUTH_KEYCLOAK_SECRET }} >> .env.local
+            echo AUTH_KEYCLOAK_ISSUER=${{ secrets.AUTH_KEYCLOAK_ISSUER }} >> .env.local
+            echo NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI=${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }} >> .env.local
+            echo NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER=${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }} >> .env.local
+            echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env.local
+            echo REDIS_URI=${{ secrets.REDIS_URI }} >> .env.local
+            echo NEXT_PUBLIC_DRIVE_LINK=${{ secrets.NEXT_PUBLIC_DRIVE_LINK }} >> .env.local
+            echo NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }} >> .env.local
+            echo SMTP_HOST=${{ secrets.SMTP_HOST }} >> .env.local
+            echo SMTP_USER=${{ secrets.SMTP_USER }} >> .env.local
+            echo SMTP_PASS=${{ secrets.SMTP_PASS }} >> .env.local
+            echo SMTP_EMAIL_ADDRESS=${{ secrets.SMTP_EMAIL_ADDRESS }} >> .env.local
             docker load -i csclub-website.tar.gz
             docker compose up -d
             docker restart csclub-website
