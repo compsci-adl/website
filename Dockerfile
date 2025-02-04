@@ -22,15 +22,7 @@ RUN npm install -g pnpm \
 
 COPY . .
 
-RUN --mount=type=secret,id=NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI,target=/run/secrets/NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI \
-    --mount=type=secret,id=NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER,target=/run/secrets/NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER \
-    --mount=type=secret,id=NEXT_PUBLIC_DRIVE_LINK,target=/run/secrets/NEXT_PUBLIC_DRIVE_LINK \
-    --mount=type=secret,id=NEXT_PUBLIC_UMAMI_WEBSITE_ID,target=/run/secrets/NEXT_PUBLIC_UMAMI_WEBSITE_ID \
-    NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI=$(cat /run/secrets/NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI) \
-    NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER=$(cat /run/secrets/NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER) \
-    NEXT_PUBLIC_DRIVE_LINK=$(cat /run/secrets/NEXT_PUBLIC_DRIVE_LINK) \
-    NEXT_PUBLIC_UMAMI_WEBSITE_ID=$(cat /run/secrets/NEXT_PUBLIC_UMAMI_WEBSITE_ID) \
-    pnpm run build
+RUN pnpm run build
 
 # Final deployment image
 FROM node:20-bookworm-slim AS runner
