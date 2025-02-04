@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import MembershipSettings from './tabs/MembershipSettings';
+import Notifications from './tabs/NotificationsSettings';
 
 export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
 export type TabNames = (typeof TAB_NAMES)[number];
@@ -16,7 +17,7 @@ const SETTING_TABS = {
     Account: () => <div>Coming soon</div>,
     'Personal Info': () => <div>Coming soon</div>,
     Membership: MembershipSettings,
-    Notifications: () => <div>Coming soon</div>,
+    Notifications: Notifications,
 } as const satisfies Record<TabNames, SettingTabComponent>;
 
 export default function Settings({ settingData }: { settingData: SettingData }) {

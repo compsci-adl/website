@@ -1,8 +1,8 @@
 import Button from '@/components/Button';
 import ControlledField from '@/components/ControlledField';
 import { STUDENT_STATUSES } from '@/constants/student-info';
-import { useUser } from '@clerk/clerk-react';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -12,6 +12,13 @@ import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../sto
 export const stepTwoSchema = z.object({
     firstName: firstNameSchema,
     lastName: lastNameSchema,
+    phoneNumber: z
+        .string()
+        .regex(/^0\d{9}$/, {
+            message: 'Please enter a valid Australian phone number',
+        })
+        .optional()
+        .or(z.literal('')),
     studentStatus: z.enum(STUDENT_STATUSES, {
         errorMap: () => ({ message: 'Please select a valid status' }),
     }),
@@ -43,12 +50,15 @@ export default function StepTwo() {
         resolver: zodResolver(validationSchema),
     });
 
-    const { user } = useUser();
+    const { data: session } = useSession();
+
     useEffect(() => {
-        if (!user) return;
-        form.setValue('firstName', String(user.firstName));
-        form.setValue('lastName', String(user.lastName));
-    }, [user]);
+        if (!session) return;
+        if (session.user) {
+            form.setValue('firstName', String(session.user.firstName));
+            form.setValue('lastName', String(session.user.lastName));
+        }
+    }, [session?.user]);
 
     const { nextStep } = useJoinUsStep();
     const handleContinue = form.handleSubmit((formData) => {
@@ -60,6 +70,12 @@ export default function StepTwo() {
         <form onSubmit={handleContinue}>
             <ControlledField label="First Name" control={form.control} name="firstName" />
             <ControlledField label="Last Name" control={form.control} name="lastName" />
+            <ControlledField
+                label="Phone Number (optional)"
+                control={form.control}
+                name="phoneNumber"
+                longLabel="Providing your phone number allows you to receive sms updates about internships, graduate opportunities, and club notifications."
+            />
             <ControlledField
                 label="Are you a university student?"
                 control={form.control}

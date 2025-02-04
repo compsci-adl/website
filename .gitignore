@@ -39,3 +39,7 @@ next-env.d.ts
 # SQLite dev database
 *.db
 *.sqlite
+
+# Keycloak
+/keycloak/*
+!/keycloak/docker-compose.yml

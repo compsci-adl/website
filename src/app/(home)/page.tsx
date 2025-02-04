@@ -80,8 +80,8 @@ export default function HomePage() {
                         <div>
                             <div className="relative z-10 mt-12 flex flex-col text-2xl font-black lg:mt-12 lg:text-3xl">
                                 <h3>New Members are</h3>
-                                <div className="mt-2 w-fit bg-purple px-2 ">
-                                    <h3 className=" text-grey">Always Welcome</h3>
+                                <div className="mt-2 w-fit bg-purple px-2">
+                                    <h3 className="text-grey">Always Welcome</h3>
                                 </div>
                             </div>
                             <div className="relative z-10 mt-4 border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">

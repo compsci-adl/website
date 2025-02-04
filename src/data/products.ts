@@ -2,7 +2,7 @@ import type { OrderLineItem } from 'square';
 
 export const PRODUCTS = {
     membership: {
-        name: 'CS Club Membership 2024',
+        name: 'CS Club Membership 2025',
         quantity: '1',
         itemType: 'ITEM',
         metadata: {

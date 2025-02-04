@@ -6,7 +6,7 @@ import { eq } from 'drizzle-orm';
 import { cache } from 'react';
 import { updateMemberExpiryDate } from './update-member-expiry-date';
 
-export const verifyMembershipPayment = cache(async (clerkId: string) => {
+export const verifyMembershipPayment = cache(async (keycloakId: string) => {
     // Get user's membership expiry date from the database
     const [member] = await db
         .select({
@@ -14,13 +14,13 @@ export const verifyMembershipPayment = cache(async (clerkId: string) => {
             membershipExpiresAt: memberTable.membershipExpiresAt,
         })
         .from(memberTable)
-        .where(eq(memberTable.clerkId, clerkId));
+        .where(eq(memberTable.keycloakId, keycloakId));
     // If membership expiry date exists and hasn't passed, user has paid
     if (member && member.membershipExpiresAt && new Date(member.membershipExpiresAt) > new Date()) {
         return { paid: true as const, membershipExpiresAt: member.membershipExpiresAt };
     }
 
-    const orderId = await redisClient.hGet(`payment:membership:${clerkId}`, 'orderId');
+    const orderId = await redisClient.hGet(`payment:membership:${keycloakId}`, 'orderId');
     if (!orderId) {
         // Membership payment for the user does not exist
         return { paid: false as const };
@@ -36,10 +36,10 @@ export const verifyMembershipPayment = cache(async (clerkId: string) => {
         // If payment ID exists, payment was successful
         if (paymentId) {
             // Set expiry date to be the January 1st of the following year
-            const expiryDate = await updateMemberExpiryDate(clerkId, 'clerkId');
+            const expiryDate = await updateMemberExpiryDate(keycloakId, 'keycloakId');
 
             // Delete key from Redis since it is no longer needed
-            await redisClient.del(`payment:membership:${clerkId}`);
+            await redisClient.del(`payment:membership:${keycloakId}`);
 
             return { paid: true as const, membershipExpiresAt: expiryDate };
         }

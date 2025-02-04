@@ -44,6 +44,7 @@ const initialStepThreeData: Record<keyof StepThreeData, string> = {
 const initialStepTwoData: Record<keyof StepTwoData, string> = {
     firstName: '',
     lastName: '',
+    phoneNumber: '',
     studentStatus: 'At The University of Adelaide',
     studentId: '',
 };
@@ -64,4 +65,46 @@ const useJoinUsStudentInfoInner = create<JoinUsStudentInfoState>((set, get) => (
 export const useJoinUsStudentInfo = () => {
     const { getStudentInfo, ...inner } = useJoinUsStudentInfoInner();
     return { ...inner, studentInfo: getStudentInfo() };
+};
+
+// Notifications
+export const categoryNames = {
+    newsletters: 'Newsletters',
+    clubEventsAndAnnouncements: 'Club Events and Announcements',
+    sponsorNotifications: 'Sponsor Notifications',
+};
+
+export type CategoryTypes = keyof typeof categoryNames;
+
+interface NotificationsState {
+    email: Record<CategoryTypes, boolean>;
+    sms: Record<CategoryTypes, boolean>;
+}
+
+type JoinUsNotificationsState = {
+    notifications: NotificationsState;
+    setNotificationsData: (notifications: NotificationsState) => void;
+};
+
+const initialNotificationsState: NotificationsState = {
+    email: {
+        newsletters: false,
+        clubEventsAndAnnouncements: false,
+        sponsorNotifications: false,
+    },
+    sms: {
+        newsletters: false,
+        clubEventsAndAnnouncements: false,
+        sponsorNotifications: false,
+    },
+};
+
+const useJoinUsNotificationsInner = create<JoinUsNotificationsState>((set) => ({
+    notifications: initialNotificationsState,
+    setNotificationsData: (notifications) => set({ notifications }),
+}));
+
+export const useJoinUsNotifications = () => {
+    const { notifications, setNotificationsData } = useJoinUsNotificationsInner();
+    return { notifications, setNotificationsData };
 };

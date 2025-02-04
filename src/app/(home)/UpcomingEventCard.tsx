@@ -15,7 +15,7 @@ function UpcomingEventCard({ event, index }: { event: Event; index: number }) {
                             <div>{event.date.day}</div>
                         </div>
                         <div className="grow space-y-2 text-2xl">
-                            <h4 className="md:border-b-[3px] md:border-black md:pb-1 ">
+                            <h4 className="md:border-b-[3px] md:border-black md:pb-1">
                                 {event.title}
                             </h4>
                             <div className="flex gap-2 text-lg font-normal">

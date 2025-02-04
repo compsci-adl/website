@@ -1,70 +1,100 @@
 import Button from '@/components/Button';
 import Field from '@/components/Field';
-import { fetcher } from '@/lib/fetcher';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import useSWRMutation from 'swr/mutation';
-import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
+import type { CategoryTypes } from '../store';
+import { categoryNames } from '../store';
+import {
+    useJoinUsStep,
+    useJoinUsStudentInfo,
+    useJoinUsNotifications,
+    useSetJoinUsHeading,
+} from '../store';
+
+type NotificationTypes = 'email' | 'sms';
 
 export default function StepFour() {
     useSetJoinUsHeading({
-        title: 'Confirm Terms',
+        title: 'Notification Preferences',
         description:
-            'You must read and agree to the terms and proceed to complete the membership payment.',
+            'Let us know how you would like to be notified about upcoming events and opportunities.',
     });
 
-    const [agreement, setAgreement] = useState(false);
-    const [agreementError, setAgreementError] = useState<string | null>(null);
+    const { prevStep, nextStep } = useJoinUsStep();
 
-    const { prevStep } = useJoinUsStep();
     const { studentInfo } = useJoinUsStudentInfo();
+    const { notifications, setNotificationsData } = useJoinUsNotifications();
+    const phoneNumber = studentInfo.phoneNumber;
 
-    const router = useRouter();
-    const createMember = useSWRMutation('member', fetcher.post.mutate, {
-        onError: () => {
-            setAgreementError('Server error.');
-        },
-        onSuccess: () => {
-            router.push('/settings');
-            router.refresh();
-        },
-    });
-
-    const handleSignUp = async () => {
-        setAgreementError(null);
-        if (!agreement) {
-            setAgreementError('Please agree to the terms');
-            return;
-        }
-        createMember.trigger(studentInfo);
+    const toggleNotification = (type: NotificationTypes, category: CategoryTypes) => {
+        setNotificationsData({
+            ...notifications,
+            [type]: {
+                ...notifications[type],
+                [category]: !notifications[type][category],
+            },
+        });
     };
 
-    const toggleAgreement = () => setAgreement(!agreement);
+    const handleContinue = () => {
+        setNotificationsData(notifications);
+        nextStep();
+    };
 
     return (
         <div>
             <div className="mb-4 mt-8">
-                {/* TODO: Add links to codes of conduct */}
-                <Field
-                    label="By submitting this form, you agree to abide by the University Code of Conduct and Computer Science Club Code of Conduct. You acknowledge that failure to adhere to these rules may result in your membership being suspended or revoked following formal procedures outlined in the Code of Conduct. You also acknowledge that services and events offered by the Club may change at any time upon our discretion without notice."
-                    value={agreement ? 'Yes' : 'No'}
-                    onChange={toggleAgreement}
-                    error={agreementError}
-                    type="checkbox"
-                />
+                {(['email'] as NotificationTypes[]).map((type) => (
+                    <div key={type} className="mb-6">
+                        <h2 className="text-lg font-semibold capitalize">{type}</h2>
+                        {(Object.keys(categoryNames) as CategoryTypes[]).map((category) => (
+                            <div key={category} className="flex items-center justify-between">
+                                <p>{categoryNames[category]}</p>
+                                <div>
+                                    <Field
+                                        label=""
+                                        type="toggle"
+                                        value={notifications[type][category]}
+                                        onChange={() => toggleNotification(type, category)}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                ))}
             </div>
+
+            {phoneNumber && (
+                <div className="mb-4 mt-8">
+                    <div className="mb-6">
+                        <h2 className="text-lg font-semibold">SMS</h2>
+                        {(Object.keys(categoryNames) as CategoryTypes[]).map((category) => (
+                            <div key={category} className="flex items-center justify-between">
+                                <p>{categoryNames[category]}</p>
+                                <div>
+                                    <Field
+                                        label=""
+                                        type="toggle"
+                                        value={notifications['sms'][category]}
+                                        onChange={() => toggleNotification('sms', category)}
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            )}
+
             <div className="grid grid-cols-2 gap-4">
                 <Button onClick={prevStep} colour="orange" width="w-full" size="small">
                     Back
                 </Button>
                 <Button
-                    onClick={handleSignUp}
-                    colour="purple"
+                    type="button"
+                    colour="orange"
                     width="w-full"
                     size="small"
-                    loading={createMember.isMutating}
+                    onClick={handleContinue}
                 >
-                    Sign up
+                    Continue
                 </Button>
             </div>
         </div>

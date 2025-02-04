@@ -1,7 +1,7 @@
 import Button from '@/components/Button';
 import { fetcher } from '@/lib/fetcher';
 import { formatDate } from '@/utils/format-date';
-import { useUser } from '@clerk/clerk-react';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import type { PaymentLink } from 'square';
 import useSWRMutation from 'swr/mutation';
@@ -10,7 +10,7 @@ import type { SettingTabProps } from '../Settings';
 export default function MembershipSettings({
     settingData: { membershipPayment: payment },
 }: SettingTabProps) {
-    const { user } = useUser();
+    const { data: session } = useSession();
 
     const pay = useSWRMutation('payment', fetcher.post.mutate, {
         onSuccess: async (data: PaymentLink) => {
@@ -18,13 +18,13 @@ export default function MembershipSettings({
         },
     });
 
-    // const handlePayment = async () => {
-    //     pay.trigger({
-    //         product: 'membership',
-    //         customerId: user!.id,
-    //         redirectUrl: window.location.href,
-    //     });
-    // };
+    const handlePayment = async () => {
+        pay.trigger({
+            product: 'membership',
+            customerId: session?.user!.id,
+            redirectUrl: window.location.href,
+        });
+    };
 
     return (
         <div>
@@ -52,6 +52,10 @@ export default function MembershipSettings({
                         <Link href="/about" className="underline">
                             committee members
                         </Link>
+                        . Membership for {new Date().getFullYear()} will expire on{' '}
+                        <span className="font-bold">
+                            {formatDate(new Date(new Date().getFullYear() + 1, 0, 1))}
+                        </span>
                         .
                     </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>

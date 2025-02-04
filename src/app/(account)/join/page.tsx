@@ -1,5 +1,5 @@
+import { auth } from '@/auth';
 import { checkUserExists } from '@/server/check-user-exists';
-import { currentUser } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import { redirect } from 'next/navigation';
 import Join from './Join';
@@ -9,9 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default async function JoinPage() {
-    const user = await currentUser();
-    if (user) {
-        const userExists = await checkUserExists(user.id);
+    const session = await auth();
+
+    if (session?.user && session?.user.id) {
+        const userExists = await checkUserExists(session.user.id);
         if (userExists) {
             redirect('/settings');
         }
