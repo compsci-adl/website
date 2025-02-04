@@ -16,6 +16,7 @@ interface ExtendedSession extends Session {
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [Keycloak],
+    trustHost: true,
     callbacks: {
         async jwt({ token, user, account, profile }) {
             // Add user information to the JWT token
