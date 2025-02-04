@@ -21,7 +21,7 @@ export const env = createEnv({
     client: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: z.string().url().min(1).optional(),
         NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: z.string().url().min(1).optional(),
-        NEXT_PUBLIC_DRIVE_LINK: z.string().url().min(1),
+        NEXT_PUBLIC_DRIVE_LINK: z.string().url().min(1).optional(),
         NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().optional(),
     },
     experimental__runtimeEnv: {
