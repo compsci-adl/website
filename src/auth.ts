@@ -1,7 +1,18 @@
-import jwt from 'jsonwebtoken';
+import { decodeJwt } from 'jose';
 import NextAuth from 'next-auth';
 import type { Session } from 'next-auth';
 import Keycloak from 'next-auth/providers/keycloak';
+
+interface KeycloakToken {
+    realm_access?: {
+        roles?: string[];
+    };
+    sub?: string;
+    given_name?: string;
+    family_name?: string;
+    email?: string;
+    name?: string;
+}
 
 interface ExtendedSession extends Session {
     user: {
@@ -19,20 +30,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     trustHost: true,
     callbacks: {
         async jwt({ token, user, account, profile }) {
-            // Add user information to the JWT token
             if (account?.access_token) {
-                const decodedToken = jwt.decode(account?.access_token);
-                if (decodedToken && typeof decodedToken !== 'string') {
-                    if (decodedToken?.realm_access?.roles.includes('restricted-access')) {
-                        token.isCommittee = true;
-                    }
+                const decodedToken = decodeJwt<KeycloakToken>(account.access_token);
+                if (decodedToken?.realm_access?.roles?.includes('restricted-access')) {
+                    token.isCommittee = true;
                 }
             }
             if (user) {
                 token.email = user.email;
                 token.name = user.name;
             }
-
             if (profile) {
                 token.id = profile.sub;
                 token.firstName = profile.given_name;
@@ -41,7 +48,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             return token;
         },
         async session({ session, token }) {
-            // Add user ID and names to the session
             if (token) {
                 session.user.id = token.id as string;
                 session.user.email = token.email as string;
