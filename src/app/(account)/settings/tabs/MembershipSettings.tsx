@@ -43,10 +43,6 @@ export default function MembershipSettings({
             ) : (
                 <>
                     <p>
-                        Membership payments will resume later this year. Please check back for
-                        updates.
-                    </p>
-                    {/* <p>
                         Finalise your membership by completing the required payment either online
                         below, at a club event, or contact one of the{' '}
                         <Link href="/about" className="underline">
@@ -69,7 +65,7 @@ export default function MembershipSettings({
                         loading={pay.isMutating}
                     >
                         Pay Online
-                    </Button> */}
+                    </Button>
                 </>
             )}
         </div>
