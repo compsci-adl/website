@@ -34,16 +34,32 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Echo NEXT_PUBLIC_DRIVE_LINK to .env.local
+        run: echo "NEXT_PUBLIC_DRIVE_LINK=${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}" > .env.local
+
       - name: Build Docker container
         env:
-          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
           PRODUCTION_BUILD: 'true'
         run: |
           docker buildx build \
-            --build-arg NEXT_PUBLIC_DRIVE_LINK=${{ secrets.NEXT_PUBLIC_DRIVE_LINK }} \
-            --output type=docker,dest=csclub-website.tar \
-            --platform=linux/arm64 --file=Dockerfile -t csclub-website .
+          --cache-from=type=local,src=/tmp/.buildx-cache \
+          --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
+          --output type=docker,dest=csclub-website.tar \
+          --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           gzip csclub-website.tar
+
+      - name: Save Docker cache
+        if: success()
+        run: |
+          rsync -a --delete /tmp/.buildx-cache-new/ /tmp/.buildx-cache/
 
       - name: Copy image and compose file to S3
         run: |
