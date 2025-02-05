@@ -36,9 +36,11 @@ jobs:
 
       - name: Build Docker container
         env:
+          NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
           PRODUCTION_BUILD: 'true'
         run: |
           docker buildx build \
+            --build-arg NEXT_PUBLIC_DRIVE_LINK=${{ secrets.NEXT_PUBLIC_DRIVE_LINK }} \
             --output type=docker,dest=csclub-website.tar \
             --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           gzip csclub-website.tar
