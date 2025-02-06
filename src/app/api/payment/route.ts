@@ -99,7 +99,7 @@ export async function PUT(request: Request) {
     });
 
     const session = await auth();
-    if (!session?.user?.isCommittee) {
+    if (!session?.user?.isAdmin) {
         return new Response(null, { status: 401 });
     }
 

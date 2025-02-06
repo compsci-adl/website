@@ -38,9 +38,10 @@ const getHeaderData = async () => {
     return {
         isSignedIn: true as const,
         avatar: avatar,
-        isAdmin: session?.user
+        isCommittee: session?.user
             ? ((session.user.isCommittee as boolean | undefined) ?? false)
             : false,
+        isAdmin: session?.user ? ((session.user.isAdmin as boolean | undefined) ?? false) : false,
         nextStep,
         isMember: nextStep === null,
     };

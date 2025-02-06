@@ -23,7 +23,7 @@ export const sendWelcomeEmail = async (
     const emailHtml = await render(React.createElement(Email, { firstName }));
 
     const options = {
-        from: env.SMTP_EMAIL_ADDRESS,
+        from: `CS Club <${env.SMTP_EMAIL_ADDRESS}>`,
         to: recipientEmail,
         subject: 'Welcome to the CS Club!',
         html: emailHtml,

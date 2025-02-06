@@ -74,7 +74,7 @@ export default function StepTwo() {
                 label="Phone Number (optional)"
                 control={form.control}
                 name="phoneNumber"
-                longLabel="Providing your phone number allows you to receive sms updates about internships, graduate opportunities, and club notifications."
+                longLabel="Providing your phone number allows you to receive SMS updates about internships, graduate opportunities, and club notifications."
             />
             <ControlledField
                 label="Are you a university student?"
