@@ -22,6 +22,16 @@ export function MenuLinks({ data, onClick }: { data: HeaderData; onClick?: () =>
                     Settings
                 </Link>
             )}
+            {data.isCommittee && (
+                <Link
+                    href="https://wiki.csclub.org.au"
+                    target="_blank"
+                    className="block hover:underline"
+                    onClick={onClick}
+                >
+                    Wiki
+                </Link>
+            )}
             {data.isAdmin && (
                 <Link href="/admin" className="block hover:underline" onClick={onClick}>
                     Admin Panel

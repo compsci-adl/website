@@ -9,6 +9,7 @@ declare module 'next-auth' {
             firstName?: string;
             lastName?: string;
             isCommittee?: boolean;
+            isAdmin?: boolean;
         };
     }
 }

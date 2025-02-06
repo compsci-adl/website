@@ -22,6 +22,7 @@ interface ExtendedSession extends Session {
         firstName?: string;
         lastName?: string;
         isCommittee?: boolean;
+        isAdmin?: boolean;
     };
 }
 
@@ -32,8 +33,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         async jwt({ token, user, account, profile }) {
             if (account?.access_token) {
                 const decodedToken = decodeJwt<KeycloakToken>(account.access_token);
-                if (decodedToken?.realm_access?.roles?.includes('restricted-access')) {
+                if (decodedToken?.realm_access?.roles?.includes('committee')) {
                     token.isCommittee = true;
+                }
+                if (decodedToken?.realm_access?.roles?.includes('restricted-access')) {
+                    token.isAdmin = true;
                 }
             }
             if (user) {
@@ -59,6 +63,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     | string
                     | undefined;
                 (session.user as ExtendedSession['user']).isCommittee = token.isCommittee as
+                    | boolean
+                    | undefined;
+                (session.user as ExtendedSession['user']).isAdmin = token.isAdmin as
                     | boolean
                     | undefined;
             }
