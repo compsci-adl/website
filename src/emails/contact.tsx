@@ -127,10 +127,15 @@ export default function Email({ fullname, email, message }: EmailProps) {
                                 <tr>
                                     <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
                                     <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
-                                        <h1 className="text-xl text-grey md:text-2xl dark:text-white">
-                                            Contact Us Form Submission
-                                        </h1>
-                                        <div className="border-t-0.5 dynamicBorder h-0.5 w-full border-x-0 border-b-0 border-solid"></div>
+                                        <div className="h-[12px]"></div>
+                                        <span>
+                                            <h1 className="inline text-xl text-grey md:text-2xl dark:text-white">
+                                                Contact Us Form Submission
+                                            </h1>
+                                            {/* Apostrophe is required for the copyright symbol to be displayed properly due to issue with React Email */}
+                                            <p className="inline text-white dark:text-grey">’</p>
+                                        </span>
+                                        <div className="border-t-0.5 dynamicBorder mt-4 h-0.5 w-full border-x-0 border-b-0 border-solid"></div>
                                         <span className="text-grey dark:text-white">
                                             <p className="text-md md:text-xl">
                                                 <strong>Name</strong>
