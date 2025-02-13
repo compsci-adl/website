@@ -1,8 +1,9 @@
+'use client';
+
 import FancyRectangle from '@/components/FancyRectangle';
 import { EVENTS, type Event } from '@/data/events';
 import { DateTime } from 'luxon';
-import Image from 'next/image';
-import { FiClock, FiMapPin } from 'react-icons/fi';
+import EventsByYear from './EventsByYear';
 
 function Title({ children }: { children: string }) {
     return (
@@ -18,94 +19,71 @@ function Title({ children }: { children: string }) {
     );
 }
 
-function EventCard({
-    event,
-    index,
-    isPastEvent,
-}: {
-    event: Event;
-    index: number;
-    isPastEvent?: boolean;
-}) {
-    return (
-        <FancyRectangle colour="white" offset="8" rounded fullWidth>
-            <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
-                <Image
-                    src={`/images/events/${event.image}`}
-                    alt={`${event.title}`}
-                    width={450}
-                    height={450}
-                    className={`w-full shrink-0 rounded-lg border-[3px] border-black bg-white object-contain md:w-[450px] ${isPastEvent ? 'grayscale' : ''}`}
-                />
-                <div className="grow space-y-2 md:space-y-4">
-                    <div className="flex gap-6 font-bold">
-                        <div className="grow space-y-2">
-                            <h4 className="text-2xl md:border-b-[3px] md:border-black md:pb-1 md:text-3xl">
-                                {event.title}
-                            </h4>
-                            <div className="flex gap-2">
-                                <FiClock size={26} />
-                                <span>{event.time}</span>
-                            </div>
-                            <div className="flex gap-2">
-                                <FiMapPin size={26} />
-                                <span>{event.location}</span>
-                            </div>
-                        </div>
-                        <div
-                            className={`h-fit rounded-md border-[3px] border-black px-4 py-2 ${['bg-orange', 'bg-yellow', 'bg-purple'][index % 3]} ${isPastEvent ? 'grayscale' : ''}`}
-                        >
-                            <div>{event.date.month}</div>
-                            <div>{event.date.day}</div>
-                        </div>
-                    </div>
-                    <div>{event.details}</div>
-                    {event.url && (
-                        <a
-                            href={event.url.href.toString()}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="font-bold hover:underline"
-                        >
-                            {event.url.text ?? 'Click here!'}
-                        </a>
-                    )}
-                </div>
-            </div>
-        </FancyRectangle>
-    );
-}
-
 const getEventDate = (event: Event) => {
     const dateStr = `${event.date.year}-${event.date.month}-${event.date.day}T${event.date.endTime}`;
-    const eventDate = DateTime.fromFormat(dateStr, "yyyy-MMM-d'T'HH:mm", {
+    return DateTime.fromFormat(dateStr, "yyyy-MMM-d'T'HH:mm", {
         zone: 'Australia/Adelaide',
-    });
-
-    return eventDate.toJSDate();
+    }).toJSDate();
 };
 
 export default function Events({ className }: { className?: string }) {
     const CURRENT_DATE = new Date();
-    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
-    const PAST_EVENTS = EVENTS.filter((event) => getEventDate(event) < CURRENT_DATE).reverse(); // Most recent event first
+    const CURRENT_YEAR = CURRENT_DATE.getFullYear();
+
+    // Create empty objects to hold upcoming and past events categorised by year
+    const upcomingEvents: Record<number, Event[]> = {};
+    const pastEvents: Record<number, Event[]> = {};
+
+    // Categorise events by year and whether they are upcoming or past
+    EVENTS.forEach((event) => {
+        const eventDate = getEventDate(event);
+        const year = event.date.year;
+
+        if (eventDate >= CURRENT_DATE) {
+            (upcomingEvents[year] ||= []).push(event);
+        } else {
+            (pastEvents[year] ||= []).push(event);
+        }
+    });
+
+    // Reverse the order of events within each year (i.e., most recent event at the top)
+    Object.values(upcomingEvents).forEach((events) => events.reverse());
+    Object.values(pastEvents).forEach((events) => events.reverse());
+
+    const getSortedYears = (events: Record<number, Event[]>) =>
+        Object.keys(events).map(Number).reverse();
+
+    const currentYear = getSortedYears(upcomingEvents);
+    const pastYears = getSortedYears(pastEvents);
 
     return (
         <section className={`${className} space-y-8`}>
-            {UPCOMING_EVENTS.length > 0 && (
+            {currentYear.length > 0 && (
                 <>
                     <Title>Upcoming Events</Title>
-                    {UPCOMING_EVENTS.map((event, i) => (
-                        <EventCard key={i} index={i} event={event} />
+                    {currentYear.map((year) => (
+                        <EventsByYear
+                            key={year}
+                            year={year}
+                            events={upcomingEvents[year]}
+                            isOpenDefault={year === CURRENT_YEAR}
+                        />
                     ))}
                 </>
             )}
 
-            {PAST_EVENTS.length > 0 && (
+            {pastYears.length > 0 && (
                 <>
+                    <div className="h-4"></div>
                     <Title>Past Events</Title>
-                    {PAST_EVENTS.map((event, i) => (
-                        <EventCard key={i} index={i} event={event} isPastEvent />
+                    {pastYears.map((year) => (
+                        <EventsByYear
+                            key={year}
+                            year={year}
+                            events={pastEvents[year]}
+                            isOpenDefault={year === CURRENT_YEAR}
+                            isPastEvent
+                        />
                     ))}
                 </>
             )}
