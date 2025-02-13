@@ -30,9 +30,11 @@ export default function Events({ className }: { className?: string }) {
     const CURRENT_DATE = new Date();
     const CURRENT_YEAR = CURRENT_DATE.getFullYear();
 
+    // Create empty objects to hold upcoming and past events categorised by year
     const upcomingEvents: Record<number, Event[]> = {};
     const pastEvents: Record<number, Event[]> = {};
 
+    // Categorise events by year and whether they are upcoming or past
     EVENTS.forEach((event) => {
         const eventDate = getEventDate(event);
         const year = event.date.year;
@@ -44,6 +46,7 @@ export default function Events({ className }: { className?: string }) {
         }
     });
 
+    // Reverse the order of events within each year (i.e., most recent event at the top)
     Object.values(upcomingEvents).forEach((events) => events.reverse());
     Object.values(pastEvents).forEach((events) => events.reverse());
 
