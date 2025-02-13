@@ -50,15 +50,15 @@ export default function Events({ className }: { className?: string }) {
     const getSortedYears = (events: Record<number, Event[]>) =>
         Object.keys(events).map(Number).reverse();
 
-    const upcomingYears = getSortedYears(upcomingEvents);
+    const currentYear = getSortedYears(upcomingEvents);
     const pastYears = getSortedYears(pastEvents);
 
     return (
         <section className={`${className} space-y-8`}>
-            {upcomingYears.length > 0 && (
+            {currentYear.length > 0 && (
                 <>
                     <Title>Upcoming Events</Title>
-                    {upcomingYears.map((year) => (
+                    {currentYear.map((year) => (
                         <EventsByYear
                             key={year}
                             year={year}
