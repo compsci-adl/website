@@ -32,7 +32,7 @@ export const EVENTS: Event[] = [
         location: 'Engineering and Maths EM105',
         details:
             "Come hang out and meet the Computer Science Club's committee and members in your first week of the new academic year!\nWe have board games in collaboration with the GAMES Club and our club owned Nintendo Switch.\nFood and drinks will also be provided.",
-        image: 'meet-and-greet.jpg',
+        image: '2024/meet-and-greet.jpg',
     },
     {
         title: 'Insight Into Industry',
@@ -41,7 +41,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli 715',
         details:
             'Unsure of what jobs are available in the tech industry? Or looking to find out more about where your expertise could take you? If so, come along and gain insights into what a career in the industry might look like.',
-        image: 'insight-into-industry.jpg',
+        image: '2024/insight-into-industry.jpg',
     },
     {
         title: 'Quiz Night',
@@ -49,7 +49,7 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'Ingkarni Wardli 218',
         details: 'Join us for a night of quizzical encounters! Free food and prizes to come!',
-        image: 'quiz-night.jpg',
+        image: '2024/quiz-night.jpg',
     },
     {
         title: 'Industry Night',
@@ -57,7 +57,7 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'The National Wine Centre, Hickinbotham Hall',
         details: 'Connect with top companies and explore job opportunities in the tech industry!',
-        image: 'industry-night.jpg',
+        image: '2024/industry-night.jpg',
     },
     {
         title: 'LaTeX Workshop',
@@ -66,7 +66,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli 218',
         details:
             'Do you want to create pretty documents? Is Word destroying your assignments when you move images around? Look no further than LaTeX, the academic typesetting tool created by the great Donald Knuth, and the solution to all your maths assignments.',
-        image: 'latex-workshop.jpg',
+        image: '2024/latex-workshop.jpg',
     },
     {
         title: 'Duck Duck Booze: Pub Crawl',
@@ -75,7 +75,7 @@ export const EVENTS: Event[] = [
         location: 'UniBar Adelaide and various bars in Adelaide',
         details:
             'Join us for a night of hopping from one watering hole to the next, spreading good vibes and great drinks all around.',
-        image: 'pub-crawl.png',
+        image: '2024/pub-crawl.png',
     },
     {
         title: 'Meet and Greet',
@@ -84,7 +84,7 @@ export const EVENTS: Event[] = [
         location: 'Engineering and Maths EM110 & EM105',
         details:
             "Ready to launch into the semester with a blast? Join us at our Meet & Greet! Whether you're new or missed us at O'Week, this event is for you! Get ready for Friday Night Games, free food and drinks, and you'll get to meet our committee and fellow members! Don't miss out!",
-        image: 'meet-and-greet-s2.png',
+        image: '2024/meet-and-greet-s2.png',
     },
     {
         title: 'Intro to Git and GitHub Workshop',
@@ -93,7 +93,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli 218 CAT Suite',
         details:
             'Learn the basics of version control, deal with annoying merge conflicts, and integrate these tools with Visual Studio Code. Learn more about our Open Source Team and see how they collaborate using these tools on their projects. Perfect for beginners and those looking to enhance their development skills or join the Open Source Team!',
-        image: 'git-and-github-workshop.png',
+        image: '2024/git-and-github-workshop.png',
     },
     {
         title: 'Inter-University Beginner Competition',
@@ -102,7 +102,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli B17',
         details:
             "We've got some special surprise guests flying over from Melbourne as well as $150 worth of prizes!! The competition is aimed at beginners, so it’s a perfect chance to get a taste of competitive programming. It’s a 1.5 hour comp with 6 beginner-level programming problems ICPC-style where teams of 1-3 earn more points by solving a problem faster and with fewer submissions. The competition will take place on Codeforces where you can use all popular languages: C++, C, Python, Java, Rust, Haskell, Javascript, etc. There will also be free food!!",
-        image: 'beginner-competition.png',
+        image: '2024/beginner-competition.png',
     },
     {
         title: 'Clubsland',
@@ -111,7 +111,7 @@ export const EVENTS: Event[] = [
         location: 'Hub Central',
         details:
             "Missed us at O'Week? Well you're in luck, because we are back again for Clubsland! This is yet another chance to meet the committee and ask any questions you have about the club! So come along and have a chat. Find out why you should sign up to the CS Club and potentially make new friends!  See you there!",
-        image: 'clubsland.png',
+        image: '2024/clubsland.png',
     },
     {
         title: 'Pandas Workshop',
@@ -120,7 +120,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli B16',
         details:
             'Ready to dive into data analysis? Join us for the introductory Pandas Workshop! Learn the basics of data science and data analysis in this workshop, and discover how you can use these skills in machine learning. Perfect for beginners, this workshop will introduce you to the roadmap for your journey into artificial intelligence and data science.',
-        image: 'pandas-workshop.png',
+        image: '2024/pandas-workshop.png',
     },
     {
         title: 'Intro to CTF Workshop',
@@ -129,7 +129,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli B16',
         details:
             "Whether you're a novice or a seasoned coder, this workshop is designed to equip you with the skills you need to excel in Capture The Flag competitions. We'll cover the essentials, from understanding challenges to decoding the toughest puzzles, so you can be ready for our upcoming DuckCTF!",
-        image: 'ctf-workshop.png',
+        image: '2024/ctf-workshop.png',
     },
     {
         title: 'DuckCTF',
@@ -138,7 +138,7 @@ export const EVENTS: Event[] = [
         location: 'Australian Cyber Collaboration Centre (ACCC)',
         details:
             'Join us for DuckCTF, our premier Capture The Flag competition designed to challenge and sharpen your cybersecurity skills. Form your team of 3 and be ready to solve complex problems while learning valuable new techniques. On-site spaces are limited, but contestants can also join remotely.',
-        image: 'duck-ctf.png',
+        image: '2024/duck-ctf.png',
     },
     {
         title: 'Grad Mixer',
@@ -147,7 +147,7 @@ export const EVENTS: Event[] = [
         location: 'The Gallery, Level 2, 30 Waymouth St',
         details:
             'Join us for an evening of networking with students, alumni, and industry professionals in fields like software development, AI, and cybersecurity. Expand your network, share experiences, and explore new opportunities while enjoying light refreshments in a relaxed atmosphere.',
-        image: 'grad-mixer.png',
+        image: '2024/grad-mixer.png',
     },
     {
         title: 'Data Driven Future',
@@ -156,7 +156,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli 715',
         details:
             'Join us for "Data Driven Future" - An AI and Data Science Panel! Discover insights from top minds in AI and data science as they explore the future of technology, machine learning, and innovation. Whether you\'re curious about AI\'s impact on industries, new research, or real-world applications, this panel is for you!',
-        image: 'ai-panel.png',
+        image: '2024/ai-panel.png',
     },
     {
         title: 'Cybersecurity Panel: Hacking the Industry',
@@ -165,7 +165,7 @@ export const EVENTS: Event[] = [
         location: 'Ingkarni Wardli 715',
         details:
             'Join us for an exclusive panel featuring industry experts from cybersecurity, digital forensics, and reverse engineering! Dive deep into the world of cyber defense, learn about the latest trends, and gain insights from seasoned professionals.',
-        image: 'cyber-panel.png',
+        image: '2024/cyber-panel.png',
     },
     {
         title: 'Annual General Meeting',
@@ -174,7 +174,7 @@ export const EVENTS: Event[] = [
         location: 'Scott Theatre',
         details:
             "The CS Club's Annual General Meeting is approaching! This is your chance to elect our new committee for 2025.",
-        image: 'agm.png',
+        image: '2024/agm.png',
     },
     {
         title: 'TECH.TONIC',
@@ -183,7 +183,20 @@ export const EVENTS: Event[] = [
         location: 'The Astor Hotel, 437 Pulteney St',
         details:
             'Join us for a retro-inspired cocktail night! This collaboration between the CS Club and AMESS offers food, drinks, and good vibes. Celebrate the end of the semester, relax, or enjoy a fun night out with friends!',
-        image: 'techtonic.png',
+        image: '2024/techtonic.png',
+    },
+    {
+        title: 'CSC x CPC x SQUAD Industry Night',
+        date: { year: 2025, month: 'MAR', day: 11, endTime: '21:00' },
+        time: '6:00pm - 9:00pm',
+        location: 'National Wine Centre of Australia ',
+        details:
+            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss!",
+        url: {
+            href: new URL('https://events.humanitix.com/csc-x-cpc-x-squad-industry-night'),
+            text: 'Tickets are limited – get yours now!',
+        },
+        image: '2025/industry-night.png',
     },
 ];
 
