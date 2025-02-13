@@ -189,7 +189,7 @@ export const EVENTS: Event[] = [
         title: 'CSC x CPC x SQUAD Industry Night',
         date: { year: 2025, month: 'MAR', day: 11, endTime: '21:00' },
         time: '6:00pm - 9:00pm',
-        location: 'National Wine Centre of Australia ',
+        location: 'National Wine Centre of Australia',
         details:
             "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss!",
         url: {
