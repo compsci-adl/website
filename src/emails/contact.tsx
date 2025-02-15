@@ -11,6 +11,29 @@ import {
 } from '@react-email/components';
 import * as React from 'react';
 
+interface HtmlConditionalCommentProps {
+    children: React.ReactNode;
+    comment: string;
+    msoOnly?: boolean;
+}
+
+// Helper component for Outlook conditional rendering
+function HtmlConditionalComment({ children, comment, msoOnly }: HtmlConditionalCommentProps) {
+    return msoOnly ? (
+        <>
+            <div data-comment-mso-start={comment} />
+            {children}
+            <div data-comment-mso-end="endif" />
+        </>
+    ) : (
+        <>
+            <div data-comment-start={comment} />
+            {children}
+            <div data-comment-end="endif" />
+        </>
+    );
+}
+
 export interface EmailProps {
     fullname: string;
     email: string;
@@ -26,8 +49,7 @@ export default function Email({ fullname, email, message }: EmailProps) {
     }
 
     const getIconSrc = ({ type, name }: IconSrcParams): string => {
-        const lowerCaseName = name.toLowerCase();
-        return `https://csclub.org.au/images/email/${type}/${lowerCaseName}.png`;
+        return `https://csclub.org.au/images/email/${type}/${name.toLowerCase()}.png`;
     };
 
     return (
@@ -38,13 +60,7 @@ export default function Email({ fullname, email, message }: EmailProps) {
                         colors: {
                             grey: '#252020',
                             white: '#F3F3EB',
-                            trueWhite: '#FFFFFF',
-                            orange: '#E1652B',
-                            yellow: '#FCC018',
                             purple: '#7E7FE7',
-                        },
-                        backgroundImage: {
-                            bg: "url('https://csclub.org.au/images/email/bg.png')",
                         },
                         fontFamily: {
                             sans: ['Arial', 'sans-serif'],
@@ -99,18 +115,28 @@ export default function Email({ fullname, email, message }: EmailProps) {
                             <Section className="w-full border-collapse">
                                 <Row>
                                     <Column className="text-center">
-                                        {/* Default Light Mode Logo */}
-                                        <Img
-                                            className="light max-h-[60px]"
-                                            src={getIconSrc({ type: 'light', name: 'logo' })}
-                                            alt="CS Club"
-                                        />
-                                        {/* Dark Mode Logo */}
-                                        <Img
-                                            className="dark max-h-[60px]"
-                                            src={getIconSrc({ type: 'dark', name: 'logo' })}
-                                            alt="CS Club"
-                                        />
+                                        {/* Modern Email Clients */}
+                                        <HtmlConditionalComment comment="!mso">
+                                            <Img
+                                                className="light max-h-[60px]"
+                                                src={getIconSrc({ type: 'light', name: 'logo' })}
+                                                alt="CS Club"
+                                            />
+                                            <Img
+                                                className="dark max-h-[60px]"
+                                                src={getIconSrc({ type: 'dark', name: 'logo' })}
+                                                alt="CS Club"
+                                            />
+                                        </HtmlConditionalComment>
+                                        {/* Outlook (classic) */}
+                                        <HtmlConditionalComment comment="mso" msoOnly>
+                                            <Img
+                                                src="https://csclub.org.au/images/email/light/logo.png"
+                                                width="200"
+                                                alt="CS Club"
+                                                className="mx-auto block max-h-[60px]"
+                                            />
+                                        </HtmlConditionalComment>
                                     </Column>
                                 </Row>
                             </Section>
@@ -118,51 +144,104 @@ export default function Email({ fullname, email, message }: EmailProps) {
 
                         {/* Email Content */}
                         <div className="mx-6 mb-8 mt-4 md:mx-10">
-                            <table className="w-full border-spacing-0">
-                                <tr className="h-[8px] w-[8px] p-0">
-                                    <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="block w-[8px] p-0"></td>
-                                </tr>
-                                <tr>
-                                    <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
-                                        <div className="h-[12px]"></div>
-                                        <span>
-                                            <h1 className="inline text-xl text-grey md:text-2xl dark:text-white">
-                                                Contact Us Form Submission
-                                            </h1>
-                                            {/* Apostrophe is required for the copyright symbol to be displayed properly due to issue with React Email */}
-                                            <p className="inline text-white dark:text-grey">’</p>
-                                        </span>
-                                        <div className="border-t-0.5 dynamicBorder mt-4 h-0.5 w-full border-x-0 border-b-0 border-solid"></div>
-                                        <span className="text-grey dark:text-white">
-                                            <p className="text-md md:text-xl">
-                                                <strong>Name</strong>
-                                            </p>
-                                            <p>{fullname}</p>
-                                        </span>
-                                        <span className="text-grey dark:text-white">
-                                            <p className="text-md md:text-xl">
-                                                <strong>Email</strong>
-                                            </p>
-                                            <p>{email}</p>
-                                        </span>
-                                        <span className="text-grey dark:text-white">
-                                            <p className="text-md md:text-xl">
-                                                <strong>Message</strong>
-                                            </p>
-                                            <p>{message}</p>
-                                        </span>
-                                    </td>
-                                    <td className="bg-purple p-0"></td>
-                                </tr>
-                                <tr className="h-[8px]">
-                                    <td></td>
-                                    <td className="bg-purple p-0"></td>
-                                    <td className="bg-purple p-0"></td>
-                                </tr>
-                            </table>
+                            {/* Modern Email Clients */}
+                            <HtmlConditionalComment comment="!mso">
+                                <table className="w-full border-spacing-0">
+                                    <tr className="h-[8px] w-[8px] p-0">
+                                        <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
+                                        <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
+                                        <td className="block w-[8px] p-0"></td>
+                                    </tr>
+                                    <tr>
+                                        <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
+                                        <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
+                                            <div className="h-[12px]"></div>
+                                            <span>
+                                                <h1 className="inline text-xl text-grey md:text-2xl dark:text-white">
+                                                    Contact Us Form Submission
+                                                </h1>
+                                                {/* Apostrophe is required for the copyright symbol to be displayed properly due to issue with React Email */}
+                                                <p className="inline text-white dark:text-grey">
+                                                    ’
+                                                </p>
+                                            </span>
+                                            <div className="border-t-0.5 dynamicBorder mt-4 h-0.5 w-full border-x-0 border-b-0 border-solid"></div>
+                                            <span className="text-grey dark:text-white">
+                                                <p className="text-md md:text-xl">
+                                                    <strong>Name</strong>
+                                                </p>
+                                                <p>{fullname}</p>
+                                            </span>
+                                            <span className="text-grey dark:text-white">
+                                                <p className="text-md md:text-xl">
+                                                    <strong>Email</strong>
+                                                </p>
+                                                <p>{email}</p>
+                                            </span>
+                                            <span className="text-grey dark:text-white">
+                                                <p className="text-md md:text-xl">
+                                                    <strong>Message</strong>
+                                                </p>
+                                                <p>{message}</p>
+                                            </span>
+                                        </td>
+                                        <td className="bg-purple p-0"></td>
+                                    </tr>
+                                    <tr className="h-[8px]">
+                                        <td></td>
+                                        <td className="bg-purple p-0"></td>
+                                        <td className="bg-purple p-0"></td>
+                                    </tr>
+                                </table>
+                            </HtmlConditionalComment>
+                            {/* Outlook (classic) */}
+                            <HtmlConditionalComment comment="mso" msoOnly>
+                                <table className="w-full border-collapse border-spacing-0">
+                                    <tr>
+                                        <td className="h-[15px]"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>
+                                                <h1 className="md:text-2x inline text-xl text-grey">
+                                                    Contact Us Form Submission
+                                                </h1>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="h-[20px]"></td>
+                                    </tr>
+                                    <tr>
+                                        <td className="dynamicBorder h-[1px] bg-grey"></td>
+                                    </tr>
+                                    <tr>
+                                        <td className="h-[20px]"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span className="text-gre">
+                                                <p className="text-md md:text-xl">
+                                                    <strong>Name</strong>
+                                                </p>
+                                                <p>{fullname}</p>
+                                            </span>
+                                            <span className="text-gre">
+                                                <p className="text-md md:text-xl">
+                                                    <strong>Email</strong>
+                                                </p>
+                                                <p>{email}</p>
+                                            </span>
+                                            <span className="text-gre">
+                                                <p className="text-md md:text-xl">
+                                                    <strong>Message</strong>
+                                                </p>
+                                                <p>{message}</p>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </HtmlConditionalComment>
                         </div>
 
                         {/* Footer */}
