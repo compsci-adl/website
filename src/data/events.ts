@@ -29,7 +29,7 @@ export type Event = {
 export type PayloadEvent = {
     details: string;
     id: string;
-    link?: { Link: string; displayText: string };
+    link?: { Link?: string; displayText?: string };
     location: string;
     time: {end: string; start: string};
     title: string;
@@ -54,6 +54,15 @@ export type PayloadEvent = {
 // Payload URL
 export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events';
 
+const isValidUrl = (url: string): boolean => {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
 // Function to parse Payload data to Event type
 export const parseEvents = (raw: PayloadEvent): Event => {
     const eventDate = new Date(raw.date);
@@ -74,7 +83,9 @@ export const parseEvents = (raw: PayloadEvent): Event => {
         : "Unknown",
         location: raw.location,
         details: raw.details,
-        url: raw.link? { href: new URL(raw.link.Link), text: raw.link.displayText}: undefined,
+        url: raw.link && raw.link.Link
+        ? { href: new URL(raw.link.Link), text: raw.link.displayText }
+        : undefined,
         image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : "/placeholder.jpg", // Image is in the form of url (Needs a seperate API call)
         // TODO: add /placeholder.jpg for failed image calls
       };
