@@ -1,4 +1,5 @@
 import type { Image } from '@/components/ImageCarousel';
+import { env } from '@/env.mjs'
 
 type Month =
     | 'JAN'
@@ -13,6 +14,7 @@ type Month =
     | 'OCT'
     | 'NOV'
     | 'DEC';
+
 export type Event = {
     title: string;
     date: { year: number; month: Month; day: number; endTime: string };
@@ -22,6 +24,62 @@ export type Event = {
     url?: { href: URL; text?: string };
     image: string;
 };
+
+// API response format from PayloadCMS
+export type PayloadEvent = {
+    details: string;
+    id: string;
+    link?: { href?: string; text?: string };
+    location: string;
+    time: string;
+    title: string;
+    date: string;
+    banner?: {
+        id: string;
+        alt?: string;
+        filename: string;
+        mimeType: string;
+        filesize: number;
+        width: number;
+        height: number;
+        focalX?: number;
+        focalY?: number;
+        createdAt: string;
+        updatedAt: string;
+        url: string; 
+        thumbnailURL?: string | null;
+      };
+  };
+
+// Payload URL
+export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events';
+
+// Function to parse Payload data to Event type
+export const parseEvents = (raw: PayloadEvent): Event => {
+    const eventDate = new Date(raw.date);
+    const monthNames: Month[] = [
+        "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+        "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"
+    ];
+    
+    return {
+        title: raw.title,
+        date: {
+          year: eventDate.getUTCFullYear(),
+          month: monthNames[eventDate.getUTCMonth()],
+          day: eventDate.getUTCDate(),
+          endTime: raw.time.split(" - ")[1] ?? '21:00', // if undefined 9:00pm required for Events.tsx logic
+        },
+        time: raw.time,
+        location: raw.location,
+        details: raw.details,
+        url: raw.link?.href
+          ? { href: new URL(raw.link.href), text: raw.link.text }
+          : undefined,
+        image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : "/placeholder.jpg", // Image is in the form of url (Needs a seperate API call)
+        // TODO: add /placeholder.jpg for failed image calls
+      };
+}
 
 // Times are in Australian Central Standard Time (ACST)
 export const EVENTS: Event[] = [

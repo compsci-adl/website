@@ -16,7 +16,7 @@ export default function EventCard({
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
                 <Image
-                    src={`/images/events/${event.image}`}
+                    src={event.image}
                     alt={`${event.title}`}
                     width={450}
                     height={450}
