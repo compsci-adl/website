@@ -40,6 +40,7 @@ export default function Events({ className }: { className?: string }) {
         .then((data) => {
             const payloadData = data.docs;
             for (let docNum in payloadData) {
+                console.log(payloadData[docNum])
                 const newEvent = parseEvents(payloadData[docNum]);
                 EVENTS.push(newEvent);
             }
@@ -64,8 +65,6 @@ export default function Events({ className }: { className?: string }) {
         EVENTS.forEach((event) => {
             const eventDate = getEventDate(event);
             const year = event.date.year;
-
-            console.log(event.image);
 
             if (eventDate >= CURRENT_DATE) {
                 (upcomingEvents[year] ||= []).push(event);

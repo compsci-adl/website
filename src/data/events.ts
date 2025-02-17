@@ -29,9 +29,9 @@ export type Event = {
 export type PayloadEvent = {
     details: string;
     id: string;
-    link?: { href?: string; text?: string };
+    link?: { Link: string; displayText: string };
     location: string;
-    time: string;
+    time: {end: string; start: string};
     title: string;
     date: string;
     banner?: {
@@ -68,14 +68,13 @@ export const parseEvents = (raw: PayloadEvent): Event => {
           year: eventDate.getUTCFullYear(),
           month: monthNames[eventDate.getUTCMonth()],
           day: eventDate.getUTCDate(),
-          endTime: raw.time.split(" - ")[1] ?? '21:00', // if undefined 9:00pm required for Events.tsx logic
+          endTime: eventDate.toString().split(" - ")[1] ?? '21:00', // if undefined 9:00pm required for Events.tsx logic
         },
-        time: raw.time,
+        time: raw.time ? `${new Date(raw.time.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(raw.time.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+        : "Unknown",
         location: raw.location,
         details: raw.details,
-        url: raw.link?.href
-          ? { href: new URL(raw.link.href), text: raw.link.text }
-          : undefined,
+        url: raw.link? { href: new URL(raw.link.Link), text: raw.link.displayText}: undefined,
         image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : "/placeholder.jpg", // Image is in the form of url (Needs a seperate API call)
         // TODO: add /placeholder.jpg for failed image calls
       };
