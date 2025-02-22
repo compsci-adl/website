@@ -40,7 +40,6 @@ export default function Events({ className }: { className?: string }) {
         .then((data) => {
             const payloadData = data.docs;
             for (let docNum in payloadData) {
-                console.log(payloadData[docNum])
                 const newEvent = parseEvents(payloadData[docNum]);
                 EVENTS.push(newEvent);
             }

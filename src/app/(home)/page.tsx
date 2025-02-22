@@ -2,7 +2,7 @@ import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
-import { EVENTS, type Event } from '@/data/events';
+import { eventURL, parseEvents, EVENTS, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
 import Image from 'next/image';
@@ -16,10 +16,22 @@ const getEventDate = (event: Event) => {
     );
 };
 
+export async function getEvents() {
+    const res = await fetch(eventURL);
+    const data = await res.json();
+    const payloadData = data.docs;
+    for (let docNum in payloadData) {
+        const newEvent = parseEvents(payloadData[docNum]);
+        EVENTS.push(newEvent);
+        console.log(newEvent);
+    }
+}
+
+await getEvents();
 const CURRENT_DATE = new Date();
 const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
 
-export default function HomePage() {
+export default function HomePage() {   
     return (
         <main className="relative">
             {/* Hero Section */}
@@ -310,5 +322,4 @@ export default function HomePage() {
                 </div>
             </section>
         </main>
-    );
-}
+)};
