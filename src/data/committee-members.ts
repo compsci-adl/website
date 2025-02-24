@@ -33,7 +33,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         exec: true,
     },
     {
-        name: 'Zac Anderson',
+        name: 'Zach Anderson',
         position: 'Partnerships & Sponsorships Manager',
         exec: true,
     },
