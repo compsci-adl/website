@@ -1,4 +1,4 @@
-import Email from '@/emails/contact';
+import Email from '@/emails/Contact';
 import { env } from '@/env.mjs';
 import { transporter } from '@/lib/email';
 import { render } from '@react-email/components';

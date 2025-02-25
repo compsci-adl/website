@@ -11,10 +11,10 @@ import {
     Tailwind,
 } from '@react-email/components';
 import * as React from 'react';
+import EmailBody from './Body';
 import { HtmlConditionalComment } from './HtmlConditionalComment';
-import EmailBody from './body';
-import OutlookEmailBody from './outlookBody';
-import SocialIcon from './socialIcon';
+import OutlookEmailBody from './OutlookBody';
+import SocialIcon from './SocialIcon';
 
 export interface EmailProps {
     firstName: string;
