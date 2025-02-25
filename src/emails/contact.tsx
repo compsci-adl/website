@@ -114,6 +114,7 @@ export default function Email({ fullname, email, message }: EmailProps) {
                                                 alt="CS Club"
                                                 className="mx-auto block max-h-[60px]"
                                             />
+                                            <p>&nbsp;</p>
                                         </HtmlConditionalComment>
                                     </Column>
                                 </Row>
@@ -174,49 +175,121 @@ export default function Email({ fullname, email, message }: EmailProps) {
                             </HtmlConditionalComment>
                             {/* Outlook (classic) */}
                             <HtmlConditionalComment comment="mso" msoOnly>
-                                <table className="w-full border-collapse border-spacing-0">
+                                <table
+                                    className="w-full"
+                                    cellPadding="10"
+                                    cellSpacing="0"
+                                    style={{ borderCollapse: 'collapse', borderSpacing: '0' }}
+                                >
                                     <tr>
-                                        <td className="h-[15px]"></td>
+                                        <td
+                                            style={{
+                                                width: '8px',
+                                                height: '8px',
+                                                borderTop: '3px solid #252020',
+                                                borderLeft: '3px solid #252020',
+                                            }}
+                                        ></td>
+                                        <td
+                                            style={{
+                                                height: '8px',
+                                                borderTop: '3px solid #252020',
+                                            }}
+                                        ></td>
+                                        <td
+                                            style={{
+                                                width: '8px',
+                                                height: '8px',
+                                                borderTop: '3px solid #252020',
+                                                borderRight: '3px solid #252020',
+                                            }}
+                                        ></td>
                                     </tr>
                                     <tr>
+                                        <td
+                                            style={{
+                                                width: '10px',
+                                                borderLeft: '3px solid #252020',
+                                            }}
+                                        ></td>
                                         <td>
-                                            <span>
-                                                <h1 className="md:text-2x inline text-xl text-grey">
-                                                    Contact Us Form Submission
-                                                </h1>
-                                            </span>
+                                            <table className="w-full border-collapse border-spacing-0">
+                                                <tr>
+                                                    <td className="h-[15px]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span>
+                                                            <h1 className="md:text-2x inline text-xl text-grey">
+                                                                Contact Us Form Submission
+                                                            </h1>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="h-[20px]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="dynamicBorder h-[1px] bg-grey"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td className="h-[20px]"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span className="text-gre">
+                                                            <p className="text-md md:text-xl">
+                                                                <strong>Name</strong>
+                                                            </p>
+                                                            <p>{fullname}</p>
+                                                        </span>
+                                                        <span className="text-gre">
+                                                            <p className="text-md md:text-xl">
+                                                                <strong>Email</strong>
+                                                            </p>
+                                                            <p>{email}</p>
+                                                        </span>
+                                                        <span className="text-gre">
+                                                            <p className="text-md md:text-xl">
+                                                                <strong>Message</strong>
+                                                            </p>
+                                                            <p>{message}</p>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
                                         </td>
+
+                                        <td
+                                            style={{
+                                                width: '10px',
+                                                borderRight: '3px solid #252020',
+                                            }}
+                                        ></td>
                                     </tr>
                                     <tr>
-                                        <td className="h-[20px]"></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="dynamicBorder h-[1px] bg-grey"></td>
-                                    </tr>
-                                    <tr>
-                                        <td className="h-[20px]"></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <span className="text-gre">
-                                                <p className="text-md md:text-xl">
-                                                    <strong>Name</strong>
-                                                </p>
-                                                <p>{fullname}</p>
-                                            </span>
-                                            <span className="text-gre">
-                                                <p className="text-md md:text-xl">
-                                                    <strong>Email</strong>
-                                                </p>
-                                                <p>{email}</p>
-                                            </span>
-                                            <span className="text-gre">
-                                                <p className="text-md md:text-xl">
-                                                    <strong>Message</strong>
-                                                </p>
-                                                <p>{message}</p>
-                                            </span>
-                                        </td>
+                                        <td
+                                            style={{
+                                                width: '8px',
+                                                height: '8px',
+                                                borderBottom: '3px solid #252020',
+                                                borderLeft: '3px solid #252020',
+                                            }}
+                                        ></td>
+                                        <td
+                                            style={{
+                                                height: '8px',
+                                                borderBottom: '3px solid #252020',
+                                            }}
+                                        ></td>
+                                        <td
+                                            style={{
+                                                width: '8px',
+                                                height: '8px',
+                                                borderBottom: '3px solid #252020',
+                                                borderRight: '3px solid #252020',
+                                            }}
+                                        ></td>
                                     </tr>
                                 </table>
                             </HtmlConditionalComment>
