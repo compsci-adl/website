@@ -3,6 +3,7 @@
 import Button from '@/components/Button';
 import Duck from '@/components/Duck';
 import { createSubmit } from 'just-submit';
+import ky from 'ky';
 import { useState } from 'react';
 
 export default function Form({ className }: { className?: string }) {
@@ -10,12 +11,8 @@ export default function Form({ className }: { className?: string }) {
     const [isSuccess, setIsSuccess] = useState(false);
     const submit = createSubmit({ fullName: 'string', email: 'string', message: 'string' });
     const handleSubmit = submit(async (data) => {
-        const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+        const response = await ky.post('/api/contact', {
+            json: data,
         });
         if (response.ok) {
             setSubmitInfo('Message sent successfully!');
