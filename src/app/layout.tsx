@@ -40,7 +40,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     src="https://umami.csclub.org.au/script.js"
                     data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
                 />
-                <body className="overflow-x-hidden bg-grey text-white">
+                <body id="root" className="overflow-x-hidden bg-grey text-white">
                     <Header />
                     <div className="mx-auto min-h-screen w-responsive pb-6 pt-32 md:pt-40">
                         {children}
