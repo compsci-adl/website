@@ -9,19 +9,19 @@ export type Sponsor = {
     type: SponsorType;
 };
 
-export const YEAR = 2024;
+export const YEAR = 2025;
 
 // NOTE:
 // Companies should be ordered by their type (gold first, then silver, then bronze) and alphabetically from A to Z.
 // Image file should be in `/public/images/sponsors`
 const SPONSORS: Sponsor[] = [
     {
-        name: 'Boeing',
-        image: 'boeing.svg',
-        website: 'https://www.boeing.com.au/',
-        type: 'silver',
+        name: 'insightfactory.ai',
+        image: 'insightfactoryai.svg',
+        website: 'https://insightfactory.ai/',
+        type: 'gold',
         description:
-            'Boeing has the broadest portfolio in Australian aerospace, with over 4800 employees and an extensive supply chain supporting our advanced manufacturing of commercial aircraft composite components, defence systems design and development, modeling and simulation, research and development, support and training, and uncrewed systems.',
+            'At insightfactory.ai, we’re on a mission to deliver the world’s leading managed data and AI platform. Our flagship solution, The Insight Factory, empowers data professionals of any skill level to rapidly build, deploy, and operate AI, BI, and Automation solutions—all in one place. In addition to the Insight Factory, we offer expert data and AI services to help you implement and scale your AI, BI, and Automation solutions with confidence. Our flexible production support models ensure optimal performance, stability, and success across every deployment. Whether you’re starting from scratch, reinvigorating an existing program, or looking to scale, we provide the product, people, and support you need to drive real business impact with AI, BI, and Automation.',
     },
     {
         name: 'Jane Street',
@@ -29,39 +29,39 @@ const SPONSORS: Sponsor[] = [
         website: 'https://www.janestreet.com/',
         type: 'silver',
         description:
-            "Jane Street is a proprietary trading firm that operates around the clock and around the globe. We bring a deep understanding of markets, a scientific approach, and innovative technology to bear on the problem of trading profitably in the world's highly competitive financial markets. Founded in 2000, we have offices in New York, London, Hong Kong, and Amsterdam. The environment is open, informal, intellectual and fun. You can wear a t-shirt and jeans to the office every day, the kitchen is stocked, and discussions are always lively. Teaching and learning are central activities through classes, mentoring and discussion.",
+            'Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. You’ll learn something new every day in our office—whether it’s connecting with a colleague to share perspectives, or participating in a talk, class, or game night. Our success is driven by our people and we never stop improving.',
     },
     {
-        name: 'Macquarie',
-        image: 'macquarie.svg',
-        website: 'https://www.macquarie.com/',
-        type: 'silver',
+        name: 'Atlassian',
+        image: 'atlassian.svg',
+        website: 'https://www.atlassian.com/',
+        type: 'bronze',
         description:
-            'At Macquarie, we’re connecting people and data, building platforms and applications, and designing tomorrow’s technology solutions. We have market leading expertise, so where could a career in Technology at Macquarie take you? Join our leaders and graduates to gain first-hand insights into a career in Technology.',
+            "Atlassian is a global software company known for developing collaboration and productivity tools that help teams organise, discuss, and complete their work. Founded in 2002 in Sydney, Australia, Atlassian has grown to become a leader in the software industry, offering popular products such as Jira for project management, Confluence for team collaboration, and Trello for task organisation. Atlassian is renowned for its innovative and agile approach, fostering a culture of openness and teamwork. Atlassian's solutions are widely used by software development teams but also serve a variety of industries to enhance efficiency and collaboration across organisations.",
+    },
+    {
+        name: 'Australian Institute for Machine Learning (AIML)',
+        image: 'aiml.png',
+        website: 'https://www.adelaide.edu.au/aiml/',
+        type: 'bronze',
+        description:
+            'The Australian Institute for Machine Learning (AIML) conducts globally competitive research and development in artificial intelligence (AI), machine learning, computer vision and deep learning.Based at Lot Fourteen—South Australia’s innovation district—we collaborate with industry, government and business to develop high-tech products and solutions to everyday problems.',
+    },
+    {
+        name: 'Commonwealth Bank',
+        image: 'commbank.png',
+        website: 'https://www.commbank.com.au/',
+        type: 'bronze',
+        description:
+            "We are guided by our purpose – building a brighter future for all. Our strategy, to build tomorrow's bank today for our customers, reflects our commitment to use the strength of CBA to support our customers, invest in our communities and provide strength and stability for the broader economy. We are one of the leading banks in Australia, serving more than 17 million customers. We focus on providing retail and commercial banking services predominantly in Australia, and in New Zealand through our subsidiary, ASB. Our products and services are provided through our divisions, Retail Banking Services, Business Banking, Institutional Banking and Markets, and ASB New Zealand.",
     },
     {
         name: 'Swordfish Computing',
         image: 'swordfish.svg',
         website: 'https://www.swordfish.com.au/',
-        type: 'silver',
-        description:
-            'Swordfish was established in 1999 with the goal of providing specialist Computer Systems Engineering, Software Engineering, and Modelling, Simulation and Analysis (MS&A) services in support of Defence Research and Development (R&D) programs within Defence.',
-    },
-    {
-        name: 'Citadel Securities',
-        image: 'citadel-securities.png',
-        website: 'https://www.citadelsecurities.com/',
         type: 'bronze',
         description:
-            'Citadel Securities is the next-generation capital markets firm. We create efficient ways for buyers and sellers to come together; we innovative ways to price and absorb risk; and we develop new technologies to transform markets. Integrating deep financial, mathematical and engineering expertise, Citadel Securities delivers critical liquidity to central banks, financial institutions, government agencies, corporations, insurers and sovereign wealth funds.',
-    },
-    {
-        name: 'PwC',
-        image: 'pricewaterhouse-coopers.svg',
-        website: 'https://www.pwc.com.au',
-        type: 'bronze',
-        description:
-            'At PwC, our purpose is to build trust in society and solve important problems. In our increasingly complex world, we work with businesses, government and the community to deliver solutions and sustained outcomes. To help Australia continue to thrive and grow. We’re a network of firms in 152 countries with over 328,000 people. PwC is one of the top 50 brands worldwide and PwC Australia is among LinkedIn’s top companies for where Australians want to work.',
+            "At Swordfish, we're not just developing innovative software and computer systems, we're leading the charge in transforming the future of Australian defence. With expertise in Agile Software Engineering, as well as a wide range of allied engineering and science disciplines, we're pushing the limits of what's possible with the latest tools and technologies. Our 25-year track record has earned us the reputation as trailblazers at the forefront of Australian defence and space research.",
     },
     {
         name: 'The University of Adelaide School of Computer and Mathematical Sciences',
