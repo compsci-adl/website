@@ -2,7 +2,7 @@
 
 import { logout } from '@/lib/actions';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IoMdClose, IoMdMenu } from 'react-icons/io';
 import type { HeaderData } from '.';
 import FancyRectangle from '../FancyRectangle';
@@ -31,9 +31,20 @@ export default function HeaderMobileClient({
         setIsMenuOpen(false);
     };
 
+    useEffect(() => {
+        const rootDiv = document.getElementById('root')!;
+        if (isMenuOpen) {
+            rootDiv.classList.remove('overflow-y-scroll');
+            rootDiv.classList.add('overflow-y-hidden');
+        } else {
+            rootDiv.classList.add('overflow-y-scroll');
+            rootDiv.classList.remove('overflow-y-hidden');
+        }
+    }, [isMenuOpen]);
+
     return (
         <div
-            className={`${className} fixed z-[9999] w-full transition-all ${isMenuOpen ? 'h-full bg-white/95' : ''}`}
+            className={`${className} fixed z-[9999] w-full transition-all ${isMenuOpen ? 'h-dvh overflow-y-scroll bg-white/95' : ''}`}
         >
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
             <div
@@ -69,7 +80,7 @@ export default function HeaderMobileClient({
                 {isMenuOpen && (
                     <>
                         <div className="mt-8 h-0.5 w-full bg-grey" />
-                        <div className="mt-12 flex flex-col items-center gap-8 text-4xl text-grey">
+                        <div className="mt-12 flex flex-col items-center gap-8 text-3xl text-grey md:text-4xl">
                             <Links onClick={closeMenu} />
                             <div className="mt-4 h-0.5 w-full bg-grey" />
                             {data.isSignedIn && data.nextStep === 'signup' && (
