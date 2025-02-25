@@ -1,17 +1,19 @@
 import { LINKS } from '@/data/links';
 import {
-    Head,
-    Html,
     Img,
-    Body,
-    Container,
-    Tailwind,
     Section,
     Row,
     Column,
+    Head,
+    Html,
+    Body,
+    Container,
+    Tailwind,
 } from '@react-email/components';
 import * as React from 'react';
+import { HtmlConditionalComment } from './HtmlConditionalComment';
 import EmailBody from './body';
+import OutlookEmailBody from './outlookBody';
 import SocialIcon from './socialIcon';
 
 export interface EmailProps {
@@ -99,118 +101,192 @@ export default function Email({ firstName }: EmailProps) {
                 </Head>
                 <Body className="m-0 mt-8 bg-white p-0 font-sans text-black dark:bg-grey">
                     <Container className="bg-white dark:bg-grey">
-                        {/* Header */}
-                        <Container className="bg-white p-2.5 text-center dark:bg-grey">
-                            <Section className="w-full border-collapse">
-                                <Row>
-                                    <Column className="text-center">
-                                        <Img
-                                            className="light max-h-[60px]"
-                                            src={getIconSrc({ type: 'light', name: 'logo' })}
-                                            alt="CS Club"
-                                        />
-                                        <Img
-                                            className="dark max-h-[60px]"
-                                            src={getIconSrc({ type: 'dark', name: 'logo' })}
-                                            alt="CS Club"
-                                        />
-                                    </Column>
-                                </Row>
-                            </Section>
-                        </Container>
+                        <Container className="bg-white dark:bg-grey">
+                            {/* Header */}
+                            <Container className="bg-white p-2.5 text-center dark:bg-grey">
+                                <Section className="w-full border-collapse">
+                                    <Row>
+                                        <Column className="text-center">
+                                            {/* Modern Email Clients */}
+                                            <HtmlConditionalComment comment="!mso">
+                                                <Img
+                                                    className="light max-h-[60px]"
+                                                    src={getIconSrc({
+                                                        type: 'light',
+                                                        name: 'logo',
+                                                    })}
+                                                    alt="CS Club"
+                                                />
+                                                <Img
+                                                    className="dark max-h-[60px]"
+                                                    src={getIconSrc({ type: 'dark', name: 'logo' })}
+                                                    alt="CS Club"
+                                                />
+                                            </HtmlConditionalComment>
+                                            {/* Outlook (classic) */}
+                                            <HtmlConditionalComment comment="mso" msoOnly>
+                                                <Img
+                                                    src="https://csclub.org.au/images/email/light/logo.png"
+                                                    width="200"
+                                                    alt="CS Club"
+                                                    className="mx-auto block max-h-[60px]"
+                                                />
+                                                <p>&nbsp;</p>
+                                            </HtmlConditionalComment>
+                                        </Column>
+                                    </Row>
+                                </Section>
+                            </Container>
 
-                        {/* Email Content */}
-                        <div className="mx-6 mb-8 mt-4 md:mx-10">
-                            <table className="w-full border-spacing-0">
-                                <tr className="h-[8px] w-[8px] p-0">
-                                    <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="block w-[8px] p-0"></td>
-                                </tr>
-                                <tr>
-                                    <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
-                                    <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
-                                        <EmailBody firstName={firstName} />
-                                    </td>
-                                    <td className="bg-purple p-0"></td>
-                                </tr>
-                                <tr className="h-[8px]">
-                                    <td></td>
-                                    <td className="bg-purple p-0"></td>
-                                    <td className="bg-purple p-0"></td>
-                                </tr>
-                            </table>
-                        </div>
+                            {/* Email Content */}
+                            <div className="mx-6 mb-8 mt-4 md:mx-10">
+                                {/* Modern Email Clients */}
+                                <HtmlConditionalComment comment="!mso">
+                                    <table className="w-full border-spacing-0">
+                                        <tr className="h-[8px] w-[8px] p-0">
+                                            <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
+                                            <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
+                                            <td className="block w-[8px] p-0"></td>
+                                        </tr>
+                                        <tr>
+                                            <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
+                                            <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
+                                                <EmailBody firstName={firstName} />
+                                            </td>
+                                            <td className="bg-purple p-0"></td>
+                                        </tr>
+                                        <tr className="h-[8px]">
+                                            <td></td>
+                                            <td className="bg-purple p-0"></td>
+                                            <td className="bg-purple p-0"></td>
+                                        </tr>
+                                    </table>
+                                </HtmlConditionalComment>
+                                {/* Outlook (classic) */}
+                                <HtmlConditionalComment comment="mso" msoOnly>
+                                    <table
+                                        cellPadding="10"
+                                        cellSpacing="0"
+                                        style={{ borderCollapse: 'collapse', borderSpacing: '0' }}
+                                    >
+                                        <tr>
+                                            <td
+                                                style={{
+                                                    width: '8px',
+                                                    height: '8px',
+                                                    borderTop: '3px solid #252020',
+                                                    borderLeft: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                            <td
+                                                style={{
+                                                    height: '8px',
+                                                    borderTop: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                            <td
+                                                style={{
+                                                    width: '8px',
+                                                    height: '8px',
+                                                    borderTop: '3px solid #252020',
+                                                    borderRight: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style={{
+                                                    width: '10px',
+                                                    borderLeft: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                            <td>
+                                                <OutlookEmailBody firstName={firstName} />
+                                            </td>
 
-                        {/* Footer */}
-                        <div className="mb-12 bg-white px-5 text-center dark:bg-grey">
-                            <div>
-                                <table className="mx-auto hidden border-collapse border-spacing-0 md:table">
-                                    <tr>
-                                        {LINKS.map((link, index) => (
-                                            <SocialIcon
-                                                key={index}
-                                                href={link.link}
-                                                alt={link.name}
-                                                lightSrc={getIconSrc({
-                                                    type: 'light',
-                                                    name: link.name,
-                                                })}
-                                                darkSrc={getIconSrc({
-                                                    type: 'dark',
-                                                    name: link.name,
-                                                })}
-                                                ariaLabel={link.name}
-                                            />
-                                        ))}
-                                    </tr>
-                                </table>
-                                <table className="mx-auto table border-collapse border-spacing-0 md:hidden">
-                                    <tr>
-                                        {LINKS.slice(0, 4).map((link, index) => (
-                                            <SocialIcon
-                                                key={index}
-                                                href={link.link}
-                                                alt={link.name}
-                                                lightSrc={getIconSrc({
-                                                    type: 'light',
-                                                    name: link.name,
-                                                })}
-                                                darkSrc={getIconSrc({
-                                                    type: 'dark',
-                                                    name: link.name,
-                                                })}
-                                                ariaLabel={link.name}
-                                            />
-                                        ))}
-                                    </tr>
-
-                                    <tr className="h-4"></tr>
-
-                                    <tr>
-                                        {LINKS.slice(4).map((link, index) => (
-                                            <SocialIcon
-                                                key={index}
-                                                href={link.link}
-                                                alt={link.name}
-                                                lightSrc={getIconSrc({
-                                                    type: 'light',
-                                                    name: link.name,
-                                                })}
-                                                darkSrc={getIconSrc({
-                                                    type: 'dark',
-                                                    name: link.name,
-                                                })}
-                                                ariaLabel={link.name}
-                                            />
-                                        ))}
-                                    </tr>
-                                </table>
+                                            <td
+                                                style={{
+                                                    width: '10px',
+                                                    borderRight: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                        </tr>
+                                        <tr>
+                                            <td
+                                                style={{
+                                                    width: '8px',
+                                                    height: '8px',
+                                                    borderBottom: '3px solid #252020',
+                                                    borderLeft: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                            <td
+                                                style={{
+                                                    height: '8px',
+                                                    borderBottom: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                            <td
+                                                style={{
+                                                    width: '8px',
+                                                    height: '8px',
+                                                    borderBottom: '3px solid #252020',
+                                                    borderRight: '3px solid #252020',
+                                                }}
+                                            ></td>
+                                        </tr>
+                                    </table>
+                                </HtmlConditionalComment>
                             </div>
-                            <p className="text-center text-sm text-black dark:text-white">
-                                © {currentYear} The University of Adelaide Computer Science Club.
-                            </p>
-                        </div>
+
+                            {/* Footer */}
+                            <div className="mb-12 bg-white px-5 text-center dark:bg-grey">
+                                <div>
+                                    <table className="mx-auto hidden border-collapse border-spacing-0 md:table">
+                                        <tr>
+                                            {/* Modern Email Clients */}
+                                            <HtmlConditionalComment comment="!mso">
+                                                {LINKS.map((link, index) => (
+                                                    <SocialIcon
+                                                        key={index}
+                                                        href={link.link}
+                                                        alt={link.name}
+                                                        lightSrc={getIconSrc({
+                                                            type: 'light',
+                                                            name: link.name,
+                                                        })}
+                                                        darkSrc={getIconSrc({
+                                                            type: 'dark',
+                                                            name: link.name,
+                                                        })}
+                                                        ariaLabel={link.name}
+                                                    />
+                                                ))}
+                                            </HtmlConditionalComment>
+                                            {/* Outlook (classic) */}
+                                            <HtmlConditionalComment comment="mso" msoOnly>
+                                                {LINKS.map((link, index) => (
+                                                    <SocialIcon
+                                                        key={index}
+                                                        href={link.link}
+                                                        alt={link.name}
+                                                        darkSrc={getIconSrc({
+                                                            type: 'dark',
+                                                            name: link.name,
+                                                        })}
+                                                        ariaLabel={link.name}
+                                                    />
+                                                ))}
+                                            </HtmlConditionalComment>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <p className="text-center text-sm text-black dark:text-white">
+                                    © {currentYear} The University of Adelaide Computer Science
+                                    Club.
+                                </p>
+                            </div>
+                        </Container>
                     </Container>
                 </Body>
             </Html>
