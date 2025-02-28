@@ -1,4 +1,4 @@
-import { Img } from '@react-email/components';
+import { Img, Container } from '@react-email/components';
 import * as React from 'react';
 
 export interface BodyProps {
@@ -7,7 +7,7 @@ export interface BodyProps {
 
 export default function EmailBody({ firstName }: BodyProps) {
     return (
-        <div>
+        <Container>
             <picture>
                 <source
                     srcSet="https://csclub.org.au/images/email/light/welcome.png"
@@ -30,7 +30,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                         <h2>{'>'}</h2>
                     </td>
                     <td>
-                        <h2>Welcome, {firstName}!</h2>
+                        <h2>{`Welcome, ${firstName}!`}</h2>
                         <div className="border-t-0.5 dynamicBorder h-0.5 w-full border-x-0 border-b-0 border-solid"></div>
                     </td>
                 </tr>
@@ -46,19 +46,19 @@ export default function EmailBody({ firstName }: BodyProps) {
                 </p>
                 <p>
                     The best way to keep up to date on what’s happening in our club is through our
-                    Discord server, social media accounts, and our{' '}
+                    Discord server, social media accounts, and our&nbsp;
                     <a href="https://csclub.org.au" className="font-bold text-orange underline">
                         website
                     </a>
-                    ! If you haven’t seen a{' '}
+                    ! If you haven’t seen a&nbsp;
                     <a
                         href="https://csclub.org.au/about#committee"
                         className="font-bold text-purple underline"
                     >
                         committee member
-                    </a>{' '}
-                    about your sign-up yet, please pop in to the Duck Lounge (Engineering and Maths
-                    EM110) to get your cool ducky sticker for your uni ID card & verify your
+                    </a>
+                    &nbsp;about your sign-up yet, please pop in to the Duck Lounge (Engineering and
+                    Maths EM110) to get your cool ducky sticker for your uni ID card & verify your
                     membership payment!.
                 </p>
                 <p>And of course, we hope to see you at our events and meet you very soon!</p>
@@ -89,10 +89,10 @@ export default function EmailBody({ firstName }: BodyProps) {
                                 <p>
                                     There’s socialising, gaming, and of course if you have any
                                     questions with CS-related subjects, you’re bound to find someone
-                                    who can help you!{' '}
+                                    who can help you!&nbsp;
                                 </p>
                                 <p>
-                                    If you’re having trouble finding the room,{' '}
+                                    If you’re having trouble finding the room,&nbsp;
                                     <a
                                         href="https://studentvip.com.au/adelaide-uni/north-terrace/maps/127019"
                                         className="font-bold text-orange underline"
@@ -175,7 +175,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                             </tr>
                             <tr>
                                 <p className="mx-6 pb-2">
-                                    We hold <strong>Weekly Games Nights</strong> every{' '}
+                                    We hold <strong>Weekly Games Nights</strong> every&nbsp;
                                     <strong>Friday</strong> in the Duck lounge! Our other events are
                                     always posted on our social media and in our Discord server, so
                                     be sure to be on a lookout for those announcements!
@@ -192,14 +192,14 @@ export default function EmailBody({ firstName }: BodyProps) {
                                 <p className="mx-6 pb-2">
                                     Our Club OneDrive consists of past exams, notes and other
                                     materials with Computer Science related subjects to help you fly
-                                    through exams! Log into our{' '}
+                                    through exams! Log into our&nbsp;
                                     <a
                                         href="https://csclub.org.au"
                                         className="font-bold text-orange underline"
                                     >
                                         website
-                                    </a>{' '}
-                                    to access or{' '}
+                                    </a>
+                                    &nbsp;to access or&nbsp;
                                     <a
                                         href={process.env.NEXT_PUBLIC_DRIVE_LINK}
                                         className="font-bold text-purple underline"
@@ -221,14 +221,14 @@ export default function EmailBody({ firstName }: BodyProps) {
                                 <p className="mx-6 pb-2">
                                     Our Club OneDrive consists of past exams, notes and other
                                     materials with Computer Science related subjects to help you fly
-                                    through exams! Log into our{' '}
+                                    through exams! Log into our&nbsp;
                                     <a
                                         href="https://csclub.org.au"
                                         className="font-bold text-orange underline"
                                     >
                                         website
-                                    </a>{' '}
-                                    to access or{' '}
+                                    </a>
+                                    &nbsp;to access or&nbsp;
                                     <a
                                         href="https://csclub.org.au"
                                         className="font-bold text-purple underline"
@@ -241,18 +241,19 @@ export default function EmailBody({ firstName }: BodyProps) {
                     </td>
                 </tr>
             </table>
+
             <div className="mb-4 text-center text-grey dark:text-white">
                 <h2>Contacts</h2>
                 <div className="border-t-0.5 dynamicBorder mx-auto mb-6 h-0.5 w-1/3 border-x-0 border-b-0 border-solid"></div>
                 <p>
-                    If you need any help, hop on Discord and DM any of the{' '}
+                    If you need any help, hop on Discord and DM any of the&nbsp;
                     <a
                         href="https://csclub.org.au/about#committee"
                         className="font-bold text-purple underline"
                     >
                         committee
-                    </a>{' '}
-                    members, or...
+                    </a>
+                    &nbsp;members, or...
                 </p>
                 <a href="mailto:contact@csclub.org.au">
                     <button className="border-t-0.5 dynamicBorder mt-2 rounded-2xl border-[3px] border-solid bg-yellow px-10 py-2 text-base font-bold text-grey">
@@ -260,6 +261,6 @@ export default function EmailBody({ firstName }: BodyProps) {
                     </button>
                 </a>
             </div>
-        </div>
+        </Container>
     );
 }

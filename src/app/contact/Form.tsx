@@ -3,14 +3,28 @@
 import Button from '@/components/Button';
 import Duck from '@/components/Duck';
 import { createSubmit } from 'just-submit';
+import ky from 'ky';
+import { useState } from 'react';
 
 export default function Form({ className }: { className?: string }) {
+    const [submitInfo, setSubmitInfo] = useState('');
+    const [isSuccess, setIsSuccess] = useState(false);
     const submit = createSubmit({ fullName: 'string', email: 'string', message: 'string' });
-    const handleSubmit = submit((data) => {
-        // TODO(#31): Email integration
-        console.log(data);
+    const handleSubmit = submit(async (data) => {
+        const response = await ky.post('/api/contact', {
+            json: data,
+        });
+        if (response.ok) {
+            setSubmitInfo('Message sent successfully!');
+            setIsSuccess(true);
+        } else {
+            setSubmitInfo('Failed to send message. Please try again.');
+            setIsSuccess(false);
+        }
+        setTimeout(() => {
+            setSubmitInfo('');
+        }, 5000);
     });
-
     return (
         <div className={`${className} relative`}>
             <div className="absolute right-[25px] top-[-48px] hidden gap-6 md:flex">
@@ -49,6 +63,13 @@ export default function Form({ className }: { className?: string }) {
                         Submit
                     </Button>
                 </div>
+                {submitInfo && (
+                    <div
+                        className={`col-span-2 text-center ${isSuccess ? 'text-green-500' : 'text-red-500'}`}
+                    >
+                        {submitInfo}
+                    </div>
+                )}
             </form>
         </div>
     );

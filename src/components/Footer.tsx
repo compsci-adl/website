@@ -12,7 +12,7 @@ export default function Footer() {
                     </p>
                 </div>
                 {/* Social Media Links */}
-                <div className="order-1 mb-4 flex justify-center space-x-4 text-2xl text-black md:order-2 md:mb-0 md:justify-end">
+                <div className="order-1 mb-4 flex flex-wrap justify-center gap-4 text-2xl text-black md:order-2 md:mb-0 md:flex-nowrap md:justify-end">
                     {LINKS.map((link, i) => (
                         <Link {...link} borderColour="yellow" key={i} />
                     ))}
