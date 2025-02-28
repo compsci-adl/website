@@ -1,3 +1,5 @@
+import { env } from "@/env.mjs";
+
 export const SPONSOR_TYPES = ['gold', 'silver', 'bronze'] as const;
 
 export type SponsorType = (typeof SPONSOR_TYPES)[number];
@@ -9,7 +11,48 @@ export type Sponsor = {
     type: SponsorType;
 };
 
-export const YEAR = 2024;
+interface ApiSponsor {
+    id: string;
+    "Company name": string;
+    "Company description": string;
+    "sponsor tier": SponsorType;
+    logo: {
+        url: string;
+        alt: string;
+    };
+    website?: string; // If your API provides a website field
+};
+
+export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI+ '/api/sponsors?limit=100';
+
+/**
+ * Fetches sponsors from Payload CMS and transforms them into the required format.
+ */
+export async function fetchSponsors(): Promise<Sponsor[]> {
+  try {
+    const res = await fetch(sponsorURL);
+    if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
+    const data = await res.json();
+    console.log(data.docs);
+
+    // Parse each API sponsor into our Sponsor type
+    return (data.docs || []).map((sponsor: ApiSponsor) => ({
+      name: sponsor["Company name"],
+      description: sponsor["Company description"],
+      image: sponsor.logo.url, // Logo URL on payload
+      website: sponsor.website || "#",
+      type: sponsor["sponsor tier"],
+    }));
+
+  } catch (error) {
+    console.error("Error fetching sponsors:", error);
+    return [];
+  }
+}
+
+// Changed to get year every load, !!! Must keep companies up to date !!!
+const d = new Date();
+export const YEAR = d.getFullYear();
 
 // NOTE:
 // Companies should be ordered by their type (gold first, then silver, then bronze) and alphabetically from A to Z.

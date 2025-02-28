@@ -1,13 +1,16 @@
-import { SPONSOR_TYPES, getSponsors, type Sponsor, type SponsorType } from '@/data/sponsors';
+import { SPONSOR_TYPES, fetchSponsors, type Sponsor, type SponsorType } from '@/data/sponsors';
 import Image from 'next/image';
 import { Fragment } from 'react';
+import { GetServerSideProps } from 'next';
 import FancyRectangle from '../../components/FancyRectangle';
+import { env } from "@/env.mjs"
 
 const SPONSOR_TYPE_COLORS = {
     gold: '#FCC018',
     silver: '#C3C3C3',
     bronze: '#E8903F',
 } as const satisfies Record<SponsorType, string>;
+
 function SponsorTypeTitle({ type }: { type: SponsorType }) {
     const color = SPONSOR_TYPE_COLORS[type];
     return (
@@ -35,6 +38,8 @@ function SponsorTypeTitle({ type }: { type: SponsorType }) {
         </h3>
     );
 }
+
+
 type SponsorCardProps = Sponsor & { reverse?: boolean };
 function SponsorCard({ image, name, description, website, type, reverse }: SponsorCardProps) {
     return (
@@ -43,7 +48,7 @@ function SponsorCard({ image, name, description, website, type, reverse }: Spons
                 className={`flex flex-col items-stretch gap-5 rounded-xl bg-white p-4 text-black md:p-6 ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'}`}
             >
                 <Image
-                    src={`/images/sponsors/${image}`}
+                    src={env.NEXT_PUBLIC_PAYLOAD_URI+image} // Change to get from Payload API
                     alt={`${name} logo`}
                     width={250}
                     height={250}
@@ -73,17 +78,33 @@ function SponsorCard({ image, name, description, website, type, reverse }: Spons
     );
 }
 
-export default function Sponsors() {
+interface SponsorsPageProps {
+  sponsors: Sponsor[];
+}
+
+export const getServerSideProps: GetServerSideProps<SponsorsPageProps> = async () => {
+  try {
+    const sponsors = await fetchSponsors();
+    return { props: { sponsors } };
+  } catch (error) {
+    console.error("Error fetching sponsors:", error);
+    return { props: { sponsors: [] } }; // Always return an array
+  }
+};
+
+export default function Sponsors({ sponsors = [] }: SponsorsPageProps) {
     let count = 0;
+    // Filter sponsers by type
+    const getSponsors = (type: SponsorType) => sponsors.filter((s) => s.type === type);
     return (
         <div className="space-y-9">
             {SPONSOR_TYPES.map((type) => {
-                const sponsors = getSponsors(type);
-                if (sponsors.length === 0) return;
+                const filteredSponsors = getSponsors(type);
+                if (filteredSponsors.length === 0) return;
                 return (
                     <Fragment key={type}>
                         <SponsorTypeTitle type={type} />
-                        {sponsors.map((sponsor, i) => (
+                        {filteredSponsors.map((sponsor, i) => (
                             <SponsorCard {...sponsor} key={i} reverse={Boolean(count++ % 2)} />
                         ))}
                     </Fragment>

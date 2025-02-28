@@ -2,14 +2,18 @@ import Sponsors from '@/app/sponsors/Sponsors';
 import Duck from '@/components/Duck';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
-import { YEAR } from '@/data/sponsors';
+import { YEAR, fetchSponsors, Sponsor } from '@/data/sponsors';
 import type { Metadata } from 'next';
+
 
 export const metadata: Metadata = {
     title: 'Sponsors',
 };
 
-export default function SponsorsPage() {
+export default async function SponsorsPage() {
+    // Get sponsors from payload
+    const sponsors: Sponsor[] = await fetchSponsors();
+
     return (
         <main className="flex flex-col items-center gap-10">
             <div className="flex items-center gap-8">
@@ -23,7 +27,7 @@ export default function SponsorsPage() {
                 possible, fostering an environment for aspiring tech enthusiasts to excel within our
                 community.
             </div>
-            <Sponsors />
+            <Sponsors sponsors={sponsors} />
             <Paragraph>
                 If you&apos;d like to partner with us, please enquire at:{' '}
                 <a href="mailto:sponsorships@csclub.org.au" className="underline">
