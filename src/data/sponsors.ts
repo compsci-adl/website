@@ -20,20 +20,19 @@ interface ApiSponsor {
         url: string;
         alt: string;
     };
-    website?: string; // If your API provides a website field
+    website?: string;
 };
 
 export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI+ '/api/sponsors?limit=100';
 
-/**
- * Fetches sponsors from Payload CMS and transforms them into the required format.
- */
+/*
+    Fetches sponsors from Payload CMS and transforms them into the required format.
+*/
 export async function fetchSponsors(): Promise<Sponsor[]> {
   try {
     const res = await fetch(sponsorURL);
     if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
     const data = await res.json();
-    console.log(data.docs);
 
     // Parse each API sponsor into our Sponsor type
     return (data.docs || []).map((sponsor: ApiSponsor) => ({

@@ -5,7 +5,6 @@ import Title from '@/components/Title';
 import { YEAR, fetchSponsors, Sponsor } from '@/data/sponsors';
 import type { Metadata } from 'next';
 
-
 export const metadata: Metadata = {
     title: 'Sponsors',
 };
