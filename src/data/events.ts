@@ -191,11 +191,7 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'National Wine Centre of Australia',
         details:
-            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss!",
-        url: {
-            href: new URL('https://events.humanitix.com/csc-x-cpc-x-squad-industry-night'),
-            text: 'Tickets are limited – get yours now!',
-        },
+            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss! Tickets are now sold out.",
         image: '2025/industry-night.png',
     },
     {
