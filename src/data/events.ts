@@ -186,15 +186,6 @@ export const EVENTS: Event[] = [
         image: '2024/techtonic.png',
     },
     {
-        title: 'CSC x CPC x SQUAD Industry Night',
-        date: { year: 2025, month: 'MAR', day: 11, endTime: '21:00' },
-        time: '6:00pm - 9:00pm',
-        location: 'National Wine Centre of Australia',
-        details:
-            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss! Tickets are now sold out.",
-        image: '2025/industry-night.png',
-    },
-    {
         title: 'Meet and Greet',
         date: { year: 2025, month: 'MAR', day: 7, endTime: '21:00' },
         time: '6:00pm - 9:00pm',
@@ -202,6 +193,15 @@ export const EVENTS: Event[] = [
         details:
             'Missed us at O’Week? No worries—now’s your chance! Whether you’re a first-year or a graduate, come hang out, meet the committee, and connect with fellow CS students. Join us for a chill night of fun, networking, and good vibes.',
         image: '2025/meet-and-greet.png',
+    },
+    {
+        title: 'CSC x CPC x SQUAD Industry Night',
+        date: { year: 2025, month: 'MAR', day: 11, endTime: '21:00' },
+        time: '6:00pm - 9:00pm',
+        location: 'National Wine Centre of Australia',
+        details:
+            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss! Tickets are now sold out.",
+        image: '2025/industry-night.png',
     },
     {
         title: 'Special General Meeting',

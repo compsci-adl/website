@@ -17,7 +17,7 @@ const getEventDate = (event: Event) => {
 };
 
 const CURRENT_DATE = new Date();
-const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE).reverse();
+const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
 
 export default function HomePage() {
     return (
