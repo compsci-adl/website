@@ -203,6 +203,21 @@ export const EVENTS: Event[] = [
             'Missed us at O’Week? No worries—now’s your chance! Whether you’re a first-year or a graduate, come hang out, meet the committee, and connect with fellow CS students. Join us for a chill night of fun, networking, and good vibes.',
         image: '2025/meet-and-greet.png',
     },
+    {
+        title: 'Special General Meeting',
+        date: { year: 2025, month: 'MAR', day: 19, endTime: '19:00' },
+        time: '5:30pm - 7:00pm',
+        location: 'IW715 Conference Room',
+        details:
+            'Our Special General Meeting is your chance to vote for key club roles! We’re electing a First-Year Representative and an Events Officer. Any club member can run—just prepare a 1-minute speech on why you’re the best fit and apply before Sunday, March 16th, 23:59! ',
+        url: {
+            href: new URL(
+                'https://docs.google.com/forms/d/e/1FAIpQLScqmpNXI1KqDs-tY4YZXrekw8FxrLxiS_jolg1GCNuxQNt_Kw/viewform'
+            ),
+            text: 'Apply now!',
+        },
+        image: '2025/sgm.png',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
