@@ -1,59 +1,46 @@
-import type { TechStack } from '@/constants/tech-stack';
+import { env } from '@/env.mjs';
 
-export interface Project {
-    title: string;
-    description: string;
-    image: string;
-    githubLink: string;
-    websiteLink?: string;
-    techStacks: TechStack[];
+export interface TechStack {
+  tech_name: string;
+  color: string;
 }
 
-export const PROJECTS: Project[] = [
-    {
-        title: 'CS Club Website',
-        description: "The Computer Science Club's website.",
-        image: 'website.png',
-        githubLink: 'https://github.com/compsci-adl/website',
-        techStacks: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    },
-    {
-        title: 'DuckBot',
-        description: "A Discord bot for the CS Club's Discord Server.",
-        image: 'duckbot.png',
-        githubLink: 'https://github.com/compsci-adl/duckbot',
-        techStacks: ['Python', 'Discord.py'],
-    },
-    {
-        title: 'Voxel Game Engine + Game',
-        description:
-            'A voxel game engine made from scratch that will be used to make a rouge-like game.',
-        image: 'voxel-engine.png',
-        githubLink: 'https://github.com/compsci-adl/voxel-engine',
-        techStacks: ['C++', 'OpenGL'],
-    },
-    {
-        title: 'Courses API',
-        description:
-            'Scrapes course info from the UofA website and provides course data for other projects through an API endpoint.',
-        image: 'courses-api.png',
-        githubLink: 'https://github.com/compsci-adl/courses-api',
-        techStacks: ['Python', 'FastAPI', 'Requests'],
-    },
-    {
-        title: 'MyTimetable',
-        description:
-            'An interactive drag-and-drop timetable scheduler to help UofA students optimise their weekly timetable.',
-        image: 'mytimetable.png',
-        githubLink: 'https://github.com/compsci-adl/mytimetable',
-        websiteLink: 'https://mytimetable.csclub.org.au/',
-        techStacks: [
-            'TypeScript',
-            'React',
-            'Vite',
-            'Pragmatic Drag & Drop',
-            'NextUI',
-            'Tailwind CSS',
-        ],
-    },
-];
+export interface Project {
+  title: string;
+  description: string;
+  image: string;
+  githubLink: string;
+  websiteLink?: string;
+  techStacks: TechStack[];
+  active: boolean;
+}
+
+const projectURL = env.NEXT_PUBLIC_PAYLOAD_URI + "/api/projects?limit=100";
+
+export async function fetchProjectsData(): Promise<Project[]> {
+  try {
+    // Fetch data from the API
+    const res = await fetch(projectURL, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
+    const data = await res.json();
+    console.log(data.docs[0]);
+
+    // Process the data to match the Project interface
+    const projects: Project[] = data.docs.map((project: any) => ({
+      title: project.title,
+      description: project.description,
+      image: project.image.filename,
+      githubLink: project['githubLink'],
+      websiteLink: project.websiteLink || null,
+      techStacks: project['techStack'].map((tech: any) => ({
+        tech_name: tech['tech-name'],
+        color: tech.color,
+      })),
+      active: project.active === 'true',
+    }));
+    return projects;
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
+}

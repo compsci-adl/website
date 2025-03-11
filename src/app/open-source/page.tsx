@@ -1,8 +1,7 @@
 import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
-import { FUTURE_PROJECTS } from '@/data/future-projects';
-import { PROJECTS } from '@/data/projects';
+import { fetchProjectsData } from '@/data/projects';
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,7 +12,13 @@ export const metadata: Metadata = {
     title: 'Open Source',
 };
 
-export default function OpenSourcePage() {
+export default async function OpenSourcePage() {
+    const projects = await fetchProjectsData();
+
+    // Split projects into active and inactive
+    const activeProjects = (projects ?? []).filter((project) => project.active);
+    const inactiveProjects = (projects ?? []).filter((project) => !project.active);
+
     return (
         <main className="relative">
             <div className="h-full">
@@ -88,7 +93,7 @@ export default function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-                            {PROJECTS.map((project, i) => (
+                            {activeProjects.map((project, i) => (
                                 <ProjectCard key={i} project={project} />
                             ))}
                         </div>
@@ -96,7 +101,7 @@ export default function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Future Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-                            {FUTURE_PROJECTS.map((project, i) => (
+                            {inactiveProjects.map((project, i) => (
                                 <FutureProjectCard key={i} project={project} />
                             ))}
                         </div>

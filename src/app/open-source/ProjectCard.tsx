@@ -1,17 +1,19 @@
 import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
 import Tag from '@/components/Tag';
-import { TECH_COLORS } from '@/constants/colours';
 import type { Project } from '@/data/projects';
+import { env } from "@/env.mjs";
 import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+
+const payloadURL = env.NEXT_PUBLIC_PAYLOAD_URI;
 
 export default function ProjectCard({ project }: { project: Project }) {
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="w-full gap-6 rounded-xl bg-white p-4 text-black">
                 <Image
-                    src={`/images/projects/${project.image}`}
+                    src={payloadURL + "/api/media/file/" + project.image}
                     alt={`${project.title}`}
                     width={450}
                     height={450}
@@ -27,8 +29,8 @@ export default function ProjectCard({ project }: { project: Project }) {
                         </div>
                     </div>
                     <div className="flex flex-wrap gap-3">
-                        {project.techStacks.map((tech, i) => (
-                            <Tag key={i} name={tech} backgroundColor={TECH_COLORS[tech]} />
+                        {project.techStacks?.map((tech, i) => (
+                            <Tag key={i} name={tech.tech_name} backgroundColor={tech.color} />
                         ))}
                     </div>
                     <div className="flex w-full flex-col gap-4 lg-xl:flex-row">
