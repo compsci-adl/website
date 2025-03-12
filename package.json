@@ -13,7 +13,8 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "email:dev": "email dev --dir=src/emails"
+    "email:dev": "email dev --dir=src/emails",
+    "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
