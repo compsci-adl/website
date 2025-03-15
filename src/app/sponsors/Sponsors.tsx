@@ -1,6 +1,6 @@
 import { SPONSOR_TYPES, fetchSponsors, type Sponsor, type SponsorType } from '@/data/sponsors';
 import { env } from '@/env.mjs';
-import { GetServerSideProps } from 'next';
+import type { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import { Fragment } from 'react';
 import FancyRectangle from '../../components/FancyRectangle';

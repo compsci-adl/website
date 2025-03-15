@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react';
 import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
 
-let EVENTS: Event[] = [];
+const EVENTS: Event[] = [];
 
 function Title({ children }: { children: string }) {
     return (
@@ -41,7 +41,7 @@ export default function Events({ className }: { className?: string }) {
             .then((res) => res.json())
             .then((data) => {
                 const payloadData = data.docs;
-                for (let docNum in payloadData) {
+                for (const docNum in payloadData) {
                     const newEvent = parseEvents(payloadData[docNum]);
                     EVENTS.push(newEvent);
                 }

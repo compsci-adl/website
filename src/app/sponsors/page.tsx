@@ -2,7 +2,8 @@ import Sponsors from '@/app/sponsors/Sponsors';
 import Duck from '@/components/Duck';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
-import { YEAR, fetchSponsors, Sponsor } from '@/data/sponsors';
+import type { Sponsor } from '@/data/sponsors';
+import { YEAR, fetchSponsors } from '@/data/sponsors';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

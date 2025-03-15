@@ -60,8 +60,8 @@ export async function fetchEvents(): Promise<Event[]> {
         if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
         const data = await res.json();
         const payloadData = data.docs;
-        let EVENTS: Event[] = [];
-        for (let docNum in payloadData) {
+        const EVENTS: Event[] = [];
+        for (const docNum in payloadData) {
             const newEvent = parseEvents(payloadData[docNum]);
             EVENTS.push(newEvent);
         }
