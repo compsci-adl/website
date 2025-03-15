@@ -38,7 +38,7 @@ export async function fetchSponsors(): Promise<Sponsor[]> {
       name: sponsor["Company name"],
       description: sponsor["Company description"],
       image: sponsor.logo.url, // Logo URL on payload
-      website: sponsor.website || "#",
+      website: sponsor.website || null,
       type: sponsor["sponsor tier"],
     }));
 

@@ -23,7 +23,6 @@ export async function fetchProjectsData(): Promise<Project[]> {
     const res = await fetch(projectURL, { cache: 'no-store' });
     if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
     const data = await res.json();
-    console.log(data.docs[0]);
 
     // Process the data to match the Project interface
     const projects: Project[] = data.docs.map((project: any) => ({

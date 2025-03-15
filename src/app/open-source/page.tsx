@@ -16,8 +16,8 @@ export default async function OpenSourcePage() {
     const projects = await fetchProjectsData();
 
     // Split projects into active and inactive
-    const activeProjects = (projects ?? []).filter((project) => project.active);
-    const inactiveProjects = (projects ?? []).filter((project) => !project.active);
+    const currentProjects = (projects ?? []).filter((project) => project.active);
+    const futureProjects = (projects ?? []).filter((project) => !project.active);
 
     return (
         <main className="relative">
@@ -93,7 +93,7 @@ export default async function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Our Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-                            {activeProjects.map((project, i) => (
+                            {currentProjects.map((project, i) => (
                                 <ProjectCard key={i} project={project} />
                             ))}
                         </div>
@@ -101,7 +101,7 @@ export default async function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Future Projects</h2>
                         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-                            {inactiveProjects.map((project, i) => (
+                            {futureProjects.map((project, i) => (
                                 <FutureProjectCard key={i} project={project} />
                             ))}
                         </div>
