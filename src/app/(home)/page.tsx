@@ -2,13 +2,15 @@ import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
-import { eventURL, parseEvents, EVENTS, type Event } from '@/data/events';
+import { fetchEvents, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
-import { SPONSOR_TYPES, getSponsors } from '@/data/sponsors';
+import { SPONSOR_TYPES, fetchSponsors } from '@/data/sponsors';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import UpcomingEventCard from './UpcomingEventCard';
+import { env } from '@/env.mjs';
+
 
 const getEventDate = (event: Event) => {
     return new Date(
@@ -16,22 +18,14 @@ const getEventDate = (event: Event) => {
     );
 };
 
-export async function getEvents() {
-    const res = await fetch(eventURL);
-    const data = await res.json();
-    const payloadData = data.docs;
-    for (let docNum in payloadData) {
-        const newEvent = parseEvents(payloadData[docNum]);
-        EVENTS.push(newEvent);
-        console.log(newEvent);
-    }
-}
+export const payloadURL = env.NEXT_PUBLIC_PAYLOAD_URI;
 
-await getEvents();
-const CURRENT_DATE = new Date();
-const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
+export default async function HomePage() {   
+    const EVENTS: Event[] = await fetchEvents();
+    const CURRENT_DATE = new Date();
+    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
 
-export default function HomePage() {   
+    const sponsors = await fetchSponsors();
     return (
         <main className="relative">
             {/* Hero Section */}
@@ -250,29 +244,38 @@ export default function HomePage() {
                 </div>
                 <div className="relative z-10 mt-16 space-y-4">
                     {SPONSOR_TYPES.map((type) => {
-                        const sponsors = getSponsors(type);
-                        if (sponsors.length === 0) return;
+                        // Filter sponsors for the given tier
+                        const filteredSponsors = sponsors.filter(
+                        (sponsor) => sponsor.type.toLowerCase() === type.toLowerCase()
+                        );
+                        if (filteredSponsors.length === 0) return null;
                         return (
-                            <Fragment key={type}>
-                                <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
-                                    {type} Sponsors
-                                </h3>
-                                <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
-                                    {sponsors.map(({ image, website, name }, i) => (
-                                        <a href={website} key={i} className="block" target="_blank">
-                                            <FancyRectangle colour="white" offset="10">
-                                                <Image
-                                                    src={`/images/sponsors/${image}`}
-                                                    alt={`${name} Logo`}
-                                                    width={250}
-                                                    height={250}
-                                                    className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
-                                                />
-                                            </FancyRectangle>
-                                        </a>
-                                    ))}
-                                </div>
-                            </Fragment>
+                        <Fragment key={type}>
+                            <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
+                            {type} Sponsors
+                            </h3>
+                            <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
+                            {filteredSponsors.map(({ image, website, name }, i) => (
+                                <a
+                                href={website}
+                                key={i}
+                                className="block"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >
+                                <FancyRectangle colour="white" offset="10">
+                                    <Image
+                                    src={payloadURL+`${image}`}
+                                    alt={`${name} Logo`}
+                                    width={250}
+                                    height={250}
+                                    className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
+                                    />
+                                </FancyRectangle>
+                                </a>
+                            ))}
+                            </div>
+                        </Fragment>
                         );
                     })}
                 </div>

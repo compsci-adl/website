@@ -1,11 +1,13 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
-import { EVENTS, type Event, eventURL, parseEvents } from '@/data/events';
+import { type Event, eventURL, parseEvents } from '@/data/events';
 import { DateTime } from 'luxon';
 import EventsByYear from './EventsByYear';
 import { useState, useEffect } from "react";
 import { SkeletonLoader } from './EventSkeleton';
+
+let EVENTS: Event[] = [];
 
 function Title({ children }: { children: string }) {
     return (
