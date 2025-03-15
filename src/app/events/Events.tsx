@@ -3,9 +3,9 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { type Event, eventURL, parseEvents } from '@/data/events';
 import { DateTime } from 'luxon';
-import EventsByYear from './EventsByYear';
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 import { SkeletonLoader } from './EventSkeleton';
+import EventsByYear from './EventsByYear';
 
 let EVENTS: Event[] = [];
 
@@ -31,28 +31,28 @@ const getEventDate = (event: Event) => {
 };
 
 export default function Events({ className }: { className?: string }) {
-    const [loading, setLoading] = useState(true);   
+    const [loading, setLoading] = useState(true);
 
     // Await API call from payload for EVENTS
     useEffect(() => {
         fetch(eventURL, {
             method: 'GET',
         })
-        .then((res) => res.json())
-        .then((data) => {
-            const payloadData = data.docs;
-            for (let docNum in payloadData) {
-                const newEvent = parseEvents(payloadData[docNum]);
-                EVENTS.push(newEvent);
-            }
-            setLoading(false);
-        })
-        .catch((error) => {
-            console.error("Error fetching events", error);
-            setLoading(false);
-        })
-    })
-    
+            .then((res) => res.json())
+            .then((data) => {
+                const payloadData = data.docs;
+                for (let docNum in payloadData) {
+                    const newEvent = parseEvents(payloadData[docNum]);
+                    EVENTS.push(newEvent);
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching events', error);
+                setLoading(false);
+            });
+    });
+
     // API call successful return Events page
     if (!loading) {
         const CURRENT_DATE = new Date();
@@ -117,7 +117,7 @@ export default function Events({ className }: { className?: string }) {
                 )}
             </section>
         );
-    // API call unsuccessful return loader
+        // API call unsuccessful return loader
     } else {
         return (
             <section className={`${className} space-y-8`}>

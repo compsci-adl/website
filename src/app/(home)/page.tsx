@@ -5,12 +5,11 @@ import Title from '@/components/Title';
 import { fetchEvents, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, fetchSponsors } from '@/data/sponsors';
+import { env } from '@/env.mjs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import UpcomingEventCard from './UpcomingEventCard';
-import { env } from '@/env.mjs';
-
 
 const getEventDate = (event: Event) => {
     return new Date(
@@ -20,7 +19,7 @@ const getEventDate = (event: Event) => {
 
 export const payloadURL = env.NEXT_PUBLIC_PAYLOAD_URI;
 
-export default async function HomePage() {   
+export default async function HomePage() {
     const EVENTS: Event[] = await fetchEvents();
     const CURRENT_DATE = new Date();
     const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
@@ -246,36 +245,36 @@ export default async function HomePage() {
                     {SPONSOR_TYPES.map((type) => {
                         // Filter sponsors for the given tier
                         const filteredSponsors = sponsors.filter(
-                        (sponsor) => sponsor.type.toLowerCase() === type.toLowerCase()
+                            (sponsor) => sponsor.type.toLowerCase() === type.toLowerCase()
                         );
                         if (filteredSponsors.length === 0) return null;
                         return (
-                        <Fragment key={type}>
-                            <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
-                            {type} Sponsors
-                            </h3>
-                            <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
-                            {filteredSponsors.map(({ image, website, name }, i) => (
-                                <a
-                                href={website}
-                                key={i}
-                                className="block"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                >
-                                <FancyRectangle colour="white" offset="10">
-                                    <Image
-                                    src={payloadURL+`${image}`}
-                                    alt={`${name} Logo`}
-                                    width={250}
-                                    height={250}
-                                    className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
-                                    />
-                                </FancyRectangle>
-                                </a>
-                            ))}
-                            </div>
-                        </Fragment>
+                            <Fragment key={type}>
+                                <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
+                                    {type} Sponsors
+                                </h3>
+                                <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
+                                    {filteredSponsors.map(({ image, website, name }, i) => (
+                                        <a
+                                            href={website}
+                                            key={i}
+                                            className="block"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <FancyRectangle colour="white" offset="10">
+                                                <Image
+                                                    src={payloadURL + `${image}`}
+                                                    alt={`${name} Logo`}
+                                                    width={250}
+                                                    height={250}
+                                                    className="h-[150px] w-[150px] bg-white object-contain p-2 md:h-[250px] md:w-[250px]"
+                                                />
+                                            </FancyRectangle>
+                                        </a>
+                                    ))}
+                                </div>
+                            </Fragment>
                         );
                     })}
                 </div>
@@ -325,4 +324,5 @@ export default async function HomePage() {
                 </div>
             </section>
         </main>
-)};
+    );
+}

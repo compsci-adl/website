@@ -2,7 +2,7 @@ import Button from '@/components/Button';
 import FancyRectangle from '@/components/FancyRectangle';
 import Tag from '@/components/Tag';
 import type { Project } from '@/data/projects';
-import { env } from "@/env.mjs";
+import { env } from '@/env.mjs';
 import Image from 'next/image';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
 
@@ -13,7 +13,7 @@ export default function ProjectCard({ project }: { project: Project }) {
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="w-full gap-6 rounded-xl bg-white p-4 text-black">
                 <Image
-                    src={payloadURL + "/api/media/file/" + project.image}
+                    src={payloadURL + '/api/media/file/' + project.image}
                     alt={`${project.title}`}
                     width={450}
                     height={450}
