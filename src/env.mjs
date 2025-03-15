@@ -24,12 +24,14 @@ export const env = createEnv({
         NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: z.string().url().min(1).optional(),
         NEXT_PUBLIC_DRIVE_LINK: z.string().url().min(1),
         NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().optional(),
+        NEXT_PUBLIC_PAYLOAD_URI: z.string().url(),
     },
     experimental__runtimeEnv: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: process.env.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI,
         NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: process.env.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER,
         NEXT_PUBLIC_DRIVE_LINK: process.env.NEXT_PUBLIC_DRIVE_LINK,
         NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
+        NEXT_PUBLIC_PAYLOAD_URI: process.env.NEXT_PUBLIC_PAYLOAD_URI,
     },
     skipValidation: process.env.SKIP_ENV_VALIDATION,
 });

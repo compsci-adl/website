@@ -1,9 +1,13 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
-import { EVENTS, type Event } from '@/data/events';
+import { type Event, eventURL, parseEvents } from '@/data/events';
 import { DateTime } from 'luxon';
+import { useState, useEffect } from 'react';
+import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
+
+const EVENTS: Event[] = [];
 
 function Title({ children }: { children: string }) {
     return (
@@ -27,66 +31,99 @@ const getEventDate = (event: Event) => {
 };
 
 export default function Events({ className }: { className?: string }) {
-    const CURRENT_DATE = new Date();
-    const CURRENT_YEAR = CURRENT_DATE.getFullYear();
+    const [loading, setLoading] = useState(true);
 
-    // Create empty objects to hold upcoming and past events categorised by year
-    const upcomingEvents: Record<number, Event[]> = {};
-    const pastEvents: Record<number, Event[]> = {};
-
-    // Categorise events by year and whether they are upcoming or past
-    EVENTS.forEach((event) => {
-        const eventDate = getEventDate(event);
-        const year = event.date.year;
-
-        if (eventDate >= CURRENT_DATE) {
-            (upcomingEvents[year] ||= []).push(event);
-        } else {
-            (pastEvents[year] ||= []).push(event);
-        }
+    // Await API call from payload for EVENTS
+    useEffect(() => {
+        fetch(eventURL, {
+            method: 'GET',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const payloadData = data.docs;
+                for (const docNum in payloadData) {
+                    const newEvent = parseEvents(payloadData[docNum]);
+                    EVENTS.push(newEvent);
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error('Error fetching events', error);
+                setLoading(false);
+            });
     });
 
-    // Reverse the order of events within each year (i.e., most recent event at the top)
-    Object.values(upcomingEvents).forEach((events) => events);
-    Object.values(pastEvents).forEach((events) => events.reverse());
+    // API call successful return Events page
+    if (!loading) {
+        const CURRENT_DATE = new Date();
+        const CURRENT_YEAR = CURRENT_DATE.getFullYear();
 
-    const getSortedYears = (events: Record<number, Event[]>) =>
-        Object.keys(events).map(Number).reverse();
+        // Create empty objects to hold upcoming and past events categorised by year
+        const upcomingEvents: Record<number, Event[]> = {};
+        const pastEvents: Record<number, Event[]> = {};
 
-    const currentYear = getSortedYears(upcomingEvents);
-    const pastYears = getSortedYears(pastEvents);
+        // Categorise events by year and whether they are upcoming or past
+        EVENTS.forEach((event) => {
+            const eventDate = getEventDate(event);
+            const year = event.date.year;
 
-    return (
-        <section className={`${className} space-y-8`}>
-            {currentYear.length > 0 && (
-                <>
-                    <Title>Upcoming Events</Title>
-                    {currentYear.map((year) => (
-                        <EventsByYear
-                            key={year}
-                            year={year}
-                            events={upcomingEvents[year]}
-                            isOpenDefault={year === CURRENT_YEAR}
-                        />
-                    ))}
-                </>
-            )}
+            if (eventDate >= CURRENT_DATE) {
+                (upcomingEvents[year] ||= []).push(event);
+            } else {
+                (pastEvents[year] ||= []).push(event);
+            }
+        });
 
-            {pastYears.length > 0 && (
-                <>
-                    <div className="h-4"></div>
-                    <Title>Past Events</Title>
-                    {pastYears.map((year) => (
-                        <EventsByYear
-                            key={year}
-                            year={year}
-                            events={pastEvents[year]}
-                            isOpenDefault={year === CURRENT_YEAR}
-                            isPastEvent
-                        />
-                    ))}
-                </>
-            )}
-        </section>
-    );
+        // Reverse the order of events within each year (i.e., most recent event at the top)
+        Object.values(upcomingEvents).forEach((events) => events.reverse());
+        Object.values(pastEvents).forEach((events) => events.reverse());
+
+        const getSortedYears = (events: Record<number, Event[]>) =>
+            Object.keys(events).map(Number).reverse();
+
+        const currentYear = getSortedYears(upcomingEvents);
+        const pastYears = getSortedYears(pastEvents);
+
+        return (
+            <section className={`${className} space-y-8`}>
+                {currentYear.length > 0 && (
+                    <>
+                        <Title>Upcoming Events</Title>
+                        {currentYear.map((year) => (
+                            <EventsByYear
+                                key={year}
+                                year={year}
+                                events={upcomingEvents[year]}
+                                isOpenDefault={year === CURRENT_YEAR}
+                            />
+                        ))}
+                    </>
+                )}
+
+                {pastYears.length > 0 && (
+                    <>
+                        <div className="h-4"></div>
+                        <Title>Past Events</Title>
+                        {pastYears.map((year) => (
+                            <EventsByYear
+                                key={year}
+                                year={year}
+                                events={pastEvents[year]}
+                                isOpenDefault={year === CURRENT_YEAR}
+                                isPastEvent
+                            />
+                        ))}
+                    </>
+                )}
+            </section>
+        );
+        // API call unsuccessful return loader
+    } else {
+        return (
+            <section className={`${className} space-y-8`}>
+                <Title>Upcoming Events</Title>
+                <SkeletonLoader></SkeletonLoader>
+            </section>
+        );
+    }
 }

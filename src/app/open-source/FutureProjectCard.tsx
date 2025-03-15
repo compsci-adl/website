@@ -1,9 +1,8 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import Tag from '@/components/Tag';
-import { TECH_COLORS } from '@/constants/colours';
-import type { FutureProject } from '@/data/future-projects';
+import type { Project } from '@/data/projects';
 
-export default function ProjectCard({ project }: { project: FutureProject }) {
+export default function ProjectCard({ project }: { project: Project }) {
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="w-full gap-6 rounded-xl bg-white p-4 text-black">
@@ -19,7 +18,7 @@ export default function ProjectCard({ project }: { project: FutureProject }) {
                     {project.techStacks.length !== 0 && (
                         <div className="flex flex-wrap gap-3">
                             {project.techStacks.map((tech, i) => (
-                                <Tag key={i} name={tech} backgroundColor={TECH_COLORS[tech]} />
+                                <Tag key={i} name={tech.tech_name} backgroundColor={tech.color} />
                             ))}
                         </div>
                     )}

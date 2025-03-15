@@ -9,6 +9,12 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'www.gravatar.com',
             },
+            {
+                protocol: process.env.NEXT_PUBLIC_PAYLOAD_URI.startsWith('https') ? 'https' : 'http',
+                hostname: new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).hostname,
+                port: new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).port || '',
+                pathname: '/api/media/file/**',
+            }
         ],
     },
     typescript: {
