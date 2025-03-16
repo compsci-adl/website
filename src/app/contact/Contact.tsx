@@ -31,7 +31,7 @@ export default function Contact({ className }: { className?: string }) {
                 <br />
                 To keep up to date with our news and events, check out our Instagram!
             </Paragraph>
-            <div className="flex flex-wrap justify-start gap-4 text-3xl md:text-5xl">
+            <div className="flex flex-wrap justify-center gap-4 text-3xl md:text-5xl">
                 {LINKS.map((link, i) => (
                     <Link {...link} borderColour={LINK_BORDER_COLOURS[link.name]} key={i} />
                 ))}
