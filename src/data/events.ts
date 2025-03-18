@@ -52,7 +52,7 @@ export type PayloadEvent = {
 };
 
 // Payload URL
-export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events?limit=10';
+export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events?limit=100';
 
 export async function fetchEvents(): Promise<Event[]> {
     try {
@@ -107,7 +107,7 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             raw.link && raw.link.Link
                 ? { href: new URL(raw.link.Link), text: raw.link.displayText }
                 : undefined,
-        image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : '/placeholder.jpg', // Image is in the form of url (Needs a seperate API call)
+        image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
         // TODO: add /placeholder.jpg for failed image calls
     };
 };

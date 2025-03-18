@@ -15,7 +15,7 @@ export interface Project {
     active: boolean;
 }
 
-const projectURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/projects?limit=100';
+const projectURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/projects?limit=20';
 
 export async function fetchProjectsData(): Promise<Project[]> {
     try {

@@ -23,7 +23,7 @@ interface ApiSponsor {
     website?: string;
 }
 
-export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/sponsors?limit=100';
+export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/sponsors?limit=20';
 
 /*
     Fetches sponsors from Payload CMS and transforms them into the required format.
