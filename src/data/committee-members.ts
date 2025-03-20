@@ -90,16 +90,20 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Events Officer',
     },
     {
-        name: 'Jennifer Bao Tien Tran',
-        position: 'Events Officer',
-    },
-    {
         name: 'Lloyd',
         position: 'Events Officer',
     },
     {
         name: 'Shreeshail',
         position: 'Events Officer',
+    },
+    {
+        name: 'Tristan Coventry',
+        position: 'Events Officer',
+    },
+    {
+        name: 'Jason',
+        position: 'First Year Representative ',
     },
     {
         name: 'Syeda Ramisa',
