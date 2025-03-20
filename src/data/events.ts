@@ -209,13 +209,7 @@ export const EVENTS: Event[] = [
         time: '5:30pm - 7:00pm',
         location: 'IW715 Conference Room',
         details:
-            'Our Special General Meeting is your chance to vote for key club roles! We’re electing a First-Year Representative and an Events Officer. Any club member can run—just prepare a 1-minute speech on why you’re the best fit and apply before Sunday, March 16th, 23:59! ',
-        url: {
-            href: new URL(
-                'https://docs.google.com/forms/d/e/1FAIpQLScqmpNXI1KqDs-tY4YZXrekw8FxrLxiS_jolg1GCNuxQNt_Kw/viewform'
-            ),
-            text: 'Apply now!',
-        },
+            'Our Special General Meeting is your chance to vote for key club roles! We’re electing a First-Year Representative and an Events Officer. Any club member can run—just prepare a 1-minute speech on why you’re the best fit!',
         image: '2025/sgm.png',
     },
 ];
