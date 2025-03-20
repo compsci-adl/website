@@ -212,6 +212,15 @@ export const EVENTS: Event[] = [
             'Our Special General Meeting is your chance to vote for key club roles! We’re electing a First-Year Representative and an Events Officer. Any club member can run—just prepare a 1-minute speech on why you’re the best fit!',
         image: '2025/sgm.png',
     },
+    {
+        title: 'Intro to Web Dev Workshop',
+        date: { year: 2025, month: 'MAR', day: 27, endTime: '20:30' },
+        time: '6:30pm - 8:30pm',
+        location: 'Engineering and Maths EM108',
+        details:
+            'Want to learn web development fundamentals? Our first workshop in our Web Dev Workshop Series, Intro to Web Dev, covers HTML, CSS, and JavaScript, with hands-on webpage building and expert guidance. Lab computers will be available, or you can use your own laptop.',
+        image: '2025/intro-web-dev.png',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
