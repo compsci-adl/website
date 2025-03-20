@@ -32,6 +32,14 @@ const SPONSORS: Sponsor[] = [
             'Jane Street is a quantitative trading firm with offices worldwide. We hire smart, humble people who love to solve problems, build systems, and test theories. You’ll learn something new every day in our office—whether it’s connecting with a colleague to share perspectives, or participating in a talk, class, or game night. Our success is driven by our people and we never stop improving.',
     },
     {
+        name: 'Optiver',
+        image: 'optiver.png',
+        website: 'https://optiver.com/',
+        type: 'silver',
+        description:
+            'As one of the oldest market making firms in the world, Optiver has been improving financial markets since 1986. By providing liquidity to markets across the globe, we make them more efficient, transparent and stable. Powered by technological innovation, we continuously provide competitive, two-sided prices for thousands of financial instruments on all major exchanges globally. Our world class teams of highly skilled professionals come from a broad range of disciplines but are bound by one simple purpose: improving the market.',
+    },
+    {
         name: 'Atlassian',
         image: 'atlassian.svg',
         website: 'https://www.atlassian.com/',
