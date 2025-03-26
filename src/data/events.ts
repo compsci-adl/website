@@ -200,7 +200,7 @@ export const EVENTS: Event[] = [
         time: '6:00pm - 9:00pm',
         location: 'National Wine Centre of Australia',
         details:
-            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss! Tickets are now sold out.",
+            "Network with industry professionals and explore careers in software engineering, cybersecurity, AI, trading, and banking. Whether you're looking for internships, graduate roles, or just keen to learn more about career paths in tech, this is an event you don’t want to miss!",
         image: '2025/industry-night.png',
     },
     {
@@ -220,6 +220,41 @@ export const EVENTS: Event[] = [
         details:
             'Want to learn web development fundamentals? Our first workshop in our Web Dev Workshop Series, Intro to Web Dev, covers HTML, CSS, and JavaScript, with hands-on webpage building and expert guidance. Lab computers will be available, or you can use your own laptop.',
         image: '2025/intro-web-dev.png',
+    },
+    {
+        title: 'Quiz Night',
+        date: { year: 2025, month: 'APR', day: 4, endTime: '21:00' },
+        time: '6:30pm - 8:30pm',
+        location: 'Union House, Function Room 1',
+        details:
+            'Time to flex those brain muscles, outsmart the competition with random facts, and claim ultimate trivia glory! Form a team up to six members, or get assigned one on the day, battle it out for epic prizes, and enjoy free food & drinks! Arrive by 5:45 PM for a 6 PM start!',
+        url: {
+            href: new URL('https://events.humanitix.com/cs-club-2025-quiz-night'),
+            text: 'Register here!',
+        },
+        image: '2025/quiz-night.jpeg',
+    },
+    {
+        title: 'Intro to React Workshop',
+        date: { year: 2025, month: 'APR', day: 8, endTime: '20:30' },
+        time: '6:30pm - 8:30pm',
+        location: 'Ingkarni Wardli 218',
+        details:
+            'In the second workshop of our Web Dev Workshop Series, Intro to React, we will explore the key concepts and fundamentals of React and learn to build interactive, component-based web apps. Lab computers will be available, or you can use your own laptop. ',
+        image: '2025/intro-react.jpg',
+    },
+    {
+        title: 'CS Club x eSports Club Super Smash Bros. Ultimate Tournament',
+        date: { year: 2025, month: 'APR', day: 12, endTime: '16:00' },
+        time: '12:00pm - 4:00pm',
+        location: 'Inkarni Wardli B18',
+        details:
+            'This will be a 1v1 double-elimination tournament and you will be competing for a prize! Members of either club will have free entry, entry fee for non-members will be $10. May the best smasher win.',
+        url: {
+            href: new URL('https://forms.gle/XG266qLDLpoQQsFAA'),
+            text: 'Sign up now—spots are limited!',
+        },
+        image: '2025/smash-tournament.jpg',
     },
 ];
 
