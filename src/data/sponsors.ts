@@ -1,4 +1,5 @@
 import { env } from '@/env.mjs';
+import { fetcher } from '@/lib/fetcher';
 
 export const SPONSOR_TYPES = ['gold', 'silver', 'bronze'] as const;
 
@@ -30,10 +31,10 @@ export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/sponsors?limit=20'
 */
 export async function fetchSponsors(): Promise<Sponsor[]> {
     try {
-        const res = await fetch(sponsorURL, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
-        const data = await res.json();
-        // Parse each API sponsor into our Sponsor type
+        // Use fetcher.get.query to perform a GET request.
+        const data = await fetcher.get.query([sponsorURL, { cache: 'no-store', prefixUrl: '' }]);
+        
+        // Parse each API sponsor into Sponsor type
         return (data.docs || []).map((sponsor: ApiSponsor) => ({
             name: sponsor['Company name'],
             description: sponsor['Company description'],

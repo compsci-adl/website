@@ -1,5 +1,7 @@
 import type { Image } from '@/components/ImageCarousel';
 import { env } from '@/env.mjs';
+import { fetcher } from '@/lib/fetcher';
+import useSWRMutation from 'swr/mutation';
 
 type Month =
     | 'JAN'
@@ -54,23 +56,31 @@ export type PayloadEvent = {
 // Payload URL
 export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events?limit=100';
 
+/*
+    Fetches events from Payload CMS and transforms them into the required format.
+*/
 export async function fetchEvents(): Promise<Event[]> {
     try {
-        const res = await fetch(eventURL, { cache: 'no-store' });
-        if (!res.ok) throw new Error(`Failed to fetch sponsors: ${res.statusText}`);
-        const data = await res.json();
+        // Fetching event data from payload with fetcher
+        const data = await fetcher.get.query([eventURL, { cache: 'no-store', prefixUrl: '' }]);
+        
         const payloadData = data.docs;
         const EVENTS: Event[] = [];
+
+        // Process and parse events
         for (const docNum in payloadData) {
             const newEvent = parseEvents(payloadData[docNum]);
             EVENTS.push(newEvent);
-        }
+        } 
+        
         return EVENTS;
     } catch (error) {
-        console.error('Error fetching sponsors:', error);
+        console.error('Error fetching events:', error);
         return [];
     }
 }
+
+
 
 // Function to parse Payload data to Event type
 export const parseEvents = (raw: PayloadEvent): Event => {
