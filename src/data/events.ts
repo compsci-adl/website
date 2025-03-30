@@ -109,7 +109,8 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             endTime: eventDate.toString().split(' - ')[1] ?? '21:00', // if undefined 9:00pm required for Events.tsx logic
         },
         time: raw.time
-            ? `${new Date(raw.time.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} - ${new Date(raw.time.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`
+            ? `${new Date(raw.time.start).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} - 
+            ${new Date(raw.time.end).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
             : 'Unknown',
         location: raw.location,
         details: raw.details,
@@ -118,7 +119,6 @@ export const parseEvents = (raw: PayloadEvent): Event => {
                 ? { href: new URL(raw.link.Link), text: raw.link.displayText }
                 : undefined,
         image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
-        // TODO: add /placeholder.jpg for failed image calls
     };
 };
 
