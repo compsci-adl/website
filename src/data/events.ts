@@ -245,7 +245,7 @@ export const EVENTS: Event[] = [
     },
     {
         title: 'CS Club x eSports Club Super Smash Bros. Ultimate Tournament',
-        date: { year: 2025, month: 'APR', day: 12, endTime: '16:00' },
+        date: { year: 2025, month: 'APR', day: 13, endTime: '16:00' },
         time: '12:00pm - 4:00pm',
         location: 'Inkarni Wardli B18',
         details:
