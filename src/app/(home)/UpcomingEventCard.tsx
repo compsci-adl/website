@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { FiClock, FiMapPin } from 'react-icons/fi';
 
 function UpcomingEventCard({ event, index }: { event: Event; index: number }) {
+    const hyphenatedID = event.title.replaceAll(' ', '-');
+
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
             <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
-                <Link href={`/events#${event.title}-${event.date.year}`}>
+                <Link href={`/events#${hyphenatedID}-${event.date.year}`}>
                     <div className="grow space-y-2 md:space-y-4">
                         <div className="flex gap-6">
                             <div
