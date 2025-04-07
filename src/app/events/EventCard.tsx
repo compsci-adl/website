@@ -12,9 +12,13 @@ export default function EventCard({
     index: number;
     isPastEvent?: boolean;
 }) {
+    const hyphenatedID = event.title.replaceAll(' ', '-');
     return (
         <FancyRectangle colour="white" offset="8" rounded fullWidth>
-            <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
+            <div
+                id={`${hyphenatedID}-${event.date.year}`}
+                className="flex w-full scroll-mt-[40vh] flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row"
+            >
                 <Image
                     src={`/images/events/${event.image}`}
                     alt={`${event.title}`}
