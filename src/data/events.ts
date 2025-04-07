@@ -240,7 +240,7 @@ export const EVENTS: Event[] = [
         image: '2025/intro-react.jpg',
     },
     {
-        title: 'LaTeX Workshop',
+        title: 'CSC x AUMS LaTeX & Resume Writing Workshop',
         date: { year: 2025, month: 'APR', day: 10, endTime: '21:00' },
         time: '6:00pm - 9:00pm',
         location: 'Ingkarni Wardli B17',
@@ -249,7 +249,7 @@ export const EVENTS: Event[] = [
         image: '2025/latex.jpg',
     },
     {
-        title: 'CS Club x eSports Club Super Smash Bros. Ultimate Tournament',
+        title: 'CSC x eSports Club Super Smash Bros. Ultimate Tournament',
         date: { year: 2025, month: 'APR', day: 13, endTime: '16:00' },
         time: '12:00pm - 4:00pm',
         location: 'Inkarni Wardli B18',
