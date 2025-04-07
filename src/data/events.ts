@@ -240,6 +240,15 @@ export const EVENTS: Event[] = [
         image: '2025/intro-react.jpg',
     },
     {
+        title: 'LaTeX Workshop',
+        date: { year: 2025, month: 'APR', day: 10, endTime: '21:00' },
+        time: '6:00pm - 9:00pm',
+        location: 'Ingkarni Wardli B17',
+        details:
+            "Tired of boring, plain resumes? Say farewell to them forever and level up your document game with LaTeX! Lab computers will be available, but feel free to bring your laptop to follow along. Whether you're writing reports, assignments, or the perfect resume—LaTeX has your back.",
+        image: '2025/latex.jpg',
+    },
+    {
         title: 'CS Club x eSports Club Super Smash Bros. Ultimate Tournament',
         date: { year: 2025, month: 'APR', day: 13, endTime: '16:00' },
         time: '12:00pm - 4:00pm',
