@@ -228,10 +228,6 @@ export const EVENTS: Event[] = [
         location: 'Union House, Function Room 1',
         details:
             'Time to flex those brain muscles, outsmart the competition with random facts, and claim ultimate trivia glory! Form a team up to six members, or get assigned one on the day, battle it out for epic prizes, and enjoy free food & drinks! Arrive by 5:45 PM for a 6 PM start!',
-        url: {
-            href: new URL('https://events.humanitix.com/cs-club-2025-quiz-night'),
-            text: 'Register here!',
-        },
         image: '2025/quiz-night.jpeg',
     },
     {
@@ -240,7 +236,7 @@ export const EVENTS: Event[] = [
         time: '6:30pm - 8:30pm',
         location: 'Ingkarni Wardli 218',
         details:
-            'In the second workshop of our Web Dev Workshop Series, Intro to React, we will explore the key concepts and fundamentals of React and learn to build interactive, component-based web apps. Lab computers will be available, or you can use your own laptop. ',
+            'In the second workshop of our Web Dev Workshop Series, Intro to React, we will explore the key concepts and fundamentals of React and learn to build interactive, component-based web apps. Lab computers will be available, or you can use your own laptop.',
         image: '2025/intro-react.jpg',
     },
     {
