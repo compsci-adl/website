@@ -255,10 +255,6 @@ export const EVENTS: Event[] = [
         location: 'Inkarni Wardli B18',
         details:
             'This will be a 1v1 double-elimination tournament and you will be competing for a prize! Members of either club will have free entry, entry fee for non-members will be $10. May the best smasher win.',
-        url: {
-            href: new URL('https://forms.gle/XG266qLDLpoQQsFAA'),
-            text: 'Sign up now—spots are limited!',
-        },
         image: '2025/smash-tournament.jpg',
     },
 ];
