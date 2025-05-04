@@ -255,11 +255,33 @@ export const EVENTS: Event[] = [
         location: 'Inkarni Wardli B18',
         details:
             'This will be a 1v1 double-elimination tournament and you will be competing for a prize! Members of either club will have free entry, entry fee for non-members will be $10. May the best smasher win.',
-        url: {
-            href: new URL('https://forms.gle/XG266qLDLpoQQsFAA'),
-            text: 'Sign up now—spots are limited!',
-        },
         image: '2025/smash-tournament.jpg',
+    },
+    {
+        title: 'Special General Meeting 2',
+        date: { year: 2025, month: 'MAY', day: 5, endTime: '18:30' },
+        time: '5:00pm - 6:30pm',
+        location: 'Inkarni Wardli 715',
+        details:
+            "We're looking to add a few more enthusiastic students into our team! This is a great opportunity to get some experience contributing to the many events and workshops CSC holds throughout the year and be part of making things work behind the scenes.",
+        url: {
+            href: new URL('https://forms.gle/eMuzK9J1StGRKAXb7'),
+            text: 'Apply before 11:59PM Sunday 4th May',
+        },
+        image: '2025/sgm2.png',
+    },
+    {
+        title: 'Become Unemployable – A Comprehensive Guide',
+        date: { year: 2025, month: 'MAY', day: 6, endTime: '19:00' },
+        time: '6:00pm - 7:00pm',
+        location: 'Scott Theatre',
+        details:
+            'Have you ever wondered what peak unemployability looks like? Join us to unravel the secrets on how you can be the biggest let-down possible by the time you graduate university. Led by bestselling author and RSP co-founder, Shaun Gunawardane.',
+        url: {
+            href: new URL('https://events.humanitix.com/become-unemployable-a-comprehensive-guide'),
+            text: 'Sign up here!',
+        },
+        image: '2025/shaun.jpg',
     },
 ];
 
