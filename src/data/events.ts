@@ -270,6 +270,19 @@ export const EVENTS: Event[] = [
         },
         image: '2025/sgm2.png',
     },
+    {
+        title: 'Become Unemployable – A Comprehensive Guide ',
+        date: { year: 2025, month: 'MAY', day: 6, endTime: '19:00' },
+        time: '6:00pm - 7:00pm',
+        location: 'Scott Theatre',
+        details:
+            'Have you ever wondered what peak unemployability looks like? Join us to unravel the secrets on how you can be the biggest let-down possible by the time you graduate university. Led by bestselling author and RSP co-founder, Shaun Gunawardane.',
+        url: {
+            href: new URL('https://events.humanitix.com/become-unemployable-a-comprehensive-guide'),
+            text: 'Sign up here!',
+        },
+        image: '2025/shaun.jpg',
+    },
 ];
 
 export const CAROUSEL_IMAGES: Image[] = [
