@@ -271,7 +271,7 @@ export const EVENTS: Event[] = [
         image: '2025/sgm2.png',
     },
     {
-        title: 'Become Unemployable – A Comprehensive Guide ',
+        title: 'Become Unemployable – A Comprehensive Guide',
         date: { year: 2025, month: 'MAY', day: 6, endTime: '19:00' },
         time: '6:00pm - 7:00pm',
         location: 'Scott Theatre',
