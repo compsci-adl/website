@@ -16,7 +16,9 @@ const nextConfig = {
                 hostname: process.env.NEXT_PUBLIC_PAYLOAD_URI
                     ? new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).hostname
                     : 'localhost',
-                port: new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).port || '',
+                port: process.env.NEXT_PUBLIC_PAYLOAD_URI
+                    ? new URL(process.env.NEXT_PUBLIC_PAYLOAD_URI).port || ''
+                    : '',
                 pathname: '/api/media/file/**',
             },
         ],
