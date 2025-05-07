@@ -20,7 +20,7 @@ export default function EventCard({
                 className="flex w-full scroll-mt-[40vh] flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row"
             >
                 <Image
-                    src={`/images/events/${event.image}`}
+                    src={event.image}
                     alt={`${event.title}`}
                     width={450}
                     height={450}
