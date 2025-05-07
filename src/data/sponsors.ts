@@ -34,14 +34,16 @@ export async function fetchSponsors(): Promise<Sponsor[]> {
         // Use fetcher.get.query to perform a GET request.
         const data = await fetcher.get.query([sponsorURL, { cache: 'no-store', prefixUrl: '' }]);
 
-        // Parse each API sponsor into Sponsor type
-        return (data.docs || []).map((sponsor: ApiSponsor) => ({
-            name: sponsor['Company name'],
-            description: sponsor['Company description'],
-            image: sponsor.logo.url, // Logo URL on payload
-            website: sponsor.website || null,
-            type: sponsor['sponsor tier'],
-        }));
+        // Parse each API sponsor into Sponsor type and reverse the order
+        return (data.docs || [])
+            .map((sponsor: ApiSponsor) => ({
+                name: sponsor['Company name'],
+                description: sponsor['Company description'],
+                image: sponsor.logo.url, // Logo URL on payload
+                website: sponsor.website || null,
+                type: sponsor['sponsor tier'],
+            }))
+            .reverse();
     } catch (error) {
         console.error('Error fetching sponsors:', error);
         return [];

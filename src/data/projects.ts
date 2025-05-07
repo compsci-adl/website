@@ -27,18 +27,21 @@ export async function fetchProjectsData(): Promise<Project[]> {
         const data = await fetcher.get.query([projectURL, { cache: 'no-store', prefixUrl: '' }]);
 
         // Process the data to match the Project interface
-        const projects: Project[] = data.docs.map((project: any) => ({
-            title: project.title,
-            description: project.description,
-            image: project.image.filename,
-            githubLink: project['githubLink'],
-            websiteLink: project.websiteLink || null,
-            techStacks: project['techStack'].map((tech: any) => ({
-                tech_name: tech['tech-name'],
-                color: tech.color,
-            })),
-            active: project.active === 'true',
-        }));
+        const projects: Project[] = data.docs
+            .map((project: any) => ({
+                title: project.title,
+                description: project.description,
+                image: project.image?.filename || '',
+                githubLink: project.githubLink || '',
+                websiteLink: project.websiteLink || null,
+                techStacks: (project.techStack || []).map((tech: any) => ({
+                    tech_name: tech['tech-name'],
+                    color: tech.color,
+                })),
+                active: project.isCurrent === 'true',
+            }))
+            .reverse();
+
         return projects;
     } catch (error) {
         console.error('Error fetching projects:', error);
