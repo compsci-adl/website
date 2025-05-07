@@ -5,7 +5,7 @@ import Title from '@/components/Title';
 import { fetchEvents, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, fetchSponsors } from '@/data/sponsors';
-import { env } from '@/env.mjs';
+import { payloadURL } from '@/lib/payload';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
@@ -16,8 +16,6 @@ const getEventDate = (event: Event) => {
         `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
     );
 };
-
-export const payloadURL = env.NEXT_PUBLIC_PAYLOAD_URI;
 
 export default async function HomePage() {
     const EVENTS: Event[] = await fetchEvents();
