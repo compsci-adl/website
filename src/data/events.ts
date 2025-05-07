@@ -1,7 +1,6 @@
 import type { Image } from '@/components/ImageCarousel';
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
-import useSWRMutation from 'swr/mutation';
 
 type Month =
     | 'JAN'
@@ -63,7 +62,7 @@ export async function fetchEvents(): Promise<Event[]> {
     try {
         // Fetching event data from payload with fetcher
         const data = await fetcher.get.query([eventURL, { cache: 'no-store', prefixUrl: '' }]);
-        
+
         const payloadData = data.docs;
         const EVENTS: Event[] = [];
 
@@ -71,16 +70,14 @@ export async function fetchEvents(): Promise<Event[]> {
         for (const docNum in payloadData) {
             const newEvent = parseEvents(payloadData[docNum]);
             EVENTS.push(newEvent);
-        } 
-        
+        }
+
         return EVENTS;
     } catch (error) {
         console.error('Error fetching events:', error);
         return [];
     }
 }
-
-
 
 // Function to parse Payload data to Event type
 export const parseEvents = (raw: PayloadEvent): Event => {
@@ -118,7 +115,9 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             raw.link && raw.link.Link
                 ? { href: new URL(raw.link.Link), text: raw.link.displayText }
                 : undefined,
-        image: raw.banner ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}` : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
+        image: raw.banner
+            ? `${env.NEXT_PUBLIC_PAYLOAD_URI}${raw.banner.url}`
+            : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
     };
 };
 

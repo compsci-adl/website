@@ -127,7 +127,7 @@ export default async function HomePage() {
                             </div>
 
                             <div className="mt-4 space-y-6">
-                                {UPCOMING_EVENTS.map((event, i) => (
+                                {UPCOMING_EVENTS.slice(0, 3).map((event, i) => (
                                     <UpcomingEventCard key={i} event={event} index={i} />
                                 ))}
                             </div>

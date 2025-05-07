@@ -33,7 +33,7 @@ export async function fetchSponsors(): Promise<Sponsor[]> {
     try {
         // Use fetcher.get.query to perform a GET request.
         const data = await fetcher.get.query([sponsorURL, { cache: 'no-store', prefixUrl: '' }]);
-        
+
         // Parse each API sponsor into Sponsor type
         return (data.docs || []).map((sponsor: ApiSponsor) => ({
             name: sponsor['Company name'],

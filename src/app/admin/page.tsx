@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     robots: { index: false, follow: false },
 };
 
-const PAGE_SIZE = 50;
+const PAGE_SIZE = 250;
 
 const queryMembers = async (page: number) => {
     const skip = (page - 1) * PAGE_SIZE;

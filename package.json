@@ -13,7 +13,8 @@
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "email:dev": "email dev --dir=src/emails"
+    "email:dev": "email dev --dir=src/emails",
+    "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
@@ -29,7 +30,7 @@
     "luxon": "^3.5.0",
     "md5": "^2.3.0",
     "nanoid": "^5.0.9",
-    "next": "14.2.22",
+    "next": "14.2.26",
     "next-auth": "5.0.0-beta.25",
     "nodemailer": "^6.9.16",
     "react": "^18.3.1",
