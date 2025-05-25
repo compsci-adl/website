@@ -23,7 +23,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         exec: true,
     },
     {
-        name: 'Ray Okamoto',
+        name: 'Austin Huppatz',
         position: 'Secretary',
         exec: true,
     },
@@ -38,11 +38,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         exec: true,
     },
     {
-        name: 'Patrick Thompson',
-        position: 'Partnerships & Sponsorships Officer',
-    },
-    {
-        name: 'Olivia Aston',
+        name: 'Lloyd',
         position: 'Partnerships & Sponsorships Officer',
     },
     {
@@ -70,6 +66,14 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Social Media & Marketing Officer',
     },
     {
+        name: 'Tim Pham',
+        position: 'Social Media & Marketing Officer',
+    },
+    {
+        name: 'Isaac Sheehan',
+        position: 'Social Media & Marketing Officer',
+    },
+    {
         name: 'Phoenix Pereira',
         position: 'Open Source & Infrastructure Manager',
     },
@@ -78,7 +82,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Open Source Officer',
     },
     {
-        name: 'Austin Huppatz',
+        name: 'Asrith Atluri',
         position: 'Open Source Officer',
     },
     {
@@ -86,15 +90,15 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Events Manager',
     },
     {
-        name: 'Shahid Hussain',
-        position: 'Events Officer',
-    },
-    {
-        name: 'Lloyd',
+        name: 'Mary',
         position: 'Events Officer',
     },
     {
         name: 'Shreeshail',
+        position: 'Events Officer',
+    },
+    {
+        name: 'Thai Le',
         position: 'Events Officer',
     },
     {
