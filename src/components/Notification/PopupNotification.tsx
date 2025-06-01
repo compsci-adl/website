@@ -29,12 +29,16 @@ export default function PopupNotification({
                                     <Image
                                         src={data.leftImage.url}
                                         alt={data.leftImage.alt || 'Left image'}
-                                        className="w-2/3 object-contain md:w-1/2 lg:w-full"
+                                        width={500}
+                                        height={300}
+                                        className="w-2/3 object-contain md:w-1/2"
                                     />
                                     <Image
                                         src={data.rightImage.url}
                                         alt={data.rightImage.alt || 'Right image'}
-                                        className="w-2/3 object-contain md:w-1/2 lg:w-full"
+                                        width={500}
+                                        height={300}
+                                        className="w-2/3 object-contain md:w-1/2"
                                     />
                                 </>
                             ) : (
@@ -45,6 +49,8 @@ export default function PopupNotification({
                                             ? data.leftImage.alt || 'Left image'
                                             : data.rightImage!.alt || 'Right image'
                                     }
+                                    width={500}
+                                    height={300}
                                     className="w-2/3 object-contain md:w-1/4 lg:w-2/3"
                                 />
                             )}
