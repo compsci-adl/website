@@ -1,3 +1,4 @@
+import Button from '@/components/Button';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import photosData from './photos.json';
@@ -146,7 +147,7 @@ export default function Gallery() {
     return (
         <div className="relative">
             {/* Folder Select */}
-            <select
+            {/* <select
                 value={selectedFolder}
                 onChange={(e) => setSelectedFolder(e.target.value)}
                 className="absolute left-2.5 top-14 z-[1000] appearance-none rounded-xl bg-neutral-300 px-5 py-2.5 pr-10 text-base text-black"
@@ -159,7 +160,7 @@ export default function Gallery() {
                             .join(' ')}
                     </option>
                 ))}
-            </select>
+            </select> */}
             <svg
                 className="absolute left-[13.75rem] top-[4.5rem] z-[2000] text-xl text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -175,7 +176,7 @@ export default function Gallery() {
             </svg>
 
             {/* Num Images Select */}
-            <select
+            {/* <select
                 value={numImages}
                 onChange={(e) => setNumImages(Number(e.target.value))}
                 className="absolute left-2.5 top-[6.9rem] z-[1000] appearance-none rounded-xl bg-neutral-300 px-5 py-2.5 pr-10 text-base text-black"
@@ -185,7 +186,7 @@ export default function Gallery() {
                         {num} Images
                     </option>
                 ))}
-            </select>
+            </select> */}
             <svg
                 className="absolute left-[7rem] top-[7.7rem] z-[2000] text-xl text-black"
                 xmlns="http://www.w3.org/2000/svg"
@@ -201,20 +202,20 @@ export default function Gallery() {
             </svg>
 
             {/* Buttons */}
-            <button
-                onClick={shufflePhotos}
-                className="absolute left-2.5 top-2.5 z-[1000] rounded-xl bg-neutral-300 px-5 py-2.5 text-base text-black"
-            >
-                Shuffle
-            </button>
-            <button
-                onClick={handleAnimateToggle}
-                className="animate-toggle-button absolute left-2.5 top-[10.1rem] z-[1000] rounded-xl bg-neutral-300 px-5 py-2.5 text-base text-black"
-            >
-                {animateToggle ? 'Stop Animation' : 'Start Animation'}
-            </button>
+            <div className="relative flex h-full w-full flex-col items-start justify-center gap-8">
+                <Button onClick={shufflePhotos} type="button" colour="orange">
+                    Shuffle
+                </Button>
+                <Button
+                    onClick={handleAnimateToggle}
+                    type="button"
+                    colour="orange"
+                    className="animate-toggle-button"
+                >
+                    {animateToggle ? 'Stop Animation' : 'Start Animation'}
+                </Button>
+            </div>
 
-            {/* Gallery */}
             <div
                 ref={galleryRef}
                 className="relative box-border flex flex-wrap items-center justify-center p-5"
