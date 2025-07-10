@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import './App.css';
 import photosData from './photos.json';
+import './tailwind-overrides.css';
 
 interface Photo {
     url: string;
@@ -26,8 +26,9 @@ export default function Gallery() {
 
     // Load photos data and set initial positions
     useEffect(() => {
-        setFolders([...new Set(photosData.map((photo) => photo.folder))]);
-        setSelectedFolder([...new Set(photosData.map((photo) => photo.folder))][0]);
+        const uniqueFolders = [...new Set(photosData.map((photo) => photo.folder))];
+        setFolders(uniqueFolders);
+        setSelectedFolder(uniqueFolders[0]);
     }, []);
 
     const filteredPhotos = useMemo(() => {
@@ -36,10 +37,7 @@ export default function Gallery() {
 
     const shuffledPhotos = useMemo(() => {
         return [...filteredPhotos]
-            .map((photo) => ({
-                ...photo,
-                orientation: photo.orientation as 'portrait' | 'landscape',
-            }))
+            .map((photo) => ({ ...photo, orientation: photo.orientation }))
             .sort(() => 0.5 - Math.random())
             .slice(0, numImages);
     }, [filteredPhotos, numImages]);
@@ -47,9 +45,8 @@ export default function Gallery() {
     useEffect(() => {
         if (selectedFolder) {
             setPhotos(shuffledPhotos);
-            const initialPositions: {
-                [key: number]: { x: number; y: number; rotate: number };
-            } = {};
+            const initialPositions: { [key: number]: { x: number; y: number; rotate: number } } =
+                {};
             shuffledPhotos.forEach((_, index) => {
                 initialPositions[index] = randomPosition();
             });
@@ -73,12 +70,8 @@ export default function Gallery() {
 
     // Shuffle function to randomise positions and rotations of the photos
     const shufflePhotos = () => {
-        const filteredPhotos = photosData.filter((photo) => photo.folder === selectedFolder);
-        const allShuffledPhotos = [...filteredPhotos]
-            .map((photo) => ({
-                ...photo,
-                orientation: photo.orientation as 'portrait' | 'landscape',
-            }))
+        const allShuffledPhotos = [...photosData.filter((p) => p.folder === selectedFolder)]
+            .map((photo) => ({ ...photo, orientation: photo.orientation }))
             .sort(() => 0.5 - Math.random())
             .slice(0, numImages);
 
@@ -106,9 +99,7 @@ export default function Gallery() {
     // Register the event listener when the component mounts and cleanup on unmount
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick);
-        return () => {
-            document.removeEventListener('click', handleOutsideClick);
-        };
+        return () => document.removeEventListener('click', handleOutsideClick);
     }, [handleOutsideClick]);
 
     // Handle drag start and end events
@@ -137,53 +128,44 @@ export default function Gallery() {
             folderChangeInterval.current = setInterval(() => {
                 setSelectedFolder((prevFolder) => {
                     const currentIndex = folders.indexOf(prevFolder);
-                    const nextIndex = (currentIndex + 1) % folders.length;
-                    return folders[nextIndex];
+                    return folders[(currentIndex + 1) % folders.length];
                 });
             }, 60000);
         } else {
-            if (animationInterval.current) {
-                clearInterval(animationInterval.current);
-            }
-            if (folderChangeInterval.current) {
-                clearInterval(folderChangeInterval.current);
-            }
+            stopAnimation();
         }
     };
 
     // Stop animation
     const stopAnimation = () => {
         setAnimateToggle(false);
-        if (animationInterval.current) {
-            clearInterval(animationInterval.current);
-        }
-        if (folderChangeInterval.current) {
-            clearInterval(folderChangeInterval.current);
-        }
+        if (animationInterval.current) clearInterval(animationInterval.current);
+        if (folderChangeInterval.current) clearInterval(folderChangeInterval.current);
     };
 
     return (
-        <div>
+        <div className="relative">
+            {/* Folder Select */}
             <select
                 value={selectedFolder}
                 onChange={(e) => setSelectedFolder(e.target.value)}
-                className="folder-select"
+                className="absolute left-2.5 top-14 z-[1000] appearance-none rounded-xl bg-neutral-300 px-5 py-2.5 pr-10 text-base text-black"
             >
                 {folders.map((folder) => (
                     <option key={folder} value={folder}>
                         {folder
                             .split('-')
-                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                            .map((w) => w[0].toUpperCase() + w.slice(1))
                             .join(' ')}
                     </option>
                 ))}
             </select>
             <svg
+                className="absolute left-[13.75rem] top-[4.5rem] z-[2000] text-xl text-black"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
                 width="16"
                 height="16"
-                fill="currentColor"
-                className="bi-chevron-down-folder"
                 viewBox="0 0 16 16"
             >
                 <path
@@ -192,10 +174,11 @@ export default function Gallery() {
                 />
             </svg>
 
+            {/* Num Images Select */}
             <select
                 value={numImages}
                 onChange={(e) => setNumImages(Number(e.target.value))}
-                className="num-images-select"
+                className="absolute left-2.5 top-[6.9rem] z-[1000] appearance-none rounded-xl bg-neutral-300 px-5 py-2.5 pr-10 text-base text-black"
             >
                 {[10, 20, 30, 40, 50].map((num) => (
                     <option key={num} value={num}>
@@ -204,11 +187,11 @@ export default function Gallery() {
                 ))}
             </select>
             <svg
+                className="absolute left-[7rem] top-[7.7rem] z-[2000] text-xl text-black"
                 xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
                 width="16"
                 height="16"
-                fill="currentColor"
-                className="bi-chevron-down-images"
                 viewBox="0 0 16 16"
             >
                 <path
@@ -216,15 +199,26 @@ export default function Gallery() {
                     d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
                 />
             </svg>
-            <button onClick={shufflePhotos} className="shuffle-button">
+
+            {/* Buttons */}
+            <button
+                onClick={shufflePhotos}
+                className="absolute left-2.5 top-2.5 z-[1000] rounded-xl bg-neutral-300 px-5 py-2.5 text-base text-black"
+            >
                 Shuffle
             </button>
-
-            <button onClick={handleAnimateToggle} className="animate-toggle-button">
+            <button
+                onClick={handleAnimateToggle}
+                className="animate-toggle-button absolute left-2.5 top-[10.1rem] z-[1000] rounded-xl bg-neutral-300 px-5 py-2.5 text-base text-black"
+            >
                 {animateToggle ? 'Stop Animation' : 'Start Animation'}
             </button>
 
-            <div className="gallery" ref={galleryRef}>
+            {/* Gallery */}
+            <div
+                ref={galleryRef}
+                className="relative box-border flex flex-wrap items-center justify-center p-5"
+            >
                 {photos.map((photo, index) => {
                     const variants = {
                         initial: {
@@ -240,17 +234,9 @@ export default function Gallery() {
                                       rotate: positions[index]?.rotate,
                                       opacity: 1,
                                       transition: {
-                                          scale: {
-                                              type: 'spring',
-                                              stiffness: 100,
-                                              damping: 25,
-                                          },
+                                          scale: { type: 'spring', stiffness: 100, damping: 25 },
                                           opacity: { duration: 0.4 },
-                                          rotate: {
-                                              type: 'spring',
-                                              stiffness: 100,
-                                              damping: 25,
-                                          },
+                                          rotate: { type: 'spring', stiffness: 100, damping: 25 },
                                       },
                                   }
                                 : {
@@ -258,17 +244,9 @@ export default function Gallery() {
                                       scale: 0.5,
                                       rotate: positions[index]?.rotate,
                                       transition: {
-                                          scale: {
-                                              type: 'spring',
-                                              stiffness: 100,
-                                              damping: 25,
-                                          },
+                                          scale: { type: 'spring', stiffness: 100, damping: 25 },
                                           opacity: { duration: 0.4 },
-                                          rotate: {
-                                              type: 'spring',
-                                              stiffness: 100,
-                                              damping: 25,
-                                          },
+                                          rotate: { type: 'spring', stiffness: 100, damping: 25 },
                                       },
                                   },
                     };
@@ -277,9 +255,9 @@ export default function Gallery() {
                         <motion.div
                             key={index}
                             variants={variants}
-                            className={`polaroid ${photo.orientation}`}
                             initial="initial"
                             animate="animate"
+                            className={`polaroid absolute flex cursor-pointer items-center justify-center overflow-hidden border-[1em] bg-white bg-cover bg-center shadow-[0_0.78125rem_6.25rem_-0.625rem_rgba(50,50,73,0.3),_0_0.625rem_0.625rem_-0.625rem_rgba(50,50,73,0.3)] brightness-[1.2] contrast-[.9] saturate-[.9] sepia-[.2] will-change-transform ${photo.orientation === 'portrait' ? 'h-[24em] w-[18em] border-b-[5.5em] border-t-[2em]' : 'h-[18em] w-[24em] border-l-[2em] border-r-[5.5em]'}`}
                             onClick={(e) => {
                                 // Prevent triggering the outside click listener
                                 e.stopPropagation();
@@ -301,6 +279,7 @@ export default function Gallery() {
                         >
                             <img
                                 src={`/img/${selectedFolder}/${photo.url}`}
+                                className="h-full w-full object-cover"
                                 draggable={false}
                                 loading="lazy"
                             />
