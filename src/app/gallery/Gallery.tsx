@@ -1,7 +1,9 @@
+'use client';
+
 import Button from '@/components/Button';
+import { fetchGalleries } from '@/data/gallery';
 import { motion } from 'framer-motion';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import photosData from './photos.json';
 import './tailwind-overrides.css';
 
 interface Photo {
@@ -24,28 +26,52 @@ export default function Gallery() {
     const galleryRef = useRef<HTMLDivElement>(null);
     const animationInterval = useRef<NodeJS.Timeout | null>(null);
     const folderChangeInterval = useRef<NodeJS.Timeout | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    // Load photos data and set initial positions
+    // Fetch galleries from CMS and transform to Photo[]
     useEffect(() => {
-        const uniqueFolders = [...new Set(photosData.map((photo) => photo.folder))];
-        setFolders(uniqueFolders);
-        setSelectedFolder(uniqueFolders[0]);
+        async function loadGalleries() {
+            try {
+                const galleries = await fetchGalleries();
+                const allPhotos: Photo[] = [];
+
+                for (const gallery of galleries) {
+                    const folderName = gallery.eventName.toLowerCase().replace(/\s+/g, '-');
+
+                    for (const image of gallery.images) {
+                        allPhotos.push({
+                            url: image.url,
+                            orientation: image.width >= image.height ? 'landscape' : 'portrait',
+                            folder: folderName,
+                        });
+                    }
+                }
+
+                const uniqueFolders = [...new Set(allPhotos.map((p) => p.folder))];
+
+                setPhotos(allPhotos);
+                setFolders(uniqueFolders);
+                setSelectedFolder(uniqueFolders[0]);
+                setLoading(false);
+            } catch (error) {
+                console.error('Error loading galleries:', error);
+                setLoading(false);
+            }
+        }
+
+        loadGalleries();
     }, []);
 
     const filteredPhotos = useMemo(() => {
-        return photosData.filter((photo) => photo.folder === selectedFolder);
-    }, [selectedFolder]);
+        return photos.filter((photo) => photo.folder === selectedFolder);
+    }, [photos, selectedFolder]);
 
     const shuffledPhotos = useMemo(() => {
-        return [...filteredPhotos]
-            .map((photo) => ({ ...photo, orientation: photo.orientation }))
-            .sort(() => 0.5 - Math.random())
-            .slice(0, numImages);
+        return [...filteredPhotos].sort(() => 0.5 - Math.random()).slice(0, numImages);
     }, [filteredPhotos, numImages]);
 
     useEffect(() => {
-        if (selectedFolder) {
-            setPhotos(shuffledPhotos);
+        if (selectedFolder && shuffledPhotos.length > 0) {
             const initialPositions: { [key: number]: { x: number; y: number; rotate: number } } =
                 {};
             shuffledPhotos.forEach((_, index) => {
@@ -55,7 +81,6 @@ export default function Gallery() {
         }
     }, [selectedFolder, shuffledPhotos]);
 
-    // Randomise x, y positions and rotation to spread them across the screen
     const randomPosition = () => {
         const minOffsetX = 8;
         const minOffsetY = -18;
@@ -69,14 +94,15 @@ export default function Gallery() {
         return { x, y, rotate };
     };
 
-    // Shuffle function to randomise positions and rotations of the photos
     const shufflePhotos = () => {
-        const allShuffledPhotos = [...photosData.filter((p) => p.folder === selectedFolder)]
-            .map((photo) => ({ ...photo, orientation: photo.orientation }))
+        const allShuffledPhotos = [...photos.filter((p) => p.folder === selectedFolder)]
             .sort(() => 0.5 - Math.random())
             .slice(0, numImages);
 
-        setPhotos(allShuffledPhotos);
+        setPhotos((prevPhotos) => [
+            ...prevPhotos.filter((p) => p.folder !== selectedFolder),
+            ...allShuffledPhotos,
+        ]);
 
         const shuffledPositions: { [key: number]: { x: number; y: number; rotate: number } } = {};
         allShuffledPhotos.forEach((_, index) => {
@@ -86,7 +112,6 @@ export default function Gallery() {
         setPositions(shuffledPositions);
     };
 
-    // Handle click outside of the photo container to stop animation
     const handleOutsideClick = useCallback((event: MouseEvent) => {
         if (
             !galleryRef.current?.contains(event.target as Node) &&
@@ -97,13 +122,11 @@ export default function Gallery() {
         }
     }, []);
 
-    // Register the event listener when the component mounts and cleanup on unmount
     useEffect(() => {
         document.addEventListener('click', handleOutsideClick);
         return () => document.removeEventListener('click', handleOutsideClick);
     }, [handleOutsideClick]);
 
-    // Handle drag start and end events
     const handleDragStart = () => {
         isDragging.current = true;
     };
@@ -112,20 +135,17 @@ export default function Gallery() {
         isDragging.current = false;
     };
 
-    // Handle animate toggle
     const handleAnimateToggle = () => {
         setAnimateToggle((prev) => !prev);
         if (!animateToggle) {
-            // Change selected photo every 3 seconds
             animationInterval.current = setInterval(() => {
                 let randomIndex;
                 do {
-                    randomIndex = Math.floor(Math.random() * photos.length);
+                    randomIndex = Math.floor(Math.random() * shuffledPhotos.length);
                 } while (randomIndex === activeIndex);
                 setActiveIndex(randomIndex);
             }, 3000);
 
-            // Change folder every 60 seconds
             folderChangeInterval.current = setInterval(() => {
                 setSelectedFolder((prevFolder) => {
                     const currentIndex = folders.indexOf(prevFolder);
@@ -137,90 +157,38 @@ export default function Gallery() {
         }
     };
 
-    // Stop animation
     const stopAnimation = () => {
         setAnimateToggle(false);
         if (animationInterval.current) clearInterval(animationInterval.current);
         if (folderChangeInterval.current) clearInterval(folderChangeInterval.current);
     };
 
+    if (loading) {
+        return <div className="p-10 text-center">Loading galleries...</div>;
+    }
+
     return (
         <div className="relative">
-            {/* Folder Select */}
-            {/* <select
-                value={selectedFolder}
-                onChange={(e) => setSelectedFolder(e.target.value)}
-                className="absolute left-2.5 top-14 z-[1000] appearance-none rounded-xl bg-neutral-300 px-5 py-2.5 pr-10 text-base text-black"
-            >
-                {folders.map((folder) => (
-                    <option key={folder} value={folder}>
-                        {folder
-                            .split('-')
-                            .map((w) => w[0].toUpperCase() + w.slice(1))
-                            .join(' ')}
-                    </option>
-                ))}
-            </select> */}
-            <svg
-                className="absolute left-[13.75rem] top-[4.5rem] z-[2000] text-xl text-black"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-            >
-                <path
-                    fillRule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                />
-            </svg>
-
-            {/* Num Images Select */}
-            {/* <select
-                value={numImages}
-                onChange={(e) => setNumImages(Number(e.target.value))}
-                className="absolute left-2.5 top-[6.9rem] z-[1000] appearance-none rounded-xl bg-neutral-300 px-5 py-2.5 pr-10 text-base text-black"
-            >
-                {[10, 20, 30, 40, 50].map((num) => (
-                    <option key={num} value={num}>
-                        {num} Images
-                    </option>
-                ))}
-            </select> */}
-            <svg
-                className="absolute left-[7rem] top-[7.7rem] z-[2000] text-xl text-black"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-            >
-                <path
-                    fillRule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-                />
-            </svg>
-
             {/* Buttons */}
             <div className="relative flex h-full w-full flex-col items-start justify-center gap-8">
                 <Button onClick={shufflePhotos} type="button" colour="orange">
                     Shuffle
                 </Button>
-                <Button
+                {/* <Button
                     onClick={handleAnimateToggle}
                     type="button"
                     colour="orange"
                     className="animate-toggle-button"
                 >
                     {animateToggle ? 'Stop Animation' : 'Start Animation'}
-                </Button>
+                </Button> */}
             </div>
 
             <div
                 ref={galleryRef}
                 className="relative box-border flex flex-wrap items-center justify-center p-5"
             >
-                {photos.map((photo, index) => {
+                {shuffledPhotos.map((photo, index) => {
                     const variants = {
                         initial: {
                             rotate: positions[index]?.rotate,
@@ -258,11 +226,9 @@ export default function Gallery() {
                             variants={variants}
                             initial="initial"
                             animate="animate"
-                            className={`polaroid absolute flex cursor-pointer items-center justify-center overflow-hidden border-[1em] bg-white bg-cover bg-center shadow-[0_0.78125rem_6.25rem_-0.625rem_rgba(50,50,73,0.3),_0_0.625rem_0.625rem_-0.625rem_rgba(50,50,73,0.3)] brightness-[1.2] contrast-[.9] saturate-[.9] sepia-[.2] will-change-transform ${photo.orientation === 'portrait' ? 'h-[24em] w-[18em] border-b-[5.5em] border-t-[2em]' : 'h-[18em] w-[24em] border-l-[2em] border-r-[5.5em]'}`}
-                            onClick={(e) => {
-                                // Prevent triggering the outside click listener
+                            className={`polaroid absolute flex cursor-pointer items-center justify-center overflow-hidden border-[1em] bg-white bg-cover bg-center brightness-[1.2] contrast-[.9] saturate-[.9] sepia-[.2] will-change-transform ${photo.orientation === 'portrait' ? 'h-[24em] w-[18em] border-b-[5.5em] border-t-[2em]' : 'h-[18em] w-[24em] border-l-[2em] border-r-[5.5em]'}`}
+                            onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                                 e.stopPropagation();
-                                // Only trigger onClick if not dragging
                                 if (!isDragging.current) {
                                     setActiveIndex(activeIndex === index ? null : index);
                                     stopAnimation();
@@ -279,7 +245,7 @@ export default function Gallery() {
                             dragElastic={0.2}
                         >
                             <img
-                                src={`/img/${selectedFolder}/${photo.url}`}
+                                src={photo.url}
                                 className="h-full w-full object-cover"
                                 draggable={false}
                                 loading="lazy"
