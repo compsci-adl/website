@@ -11,7 +11,7 @@
     position: absolute;
     inset: 0;
     pointer-events: none;
-    background-image: url('/img/noise.webp');
+    background-image: url('/images/noise.webp');
     opacity: 0.05;
     mix-blend-mode: soft-light;
     filter: grayscale(0.4) contrast(1.1) brightness(0.98);
