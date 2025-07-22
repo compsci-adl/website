@@ -6,6 +6,7 @@ interface GalleryControlsProps {
     shufflePhotos: () => void;
     animateToggle: boolean;
     handleAnimateToggle: () => void;
+    setCurrentTitle: (title: string) => void;
 }
 
 export default function GalleryControls({
@@ -14,6 +15,7 @@ export default function GalleryControls({
     shufflePhotos,
     animateToggle,
     handleAnimateToggle,
+    setCurrentTitle,
 }: GalleryControlsProps) {
     if (mode !== 'gallery') return null;
 
@@ -21,6 +23,7 @@ export default function GalleryControls({
         <div className="relative flex h-full w-full flex-col items-start justify-center gap-8 text-grey">
             <Button
                 onClick={() => {
+                    setCurrentTitle('Photo Gallery');
                     setMode('overview');
                 }}
                 type="button"

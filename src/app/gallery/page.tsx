@@ -7,6 +7,7 @@ import { verifyMembershipPayment } from '@/server/verify-membership-payment';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { useState } from 'react';
 import Gallery from './Gallery';
 
 type MembershipPayment =
@@ -31,14 +32,16 @@ export default function GalleryPage() {
     //     exists = await checkUserExists(session.user.id);
     //     membershipPayment = await verifyMembershipPayment(session.user.id);
 
+    const [currentTitle, setCurrentTitle] = useState('Photo Gallery');
+
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">
             <div className="flex justify-center">
-                <Title colour="purple">Photo Gallery</Title>
+                <Title colour="purple">{currentTitle}</Title>
             </div>
             <section className="w-full max-w-[82rem]">
                 {exists ? (
-                    <Gallery />
+                    <Gallery setCurrentTitle={setCurrentTitle} />
                 ) : (
                     <FancyRectangle colour="purple" offset="8" filled fullWidth>
                         <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">

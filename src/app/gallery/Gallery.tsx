@@ -9,7 +9,11 @@ import GalleryView from './GalleryView';
 import './tailwind-overrides.css';
 import type { Photo } from './types';
 
-export default function Gallery() {
+interface GalleryProps {
+    setCurrentTitle: (title: string) => void;
+}
+
+export default function Gallery({ setCurrentTitle }: GalleryProps) {
     const [photos, setPhotos] = useState<Photo[]>([]);
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [positions, setPositions] = useState<{
@@ -77,6 +81,12 @@ export default function Gallery() {
                 newPositions[index] = randomPosition();
             });
             setPositions(newPositions);
+
+            if (selectedFolder && photos.length) {
+                setCurrentTitle(
+                    selectedFolder.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
+                );
+            }
         }
     }, [mode, selectedFolder, galleriesByFolder]);
 
@@ -155,6 +165,7 @@ export default function Gallery() {
                 shufflePhotos={shufflePhotos}
                 animateToggle={animateToggle}
                 handleAnimateToggle={handleAnimateToggle}
+                setCurrentTitle={setCurrentTitle}
             />
 
             <div className="relative box-border flex flex-wrap items-center justify-center p-5">
