@@ -26,7 +26,6 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     const [mode, setMode] = useState<'overview' | 'gallery'>('overview');
     const [loading, setLoading] = useState(true);
 
-    const isDragging = useRef(false);
     const galleryRef = useRef<HTMLDivElement>(null);
     const animationInterval = useRef<NodeJS.Timeout | null>(null);
     const folderChangeInterval = useRef<NodeJS.Timeout | null>(null);
@@ -77,8 +76,17 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
         if (mode === 'gallery' && selectedFolder && galleriesByFolder[selectedFolder]) {
             const shuffled = [...galleriesByFolder[selectedFolder]].sort(() => 0.5 - Math.random());
             const newPositions: { [key: number]: { x: number; y: number; rotate: number } } = {};
+
+            // Get size of the gallery box
+            const galleryWidth = galleryRef.current?.offsetWidth || window.innerWidth;
+            const galleryHeight = galleryRef.current?.offsetHeight || window.innerHeight;
+
             shuffled.forEach((_, index) => {
-                newPositions[index] = randomPosition();
+                // Spread images randomly within the gallery box
+                const x = (Math.random() - 0.5) * 0.05 * galleryWidth - 7;
+                const y = (Math.random() - 0.5) * 0.05 * galleryHeight;
+                const rotate = Math.random() * 30 - 15; // -15 to +15 degrees
+                newPositions[index] = { x, y, rotate };
             });
             setPositions(newPositions);
 
@@ -101,8 +109,15 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
         ]);
 
         const shuffledPositions: { [key: number]: { x: number; y: number; rotate: number } } = {};
+        const galleryWidth = galleryRef.current?.offsetWidth || window.innerWidth;
+        const galleryHeight = galleryRef.current?.offsetHeight || window.innerHeight;
+
         allShuffledPhotos.forEach((_, index) => {
-            shuffledPositions[index] = randomPosition();
+            // Spread images randomly within the gallery box
+            const x = (Math.random() - 0.5) * 0.05 * galleryWidth - 7;
+            const y = (Math.random() - 0.5) * 0.05 * galleryHeight;
+            const rotate = Math.random() * 30 - 15; // -15 to +15 degrees
+            shuffledPositions[index] = { x, y, rotate };
         });
 
         setPositions(shuffledPositions);
@@ -158,35 +173,48 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     }
 
     return (
-        <div className="relative" ref={galleryRef}>
-            <GalleryControls
-                mode={mode}
-                setMode={setMode}
-                shufflePhotos={shufflePhotos}
-                animateToggle={animateToggle}
-                handleAnimateToggle={handleAnimateToggle}
-                setCurrentTitle={setCurrentTitle}
-            />
-
-            <div className="relative box-border flex flex-wrap items-center justify-center p-5">
-                {mode === 'overview' ? (
-                    <GalleryOverview
-                        galleriesByFolder={galleriesByFolder}
-                        onSelectFolder={(folder) => {
-                            setSelectedFolder(folder);
-                            setMode('gallery');
-                        }}
-                    />
-                ) : (
-                    <GalleryView
-                        photos={galleriesByFolder[selectedFolder] || []}
-                        positions={positions}
-                        activeIndex={activeIndex}
-                        setActiveIndex={setActiveIndex}
-                        stopAnimation={stopAnimation}
-                    />
-                )}
-            </div>
-        </div>
+        <>
+            {mode === 'overview' ? (
+                <div
+                    className="relative flex h-full w-full items-start justify-center"
+                    ref={galleryRef}
+                >
+                    <div className="relative my-8 box-border flex flex-wrap items-center justify-center p-5">
+                        <GalleryOverview
+                            galleriesByFolder={galleriesByFolder}
+                            onSelectFolder={(folder) => {
+                                setSelectedFolder(folder);
+                                setMode('gallery');
+                            }}
+                        />
+                    </div>
+                </div>
+            ) : (
+                <div
+                    className="relative flex h-[100vh] w-full items-start justify-center"
+                    ref={galleryRef}
+                >
+                    <div className="absolute left-0 top-0 z-10">
+                        <GalleryControls
+                            mode={mode}
+                            setMode={setMode}
+                            shufflePhotos={shufflePhotos}
+                            animateToggle={animateToggle}
+                            handleAnimateToggle={handleAnimateToggle}
+                            setCurrentTitle={setCurrentTitle}
+                        />
+                    </div>
+                    <div className="relative mt-[30vh] box-border flex flex-wrap items-center justify-center p-5">
+                        <GalleryView
+                            photos={galleriesByFolder[selectedFolder] || []}
+                            positions={positions}
+                            activeIndex={activeIndex}
+                            setActiveIndex={setActiveIndex}
+                            stopAnimation={stopAnimation}
+                        />
+                    </div>
+                </div>
+            )}
+        </>
     );
 }

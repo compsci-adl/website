@@ -39,7 +39,7 @@ export default function GalleryPage() {
             <div className="flex justify-center">
                 <Title colour="purple">{currentTitle}</Title>
             </div>
-            <section className="w-full max-w-[82rem]">
+            <section className="w-full">
                 {exists ? (
                     <Gallery setCurrentTitle={setCurrentTitle} />
                 ) : (

@@ -49,14 +49,14 @@ export default function GalleryOverview({
                                         scale: 0.7,
                                         rotate: -10 + i * 10,
                                         zIndex: i,
-                                        x: i * 6,
+                                        x: i * 6 - 12,
                                         y: i * 6,
                                     }}
                                     animate={{
                                         opacity: 1,
                                         scale: 0.7,
                                         rotate: -10 + i * 10,
-                                        x: i * 6,
+                                        x: i * 6 - 12,
                                         y: i * 6,
                                         zIndex: i,
                                     }}

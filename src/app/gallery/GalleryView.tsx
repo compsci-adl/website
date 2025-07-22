@@ -73,7 +73,7 @@ export default function GalleryView({
                         onDragStart={handleDragStart}
                         onDragEnd={handleDragEnd}
                         style={{
-                            left: `${positions[index]?.x}rem`,
+                            left: `${positions[index]?.x + (photo.orientation === 'landscape' ? -4.3 : -1.25)}rem`,
                             top: `${positions[index]?.y}rem`,
                         }}
                         drag
