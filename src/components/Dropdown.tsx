@@ -63,7 +63,11 @@ const Dropdown = ({
                         } ${size === 'base' ? 'px-16 text-lg' : 'px-4 text-sm'} flex w-full items-center justify-between py-4 pr-10 md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2`}
                     >
                         <span>{selectedLabel}</span>
-                        <FaChevronDown className="ml-3 text-base text-black md:text-sm" />
+                        <FaChevronDown
+                            className={`ml-3 text-base text-black transition-transform duration-300 md:text-sm ${
+                                isOpen ? 'rotate-180' : 'rotate-0'
+                            }`}
+                        />
                     </div>
 
                     <div

@@ -1,5 +1,6 @@
 import Button from '@/components/Button';
 import Dropdown from '@/components/Dropdown';
+import { FaArrowLeft } from 'react-icons/fa';
 
 interface GalleryControlsProps {
     mode: 'overview' | 'gallery';
@@ -33,7 +34,9 @@ export default function GalleryControls({
                 }}
                 type="button"
                 colour="orange"
+                className="flex items-center gap-2"
             >
+                <FaArrowLeft />
                 Back to All Galleries
             </Button>
             <Dropdown
