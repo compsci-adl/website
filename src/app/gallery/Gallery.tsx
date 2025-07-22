@@ -3,9 +3,9 @@
 import { fetchGalleries } from '@/data/gallery';
 import { randomPosition } from '@/utils/random-position';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import GalleryControls from './components/GalleryControls';
-import GalleryOverview from './components/GalleryOverview';
-import GalleryView from './components/GalleryView';
+import GalleryControls from './GalleryControls';
+import GalleryOverview from './GalleryOverview';
+import GalleryView from './GalleryView';
 import './tailwind-overrides.css';
 import type { Photo } from './types';
 

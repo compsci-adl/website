@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { Photo } from '../types';
+import type { Photo } from './types';
 
 interface GalleryOverviewProps {
     galleriesByFolder: { [folder: string]: Photo[] };

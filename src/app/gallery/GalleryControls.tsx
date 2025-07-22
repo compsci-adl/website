@@ -18,7 +18,7 @@ export default function GalleryControls({
     if (mode !== 'gallery') return null;
 
     return (
-        <div className="relative flex h-full w-full flex-col items-start justify-center gap-8">
+        <div className="relative flex h-full w-full flex-col items-start justify-center gap-8 text-grey">
             <Button
                 onClick={() => {
                     setMode('overview');

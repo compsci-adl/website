@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import type { Photo } from '../types';
+import type { Photo } from './types';
 
 interface GalleryViewProps {
     photos: Photo[];
