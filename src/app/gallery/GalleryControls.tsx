@@ -1,4 +1,5 @@
 import Button from '@/components/Button';
+import Dropdown from '@/components/Dropdown';
 
 interface GalleryControlsProps {
     mode: 'overview' | 'gallery';
@@ -7,6 +8,8 @@ interface GalleryControlsProps {
     animateToggle: boolean;
     handleAnimateToggle: () => void;
     setCurrentTitle: (title: string) => void;
+    numImages: number;
+    setNumImages: (num: number) => void;
 }
 
 export default function GalleryControls({
@@ -16,6 +19,8 @@ export default function GalleryControls({
     animateToggle,
     handleAnimateToggle,
     setCurrentTitle,
+    numImages,
+    setNumImages,
 }: GalleryControlsProps) {
     if (mode !== 'gallery') return null;
 
@@ -31,6 +36,20 @@ export default function GalleryControls({
             >
                 Back to All Galleries
             </Button>
+            <Dropdown
+                options={[
+                    { value: 10, label: '10 Images' },
+                    { value: 20, label: '20 Images' },
+                    { value: 30, label: '30 Images' },
+                    { value: 40, label: '40 Images' },
+                    { value: 50, label: '50 Images' },
+                    { value: Number.MAX_SAFE_INTEGER, label: 'All Images' },
+                ]}
+                value={numImages}
+                onChange={(val) => setNumImages(Number(val))}
+                colour="orange"
+                size="base"
+            />
             <Button onClick={shufflePhotos} type="button" colour="orange">
                 Shuffle
             </Button>

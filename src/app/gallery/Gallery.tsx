@@ -1,7 +1,6 @@
 'use client';
 
 import { fetchGalleries } from '@/data/gallery';
-import { randomPosition } from '@/utils/random-position';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import GalleryControls from './GalleryControls';
 import GalleryOverview from './GalleryOverview';
@@ -21,7 +20,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     }>({});
     const [folders, setFolders] = useState<string[]>([]);
     const [selectedFolder, setSelectedFolder] = useState<string>('');
-    const [numImages] = useState<number>(10);
+    const [numImages, setNumImages] = useState<number>(20);
     const [animateToggle, setAnimateToggle] = useState<boolean>(false);
     const [mode, setMode] = useState<'overview' | 'gallery'>('overview');
     const [loading, setLoading] = useState(true);
@@ -96,7 +95,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                 );
             }
         }
-    }, [mode, selectedFolder, galleriesByFolder]);
+    }, [mode, selectedFolder, galleriesByFolder, numImages]);
 
     const shufflePhotos = () => {
         const allShuffledPhotos = [...photos.filter((p) => p.folder === selectedFolder)]
@@ -202,11 +201,13 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                             animateToggle={animateToggle}
                             handleAnimateToggle={handleAnimateToggle}
                             setCurrentTitle={setCurrentTitle}
+                            numImages={numImages}
+                            setNumImages={setNumImages}
                         />
                     </div>
                     <div className="relative mt-[30vh] box-border flex flex-wrap items-center justify-center p-5">
                         <GalleryView
-                            photos={galleriesByFolder[selectedFolder] || []}
+                            photos={galleriesByFolder[selectedFolder]?.slice(0, numImages) || []}
                             positions={positions}
                             activeIndex={activeIndex}
                             setActiveIndex={setActiveIndex}
