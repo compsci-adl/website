@@ -194,7 +194,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                     className="relative flex h-[100vh] w-full items-start justify-center"
                     ref={galleryRef}
                 >
-                    <div className="absolute left-0 top-0 z-10">
+                    <div className="absolute top-0 z-10 md:left-0">
                         <GalleryControls
                             mode={mode}
                             setMode={setMode}

@@ -20,7 +20,7 @@ export default function GalleryControls({
     if (mode !== 'gallery') return null;
 
     return (
-        <div className="relative flex h-full w-full flex-col items-start justify-center gap-8 text-grey">
+        <div className="relative flex h-full w-full flex-col items-center justify-center gap-8 text-grey md:items-start">
             <Button
                 onClick={() => {
                     setCurrentTitle('Photo Gallery');
