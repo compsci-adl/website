@@ -1,5 +1,6 @@
 'use client';
 
+import FancyRectangle from '@/components/FancyRectangle';
 import { fetchGalleries } from '@/data/gallery';
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import GalleryControls from './GalleryControls';
@@ -169,7 +170,17 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     };
 
     if (loading) {
-        return <div className="p-10 text-center">Loading galleries...</div>;
+        return (
+            <main className="flex flex-col items-center gap-8 md:gap-16">
+                <section className="w-full">
+                    <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                        <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                            <h2 className="text-xl">Loading...</h2>
+                        </div>
+                    </FancyRectangle>
+                </section>
+            </main>
+        );
     }
 
     return (
