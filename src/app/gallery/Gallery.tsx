@@ -23,6 +23,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     const [numImages, setNumImages] = useState<number>(20);
     const [animateToggle, setAnimateToggle] = useState<boolean>(false);
     const [mode, setMode] = useState<'overview' | 'gallery'>('overview');
+    const [viewMode, setViewMode] = useState<'pile' | 'standard'>('pile');
     const [loading, setLoading] = useState(true);
 
     const galleryRef = useRef<HTMLDivElement>(null);
@@ -95,7 +96,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                 );
             }
         }
-    }, [mode, selectedFolder, galleriesByFolder, numImages]);
+    }, [mode, selectedFolder, galleriesByFolder, numImages, photos.length, setCurrentTitle]);
 
     const shufflePhotos = () => {
         const allShuffledPhotos = [...photos.filter((p) => p.folder === selectedFolder)]
@@ -190,7 +191,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                 </div>
             ) : (
                 <div
-                    className="relative flex h-[100vh] w-full items-start justify-center"
+                    className={`relative flex ${viewMode === 'pile' ? 'h-[100vh]' : 'h-[85vh]'} w-full items-start justify-center`}
                     ref={galleryRef}
                 >
                     <div className="absolute top-0 z-10 md:left-0">
@@ -203,15 +204,22 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                             setCurrentTitle={setCurrentTitle}
                             numImages={numImages}
                             setNumImages={setNumImages}
+                            setViewMode={setViewMode}
+                            viewMode={viewMode}
                         />
                     </div>
-                    <div className="relative mt-[30vh] box-border flex flex-wrap items-center justify-center p-5">
+                    <div
+                        className={`relative ${
+                            viewMode === 'pile' ? 'mt-[30vh]' : ''
+                        } box-border flex flex-wrap items-center justify-center p-5`}
+                    >
                         <GalleryView
                             photos={galleriesByFolder[selectedFolder]?.slice(0, numImages) || []}
                             positions={positions}
                             activeIndex={activeIndex}
                             setActiveIndex={setActiveIndex}
                             stopAnimation={stopAnimation}
+                            viewMode={viewMode}
                         />
                     </div>
                 </div>
