@@ -24,7 +24,12 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     const [numImages, setNumImages] = useState<number>(20);
     const [animateToggle, setAnimateToggle] = useState<boolean>(false);
     const [mode, setMode] = useState<'overview' | 'gallery'>('overview');
-    const [viewMode, setViewMode] = useState<'pile' | 'standard'>('pile');
+    const [viewMode, setViewMode] = useState<'pile' | 'standard'>(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 768 ? 'standard' : 'pile';
+        }
+        return 'pile';
+    });
     const [loading, setLoading] = useState(true);
 
     const galleryRef = useRef<HTMLDivElement>(null);

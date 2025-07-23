@@ -59,33 +59,39 @@ export default function GalleryView({
         return (
             <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-4">
                 <div className="relative flex w-full flex-col items-center justify-center">
-                    <div className="hidden w-full items-center justify-between md:flex">
-                        <Button onClick={handlePrev} type="button" colour="purple" className="z-10">
+                    <div className="hidden w-full items-center justify-between lg:flex">
+                        <Button onClick={handlePrev} type="button" colour="purple" className="z-30">
                             <FaChevronLeft />
                         </Button>
 
-                        <img
-                            src={photo.url}
-                            className="mx-4 max-h-[70vh] w-full object-contain"
-                            alt={`Photo ${standardIndex + 1}`}
-                            draggable={false}
-                        />
+                        <div className="flex w-full max-w-full items-center justify-center px-4">
+                            <div className="relative aspect-square max-h-[70vh] w-full max-w-[80vw]">
+                                <img
+                                    src={photo.url}
+                                    alt={`Photo ${standardIndex + 1}`}
+                                    className="absolute inset-0 h-full w-full object-contain"
+                                    draggable={false}
+                                />
+                            </div>
+                        </div>
 
-                        <Button onClick={handleNext} type="button" colour="purple" className="z-10">
+                        <Button onClick={handleNext} type="button" colour="purple" className="z-30">
                             <FaChevronRight />
                         </Button>
                     </div>
 
-                    <div className="w-full md:hidden">
-                        <img
-                            src={photo.url}
-                            className="mx-auto max-h-[60vh] w-full object-contain"
-                            alt={`Photo ${standardIndex + 1}`}
-                            draggable={false}
-                        />
+                    <div className="flex w-full items-center justify-center lg:hidden">
+                        <div className="relative aspect-square max-h-[60vh] w-full max-w-[90vw]">
+                            <img
+                                src={photo.url}
+                                alt={`Photo ${standardIndex + 1}`}
+                                className="absolute inset-0 h-full w-full object-contain"
+                                draggable={false}
+                            />
+                        </div>
                     </div>
 
-                    <div className="mt-2 flex items-center justify-center gap-8 md:hidden">
+                    <div className="z-0 mt-2 flex items-center justify-center gap-8 lg:hidden">
                         <Button onClick={handlePrev} type="button" size="small" colour="purple">
                             <FaChevronLeft />
                         </Button>
