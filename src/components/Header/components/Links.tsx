@@ -17,6 +17,11 @@ export function MenuLinks({ data, onClick }: { data: HeaderData; onClick?: () =>
                     CS Club Drive
                 </Link>
             )}
+            {isMember && (
+                <Link href="/gallery" className="block hover:underline" onClick={onClick}>
+                    Photo Gallery
+                </Link>
+            )}
             {data.isSignedIn && (
                 <Link href="/settings" className="block hover:underline" onClick={onClick}>
                     Settings
