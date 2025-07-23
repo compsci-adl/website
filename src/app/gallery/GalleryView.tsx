@@ -80,7 +80,9 @@ export default function GalleryView({
                         {photos.map((thumb, idx) => (
                             <img
                                 key={idx}
-                                ref={(el) => (thumbnailRefs.current[idx] = el)}
+                                ref={(el) => {
+                                    thumbnailRefs.current[idx] = el;
+                                }}
                                 src={thumb.url}
                                 onClick={() => setStandardIndex(idx)}
                                 className={`h-16 w-24 flex-shrink-0 cursor-pointer rounded-sm border-2 object-cover transition-all duration-200 ${
@@ -111,9 +113,17 @@ export default function GalleryView({
                                   rotate: positions[index]?.rotate,
                                   opacity: 1,
                                   transition: {
-                                      scale: { type: 'spring', stiffness: 100, damping: 25 },
+                                      scale: {
+                                          type: 'spring' as const,
+                                          stiffness: 100,
+                                          damping: 25,
+                                      },
                                       opacity: { duration: 0.4 },
-                                      rotate: { type: 'spring', stiffness: 100, damping: 25 },
+                                      rotate: {
+                                          type: 'spring' as const,
+                                          stiffness: 100,
+                                          damping: 25,
+                                      },
                                   },
                               }
                             : {
@@ -121,9 +131,17 @@ export default function GalleryView({
                                   scale: 0.5,
                                   rotate: positions[index]?.rotate,
                                   transition: {
-                                      scale: { type: 'spring', stiffness: 100, damping: 25 },
+                                      scale: {
+                                          type: 'spring' as const,
+                                          stiffness: 100,
+                                          damping: 25,
+                                      },
                                       opacity: { duration: 0.4 },
-                                      rotate: { type: 'spring', stiffness: 100, damping: 25 },
+                                      rotate: {
+                                          type: 'spring' as const,
+                                          stiffness: 100,
+                                          damping: 25,
+                                      },
                                   },
                               },
                 };
