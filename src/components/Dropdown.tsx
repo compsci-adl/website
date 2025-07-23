@@ -52,6 +52,9 @@ const Dropdown = ({
 
     const selectedLabel = options.find((opt) => opt.value === value)?.label ?? '30 Images';
 
+    const openDirection =
+        size === 'small' ? 'bottom-full mb-1 origin-bottom' : 'top-full mt-1 origin-top';
+
     return (
         <div className="relative z-[9999]">
             <FancyRectangle colour="black" offset="4" filled fullWidth>
@@ -63,15 +66,19 @@ const Dropdown = ({
                         } ${size === 'base' ? 'px-16 text-lg' : 'px-4 text-sm'} flex w-full items-center justify-between py-4 pr-10 md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2`}
                     >
                         <span>{selectedLabel}</span>
-                        <FaChevronDown
-                            className={`ml-3 text-base text-black transition-transform duration-300 md:text-sm ${
-                                isOpen ? 'rotate-180' : 'rotate-0'
-                            }`}
-                        />
+                        {size !== 'small' && (
+                            <FaChevronDown
+                                className={`ml-3 text-base text-black transition-transform duration-300 md:text-sm ${
+                                    isOpen ? 'rotate-180' : 'rotate-0'
+                                }`}
+                            />
+                        )}
                     </div>
 
                     <div
-                        className={`absolute left-0 top-full z-10 mt-1 w-full origin-top transform border-2 border-black bg-white shadow-md transition-all duration-100 ease-out ${
+                        className={`absolute left-0 z-10 w-full transform border-2 border-black bg-white shadow-md transition-all duration-100 ease-out ${
+                            openDirection
+                        } ${
                             isOpen
                                 ? 'translate-y-0 scale-100 opacity-100'
                                 : 'pointer-events-none -translate-y-2 scale-95 opacity-0'

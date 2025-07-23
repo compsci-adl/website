@@ -58,21 +58,41 @@ export default function GalleryView({
 
         return (
             <div className="relative flex w-full max-w-5xl flex-col items-center justify-center gap-4">
-                <div className="relative flex w-full items-center justify-center">
-                    <Button onClick={handlePrev} type="button" colour="purple" className="z-10">
-                        <FaChevronLeft />
-                    </Button>
+                <div className="relative flex w-full flex-col items-center justify-center">
+                    <div className="hidden w-full items-center justify-between md:flex">
+                        <Button onClick={handlePrev} type="button" colour="purple" className="z-10">
+                            <FaChevronLeft />
+                        </Button>
 
-                    <img
-                        src={photo.url}
-                        className="mx-4 max-h-[70vh] w-full object-contain"
-                        alt={`Photo ${standardIndex + 1}`}
-                        draggable={false}
-                    />
+                        <img
+                            src={photo.url}
+                            className="mx-4 max-h-[70vh] w-full object-contain"
+                            alt={`Photo ${standardIndex + 1}`}
+                            draggable={false}
+                        />
 
-                    <Button onClick={handleNext} type="button" colour="purple" className="z-10">
-                        <FaChevronRight />
-                    </Button>
+                        <Button onClick={handleNext} type="button" colour="purple" className="z-10">
+                            <FaChevronRight />
+                        </Button>
+                    </div>
+
+                    <div className="w-full md:hidden">
+                        <img
+                            src={photo.url}
+                            className="mx-auto max-h-[60vh] w-full object-contain"
+                            alt={`Photo ${standardIndex + 1}`}
+                            draggable={false}
+                        />
+                    </div>
+
+                    <div className="mt-2 flex items-center justify-center gap-8 md:hidden">
+                        <Button onClick={handlePrev} type="button" size="small" colour="purple">
+                            <FaChevronLeft />
+                        </Button>
+                        <Button onClick={handleNext} type="button" size="small" colour="purple">
+                            <FaChevronRight />
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="mt-4 w-full overflow-x-auto px-4 py-2">
