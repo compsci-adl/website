@@ -10,7 +10,7 @@ export default function GalleryOverview({
     galleriesByFolder,
     onSelectFolder,
 }: GalleryOverviewProps) {
-    const sortedEntries = Object.entries(galleriesByFolder).sort(([_, a], [__, b]) => {
+    const sortedEntries = Object.entries(galleriesByFolder).sort(([, a], [, b]) => {
         const getDate = (photo: Photo) =>
             new Date(
                 photo.eventDate.year,

@@ -81,11 +81,13 @@ export const parseGalleries = (raw: PayloadGallery): Gallery => {
             day: eventDateObj.day,
         },
         images: Array.isArray(raw.images)
-            ? raw.images.map((image) => ({
-                  url: `${env.NEXT_PUBLIC_PAYLOAD_URI}${image.url}`,
-                  width: image.width,
-                  height: image.height,
-              }))
+            ? raw.images
+                  .map((image) => ({
+                      url: `${env.NEXT_PUBLIC_PAYLOAD_URI}${image.url}`,
+                      width: image.width,
+                      height: image.height,
+                  }))
+                  .reverse()
             : [],
     };
 };
