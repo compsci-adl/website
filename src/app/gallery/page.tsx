@@ -2,21 +2,20 @@
 
 import FancyRectangle from '@/components/FancyRectangle';
 import Title from '@/components/Title';
-import { useMount } from '@/hooks/use-mount';
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Gallery from './Gallery';
 
 export default function GalleryPage() {
-    const { data: session } = useSession();
+    const { data: session, status } = useSession();
     const [currentTitle, setCurrentTitle] = useState('Photo Gallery');
-    const [member, isMember] = useState<boolean>(false);
+    const [member, isMember] = useState<boolean | null>(null);
 
-    useMount(() => {
+    useEffect(() => {
         const checkMembership = async () => {
-            if (!session?.user?.id) return;
+            if (!session) return;
 
             try {
                 const res = await fetch(`/api/verify-membership?userId=${session.user.id}`);
@@ -24,20 +23,25 @@ export default function GalleryPage() {
 
                 if (data.paid) {
                     isMember(true);
+                } else {
+                    isMember(false);
                 }
             } catch (err) {
                 console.error('Failed to verify membership', err);
+                isMember(false);
             }
         };
 
-        checkMembership();
-    });
+        if (session?.user?.id) {
+            checkMembership();
+        }
+    }, [session]);
 
-    if (!session?.user) {
-        notFound();
+    if (status === 'unauthenticated') {
+        return notFound();
     }
 
-    if (member == false) {
+    if (status === 'loading' || member === null) {
         // Loading state while checking user existence
         return (
             <main className="flex flex-col items-center gap-8 md:gap-16">
