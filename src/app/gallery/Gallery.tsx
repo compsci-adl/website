@@ -101,7 +101,6 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                 const images = galleriesByFolder[selectedFolder]?.slice(0, numImages) || [];
                 const displayName = images[0]?.eventName
                     ?.replace(/\bS[12]\b/g, '') // Remove "S1" and "S2"
-                    ?.replace(/\b\d{4}\b/g, '') // Remove 4-digit year
                     ?.trim();
                 setCurrentTitle(displayName);
             }
