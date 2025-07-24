@@ -21,7 +21,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     }>({});
     const [folders, setFolders] = useState<string[]>([]);
     const [selectedFolder, setSelectedFolder] = useState<string>('');
-    const [numImages, setNumImages] = useState<number>(20);
+    const [numImages, setNumImages] = useState<number>(25);
     const [animateToggle, setAnimateToggle] = useState<boolean>(false);
     const [mode, setMode] = useState<'overview' | 'gallery'>('overview');
     const [viewMode, setViewMode] = useState<'pile' | 'standard'>(() => {

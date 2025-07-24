@@ -41,10 +41,10 @@ export default function GalleryControls({
 
     const numOptions = [
         { value: 10, label: '10 Images' },
-        { value: 20, label: '20 Images' },
-        { value: 30, label: '30 Images' },
-        { value: 40, label: '40 Images' },
+        { value: 25, label: '25 Images' },
         { value: 50, label: '50 Images' },
+        { value: 75, label: '75 Images' },
+        { value: 100, label: '100 Images' },
         { value: Number.MAX_SAFE_INTEGER, label: 'All Images' },
     ];
 
