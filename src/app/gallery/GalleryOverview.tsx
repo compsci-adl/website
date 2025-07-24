@@ -27,12 +27,10 @@ export default function GalleryOverview({
                     .filter((photo) => photo.orientation === 'landscape')
                     .sort(() => 0.5 - Math.random())
                     .slice(0, 3);
-
-                const displayName = folder
-                    .split('-')
-                    .filter((w) => !/^20\d{2}$/.test(w) && !/^S[12]$/i.test(w))
-                    .map((w) => w[0].toUpperCase() + w.slice(1))
-                    .join(' ');
+                const displayName = images[0]?.eventName
+                    ?.replace(/\bS[12]\b/g, '') // Remove "S1" and "S2"
+                    ?.replace(/\b\d{4}\b/g, '') // Remove 4-digit year
+                    ?.trim();
 
                 return (
                     <div
