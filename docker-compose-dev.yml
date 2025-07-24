@@ -28,10 +28,10 @@ services:
     container_name: csclub-website
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      dockerfile: dev.Dockerfile
     restart: unless-stopped
     env_file:
-      - .env.docker-dev
+      - .env.dev.docker
     environment:
       - PUID=1000
       - PGID=1000
