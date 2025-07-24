@@ -20,7 +20,6 @@ export const env = createEnv({
     },
     client: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: z.string().url().min(1).optional(),
-        NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: z.string().url().min(1).optional(),
         NEXT_CONTAINER_KEYCLOAK_ENDPOINT: z.string().url().min(1).optional(),
         NEXT_LOCAL_KEYCLOAK_URL: z.string().url().min(1).optional(),
         NEXT_PUBLIC_DRIVE_LINK: z.string().url().min(1),
@@ -29,7 +28,6 @@ export const env = createEnv({
     },
     experimental__runtimeEnv: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: process.env.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI,
-        NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: process.env.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER,
         NEXT_CONTAINER_KEYCLOAK_ENDPOINT: process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT,
         NEXT_LOCAL_KEYCLOAK_URL: process.env.NEXT_LOCAL_KEYCLOAK_URL,
         NEXT_PUBLIC_DRIVE_LINK: process.env.NEXT_PUBLIC_DRIVE_LINK,
