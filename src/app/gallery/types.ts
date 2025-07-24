@@ -3,4 +3,5 @@ export interface Photo {
     orientation: 'portrait' | 'landscape';
     folder: string;
     eventDate: { year: number; month: number; day: number };
+    eventName: string;
 }

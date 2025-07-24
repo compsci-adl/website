@@ -50,6 +50,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                             orientation: image.width >= image.height ? 'landscape' : 'portrait',
                             folder: folderName,
                             eventDate: gallery.eventDate,
+                            eventName: gallery.eventName,
                         });
                     }
                 }
@@ -97,9 +98,12 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
             setPositions(newPositions);
 
             if (selectedFolder && photos.length) {
-                setCurrentTitle(
-                    selectedFolder.replace(/-/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())
-                );
+                const images = galleriesByFolder[selectedFolder]?.slice(0, numImages) || [];
+                const displayName = images[0]?.eventName
+                    ?.replace(/\bS[12]\b/g, '') // Remove "S1" and "S2"
+                    ?.replace(/\b\d{4}\b/g, '') // Remove 4-digit year
+                    ?.trim();
+                setCurrentTitle(displayName);
             }
         }
     }, [mode, selectedFolder, galleriesByFolder, numImages, photos.length, setCurrentTitle]);
