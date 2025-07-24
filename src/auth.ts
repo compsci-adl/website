@@ -27,7 +27,23 @@ interface ExtendedSession extends Session {
 }
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-    providers: [Keycloak],
+    providers: [
+        Keycloak({
+            jwks_endpoint: `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/${process.env.AUTH_REALM}/protocol/openid-connect/certs`,
+            wellKnown: undefined,
+            clientId: process.env.AUTH_KEYCLOAK_ID,
+            clientSecret: process.env.AUTH_KEYCLOAK_SECRET,
+            issuer: `${process.env.NEXT_LOCAL_KEYCLOAK_URL}/realms/${process.env.AUTH_REALM}`,
+            authorization: {
+                params: {
+                    scope: 'openid email profile',
+                },
+                url: `${process.env.NEXT_LOCAL_KEYCLOAK_URL}/realms/${process.env.AUTH_REALM}/protocol/openid-connect/auth`,
+            },
+            token: `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/${process.env.AUTH_REALM}/protocol/openid-connect/token`,
+            userinfo: `${process.env.NEXT_CONTAINER_KEYCLOAK_ENDPOINT}/realms/${process.env.AUTH_REALM}/protocol/openid-connect/userinfo`,
+        }),
+    ],
     trustHost: true,
     callbacks: {
         async jwt({ token, user, account, profile }) {
