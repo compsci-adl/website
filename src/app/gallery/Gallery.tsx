@@ -21,7 +21,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
     }>({});
     const [folders, setFolders] = useState<string[]>([]);
     const [selectedFolder, setSelectedFolder] = useState<string>('');
-    const [numImages, setNumImages] = useState<number>(20);
+    const [numImages, setNumImages] = useState<number>(25);
     const [animateToggle, setAnimateToggle] = useState<boolean>(false);
     const [mode, setMode] = useState<'overview' | 'gallery'>('overview');
     const [viewMode, setViewMode] = useState<'pile' | 'standard'>(() => {
@@ -101,7 +101,6 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                 const images = galleriesByFolder[selectedFolder]?.slice(0, numImages) || [];
                 const displayName = images[0]?.eventName
                     ?.replace(/\bS[12]\b/g, '') // Remove "S1" and "S2"
-                    ?.replace(/\b\d{4}\b/g, '') // Remove 4-digit year
                     ?.trim();
                 setCurrentTitle(displayName);
             }
