@@ -1,0 +1,48 @@
+services:
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:26.1.0
+    restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'curl', '--fail', 'http://localhost:8080']
+    environment:
+      - DB_VENDOR=h2
+      - KC_BOOTSTRAP_ADMIN_USERNAME=admin
+      - KC_BOOTSTRAP_ADMIN_PASSWORD=admin
+    ports:
+      - 8080:8080
+    volumes:
+      - ./realm-export.json:/opt/keycloak/data/import/realm.json:ro
+    command: ['start-dev', '--import-realm']
+    networks:
+      - csclub
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - 6379:6379
+    networks:
+      - csclub
+
+  csclub-website:
+    container_name: csclub-website
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env.dev.docker
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - PORT=3000
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - csclub
+
+networks:
+  csclub:

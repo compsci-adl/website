@@ -4,7 +4,13 @@ This is the official repository for the University of Adelaide Computer Science 
 
 ## Getting Started
 
-To get started, please follow these steps:
+We recommend using the `docker-compose-dev.yml` setup for development. It includes all the required services (the website in development mode, Redis, and Keycloak) all preconfigured and ready to run:
+
+```bash
+docker compose -f docker-compose-dev.yml up --build
+```
+
+If you'd prefer a manual setup, follow these steps:
 
 1. Install the dependencies.
 

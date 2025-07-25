@@ -23,14 +23,14 @@ jobs:
       - name: Build Docker container
         env:
           NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI }}
-          NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER: ${{ secrets.NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER }}
+          NEXT_CONTAINER_KEYCLOAK_ENDPOINT: ${{ secrets.NEXT_CONTAINER_KEYCLOAK_ENDPOINT }}
+          NEXT_LOCAL_KEYCLOAK_URL: ${{ secrets.NEXT_LOCAL_KEYCLOAK_URL }}
           NEXT_PUBLIC_DRIVE_LINK: ${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}
           NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}
           NEXT_PUBLIC_PAYLOAD_URI: ${{ secrets.NEXT_PUBLIC_PAYLOAD_URI }}
         run: |
           docker buildx build \
             --secret id=NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI \
-            --secret id=NEXT_PUBLIC_AUTH_KEYCLOAK_ISSUER \
             --secret id=NEXT_PUBLIC_DRIVE_LINK \
             --secret id=NEXT_PUBLIC_UMAMI_WEBSITE_ID \
             --secret id=NEXT_PUBLIC_PAYLOAD_URI \
