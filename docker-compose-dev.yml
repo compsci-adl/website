@@ -23,7 +23,6 @@ services:
       - 6379:6379
     networks:
       - csclub
-
   csclub-website:
     container_name: csclub-website
     build:
