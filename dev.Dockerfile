@@ -7,9 +7,13 @@ ENV PORT=3000
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+RUN apt-get update && apt-get install -y sqlite3
+
+COPY package.json pnpm-lock.yaml drizzle.config.ts ./
+COPY src/db/schema.ts src/db/schema.ts
+
 RUN npm install -g pnpm && pnpm install
 
 EXPOSE $PORT
 
-CMD ["pnpm", "run", "dev"]
+CMD ["sh", "-c", "if ! sqlite3 dev.sqlite \".tables\" | grep -q members; then pnpm run db:push; fi && pnpm run dev"]
