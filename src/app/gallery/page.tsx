@@ -14,6 +14,7 @@ export default function GalleryPage() {
     const [member, isMember] = useState<boolean | null>(null);
 
     useEffect(() => {
+        if (member != null) return;
         const checkMembership = async () => {
             if (!session) return;
 
