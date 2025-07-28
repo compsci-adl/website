@@ -7,9 +7,11 @@ ENV PORT=3000
 
 WORKDIR /app
 
-COPY package.json pnpm-lock.yaml ./
+COPY package.json pnpm-lock.yaml drizzle.config.ts ./
+COPY src/db/schema.ts src/db/schema.ts
+
 RUN npm install -g pnpm && pnpm install
 
 EXPOSE $PORT
 
-CMD ["pnpm", "run", "dev"]
+CMD ["sh", "-c", "pnpm run db:push && pnpm run dev"]
