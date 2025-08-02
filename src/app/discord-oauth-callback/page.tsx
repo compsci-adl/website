@@ -13,7 +13,10 @@ interface Props {
 }
 
 export default function CallbackPage({ searchParams }: Props) {
-    const { data: session, status: sessionStatus } = useSession();
+    const sessionData = useSession();
+    const session = sessionData.data;
+    const sessionStatus = sessionData.status;
+
     const router = useRouter();
 
     const [error, setError] = useState<string | null>(null);
@@ -112,6 +115,10 @@ export default function CallbackPage({ searchParams }: Props) {
         handleOAuth();
     }, [session, sessionStatus, isMember, code, returnedState, loading, success, error, router]);
 
+    if (sessionStatus === 'loading' || isMember === null) {
+        return <p className="p-4 text-center">Loading...</p>;
+    }
+
     if (!session) {
         return (
             <div className="p-4 text-center">
@@ -123,10 +130,6 @@ export default function CallbackPage({ searchParams }: Props) {
                 </div>
             </div>
         );
-    }
-
-    if (sessionStatus === 'loading' || isMember === null) {
-        return <p className="p-4 text-center">Loading...</p>;
     }
 
     if (loading) {
