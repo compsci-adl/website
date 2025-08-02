@@ -50,6 +50,9 @@ jobs:
           echo "NEXT_PUBLIC_DRIVE_LINK=${{ secrets.NEXT_PUBLIC_DRIVE_LINK }}" >> .env.local
           echo "NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.NEXT_PUBLIC_UMAMI_WEBSITE_ID }}" >> .env.local
           echo "NEXT_PUBLIC_PAYLOAD_URI=${{ secrets.NEXT_PUBLIC_PAYLOAD_URI }}" >> .env.local
+          echo "NEXT_PUBLIC_DISCORD_CLIENT_ID=${{ secrets.NEXT_PUBLIC_DISCORD_CLIENT_ID }}" >> .env.local
+          echo "NEXT_PUBLIC_DISCORD_CLIENT_SECRET=${{ secrets.NEXT_PUBLIC_DISCORD_CLIENT_SECRET }}" >> .env.local
+          echo "NEXT_PUBLIC_DISCORD_REDIRECT_URI=${{ secrets.NEXT_PUBLIC_DISCORD_REDIRECT_URI }}" >> .env.local
 
       - name: Build Docker container
         env:
