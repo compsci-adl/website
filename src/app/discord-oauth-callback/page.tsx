@@ -1,6 +1,7 @@
 'use client';
 
 import Button from '@/components/Button';
+import FancyRectangle from '@/components/FancyRectangle';
 import { getOAuthTokens, getUserData, pushMetadata, getOAuthUrl } from '@/lib/discord';
 import { storeDiscordTokens } from '@/lib/storage';
 import { useSession, signIn } from 'next-auth/react';
@@ -115,25 +116,33 @@ export default function CallbackPage({ searchParams }: Props) {
         handleOAuth();
     }, [session, sessionStatus, isMember, code, returnedState, loading, success, error, router]);
 
-    if (sessionStatus === 'loading' || isMember === null) {
-        return <p className="p-4 text-center">Loading...</p>;
+    if (sessionStatus === 'loading' || isMember === null || loading) {
+        return (
+            <main className="flex w-full flex-col items-center gap-8 md:gap-16">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                        <h2 className="text-xl">Loading...</h2>
+                    </div>
+                </FancyRectangle>
+            </main>
+        );
     }
 
     if (!session) {
         return (
-            <div className="p-4 text-center">
-                <p className="mb-2">You need to sign in to link your Discord account.</p>
-                <div className="mt-8 flex justify-center text-grey">
-                    <Button colour="orange" onClick={() => signIn('keycloak')}>
-                        Sign In
-                    </Button>
-                </div>
-            </div>
+            <main className="flex w-full flex-col items-center gap-8 md:gap-16">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                        <p className="mb-2">You need to sign in to link your Discord account.</p>
+                        <div className="mt-8 flex justify-center text-grey">
+                            <Button colour="orange" onClick={() => signIn('keycloak')}>
+                                Sign In
+                            </Button>
+                        </div>
+                    </div>
+                </FancyRectangle>
+            </main>
         );
-    }
-
-    if (loading) {
-        return <p className="p-4 text-center">Linking your Discord account...</p>;
     }
 
     if (error) {
@@ -142,34 +151,46 @@ export default function CallbackPage({ searchParams }: Props) {
 
     if (!isMember) {
         return (
-            <div className="p-4 text-center">
-                <p>
-                    You aren&apos;t currently a CS Club member, so a Discord role wasn&apos;t
-                    assigned.
-                </p>
-                <p className="mt-1">
-                    Please visit{' '}
-                    <Link href="/settings" className="text-orange underline hover:text-orange/80">
-                        settings
-                    </Link>{' '}
-                    to complete your membership first and unlock Discord role access.
-                </p>
-            </div>
+            <main className="flex w-full flex-col items-center gap-8 md:gap-16">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                        <p>
+                            You aren&apos;t currently a CS Club member, so a Discord role
+                            wasn&apos;t assigned.
+                        </p>
+                        <p className="mt-1">
+                            Please visit{' '}
+                            <Link
+                                href="/settings"
+                                className="text-orange underline hover:text-orange/80"
+                            >
+                                settings
+                            </Link>{' '}
+                            to complete your membership first and unlock Discord role access.
+                        </p>
+                    </div>
+                </FancyRectangle>
+            </main>
         );
     }
 
     if (success) {
         console.log('Discord account oauth successful');
         return (
-            <div className="p-4 text-center">
-                <p className="text-green-600">
-                    Your Discord account was successfully linked! You can now return to Discord.
-                </p>
+            <main className="flex w-full flex-col items-center gap-8 md:gap-16">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                        <p className="text-green-600">
+                            Your Discord account was successfully linked! You can now return to
+                            Discord.
+                        </p>
 
-                <Link href="/" className="text-orange underline hover:text-orange/80">
-                    Return to home page
-                </Link>
-            </div>
+                        <Link href="/" className="text-orange underline hover:text-orange/80">
+                            Return to home page
+                        </Link>
+                    </div>
+                </FancyRectangle>
+            </main>
         );
     }
 
