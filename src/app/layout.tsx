@@ -2,6 +2,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Notification from '@/components/Notification';
 import { env } from '@/env.mjs';
+import { registerDiscordLinkedRole } from '@/server/register-discord-linked-role';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
 import { SessionProvider } from 'next-auth/react';
@@ -31,6 +32,15 @@ const archivo = Archivo({
     subsets: ['latin'],
     display: 'swap',
 });
+
+let didRegister = false;
+
+if (!didRegister) {
+    didRegister = true;
+    registerDiscordLinkedRole().catch((err) => {
+        console.error('Failed to register Discord linked role metadata:', err);
+    });
+}
 
 export default function RootLayout({ children }: RootLayoutProps) {
     return (

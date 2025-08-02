@@ -17,6 +17,7 @@ export const env = createEnv({
         SMTP_USER: z.string().min(1).optional(),
         SMTP_PASS: z.string().min(1).optional(),
         SMTP_EMAIL_ADDRESS: z.string().min(1).email().optional(),
+        DISCORD_TOKEN: z.string().min(1).optional(),
     },
     client: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: z.string().url().min(1).optional(),
@@ -25,6 +26,9 @@ export const env = createEnv({
         NEXT_PUBLIC_DRIVE_LINK: z.string().url().min(1),
         NEXT_PUBLIC_UMAMI_WEBSITE_ID: z.string().optional(),
         NEXT_PUBLIC_PAYLOAD_URI: z.string().url(),
+        NEXT_PUBLIC_DISCORD_REDIRECT_URI: z.string().url().min(1).optional(),
+        NEXT_PUBLIC_DISCORD_CLIENT_ID: z.string().min(1).optional(),
+        NEXT_PUBLIC_DISCORD_CLIENT_SECRET: z.string().min(1).optional(),
     },
     experimental__runtimeEnv: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: process.env.NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI,
@@ -34,6 +38,9 @@ export const env = createEnv({
         NEXT_PUBLIC_DRIVE_LINK: process.env.NEXT_PUBLIC_DRIVE_LINK,
         NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
         NEXT_PUBLIC_PAYLOAD_URI: process.env.NEXT_PUBLIC_PAYLOAD_URI,
+        NEXT_PUBLIC_DISCORD_REDIRECT_URI: process.env.NEXT_PUBLIC_DISCORD_REDIRECT_URI,
+        NEXT_PUBLIC_DISCORD_CLIENT_ID: process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID,
+        NEXT_PUBLIC_DISCORD_CLIENT_SECRET: process.env.NEXT_PUBLIC_DISCORD_CLIENT_SECRET,
     },
     skipValidation: process.env.SKIP_ENV_VALIDATION,
 });
