@@ -116,18 +116,6 @@ export default function CallbackPage({ searchParams }: Props) {
         handleOAuth();
     }, [session, sessionStatus, isMember, code, returnedState, loading, success, error, router]);
 
-    if (sessionStatus === 'loading' || isMember === null || loading) {
-        return (
-            <main className="flex w-full flex-col items-center gap-8 md:gap-16">
-                <FancyRectangle colour="purple" offset="8" filled fullWidth>
-                    <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
-                        <h2 className="text-xl">Loading...</h2>
-                    </div>
-                </FancyRectangle>
-            </main>
-        );
-    }
-
     if (!session) {
         return (
             <main className="flex w-full flex-col items-center gap-8 md:gap-16">
@@ -139,6 +127,18 @@ export default function CallbackPage({ searchParams }: Props) {
                                 Sign In
                             </Button>
                         </div>
+                    </div>
+                </FancyRectangle>
+            </main>
+        );
+    }
+
+    if (sessionStatus === 'loading' || isMember === null || loading) {
+        return (
+            <main className="flex w-full flex-col items-center gap-8 md:gap-16">
+                <FancyRectangle colour="purple" offset="8" filled fullWidth>
+                    <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
+                        <h2 className="text-xl">Loading...</h2>
                     </div>
                 </FancyRectangle>
             </main>
