@@ -78,7 +78,7 @@ export const COMMITTEE_MEMBERS: CommitteeMember[] = [
         position: 'Open Source & Infrastructure Manager',
     },
     {
-        name: 'Justin Sun',
+        name: 'Kent Rattley',
         position: 'Open Source Officer',
     },
     {
