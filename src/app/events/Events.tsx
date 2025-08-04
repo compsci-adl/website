@@ -62,8 +62,12 @@ export default function Events({ className }: { className?: string }) {
             }
         });
 
-        Object.values(upcomingEvents).forEach((events) => events);
-        Object.values(pastEvents).forEach((events) => events);
+        Object.values(upcomingEvents).forEach((events) =>
+            events.sort((a, b) => getEventDate(a).getTime() - getEventDate(b).getTime())
+        );
+        Object.values(pastEvents).forEach((events) =>
+            events.sort((a, b) => getEventDate(b).getTime() - getEventDate(a).getTime())
+        );
 
         const getSortedYears = (events: Record<number, Event[]>) =>
             Object.keys(events).map(Number).reverse();
