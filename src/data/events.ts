@@ -72,6 +72,13 @@ export async function fetchEvents(): Promise<Event[]> {
             EVENTS.push(newEvent);
         }
 
+        // Sort events by date (ascending)
+        EVENTS.sort((a, b) => {
+            const dateA = new Date(`${a.date.year}-${a.date.month}-${a.date.day}`);
+            const dateB = new Date(`${b.date.year}-${b.date.month}-${b.date.day}`);
+            return dateA.getTime() - dateB.getTime();
+        });
+
         return EVENTS;
     } catch (error) {
         console.error('Error fetching events:', error);

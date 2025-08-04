@@ -1,9 +1,11 @@
 'use client';
 
 import FancyRectangle from '@/components/FancyRectangle';
-import { type Event, eventURL, parseEvents } from '@/data/events';
+import { type Event } from '@/data/events';
+import { fetchEvents } from '@/data/events';
+import { useMount } from '@/hooks/use-mount';
 import { DateTime } from 'luxon';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
 
@@ -33,27 +35,13 @@ const getEventDate = (event: Event) => {
 export default function Events({ className }: { className?: string }) {
     const [loading, setLoading] = useState(true);
 
-    // Await API call from payload for EVENTS
-    useEffect(() => {
-        fetch(eventURL, {
-            method: 'GET',
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                const payloadData = data.docs;
-                for (const docNum in payloadData) {
-                    const newEvent = parseEvents(payloadData[docNum]);
-                    EVENTS.push(newEvent);
-                }
-                setLoading(false);
-            })
-            .catch((error) => {
-                console.error('Error fetching events', error);
-                setLoading(false);
-            });
+    useMount(() => {
+        fetchEvents().then((events) => {
+            EVENTS.push(...events);
+            setLoading(false);
+        });
     });
 
-    // API call successful return Events page
     if (!loading) {
         const CURRENT_DATE = new Date();
         const CURRENT_YEAR = CURRENT_DATE.getFullYear();
