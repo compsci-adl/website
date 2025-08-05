@@ -96,8 +96,8 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                         <p>
                             What is the Duck Lounge? Where is the Duck Lounge? Who is the Duck
                             Lounge? More truer questions have never been asked. Our CS Club has its
-                            very own <strong>student lounge</strong> in the Engineering Building in
-                            room 110 (EM110).
+                            very own&nbsp;<strong>student lounge</strong> in the Engineering
+                            Building in room 110 (EM110).
                         </p>
                         <p>
                             There’s socialising, gaming, and of course if you have any questions
