@@ -12,15 +12,13 @@ import { Fragment } from 'react';
 import UpcomingEventCard from './UpcomingEventCard';
 
 const getEventDate = (event: Event) => {
-    return new Date(
-        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
-    );
+    return new Date(`${event.date.year} ${event.date.month} ${event.date.day} ${event.endTime}`);
 };
 
 export default async function HomePage() {
     const EVENTS: Event[] = await fetchEvents();
-    const CURRENT_DATE = new Date();
-    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
+    const CURRENT_TIME = new Date();
+    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_TIME);
 
     const sponsors = await fetchSponsors();
     return (
