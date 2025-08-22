@@ -118,8 +118,15 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             ${new Date(raw.time.end).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
             : 'Unknown',
         // endTime & startTime are in "HH:mm" 24-hour format (e.g., "21:00")
-        endTime: raw.time.end.toString().split(' - ')[1] ?? '21:00',
-        startTime: raw.time.start.toString().split(' - ')[1] ?? '00:00',
+        endTime: raw.time
+            ? new Date(raw.time.end).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
+            : '21:00',
+        startTime: raw.time
+            ? new Date(raw.time.start).toLocaleTimeString([], {
+                  hour: 'numeric',
+                  minute: '2-digit',
+              })
+            : '00:00',
         location: raw.location,
         details: raw.details,
         url:
