@@ -26,7 +26,7 @@ function Title({ children }: { children: string }) {
 }
 
 const getEventDate = (event: Event) => {
-    const dateStr = `${event.date.year}-${event.date.month}-${event.date.day}T${event.date.endTime}`;
+    const dateStr = `${event.date.year}-${event.date.month}-${event.date.day}T${event.endTime}`;
     return DateTime.fromFormat(dateStr, "yyyy-MMM-d'T'HH:mm", {
         zone: 'Australia/Adelaide',
     }).toJSDate();
@@ -43,8 +43,8 @@ export default function Events({ className }: { className?: string }) {
     });
 
     if (!loading) {
-        const CURRENT_DATE = new Date();
-        const CURRENT_YEAR = CURRENT_DATE.getFullYear();
+        const CURRENT_TIME = new Date();
+        const CURRENT_YEAR = CURRENT_TIME.getFullYear();
 
         // Create empty objects to hold upcoming and past events categorised by year
         const upcomingEvents: Record<number, Event[]> = {};
@@ -55,7 +55,7 @@ export default function Events({ className }: { className?: string }) {
             const eventDate = getEventDate(event);
             const year = event.date.year;
 
-            if (eventDate >= CURRENT_DATE) {
+            if (eventDate >= CURRENT_TIME) {
                 (upcomingEvents[year] ||= []).push(event);
             } else {
                 (pastEvents[year] ||= []).push(event);
