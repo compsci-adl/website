@@ -6,14 +6,11 @@ import { fetchEvents, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, fetchSponsors } from '@/data/sponsors';
 import { payloadURL } from '@/lib/payload';
+import { getEventDate } from '@/utils/format-date';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 import UpcomingEventCard from './UpcomingEventCard';
-
-const getEventDate = (event: Event) => {
-    return new Date(`${event.date.year} ${event.date.month} ${event.date.day} ${event.endTime}`);
-};
 
 export default async function HomePage() {
     const EVENTS: Event[] = await fetchEvents();

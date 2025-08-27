@@ -4,7 +4,7 @@ import FancyRectangle from '@/components/FancyRectangle';
 import { type Event } from '@/data/events';
 import { fetchEvents } from '@/data/events';
 import { useMount } from '@/hooks/use-mount';
-import { DateTime } from 'luxon';
+import { getEventDate } from '@/utils/format-date';
 import { useState } from 'react';
 import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
@@ -24,13 +24,6 @@ function Title({ children }: { children: string }) {
         </div>
     );
 }
-
-const getEventDate = (event: Event) => {
-    const dateStr = `${event.date.year}-${event.date.month}-${event.date.day}T${event.endTime}`;
-    return DateTime.fromFormat(dateStr, "yyyy-MMM-d'T'HH:mm", {
-        zone: 'Australia/Adelaide',
-    }).toJSDate();
-};
 
 export default function Events({ className }: { className?: string }) {
     const [loading, setLoading] = useState(true);
