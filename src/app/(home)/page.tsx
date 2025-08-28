@@ -11,16 +11,13 @@ import Link from 'next/link';
 import { Fragment } from 'react';
 import UpcomingEventCard from './UpcomingEventCard';
 
-const getEventDate = (event: Event) => {
-    return new Date(
-        `${event.date.year} ${event.date.month} ${event.date.day} ${event.date.endTime}`
-    );
-};
-
 export default async function HomePage() {
     const EVENTS: Event[] = await fetchEvents();
-    const CURRENT_DATE = new Date();
-    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_DATE);
+    // Get current date/time in Adelaide (Australia/Adelaide) timezone
+    const CURRENT_DATE = new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'Australia/Adelaide' })
+    );
+    const UPCOMING_EVENTS = EVENTS.filter((event) => event.date.timestamp >= CURRENT_DATE);
 
     const sponsors = await fetchSponsors();
     return (
