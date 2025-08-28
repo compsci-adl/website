@@ -14,7 +14,7 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "email:dev": "email dev --dir=src/emails",
-    "postinstall": "npx simple-git-hooks"
+    "postinstall": "node scripts/setup-hooks.js"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.4",
