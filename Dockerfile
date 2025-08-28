@@ -3,7 +3,8 @@ FROM node:20-bookworm-slim AS deps
 
 WORKDIR /tmp
 
-COPY package.json ./
+COPY package.json pnpm-lock.yaml ./
+COPY scripts/setup-hooks.js ./scripts/setup-hooks.js
 
 # Build
 FROM node:20-bookworm-slim AS builder
@@ -15,7 +16,6 @@ ENV SKIP_ENV_VALIDATION=true
 WORKDIR /app
 
 COPY --from=deps /tmp ./
-COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm \
     && pnpm install
