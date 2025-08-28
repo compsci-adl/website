@@ -6,7 +6,6 @@ import { fetchEvents, type Event } from '@/data/events';
 import { CAROUSEL_IMAGES } from '@/data/home';
 import { SPONSOR_TYPES, fetchSponsors } from '@/data/sponsors';
 import { payloadURL } from '@/lib/payload';
-import { getEventDate } from '@/utils/format-date';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
@@ -14,8 +13,11 @@ import UpcomingEventCard from './UpcomingEventCard';
 
 export default async function HomePage() {
     const EVENTS: Event[] = await fetchEvents();
-    const CURRENT_TIME = new Date();
-    const UPCOMING_EVENTS = EVENTS.filter((event) => getEventDate(event) >= CURRENT_TIME);
+    // Get current date/time in Adelaide (Australia/Adelaide) timezone
+    const CURRENT_DATE = new Date(
+        new Date().toLocaleString('en-US', { timeZone: 'Australia/Adelaide' })
+    );
+    const UPCOMING_EVENTS = EVENTS.filter((event) => event.date.timestamp >= CURRENT_DATE);
 
     const sponsors = await fetchSponsors();
     return (

@@ -18,14 +18,12 @@ type Month =
 
 export type Event = {
     title: string;
-    date: { year: number; month: Month; day: number };
+    date: { year: number; month: Month; day: number; timestamp: Date };
     time: string;
     location: string;
     details: string;
     url?: { href: URL; text?: string };
     image: string;
-    startTime: string;
-    endTime: string;
 };
 
 // API response format from PayloadCMS
@@ -106,27 +104,46 @@ export const parseEvents = (raw: PayloadEvent): Event => {
         'DEC',
     ];
 
+    // Get date part from eventDate in Adelaide timezone
+    const adelaideDate = new Date(
+        eventDate.toLocaleString('en-US', { timeZone: 'Australia/Adelaide' })
+    );
+    const isoDate = adelaideDate.toISOString().split('T')[0]; // 'YYYY-MM-DD'
+
+    // Get hour and minute from raw.time.end in Adelaide timezone
+    let hourPart = '00:00';
+    if (raw.time?.end) {
+        const endTime = new Date(raw.time.end);
+        const adelaideEndTime = new Date(
+            endTime.toLocaleString('en-US', { timeZone: 'Australia/Adelaide' })
+        );
+        hourPart = `${String(adelaideEndTime.getHours()).padStart(2, '0')}:${String(adelaideEndTime.getMinutes()).padStart(2, '0')}`;
+    }
+
+    // Combine date and hour into one timestamp string using Adelaide timezone offset dynamically
+    const adelaideOffsetMinutes = adelaideDate.getTimezoneOffset();
+    const offsetHours = Math.floor(Math.abs(adelaideOffsetMinutes) / 60)
+        .toString()
+        .padStart(2, '0');
+    const offsetMinutes = (Math.abs(adelaideOffsetMinutes) % 60).toString().padStart(2, '0');
+    const offsetSign = adelaideOffsetMinutes <= 0 ? '+' : '-';
+    const combinedTimestampStr = `${isoDate}T${hourPart}:00.000${offsetSign}${offsetHours}:${offsetMinutes}`;
+
+    // Convert to Date object
+    const combinedTimestamp = new Date(combinedTimestampStr);
+
     return {
         title: raw.title,
         date: {
-            year: eventDate.getUTCFullYear(),
-            month: monthNames[eventDate.getUTCMonth()],
-            day: eventDate.getUTCDate(),
+            year: adelaideDate.getFullYear(),
+            month: monthNames[adelaideDate.getMonth()],
+            day: adelaideDate.getDate(),
+            timestamp: combinedTimestamp,
         },
         time: raw.time
-            ? `${new Date(raw.time.start).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })} - 
-            ${new Date(raw.time.end).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`
+            ? `${new Date(raw.time.start).toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit', timeZone: 'Australia/Adelaide' })} - 
+            ${new Date(raw.time.end).toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit', timeZone: 'Australia/Adelaide' })}`
             : 'Unknown',
-        // endTime & startTime are in "HH:mm" 24-hour format (e.g., "21:00")
-        endTime: raw.time
-            ? new Date(raw.time.end).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
-            : '21:00',
-        startTime: raw.time
-            ? new Date(raw.time.start).toLocaleTimeString([], {
-                  hour: 'numeric',
-                  minute: '2-digit',
-              })
-            : '00:00',
         location: raw.location,
         details: raw.details,
         url:

@@ -4,7 +4,6 @@ import FancyRectangle from '@/components/FancyRectangle';
 import { type Event } from '@/data/events';
 import { fetchEvents } from '@/data/events';
 import { useMount } from '@/hooks/use-mount';
-import { getEventDate } from '@/utils/format-date';
 import { useState } from 'react';
 import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
@@ -45,10 +44,9 @@ export default function Events({ className }: { className?: string }) {
 
         // Categorise events by year and whether they are upcoming or past
         EVENTS.forEach((event) => {
-            const eventDate = getEventDate(event);
             const year = event.date.year;
 
-            if (eventDate >= CURRENT_TIME) {
+            if (event.date.timestamp >= CURRENT_TIME) {
                 (upcomingEvents[year] ||= []).push(event);
             } else {
                 (pastEvents[year] ||= []).push(event);
@@ -56,10 +54,10 @@ export default function Events({ className }: { className?: string }) {
         });
 
         Object.values(upcomingEvents).forEach((events) =>
-            events.sort((a, b) => getEventDate(a).getTime() - getEventDate(b).getTime())
+            events.sort((a, b) => a.date.timestamp.getTime() - b.date.timestamp.getTime())
         );
         Object.values(pastEvents).forEach((events) =>
-            events.sort((a, b) => getEventDate(b).getTime() - getEventDate(a).getTime())
+            events.sort((a, b) => b.date.timestamp.getTime() - a.date.timestamp.getTime())
         );
 
         const getSortedYears = (events: Record<number, Event[]>) =>
