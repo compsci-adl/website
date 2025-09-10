@@ -10,7 +10,8 @@ type CommitteeMember = {
 // List of committee members with name, role and whether they are part of the
 // executive committee
 
-const committeeMemberURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/committee-members?limit=50';
+// const committeeMemberURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/committee-members?limit=50';
+const committeeMemberURL = 'http://host.docker.internal:4000/api/committee-members?limit=50';
 
 export async function fetchCommitteeMember(): Promise<CommitteeMember[]> {
     try {
@@ -26,6 +27,12 @@ export async function fetchCommitteeMember(): Promise<CommitteeMember[]> {
             position: committeeMember.role,
             exec: committeeMember.exec,
         }));
+
+        committeeMembers.sort((a, b) => {
+            if (a.exec && !b.exec) return -1; // a is exec, b is not → a first
+            if (!a.exec && b.exec) return 1; // a is not exec, b is → b first
+            return a.name.localeCompare(b.name);
+        });
 
         return committeeMembers;
     } catch (error) {
