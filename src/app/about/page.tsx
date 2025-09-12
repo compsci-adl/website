@@ -2,7 +2,7 @@ import Duck from '@/components/Duck';
 import FancyRectangle from '@/components/FancyRectangle';
 import Paragraph from '@/components/Paragraph';
 import Title from '@/components/Title';
-import { COMMITTEE_MEMBERS } from '@/data/committee-members';
+import { fetchCommitteeMember } from '@/data/committee-members';
 import { LINKS } from '@/data/links';
 import type { Metadata } from 'next';
 import Image from 'next/image';
@@ -12,7 +12,9 @@ export const metadata: Metadata = {
     title: 'About',
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+    const committeeMembers = await fetchCommitteeMember();
+
     return (
         <main className="relative">
             <div className="h-full">
@@ -234,7 +236,7 @@ export default function AboutPage() {
                         <h2 className="text-5xl font-bold">Committee Members</h2>
                     </div>
                     <div className="mb-2 mr-2 mt-8 grid auto-rows-fr grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-                        {COMMITTEE_MEMBERS.map((member, index) => (
+                        {committeeMembers.map((member, index) => (
                             <FancyRectangle
                                 key={index}
                                 colour={member.exec ? 'yellow' : 'white'}
