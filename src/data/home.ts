@@ -2,15 +2,37 @@ import type { Image } from '@/components/ImageCarousel';
 
 export const CAROUSEL_IMAGES: Image[] = [
     {
-        src: '/images/home/duck-ctf.jpg',
-        alt: 'DuckCTF',
+        src: '/images/home/oweek-2025.jpg',
+        alt: 'OWeek 2025',
     },
+
     {
-        src: '/images/home/pizza.jpg',
-        alt: 'Pizza',
+        src: '/images/home/meet-and-greet-2025-2.jpg',
+        alt: 'Meet and Greet 2 2025',
     },
+
     {
-        src: '/images/home/cyber-panel.jpg',
-        alt: 'Cyber Panel',
+        src: '/images/home/industry-night-2025.jpg',
+        alt: 'Industry Night 2025',
+    },
+
+    {
+        src: '/images/home/women-in-tech-2025.jpg',
+        alt: 'Women in Tech 2025',
+    },
+
+    {
+        src: '/images/home/two-slices.jpg',
+        alt: 'TWO SLICES',
+    },
+
+    {
+        src: '/images/home/cocktail-night-2024.jpg',
+        alt: 'Cocktail Night 2024',
+    },
+
+    {
+        src: '/images/home/meet-and-greet-2025-1.jpg',
+        alt: 'Meet and Greet 1 2025',
     },
 ];
