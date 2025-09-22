@@ -105,7 +105,7 @@ export default function HeaderMobileClient({
                                         <Button
                                             colour="orange"
                                             size="small"
-                                            className="px-6 py-2"
+                                            className="px-8 py-2"
                                             onClick={() => {
                                                 import('next-auth/react').then((mod) =>
                                                     mod.signIn('keycloak')
@@ -123,7 +123,7 @@ export default function HeaderMobileClient({
                                         <Button
                                             colour="orange"
                                             size="small"
-                                            className="px-6 py-2"
+                                            className="px-8 py-2"
                                             href="/join"
                                             onClick={closeMenu}
                                         >
@@ -140,7 +140,7 @@ export default function HeaderMobileClient({
                                     <Button
                                         colour="orange"
                                         size="small"
-                                        className="px-6 py-2"
+                                        className="px-8 py-2"
                                         href="/join"
                                         onClick={closeMenu}
                                     >
@@ -156,7 +156,7 @@ export default function HeaderMobileClient({
                                     <Button
                                         colour="orange"
                                         size="small"
-                                        className="px-6 py-2"
+                                        className="px-8 py-2"
                                         href="/settings"
                                         onClick={closeMenu}
                                     >
@@ -172,7 +172,7 @@ export default function HeaderMobileClient({
                                     <Button
                                         colour="orange"
                                         size="small"
-                                        className="px-6 py-2"
+                                        className="px-8 py-2"
                                         onClick={handleSignOut}
                                     >
                                         <FaSignOutAlt className="text-2xl" />
@@ -186,7 +186,7 @@ export default function HeaderMobileClient({
                                 <Button
                                     colour="purple"
                                     size="small"
-                                    className="px-6 py-2"
+                                    className="px-8 py-2"
                                     onClick={closeMenu}
                                 >
                                     <FaTimes className="text-2xl" />
