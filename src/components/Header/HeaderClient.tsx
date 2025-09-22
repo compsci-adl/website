@@ -9,8 +9,9 @@ import { useOnClickOutside } from 'usehooks-ts';
 import type { HeaderData } from '.';
 import Button from '../Button';
 import FancyRectangle from '../FancyRectangle';
-import { Links, MenuLinks } from './components/Links';
+import HeaderLinks from './components/HeaderLinks';
 import LogoTitle from './components/LogoTitle';
+import MenuLinks from './components/MenuLinks';
 import ScrollShader from './components/ScrollShader';
 import { SignInJoin } from './components/SignInJoin';
 
@@ -76,7 +77,7 @@ export default function HeaderClient({
                         <LogoTitle titleColor="text-grey" className="grow" />
                     </div>
                     <div className="flex items-center md:gap-4">
-                        <Links />
+                        <HeaderLinks />
                         <div className="flex gap-4 md:flex-col md:justify-center lg:flex-row lg:items-center">
                             {data.nextStep === 'signup' && (
                                 <Button colour="purple" href="/join">
