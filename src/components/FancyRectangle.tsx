@@ -13,39 +13,34 @@ interface FancyRectangleProps {
     fullHeight?: boolean;
 }
 
-const FancyRectangle = ({
-    children,
-    colour,
-    offset,
-    filled,
-    rounded,
-    fullWidth,
-    fullHeight,
-}: FancyRectangleProps) => {
-    const offsetValue = parseInt(offset, 10);
+const FancyRectangle = React.forwardRef<HTMLDivElement, FancyRectangleProps>(
+    ({ children, colour, offset, filled, rounded, fullWidth, fullHeight }, ref) => {
+        const offsetValue = parseInt(offset, 10);
 
-    const offsetStyles = {
-        marginBottom: `-${offsetValue}px`,
-        marginRight: `-${offsetValue}px`,
-    };
+        const offsetStyles = {
+            marginBottom: `-${offsetValue}px`,
+            marginRight: `-${offsetValue}px`,
+        };
 
-    return (
-        <div className="flex items-center">
-            <div
-                className={`relative ${fullHeight ? 'h-full' : 'h-auto'} ${fullWidth ? 'w-full' : 'w-auto'}`}
-            >
+        return (
+            <div className="flex items-center" ref={ref}>
                 <div
-                    style={offsetStyles}
-                    className={`absolute bottom-0 right-0 h-full w-full ${
-                        filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
-                    } ${rounded ? 'rounded-xl' : ''}`}
-                />
-                <div className="relative z-10 flex h-full w-full items-center justify-center">
-                    {children}
+                    className={`relative ${fullHeight ? 'h-full' : 'h-auto'} ${fullWidth ? 'w-full' : 'w-auto'}`}
+                >
+                    <div
+                        style={offsetStyles}
+                        className={`absolute bottom-0 right-0 h-full w-full ${
+                            filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
+                        } ${rounded ? 'rounded-xl' : ''}`}
+                    />
+                    <div className="relative z-10 flex h-full w-full items-center justify-center">
+                        {children}
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+);
+FancyRectangle.displayName = 'FancyRectangle';
 
 export default FancyRectangle;
