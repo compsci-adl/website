@@ -43,13 +43,14 @@ export default function MobileDropdownMenu({ title, items, onClick }: MobileDrop
                             <li key={idx}>
                                 <Link
                                     href={item.href}
-                                    className="block px-4 py-3 font-semibold hover:underline"
+                                    className="flex items-center justify-between px-4 py-3 font-semibold hover:underline"
                                     onClick={() => {
                                         setSubmenuOpen(false);
                                         if (onClick) onClick();
                                     }}
                                 >
-                                    {item.title}
+                                    <span>{item.title}</span>
+                                    <IoChevronForward size={20} className="text-black" />
                                 </Link>
                             </li>
                         ))}

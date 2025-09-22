@@ -14,6 +14,7 @@ import {
     FaTimes,
 } from 'react-icons/fa';
 import { IoMdMenu } from 'react-icons/io';
+import { IoChevronForward } from 'react-icons/io5';
 import type { HeaderData } from '.';
 import Button from '../Button';
 import FancyRectangle from '../FancyRectangle';
@@ -91,7 +92,8 @@ export default function HeaderMobileClient({
                                         className="flex items-center justify-between px-4 py-1 font-bold hover:underline"
                                         onClick={closeMenu}
                                     >
-                                        {link.title}
+                                        <span>{link.title}</span>
+                                        <IoChevronForward size={20} className="text-black" />
                                     </Link>
                                 )
                             )
