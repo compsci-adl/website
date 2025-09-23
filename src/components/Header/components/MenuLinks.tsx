@@ -1,8 +1,49 @@
 import { env } from '@/env.mjs';
 import Link from 'next/link';
+import { IoChevronForward } from 'react-icons/io5';
 import type { HeaderData } from '..';
 
-export default function MenuLinks({ data, onClick }: { data: HeaderData; onClick?: () => void }) {
+export type MenuLinkType = {
+    title: string;
+    href: string;
+    target?: string;
+    rel?: string;
+};
+
+export default function MenuLinks({
+    data,
+    onClick,
+    mobile = false,
+    links,
+}: {
+    data: HeaderData;
+    onClick?: () => void;
+    mobile?: boolean;
+    links?: MenuLinkType[];
+}) {
+    const linkClass = mobile
+        ? 'flex items-center justify-between px-4 py-1 font-bold hover:underline'
+        : 'block hover:underline';
+    const arrow = mobile ? <IoChevronForward size={20} className="ml-2 text-black" /> : null;
+    if (links && links.length > 0) {
+        return (
+            <>
+                {links.map((link, i) => (
+                    <Link
+                        key={i}
+                        href={link.href}
+                        target={link.target}
+                        rel={link.rel}
+                        className={linkClass}
+                        onClick={onClick}
+                    >
+                        <span>{link.title}</span>
+                        {arrow}
+                    </Link>
+                ))}
+            </>
+        );
+    }
     const isMember = data.nextStep === null;
     return (
         <>
@@ -11,35 +52,40 @@ export default function MenuLinks({ data, onClick }: { data: HeaderData; onClick
                     href={env.NEXT_PUBLIC_DRIVE_LINK}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block hover:underline"
+                    className={linkClass}
                     onClick={onClick}
                 >
-                    CS Club Drive
+                    <span>CS Club Drive</span>
+                    {arrow}
                 </Link>
             )}
             {isMember && (
-                <Link href="/gallery" className="block hover:underline" onClick={onClick}>
-                    Photo Gallery
+                <Link href="/gallery" className={linkClass} onClick={onClick}>
+                    <span>Photo Gallery</span>
+                    {arrow}
                 </Link>
             )}
             {data.isSignedIn && (
-                <Link href="/settings" className="block hover:underline" onClick={onClick}>
-                    Settings
+                <Link href="/settings" className={linkClass} onClick={onClick}>
+                    <span>Settings</span>
+                    {arrow}
                 </Link>
             )}
             {data.isCommittee && (
                 <Link
                     href="https://wiki.csclub.org.au"
                     target="_blank"
-                    className="block hover:underline"
+                    className={linkClass}
                     onClick={onClick}
                 >
-                    Wiki
+                    <span>Wiki</span>
+                    {arrow}
                 </Link>
             )}
             {data.isAdmin && (
-                <Link href="/admin" className="block hover:underline" onClick={onClick}>
-                    Admin Panel
+                <Link href="/admin" className={linkClass} onClick={onClick}>
+                    <span>Admin Panel</span>
+                    {arrow}
                 </Link>
             )}
         </>

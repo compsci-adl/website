@@ -2,7 +2,20 @@ import LINKS from '@/constants/links';
 import Link from 'next/link';
 import DropdownMenu from './DropdownMenu';
 
-export default function HeaderLinks({ onClick }: { onClick?: () => void }) {
+export type HeaderDropdownLink = {
+    title: string;
+    href: string;
+    target?: string;
+    rel?: string;
+};
+
+export default function HeaderLinks({
+    onClick,
+    dropdownLinks,
+}: {
+    onClick?: () => void;
+    dropdownLinks?: HeaderDropdownLink[];
+}) {
     return (
         <nav className="flex gap-4">
             {LINKS.map((link, i) =>
@@ -28,6 +41,9 @@ export default function HeaderLinks({ onClick }: { onClick?: () => void }) {
                         {link.title}
                     </Link>
                 )
+            )}
+            {dropdownLinks && dropdownLinks.length > 0 && (
+                <DropdownMenu title="Member Links" items={dropdownLinks} onClick={onClick} />
             )}
         </nav>
     );
