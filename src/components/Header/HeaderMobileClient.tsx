@@ -19,6 +19,7 @@ import type { HeaderData } from '.';
 import Button from '../Button';
 import FancyRectangle from '../FancyRectangle';
 import LogoTitle from './components/LogoTitle';
+import MenuLinks from './components/MenuLinks';
 import MobileDropdownMenu from './components/MobileDropdownMenu';
 import ScrollShader from './components/ScrollShader';
 
@@ -40,6 +41,7 @@ export default function HeaderMobileClient({
         await logout();
         setIsMenuOpen(false);
     };
+    const userExists = data.nextStep !== 'signup';
     return (
         <div className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
@@ -98,6 +100,8 @@ export default function HeaderMobileClient({
                                 )
                             )
                         )}
+                        <div className="my-4 h-0.5 w-full bg-grey" />
+                        {userExists && <MenuLinks data={data} onClick={closeMenu} mobile={true} />}
                         <div className="my-4 h-0.5 w-full bg-grey" />
                         {/* Auth and action icons horizontal row */}
                         <div className="flex w-full items-center justify-between gap-4 px-4 py-2">
