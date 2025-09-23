@@ -42,6 +42,16 @@ export default function HeaderMobileClient({
         setIsMenuOpen(false);
     };
     const userExists = data.nextStep !== 'signup';
+
+    let actionCount = 0;
+    if (!data.isSignedIn) {
+        actionCount = 2;
+    } else if (data.nextStep === 'signup' || data.nextStep === 'payment') {
+        actionCount = 2;
+    } else {
+        actionCount = 3;
+    }
+    const actionPadding = actionCount === 2 ? 'px-8' : 'px-14';
     return (
         <div className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
@@ -116,12 +126,12 @@ export default function HeaderMobileClient({
                                         <Button
                                             colour="orange"
                                             size="small"
-                                            className="px-8 py-2"
+                                            className={`${actionPadding} py-2`}
                                             onClick={() => {
-                                                import('next-auth/react').then((mod) =>
-                                                    mod.signIn('keycloak')
-                                                );
-                                                closeMenu();
+                                                import('next-auth/react').then((mod) => {
+                                                    mod.signIn('keycloak');
+                                                    closeMenu();
+                                                });
                                             }}
                                         >
                                             <FaSignInAlt className="text-2xl" />
@@ -134,7 +144,7 @@ export default function HeaderMobileClient({
                                         <Button
                                             colour="orange"
                                             size="small"
-                                            className="px-8 py-2"
+                                            className={`${actionPadding} py-2`}
                                             href="/join"
                                             onClick={closeMenu}
                                         >
@@ -151,7 +161,7 @@ export default function HeaderMobileClient({
                                     <Button
                                         colour="orange"
                                         size="small"
-                                        className="px-8 py-2"
+                                        className={`${actionPadding} py-2`}
                                         href="/join"
                                         onClick={closeMenu}
                                     >
@@ -167,7 +177,7 @@ export default function HeaderMobileClient({
                                     <Button
                                         colour="orange"
                                         size="small"
-                                        className="px-8 py-2"
+                                        className={`${actionPadding} py-2`}
                                         href="/settings"
                                         onClick={closeMenu}
                                     >
@@ -183,7 +193,7 @@ export default function HeaderMobileClient({
                                     <Button
                                         colour="orange"
                                         size="small"
-                                        className="px-8 py-2"
+                                        className={`${actionPadding} py-2`}
                                         onClick={handleSignOut}
                                     >
                                         <FaSignOutAlt className="text-2xl" />
@@ -197,7 +207,7 @@ export default function HeaderMobileClient({
                                 <Button
                                     colour="purple"
                                     size="small"
-                                    className="px-8 py-2"
+                                    className={`${actionPadding} py-2`}
                                     onClick={closeMenu}
                                 >
                                     <FaTimes className="text-2xl" />
