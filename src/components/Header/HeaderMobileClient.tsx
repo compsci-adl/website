@@ -101,8 +101,13 @@ export default function HeaderMobileClient({
                             )
                         )}
                         <div className="my-4 h-0.5 w-full bg-grey" />
-                        {userExists && <MenuLinks data={data} onClick={closeMenu} mobile={true} />}
-                        <div className="my-4 h-0.5 w-full bg-grey" />
+                        {data.isSignedIn && userExists && (
+                            <>
+                                <MenuLinks data={data} onClick={closeMenu} mobile={true} />
+                                <div className="my-4 h-0.5 w-full bg-grey" />
+                            </>
+                        )}
+
                         {/* Auth and action icons horizontal row */}
                         <div className="flex w-full items-center justify-between gap-4 px-4 py-2">
                             {!data.isSignedIn && (
