@@ -12,6 +12,7 @@ import FancyRectangle from '../FancyRectangle';
 import HeaderLinks from './components/HeaderLinks';
 import LogoTitle from './components/LogoTitle';
 import MenuLinks from './components/MenuLinks';
+import type { MenuLinkType } from './components/MenuLinks';
 import ScrollShader from './components/ScrollShader';
 import { SignInJoin } from './components/SignInJoin';
 
@@ -33,6 +34,12 @@ function UserButton({ data }: { data: HeaderData }) {
         router.refresh();
     };
 
+    const isSignedIn = data.isSignedIn;
+    const isAdmin = data.isAdmin;
+    const memberLinks: MenuLinkType[] = [
+        ...(isSignedIn ? [{ title: 'Settings', href: '/settings' }] : []),
+        ...(isAdmin ? [{ title: 'Admin Panel', href: '/admin' }] : []),
+    ];
     const userExists = data.nextStep !== 'signup';
     return (
         <FancyRectangle colour="black" offset="4" filled>
@@ -50,7 +57,9 @@ function UserButton({ data }: { data: HeaderData }) {
                     leaveTo="opacity-0 scale-90"
                 >
                     <div className="absolute right-0 top-10 z-50 w-44 space-y-4 border-4 border-black bg-white p-4">
-                        {userExists && <MenuLinks data={data} onClick={closeMenu} />}
+                        {userExists && (
+                            <MenuLinks data={data} onClick={closeMenu} links={memberLinks} />
+                        )}
                         <Button onClick={handleSignOut} colour="orange" width="w-40 md:w-32">
                             Sign Out
                         </Button>
@@ -68,6 +77,20 @@ export default function HeaderClient({
     data: HeaderData;
     className?: string;
 }) {
+    const isMember = data.nextStep === null;
+    const memberLinks = [
+        ...(isMember
+            ? [
+                  {
+                      title: 'CS Club Drive',
+                      href: process.env.NEXT_PUBLIC_DRIVE_LINK ?? '',
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                  },
+                  { title: 'Photo Gallery', href: '/gallery' },
+              ]
+            : []),
+    ];
     return (
         <header className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader />
@@ -77,7 +100,7 @@ export default function HeaderClient({
                         <LogoTitle titleColor="text-grey" className="grow" />
                     </div>
                     <div className="flex items-center md:gap-4">
-                        <HeaderLinks />
+                        <HeaderLinks dropdownLinks={memberLinks} />
                         <div className="flex gap-4 md:flex-col md:justify-center lg:flex-row lg:items-center">
                             {data.nextStep === 'signup' && (
                                 <Button colour="purple" href="/join">

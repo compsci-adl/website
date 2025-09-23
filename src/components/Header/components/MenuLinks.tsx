@@ -3,20 +3,48 @@ import Link from 'next/link';
 import { IoChevronForward } from 'react-icons/io5';
 import type { HeaderData } from '..';
 
+export type MenuLinkType = {
+    title: string;
+    href: string;
+    target?: string;
+    rel?: string;
+};
+
 export default function MenuLinks({
     data,
     onClick,
     mobile = false,
+    links,
 }: {
     data: HeaderData;
     onClick?: () => void;
     mobile?: boolean;
+    links?: MenuLinkType[];
 }) {
-    const isMember = data.nextStep === null;
     const linkClass = mobile
         ? 'flex items-center justify-between px-4 py-1 font-bold hover:underline'
         : 'block hover:underline';
     const arrow = mobile ? <IoChevronForward size={20} className="ml-2 text-black" /> : null;
+    if (links && links.length > 0) {
+        return (
+            <>
+                {links.map((link, i) => (
+                    <Link
+                        key={i}
+                        href={link.href}
+                        target={link.target}
+                        rel={link.rel}
+                        className={linkClass}
+                        onClick={onClick}
+                    >
+                        <span>{link.title}</span>
+                        {arrow}
+                    </Link>
+                ))}
+            </>
+        );
+    }
+    const isMember = data.nextStep === null;
     return (
         <>
             {isMember && (

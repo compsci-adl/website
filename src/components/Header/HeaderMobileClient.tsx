@@ -20,6 +20,7 @@ import Button from '../Button';
 import FancyRectangle from '../FancyRectangle';
 import LogoTitle from './components/LogoTitle';
 import MenuLinks from './components/MenuLinks';
+import type { MenuLinkType } from './components/MenuLinks';
 import MobileDropdownMenu from './components/MobileDropdownMenu';
 import ScrollShader from './components/ScrollShader';
 
@@ -42,6 +43,27 @@ export default function HeaderMobileClient({
         setIsMenuOpen(false);
     };
     const userExists = data.nextStep !== 'signup';
+    const isMember = data.nextStep === null;
+    // Runtime checks for conditional links
+    const isSignedIn = data.isSignedIn;
+    const isAdmin = data.isAdmin;
+    const conditionalLinks: MenuLinkType[] = [
+        ...(isSignedIn ? [{ title: 'Settings', href: '/settings' }] : []),
+        ...(isAdmin ? [{ title: 'Admin Panel', href: '/admin' }] : []),
+    ];
+    const memberLinks = [
+        ...(isMember
+            ? [
+                  {
+                      title: 'CS Club Drive',
+                      href: process.env.NEXT_PUBLIC_DRIVE_LINK ?? '',
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                  },
+                  { title: 'Photo Gallery', href: '/gallery' },
+              ]
+            : []),
+    ];
 
     let actionCount = 0;
     if (!data.isSignedIn) {
@@ -110,10 +132,22 @@ export default function HeaderMobileClient({
                                 )
                             )
                         )}
+                        {memberLinks.length > 0 && (
+                            <MobileDropdownMenu
+                                title="Member Links"
+                                items={memberLinks}
+                                onClick={closeMenu}
+                            />
+                        )}
                         <div className="my-4 h-0.5 w-full bg-grey" />
                         {data.isSignedIn && userExists && (
                             <>
-                                <MenuLinks data={data} onClick={closeMenu} mobile={true} />
+                                <MenuLinks
+                                    data={data}
+                                    onClick={closeMenu}
+                                    mobile={true}
+                                    links={conditionalLinks}
+                                />
                                 <div className="my-4 h-0.5 w-full bg-grey" />
                             </>
                         )}
