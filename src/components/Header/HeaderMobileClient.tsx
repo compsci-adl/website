@@ -73,7 +73,7 @@ export default function HeaderMobileClient({
     } else {
         actionCount = 3;
     }
-    const actionPadding = actionCount === 2 ? 'px-8' : 'px-14';
+    const actionPadding = actionCount === 2 ? 'px-8' : 'px-12';
     return (
         <div className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
@@ -156,7 +156,7 @@ export default function HeaderMobileClient({
                         <div className="flex w-full items-center justify-between gap-4 px-4 py-2">
                             {!data.isSignedIn && (
                                 <>
-                                    <div className="flex flex-col items-center md:flex-row md:items-end">
+                                    <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                         <Button
                                             colour="orange"
                                             size="small"
@@ -174,7 +174,7 @@ export default function HeaderMobileClient({
                                             Sign In
                                         </span>
                                     </div>
-                                    <div className="flex flex-col items-center md:flex-row md:items-end">
+                                    <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                         <Button
                                             colour="orange"
                                             size="small"
@@ -191,7 +191,7 @@ export default function HeaderMobileClient({
                                 </>
                             )}
                             {data.isSignedIn && data.nextStep === 'signup' && (
-                                <div className="flex flex-col items-center md:flex-row md:items-end">
+                                <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                     <Button
                                         colour="orange"
                                         size="small"
@@ -207,7 +207,7 @@ export default function HeaderMobileClient({
                                 </div>
                             )}
                             {data.isSignedIn && data.nextStep === 'payment' && (
-                                <div className="flex flex-col items-center md:flex-row md:items-end">
+                                <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                     <Button
                                         colour="orange"
                                         size="small"
@@ -223,7 +223,7 @@ export default function HeaderMobileClient({
                                 </div>
                             )}
                             {data.isSignedIn && (
-                                <div className="flex flex-col items-center md:flex-row md:items-end">
+                                <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                     <Button
                                         colour="orange"
                                         size="small"
@@ -237,7 +237,7 @@ export default function HeaderMobileClient({
                                     </span>
                                 </div>
                             )}
-                            <div className="flex flex-col items-center md:flex-row md:items-end">
+                            <div className="flex w-full flex-col items-center md:flex-row md:items-end">
                                 <Button
                                     colour="purple"
                                     size="small"
