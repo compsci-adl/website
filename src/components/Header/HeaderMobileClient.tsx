@@ -67,13 +67,13 @@ export default function HeaderMobileClient({
 
     let actionCount = 0;
     if (!data.isSignedIn) {
-        actionCount = 2;
-    } else if (data.nextStep === 'signup' || data.nextStep === 'payment') {
-        actionCount = 2;
-    } else {
         actionCount = 3;
+    } else if (data.nextStep === 'signup' || data.nextStep === 'payment') {
+        actionCount = 3;
+    } else {
+        actionCount = 2;
     }
-    const actionPadding = actionCount === 2 ? 'px-8' : 'px-12';
+    const actionPadding = actionCount === 2 ? 'px-[3rem]' : 'px-[2rem]';
     return (
         <div className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
