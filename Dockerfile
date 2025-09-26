@@ -18,7 +18,7 @@ COPY --from=deps /tmp ./
 COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm \
-    && pnpm install
+    && pnpm install --ignore-scripts
 
 COPY . .
 
