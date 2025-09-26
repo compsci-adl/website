@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y sqlite3
 COPY package.json pnpm-lock.yaml drizzle.config.ts ./
 COPY src/db/schema.ts src/db/schema.ts
 
-RUN npm install -g pnpm && pnpm install
+RUN npm install -g pnpm && pnpm install --ignore-scripts
 
 EXPOSE $PORT
 
