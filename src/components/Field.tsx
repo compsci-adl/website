@@ -42,6 +42,7 @@ const Field = ({
             </label>
             {type === 'select' ? (
                 <select
+                    value={typeof value === 'string' ? value : ''}
                     onChange={(e) => onChange(e.target.value)}
                     id={labelString}
                     name={labelString}
