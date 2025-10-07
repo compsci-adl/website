@@ -25,6 +25,7 @@ export default function NotificationsSettings() {
     const { data: session } = useSession();
     const userId = session?.user?.id;
     const [saveSuccess, setSaveSuccess] = useState(false);
+    const [saveError, setSaveError] = useState<string | null>(null);
     const [hasPhoneNumber, setHasPhoneNumber] = useState(false);
 
     const [notifications, setNotifications] = useState({
@@ -81,7 +82,10 @@ export default function NotificationsSettings() {
     });
 
     const updateNotifications = useSWRMutation('notifications', fetcher.put.mutate, {
-        onError: () => console.error('Failed to update notification settings'),
+        onError: () => {
+            setSaveError('Failed to update notification settings');
+            setTimeout(() => setSaveError(null), 5000);
+        },
         onSuccess: () => {
             setSaveSuccess(true);
             setTimeout(() => setSaveSuccess(false), 5000);
@@ -90,7 +94,8 @@ export default function NotificationsSettings() {
 
     const handleSaveSettings = async () => {
         if (!userId) {
-            console.error('User ID is missing');
+            setSaveError('User ID is missing');
+            setTimeout(() => setSaveError(null), 5000);
             return;
         }
 
@@ -101,8 +106,9 @@ export default function NotificationsSettings() {
 
         try {
             await updateNotifications.trigger(payload);
-        } catch (error) {
-            console.error('Error saving notification settings:', error);
+        } catch {
+            setSaveError('Error saving notification settings');
+            setTimeout(() => setSaveError(null), 5000);
         }
     };
 
@@ -156,8 +162,9 @@ export default function NotificationsSettings() {
                 Save
             </Button>
             {saveSuccess && (
-                <p className="mt-2 text-orange">Notification settings saved successfully!</p>
+                <p className="mt-2 text-green-600">Notification settings saved successfully!</p>
             )}
+            {saveError && <p className="mt-2 text-red-600">{saveError}</p>}
         </div>
     );
 }

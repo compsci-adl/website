@@ -4,8 +4,10 @@ import type { MembershipPayment } from '@/server/verify-membership-payment';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import Sidebar from './Sidebar';
+import Account from './tabs/AccountSettings';
 import MembershipSettings from './tabs/MembershipSettings';
 import Notifications from './tabs/NotificationsSettings';
+import PersonalInfo from './tabs/PersonalInfoSettings';
 
 export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notifications'] as const;
 export type TabNames = (typeof TAB_NAMES)[number];
@@ -14,8 +16,8 @@ export type SettingData = { membershipPayment: MembershipPayment };
 export type SettingTabProps = { settingData: SettingData };
 type SettingTabComponent = ({ settingData }: SettingTabProps) => React.ReactNode;
 const SETTING_TABS = {
-    Account: () => <div>Coming soon</div>,
-    'Personal Info': () => <div>Coming soon</div>,
+    Account: Account,
+    'Personal Info': PersonalInfo,
     Membership: MembershipSettings,
     Notifications: Notifications,
 } as const satisfies Record<TabNames, SettingTabComponent>;
