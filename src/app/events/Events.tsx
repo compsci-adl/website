@@ -8,8 +8,6 @@ import { useState } from 'react';
 import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
 
-const EVENTS: Event[] = [];
-
 function Title({ children }: { children: string }) {
     return (
         <div className="flex justify-center">
@@ -26,10 +24,10 @@ function Title({ children }: { children: string }) {
 
 export default function Events({ className }: { className?: string }) {
     const [loading, setLoading] = useState(true);
-
+    const [EVENTS, setEVENTS] = useState<Event[]>([]);
     useMount(() => {
         fetchEvents().then((events) => {
-            EVENTS.push(...events);
+            setEVENTS(events);
             setLoading(false);
         });
     });
