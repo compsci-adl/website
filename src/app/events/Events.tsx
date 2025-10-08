@@ -3,8 +3,7 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import { type Event } from '@/data/events';
 import { fetchEvents } from '@/data/events';
-import { useMount } from '@/hooks/use-mount';
-import { useState } from 'react';
+import useSWR from 'swr';
 import { SkeletonLoader } from './EventSkeleton';
 import EventsByYear from './EventsByYear';
 
@@ -23,16 +22,9 @@ function Title({ children }: { children: string }) {
 }
 
 export default function Events({ className }: { className?: string }) {
-    const [loading, setLoading] = useState(true);
-    const [EVENTS, setEVENTS] = useState<Event[]>([]);
-    useMount(() => {
-        fetchEvents().then((events) => {
-            setEVENTS(events);
-            setLoading(false);
-        });
-    });
+    const { data: EVENTS, error, isLoading } = useSWR('events', fetchEvents);
 
-    if (!loading) {
+    if (!isLoading && EVENTS) {
         const CURRENT_TIME = new Date();
         const CURRENT_YEAR = CURRENT_TIME.getFullYear();
 
