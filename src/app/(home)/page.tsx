@@ -248,7 +248,8 @@ export default async function HomePage() {
                                 <h3 className="text-center text-2xl font-black capitalize smr:text-left lg:text-3xl">
                                     {type} Sponsors
                                 </h3>
-                                <div className="flex flex-wrap justify-center gap-6 pb-2 smr:justify-start">
+                                {/* // 0–300px -> flex; 301–479px -> grid 2-cols; 480px+ -> flex */}
+                                <div className="flex flex-wrap justify-center gap-6 pb-2 xs:grid xs:grid-cols-2 smr:flex smr:flex-wrap smr:justify-start">
                                     {filteredSponsors.map(({ image, website, name }, i) => (
                                         <a
                                             href={website}
