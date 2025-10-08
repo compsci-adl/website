@@ -22,7 +22,7 @@ function Title({ children }: { children: string }) {
 }
 
 export default function Events({ className }: { className?: string }) {
-    const { data: EVENTS, error, isLoading } = useSWR('events', fetchEvents);
+    const { data: EVENTS, isLoading } = useSWR('events', fetchEvents);
 
     if (!isLoading && EVENTS) {
         const CURRENT_TIME = new Date();
