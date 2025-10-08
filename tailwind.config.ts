@@ -19,6 +19,7 @@ const config: Config = {
         purple: '#7E7FE7',
       },
       screens: {
+        xs: '300px',
         smr: '480px',
         // There was a mysterious break point around 1169px in HeaderClient.tsx,
         // so a custom breakpoint was created to overwrite it
