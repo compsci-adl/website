@@ -25,10 +25,25 @@ export default function MenuLinks({
         ? 'flex items-center justify-between px-4 py-1 font-bold hover:underline'
         : 'block hover:underline';
     const arrow = mobile ? <IoChevronForward size={20} className="ml-2 text-black" /> : null;
-    if (links && links.length > 0) {
+    const finalLinks: MenuLinkType[] | undefined =
+        links && links.length > 0
+            ? links.concat(
+                  data.isCommittee
+                      ? [
+                            {
+                                title: 'Committee Wiki',
+                                href: 'https://wiki.csclub.org.au',
+                                target: '_blank',
+                            },
+                        ]
+                      : []
+              )
+            : undefined;
+
+    if (finalLinks && finalLinks.length > 0) {
         return (
             <>
-                {links.map((link, i) => (
+                {finalLinks.map((link, i) => (
                     <Link
                         key={i}
                         href={link.href}
@@ -78,7 +93,7 @@ export default function MenuLinks({
                     className={linkClass}
                     onClick={onClick}
                 >
-                    <span>Wiki</span>
+                    <span>Committee Wiki</span>
                     {arrow}
                 </Link>
             )}
