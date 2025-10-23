@@ -29,11 +29,9 @@ export default function UserButton({ data }: { data: HeaderData }) {
     };
 
     const isSignedIn = data.isSignedIn;
-    const isCommittee = data.isCommittee;
     const isAdmin = data.isAdmin;
     const memberLinks: MenuLinkType[] = [
         ...(isSignedIn ? [{ title: 'Settings', href: '/settings' }] : []),
-        ...(isCommittee ? [{ title: 'Committee Wiki', href: 'https://wiki.csclub.org.au' }] : []),
         ...(isAdmin ? [{ title: 'Admin Panel', href: '/admin' }] : []),
     ];
     const userExists = data.nextStep !== 'signup';
