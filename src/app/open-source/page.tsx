@@ -152,12 +152,12 @@ export default async function OpenSourcePage() {
                                 Phoenix Pereira
                             </a>{' '}
                             and the Open Source Officers are{' '}
-                            <a href="https://github.com/jsun969" className="underline">
-                                Justin Sun
+                            <a href="https://github.com/SouthernPolaris" className="underline">
+                                Asrith Atluri
                             </a>{' '}
                             and{' '}
-                            <a href="https://github.com/AustinH-adl" className="underline">
-                                Austin Huppatz
+                            <a href="https://github.com/kent-200" className="underline">
+                                Kent Rattley
                             </a>
                             .
                         </p>

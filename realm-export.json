@@ -298,7 +298,16 @@
           "attributes": {}
         }
       ],
-      "website": [],
+      "website": [
+        {
+          "id": "20813d25-7378-46bd-9e3b-a2ea35e311f8",
+          "name": "uma_protection",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "bbd82332-aea2-4493-bafe-81e5fadc9828",
+          "attributes": {}
+        }
+      ],
       "security-admin-console": [],
       "admin-cli": [],
       "account-console": [],
@@ -444,6 +453,26 @@
   "webAuthnPolicyPasswordlessAvoidSameAuthenticatorRegister": false,
   "webAuthnPolicyPasswordlessAcceptableAaguids": [],
   "webAuthnPolicyPasswordlessExtraOrigins": [],
+  "users": [
+    {
+      "id": "d0b090a0-670f-4c82-8c03-a62654fb7c39",
+      "username": "service-account-website",
+      "emailVerified": false,
+      "createdTimestamp": 1759477594896,
+      "enabled": true,
+      "totp": false,
+      "serviceAccountClientId": "website",
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": ["default-roles-cs-club"],
+      "clientRoles": {
+        "realm-management": ["manage-users"],
+        "website": ["uma_protection"]
+      },
+      "notBefore": 0,
+      "groups": []
+    }
+  ],
   "scopeMappings": [
     {
       "clientScope": "offline_access",
@@ -463,14 +492,16 @@
       "id": "b603bfb4-c46c-426f-ba39-8ba764eaae2d",
       "clientId": "account",
       "name": "${client_account}",
+      "description": "",
       "rootUrl": "${authBaseUrl}",
+      "adminUrl": "",
       "baseUrl": "/realms/cs-club/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": ["/realms/cs-club/account/*"],
-      "webOrigins": [],
+      "webOrigins": ["http://localhost:8080"],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,
@@ -483,7 +514,12 @@
       "protocol": "openid-connect",
       "attributes": {
         "realm_client": "false",
-        "post.logout.redirect.uris": "+"
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
+        "post.logout.redirect.uris": "+",
+        "oauth2.device.authorization.grant.enabled": "false",
+        "display.on.consent.screen": "false",
+        "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
@@ -501,14 +537,16 @@
       "id": "911a110d-d6ab-4b7e-98ce-005335cd9b24",
       "clientId": "account-console",
       "name": "${client_account-console}",
+      "description": "",
       "rootUrl": "${authBaseUrl}",
+      "adminUrl": "",
       "baseUrl": "/realms/cs-club/account/",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": ["/realms/cs-club/account/*"],
-      "webOrigins": [],
+      "webOrigins": ["http://localhost:8080"],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,
@@ -521,8 +559,13 @@
       "protocol": "openid-connect",
       "attributes": {
         "realm_client": "false",
+        "oidc.ciba.grant.enabled": "false",
+        "backchannel.logout.session.required": "true",
         "post.logout.redirect.uris": "+",
-        "pkce.code.challenge.method": "S256"
+        "oauth2.device.authorization.grant.enabled": "false",
+        "display.on.consent.screen": "false",
+        "pkce.code.challenge.method": "S256",
+        "backchannel.logout.revoke.offline.tokens": "false"
       },
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": false,
@@ -733,8 +776,9 @@
       "consentRequired": false,
       "standardFlowEnabled": true,
       "implicitFlowEnabled": false,
-      "directAccessGrantsEnabled": false,
-      "serviceAccountsEnabled": false,
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": true,
       "publicClient": false,
       "frontchannelLogout": true,
       "protocol": "openid-connect",
@@ -753,7 +797,15 @@
       "authenticationFlowBindingOverrides": {},
       "fullScopeAllowed": true,
       "nodeReRegistrationTimeout": -1,
-      "defaultClientScopes": ["web-origins", "acr", "roles", "profile", "basic", "email"],
+      "defaultClientScopes": [
+        "service_account",
+        "web-origins",
+        "acr",
+        "roles",
+        "profile",
+        "basic",
+        "email"
+      ],
       "optionalClientScopes": [
         "address",
         "phone",
@@ -1514,13 +1566,13 @@
         "config": {
           "allowed-protocol-mapper-types": [
             "saml-user-attribute-mapper",
-            "oidc-usermodel-attribute-mapper",
+            "saml-role-list-mapper",
             "oidc-usermodel-property-mapper",
-            "oidc-address-mapper",
             "oidc-sha256-pairwise-sub-mapper",
+            "oidc-address-mapper",
             "oidc-full-name-mapper",
             "saml-user-property-mapper",
-            "saml-role-list-mapper"
+            "oidc-usermodel-attribute-mapper"
           ]
         }
       },
@@ -1572,13 +1624,13 @@
         "config": {
           "allowed-protocol-mapper-types": [
             "oidc-sha256-pairwise-sub-mapper",
-            "oidc-usermodel-property-mapper",
-            "oidc-full-name-mapper",
             "oidc-address-mapper",
-            "oidc-usermodel-attribute-mapper",
-            "saml-user-property-mapper",
             "saml-user-attribute-mapper",
-            "saml-role-list-mapper"
+            "oidc-usermodel-property-mapper",
+            "oidc-usermodel-attribute-mapper",
+            "oidc-full-name-mapper",
+            "saml-role-list-mapper",
+            "saml-user-property-mapper"
           ]
         }
       }
