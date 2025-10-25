@@ -1,6 +1,6 @@
-import type { Image } from '@/components/ImageCarousel';
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { CAROUSEL_IMAGES } from './images';
 
 type Month =
     | 'JAN'
@@ -156,17 +156,4 @@ export const parseEvents = (raw: PayloadEvent): Event => {
     };
 };
 
-export const CAROUSEL_IMAGES: Image[] = [
-    {
-        src: '/images/home/duck-ctf.jpg',
-        alt: 'DuckCTF 2023',
-    },
-    {
-        src: '/images/home/pizza.jpg',
-        alt: 'Pizza at the 2023 Meet and Greet',
-    },
-    {
-        src: '/images/home/cyber-panel.jpg',
-        alt: 'Cyber Panel 2023',
-    },
-];
+export { CAROUSEL_IMAGES };
