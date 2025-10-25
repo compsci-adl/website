@@ -3,7 +3,7 @@ import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
 import { fetchEvents, type Event } from '@/data/events';
-import { CAROUSEL_IMAGES } from '@/data/home';
+import { CAROUSEL_IMAGES } from '@/data/images';
 import { SPONSOR_TYPES, fetchSponsors } from '@/data/sponsors';
 import { payloadURL } from '@/lib/payload';
 import Image from 'next/image';

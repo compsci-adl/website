@@ -1,6 +1,5 @@
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
-import { CAROUSEL_IMAGES } from './images';
 
 type Month =
     | 'JAN'
@@ -155,5 +154,3 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
     };
 };
-
-export { CAROUSEL_IMAGES };
