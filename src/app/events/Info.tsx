@@ -1,7 +1,7 @@
 import FancyRectangle from '@/components/FancyRectangle';
 import ImageCarousel from '@/components/ImageCarousel';
 import Title from '@/components/Title';
-import { CAROUSEL_IMAGES } from '@/data/events';
+import { CAROUSEL_IMAGES } from '@/data/images';
 
 export default function Info({ className }: { className?: string }) {
     return (

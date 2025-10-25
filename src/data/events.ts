@@ -1,4 +1,3 @@
-import type { Image } from '@/components/ImageCarousel';
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
 
@@ -155,18 +154,3 @@ export const parseEvents = (raw: PayloadEvent): Event => {
             : 'public/images/events/upcoming-event.jpg', // Image is in the form of url (Needs a seperate API call)
     };
 };
-
-export const CAROUSEL_IMAGES: Image[] = [
-    {
-        src: '/images/home/duck-ctf.jpg',
-        alt: 'DuckCTF 2023',
-    },
-    {
-        src: '/images/home/pizza.jpg',
-        alt: 'Pizza at the 2023 Meet and Greet',
-    },
-    {
-        src: '/images/home/cyber-panel.jpg',
-        alt: 'Cyber Panel 2023',
-    },
-];
