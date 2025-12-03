@@ -10,8 +10,8 @@ export function registerListmonkCron() {
     if (registered) return;
     registered = true;
 
-    // Default to run every minute
-    const schedule = '* * * * *';
+    // Run email list sync every 12 hours
+    const schedule = '0 */12 * * *';
     const tz = process.env.TZ ?? 'UTC';
 
     try {
