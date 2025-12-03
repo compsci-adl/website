@@ -11,6 +11,7 @@ import { memberTable } from '@/db/schema';
 import { env } from '@/env.mjs';
 import { redisClient } from '@/lib/redis';
 import { squareClient } from '@/lib/square';
+import { listmonkClient } from '@/server/listmonk';
 import { sendWelcomeEmail } from '@/server/send-welcome-email';
 import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
 import { eq } from 'drizzle-orm';
@@ -128,6 +129,23 @@ export async function PUT(request: Request) {
             .update(memberTable)
             .set({ membershipExpiresAt: null })
             .where(eq(memberTable.id, reqBody.data.id));
+
+        // Remove subscriber from Listmonk if present
+        const user = await db
+            .select()
+            .from(memberTable)
+            .where(eq(memberTable.id, reqBody.data.id))
+            .then((rows) => rows[0]);
+        if (user?.email) {
+            try {
+                const existing = await listmonkClient.getSubscriber(user.email);
+                if (existing && existing.id) {
+                    await listmonkClient.deleteSubscriber(existing.id);
+                }
+            } catch (err) {
+                console.error(`[Listmonk] Failed to delete subscriber for ${user?.email}:`, err);
+            }
+        }
     }
     return Response.json({ success: true });
 }
