@@ -2,6 +2,7 @@ import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Notification from '@/components/Notification';
 import { env } from '@/env.mjs';
+import { registerListmonkCron } from '@/server/listmonk-cron';
 import { registerDiscordLinkedRole } from '@/server/register-discord-linked-role';
 import '@/styles/globals.css';
 import type { Metadata, Viewport } from 'next';
@@ -34,12 +35,18 @@ const archivo = Archivo({
 });
 
 let didRegister = false;
+let didRegisterListmonkCron = false;
 
 if (!didRegister) {
     didRegister = true;
     registerDiscordLinkedRole().catch((err) => {
         console.error('Failed to register Discord linked role metadata:', err);
     });
+}
+
+if (!didRegisterListmonkCron) {
+    didRegisterListmonkCron = true;
+    registerListmonkCron();
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
