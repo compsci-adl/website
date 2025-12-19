@@ -3,10 +3,8 @@ import { useController } from 'react-hook-form';
 import type { FieldProps } from './Field';
 import Field from './Field';
 
-interface ControlledFieldProps<TFieldValues extends FieldValues> extends Omit<
-    FieldProps,
-    'value' | 'onChange' | 'error'
-> {
+interface ControlledFieldProps<TFieldValues extends FieldValues>
+    extends Omit<FieldProps, 'value' | 'onChange' | 'error'> {
     control: Control<TFieldValues>;
     name: FieldPath<TFieldValues>;
     longLabel?: string;

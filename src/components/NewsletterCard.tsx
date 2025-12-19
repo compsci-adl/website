@@ -28,9 +28,9 @@ export default function NewsletterCard({
     const imageRef = useRef<HTMLImageElement | null>(null);
     const isSvg = Boolean(
         firstImage &&
-        (/\.svg(\?.*)?$/i.test(firstImage) ||
-            /^data:image\/svg\+xml/i.test(firstImage) ||
-            /image\/svg\+xml/i.test(firstImage))
+            (/\.svg(\?.*)?$/i.test(firstImage) ||
+                /^data:image\/svg\+xml/i.test(firstImage) ||
+                /image\/svg\+xml/i.test(firstImage))
     );
 
     useEffect(() => {
