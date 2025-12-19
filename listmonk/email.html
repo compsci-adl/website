@@ -1,0 +1,930 @@
+<!doctype html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="color-scheme"
+            content="light dark" />
+        <meta
+            name="supported-color-schemes"
+            content="light dark" />
+        <title>CS Club</title>
+        <style>
+        :root {
+            color-scheme: light dark;
+            supported-color-schemes: light dark;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Arial", sans-serif;
+            background-color: #f3f3eb;
+            color: #252020;
+        }
+
+        a {
+            color: #252020;
+        }
+
+        p {
+            color: #252020;
+        }
+
+        .email-container {
+            overflow: hidden;
+            background-color: #f3f3eb;
+        }
+
+        .header {
+            background-color: #f3f3eb;
+            padding: 0.625rem 1.25rem;
+            margin-top: 3;
+        }
+
+        .header table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .header td {
+            text-align: center;
+        }
+
+        .header img {
+            max-height: 3.75rem;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+        }
+
+        .email-content {
+            position: relative;
+            padding: 1.25rem;
+            background-color: #f3f3eb;
+        }
+
+        .footer {
+            background-color: #f3f3eb;
+            padding: 1.25rem 0rem;
+            text-align: center;
+        }
+
+        .footer p {
+            margin: 2.25rem 0.1rem;
+            font-size: 0.875rem;
+            color: #000000;
+        }
+
+        .footer .social-icons table {
+            margin: 0 0.25rem;
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
+        .footer .social-icons a {
+            display: inline-block;
+            width: 2.25rem;
+            height: 2.25rem;
+            padding: 0.25rem;
+            text-decoration: none;
+            background-color: #f3f3eb;
+            box-sizing: border-box;
+        }
+
+        .icon-container {
+            display: table;
+            width: 2.25rem;
+            height: 2.25rem;
+            margin: 0 auto;
+        }
+
+        .content-bg {
+            display: table;
+            border-collapse: collapse;
+            width: 100%;
+            height: 100%;
+        }
+
+        .email-content-container {
+            margin: 1rem 10%;
+        }
+
+        .icons {
+            object-fit: contain;
+            width: 1.35rem;
+            height: 1.35rem;
+            margin-right: 0.3rem;
+        }
+
+        .row {
+            width: 0.5rem;
+            height: 0.3935rem;
+        }
+
+        .light-cell {
+            background-color: #f3f3eb;
+        }
+
+        .dark-cell {
+            background-color: #7e7fe7;
+        }
+
+        .dark-icon-cell {
+            background-image: url("https://csclub.org.au/images/email/bg.png");
+        }
+
+        .edge {
+            width: 0.5rem;
+            height: 0.5rem;
+        }
+
+        .icon-edge {
+            width: 0.3rem;
+            height: 0.3rem;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        .top {
+            border-top: 3px solid #000000;
+        }
+
+        .bottom {
+            border-bottom: 3px solid #000000;
+        }
+
+        .left {
+            border-left: 3px solid #000000;
+        }
+
+        .right {
+            border-right: 3px solid #000000;
+        }
+
+        .icons-table {
+            display: table;
+        }
+
+        .spacer {
+            height: 1rem;
+        }
+
+        .dark {
+            display: none;
+        }
+
+        .mobile {
+            display: inline;
+        }
+
+        .desktop {
+            display: none;
+        }
+
+        @media screen and (min-width: 768px) {
+            .mobile {
+                display: none;
+            }
+
+            .desktop {
+                display: inline;
+            }
+
+            .footer .social-icons table {
+                margin: 0 0.5rem;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #252020;
+                color: #f3f3eb;
+            }
+
+            p {
+                color: #f3f3eb;
+            }
+
+            .email-container {
+                background-color: #252020;
+            }
+
+            .header {
+                background-color: #252020;
+            }
+
+            .email-content {
+                background-color: #252020;
+            }
+
+            .footer {
+                background-color: #252020;
+            }
+
+            .footer p {
+                color: #f3f3eb;
+            }
+
+            .social-icons .light-cell {
+                background-color: #252020;
+            }
+
+            .email-container .light-cell {
+                background-color: #252020;
+            }
+
+            .footer .social-icons a {
+                color: #252020;
+                background-color: #252020;
+            }
+
+            .icons {
+                filter: none;
+            }
+
+            .top {
+                border-top: 3px solid #ffffff;
+            }
+
+            .bottom {
+                border-bottom: 3px solid #ffffff;
+            }
+
+            .left {
+                border-left: 3px solid #ffffff;
+            }
+
+            .right {
+                border-right: 3px solid #ffffff;
+            }
+
+            .light {
+                display: none;
+            }
+
+            .dark {
+                display: inline-block;
+            }
+
+            a {
+                color: #f3f3eb;
+            }
+        }
+        </style>
+    </head>
+
+    <body>
+        <div class="email-container">
+            <div class="header">
+                <table>
+                    <tr>
+                        <td>
+                            {{ "<!--[if !mso]><!-->" | Safe }}
+                            <img
+                                class="light"
+                                src="https://csclub.org.au/images/email/light/logo.png"
+                                alt="CS Club" />
+                            <img
+                                class="dark"
+                                src="https://csclub.org.au/images/email/dark/logo.png"
+                                alt="CS Club" />
+                            {{ "<!--<![endif]-->" | Safe }}
+                            {{ "<!--[if mso]>                            <img                                class=\"light\"                                src=\"https://csclub.org.au/images/email/light/logo.png\"                                style=\"display: block; margin-left: auto; margin-right: auto; max-height: 60px;\"                                width=\"200\"                                alt=\"CS Club\" />                                <p>&nbsp;</p>                            <![endif]-->" | Safe }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="email-content-container">
+                {{ "<!--[if !mso]><!-->" | Safe }}
+                <table class="content-bg">
+                    <tr class="row">
+                        <td class="top left light-cell"></td>
+                        <td class="top light-cell"></td>
+                        <td class="left edge"></td>
+                    </tr>
+                    <tr>
+                        <td class="bottom left edge light-cell"></td>
+                        <td class="bottom right">
+                            <div class="email-content">
+                                {{ template "content" . }}
+                            </div>
+                        </td>
+                        <td class="edge dark-cell"></td>
+                    </tr>
+                    <tr class="row">
+                        <td></td>
+                        <td class="dark-cell"></td>
+                        <td class="edge dark-cell"></td>
+                    </tr>
+                </table>
+                {{ "<!--<![endif]-->" | Safe }}
+                {{ "<!--[if mso]>                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0; width: 100%;\">                    <tr>                        <td style=\"width: 10%;\"></td>                        <td style=\"width: 80%;\">                            <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0; width: 100%;\">                                <tr>                                    <td style=\"width: 16px; height: 16px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                    <td style=\"height: 16px; border-top: 3px solid #252020;\"></td>                                    <td style=\"width: 16px; height: 16px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                </tr>                                <tr>                                    <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                    <td>" | Safe }}
+                                        {{ template "content" . }}
+                {{ "                                    </td>                                    <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                </tr>                                <tr>                                    <td style=\"width: 16px; height: 16px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                    <td style=\"height: 16px; border-bottom: 3px solid #252020;\"></td>                                    <td style=\"width: 16px; height: 16px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                </tr>                            </table>                        </td>                        <td style=\"width: 10%;\"></td>                    </tr>                </table>                <![endif]-->" | Safe }}
+            </div>
+            <div class="footer">
+                <div class="social-icons">
+                    {{ "<!--[if !mso]><!-->" | Safe }}
+                    <table class="mobile icons-table">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://csclub.org.au"
+                                                    aria-label="Website">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/website.png"
+                                                        alt="Website" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/website.png"
+                                                        alt="Website" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://github.com/compsci-adl"
+                                                    aria-label="GitHub">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/github.png"
+                                                        alt="GitHub" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/github.png"
+                                                        alt="GitHub" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.instagram.com/csclub.adl"
+                                                    aria-label="Instagram">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/instagram.png"
+                                                        alt="Instagram" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/instagram.png"
+                                                        alt="Instagram" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.tiktok.com/@csclub.adl"
+                                                    aria-label="TikTok">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/tiktok.png"
+                                                        alt="TikTok" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/tiktok.png"
+                                                        alt="TikTok" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr class="spacer"></tr>
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.facebook.com/compsci.adl"
+                                                    aria-label="Facebook">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/facebook.png"
+                                                        alt="Facebook" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/facebook.png"
+                                                        alt="Facebook" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://discord.gg/UjvVxHA"
+                                                    aria-label="Discord">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/discord.png"
+                                                        alt="Discord" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/discord.png"
+                                                        alt="Discord" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.linkedin.com/company/compsci-adl"
+                                                    aria-label="LinkedIn">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/linkedin.png"
+                                                        alt="LinkedIn" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/linkedin.png"
+                                                        alt="LinkedIn" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.youtube.com/@csclub-adl"
+                                                    aria-label="YouTube">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/youtube.png"
+                                                        alt="YouTube" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/youtube.png"
+                                                        alt="YouTube" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="desktop icons-table">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://csclub.org.au"
+                                                    aria-label="Website">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/website.png"
+                                                        alt="Website" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/website.png"
+                                                        alt="Website" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://github.com/compsci-adl"
+                                                    aria-label="GitHub">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/github.png"
+                                                        alt="GitHub" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/github.png"
+                                                        alt="GitHub" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.instagram.com/csclub.adl"
+                                                    aria-label="Instagram">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/instagram.png"
+                                                        alt="Instagram" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/instagram.png"
+                                                        alt="Instagram" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.tiktok.com/@csclub.adl"
+                                                    aria-label="TikTok">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/tiktok.png"
+                                                        alt="TikTok" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/tiktok.png"
+                                                        alt="TikTok" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.facebook.com/compsci.adl"
+                                                    aria-label="Facebook">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/facebook.png"
+                                                        alt="Facebook" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/facebook.png"
+                                                        alt="Facebook" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://discord.gg/UjvVxHA"
+                                                    aria-label="Discord">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/discord.png"
+                                                        alt="Discord" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/discord.png"
+                                                        alt="Discord" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.linkedin.com/company/compsci-adl"
+                                                    aria-label="LinkedIn">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/linkedin.png"
+                                                        alt="LinkedIn" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/linkedin.png"
+                                                        alt="LinkedIn" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td>
+                                <table>
+                                    <tr class="row">
+                                        <td class="top left light-cell"></td>
+                                        <td class="top light-cell"></td>
+                                        <td class="left icon-edge"></td>
+                                    </tr>
+                                    <tr>
+                                        <td
+                                            class="bottom left icon-edge light-cell"></td>
+                                        <td class="bottom right">
+                                            <div class="icon-container">
+                                                <a
+                                                    href="https://www.youtube.com/@csclub-adl"
+                                                    aria-label="YouTube">
+                                                    <img
+                                                        class="light icons"
+                                                        src="https://csclub.org.au/images/email/dark/youtube.png"
+                                                        alt="YouTube" />
+                                                    <img
+                                                        class="dark icons"
+                                                        src="https://csclub.org.au/images/email/light/youtube.png"
+                                                        alt="YouTube" />
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td
+                                            class="icon-edge dark-icon-cell"></td>
+                                    </tr>
+                                    <tr class="row">
+                                        <td></td>
+                                        <td class="dark-icon-cell"></td>
+                                        <td class="dark-icon-cell"></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                    {{ "<!--<![endif]-->" | Safe }}
+                    {{ "<!--[if mso]>                    <table class=\"desktop icons-table\">                        <tr>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://csclub.org.au\" aria-label=\"Website\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/website.png\" alt=\"Website\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://github.com/compsci-adl\" aria-label=\"GitHub\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/github.png\" alt=\"GitHub\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://www.instagram.com/csclub.adl\" aria-label=\"Instagram\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/instagram.png\" alt=\"Instagram\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://www.tiktok.com/@csclub.adl\" aria-label=\"TikTok\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/tiktok.png\" alt=\"TikTok\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://www.facebook.com/compsci.adl\" aria-label=\"Facebook\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/facebook.png\" alt=\"Facebook\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://discord.gg/UjvVxHA\" aria-label=\"Discord\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/discord.png\" alt=\"Discord\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://www.linkedin.com/company/compsci-adl\" aria-label=\"LinkedIn\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/linkedin.png\" alt=\"LinkedIn\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                            <td style=\"padding: 8px;\">                                <table cellpadding=\"0\" cellspacing=\"0\" style=\"border-collapse: collapse; border-spacing: 0;\">                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-top: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-top: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 10px; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 24px; width: 24px; text-align: center;\">                                            <a href=\"https://www.youtube.com/@csclub-adl\" aria-label=\"YouTube\" style=\"display: inline-block;\">                                                <img src=\"https://csclub.org.au/images/email/dark/youtube.png\" alt=\"YouTube\" height=\"20\" />                                            </a>                                        </td>                                        <td style=\"width: 10px; border-right: 3px solid #252020;\"></td>                                    </tr>                                    <tr>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-left: 3px solid #252020;\"></td>                                        <td style=\"height: 8px; border-bottom: 3px solid #252020;\"></td>                                        <td style=\"width: 8px; height: 8px; border-bottom: 3px solid #252020; border-right: 3px solid #252020;\"></td>                                    </tr>                                </table>                            </td>                        </tr>                    </table>                    <![endif]-->" | Safe }}
+                </div>
+                <p>© {{ now | date "2006" }} The University of Adelaide Computer Science Club.</p>
+                {{ TrackView }}
+            </div>
+        </div>
+    </body>
+</html>

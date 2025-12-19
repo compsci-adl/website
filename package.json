@@ -17,6 +17,8 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "sanitize-html": "^2.11.0",
+    "html-react-parser": "^4.0.2",
     "@headlessui/react": "^2.2.4",
     "@hookform/resolvers": "^3.10.0",
     "@libsql/client": "0.14.0",

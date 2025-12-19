@@ -7,6 +7,21 @@ export interface ListmonkSubscriber {
     lists?: number[];
 }
 
+export interface ListmonkCampaign {
+    id: number;
+    name?: string;
+    subject?: string;
+    started_at?: string | null;
+    summary?: string;
+    status?: string;
+    html?: string;
+    plain_text?: string;
+    body?: string;
+    content?: string;
+    list_id?: number;
+    lists?: number[];
+}
+
 export class ListmonkClient {
     private baseUrl: string;
     private apiKey: string;
@@ -61,11 +76,8 @@ export class ListmonkClient {
     }
 
     async getSubscriber(email: string) {
-        console.log(`[Listmonk] Getting subscriber for email: ${email}`);
         const query = `subscribers.email = '${email.replace(/'/g, "''")}'`;
-        console.log(`[Listmonk] Constructed query: ${query}`);
         const response = await this.request(`/api/subscribers?query=${encodeURIComponent(query)}`);
-        console.log(`[Listmonk] Response data:`, response.data);
         return response.data?.results?.[0] || null;
     }
 
@@ -85,6 +97,41 @@ export class ListmonkClient {
 
     async getLists() {
         return this.request('/api/lists');
+    }
+
+    async getCampaignById(id: number) {
+        return this.request(`/api/campaigns/${id}`);
+    }
+
+    async updateCampaign(id: number, updates: Record<string, unknown>) {
+        return this.request(`/api/campaigns/${id}`, {
+            method: 'PUT',
+            body: JSON.stringify(updates),
+        });
+    }
+
+    async archiveCampaign(
+        id: number,
+        options: {
+            archive: boolean;
+            archive_template_id?: number;
+            archive_meta?: Record<string, unknown>;
+            archive_slug?: string;
+        }
+    ) {
+        return this.request(`/api/campaigns/${id}/archive`, {
+            method: 'PUT',
+            body: JSON.stringify(options),
+        });
+    }
+
+    async getCampaigns(listId?: number) {
+        let endpoint = '/api/campaigns';
+        if (typeof listId === 'number') {
+            endpoint += `?list_id=${listId}`;
+        }
+        const response = await this.request(endpoint);
+        return response.data?.results || response.data || [];
     }
 }
 
