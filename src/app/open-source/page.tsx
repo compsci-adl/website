@@ -43,7 +43,7 @@ export default async function OpenSourcePage() {
                                             <span className="relative z-[2] bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
                                                 Who is the
                                             </span>
-                                            <span className="relative z-[2] whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold underline lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-[2] whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold lg:pr-36 lg:text-3xl">
                                                 Open Source Team?
                                             </span>
                                         </div>
@@ -56,9 +56,8 @@ export default async function OpenSourcePage() {
                                             CS Club Open Source Team
                                         </span>{' '}
                                         is a place for creative and inventive students who want to
-                                        build innovative open-source software together. We are a new
-                                        team currently working on a few projects, but we have many
-                                        more exciting projects planned for the future!
+                                        build innovative open-source software together. We are have
+                                        several exciting projects that you can contribute to!
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center">
@@ -147,17 +146,9 @@ export default async function OpenSourcePage() {
                     <section className="mb-8">
                         <h2 className="mb-4 text-2xl font-bold">Contact Us</h2>
                         <p className="mt-2 text-lg md:text-xl">
-                            The Open Source & Infrastructure Manager is{' '}
-                            <a href="https://github.com/phoenixpereira" className="underline">
-                                Phoenix Pereira
-                            </a>{' '}
-                            and the Open Source Officers are{' '}
-                            <a href="https://github.com/SouthernPolaris" className="underline">
-                                Asrith Atluri
-                            </a>{' '}
-                            and{' '}
-                            <a href="https://github.com/kent-200" className="underline">
-                                Kent Rattley
+                            Learn more about the Open Source Team and view our repositories on{' '}
+                            <a href="https://github.com/compsci-adl" className="underline">
+                                GitHub
                             </a>
                             .
                         </p>
