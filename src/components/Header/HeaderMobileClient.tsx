@@ -61,6 +61,7 @@ export default function HeaderMobileClient({
                       rel: 'noopener noreferrer',
                   },
                   { title: 'Photo Gallery', href: '/gallery' },
+                  { title: 'Newsletters', href: '/newsletters' },
               ]
             : []),
     ];
