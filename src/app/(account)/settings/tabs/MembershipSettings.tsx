@@ -47,15 +47,17 @@ export default function MembershipSettings({
                         regarding club governance are unclear. We will not be accepting payment for
                         memberships until these matters are resolved. Thank you for your understanding.
                     </p>
-                        {/* <Link href="/about" className="underline">
+                        {/* Finalise your membership by completing the required payment either online
+                        below, at a club event, or contact one of the{' '}
+                        <Link href="/about" className="underline">
                             committee members
                         </Link>
                         . Membership for {new Date().getFullYear()} will expire on{' '}
                         <span className="font-bold">
                             {formatDate(new Date(new Date().getFullYear() + 1, 0, 1))}
                         </span>
-                        .
-                    </p>
+                        . */}
+                    {/* </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
                     <div className="mb-6 border-b-2 border-black" />
                     <Button
