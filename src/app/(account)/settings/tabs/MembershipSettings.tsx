@@ -43,7 +43,12 @@ export default function MembershipSettings({
             ) : (
                 <>
                     <p>
-                        Finalise your membership by completing the required payment either online
+                        With the current merger and university restructuring, the new rules
+                        regarding club governance are unclear. We will not be accepting payment for
+                        memberships until these matters are resolved. Thank you for your
+                        understanding.
+                    </p>
+                    {/* Finalise your membership by completing the required payment either online
                         below, at a club event, or contact one of the{' '}
                         <Link href="/about" className="underline">
                             committee members
@@ -52,8 +57,8 @@ export default function MembershipSettings({
                         <span className="font-bold">
                             {formatDate(new Date(new Date().getFullYear() + 1, 0, 1))}
                         </span>
-                        .
-                    </p>
+                        . */}
+                    {/* </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
                     <div className="mb-6 border-b-2 border-black" />
                     <Button
@@ -65,7 +70,7 @@ export default function MembershipSettings({
                         loading={pay.isMutating}
                     >
                         Pay Online
-                    </Button>
+                    </Button> */}
                 </>
             )}
         </div>
