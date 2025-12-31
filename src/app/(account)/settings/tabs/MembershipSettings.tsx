@@ -43,11 +43,12 @@ export default function MembershipSettings({
             ) : (
                 <>
                     <p>
-                        With the current merger and university restructuring, the new rules 
+                        With the current merger and university restructuring, the new rules
                         regarding club governance are unclear. We will not be accepting payment for
-                        memberships until these matters are resolved. Thank you for your understanding.
+                        memberships until these matters are resolved. Thank you for your
+                        understanding.
                     </p>
-                        {/* Finalise your membership by completing the required payment either online
+                    {/* Finalise your membership by completing the required payment either online
                         below, at a club event, or contact one of the{' '}
                         <Link href="/about" className="underline">
                             committee members
