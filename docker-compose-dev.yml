@@ -42,6 +42,69 @@ services:
       - /app/node_modules
     networks:
       - csclub
+  listmonk:
+    image: listmonk/listmonk:latest
+    container_name: listmonk
+    restart: unless-stopped
+    ports:
+      - '9000:9000'
+    networks:
+      - csclub
+    depends_on:
+      - listmonk-db
+    command:
+      [
+        sh,
+        -c,
+        "./listmonk --install --idempotent --yes --config '' && ./listmonk --upgrade --yes --config '' && ./listmonk --config ''",
+      ]
+    env_file:
+      - .env.dev.docker
+    environment:
+      LISTMONK_app__address: 0.0.0.0:9000
+      LISTMONK_db__user: ${POSTGRES_USER:-listmonk}
+      LISTMONK_db__password: ${POSTGRES_PASSWORD:-listmonk}
+      LISTMONK_db__database: ${POSTGRES_DB:-listmonk}
+      LISTMONK_db__host: listmonk_db
+      LISTMONK_db__port: 5432
+      LISTMONK_db__ssl_mode: disable
+      LISTMONK_db__max_open: 25
+      LISTMONK_db__max_idle: 25
+      LISTMONK_db__max_lifetime: 300s
+    volumes:
+      - ./uploads:/listmonk/uploads:rw
+    healthcheck:
+      test: ['CMD', 'wget', '--no-verbose', '--tries=1', '--spider', 'http://localhost:9000/health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+  listmonk-db:
+    image: postgres:17-alpine
+    container_name: listmonk_db
+    restart: unless-stopped
+    ports:
+      - '127.0.0.1:5432:5432'
+    networks:
+      - csclub
+    env_file:
+      - .env.dev.docker
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-listmonk}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-listmonk}
+      POSTGRES_DB: ${POSTGRES_DB:-listmonk}
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U listmonk']
+      interval: 10s
+      timeout: 5s
+      retries: 6
+    volumes:
+      - type: volume
+        source: listmonk-data
+        target: /var/lib/postgresql/data
 
 networks:
   csclub:
+
+volumes:
+  listmonk-data:

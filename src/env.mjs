@@ -17,6 +17,9 @@ export const env = createEnv({
         SMTP_PASS: z.string().min(1).optional(),
         SMTP_EMAIL_ADDRESS: z.string().min(1).email().optional(),
         DISCORD_TOKEN: z.string().min(1).optional(),
+        LISTMONK_URL: z.string().url().min(1).optional(),
+        LISTMONK_API_KEY: z.string().min(1).optional(),
+        LISTMONK_API_USER: z.string().min(1).optional(),
     },
     client: {
         NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: z.string().url().min(1).optional(),

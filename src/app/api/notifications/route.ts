@@ -1,6 +1,7 @@
 import { auth } from '@/auth';
 import { db } from '@/db';
 import { notificationsTable, memberTable } from '@/db/schema';
+import { syncMemberToListmonk } from '@/server/listmonk-sync';
 import { eq, sql } from 'drizzle-orm';
 import { z } from 'zod';
 
@@ -114,6 +115,8 @@ export async function PUT(request: Request) {
                 updatedAt: sql`CURRENT_TIMESTAMP`,
             })
             .where(eq(notificationsTable.keycloakId, reqBody.data.id));
+
+        await syncMemberToListmonk(reqBody.data.id);
 
         return Response.json({ success: true });
     } catch (error) {
