@@ -45,7 +45,7 @@ const initialStepTwoData: Record<keyof StepTwoData, string> = {
     firstName: '',
     lastName: '',
     phoneNumber: '',
-    studentStatus: 'At The University of Adelaide',
+    studentStatus: 'At Adelaide University',
     studentId: '',
 };
 type JoinUsStudentInfoState = {

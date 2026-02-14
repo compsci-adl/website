@@ -1,8 +1,4 @@
-export const STUDENT_STATUSES = [
-    'At The University of Adelaide',
-    'At another university',
-    'No',
-] as const;
+export const STUDENT_STATUSES = ['At Adelaide University', 'At another university', 'No'] as const;
 
 export const DEGREES = [
     'Bachelor of Computer Science or Bachelor of Computer Science (Advanced)',

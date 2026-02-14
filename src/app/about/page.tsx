@@ -68,8 +68,8 @@ export default async function AboutPage() {
                                 height={30}
                             />
                             <p className="my-4 text-lg md:text-xl">
-                                The University of Adelaide Computer Science Club is a student-run
-                                club for those with an interest in computer science or computing in
+                                The Adelaide University Computer Science Club is a student-run club
+                                for those with an interest in computer science or computing in
                                 general. Although we&apos;re a university club, we welcome anyone
                                 interested in computer science and/or socialising to join!
                             </p>
