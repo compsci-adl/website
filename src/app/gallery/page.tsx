@@ -36,7 +36,7 @@ export default function GalleryPage() {
         if (session?.user?.id) {
             checkMembership();
         }
-    }, [session]);
+    }, [member, session]);
 
     if (status === 'unauthenticated') {
         return notFound();

@@ -4,7 +4,7 @@ import { STUDENT_STATUSES } from '@/constants/student-info';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 import { firstNameSchema, lastNameSchema } from '../../schemas';
 import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../store';
@@ -50,6 +50,8 @@ export default function StepTwo() {
         resolver: zodResolver(validationSchema),
     });
 
+    const studentStatus = useWatch({ control: form.control, name: 'studentStatus' });
+
     const { data: session } = useSession();
 
     useEffect(() => {
@@ -58,7 +60,7 @@ export default function StepTwo() {
             form.setValue('firstName', String(session.user.firstName));
             form.setValue('lastName', String(session.user.lastName));
         }
-    }, [session?.user]);
+    }, [form, session, session?.user]);
 
     const { nextStep } = useJoinUsStep();
     const handleContinue = form.handleSubmit((formData) => {
@@ -83,7 +85,7 @@ export default function StepTwo() {
                 options={STUDENT_STATUSES}
                 type="select"
             />
-            {form.watch('studentStatus') === 'At The University of Adelaide' && (
+            {studentStatus === 'At The University of Adelaide' && (
                 <ControlledField label="Student ID" control={form.control} name="studentId" />
             )}
             <Button colour="orange" width="w-full" size="small" type="submit">

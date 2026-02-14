@@ -9,11 +9,34 @@ interface GalleryCardProps {
 }
 
 export default function GalleryCard({ folder, images, onSelectFolder }: GalleryCardProps) {
+    // Deterministic seeded shuffle to avoid impure Math.random in render
+    const seedFromString = (s: string) => {
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < s.length; i++) {
+            h ^= s.charCodeAt(i);
+            h = Math.imul(h, 16777619) >>> 0;
+        }
+        return h >>> 0;
+    };
+
+    const mulberry32 = (a: number) => () => {
+        let t = (a += 0x6d2b79f5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+
     const pile = useMemo(() => {
-        return images
-            .filter((photo) => photo.orientation === 'landscape')
-            .sort(() => 0.5 - Math.random())
-            .slice(0, 3);
+        const landscape = images.filter((photo) => photo.orientation === 'landscape');
+        if (!landscape.length) return [];
+        const seed = seedFromString(images[0]?.url || '');
+        const rand = mulberry32(seed);
+        const shuffled = [...landscape];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(rand() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled.slice(0, 3);
     }, [images]);
 
     const displayName = useMemo(() => {

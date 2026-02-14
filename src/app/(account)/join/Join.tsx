@@ -22,7 +22,7 @@ export default function Join() {
         if (session?.user) {
             setStep(2);
         }
-    }, [session?.user]);
+    }, [setStep, session?.user]);
 
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">
