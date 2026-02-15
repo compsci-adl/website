@@ -294,10 +294,12 @@ export default async function AboutPage() {
                                         complete the payment to finalise your membership.
                                         <br />
                                         <br />
-                                        <span className="font-bold">Note:</span> As AUSA has decided
-                                        to manage club memberships and has not yet configured their
-                                        sign up system, later you will need to sign up to their
-                                        memberships system. Payments will be transferred over.
+                                        <span className="font-bold">Note:</span> As AUSA is now
+                                        managing club memberships, we are currently waiting for
+                                        their new sign-up system to be finalised. You will be
+                                        required to register through their platform at a later date,
+                                        we want to assure you that all existing membership payments
+                                        for this year will be transferred over.
                                     </p>
                                 }
                                 colour={'orange'}
@@ -326,10 +328,12 @@ export default async function AboutPage() {
                                         committee members.
                                         <br />
                                         <br />
-                                        <span className="font-bold">Note:</span> As AUSA has decided
-                                        to manage club memberships and has not yet configured their
-                                        sign up system, later you will need to sign up to their
-                                        memberships system. Payments will be transferred over.
+                                        <span className="font-bold">Note:</span> As AUSA is now
+                                        managing club memberships, we are currently waiting for
+                                        their new sign-up system to be finalised. You will be
+                                        required to register through their platform at a later date,
+                                        we want to assure you that all existing membership payments
+                                        for this year will be transferred over.
                                     </p>
                                 }
                                 colour={'purple'}

@@ -55,10 +55,11 @@ export default function MembershipSettings({
                         .
                         <br />
                         <br />
-                        <span className="font-bold">Note:</span> As AUSA has decided to manage club
-                        memberships and has not yet configured their sign up system, later you will
-                        need to sign up to their memberships system. Payments will be transferred
-                        over.
+                        <span className="font-bold">Note:</span> As AUSA is now managing club
+                        memberships, we are currently waiting for their new sign-up system to be
+                        finalised. You will be required to register through their platform at a
+                        later date, we want to assure you that all existing membership payments for
+                        this year will be transferred over.
                     </p>
                     <h2 className="mt-8 text-2xl font-bold">Pay Membership Fee</h2>
                     <div className="mb-6 border-b-2 border-black" />
