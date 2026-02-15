@@ -43,6 +43,13 @@ export default function Join() {
                             committee members
                         </Link>
                         .
+                        <br />
+                        <br />
+                        <span className="font-bold">Note:</span> As AUSA is now managing club
+                        memberships, we are currently waiting for their new sign-up system to be
+                        finalised. You will be required to register through their platform at a
+                        later date, we want to assure you that all existing membership payments for
+                        this year will be transferred over.
                     </p>
                     <p className="mt-4">
                         Create an <span className="text-orange">account below</span> to start the

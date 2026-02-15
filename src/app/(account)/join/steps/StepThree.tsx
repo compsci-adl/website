@@ -26,8 +26,7 @@ export type StepThreeData = z.infer<typeof stepThreeSchema>;
 /** Get schema with student check */
 const getValidationSchema = (studentStatus: (typeof STUDENT_STATUSES)[number]) => {
     const isStudent =
-        studentStatus === 'At The University of Adelaide' ||
-        studentStatus === 'At another university';
+        studentStatus === 'At Adelaide University' || studentStatus === 'At another university';
     return stepThreeSchema
         .refine((data) => (isStudent ? data.degree !== '' : true), {
             message: 'Please select a degree',
@@ -81,7 +80,7 @@ export default function StepThree() {
                 placeholder="Select Gender"
                 options={GENDERS}
             />
-            {(studentStatus === 'At The University of Adelaide' ||
+            {(studentStatus === 'At Adelaide University' ||
                 studentStatus === 'At another university') && (
                 <>
                     <ControlledField

@@ -68,8 +68,8 @@ export default async function AboutPage() {
                                 height={30}
                             />
                             <p className="my-4 text-lg md:text-xl">
-                                The University of Adelaide Computer Science Club is a student-run
-                                club for those with an interest in computer science or computing in
+                                The Adelaide University Computer Science Club is a student-run club
+                                for those with an interest in computer science or computing in
                                 general. Although we&apos;re a university club, we welcome anyone
                                 interested in computer science and/or socialising to join!
                             </p>
@@ -292,6 +292,14 @@ export default async function AboutPage() {
                                         </a>
                                         . Create an account by filling in your information, then
                                         complete the payment to finalise your membership.
+                                        <br />
+                                        <br />
+                                        <span className="font-bold">Note:</span> As AUSA is now
+                                        managing club memberships, we are currently waiting for
+                                        their new sign-up system to be finalised. You will be
+                                        required to register through their platform at a later date,
+                                        we want to assure you that all existing membership payments
+                                        for this year will be transferred over.
                                     </p>
                                 }
                                 colour={'orange'}
@@ -318,6 +326,14 @@ export default async function AboutPage() {
                                         membership either online on our website, or in person at a
                                         club event or the Duck Lounge by speaking to one of the
                                         committee members.
+                                        <br />
+                                        <br />
+                                        <span className="font-bold">Note:</span> As AUSA is now
+                                        managing club memberships, we are currently waiting for
+                                        their new sign-up system to be finalised. You will be
+                                        required to register through their platform at a later date,
+                                        we want to assure you that all existing membership payments
+                                        for this year will be transferred over.
                                     </p>
                                 }
                                 colour={'purple'}
