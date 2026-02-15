@@ -49,12 +49,11 @@ export async function POST(request: Request) {
                 ageBracket: data.ageBracket,
                 gender: data.gender,
                 studentType:
-                    data.studentStatus === 'At The University of Adelaide'
+                    data.studentStatus === 'At Adelaide University'
                         ? (data.studentType as '' | 'Domestic' | 'International')
                         : '',
                 studentStatus: data.studentStatus,
-                studentId:
-                    data.studentStatus === 'At The University of Adelaide' ? data.studentId : '',
+                studentId: data.studentStatus === 'At Adelaide University' ? data.studentId : '',
             })
             .where(eq(memberTable.keycloakId, session.user.id ?? ''));
         return new Response(JSON.stringify({ success: true }), { status: 200 });
