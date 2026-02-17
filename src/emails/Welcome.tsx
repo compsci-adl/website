@@ -282,8 +282,7 @@ export default function Email({ firstName }: EmailProps) {
                                     </table>
                                 </div>
                                 <p className="text-center text-sm text-black dark:text-white">
-                                    © {currentYear} The University of Adelaide Computer Science
-                                    Club.
+                                    © {currentYear} Adelaide University Computer Science Club.
                                 </p>
                             </div>
                         </Container>
