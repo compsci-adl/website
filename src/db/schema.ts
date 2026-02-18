@@ -70,18 +70,6 @@ export const notificationsTable = sqliteTable('notifications', {
         .$default(() => false)
         .notNull(),
 
-    pushNewsletters: integer('push_newsletters', { mode: 'boolean' })
-        .$default(() => false)
-        .notNull(),
-    pushClubEventsAndAnnouncements: integer('push_club_events_and_announcements', {
-        mode: 'boolean',
-    })
-        .$default(() => false)
-        .notNull(),
-    pushSponsorNotifications: integer('push_sponsor_notifications', { mode: 'boolean' })
-        .$default(() => false)
-        .notNull(),
-
     createdAt: text('created_at')
         .default(sql`CURRENT_TIMESTAMP`)
         .notNull(),
