@@ -78,11 +78,6 @@ export async function PUT(request: Request) {
                 clubEventsAndAnnouncements: z.boolean(),
                 sponsorNotifications: z.boolean(),
             }),
-            push: z.object({
-                newsletters: z.boolean(),
-                clubEventsAndAnnouncements: z.boolean(),
-                sponsorNotifications: z.boolean(),
-            }),
         }),
     });
 
@@ -107,10 +102,6 @@ export async function PUT(request: Request) {
                 smsClubEventsAndAnnouncements:
                     reqBody.data.notifications.sms.clubEventsAndAnnouncements,
                 smsSponsorNotifications: reqBody.data.notifications.sms.sponsorNotifications,
-                pushNewsletters: reqBody.data.notifications.push.newsletters,
-                pushClubEventsAndAnnouncements:
-                    reqBody.data.notifications.push.clubEventsAndAnnouncements,
-                pushSponsorNotifications: reqBody.data.notifications.push.sponsorNotifications,
                 updatedAt: sql`CURRENT_TIMESTAMP`,
             })
             .where(eq(notificationsTable.keycloakId, reqBody.data.id));
