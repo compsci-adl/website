@@ -1,8 +1,10 @@
 import { env } from '@/env.mjs';
-import { Client, Environment } from 'square';
+import { SquareClient, SquareEnvironment } from 'square';
 
-export const squareClient = new Client({
-    accessToken: env.SQUARE_ACCESS_TOKEN,
+export const squareClient = new SquareClient({
+    token: env.SQUARE_ACCESS_TOKEN,
     environment:
-        process.env.NODE_ENV === 'production' ? Environment.Production : Environment.Sandbox,
+        process.env.NODE_ENV === 'production'
+            ? SquareEnvironment.Production
+            : SquareEnvironment.Sandbox,
 });

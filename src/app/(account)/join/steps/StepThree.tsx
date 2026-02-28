@@ -9,15 +9,13 @@ import { useJoinUsStep, useJoinUsStudentInfo, useSetJoinUsHeading } from '../sto
 
 export const stepThreeSchema = z.object({
     ageBracket: z.enum(AGE_BRACKETS, {
-        errorMap: () => ({ message: 'Please select an age bracket' }),
+        message: 'Please select an age bracket',
     }),
-    gender: z.enum(GENDERS, { errorMap: () => ({ message: 'Please select a gender' }) }),
-    degree: z
-        .enum(DEGREES, { errorMap: () => ({ message: 'Please select a degree' }) })
-        .or(z.literal('')),
+    gender: z.enum(GENDERS, { message: 'Please select a gender' }),
+    degree: z.enum(DEGREES, { message: 'Please select a degree' }).or(z.literal('')),
     studentType: z
         .enum(STUDENT_TYPES, {
-            errorMap: () => ({ message: 'Please select a student type' }),
+            message: 'Please select a student type',
         })
         .or(z.literal('')),
 });

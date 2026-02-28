@@ -25,9 +25,9 @@ export async function POST(request: Request) {
         }
 
         const memberData = {
+            ...reqBody.data,
             keycloakId: session.user.id ?? '',
             email: session.user.email ?? '',
-            ...reqBody.data,
         };
 
         await db.insert(memberTable).values(memberData);

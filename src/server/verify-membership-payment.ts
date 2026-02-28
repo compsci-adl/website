@@ -28,10 +28,10 @@ export const verifyMembershipPayment = cache(async (keycloakId: string) => {
 
     try {
         // Get order details
-        const orderRes = await squareClient.ordersApi.retrieveOrder(orderId);
+        const orderRes = await squareClient.orders.get({ orderId });
 
         // Get payment ID from the order
-        const paymentId = orderRes.result.order?.tenders?.[0]?.paymentId;
+        const paymentId = orderRes.order?.tenders?.[0]?.paymentId;
 
         // If payment ID exists, payment was successful
         if (paymentId) {

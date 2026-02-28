@@ -1,6 +1,7 @@
 {
   "name": "csclub-website",
   "version": "2.0.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "@next/env": "^16.1.6",
+    "@tailwindcss/postcss": "^4.2.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/luxon": "^3.7.1",
     "@types/md5": "^2.3.6",

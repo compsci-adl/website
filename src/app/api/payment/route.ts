@@ -14,8 +14,6 @@ import { squareClient } from '@/lib/square';
 import { sendWelcomeEmail } from '@/server/send-welcome-email';
 import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
 import { eq } from 'drizzle-orm';
-import type { CreatePaymentLinkRequest } from 'square';
-import { ApiError } from 'square';
 import { z } from 'zod';
 
 // Create a Square payment link
@@ -44,7 +42,7 @@ export async function POST(request: Request) {
     }
     const lineItem = PRODUCTS.membership;
 
-    const body: CreatePaymentLinkRequest = {
+    const body = {
         idempotencyKey: crypto.randomUUID(),
         description: 'Payment made from CS Club website',
         order: {
@@ -68,12 +66,12 @@ export async function POST(request: Request) {
     };
 
     try {
-        const resp = await squareClient.checkoutApi.createPaymentLink(body);
+        const resp = await squareClient.checkout.paymentLinks.create(body);
 
         if (reqBody.data.product === 'membership') {
             // Add Keycloak ID and payment ID to Redis cache
-            const orderId = resp.result.paymentLink?.orderId ?? '';
-            const createdAt = resp.result.paymentLink?.createdAt ?? '';
+            const orderId = resp.paymentLink?.orderId ?? '';
+            const createdAt = resp.paymentLink?.createdAt ?? '';
             await redisClient.hSet(`payment:membership:${session?.user.id}`, {
                 orderId,
                 createdAt,
@@ -81,10 +79,12 @@ export async function POST(request: Request) {
         }
 
         // The URL to direct the user is accessed from `url` and `long_url`
-        return Response.json(resp.result.paymentLink);
+        return Response.json(resp.paymentLink);
     } catch (e) {
-        if (e instanceof ApiError) {
-            return new Response(JSON.stringify(e.errors), { status: e.statusCode });
+        if (e && typeof e === 'object' && 'statusCode' in e) {
+            return new Response(JSON.stringify((e as any).errors), {
+                status: (e as any).statusCode,
+            });
         }
         return new Response(null, { status: 500 });
     }

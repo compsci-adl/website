@@ -20,7 +20,7 @@ export const stepTwoSchema = z.object({
         .optional()
         .or(z.literal('')),
     studentStatus: z.enum(STUDENT_STATUSES, {
-        errorMap: () => ({ message: 'Please select a valid status' }),
+        message: 'Please select a valid status',
     }),
     studentId: z
         .string()
