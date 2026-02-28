@@ -29,7 +29,7 @@ const FancyRectangle = React.forwardRef<HTMLDivElement, FancyRectangleProps>(
                 >
                     <div
                         style={offsetStyles}
-                        className={`absolute bottom-0 right-0 h-full w-full ${
+                        className={`absolute right-0 bottom-0 h-full w-full ${
                             filled ? BG_COLOURS[colour] : BORDER_COLOURS[colour]
                         } ${rounded ? 'rounded-xl' : ''}`}
                     />

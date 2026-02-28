@@ -11,13 +11,13 @@ export default function PopupNotification({
     onClose: () => void;
 }) {
     return (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center bg-black bg-opacity-40">
+        <div className="bg-opacity-40 fixed inset-0 z-[99999] flex items-center justify-center bg-black">
             <FancyRectangle colour="black" offset="8" filled>
-                <div className="relative flex w-[75vw] max-w-4xl flex-col items-center justify-center gap-4 border-4 border-black bg-yellow p-6 text-black shadow-lg md:w-[90vw]">
+                <div className="bg-yellow relative flex w-[75vw] max-w-4xl flex-col items-center justify-center gap-4 border-4 border-black p-6 text-black shadow-lg md:w-[90vw]">
                     <button
                         onClick={onClose}
                         aria-label="Close popup"
-                        className="absolute right-3 top-3 text-4xl font-bold hover:text-red-600"
+                        className="absolute top-3 right-3 text-4xl font-bold hover:text-red-600"
                     >
                         &times;
                     </button>

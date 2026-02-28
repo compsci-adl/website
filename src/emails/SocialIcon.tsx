@@ -15,13 +15,13 @@ function SocialIcon({ href, alt, lightSrc, darkSrc, ariaLabel }: SocialIconProps
                 <td className="p-2">
                     <table className="border-spacing-0">
                         <tr className="h-[0.3255rem] w-[0.2rem]">
-                            <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                            <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
+                            <td className="dynamicBorder dark:bg-grey border-0 border-t-[3px] border-l-[3px] border-solid bg-white"></td>
+                            <td className="dynamicBorder dark:bg-grey border-0 border-t-[3px] border-r-[3px] border-solid bg-white"></td>
                             <td className="h-[0.3rem] w-[0.2rem]"></td>
                         </tr>
                         <tr>
-                            <td className="dynamicBorder h-[0.3rem] w-[0.1125rem] border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
-                            <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-0 dark:bg-grey">
+                            <td className="dynamicBorder dark:bg-grey h-[0.3rem] w-[0.1125rem] border-0 border-b-[3px] border-l-[3px] border-solid bg-white"></td>
+                            <td className="dynamicBorder dark:bg-grey border-0 border-r-[3px] border-b-[3px] border-solid bg-white p-0">
                                 <div className="mx-0 my-auto h-[2.25rem] w-[2.25rem]">
                                     <a
                                         href={href}
@@ -29,12 +29,12 @@ function SocialIcon({ href, alt, lightSrc, darkSrc, ariaLabel }: SocialIconProps
                                         className="ml-[0.09rem] box-border inline-block h-[2.25rem] w-[2.25rem] p-1"
                                     >
                                         <Img
-                                            className="light mr-[0.4rem] mt-[0.05rem] h-[1.35rem] w-[1.35rem] object-contain"
+                                            className="light mt-[0.05rem] mr-[0.4rem] h-[1.35rem] w-[1.35rem] object-contain"
                                             src={darkSrc}
                                             alt={alt}
                                         />
                                         <Img
-                                            className="dark mr-[0.4rem] mt-[0.05rem] h-[1.35rem] w-[1.35rem] object-contain"
+                                            className="dark mt-[0.05rem] mr-[0.4rem] h-[1.35rem] w-[1.35rem] object-contain"
                                             src={lightSrc}
                                             alt={alt}
                                         />

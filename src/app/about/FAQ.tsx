@@ -7,7 +7,7 @@ import { IoTriangleSharp } from 'react-icons/io5';
 
 interface FAQProps {
     question: string;
-    answer: JSX.Element;
+    answer: React.ReactNode;
     colour: Colour;
 }
 
@@ -32,10 +32,10 @@ const FAQ = ({ question, answer, colour }: FAQProps) => {
                                 size={20}
                             />
                         </div>
-                        <div className="text-2xl font-bold text-grey">{question}</div>
+                        <div className="text-grey text-2xl font-bold">{question}</div>
                     </div>
                 </div>
-                {showAnswer && <div className="mx-8 my-4 text-grey">{answer}</div>}
+                {showAnswer && <div className="text-grey mx-8 my-4">{answer}</div>}
             </div>
         </FancyRectangle>
     );

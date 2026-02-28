@@ -61,7 +61,7 @@ const Dropdown = ({
                 <div ref={dropdownRef} className={`relative ${width} ${className}`}>
                     <div
                         onClick={toggleOpen}
-                        className={`cursor-pointer border-2 border-black font-bold ${BG_COLOURS[colour]} transition-colors duration-300 hover:bg-yellow ${
+                        className={`cursor-pointer border-2 border-black font-bold ${BG_COLOURS[colour]} hover:bg-yellow transition-colors duration-300 ${
                             font ?? 'text-lg md:text-base'
                         } ${size === 'base' ? 'px-16 text-lg' : 'px-4 text-sm'} flex w-full items-center justify-between py-4 pr-10 md:px-2 md:py-1 md:text-base lg:px-6 lg:py-2`}
                     >
@@ -88,7 +88,7 @@ const Dropdown = ({
                             <div
                                 key={opt.value}
                                 onClick={() => handleSelect(opt.value)}
-                                className={`px-4 py-2 hover:bg-yellow ${
+                                className={`hover:bg-yellow px-4 py-2 ${
                                     font ?? 'text-base'
                                 } ${opt.value === value ? 'font-bold' : ''}`}
                             >

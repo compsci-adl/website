@@ -7,5 +7,5 @@ export const useMount = (fn: React.EffectCallback) => {
             fn();
             isMounted.current = true;
         }
-    }, []);
+    }, [fn]);
 };

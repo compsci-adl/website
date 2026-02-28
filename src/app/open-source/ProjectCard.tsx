@@ -33,7 +33,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                             <Tag key={i} name={tech.tech_name} backgroundColor={tech.color} />
                         ))}
                     </div>
-                    <div className="flex w-full flex-col gap-4 lg-xl:flex-row">
+                    <div className="lg-xl:flex-row flex w-full flex-col gap-4">
                         <div className="flex-1">
                             <Button
                                 colour="orange"

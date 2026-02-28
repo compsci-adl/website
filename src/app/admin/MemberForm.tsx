@@ -29,7 +29,7 @@ function MemberDetail({ member }: { member: Member }) {
 
     const { paid, ...details } = member;
     return (
-        <table className="relative [&>tbody>*>*]:border [&>tbody>*>*]:border-grey [&>tbody>*>*]:px-4 [&>tbody>*>*]:py-2">
+        <table className="[&>tbody>*>*]:border-grey relative [&>tbody>*>*]:border [&>tbody>*>*]:px-4 [&>tbody>*>*]:py-2">
             <tbody>
                 {Object.entries(details).map(([key, value]) => (
                     <tr key={key}>

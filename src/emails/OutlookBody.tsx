@@ -27,7 +27,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 </tr>
                 <tr>
                     <td className="w-1"></td>
-                    <td className="dynamicBorder h-[1px] bg-grey"></td>
+                    <td className="dynamicBorder bg-grey h-[1px]"></td>
                 </tr>
                 <tr className="h-1">
                     <td>&nbsp;</td>
@@ -49,14 +49,14 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                             through our Discord server, social media accounts, and our&nbsp;
                             <a
                                 href="https://csclub.org.au"
-                                className="font-bold text-orange underline"
+                                className="text-orange font-bold underline"
                             >
                                 website
                             </a>
                             ! If you haven’t seen a&nbsp;
                             <a
                                 href="https://csclub.org.au/about#committee"
-                                className="font-bold text-purple underline"
+                                className="text-purple font-bold underline"
                             >
                                 committee member
                             </a>
@@ -85,7 +85,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 </tr>
                 <tr>
                     <td className="w-1"></td>
-                    <td className="dynamicBorder h-[1px] bg-grey"></td>
+                    <td className="dynamicBorder bg-grey h-[1px]"></td>
                 </tr>
                 <tr className="h-1">
                     <td>&nbsp;</td>
@@ -108,7 +108,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                             If you’re having trouble finding the room,&nbsp;
                             <a
                                 href="https://studentvip.com.au/adelaide-uni/north-terrace/maps/127019"
-                                className="font-bold text-orange underline"
+                                className="text-orange font-bold underline"
                             >
                                 here&apos;s a map!
                             </a>
@@ -122,7 +122,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
             <table className="w-full" cellPadding="0">
                 <tr>
                     <td className="w-1"></td>
-                    <td className="border-[3px] border-solid border-grey">
+                    <td className="border-grey border-[3px] border-solid">
                         <Img
                             className="w-full"
                             src="https://csclub.org.au/images/email/dl.png"
@@ -139,7 +139,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 </tr>
                 <tr>
                     <td className="w-1/3"></td>
-                    <td className="dynamicBorder h-[1px] w-1/3 bg-grey"></td>
+                    <td className="dynamicBorder bg-grey h-[1px] w-1/3"></td>
                     <td className="w-1/3"></td>
                 </tr>
                 <tr className="h-1">
@@ -200,14 +200,14 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                                         fly through exams! Log into our&nbsp;
                                         <a
                                             href="https://csclub.org.au"
-                                            className="font-bold text-orange underline"
+                                            className="text-orange font-bold underline"
                                         >
                                             website
                                         </a>
                                         &nbsp; to access or&nbsp;
                                         <a
                                             href={process.env.NEXT_PUBLIC_DRIVE_LINK}
-                                            className="font-bold text-purple underline"
+                                            className="text-purple font-bold underline"
                                         >
                                             click this link!
                                         </a>
@@ -228,7 +228,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 <table className="w-full border-collapse border-spacing-0">
                     <tr>
                         <td className="w-1/3"></td>
-                        <td className="dynamicBorder h-[1px] w-1/3 bg-grey"></td>
+                        <td className="dynamicBorder bg-grey h-[1px] w-1/3"></td>
                         <td className="w-1/3"></td>
                     </tr>
                 </table>
@@ -236,7 +236,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                     If you need any help, hop on Discord and DM any of the&nbsp;
                     <a
                         href="https://csclub.org.au/about#committee"
-                        className="font-bold text-purple underline"
+                        className="text-purple font-bold underline"
                     >
                         committee
                     </a>

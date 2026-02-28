@@ -51,7 +51,7 @@ export default function GalleryControls({
     return (
         <>
             {/* Desktop/Tablet */}
-            <div className="relative hidden h-full w-full flex-col items-start justify-center gap-8 text-grey md:flex">
+            <div className="text-grey relative hidden h-full w-full flex-col items-start justify-center gap-8 md:flex">
                 <Button
                     onClick={() => {
                         setCurrentTitle('Photo Gallery');
@@ -100,7 +100,7 @@ export default function GalleryControls({
             </div>
 
             {/* Mobile */}
-            <div className="fixed bottom-0 left-0 right-0 z-20 flex h-16 items-center justify-around border-t border-gray-300 bg-white px-2 text-grey shadow-inner md:hidden">
+            <div className="text-grey fixed right-0 bottom-0 left-0 z-20 flex h-16 items-center justify-around border-t border-gray-300 bg-white px-2 shadow-inner md:hidden">
                 <Button
                     onClick={() => {
                         setCurrentTitle('Photo Gallery');

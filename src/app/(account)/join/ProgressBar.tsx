@@ -13,7 +13,7 @@ function Progress({ filled, index }: { filled?: boolean; index: number }) {
 
 export default function ProgressBar({ step }: { step: number }) {
     return (
-        <div className="mb-12 mt-4 flex justify-center gap-6">
+        <div className="mt-4 mb-12 flex justify-center gap-6">
             {new Array(step).fill(null).map((_, i) => (
                 <Progress filled index={i + 1} key={i} />
             ))}

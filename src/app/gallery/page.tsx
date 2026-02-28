@@ -36,7 +36,7 @@ export default function GalleryPage() {
         if (session?.user?.id) {
             checkMembership();
         }
-    }, [session]);
+    }, [member, session]);
 
     if (status === 'unauthenticated') {
         return notFound();
@@ -73,7 +73,7 @@ export default function GalleryPage() {
                         <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
                             <h2 className="text-xl">
                                 Please finish{' '}
-                                <Link href="/join" className="font-bold text-purple">
+                                <Link href="/join" className="text-purple font-bold">
                                     signing up
                                 </Link>{' '}
                                 first.

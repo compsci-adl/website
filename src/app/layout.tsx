@@ -51,10 +51,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
                     src="https://umami.csclub.org.au/script.js"
                     data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
                 />
-                <body id="root" className="overflow-x-hidden bg-grey text-white">
+                <body id="root" className="bg-grey overflow-x-hidden text-white">
                     <Notification />
                     <Header />
-                    <div className="mx-auto min-h-screen w-responsive pb-6 pt-32 md:pt-40">
+                    <div className="w-responsive mx-auto min-h-screen pt-32 pb-6 md:pt-40">
                         {children}
                     </div>
                     <Footer />

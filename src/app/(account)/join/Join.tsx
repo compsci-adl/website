@@ -22,7 +22,7 @@ export default function Join() {
         if (session?.user) {
             setStep(2);
         }
-    }, [session?.user]);
+    }, [setStep, session?.user]);
 
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">
@@ -30,7 +30,7 @@ export default function Join() {
             <section>
                 <div className="relative z-10 flex flex-col text-2xl font-black md:flex-row lg:text-3xl">
                     <h3>New Members are</h3>
-                    <div className="mt-2 w-fit bg-purple px-2 md:ml-2 md:mt-0">
+                    <div className="bg-purple mt-2 w-fit px-2 md:mt-0 md:ml-2">
                         <h3 className="text-grey">Always Welcome</h3>
                     </div>
                 </div>

@@ -122,7 +122,7 @@ export default function CallbackPage({ searchParams }: Props) {
                 <FancyRectangle colour="purple" offset="8" filled fullWidth>
                     <div className="w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
                         <p className="mb-2">You need to sign in to link your Discord account.</p>
-                        <div className="mt-8 flex justify-center text-grey">
+                        <div className="text-grey mt-8 flex justify-center">
                             <Button colour="orange" onClick={() => signIn('keycloak')}>
                                 Sign In
                             </Button>
@@ -162,7 +162,7 @@ export default function CallbackPage({ searchParams }: Props) {
                             Please visit{' '}
                             <Link
                                 href="/settings"
-                                className="text-orange underline hover:text-orange/80"
+                                className="text-orange hover:text-orange/80 underline"
                             >
                                 settings
                             </Link>{' '}
@@ -185,7 +185,7 @@ export default function CallbackPage({ searchParams }: Props) {
                             Discord.
                         </p>
 
-                        <Link href="/" className="text-orange underline hover:text-orange/80">
+                        <Link href="/" className="text-orange hover:text-orange/80 underline">
                             Return to home page
                         </Link>
                     </div>

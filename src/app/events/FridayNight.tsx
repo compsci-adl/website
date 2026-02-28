@@ -8,24 +8,24 @@ function Info({ className }: { className?: string }) {
     return (
         <div className={`${className} space-y-6`}>
             <h2 className="text-4xl font-bold">
-                <span className="bg-orange p-1 text-grey">Friday Night</span> Games
+                <span className="bg-orange text-grey p-1">Friday Night</span> Games
             </h2>
             <div>
                 <div className="grid grid-cols-[auto_minmax(0,_1fr)_auto] gap-x-8 gap-y-3">
                     <div className="col-span-3 ml-auto h-1 w-[calc(100%-1rem)] bg-white" />
-                    <IoTriangleSharp size={26} className="rotate-90 fill-yellow" />
+                    <IoTriangleSharp size={26} className="fill-yellow rotate-90" />
                     <div>
                         <b>Date:</b> Every Friday
                     </div>
                     <FiCalendar size={24} />
                     <div className="col-span-3 ml-auto h-1 w-[calc(100%-1rem)] bg-white" />
-                    <IoTriangleSharp size={26} className="rotate-90 fill-purple" />
+                    <IoTriangleSharp size={26} className="fill-purple rotate-90" />
                     <div>
                         <b>Time:</b> From 5:00pm onwards
                     </div>
                     <FiClock size={24} />
                     <div className="col-span-3 ml-auto h-1 w-[calc(100%-1rem)] bg-white" />
-                    <IoTriangleSharp size={26} className="rotate-90 fill-orange" />
+                    <IoTriangleSharp size={26} className="fill-orange rotate-90" />
                     <div>
                         <b>Venue:</b> Duck Lounge (EM110)
                     </div>
@@ -64,7 +64,7 @@ function Details() {
                 </ul>
                 <p>
                     Come down to the{' '}
-                    <span className="font-bold text-yellow">Duck Lounge (EM110)</span> in the
+                    <span className="text-yellow font-bold">Duck Lounge (EM110)</span> in the
                     Engineering and Maths building for some games!
                 </p>
                 <p className="font-bold">
@@ -83,7 +83,7 @@ export default function FridayNight({ className }: { className?: string }) {
                 <Info className="grow" />
                 <Ducks />
             </div>
-            <div className="mb-4 mr-4">
+            <div className="mr-4 mb-4">
                 <Details />
             </div>
         </section>

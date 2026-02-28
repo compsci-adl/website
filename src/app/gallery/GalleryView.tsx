@@ -180,8 +180,8 @@ export default function GalleryView({
                         animate="animate"
                         className={`polaroid absolute flex cursor-pointer items-center justify-center overflow-hidden border-[1em] bg-white bg-cover bg-center brightness-[1.2] contrast-[.9] saturate-[.9] sepia-[.2] will-change-transform ${
                             photo.orientation === 'portrait'
-                                ? 'h-[24em] w-[18em] border-b-[5.5em] border-t-[2em]'
-                                : 'h-[18em] w-[24em] border-l-[2em] border-r-[5.5em]'
+                                ? 'h-[24em] w-[18em] border-t-[2em] border-b-[5.5em]'
+                                : 'h-[18em] w-[24em] border-r-[5.5em] border-l-[2em]'
                         }`}
                         onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                             e.stopPropagation();

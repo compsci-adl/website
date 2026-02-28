@@ -79,24 +79,49 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
         return grouped;
     }, [photos]);
 
+    // Deterministic seeded random helpers to keep rendering pure
+    const seedFromString = (s: string) => {
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < s.length; i++) {
+            h ^= s.charCodeAt(i);
+            h = Math.imul(h, 16777619) >>> 0;
+        }
+        return h >>> 0;
+    };
+
+    const mulberry32 = (a: number) => () => {
+        let t = (a += 0x6d2b79f5);
+        t = Math.imul(t ^ (t >>> 15), t | 1);
+        t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+
+    const memoPositions = useMemo(() => {
+        if (!(mode === 'gallery' && selectedFolder && galleriesByFolder[selectedFolder])) return {};
+
+        const list = galleriesByFolder[selectedFolder];
+        const seed = seedFromString(selectedFolder + String(list.length) + String(numImages));
+        const rand = mulberry32(seed);
+        const newPositions: { [key: number]: { x: number; y: number; rotate: number } } = {};
+
+        // Avoid reading refs during render; use window size as a stable fallback.
+        const galleryWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
+        const galleryHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+
+        list.forEach((_, index) => {
+            const r1 = rand();
+            const r2 = rand();
+            const r3 = rand();
+            const x = (r1 - 0.5) * 0.05 * galleryWidth - 7;
+            const y = (r2 - 0.5) * 0.05 * galleryHeight;
+            const rotate = r3 * 30 - 15; // -15 to +15 degrees
+            newPositions[index] = { x, y, rotate };
+        });
+
+        return newPositions;
+    }, [mode, selectedFolder, galleriesByFolder, numImages]);
     useEffect(() => {
         if (mode === 'gallery' && selectedFolder && galleriesByFolder[selectedFolder]) {
-            const shuffled = [...galleriesByFolder[selectedFolder]].sort(() => 0.5 - Math.random());
-            const newPositions: { [key: number]: { x: number; y: number; rotate: number } } = {};
-
-            // Get size of the gallery box
-            const galleryWidth = galleryRef.current?.offsetWidth || window.innerWidth;
-            const galleryHeight = galleryRef.current?.offsetHeight || window.innerHeight;
-
-            shuffled.forEach((_, index) => {
-                // Spread images randomly within the gallery box
-                const x = (Math.random() - 0.5) * 0.05 * galleryWidth - 7;
-                const y = (Math.random() - 0.5) * 0.05 * galleryHeight;
-                const rotate = Math.random() * 30 - 15; // -15 to +15 degrees
-                newPositions[index] = { x, y, rotate };
-            });
-            setPositions(newPositions);
-
             if (selectedFolder && photos.length) {
                 const images = galleriesByFolder[selectedFolder]?.slice(0, numImages) || [];
                 const displayName = images[0]?.eventName
@@ -130,6 +155,12 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
         });
 
         setPositions(shuffledPositions);
+    };
+
+    const stopAnimation = () => {
+        setAnimateToggle(false);
+        if (animationInterval.current) clearInterval(animationInterval.current);
+        if (folderChangeInterval.current) clearInterval(folderChangeInterval.current);
     };
 
     const handleOutsideClick = useCallback((event: MouseEvent) => {
@@ -169,12 +200,6 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
         } else {
             stopAnimation();
         }
-    };
-
-    const stopAnimation = () => {
-        setAnimateToggle(false);
-        if (animationInterval.current) clearInterval(animationInterval.current);
-        if (folderChangeInterval.current) clearInterval(folderChangeInterval.current);
     };
 
     if (loading) {
@@ -234,7 +259,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                     >
                         <GalleryView
                             photos={galleriesByFolder[selectedFolder]?.slice(0, numImages) || []}
-                            positions={positions}
+                            positions={Object.keys(positions).length ? positions : memoPositions}
                             activeIndex={activeIndex}
                             setActiveIndex={setActiveIndex}
                             stopAnimation={stopAnimation}
