@@ -80,7 +80,7 @@ export default function PersonalInfoSettings() {
     // Hide student fields if not a student
     const studentStatus = watch('studentStatus');
     useEffect(() => {
-        if (studentStatus !== 'At The University of Adelaide') {
+        if (studentStatus !== 'At Adelaide University') {
             setValue('studentType', '');
             setValue('studentId', '');
         }
@@ -90,7 +90,7 @@ export default function PersonalInfoSettings() {
         setStatus(null);
         // If not at UofA, set studentType and studentId to empty string before submit
         const submitData = { ...data };
-        if (studentStatus !== 'At The University of Adelaide') {
+        if (studentStatus !== 'At Adelaide University') {
             submitData.studentType = '';
             submitData.studentId = '';
         }
@@ -170,7 +170,7 @@ export default function PersonalInfoSettings() {
                 type="select"
                 options={STUDENT_STATUSES}
             />
-            {studentStatus === 'At The University of Adelaide' && (
+            {studentStatus === 'At Adelaide University' && (
                 <>
                     <ControlledField
                         label="Student Type"

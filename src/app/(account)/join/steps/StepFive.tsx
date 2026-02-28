@@ -61,7 +61,7 @@ export default function StepFive() {
                         <>
                             By submitting this form, you agree to abide by the{' '}
                             <a
-                                href="https://www.adelaide.edu.au/policies/2323"
+                                href="https://adelaideuni.edu.au/about/policies/student-code-of-conduct/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-orange underline"

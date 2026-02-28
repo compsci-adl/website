@@ -1,17 +1,20 @@
-export const STUDENT_STATUSES = [
-    'At The University of Adelaide',
-    'At another university',
-    'No',
-] as const;
+export const STUDENT_STATUSES = ['At Adelaide University', 'At another university', 'No'] as const;
 
 export const DEGREES = [
-    'Bachelor of Computer Science or Bachelor of Computer Science (Advanced)',
-    'Bachelor of Maths & Computer Science',
-    'Bachelor of IT',
+    'Bachelor of Computer Science',
+    'Bachelor of Computer Science (Advanced)',
+    'Bachelor of Computer Science (Honours)',
+    'Bachelor of Mathematical and Computer Sciences',
+    'Bachelor of Information Technology',
     'Bachelor of Software Engineering',
+    'Bachelor of Software Engineering (Honours)',
+    'Bachelor of Cyber Security',
     'Honours, Computer Science',
-    'Masters (Coursework), Computer Science',
-    'Masters/PhD (Research), Computer Science',
+    'Masters of Philosophy (MRPHL), Computer Science',
+    'Masters of Research (MRRES), Computer Science',
+    'Doctor of Philosophy (DRPHL), Computer Science',
+    'Associate Degree in Information Technology',
+    'Undergraduate Certificate in Information Technology',
     'Other',
 ] as const;
 

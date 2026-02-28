@@ -32,8 +32,7 @@ export const stepTwoSchema = z.object({
 export type StepTwoData = z.infer<typeof stepTwoSchema>;
 
 const validationSchema = stepTwoSchema.refine(
-    (data) =>
-        data.studentStatus === 'At The University of Adelaide' ? data.studentId !== '' : true,
+    (data) => (data.studentStatus === 'At Adelaide University' ? data.studentId !== '' : true),
     { message: 'Please enter a student ID', path: ['studentId'] }
 );
 
@@ -85,7 +84,7 @@ export default function StepTwo() {
                 options={STUDENT_STATUSES}
                 type="select"
             />
-            {studentStatus === 'At The University of Adelaide' && (
+            {studentStatus === 'At Adelaide University' && (
                 <ControlledField label="Student ID" control={form.control} name="studentId" />
             )}
             <Button colour="orange" width="w-full" size="small" type="submit">

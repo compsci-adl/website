@@ -9,7 +9,6 @@ import useSWRMutation from 'swr/mutation';
 const notificationTypeNames = {
     email: 'Email',
     sms: 'SMS',
-    push: 'Push',
 };
 
 const categoryNames = {
@@ -39,11 +38,6 @@ export default function NotificationsSettings() {
             clubEventsAndAnnouncements: false,
             sponsorNotifications: false,
         },
-        push: {
-            newsletters: false,
-            clubEventsAndAnnouncements: false,
-            sponsorNotifications: false,
-        },
     });
 
     const fetchedNotifications = useSWRMutation(`notifications?id=${userId}`, fetcher.get.mutate, {
@@ -59,11 +53,6 @@ export default function NotificationsSettings() {
                     newsletters: data.smsNewsletters,
                     clubEventsAndAnnouncements: data.smsClubEventsAndAnnouncements,
                     sponsorNotifications: data.smsSponsorNotifications,
-                },
-                push: {
-                    newsletters: data.pushNewsletters,
-                    clubEventsAndAnnouncements: data.pushClubEventsAndAnnouncements,
-                    sponsorNotifications: data.pushSponsorNotifications,
                 },
             };
 
