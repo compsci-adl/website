@@ -53,7 +53,7 @@ export default async function Header() {
 
     return (
         <>
-            <HeaderClient data={headerData} className="hidden lg-xl:block" />
+            <HeaderClient data={headerData} className="lg-xl:block hidden" />
             <HeaderMobileClient data={headerData} className="lg-xl:hidden" />
         </>
     );

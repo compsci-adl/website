@@ -99,11 +99,11 @@ export default function Email({ firstName }: EmailProps) {
                     <meta name="supported-color-schemes" content="light dark" />
                     <title>CS Club</title>
                 </Head>
-                <Body className="m-0 mt-8 bg-white p-0 font-sans text-black dark:bg-grey">
-                    <Container className="bg-white dark:bg-grey">
-                        <Container className="bg-white dark:bg-grey">
+                <Body className="dark:bg-grey m-0 mt-8 bg-white p-0 font-sans text-black">
+                    <Container className="dark:bg-grey bg-white">
+                        <Container className="dark:bg-grey bg-white">
                             {/* Header */}
-                            <Container className="bg-white p-2.5 text-center dark:bg-grey">
+                            <Container className="dark:bg-grey bg-white p-2.5 text-center">
                                 <Section className="w-full border-collapse">
                                     <Row>
                                         <Column className="text-center">
@@ -139,18 +139,18 @@ export default function Email({ firstName }: EmailProps) {
                             </Container>
 
                             {/* Email Content */}
-                            <div className="mx-6 mb-8 mt-4 md:mx-10">
+                            <div className="mx-6 mt-4 mb-8 md:mx-10">
                                 {/* Modern Email Clients */}
                                 <HtmlConditionalComment comment="!mso">
                                     <table className="w-full border-spacing-0">
                                         <tr className="h-[8px] w-[8px] p-0">
-                                            <td className="dynamicBorder border-0 border-l-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
-                                            <td className="dynamicBorder border-0 border-r-[3px] border-t-[3px] border-solid bg-white dark:bg-grey"></td>
+                                            <td className="dynamicBorder dark:bg-grey border-0 border-t-[3px] border-l-[3px] border-solid bg-white"></td>
+                                            <td className="dynamicBorder dark:bg-grey border-0 border-t-[3px] border-r-[3px] border-solid bg-white"></td>
                                             <td className="block w-[8px] p-0"></td>
                                         </tr>
                                         <tr>
-                                            <td className="dynamicBorder border-0 border-b-[3px] border-l-[3px] border-solid bg-white dark:bg-grey"></td>
-                                            <td className="dynamicBorder border-0 border-b-[3px] border-r-[3px] border-solid bg-white p-5 pr-[1.3rem] dark:bg-grey">
+                                            <td className="dynamicBorder dark:bg-grey border-0 border-b-[3px] border-l-[3px] border-solid bg-white"></td>
+                                            <td className="dynamicBorder dark:bg-grey border-0 border-r-[3px] border-b-[3px] border-solid bg-white p-5 pr-[1.3rem]">
                                                 <EmailBody firstName={firstName} />
                                             </td>
                                             <td className="bg-purple p-0"></td>
@@ -240,7 +240,7 @@ export default function Email({ firstName }: EmailProps) {
                             </div>
 
                             {/* Footer */}
-                            <div className="mb-12 bg-white px-5 text-center dark:bg-grey">
+                            <div className="dark:bg-grey mb-12 bg-white px-5 text-center">
                                 <div>
                                     <table className="mx-auto hidden border-collapse border-spacing-0 md:table">
                                         <tr>

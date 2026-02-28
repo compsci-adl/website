@@ -38,12 +38,12 @@ export default async function OpenSourcePage() {
                                         <Duck colour="white" size={40} />
                                     </div>
                                     <div className="relative flex flex-row">
-                                        <div className="w-12 bg-orange" />
+                                        <div className="bg-orange w-12" />
                                         <div className="relative flex flex-1 flex-col">
-                                            <span className="relative z-[2] bg-white py-4 pl-4 pr-16 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-[2] bg-white py-4 pr-16 pl-4 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
                                                 Who is the
                                             </span>
-                                            <span className="relative z-[2] whitespace-nowrap border-2 border-white py-6 pl-4 pr-16 text-2xl font-bold lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-[2] border-2 border-white py-6 pr-16 pl-4 text-2xl font-bold whitespace-nowrap lg:pr-36 lg:text-3xl">
                                                 Open Source Team?
                                             </span>
                                         </div>
@@ -52,7 +52,7 @@ export default async function OpenSourcePage() {
                                 <div className="max-w-[600px] rounded-xl border-2 border-white px-4 py-6 md:px-6 md:py-6 xl:w-[500px]">
                                     <p className="text-lg md:text-xl">
                                         The{' '}
-                                        <span className="font-bold text-yellow">
+                                        <span className="text-yellow font-bold">
                                             CS Club Open Source Team
                                         </span>{' '}
                                         is a place for creative and inventive students who want to
@@ -83,7 +83,7 @@ export default async function OpenSourcePage() {
                                         alt="Open source"
                                         width={500}
                                         height={500}
-                                        className="rounded-xl border-2 border-white bg-grey md:w-full"
+                                        className="bg-grey rounded-xl border-2 border-white md:w-full"
                                     ></Image>
                                 </FancyRectangle>
                             </div>

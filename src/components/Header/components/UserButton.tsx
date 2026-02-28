@@ -12,11 +12,11 @@ import type { MenuLinkType } from './MenuLinks';
 
 export default function UserButton({ data }: { data: HeaderData }) {
     const [isMenuOpen, setMenuOpen] = useState(false);
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement>(null);
     const closeMenu = () => {
         setMenuOpen(false);
     };
-    useOnClickOutside(ref, closeMenu);
+    useOnClickOutside(ref as React.RefObject<HTMLElement>, closeMenu);
     const handleButtonClick = () => {
         setMenuOpen(!isMenuOpen);
     };
@@ -50,7 +50,7 @@ export default function UserButton({ data }: { data: HeaderData }) {
                     leaveFrom="opacity-100 scale-100"
                     leaveTo="opacity-0 scale-90"
                 >
-                    <div className="absolute right-0 top-10 z-50 w-44 space-y-4 border-4 border-black bg-white p-4">
+                    <div className="absolute top-10 right-0 z-50 w-44 space-y-4 border-4 border-black bg-white p-4">
                         {userExists && (
                             <MenuLinks data={data} onClick={closeMenu} links={memberLinks} />
                         )}

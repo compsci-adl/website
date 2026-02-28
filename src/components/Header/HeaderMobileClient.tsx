@@ -77,7 +77,7 @@ export default function HeaderMobileClient({
     return (
         <div className={`${className} fixed z-[9999] w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
-            <div className="mx-auto mt-8 w-responsive">
+            <div className="w-responsive mx-auto mt-8">
                 <div className="flex">
                     <LogoTitle titleColor="text-white" className="grow" onClick={closeMenu} />
                     <FancyRectangle colour="black" offset="4" filled>
@@ -87,7 +87,7 @@ export default function HeaderMobileClient({
                         >
                             <IoMdMenu aria-label="Menu" />
                             {data.isSignedIn && data.nextStep !== null && !isMenuOpen && (
-                                <span className="absolute -right-2 -top-2 z-50 flex h-3 w-3">
+                                <span className="absolute -top-2 -right-2 z-50 flex h-3 w-3">
                                     <div className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75" />
                                     <div className="relative inline-flex h-3 w-3 rounded-full bg-red-500" />
                                 </span>
@@ -139,7 +139,7 @@ export default function HeaderMobileClient({
                                 onClick={closeMenu}
                             />
                         )}
-                        <div className="my-4 h-0.5 w-full bg-grey" />
+                        <div className="bg-grey my-4 h-0.5 w-full" />
                         {data.isSignedIn && userExists && (
                             <>
                                 <MenuLinks
@@ -148,7 +148,7 @@ export default function HeaderMobileClient({
                                     mobile={true}
                                     links={conditionalLinks}
                                 />
-                                <div className="my-4 h-0.5 w-full bg-grey" />
+                                <div className="bg-grey my-4 h-0.5 w-full" />
                             </>
                         )}
 
@@ -170,7 +170,7 @@ export default function HeaderMobileClient({
                                         >
                                             <FaSignInAlt className="text-2xl" />
                                         </Button>
-                                        <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
+                                        <span className="mt-1 font-bold text-black md:mt-0 md:ml-4 md:py-1">
                                             Sign In
                                         </span>
                                     </div>
@@ -184,7 +184,7 @@ export default function HeaderMobileClient({
                                         >
                                             <FaUserCheck className="text-2xl" />
                                         </Button>
-                                        <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
+                                        <span className="mt-1 font-bold text-black md:mt-0 md:ml-4 md:py-1">
                                             Join Us
                                         </span>
                                     </div>
@@ -201,7 +201,7 @@ export default function HeaderMobileClient({
                                     >
                                         <FaUserPlus className="text-2xl" />
                                     </Button>
-                                    <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
+                                    <span className="mt-1 font-bold text-black md:mt-0 md:ml-4 md:py-1">
                                         Continue
                                     </span>
                                 </div>
@@ -217,7 +217,7 @@ export default function HeaderMobileClient({
                                     >
                                         <FaCreditCard className="text-2xl" />
                                     </Button>
-                                    <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
+                                    <span className="mt-1 font-bold text-black md:mt-0 md:ml-4 md:py-1">
                                         Payment
                                     </span>
                                 </div>
@@ -232,7 +232,7 @@ export default function HeaderMobileClient({
                                     >
                                         <FaSignOutAlt className="text-2xl" />
                                     </Button>
-                                    <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
+                                    <span className="mt-1 font-bold text-black md:mt-0 md:ml-4 md:py-1">
                                         Sign Out
                                     </span>
                                 </div>
@@ -246,7 +246,7 @@ export default function HeaderMobileClient({
                                 >
                                     <FaTimes className="text-2xl" />
                                 </Button>
-                                <span className="mt-1 font-bold text-black md:ml-4 md:mt-0 md:py-1">
+                                <span className="mt-1 font-bold text-black md:mt-0 md:ml-4 md:py-1">
                                     Close
                                 </span>
                             </div>

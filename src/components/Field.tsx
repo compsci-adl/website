@@ -46,7 +46,7 @@ const Field = ({
                     onChange={(e) => onChange(e.target.value)}
                     id={labelString}
                     name={labelString}
-                    className="mt-1 w-full border border-gray-300 px-3 py-2 text-grey"
+                    className="text-grey mt-1 w-full border border-gray-300 px-3 py-2"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
                     {options.map((option, index) => (
@@ -56,7 +56,7 @@ const Field = ({
                     ))}
                 </select>
             ) : type === 'checkbox' ? (
-                <div className="mb-2 mt-4">
+                <div className="mt-4 mb-2">
                     <label>
                         <input
                             type="checkbox"
@@ -68,7 +68,7 @@ const Field = ({
                     </label>
                 </div>
             ) : type === 'toggle' ? (
-                <div className="mb-2 mt-4">
+                <div className="mt-4 mb-2">
                     <label className="relative flex cursor-pointer flex-row items-center">
                         <button
                             type="button"
@@ -97,13 +97,13 @@ const Field = ({
                         name={labelString}
                         type={showPassword ? 'text' : type}
                         value={typeof value === 'boolean' ? value.toString() : value}
-                        className="mt-1 w-full rounded-none border border-gray-300 px-3 py-2 text-grey"
+                        className="text-grey mt-1 w-full rounded-none border border-gray-300 px-3 py-2"
                     />
                     {type === 'password' && (
                         <button
                             type="button"
                             onClick={togglePasswordVisibility}
-                            className="absolute right-6 top-4"
+                            className="absolute top-4 right-6"
                         >
                             {showPassword ? <IoEyeOff /> : <IoEye />}
                         </button>

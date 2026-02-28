@@ -4,7 +4,7 @@ import Link from './Link';
 export default function Footer() {
     return (
         <footer className="relative z-0 pt-8 md:pt-12">
-            <div className="relative bottom-4 mx-auto flex w-responsive flex-col border-t-2 border-white py-4 transition-all duration-500 md:flex-row md:items-center md:justify-between md:pb-8">
+            <div className="w-responsive relative bottom-4 mx-auto flex flex-col border-t-2 border-white py-4 transition-all duration-500 md:flex-row md:items-center md:justify-between md:pb-8">
                 <div className="order-2 mb-4 text-center md:order-1 md:mb-0 md:text-left">
                     <p>
                         &copy; {new Date().getFullYear()} The University of Adelaide Computer

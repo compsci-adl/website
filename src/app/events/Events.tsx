@@ -11,8 +11,8 @@ function Title({ children }: { children: string }) {
     return (
         <div className="flex justify-center">
             <FancyRectangle colour="yellow" offset="8">
-                <div className="w-fit bg-yellow p-2">
-                    <h2 className="text-center text-4xl font-bold text-grey md:text-6xl">
+                <div className="bg-yellow w-fit p-2">
+                    <h2 className="text-grey text-center text-4xl font-bold md:text-6xl">
                         {children}
                     </h2>
                 </div>

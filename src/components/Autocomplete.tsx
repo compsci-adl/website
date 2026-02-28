@@ -4,7 +4,7 @@ import { IoCaretDown, IoCheckmark } from 'react-icons/io5';
 
 interface AutocompleteProps<TOption> {
     value: TOption | null;
-    onChange: (option: TOption) => void;
+    onChange: (option: TOption | null) => void;
     options: TOption[];
     displayOptionStr: (option: TOption) => string;
     placeholder?: string;
@@ -34,19 +34,19 @@ export default function Autocomplete<TOption>({
                 <div className="relative w-full">
                     <Combobox.Input
                         onChange={(e) => setQuery(e.target.value)}
-                        className="w-full border border-gray-300 px-3 py-2 text-grey"
+                        className="text-grey w-full border border-gray-300 px-3 py-2"
                         displayValue={(option: TOption | null) =>
                             option ? displayOptionStr(option) : ''
                         }
                         placeholder={placeholder}
                     />
                     <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-                        <IoCaretDown className="h-5 w-5 fill-grey" />
+                        <IoCaretDown className="fill-grey h-5 w-5" />
                     </Combobox.Button>
                 </div>
                 <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
                     {filteredOptions.length === 0 && query !== '' ? (
-                        <div className="relative select-none px-4 py-2 text-grey">
+                        <div className="text-grey relative px-4 py-2 select-none">
                             {notFoundMessage ?? 'No results found'}
                         </div>
                     ) : (
@@ -55,7 +55,7 @@ export default function Autocomplete<TOption>({
                                 key={i}
                                 value={option}
                                 className={({ active }) =>
-                                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                                    `relative cursor-default py-2 pr-4 pl-10 select-none ${
                                         active ? 'bg-grey text-white' : 'text-black'
                                     }`
                                 }

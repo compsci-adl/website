@@ -15,7 +15,7 @@ export default function DropdownMenu({ title, items, onClick }: DropdownMenuProp
     const [open, setOpen] = useState(false);
     const [canToggle, setCanToggle] = useState(true);
     const dropdownRef = useRef<HTMLDivElement>(null);
-    useOnClickOutside(dropdownRef, () => {
+    useOnClickOutside(dropdownRef as React.RefObject<HTMLElement>, () => {
         setOpen(false);
         setCanToggle(false);
         setTimeout(() => setCanToggle(true), 200);
@@ -53,13 +53,13 @@ export default function DropdownMenu({ title, items, onClick }: DropdownMenuProp
             >
                 <div ref={dropdownRef}>
                     <FancyRectangle colour="black" offset="4" filled>
-                        <div className="absolute left-0 top-full z-50 w-36 space-y-4 border-4 border-black bg-white p-4">
+                        <div className="absolute top-full left-0 z-50 w-36 space-y-4 border-4 border-black bg-white p-4">
                             <ul className="flex flex-col">
                                 {items.map((item, idx) => (
                                     <li key={idx}>
                                         <Link
                                             href={item.href}
-                                            className="block border-b border-grey py-2 last:border-b-0 hover:underline"
+                                            className="border-grey block border-b py-2 last:border-b-0 hover:underline"
                                             onClick={() => {
                                                 setOpen(false);
                                                 if (onClick) onClick();

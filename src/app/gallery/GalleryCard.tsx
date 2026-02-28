@@ -81,10 +81,10 @@ export default function GalleryCard({ folder, images, onSelectFolder }: GalleryC
                             y: i * 6,
                             zIndex: i,
                         }}
-                        className={`polaroid absolute left-0 top-0 will-change-transform ${
+                        className={`polaroid absolute top-0 left-0 will-change-transform ${
                             photo.orientation === 'portrait'
-                                ? 'h-[24em] w-[18em] border-b-[5.5em] border-t-[2em]'
-                                : 'h-[18em] w-[24em] border-l-[2em] border-r-[5.5em]'
+                                ? 'h-[24em] w-[18em] border-t-[2em] border-b-[5.5em]'
+                                : 'h-[18em] w-[24em] border-r-[5.5em] border-l-[2em]'
                         } border-[1em] bg-white bg-cover bg-center shadow-lg brightness-[1.2] contrast-[.9] saturate-[.9] sepia-[.2]`}
                     >
                         <img

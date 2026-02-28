@@ -24,7 +24,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                     alt="Welcome to the CS Club!"
                 />
             </picture>
-            <table className="w-full pr-4 text-grey md:pr-8 dark:text-white">
+            <table className="text-grey w-full pr-4 md:pr-8 dark:text-white">
                 <tr>
                     <td className="w-1">
                         <h2>{'>'}</h2>
@@ -35,7 +35,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                     </td>
                 </tr>
             </table>
-            <div className="ml-[1.3rem] mr-5 text-grey dark:text-white">
+            <div className="text-grey mr-5 ml-[1.3rem] dark:text-white">
                 <p>
                     We host events all year round where you can connect with other like-minded
                     students, develop your skills and network with industry professionals. As a
@@ -47,13 +47,13 @@ export default function EmailBody({ firstName }: BodyProps) {
                 <p>
                     The best way to keep up to date on what’s happening in our club is through our
                     Discord server, social media accounts, and our&nbsp;
-                    <a href="https://csclub.org.au" className="font-bold text-orange underline">
+                    <a href="https://csclub.org.au" className="text-orange font-bold underline">
                         website
                     </a>
                     ! If you haven’t seen a&nbsp;
                     <a
                         href="https://csclub.org.au/about#committee"
-                        className="font-bold text-purple underline"
+                        className="text-purple font-bold underline"
                     >
                         committee member
                     </a>
@@ -65,20 +65,20 @@ export default function EmailBody({ firstName }: BodyProps) {
             </div>
             <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/2">
-                    <table className="w-full border-spacing-0 pr-4 text-grey md:pr-8 dark:text-white">
+                    <table className="text-grey w-full border-spacing-0 pr-4 md:pr-8 dark:text-white">
                         <tr>
                             <td className="w-1">
                                 <h2>{'>'}</h2>
                             </td>
                             <td className="md:pr-8">
-                                <h2 className="ml-[0.2rem] text-grey dark:text-white">
+                                <h2 className="text-grey ml-[0.2rem] dark:text-white">
                                     Where is the Duck Lounge?
                                 </h2>
                                 <div className="border-t-0.5 dynamicBorder ml-[0.2rem] h-0.5 border-x-0 border-b-0 border-solid"></div>
                             </td>
                         </tr>
                         <tr>
-                            <td className="pl-5 text-grey md:pr-6 dark:text-white" colSpan={2}>
+                            <td className="text-grey pl-5 md:pr-6 dark:text-white" colSpan={2}>
                                 <p>
                                     What is the Duck Lounge? Where is the Duck Lounge? Who is the
                                     Duck Lounge? More truer questions have never been asked. Our CS
@@ -95,7 +95,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                                     If you’re having trouble finding the room,&nbsp;
                                     <a
                                         href="https://studentvip.com.au/adelaide-uni/north-terrace/maps/127019"
-                                        className="font-bold text-orange underline"
+                                        className="text-orange font-bold underline"
                                     >
                                         here&apos;s a map!
                                     </a>
@@ -120,14 +120,14 @@ export default function EmailBody({ firstName }: BodyProps) {
                                         <td className="h-2"></td>
                                     </tr>
                                     <tr>
-                                        <td className="bg-purple pl-0 pr-[8px]"></td>
+                                        <td className="bg-purple pr-[8px] pl-0"></td>
                                         <td></td>
                                     </tr>
                                 </table>
                                 <table className="w-full border-spacing-0">
                                     <tr>
                                         <td className="h-[8px] w-2 p-0"></td>
-                                        <td className="mr-1 bg-purple" colSpan={2}></td>
+                                        <td className="bg-purple mr-1" colSpan={2}></td>
                                         <td className="w-[0.01rem]"></td>
                                     </tr>
                                 </table>
@@ -135,7 +135,7 @@ export default function EmailBody({ firstName }: BodyProps) {
                         </tr>
                     </table>
                 </div>
-                <div className="my-auto ml-5 mr-4 hidden md:ml-0 md:inline md:w-1/2">
+                <div className="my-auto mr-4 ml-5 hidden md:ml-0 md:inline md:w-1/2">
                     <table className="w-full border-spacing-0">
                         <tr>
                             <td
@@ -152,21 +152,21 @@ export default function EmailBody({ firstName }: BodyProps) {
                             <td className="h-2"></td>
                         </tr>
                         <tr>
-                            <td className="bg-purple pl-0 pr-[8px]"></td>
+                            <td className="bg-purple pr-[8px] pl-0"></td>
                             <td></td>
                         </tr>
                     </table>
                     <table className="w-full border-spacing-0">
                         <tr>
                             <td className="h-[8px] w-2 p-0"></td>
-                            <td className="mr-1 bg-purple" colSpan={2}></td>
+                            <td className="bg-purple mr-1" colSpan={2}></td>
                             <td className="w-[0.01rem]"></td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div className="border-t-0.5 dynamicBorder mx-auto my-8 h-0.5 w-1/4 border-x-0 border-b-0 border-solid"></div>
-            <table className="w-full text-grey dark:text-white" style={{ borderSpacing: '1rem' }}>
+            <table className="text-grey w-full dark:text-white" style={{ borderSpacing: '1rem' }}>
                 <tr>
                     <td className="border-t-0.5 dynamicBorder w-1/2 border-[3px] border-solid">
                         <table className="box-border-4 w-full">
@@ -195,14 +195,14 @@ export default function EmailBody({ firstName }: BodyProps) {
                                     through exams! Log into our&nbsp;
                                     <a
                                         href="https://csclub.org.au"
-                                        className="font-bold text-orange underline"
+                                        className="text-orange font-bold underline"
                                     >
                                         website
                                     </a>
                                     &nbsp;to access or&nbsp;
                                     <a
                                         href={process.env.NEXT_PUBLIC_DRIVE_LINK}
-                                        className="font-bold text-purple underline"
+                                        className="text-purple font-bold underline"
                                     >
                                         click this link!
                                     </a>
@@ -224,14 +224,14 @@ export default function EmailBody({ firstName }: BodyProps) {
                                     through exams! Log into our&nbsp;
                                     <a
                                         href="https://csclub.org.au"
-                                        className="font-bold text-orange underline"
+                                        className="text-orange font-bold underline"
                                     >
                                         website
                                     </a>
                                     &nbsp;to access or&nbsp;
                                     <a
                                         href="https://csclub.org.au"
-                                        className="font-bold text-purple underline"
+                                        className="text-purple font-bold underline"
                                     >
                                         click this link!
                                     </a>
@@ -242,21 +242,21 @@ export default function EmailBody({ firstName }: BodyProps) {
                 </tr>
             </table>
 
-            <div className="mb-4 text-center text-grey dark:text-white">
+            <div className="text-grey mb-4 text-center dark:text-white">
                 <h2>Contacts</h2>
                 <div className="border-t-0.5 dynamicBorder mx-auto mb-6 h-0.5 w-1/3 border-x-0 border-b-0 border-solid"></div>
                 <p>
                     If you need any help, hop on Discord and DM any of the&nbsp;
                     <a
                         href="https://csclub.org.au/about#committee"
-                        className="font-bold text-purple underline"
+                        className="text-purple font-bold underline"
                     >
                         committee
                     </a>
                     &nbsp;members, or...
                 </p>
                 <a href="mailto:contact@csclub.org.au">
-                    <button className="border-t-0.5 dynamicBorder mt-2 rounded-2xl border-[3px] border-solid bg-yellow px-10 py-2 text-base font-bold text-grey">
+                    <button className="border-t-0.5 dynamicBorder bg-yellow text-grey mt-2 rounded-2xl border-[3px] border-solid px-10 py-2 text-base font-bold">
                         Send an email!
                     </button>
                 </a>

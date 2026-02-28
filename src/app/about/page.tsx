@@ -29,7 +29,7 @@ export default async function AboutPage() {
                         alt="Square Grid"
                         width={500}
                         height={500}
-                        className="absolute -z-10 ml-8 mt-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
+                        className="absolute -z-10 mt-8 ml-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
                     />
                     <div className="mr-2 flex">
                         <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
@@ -42,7 +42,7 @@ export default async function AboutPage() {
                             ></Image>
                         </FancyRectangle>
                     </div>
-                    <div className="mb-10 mt-8 flex flex-col lg:justify-center">
+                    <div className="mt-8 mb-10 flex flex-col lg:justify-center">
                         <div className="relative flex justify-end">
                             <Image
                                 src="/images/white-star.svg"
@@ -59,11 +59,11 @@ export default async function AboutPage() {
                                 height={50}
                             />
                         </div>
-                        <div className="flex h-fit flex-row self-center border-b-2 border-t-2 border-white bg-grey px-4">
+                        <div className="bg-grey flex h-fit flex-row self-center border-t-2 border-b-2 border-white px-4">
                             <Image
                                 src="/images/yellow-triangle.svg"
                                 alt="Yellow Triangle"
-                                className="mb-12 mr-4"
+                                className="mr-4 mb-12"
                                 width={30}
                                 height={30}
                             />
@@ -80,9 +80,9 @@ export default async function AboutPage() {
                 <section className="flex flex-col gap-10 md:flex-row">
                     <div className="mr-2 md:w-[54vw]">
                         <div className="mb-4 flex flex-row flex-wrap text-2xl font-black md:mt-6 lg:mt-12 lg:text-3xl">
-                            <h3 className="mb-2 mr-2 md:mb-0">Members will have </h3>
+                            <h3 className="mr-2 mb-2 md:mb-0">Members will have </h3>
                             <div className="flex items-center">
-                                <div className="mb-2 w-fit bg-yellow px-2 md:mb-0">
+                                <div className="bg-yellow mb-2 w-fit px-2 md:mb-0">
                                     <h3 className="text-grey">access</h3>
                                 </div>
                                 <h3 className="mb-2 ml-2 md:mb-0">to</h3>
@@ -93,7 +93,7 @@ export default async function AboutPage() {
                                 <ul className="ml-6 list-disc">
                                     <li>
                                         The{' '}
-                                        <span className="font-bold text-yellow">Duck Lounge</span>{' '}
+                                        <span className="text-yellow font-bold">Duck Lounge</span>{' '}
                                         (located at Engineering and Maths EM110)
                                     </li>
                                     <li>
@@ -101,32 +101,32 @@ export default async function AboutPage() {
                                     </li>
                                     <li>
                                         Educational{' '}
-                                        <span className="font-bold text-purple">workshops</span>
+                                        <span className="text-purple font-bold">workshops</span>
                                     </li>
                                     <li>
-                                        <span className="font-bold text-yellow">Social nights</span>
+                                        <span className="text-yellow font-bold">Social nights</span>
                                     </li>
                                     <li>
                                         A wide{' '}
-                                        <span className="font-bold text-orange">network</span> of
+                                        <span className="text-orange font-bold">network</span> of
                                         other computer science students and graduates
                                     </li>
                                     <li>
                                         And of course,{' '}
-                                        <span className="font-bold text-orange">
+                                        <span className="text-orange font-bold">
                                             {' '}
                                             cooperative food
                                         </span>
                                         ,{' '}
-                                        <span className="font-bold text-purple">
+                                        <span className="text-purple font-bold">
                                             drink ventures
                                         </span>
-                                        , and <span className="font-bold text-yellow">BBQs</span>{' '}
+                                        , and <span className="text-yellow font-bold">BBQs</span>{' '}
                                         throughout the year
                                     </li>
                                     <li>
                                         And let&apos;s not forget, a{' '}
-                                        <span className="font-bold text-yellow">pub crawl</span>{' '}
+                                        <span className="text-yellow font-bold">pub crawl</span>{' '}
                                         each year to celebrate our studies
                                     </li>
                                 </ul>
@@ -146,11 +146,11 @@ export default async function AboutPage() {
                 </section>
                 {/* Competitions & Projects */}
                 <section className="mt-10 flex flex-col gap-10 md:flex-row">
-                    <div className="flex h-fit flex-row self-center border-b-2 border-t-2 border-white bg-grey px-4">
+                    <div className="bg-grey flex h-fit flex-row self-center border-t-2 border-b-2 border-white px-4">
                         <Image
                             src="/images/yellow-triangle.svg"
                             alt="Yellow Triangle"
-                            className="mb-12 mr-4"
+                            className="mr-4 mb-12"
                             width={30}
                             height={30}
                         />
@@ -206,7 +206,7 @@ export default async function AboutPage() {
                         width={50}
                         height={50}
                     />
-                    <div className="relative rounded-xl border-2 border-white bg-grey px-4 py-4 md:px-6 md:py-6">
+                    <div className="bg-grey relative rounded-xl border-2 border-white px-4 py-4 md:px-6 md:py-6">
                         <p className="text-lg md:text-xl">
                             Founded in 2008 with a large and active group of members, we are always
                             willing to offer academic assistance or make new friends. All are
@@ -217,7 +217,7 @@ export default async function AboutPage() {
                     <Image
                         src="/images/white-star-outline.svg"
                         alt="White Star Outline"
-                        className="absolute right-0 z-10 -translate-y-8 translate-x-4"
+                        className="absolute right-0 z-10 translate-x-4 -translate-y-8"
                         width={50}
                         height={50}
                     />
@@ -230,12 +230,12 @@ export default async function AboutPage() {
                         alt="Rectangle Grid"
                         width={750}
                         height={750}
-                        className="absolute -z-10 ml-20 mt-8 w-0 max-w-[1200px] lg:w-[80vw]"
+                        className="absolute -z-10 mt-8 ml-20 w-0 max-w-[1200px] lg:w-[80vw]"
                     />
-                    <div className="flex w-fit bg-orange px-2 lg:mb-0">
+                    <div className="bg-orange flex w-fit px-2 lg:mb-0">
                         <h2 className="text-5xl font-bold">Committee Members</h2>
                     </div>
-                    <div className="mb-2 mr-2 mt-8 grid auto-rows-fr grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+                    <div className="mt-8 mr-2 mb-2 grid auto-rows-fr grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
                         {committeeMembers.map((member, index) => (
                             <FancyRectangle
                                 key={index}
@@ -247,7 +247,7 @@ export default async function AboutPage() {
                                 fullHeight
                             >
                                 <div
-                                    className={`h-full w-full rounded-xl border-2 ${member.exec ? 'border-yellow' : 'border-white'} flex flex-col justify-center bg-grey p-4`}
+                                    className={`h-full w-full rounded-xl border-2 ${member.exec ? 'border-yellow' : 'border-white'} bg-grey flex flex-col justify-center p-4`}
                                 >
                                     <h3 className="text-2xl font-bold">{member.name}</h3>
                                     <p>{member.position}</p>
@@ -255,7 +255,7 @@ export default async function AboutPage() {
                             </FancyRectangle>
                         ))}
                     </div>
-                    <div className="relative mb-2 mt-8 flex flex-row justify-end space-x-4 *:h-12 md:*:h-16">
+                    <div className="relative mt-8 mb-2 flex flex-row justify-end space-x-4 *:h-12 md:*:h-16">
                         <Duck colour="white" outline />
                         <Duck colour="white" outline />
                         <Duck colour="white" />
@@ -265,21 +265,21 @@ export default async function AboutPage() {
                 </section>
                 <section className="mt-8 md:mt-0">
                     <FancyRectangle colour="purple" offset="8" filled={false}>
-                        <div className="w-fit bg-purple px-2 py-2">
-                            <h2 className="text-4xl font-bold text-grey md:text-5xl">FAQ</h2>
+                        <div className="bg-purple w-fit px-2 py-2">
+                            <h2 className="text-grey text-4xl font-bold md:text-5xl">FAQ</h2>
                         </div>
                     </FancyRectangle>
                     <div className="mt-8" />
                     <div className="flex flex-col gap-x-16 gap-y-8 lg:flex-row">
                         {/* FAQ */}
-                        <div className="mb-8 mr-2 flex flex-col justify-items-center gap-12 lg:w-full">
+                        <div className="mr-2 mb-8 flex flex-col justify-items-center gap-12 lg:w-full">
                             {/* Grid */}
                             <Image
                                 src="/images/rectangle-grid.svg"
                                 alt="Rectangle Grid"
                                 width={750}
                                 height={750}
-                                className="absolute -z-10 ml-20 mt-8 max-h-[600px] w-0 max-w-[1200px] lg:w-[70vw]"
+                                className="absolute -z-10 mt-8 ml-20 max-h-[600px] w-0 max-w-[1200px] lg:w-[70vw]"
                             />
 
                             <FAQ

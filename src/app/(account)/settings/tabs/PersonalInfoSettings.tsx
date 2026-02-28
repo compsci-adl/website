@@ -118,7 +118,7 @@ export default function PersonalInfoSettings() {
                         </div>
                     </div>
                 ))}
-                <div className="relative mt-2 h-12 w-full overflow-hidden bg-orange">
+                <div className="bg-orange relative mt-2 h-12 w-full overflow-hidden">
                     <span className="shimmer absolute inset-0" />
                 </div>
                 <style jsx>{`

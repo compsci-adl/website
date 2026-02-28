@@ -41,7 +41,7 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
         <div className="mt-4 flex items-center justify-center space-x-2">
             <a
                 onClick={() => handlePageChange(currentPage - 1)}
-                className={`flex items-center justify-center text-black hover:bg-yellow hover:text-white ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                className={`hover:bg-yellow flex items-center justify-center text-black hover:text-white ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
                 aria-disabled={currentPage === 1 ? 'true' : 'false'}
                 title="Previous Page"
             >
@@ -55,7 +55,7 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
                 <>
                     <a
                         onClick={() => handlePageChange(1)}
-                        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-transparent text-black hover:bg-yellow`}
+                        className={`hover:bg-yellow flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-transparent text-black`}
                         title="Page 1"
                     >
                         1
@@ -68,7 +68,7 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
                 <a
                     key={page}
                     onClick={() => handlePageChange(page)}
-                    className={`flex h-8 w-8 items-center justify-center rounded-full ${page === currentPage ? 'bg-orange font-bold text-white' : 'cursor-pointer border-transparent text-black hover:bg-yellow'}`}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full ${page === currentPage ? 'bg-orange font-bold text-white' : 'hover:bg-yellow cursor-pointer border-transparent text-black'}`}
                     aria-current={page === currentPage ? 'page' : undefined}
                     title={`Page ${page}`}
                 >
@@ -81,7 +81,7 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
                     {endPage < totalPages - 1 && <span className="text-black">...</span>}
                     <a
                         onClick={() => handlePageChange(totalPages)}
-                        className={`flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-transparent text-black hover:bg-yellow`}
+                        className={`hover:bg-yellow flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-transparent text-black`}
                         title={`Page ${totalPages}`}
                     >
                         {totalPages}
@@ -91,7 +91,7 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
 
             <a
                 onClick={() => handlePageChange(currentPage + 1)}
-                className={`flex items-center justify-center text-black hover:bg-yellow hover:text-white ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                className={`hover:bg-yellow flex items-center justify-center text-black hover:text-white ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
                 aria-disabled={currentPage === totalPages ? 'true' : 'false'}
                 title="Next Page"
             >

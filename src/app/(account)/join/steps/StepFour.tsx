@@ -41,7 +41,7 @@ export default function StepFour() {
 
     return (
         <div>
-            <div className="mb-4 mt-8">
+            <div className="mt-8 mb-4">
                 {(['email'] as NotificationTypes[]).map((type) => (
                     <div key={type} className="mb-6">
                         <h2 className="text-lg font-semibold capitalize">{type}</h2>
@@ -63,7 +63,7 @@ export default function StepFour() {
             </div>
 
             {phoneNumber && (
-                <div className="mb-4 mt-8">
+                <div className="mt-8 mb-4">
                     <div className="mb-6">
                         <h2 className="text-lg font-semibold">SMS</h2>
                         {(Object.keys(categoryNames) as CategoryTypes[]).map((category) => (
