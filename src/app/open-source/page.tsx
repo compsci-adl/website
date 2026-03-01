@@ -40,10 +40,10 @@ export default async function OpenSourcePage() {
                                     <div className="relative flex flex-row">
                                         <div className="bg-orange w-12" />
                                         <div className="relative flex flex-1 flex-col">
-                                            <span className="relative z-[2] bg-white py-4 pr-16 pl-4 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-2 bg-white py-4 pr-16 pl-4 text-2xl font-black text-black lg:pr-36 lg:text-3xl">
                                                 Who is the
                                             </span>
-                                            <span className="relative z-[2] border-2 border-white py-6 pr-16 pl-4 text-2xl font-bold whitespace-nowrap lg:pr-36 lg:text-3xl">
+                                            <span className="relative z-2 border-2 border-white py-6 pr-16 pl-4 text-2xl font-bold whitespace-nowrap lg:pr-36 lg:text-3xl">
                                                 Open Source Team?
                                             </span>
                                         </div>

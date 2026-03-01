@@ -235,7 +235,7 @@ export default function Gallery({ setCurrentTitle }: GalleryProps) {
                 </div>
             ) : (
                 <div
-                    className={`relative flex ${viewMode === 'pile' ? 'h-[100vh]' : 'h-[85vh]'} w-full items-start justify-center`}
+                    className={`relative flex ${viewMode === 'pile' ? 'h-screen' : 'h-[85vh]'} w-full items-start justify-center`}
                     ref={galleryRef}
                 >
                     <div className="absolute top-0 z-10 md:left-0">

@@ -14,12 +14,12 @@ export default function EmailBody({ firstName }: BodyProps) {
                     media="(prefers-color-scheme: dark)"
                 />
                 <Img
-                    className="light w-full sm:w-screen sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[50rem]"
+                    className="light w-full sm:w-screen sm:max-w-120 md:max-w-160 lg:max-w-200 xl:max-w-200"
                     src="https://csclub.org.au/images/email/dark/welcome.png"
                     alt="Welcome to the CS Club!"
                 />
                 <Img
-                    className="dark w-full sm:w-screen sm:max-w-[30rem] md:max-w-[40rem] lg:max-w-[50rem] xl:max-w-[50rem]"
+                    className="dark w-full sm:w-screen sm:max-w-120 md:max-w-160 lg:max-w-200 xl:max-w-200"
                     src="https://csclub.org.au/images/email/light/welcome.png"
                     alt="Welcome to the CS Club!"
                 />

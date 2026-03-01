@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
     return (
-        <div className="h-full bg-[url('/images/rectangle-grid.svg')] bg-repeat-y md:bg-[length:90%_90%] md:bg-center md:bg-no-repeat">
+        <div className="h-full bg-[url('/images/rectangle-grid.svg')] bg-repeat-y md:bg-size-[90%_90%] md:bg-center md:bg-no-repeat">
             <div className="flex flex-col items-center gap-8 md:gap-10">
                 <div className="mb-8 grid-flow-dense justify-self-center">
                     <Title colour="yellow">Contact</Title>

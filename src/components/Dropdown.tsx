@@ -56,7 +56,7 @@ const Dropdown = ({
         size === 'small' ? 'bottom-full mb-1 origin-bottom' : 'top-full mt-1 origin-top';
 
     return (
-        <div className="relative z-[9999]">
+        <div className="relative z-9999">
             <FancyRectangle colour="black" offset="4" filled fullWidth>
                 <div ref={dropdownRef} className={`relative ${width} ${className}`}>
                     <div
@@ -76,7 +76,7 @@ const Dropdown = ({
                     </div>
 
                     <div
-                        className={`absolute left-0 z-10 w-full transform border-2 border-black bg-white shadow-md transition-all duration-100 ease-out ${
+                        className={`absolute left-0 z-10 w-full transform border-2 border-black bg-[#E9E9ED] shadow-md transition-all duration-100 ease-out ${
                             openDirection
                         } ${
                             isOpen

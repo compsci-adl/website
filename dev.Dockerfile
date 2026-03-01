@@ -1,4 +1,4 @@
-FROM node:20-bookworm-slim
+FROM node:25-trixie-slim
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PNPM_HOME}:${PATH}"
