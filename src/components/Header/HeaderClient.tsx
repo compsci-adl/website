@@ -30,11 +30,11 @@ export default function HeaderClient({
             : []),
     ];
     return (
-        <header className={`${className} fixed z-[9999] w-full`}>
+        <header className={`${className} fixed z-9999 w-full`}>
             <ScrollShader />
             <div className="w-responsive mx-auto mt-8">
                 <div className="text-grey flex items-center justify-between gap-8 border-4 border-black bg-white px-8 py-4">
-                    <div className="flex flex-shrink items-center">
+                    <div className="flex shrink items-center">
                         <LogoTitle titleColor="text-grey" className="grow" />
                     </div>
                     <div className="flex items-center md:gap-4">
@@ -54,7 +54,7 @@ export default function HeaderClient({
                         </div>
                     </div>
                 </div>
-                <div className="w-responsive md-lg:-top-[4.75rem] md-lg:h-[5.25rem] relative -top-[7.5rem] -right-[0.5rem] -z-10 h-[8rem] border-4 border-black bg-white lg:-top-[6rem] lg:h-[6.5rem]" />
+                <div className="w-responsive md-lg:-top-[4.25rem] md-lg:h-[0.5rem] relative -top-26 -right-2 -z-10 h-28 border-4 border-black bg-white lg:-top-19 lg:h-21" />
             </div>
         </header>
     );

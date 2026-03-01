@@ -1,6 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+    --color-grey: #252020;
+    --color-white: #f3f3eb;
+    --color-orange: #e1652b;
+    --color-yellow: #fcc018;
+    --color-purple: #7e7fe7;
+
+    --shadow-card: 10px 10px 0px 0px #7e7fe7;
+    --shadow-button: 4px 4px 0px 0px #000000;
+
+    --width-responsive: min(75vw, 90rem);
+
+    --breakpoint-xs: 300px;
+    --breakpoint-smr: 480px;
+    --breakpoint-md-lg: 1169px;
+    --breakpoint-lg-xl: 1300px;
+}
 
 @layer base {
     @media screen and (max-width: 400px) {

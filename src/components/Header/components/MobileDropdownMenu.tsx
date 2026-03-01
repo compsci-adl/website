@@ -24,7 +24,7 @@ export default function MobileDropdownMenu({ title, items, onClick }: MobileDrop
                 </span>
             </button>
             <div
-                className={`fixed inset-0 z-[99999] flex items-end transition-all duration-300 ${submenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} bg-black/40`}
+                className={`fixed inset-0 z-99999 flex items-end transition-all duration-300 ${submenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} bg-black/40`}
                 onClick={() => setSubmenuOpen(false)}
             >
                 <div

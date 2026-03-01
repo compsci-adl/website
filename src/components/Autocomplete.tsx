@@ -34,7 +34,7 @@ export default function Autocomplete<TOption>({
                 <div className="relative w-full">
                     <Combobox.Input
                         onChange={(e) => setQuery(e.target.value)}
-                        className="text-grey w-full border border-gray-300 px-3 py-2"
+                        className="text-grey w-full border border-gray-300 bg-[#E9E9ED] px-3 py-2"
                         displayValue={(option: TOption | null) =>
                             option ? displayOptionStr(option) : ''
                         }
@@ -44,7 +44,7 @@ export default function Autocomplete<TOption>({
                         <IoCaretDown className="fill-grey h-5 w-5" />
                     </Combobox.Button>
                 </div>
-                <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
+                <Combobox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto bg-[#E9E9ED] py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none">
                     {filteredOptions.length === 0 && query !== '' ? (
                         <div className="text-grey relative px-4 py-2 select-none">
                             {notFoundMessage ?? 'No results found'}

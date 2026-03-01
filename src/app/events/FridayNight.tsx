@@ -11,7 +11,7 @@ function Info({ className }: { className?: string }) {
                 <span className="bg-orange text-grey p-1">Friday Night</span> Games
             </h2>
             <div>
-                <div className="grid grid-cols-[auto_minmax(0,_1fr)_auto] gap-x-8 gap-y-3">
+                <div className="grid grid-cols-[auto_minmax(0,1fr)_auto] gap-x-8 gap-y-3">
                     <div className="col-span-3 ml-auto h-1 w-[calc(100%-1rem)] bg-white" />
                     <IoTriangleSharp size={26} className="fill-yellow rotate-90" />
                     <div>

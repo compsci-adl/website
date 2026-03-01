@@ -22,11 +22,11 @@ function SocialIcon({ href, alt, lightSrc, darkSrc, ariaLabel }: SocialIconProps
                         <tr>
                             <td className="dynamicBorder dark:bg-grey h-[0.3rem] w-[0.1125rem] border-0 border-b-[3px] border-l-[3px] border-solid bg-white"></td>
                             <td className="dynamicBorder dark:bg-grey border-0 border-r-[3px] border-b-[3px] border-solid bg-white p-0">
-                                <div className="mx-0 my-auto h-[2.25rem] w-[2.25rem]">
+                                <div className="mx-0 my-auto h-9 w-9">
                                     <a
                                         href={href}
                                         aria-label={ariaLabel}
-                                        className="ml-[0.09rem] box-border inline-block h-[2.25rem] w-[2.25rem] p-1"
+                                        className="ml-[0.09rem] box-border inline-block h-9 w-9 p-1"
                                     >
                                         <Img
                                             className="light mt-[0.05rem] mr-[0.4rem] h-[1.35rem] w-[1.35rem] object-contain"

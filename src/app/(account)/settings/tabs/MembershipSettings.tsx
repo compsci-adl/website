@@ -67,7 +67,7 @@ export default function MembershipSettings({
                         type="submit"
                         colour="orange"
                         onClick={handlePayment}
-                        width="w-full md:w-42"
+                        width="w-full"
                         size="small"
                         loading={pay.isMutating}
                     >
