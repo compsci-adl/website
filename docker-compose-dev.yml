@@ -40,6 +40,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
+    command: sh -c "CI=true pnpm install && if ! sqlite3 dev.sqlite '.tables' | grep -q members; then pnpm run db:push; fi && pnpm run dev"
     networks:
       - csclub
 
