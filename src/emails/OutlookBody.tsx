@@ -27,7 +27,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 </tr>
                 <tr>
                     <td className="w-1"></td>
-                    <td className="dynamicBorder bg-grey h-[1px]"></td>
+                    <td className="dynamicBorder bg-grey h-px"></td>
                 </tr>
                 <tr className="h-1">
                     <td>&nbsp;</td>
@@ -85,7 +85,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 </tr>
                 <tr>
                     <td className="w-1"></td>
-                    <td className="dynamicBorder bg-grey h-[1px]"></td>
+                    <td className="dynamicBorder bg-grey h-px"></td>
                 </tr>
                 <tr className="h-1">
                     <td>&nbsp;</td>
@@ -139,7 +139,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 </tr>
                 <tr>
                     <td className="w-1/3"></td>
-                    <td className="dynamicBorder bg-grey h-[1px] w-1/3"></td>
+                    <td className="dynamicBorder bg-grey h-px w-1/3"></td>
                     <td className="w-1/3"></td>
                 </tr>
                 <tr className="h-1">
@@ -228,7 +228,7 @@ export default function OutlookEmailBody({ firstName }: BodyProps) {
                 <table className="w-full border-collapse border-spacing-0">
                     <tr>
                         <td className="w-1/3"></td>
-                        <td className="dynamicBorder bg-grey h-[1px] w-1/3"></td>
+                        <td className="dynamicBorder bg-grey h-px w-1/3"></td>
                         <td className="w-1/3"></td>
                     </tr>
                 </table>

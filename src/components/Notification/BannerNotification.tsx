@@ -10,7 +10,7 @@ export default function BannerNotification({
 }) {
     return (
         <>
-            <div className="bg-yellow fixed top-0 left-0 z-[9999] w-full p-4 shadow-md">
+            <div className="bg-yellow fixed top-0 left-0 z-9999 w-full p-4 shadow-md">
                 <div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4 text-black">
                     <div className="flex flex-1 justify-center">
                         <NotificationContent data={data} />
@@ -24,7 +24,7 @@ export default function BannerNotification({
                     &times;
                 </button>
             </div>
-            <div className="h-[3.75rem]" />
+            <div className="h-15" />
         </>
     );
 }

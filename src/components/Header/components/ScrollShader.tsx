@@ -13,7 +13,7 @@ export default function ScrollShader({ className }: { className?: string }) {
     return (
         <div
             className={`absolute -z-20 h-40 w-full transition-all duration-500 ${
-                isScrolled ? 'bg-gradient-to-b from-black from-10% to-transparent to-100%' : ''
+                isScrolled ? 'bg-linear-to-b from-black from-10% to-transparent to-100%' : ''
             } ${className}`}
         />
     );
