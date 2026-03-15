@@ -15,7 +15,7 @@ export default function LogoTitle({
             <Image
                 src="/images/logos/logo.svg"
                 alt="Computer Science Club Logo"
-                className="h-full w-[3rem] md:w-[2rem] lg:w-[2.5rem]"
+                className="h-full w-12 md:w-8 lg:w-10"
                 width={100}
                 height={100}
             />

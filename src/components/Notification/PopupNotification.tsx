@@ -11,7 +11,7 @@ export default function PopupNotification({
     onClose: () => void;
 }) {
     return (
-        <div className="bg-opacity-40 fixed inset-0 z-[99999] flex items-center justify-center bg-black">
+        <div className="bg-opacity-40 fixed inset-0 z-99999 flex items-center justify-center bg-black">
             <FancyRectangle colour="black" offset="8" filled>
                 <div className="bg-yellow relative flex w-[75vw] max-w-4xl flex-col items-center justify-center gap-4 border-4 border-black p-6 text-black shadow-lg md:w-[90vw]">
                     <button

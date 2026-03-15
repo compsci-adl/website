@@ -1,7 +1,7 @@
 export const SkeletonLoader = () => {
     return (
         <div className="flex w-full flex-col gap-6 rounded-xl bg-white p-4 text-black lg:flex-row">
-            <div className="aspect-[2/1] w-full rounded-lg border-[3px] border-gray-400 bg-gray-300 md:w-[450px]"></div>
+            <div className="aspect-2/1 w-full rounded-lg border-[3px] border-gray-400 bg-gray-300 md:w-[450px]"></div>
 
             <div className="flex grow flex-col space-y-2 md:space-y-4">
                 <div className="flex gap-6 font-bold">
