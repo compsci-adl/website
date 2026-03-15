@@ -41,7 +41,7 @@ export default async function SettingsPage() {
             <div className="flex justify-center">
                 <Title colour="purple">Settings</Title>
             </div>
-            <section className="w-full max-w-[62rem]">
+            <section className="w-full max-w-248">
                 <FancyRectangle colour="purple" offset="8" filled fullWidth>
                     {exists ? (
                         <Settings settingData={{ membershipPayment }} />

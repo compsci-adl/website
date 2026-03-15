@@ -73,9 +73,9 @@ export default function HeaderMobileClient({
     } else {
         actionCount = 2;
     }
-    const actionPadding = actionCount === 2 ? 'px-[3rem]' : 'px-[2rem]';
+    const actionPadding = actionCount === 2 ? 'px-12' : 'px-8';
     return (
-        <div className={`${className} fixed z-[9999] w-full`}>
+        <div className={`${className} fixed z-9999 w-full`}>
             <ScrollShader className={isMenuOpen ? 'hidden' : ''} />
             <div className="w-responsive mx-auto mt-8">
                 <div className="flex">
@@ -97,11 +97,11 @@ export default function HeaderMobileClient({
                 </div>
             </div>
             <div
-                className={`fixed inset-0 z-[9998] transition-all duration-300 ${isMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} bg-black/60`}
+                className={`fixed inset-0 z-9998 transition-all duration-300 ${isMenuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'} bg-black/60`}
                 onClick={closeMenu}
             >
                 <div
-                    className={`fixed bottom-0 left-0 z-[9999] flex max-h-[80vh] w-full transform flex-col border-t-4 border-black bg-white shadow-2xl transition-all duration-300 ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
+                    className={`fixed bottom-0 left-0 z-9999 flex max-h-[80vh] w-full transform flex-col border-t-4 border-black bg-white shadow-2xl transition-all duration-300 ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}
                     onClick={(e) => e.stopPropagation()}
                 >
                     <nav className="flex flex-col gap-2 overflow-y-auto p-6 text-lg text-black">

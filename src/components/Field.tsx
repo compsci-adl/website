@@ -46,7 +46,7 @@ const Field = ({
                     onChange={(e) => onChange(e.target.value)}
                     id={labelString}
                     name={labelString}
-                    className="text-grey mt-1 w-full border border-gray-300 px-3 py-2"
+                    className="text-grey mt-1 w-full border border-gray-300 bg-[#E9E9ED] px-3 py-2"
                 >
                     {placeholder && <option value="">{placeholder}</option>}
                     {options.map((option, index) => (
@@ -97,7 +97,7 @@ const Field = ({
                         name={labelString}
                         type={showPassword ? 'text' : type}
                         value={typeof value === 'boolean' ? value.toString() : value}
-                        className="text-grey mt-1 w-full rounded-none border border-gray-300 px-3 py-2"
+                        className="text-grey mt-1 w-full rounded-none border border-gray-300 bg-[#FFFFFF] px-3 py-2"
                     />
                     {type === 'password' && (
                         <button
@@ -111,7 +111,7 @@ const Field = ({
                 </div>
             )}
             {longLabel && !error && <div className="mt-2 text-sm text-gray-500">{longLabel}</div>}
-            {error && <div className="mt-2 w-[25rem] text-sm text-red-500">{error}</div>}
+            {error && <div className="mt-2 w-100 text-sm text-red-500">{error}</div>}
         </div>
     );
 };

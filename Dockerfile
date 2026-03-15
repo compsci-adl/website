@@ -1,12 +1,12 @@
 # Cache package.json
-FROM node:20-bookworm-slim AS deps
+FROM node:25-trixie-slim AS deps
 
 WORKDIR /tmp
 
 COPY package.json ./
 
 # Build
-FROM node:20-bookworm-slim AS builder
+FROM node:25-trixie-slim AS builder
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
@@ -25,7 +25,7 @@ COPY . .
 RUN pnpm run build
 
 # Final deployment image
-FROM node:20-bookworm-slim AS runner
+FROM node:25-trixie-slim AS runner
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"

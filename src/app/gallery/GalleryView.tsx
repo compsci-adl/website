@@ -111,7 +111,7 @@ export default function GalleryView({
                                 }}
                                 src={thumb.url}
                                 onClick={() => setStandardIndex(idx)}
-                                className={`h-16 w-24 flex-shrink-0 cursor-pointer rounded-sm border-2 object-cover transition-all duration-200 ${
+                                className={`h-16 w-24 shrink-0 cursor-pointer rounded-sm border-2 object-cover transition-all duration-200 ${
                                     idx === standardIndex
                                         ? 'border-purple-500 opacity-100'
                                         : 'border-transparent opacity-70 hover:opacity-100'
