@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
@@ -10,10 +10,7 @@ interface PaginationControlsProps {
 }
 
 export default function PaginationControls({ currentPage, totalPages }: PaginationControlsProps) {
-    const router = useRouter();
-    const [windowWidth, setWindowWidth] = useState<number>(
-        typeof window !== 'undefined' ? window.innerWidth : 1024
-    );
+    const [windowWidth, setWindowWidth] = useState<number>(1024);
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
@@ -21,10 +18,9 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    const handlePageChange = (page: number) => {
-        if (page >= 1 && page <= totalPages) {
-            router.push(`/admin?page=${page}`);
-        }
+    const getPageHref = (page: number) => {
+        if (page < 1 || page > totalPages) return `/admin?page=${currentPage}`;
+        return `/admin?page=${page}`;
     };
 
     // Determine the number of pages to show around the current page
@@ -39,67 +35,91 @@ export default function PaginationControls({ currentPage, totalPages }: Paginati
 
     return (
         <div className="mt-4 flex items-center justify-center space-x-2">
-            <a
-                onClick={() => handlePageChange(currentPage - 1)}
-                className={`hover:bg-yellow flex items-center justify-center text-black hover:text-white ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
-                aria-disabled={currentPage === 1 ? 'true' : 'false'}
-                title="Previous Page"
-            >
-                <span className="flex items-center justify-center space-x-2 p-2">
-                    <FaChevronLeft />
-                    <span>Back</span>
+            {currentPage === 1 ? (
+                <span
+                    className="flex cursor-not-allowed items-center justify-center text-black opacity-50"
+                    aria-disabled="true"
+                    title="Previous Page"
+                >
+                    <span className="flex items-center justify-center space-x-2 p-2">
+                        <FaChevronLeft />
+                        <span>Back</span>
+                    </span>
                 </span>
-            </a>
+            ) : (
+                <Link
+                    href={getPageHref(currentPage - 1)}
+                    className="hover:bg-yellow flex cursor-pointer items-center justify-center text-black hover:text-white"
+                    title="Previous Page"
+                >
+                    <span className="flex items-center justify-center space-x-2 p-2">
+                        <FaChevronLeft />
+                        <span>Back</span>
+                    </span>
+                </Link>
+            )}
 
             {startPage > 1 && (
                 <>
-                    <a
-                        onClick={() => handlePageChange(1)}
+                    <Link
+                        href={getPageHref(1)}
                         className={`hover:bg-yellow flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-transparent text-black`}
                         title="Page 1"
                     >
                         1
-                    </a>
+                    </Link>
                     {startPage > 2 && <span className="text-black">...</span>}
                 </>
             )}
 
             {displayPages.map((page) => (
-                <a
+                <Link
                     key={page}
-                    onClick={() => handlePageChange(page)}
-                    className={`flex h-8 w-8 items-center justify-center rounded-full ${page === currentPage ? 'bg-orange font-bold text-white' : 'hover:bg-yellow cursor-pointer border-transparent text-black'}`}
+                    href={getPageHref(page)}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full ${page === currentPage ? 'bg-orange pointer-events-none font-bold text-white' : 'hover:bg-yellow cursor-pointer border-transparent text-black'}`}
                     aria-current={page === currentPage ? 'page' : undefined}
                     title={`Page ${page}`}
                 >
                     {page}
-                </a>
+                </Link>
             ))}
 
             {endPage < totalPages && (
                 <>
                     {endPage < totalPages - 1 && <span className="text-black">...</span>}
-                    <a
-                        onClick={() => handlePageChange(totalPages)}
+                    <Link
+                        href={getPageHref(totalPages)}
                         className={`hover:bg-yellow flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border-transparent text-black`}
                         title={`Page ${totalPages}`}
                     >
                         {totalPages}
-                    </a>
+                    </Link>
                 </>
             )}
 
-            <a
-                onClick={() => handlePageChange(currentPage + 1)}
-                className={`hover:bg-yellow flex items-center justify-center text-black hover:text-white ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
-                aria-disabled={currentPage === totalPages ? 'true' : 'false'}
-                title="Next Page"
-            >
-                <span className="flex items-center justify-center space-x-2 p-2">
-                    <span>Next</span>
-                    <FaChevronRight />
+            {currentPage === totalPages ? (
+                <span
+                    className="flex cursor-not-allowed items-center justify-center text-black opacity-50"
+                    aria-disabled="true"
+                    title="Next Page"
+                >
+                    <span className="flex items-center justify-center space-x-2 p-2">
+                        <span>Next</span>
+                        <FaChevronRight />
+                    </span>
                 </span>
-            </a>
+            ) : (
+                <Link
+                    href={getPageHref(currentPage + 1)}
+                    className="hover:bg-yellow flex cursor-pointer items-center justify-center text-black hover:text-white"
+                    title="Next Page"
+                >
+                    <span className="flex items-center justify-center space-x-2 p-2">
+                        <span>Next</span>
+                        <FaChevronRight />
+                    </span>
+                </Link>
+            )}
         </div>
     );
 }
