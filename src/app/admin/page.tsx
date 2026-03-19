@@ -57,7 +57,8 @@ export type Member = {
     createdAt: string;
 };
 
-export default async function AdminPage({ searchParams }: { searchParams?: { page?: string } }) {
+export default async function AdminPage(props: { searchParams?: Promise<{ page?: string }> }) {
+    const searchParams = await props.searchParams;
     const session = await auth();
     if (!session?.user?.isAdmin) {
         return notFound();

@@ -1,11 +1,15 @@
 'use client';
 
-import Autocomplete from '@/components/Autocomplete';
 import { fetcher } from '@/lib/fetcher';
+import dynamic from 'next/dynamic';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import type { Member } from './page';
+
+const Autocomplete = dynamic(() => import('@/components/Autocomplete'), {
+    ssr: false,
+}) as typeof import('@/components/Autocomplete').default;
 
 const getMemberStr = (member: Member) => `${member.email} - ${member.firstName} ${member.lastName}`;
 
