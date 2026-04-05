@@ -70,7 +70,7 @@ export default function StepFive() {
                             </a>
                             {', '}
                             <a
-                                href="https://adelaideuni.edu.au/about/policies/student-code-of-conduct/"
+                                href="https://www.ausaadelaide.com.au/pageassets/community/clubs-societies/clubsupport/AUSA-Clubs-Code-of-Conduct-17.12.25.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-orange underline"
