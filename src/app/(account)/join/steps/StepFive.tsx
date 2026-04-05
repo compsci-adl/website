@@ -67,6 +67,15 @@ export default function StepFive() {
                                 className="text-orange underline"
                             >
                                 University Code of Conduct
+                            </a>
+                            {', '}
+                            <a
+                                href="https://adelaideuni.edu.au/about/policies/student-code-of-conduct/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-orange underline"
+                            >
+                                AUSA Code of Conduct
                             </a>{' '}
                             and the{' '}
                             <a
