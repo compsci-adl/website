@@ -1,3 +1,5 @@
+'use client';
+
 import { Combobox } from '@headlessui/react';
 import { useState } from 'react';
 import { IoCaretDown, IoCheckmark } from 'react-icons/io5';
