@@ -24,11 +24,11 @@ importers:
         specifier: ^0.13.10
         version: 0.13.10(typescript@5.9.3)(zod@4.3.6)
       drizzle-orm:
-        specifier: ^0.45.1
-        version: 0.45.1(@libsql/client@0.17.0)(gel@2.2.0)
+        specifier: ^0.45.2
+        version: 0.45.2(@libsql/client@0.17.0)(gel@2.2.0)
       drizzle-zod:
         specifier: ^0.8.3
-        version: 0.8.3(drizzle-orm@0.45.1(@libsql/client@0.17.0)(gel@2.2.0))(zod@4.3.6)
+        version: 0.8.3(drizzle-orm@0.45.2(@libsql/client@0.17.0)(gel@2.2.0))(zod@4.3.6)
       framer-motion:
         specifier: ^12.34.3
         version: 12.34.3(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -2156,8 +2156,8 @@ packages:
     resolution: {integrity: sha512-GViD3IgsXn7trFyBUUHyTFBpH/FsHTxYJ66qdbVggxef4UBPHRYxQaRzYLTuekYnk9i5FIEL9pbBIwMqX/Uwrg==}
     hasBin: true
 
-  drizzle-orm@0.45.1:
-    resolution: {integrity: sha512-Te0FOdKIistGNPMq2jscdqngBRfBpC8uMFVwqjf6gtTVJHIQ/dosgV/CLBU2N4ZJBsXL5savCba9b0YJskKdcA==}
+  drizzle-orm@0.45.2:
+    resolution: {integrity: sha512-kY0BSaTNYWnoDMVoyY8uxmyHjpJW1geOmBMdSSicKo9CIIWkSxMIj2rkeSR51b8KAPB7m+qysjuHme5nKP+E5Q==}
     peerDependencies:
       '@aws-sdk/client-rds-data': '>=3'
       '@cloudflare/workers-types': '>=4'
@@ -6231,14 +6231,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.45.1(@libsql/client@0.17.0)(gel@2.2.0):
+  drizzle-orm@0.45.2(@libsql/client@0.17.0)(gel@2.2.0):
     optionalDependencies:
       '@libsql/client': 0.17.0
       gel: 2.2.0
 
-  drizzle-zod@0.8.3(drizzle-orm@0.45.1(@libsql/client@0.17.0)(gel@2.2.0))(zod@4.3.6):
+  drizzle-zod@0.8.3(drizzle-orm@0.45.2(@libsql/client@0.17.0)(gel@2.2.0))(zod@4.3.6):
     dependencies:
-      drizzle-orm: 0.45.1(@libsql/client@0.17.0)(gel@2.2.0)
+      drizzle-orm: 0.45.2(@libsql/client@0.17.0)(gel@2.2.0)
       zod: 4.3.6
 
   dunder-proto@1.0.1:
