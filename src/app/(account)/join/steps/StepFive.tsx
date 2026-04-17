@@ -67,6 +67,15 @@ export default function StepFive() {
                                 className="text-orange underline"
                             >
                                 University Code of Conduct
+                            </a>
+                            {', '}
+                            <a
+                                href="https://www.ausaadelaide.com.au/pageassets/community/clubs-societies/clubsupport/AUSA-Clubs-Code-of-Conduct-17.12.25.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-orange underline"
+                            >
+                                AUSA Code of Conduct
                             </a>{' '}
                             and the{' '}
                             <a
