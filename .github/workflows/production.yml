@@ -7,10 +7,15 @@ on:
 env:
   AWS_REGION: ap-southeast-2
 
+permissions:
+  contents: read
+
 jobs:
   lint-format:
     name: Linting and Formatting Checks
     uses: ./.github/workflows/lint-and-format.yml
+    permissions:
+      contents: read
 
   build:
     needs: lint-format
@@ -80,6 +85,8 @@ jobs:
     needs: build
     name: Deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     environment: Production
     steps:
       - name: Deploy on EC2
