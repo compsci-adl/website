@@ -9,8 +9,8 @@
     "analyse": "cross-env ANALYSE=true next build",
     "start": "next start",
     "lint": "cross-env SKIP_ENV_VALIDATION=true eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}\"",
-    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}\"",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs}\"",
+    "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,css,json,mjs,cjs}\"",
     "db:generate": "drizzle-kit generate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
@@ -79,7 +79,7 @@
     "typescript": "^5.9.3"
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx,css,json,mjs,cjs,yml,yaml}": [
+    "*.{js,jsx,ts,tsx,css,json,mjs,cjs}": [
       "prettier --write"
     ]
   },
