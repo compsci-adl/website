@@ -15,10 +15,6 @@ const getMemberStr = (member: Member) => `${member.email} - ${member.firstName} 
 
 function MemberDetail({ member }: { member: Member }) {
     const [payment, setPayment] = useState(member.paid);
-    useEffect(() => {
-        setPayment(member.paid);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [member.id]);
 
     const router = useRouter();
     const updatePayment = useSWRMutation('payment', fetcher.put.mutate, {
@@ -72,7 +68,7 @@ export default function MemberForm({ members }: { members: Member[] }) {
             />
             <div className="flex justify-center">
                 {selectedMember ? (
-                    <MemberDetail member={selectedMember} />
+                    <MemberDetail key={selectedMember.id} member={selectedMember} />
                 ) : (
                     <div className="py-24 text-center text-4xl">
                         Search a member to view details

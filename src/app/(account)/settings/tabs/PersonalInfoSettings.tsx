@@ -5,7 +5,7 @@ import { fetcher } from '@/lib/fetcher';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
 
 const personalInfoSchema = z.object({
@@ -38,7 +38,7 @@ export default function PersonalInfoSettings() {
     const [status, setStatus] = useState<string | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
-    const { handleSubmit, control, reset, watch, setValue } = useForm({
+    const { handleSubmit, control, reset, setValue } = useForm({
         defaultValues: {
             firstName: session.data?.user.firstName || '',
             lastName: session.data?.user.lastName || '',
@@ -78,7 +78,11 @@ export default function PersonalInfoSettings() {
     }, [reset]);
 
     // Hide student fields if not a student
-    const studentStatus = watch('studentStatus');
+    const studentStatus = useWatch({
+        control,
+        name: 'studentStatus',
+        defaultValue: STUDENT_STATUSES[0],
+    });
     useEffect(() => {
         if (studentStatus !== 'At Adelaide University') {
             setValue('studentType', '');
