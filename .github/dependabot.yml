@@ -12,6 +12,13 @@ updates:
       time: "06:00"
       timezone: "Australia/Adelaide"
 
+    # Restrict version update PRs to major updates only.
+    # Security updates are still allowed.
+    allow:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-major
+
     # Wait 14 days before proposing any GitHub Actions version update.
     cooldown:
       default-days: 14
