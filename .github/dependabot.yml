@@ -7,9 +7,6 @@ updates:
     labels:
       - dependencies
       - github-actions
-    commit-message:
-      prefix: "ci(deps)"
-      include: scope
     schedule:
       interval: daily
       time: "06:00"
