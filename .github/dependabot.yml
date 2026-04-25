@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: "/"
+    target-branch: main
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+      - github-actions
+    commit-message:
+      prefix: "ci(deps)"
+      include: scope
+    schedule:
+      interval: daily
+      time: "06:00"
+      timezone: "Australia/Adelaide"
+
+    # Wait 14 days before proposing any GitHub Actions version update.
+    cooldown:
+      default-days: 14
+
+    # Group major action bumps into one PR to reduce clutter.
+    groups:
+      github-actions-major:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - major
+      github-actions-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
