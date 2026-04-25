@@ -3,10 +3,9 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     target-branch: main
-    open-pull-requests-limit: 1
+    open-pull-requests-limit: 5
     labels:
       - dependencies
-      - github-actions
     schedule:
       interval: daily
       time: "06:00"
