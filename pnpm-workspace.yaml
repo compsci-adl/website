@@ -1,0 +1,17 @@
+allowBuilds:
+  '@bazel/concatjs': true
+  esbuild: true
+  just-submit: true
+  protobufjs: true
+  sharp: true
+  simple-git-hooks: true
+  unrs-resolver: true
+minimumReleaseAgeExclude:
+  - esbuild@0.24.3
+  - postcss@8.5.10
+  - protobufjs@7.5.5
+overrides:
+  esbuild@<=0.24.2: "^0.28.0"
+  "esbuild@^0.24.3": "^0.28.0"
+  postcss@<8.5.10: "^8.5.10"
+  protobufjs@<7.5.5: "^7.5.5"

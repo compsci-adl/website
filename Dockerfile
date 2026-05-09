@@ -16,6 +16,7 @@ WORKDIR /app
 
 COPY --from=deps /tmp ./
 COPY pnpm-lock.yaml ./
+COPY pnpm-workspace.yaml ./
 
 RUN npm install -g pnpm \
     && pnpm install
