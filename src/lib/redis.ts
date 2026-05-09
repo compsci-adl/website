@@ -16,9 +16,28 @@ const baseClient = env.REDIS_URI
       };
 
 const ensureConnection = async () => {
-    if (env.REDIS_URI && !isConnected) {
-        await baseClient.connect();
+    if (!env.REDIS_URI) return;
+
+    const client: any = baseClient;
+
+    // If the underlying client already reports it's open, don't try to connect again
+    if (client?.isOpen || client?.connected || isConnected) {
         isConnected = true;
+        return;
+    }
+
+    try {
+        await client.connect();
+        isConnected = true;
+    } catch (err: any) {
+        // Ignore "Socket already opened" during HMR/dev restarts
+        if (String(err?.message).includes('Socket already opened')) {
+            // Mark as connected to avoid repeating the connect attempt
+            isConnected = true;
+            console.warn('Redis client connect ignored (already opened):', err?.message);
+            return;
+        }
+        throw err;
     }
 };
 

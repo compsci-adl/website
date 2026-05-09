@@ -18,9 +18,17 @@ updates:
         update-types:
           - version-update:semver-major
 
+    # Ignore minor and patch action updates
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
+
     # Wait 14 days before proposing any GitHub Actions version update.
     cooldown:
       default-days: 14
+      semver-major-days: 14
 
     # Group major action bumps into one PR to reduce clutter.
     groups:

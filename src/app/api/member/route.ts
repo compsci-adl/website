@@ -9,8 +9,8 @@ export async function POST(request: Request) {
         const req = await request.json();
 
         const schema = createInsertSchema(memberTable, {
-            keycloakId: z.undefined(),
-            email: z.undefined(),
+            keycloakId: z.string().optional(),
+            email: z.email().optional(),
         });
 
         const session = await auth();
@@ -21,7 +21,14 @@ export async function POST(request: Request) {
         const reqBody = schema.safeParse(req);
 
         if (!reqBody.success) {
-            return new Response(JSON.stringify(reqBody.error.format()), { status: 400 });
+            return new Response(
+                JSON.stringify({
+                    error: 'Validation failed',
+                    details: reqBody.error.format(),
+                    received: req,
+                }),
+                { status: 400 }
+            );
         }
 
         const memberData = {
