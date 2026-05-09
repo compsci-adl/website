@@ -18,7 +18,6 @@ COPY --from=deps /tmp ./
 COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm \
-    && pnpm approve-builds esbuild @bazel/concatjs just-submit protobufjs sharp simple-git-hooks unrs-resolver || true \
     && pnpm install
 
 COPY . .
