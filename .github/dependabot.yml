@@ -25,9 +25,9 @@ updates:
           - version-update:semver-minor
           - version-update:semver-patch
 
-    # Wait 14 days before proposing any GitHub Actions version update.
+    # Wait 7 days before proposing any GitHub Actions version update.
     cooldown:
-      default-days: 14
+      default-days: 7
 
     # Group major action bumps into one PR to reduce clutter.
     groups:
