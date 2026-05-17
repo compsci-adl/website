@@ -11,23 +11,33 @@
   "automerge": true,
   "automergeType": "pr",
   "autoApprove": true,
+  "prConcurrentLimit": 1,
+  "prHourlyLimit": 0,
   "separateMinorPatch": false,
   "separateMultipleMajor": false,
   "packageRules": [
     {
       "matchDatasources": ["github-actions"],
       "matchUpdateTypes": ["major"],
-      "groupName": "GitHub Actions major updates"
+      "groupName": "GitHub Actions major updates",
+      "groupSlug": "github-actions-major-updates"
     },
     {
       "matchDatasources": ["npm"],
       "matchUpdateTypes": ["security"],
-      "groupName": "npm security updates"
+      "groupName": "npm security updates",
+      "groupSlug": "npm-security-updates"
     },
     {
       "matchDatasources": ["docker"],
       "matchUpdateTypes": ["security"],
-      "groupName": "docker security updates"
+      "groupName": "docker security updates",
+      "groupSlug": "docker-security-updates"
+    },
+    {
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "groupName": "all dependencies",
+      "groupSlug": "all-dependencies"
     }
   ]
 }
