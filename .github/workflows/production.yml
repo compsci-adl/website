@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@900f2210b1d28bbbd0bd22d17926b9e224e8f231
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@bc9489585819302995bb108bbd899b7975f40303
+        uses: aws-actions/configure-aws-credentials@713aaabfecea015b1ad8d37dc2b819ee41c00eb0
         with:
           role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
           role-session-name: ${{ secrets.AWS_ROLE_SESSION_NAME }}
