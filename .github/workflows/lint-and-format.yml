@@ -14,8 +14,8 @@ jobs:
       - uses: actions/checkout@900f2210b1d28bbbd0bd22d17926b9e224e8f231
       - uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e
         with:
-          version: 10
-      - run: pnpm install
+          version: 11
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm run lint
 
   prettier:
@@ -26,6 +26,6 @@ jobs:
       - uses: actions/checkout@900f2210b1d28bbbd0bd22d17926b9e224e8f231
       - uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e
         with:
-          version: 10
-      - run: pnpm install
+          version: 11
+      - run: pnpm install --frozen-lockfile --ignore-scripts
       - run: pnpm run format:check
