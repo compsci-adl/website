@@ -1,0 +1,34 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "docker:pinDigests",
+    "helpers:pinGitHubActionDigests",
+    ":pinDevDependencies",
+    ":maintainLockFilesWeekly"
+  ],
+  "configMigration": true,
+  "automerge": true,
+  "automergeType": "branch",
+  "autoApprove": true,
+  "separateMinorPatch": false,
+  "separateMultipleMajor": false,
+  "transitiveRemediation": true,
+  "packageRules": [
+    {
+      "matchDatasources": ["github-actions"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "GitHub Actions major updates"
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["security"],
+      "groupName": "npm security updates"
+    },
+    {
+      "matchDatasources": ["docker"],
+      "matchUpdateTypes": ["security"],
+      "groupName": "docker security updates"
+    }
+  ]
+}
