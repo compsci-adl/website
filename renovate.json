@@ -13,7 +13,6 @@
   "autoApprove": true,
   "separateMinorPatch": false,
   "separateMultipleMajor": false,
-  "transitiveRemediation": true,
   "packageRules": [
     {
       "matchDatasources": ["github-actions"],
