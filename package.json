@@ -85,15 +85,5 @@
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "allowedVersions": {
-        "nodemailer": "8"
-      }
-    },
-    "onlyBuiltDependencies": [
-      "esbuild"
-    ]
   }
 }
