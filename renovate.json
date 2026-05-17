@@ -23,10 +23,20 @@
       "groupSlug": "github-actions-major-updates"
     },
     {
+      "matchDatasources": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "enabled": false
+    },
+    {
       "matchDatasources": ["npm"],
       "matchUpdateTypes": ["security"],
       "groupName": "npm security updates",
       "groupSlug": "npm-security-updates"
+    },
+    {
+      "matchDatasources": ["npm"],
+      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "enabled": false
     },
     {
       "matchDatasources": ["docker"],
@@ -35,9 +45,13 @@
       "groupSlug": "docker-security-updates"
     },
     {
+      "matchDatasources": ["docker"],
       "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
-      "groupName": "all dependencies",
-      "groupSlug": "all-dependencies"
+      "enabled": false
     }
-  ]
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true
+  },
+  "osvVulnerabilityAlerts": true
 }
