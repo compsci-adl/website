@@ -1,7 +1,7 @@
 services:
   keycloak:
     container_name: keycloak
-    image: quay.io/keycloak/keycloak:26.1.0@sha256:c0675d484530e65446f38b28ea2e7854915c33afb0de5356899794410caf03be
+    image: quay.io/keycloak/keycloak:26.6.1@sha256:dea26401d06341095cc4ea9d66896200b55de5ca1daa1d2fcbe58493afa6e0ad
     restart: unless-stopped
     healthcheck:
       test: ['CMD', 'curl', '--fail', 'http://localhost:8080']
