@@ -1,7 +1,7 @@
 services:
   keycloak:
     container_name: keycloak
-    image: quay.io/keycloak/keycloak:26.1.0
+    image: quay.io/keycloak/keycloak:26.1.0@sha256:c0675d484530e65446f38b28ea2e7854915c33afb0de5356899794410caf03be
     restart: unless-stopped
     healthcheck:
       test: ['CMD', 'curl', '--fail', 'http://localhost:8080']
@@ -17,7 +17,7 @@ services:
     networks:
       - csclub
   redis:
-    image: redis:latest
+    image: redis:latest@sha256:0c341492924cad6f5483f9133e43bd6c51ecdecbcadfac5b51657393b6a7936c
     container_name: redis
     ports:
       - 6379:6379
