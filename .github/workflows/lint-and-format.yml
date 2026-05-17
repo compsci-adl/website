@@ -10,6 +10,8 @@ jobs:
     name: ESLint
     runs-on: ubuntu-latest
 
+    env:
+      SKIP_INSTALL_SIMPLE_GIT_HOOKS: '1'
     steps:
       - uses: actions/checkout@900f2210b1d28bbbd0bd22d17926b9e224e8f231
       - uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e
@@ -22,6 +24,8 @@ jobs:
     name: Prettier
     runs-on: ubuntu-latest
 
+    env:
+      SKIP_INSTALL_SIMPLE_GIT_HOOKS: '1'
     steps:
       - uses: actions/checkout@900f2210b1d28bbbd0bd22d17926b9e224e8f231
       - uses: pnpm/action-setup@903f9c1a6ebcba6cf41d87230be49611ac97822e

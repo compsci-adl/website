@@ -11,6 +11,7 @@ FROM node:25-trixie-slim AS builder
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
 ENV SKIP_ENV_VALIDATION=true
+ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=1
 
 WORKDIR /app
 
