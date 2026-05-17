@@ -9,7 +9,7 @@
   ],
   "configMigration": true,
   "automerge": true,
-  "automergeType": "branch",
+  "automergeType": "pr",
   "autoApprove": true,
   "separateMinorPatch": false,
   "separateMultipleMajor": false,
