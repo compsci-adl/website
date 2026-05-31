@@ -15,6 +15,7 @@
   "prHourlyLimit": 0,
   "separateMinorPatch": false,
   "separateMultipleMajor": false,
+  "minimumReleaseAge": "3 days",
   "packageRules": [
     {
       "matchDatasources": ["github-actions"],
@@ -24,7 +25,7 @@
     },
     {
       "matchDatasources": ["github-actions"],
-      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
       "enabled": false
     },
     {
@@ -35,7 +36,7 @@
     },
     {
       "matchDatasources": ["npm"],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
       "enabled": false
     },
     {
@@ -46,7 +47,7 @@
     },
     {
       "matchDatasources": ["docker"],
-      "matchUpdateTypes": ["major", "minor", "patch", "pin", "digest"],
+      "matchUpdateTypes": ["major", "minor", "patch", "digest"],
       "enabled": false
     }
   ],
