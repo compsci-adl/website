@@ -11,7 +11,7 @@ export async function fetchNotification(): Promise<NotificationData | null> {
     try {
         const data = await fetcher.get.query([
             notificationURL,
-            { cache: 'no-store', prefixUrl: '' },
+            { next: { revalidate: 300 }, prefixUrl: '' },
         ]);
 
         return {

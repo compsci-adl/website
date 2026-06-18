@@ -24,7 +24,10 @@ const projectURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/projects?limit=20';
 export async function fetchProjectsData(): Promise<Project[]> {
     try {
         // Fetching project data from payload with fetcher
-        const data = await fetcher.get.query([projectURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = await fetcher.get.query([
+            projectURL,
+            { next: { revalidate: 300 }, prefixUrl: '' },
+        ]);
 
         // Process the data to match the Project interface
         const projects: Project[] = data.docs

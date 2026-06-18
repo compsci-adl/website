@@ -60,7 +60,10 @@ export const eventURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/events?limit=100';
 export async function fetchEvents(): Promise<Event[]> {
     try {
         // Fetching event data from payload with fetcher
-        const data = await fetcher.get.query([eventURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = await fetcher.get.query([
+            eventURL,
+            { next: { revalidate: 300 }, prefixUrl: '' },
+        ]);
 
         const payloadData = data.docs;
         const EVENTS: Event[] = [];

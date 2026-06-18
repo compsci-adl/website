@@ -32,7 +32,10 @@ export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/sponsors?limit=20'
 export async function fetchSponsors(): Promise<Sponsor[]> {
     try {
         // Use fetcher.get.query to perform a GET request.
-        const data = await fetcher.get.query([sponsorURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = await fetcher.get.query([
+            sponsorURL,
+            { next: { revalidate: 300 }, prefixUrl: '' },
+        ]);
 
         // Parse each API sponsor into Sponsor type and reverse the order
         return (data.docs || [])

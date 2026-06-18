@@ -52,7 +52,7 @@ export async function fetchCommitteeMember(): Promise<CommitteeMember[]> {
         // Fetching committee member data from payload with fetcher
         const data = await fetcher.get.query([
             committeeMemberURL,
-            { cache: 'no-store', prefixUrl: '' },
+            { next: { revalidate: 300 }, prefixUrl: '' },
         ]);
 
         // Process the data to match the CommitteeMember interface
