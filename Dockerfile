@@ -29,16 +29,16 @@ RUN pnpm run build
 # Final deployment image
 FROM node:25-trixie-slim@sha256:6517bd703147da68ecd657ab1951377c839bcf667c86717ab65ff31600685341 AS runner
 
-ENV PNPM_HOME="/root/.local/share/pnpm"
-ENV PATH="${PATH}:${PNPM_HOME}"
 ENV NODE_ENV=production
-
-RUN npm install -g pnpm@11
+ENV HOSTNAME="0.0.0.0"
 
 WORKDIR /app
 
-COPY --from=builder /app /app
+# Copy standalone output and static assets
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
 
 EXPOSE $PORT
 
-CMD [ "pnpm", "run", "start" ]
+CMD [ "node", "server.js" ]
