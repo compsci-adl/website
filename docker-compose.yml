@@ -12,6 +12,8 @@ services:
       - 3000:3000
     networks:
       - csclub
+    extra_hosts:
+      - "auth.csclub.org.au:host-gateway"
 
 networks:
   csclub:
