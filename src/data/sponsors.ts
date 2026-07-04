@@ -1,5 +1,6 @@
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { resolveCmsUrl } from '@/lib/payload';
 
 export const SPONSOR_TYPES = ['gold', 'silver', 'bronze'] as const;
 
@@ -33,7 +34,7 @@ export async function fetchSponsors(): Promise<Sponsor[]> {
     try {
         // Use fetcher.get.query to perform a GET request.
         const data = await fetcher.get.query([
-            sponsorURL,
+            resolveCmsUrl(sponsorURL),
             { next: { revalidate: 300 }, prefixUrl: '' },
         ]);
 

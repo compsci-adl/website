@@ -1,5 +1,6 @@
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { resolveCmsUrl } from '@/lib/payload';
 
 export interface TechStack {
     tech_name: string;
@@ -25,7 +26,7 @@ export async function fetchProjectsData(): Promise<Project[]> {
     try {
         // Fetching project data from payload with fetcher
         const data = await fetcher.get.query([
-            projectURL,
+            resolveCmsUrl(projectURL),
             { next: { revalidate: 300 }, prefixUrl: '' },
         ]);
 

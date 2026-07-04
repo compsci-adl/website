@@ -46,11 +46,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
     return (
         <SessionProvider>
             <html lang="en" className={archivo.className}>
-                <Script
-                    defer
-                    src="https://umami.csclub.org.au/script.js"
-                    data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
-                />
+                {process.env.NODE_ENV !== 'development' && env.NEXT_PUBLIC_UMAMI_WEBSITE_ID && (
+                    <Script
+                        defer
+                        src="https://umami.csclub.org.au/script.js"
+                        data-website-id={env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
+                    />
+                )}
                 <body id="root" className="bg-grey overflow-x-hidden text-white">
                     <Notification />
                     <Header />
