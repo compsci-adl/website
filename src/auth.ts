@@ -126,7 +126,12 @@ export const handlers = nextAuthResult.handlers;
 export const signIn = nextAuthResult.signIn;
 export const signOut = nextAuthResult.signOut;
 
-export const auth = async (...args: any[]) => {
+interface AuthFunction {
+    (): Promise<Session | null>;
+    (...args: any[]): any;
+}
+
+export const auth: AuthFunction = (async (...args: any[]) => {
     console.log(
         '--- auth() CALLED. env.SKIP_ENV_VALIDATION:',
         process.env.SKIP_ENV_VALIDATION,
@@ -135,7 +140,7 @@ export const auth = async (...args: any[]) => {
         'args.length:',
         args.length
     );
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.SKIP_ENV_VALIDATION === 'true' || process.env.NODE_ENV === 'test') {
         try {
             const reqHeaders = await headers();
             const mockAuth = reqHeaders.get('x-mock-auth');
@@ -144,7 +149,6 @@ export const auth = async (...args: any[]) => {
                 if (args.length > 0) {
                     return NextResponse.next();
                 }
-
                 if (mockAuth === 'admin') {
                     return {
                         user: {
@@ -175,4 +179,4 @@ export const auth = async (...args: any[]) => {
     }
     // @ts-ignore
     return nextAuthResult.auth(...args);
-};
+}) as any;
