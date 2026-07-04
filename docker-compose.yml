@@ -14,6 +14,7 @@ services:
       - csclub
     extra_hosts:
       - "auth.csclub.org.au:host-gateway"
+      - "cms.csclub.org.au:host-gateway"
 
 networks:
   csclub:
