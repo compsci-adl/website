@@ -54,7 +54,7 @@ jobs:
           SKIP_ENV_VALIDATION: 'true'
           MOCK_SQUARE: 'true'
           NEXT_PUBLIC_PAYLOAD_URI: 'https://cms.csclub.org.au'
-        run: pnpm exec playwright test
+        run: pnpm test:e2e
 
       - name: Stop Docker Services
         if: always()

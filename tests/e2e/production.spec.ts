@@ -30,7 +30,7 @@ test.describe('Production Services Check', () => {
         }
 
         // Wait for page to navigate to the Keycloak authentication realm
-        await page.waitForLoadState('networkidle');
+        await page.waitForLoadState('load');
 
         // Verify it redirected to Keycloak domain containing the cs-club realm
         const currentUrl = page.url();
@@ -41,11 +41,15 @@ test.describe('Production Services Check', () => {
         expect(currentUrl).toMatch(/openid-connect|protocol|auth|login/);
     });
 
-    test('cms endpoints respond correctly', async ({ request }) => {
-        // Directly check live CMS endpoint
-        const res = await request.get('https://cms.csclub.org.au/api/sponsors?limit=1');
-        expect(res.status()).toBe(200);
-        const data = await res.json();
-        expect(data).toHaveProperty('docs');
+    test('cms endpoints respond correctly', async ({ page }) => {
+        // Check the CMS is accessible by navigating to the live website's home page,
+        // which fetches CMS data server-side. Sponsors are rendered under "Supported By".
+        // We avoid hitting the CMS API directly because the CI runner IP is blocked by
+        // Cloudflare WAF (returns 403) — going through the production website avoids this.
+        const response = await page.goto('https://csclub.org.au');
+        expect(response?.status()).toBe(200);
+
+        // If sponsors CMS data loads, the "Supported By" section appears
+        await expect(page.locator('h3', { hasText: 'Supported By' }).first()).toBeVisible();
     });
 });

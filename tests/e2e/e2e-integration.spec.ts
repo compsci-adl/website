@@ -128,8 +128,9 @@ test.describe('Real Integration E2E Tests', () => {
     });
 
     test('should verify Payload CMS is running and accessible', async ({ page }) => {
+        const cmsUrl = process.env.NEXT_PUBLIC_PAYLOAD_URI || 'http://127.0.0.1:4000';
         // Go to Payload CMS Admin login page/dashboard
-        await page.goto('http://127.0.0.1:4000/');
+        await page.goto(`${cmsUrl}/admin`);
         // The page title should contain Payload
         await expect(page).toHaveTitle(/Payload/i);
     });

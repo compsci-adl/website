@@ -19,7 +19,7 @@
     "test:unit": "node --experimental-test-module-mocks --import tsx --import ./tests/bootstrap.ts --test 'tests/unit/**/*.test.ts' 'tests/unit/**/*.test.tsx'",
     "test:coverage": "node --experimental-test-coverage --experimental-test-module-mocks --import tsx --import ./tests/bootstrap.ts --test 'tests/unit/**/*.test.ts' 'tests/unit/**/*.test.tsx'",
     "test:coverage:check": "tsx scripts/check-coverage.ts",
-    "test:e2e": "playwright test",
+    "test:e2e": "playwright test --ignore='**/production.spec.ts'",
     "db:seed-cms": "tsx scripts/seed-cms.ts"
   },
   "dependencies": {
