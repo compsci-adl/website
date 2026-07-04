@@ -16,3 +16,6 @@ overrides:
 peerDependencyRules:
   allowedVersions:
     nodemailer: '8'
+minimumReleaseAgeExclude:
+  # Renovate security update: nodemailer@9.0.1
+  - nodemailer@9.0.1
