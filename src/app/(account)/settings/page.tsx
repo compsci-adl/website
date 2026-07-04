@@ -46,7 +46,7 @@ export default async function SettingsPage() {
                     {exists ? (
                         <Settings
                             settingData={{ membershipPayment }}
-                            customerId={session.user.id}
+                            customerId={session.user.id ?? ''}
                         />
                     ) : (
                         <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
