@@ -23,6 +23,37 @@ services:
       - 6379:6379
     networks:
       - csclub
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    command:
+      - --storageEngine=wiredTiger
+    networks:
+      - csclub
+  payload:
+    container_name: payload
+    build:
+      context: ../cms
+      dockerfile: ../website/payload.Dockerfile
+    restart: unless-stopped
+    ports:
+      - 4000:4000
+    depends_on:
+      - mongo
+    environment:
+      - PORT=4000
+      - DATABASE_URI=mongodb://mongo/cms
+      - PAYLOAD_SECRET=secret-32-chars-long-for-testing-purposes
+      - FRONTEND_URL=http://127.0.0.1:3000
+      - MEDIA_STORAGE_LOCATION=local
+      - LOGIN_TYPE=email
+      - ROOT_EMAIL=admin@admin.com
+      - ROOT_PASS=password
+      - CI=true
+    networks:
+      - csclub
   csclub-website:
     container_name: csclub-website
     build:

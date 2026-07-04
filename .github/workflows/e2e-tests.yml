@@ -1,0 +1,91 @@
+name: E2E Tests
+on:
+  workflow_call:
+ 
+permissions:
+  contents: read
+
+jobs:
+  e2e-tests:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: "file:dev.sqlite"
+      KEYCLOAK_ISSUER: "http://localhost:8080/realms/cs-club"
+      KEYCLOAK_CLIENT_ID: "website"
+      KEYCLOAK_CLIENT_SECRET: "secret"
+      AUTH_SECRET: "secret"
+    steps:
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      - name: Checkout CMS
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        with:
+          repository: compsci-adl/cms
+          path: ../cms
+      - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm install -g pnpm@11 && pnpm install
+
+      - name: Start Docker E2E Integration Services
+        run: |
+          docker compose -f docker-compose-dev.yml up -d keycloak redis mongo payload
+
+      - name: Wait for Keycloak Service Health
+        run: |
+          echo "Waiting for Keycloak to boot and import realm..."
+          for i in {1..30}; do
+            if curl --fail -s http://localhost:8080/realms/cs-club >/dev/null; then
+              echo "Keycloak is ready!"
+              exit 0
+            fi
+            echo "Keycloak not ready yet, sleeping 5s..."
+            sleep 5
+          done
+          echo "Keycloak failed to boot in time"
+          docker compose -f docker-compose-dev.yml logs keycloak
+          exit 1
+
+      - name: Wait for Payload CMS Service Health
+        run: |
+          echo "Waiting for Payload CMS to boot..."
+          for i in {1..30}; do
+            if curl --fail -s http://localhost:4000 >/dev/null; then
+              echo "Payload CMS is ready!"
+              exit 0
+            fi
+            echo "Payload CMS not ready yet, sleeping 5s..."
+            sleep 5
+          done
+          echo "Payload CMS failed to boot in time"
+          docker compose -f docker-compose-dev.yml logs payload
+          exit 1
+
+      - name: Seed Payload CMS
+        run: npx tsx scripts/seed-cms.ts
+
+      - name: Push Database Schema
+        run: pnpm run db:push
+
+      - name: Install Playwright Browsers
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Run Playwright tests
+        env:
+          REDIS_URI: redis://localhost:6379
+          SKIP_ENV_VALIDATION: 'true'
+          MOCK_SQUARE: 'true'
+        run: pnpm exec playwright test
+
+      - name: Stop Docker Services
+        if: always()
+        run: |
+          docker compose -f docker-compose-dev.yml down
+
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 30

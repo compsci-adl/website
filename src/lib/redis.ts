@@ -6,17 +6,7 @@ let connectionHealthy = false;
 let connectionFailed = false;
 let connectInProgress = false;
 
-const baseClient = env.REDIS_URI
-    ? createClient({ url: env.REDIS_URI })
-    : {
-          connect: async () => {},
-          ping: async () => 'PONG',
-          get: async (_key: string) => null,
-          set: async (_key: string, _value: string) => {},
-          hSet: async (_key: string, _values: Record<string, string>) => {},
-          hGet: async (_key: string, _field: string) => null,
-          del: async (_key: string) => {},
-      };
+const baseClient = env.REDIS_URI ? createClient({ url: env.REDIS_URI }) : undefined;
 
 const DEFAULT_CONNECT_TIMEOUT = 2000; // ms
 
@@ -25,13 +15,7 @@ const ensureConnection = async () => {
 
     const client: any = baseClient;
 
-    if (connectionHealthy) return;
-
-    // If a previous attempt failed, don't block requests by retrying synchronously
-    if (connectionFailed) return;
-
-    // Avoid concurrent connect attempts
-    if (connectInProgress) return;
+    if (connectionHealthy || connectionFailed || connectInProgress) return;
 
     connectInProgress = true;
     try {
@@ -56,7 +40,7 @@ const ensureConnection = async () => {
             isConnected = true;
             console.warn('Redis: socket already opened, marking connection healthy');
         } else {
-            console.warn('Redis connection failed (fast-fail):', err?.message ?? err);
+            console.warn('Redis connection failed (fast-fail):', err.message);
         }
     } finally {
         connectInProgress = false;

@@ -10,6 +10,7 @@ FROM node:25-trixie-slim@sha256:6517bd703147da68ecd657ab1951377c839bcf667c86717a
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
+ENV CI=true
 ENV SKIP_ENV_VALIDATION=true
 ENV SKIP_INSTALL_SIMPLE_GIT_HOOKS=1
 
@@ -20,7 +21,7 @@ COPY pnpm-lock.yaml ./
 COPY pnpm-workspace.yaml ./
 
 RUN npm install -g pnpm@11 \
-    && pnpm install --frozen-lockfile
+    && pnpm install --frozen-lockfile --config.confirmModulesPurge=false
 
 COPY . .
 

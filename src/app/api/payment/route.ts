@@ -66,12 +66,23 @@ export async function POST(request: Request) {
     };
 
     try {
-        const resp = await squareClient.checkout.paymentLinks.create(body);
+        let paymentLink;
+        if (process.env.MOCK_SQUARE === 'true') {
+            paymentLink = {
+                id: 'mock-link-id',
+                url: 'https://connect.squareupsandbox.com/v2/online-checkout/payment-links/mock-link-id',
+                orderId: 'mock-order-id',
+                createdAt: new Date().toISOString(),
+            };
+        } else {
+            const resp = await squareClient.checkout.paymentLinks.create(body);
+            paymentLink = resp.paymentLink;
+        }
 
         if (reqBody.data.product === 'membership') {
             // Add Keycloak ID and payment ID to Redis cache
-            const orderId = resp.paymentLink?.orderId ?? '';
-            const createdAt = resp.paymentLink?.createdAt ?? '';
+            const orderId = paymentLink?.orderId ?? '';
+            const createdAt = paymentLink?.createdAt ?? '';
             await redisClient.hSet(`payment:membership:${session?.user.id}`, {
                 orderId,
                 createdAt,
@@ -79,7 +90,7 @@ export async function POST(request: Request) {
         }
 
         // The URL to direct the user is accessed from `url` and `long_url`
-        return Response.json(resp.paymentLink);
+        return Response.json(paymentLink);
     } catch (e) {
         if (e && typeof e === 'object' && 'statusCode' in e) {
             return new Response(JSON.stringify((e as any).errors), {

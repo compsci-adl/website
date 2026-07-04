@@ -15,7 +15,12 @@
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
     "email:dev": "email dev --dir=src/emails",
-    "postinstall": "simple-git-hooks"
+    "postinstall": "command -v git >/dev/null 2>&1 && simple-git-hooks || true",
+    "test:unit": "node --experimental-test-module-mocks --import tsx --import ./tests/bootstrap.ts --test 'tests/unit/**/*.test.ts' 'tests/unit/**/*.test.tsx'",
+    "test:coverage": "node --experimental-test-coverage --experimental-test-module-mocks --import tsx --import ./tests/bootstrap.ts --test 'tests/unit/**/*.test.ts' 'tests/unit/**/*.test.tsx'",
+    "test:coverage:check": "tsx scripts/check-coverage.ts",
+    "test:e2e": "playwright test",
+    "db:seed-cms": "tsx scripts/seed-cms.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.10",
@@ -51,8 +56,11 @@
   },
   "devDependencies": {
     "@next/env": "16.2.6",
+    "@playwright/test": "^1.61.0",
     "@tailwindcss/postcss": "4.3.0",
+    "@testing-library/react": "^16.3.2",
     "@trivago/prettier-plugin-sort-imports": "6.0.2",
+    "@types/jsdom": "^28.0.3",
     "@types/luxon": "3.7.1",
     "@types/md5": "2.3.6",
     "@types/node": "25.8.0",
@@ -68,6 +76,7 @@
     "eslint-config-next": "16.2.6",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-prettier": "5.5.5",
+    "jsdom": "^29.1.1",
     "lint-staged": "16.4.0",
     "postcss": "8.5.14",
     "prettier": "3.8.3",
@@ -76,6 +85,8 @@
     "simple-git-hooks": "2.13.1",
     "tailwindcss": "4.3.0",
     "tsec": "0.2.9",
+    "mongodb": "^6.12.0",
+    "tsx": "^4.22.4",
     "typescript": "5.9.3"
   },
   "lint-staged": {

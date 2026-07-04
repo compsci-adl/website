@@ -88,6 +88,15 @@
         "clientRole": false,
         "containerId": "312518cb-ad3e-4c19-8321-eae3f2b17abc",
         "attributes": {}
+      },
+      {
+        "id": "c13ee2e-f4ff-410a-8cba-762194507bb3",
+        "name": "committee",
+        "description": "",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "312518cb-ad3e-4c19-8321-eae3f2b17abc",
+        "attributes": {}
       }
     ],
     "client": {
@@ -471,6 +480,54 @@
       },
       "notBefore": 0,
       "groups": []
+    },
+    {
+      "id": "e2e-test-user-id",
+      "username": "e2e-test-user@csclub.org.au",
+      "email": "e2e-test-user@csclub.org.au",
+      "emailVerified": true,
+      "firstName": "John",
+      "lastName": "Test",
+      "createdTimestamp": 1759477594896,
+      "enabled": true,
+      "totp": false,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "e2e-password-123",
+          "temporary": false
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": ["default-roles-cs-club"],
+      "clientRoles": {},
+      "notBefore": 0,
+      "groups": []
+    },
+    {
+      "id": "e2e-admin-user-id",
+      "username": "e2e-admin-user@csclub.org.au",
+      "email": "e2e-admin-user@csclub.org.au",
+      "emailVerified": true,
+      "firstName": "Jane",
+      "lastName": "Admin",
+      "createdTimestamp": 1759477594896,
+      "enabled": true,
+      "totp": false,
+      "credentials": [
+        {
+          "type": "password",
+          "value": "e2e-password-123",
+          "temporary": false
+        }
+      ],
+      "disableableCredentialTypes": [],
+      "requiredActions": [],
+      "realmRoles": ["default-roles-cs-club", "restricted-access", "committee"],
+      "clientRoles": {},
+      "notBefore": 0,
+      "groups": []
     }
   ],
   "scopeMappings": [
@@ -761,16 +818,16 @@
       "clientId": "website",
       "name": "",
       "description": "",
-      "rootUrl": "http://localhost:3000",
+      "rootUrl": "http://127.0.0.1:3000",
       "adminUrl": "",
-      "baseUrl": "http://localhost:3000",
+      "baseUrl": "http://127.0.0.1:3000",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
-      "secret": "**********",
-      "redirectUris": ["http://localhost:3000/*"],
-      "webOrigins": ["http://localhost:3000"],
+      "secret": "secret",
+      "redirectUris": ["http://127.0.0.1:3000/*", "http://localhost:3000/*"],
+      "webOrigins": ["http://127.0.0.1:3000", "http://localhost:3000"],
       "notBefore": 0,
       "bearerOnly": false,
       "consentRequired": false,

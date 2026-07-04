@@ -34,6 +34,32 @@ pnpm run dev
 
 5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Development and Testing
+
+### Seeding the CMS
+To seed the Payload CMS database with mock data for local development, run:
+```bash
+pnpm run db:seed-cms
+```
+
+### Running Tests
+To run the full suite of unit tests and compute coverage:
+```bash
+pnpm test:coverage
+```
+
+To run unit tests and verify required code coverage (as enforced in CI/CD checks):
+```bash
+pnpm test:coverage:check
+```
+
+To run the Playwright end-to-end integration tests:
+```bash
+pnpm test:playwright
+```
+> [!NOTE]
+> Make sure no dev server is already running on port `3000` before starting Playwright tests, as the E2E test runner automatically provisions and controls its own Next.js instance.
+
 ## Contributing
 
 We welcome contributions to enhance the CS Club Website! If you find any issues, have suggestions, or want to request a feature, please follow our [Contributing Guidelines](CONTRIBUTING.md).

@@ -3,6 +3,7 @@ FROM node:25-trixie-slim@sha256:6517bd703147da68ecd657ab1951377c839bcf667c86717a
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PNPM_HOME}:${PATH}"
 ENV NODE_ENV=development
+ENV CI=true
 ENV PORT=3000
 
 WORKDIR /app
@@ -12,7 +13,7 @@ RUN apt-get update && apt-get install -y sqlite3
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml drizzle.config.ts ./
 COPY src/db/schema.ts src/db/schema.ts
 
-RUN npm install -g pnpm@11 && pnpm install --frozen-lockfile
+RUN npm install -g pnpm@11 && pnpm install --frozen-lockfile --config.confirmModulesPurge=false
 
 EXPOSE $PORT
 
