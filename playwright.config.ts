@@ -55,7 +55,7 @@ export default defineConfig({
       AUTH_KEYCLOAK_SECRET: 'secret',
       AUTH_SECRET: 'secret-auth-key-32-chars-long-or-more',
       NEXT_PUBLIC_DRIVE_LINK: 'https://example.com/drive',
-      NEXT_PUBLIC_PAYLOAD_URI: 'http://127.0.0.1:4000',
+      NEXT_PUBLIC_PAYLOAD_URI: process.env.NEXT_PUBLIC_PAYLOAD_URI || 'http://127.0.0.1:4000',
       REDIS_URI: process.env.REDIS_URI || '',
       SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN || '',
       SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID || '',
