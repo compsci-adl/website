@@ -1,12 +1,12 @@
 # Cache package.json
-FROM node:25-trixie-slim@sha256:6517bd703147da68ecd657ab1951377c839bcf667c86717ab65ff31600685341 AS deps
+FROM node:25-trixie-slim@sha256:aabbe39553d15ede8a97cc60c9e1a97034ff772afcf696ea42b94e7f5f2ec71b AS deps
 
 WORKDIR /tmp
 
 COPY package.json ./
 
 # Build
-FROM node:25-trixie-slim@sha256:6517bd703147da68ecd657ab1951377c839bcf667c86717ab65ff31600685341 AS builder
+FROM node:25-trixie-slim@sha256:aabbe39553d15ede8a97cc60c9e1a97034ff772afcf696ea42b94e7f5f2ec71b AS builder
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"
@@ -27,7 +27,7 @@ COPY . .
 RUN pnpm run build
 
 # Final deployment image
-FROM node:25-trixie-slim@sha256:6517bd703147da68ecd657ab1951377c839bcf667c86717ab65ff31600685341 AS runner
+FROM node:25-trixie-slim@sha256:aabbe39553d15ede8a97cc60c9e1a97034ff772afcf696ea42b94e7f5f2ec71b AS runner
 
 ENV PNPM_HOME="/root/.local/share/pnpm"
 ENV PATH="${PATH}:${PNPM_HOME}"

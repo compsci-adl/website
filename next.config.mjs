@@ -9,11 +9,6 @@ const nextConfig = {
                 hostname: 'www.gravatar.com',
             },
             {
-                protocol: 'https',
-                hostname: 'cms.csclub.org.au',
-                pathname: '/api/media/**',
-            },
-            {
                 protocol: process.env.NEXT_PUBLIC_PAYLOAD_URI?.startsWith('https')
                     ? 'https'
                     : 'http',
@@ -26,6 +21,7 @@ const nextConfig = {
                 pathname: '/api/media/file/**',
             },
         ],
+        unoptimized: true,
     },
     typescript: {
         // Ignore TypeScript errors during production build
