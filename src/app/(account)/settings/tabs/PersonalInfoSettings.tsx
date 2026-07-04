@@ -7,6 +7,7 @@ import { useSession } from 'next-auth/react';
 import { useState, useEffect } from 'react';
 import { useForm, useWatch } from 'react-hook-form';
 import { z } from 'zod';
+import type { SettingTabProps } from '../Settings';
 
 const personalInfoSchema = z.object({
     firstName: z.string(),
@@ -23,7 +24,7 @@ const personalInfoSchema = z.object({
         .or(z.literal('')),
 });
 
-export default function PersonalInfoSettings() {
+export default function PersonalInfoSettings(_props: SettingTabProps) {
     const session = useSession();
     type PersonalInfo = {
         firstName: string;

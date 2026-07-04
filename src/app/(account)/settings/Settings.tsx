@@ -13,7 +13,7 @@ export const TAB_NAMES = ['Account', 'Personal Info', 'Membership', 'Notificatio
 export type TabNames = (typeof TAB_NAMES)[number];
 
 export type SettingData = { membershipPayment: MembershipPayment };
-export type SettingTabProps = { settingData: SettingData };
+export type SettingTabProps = { settingData: SettingData; customerId: string };
 type SettingTabComponent = ({ settingData }: SettingTabProps) => React.ReactNode;
 const SETTING_TABS = {
     Account: Account,
@@ -22,7 +22,13 @@ const SETTING_TABS = {
     Notifications: Notifications,
 } as const satisfies Record<TabNames, SettingTabComponent>;
 
-export default function Settings({ settingData }: { settingData: SettingData }) {
+export default function Settings({
+    settingData,
+    customerId,
+}: {
+    settingData: SettingData;
+    customerId: string;
+}) {
     const [tab, setTab] = useState<TabNames>('Membership');
     const Tab = SETTING_TABS[tab];
 
@@ -38,7 +44,7 @@ export default function Settings({ settingData }: { settingData: SettingData }) 
                 }}
             />
             <div className="w-full">
-                <Tab settingData={settingData} />
+                <Tab settingData={settingData} customerId={customerId} />
             </div>
         </div>
     );

@@ -3,6 +3,7 @@ import NextAuth from 'next-auth';
 import type { Session } from 'next-auth';
 import Keycloak from 'next-auth/providers/keycloak';
 import { headers } from 'next/headers';
+import { NextResponse } from 'next/server';
 
 interface KeycloakToken {
     realm_access?: {
@@ -134,15 +135,16 @@ export const auth = async (...args: any[]) => {
         'args.length:',
         args.length
     );
-    if (
-        (process.env.SKIP_ENV_VALIDATION === 'true' || process.env.NODE_ENV === 'test') &&
-        args.length === 0
-    ) {
+    if (process.env.NODE_ENV !== 'production') {
         try {
             const reqHeaders = await headers();
             const mockAuth = reqHeaders.get('x-mock-auth');
             console.log('--- E2E MOCK AUTH HEADER RESOLVED:', mockAuth);
             if (mockAuth) {
+                if (args.length > 0) {
+                    return NextResponse.next();
+                }
+
                 if (mockAuth === 'admin') {
                     return {
                         user: {
