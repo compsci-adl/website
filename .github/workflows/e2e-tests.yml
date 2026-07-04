@@ -25,7 +25,7 @@ jobs:
 
       - name: Start Docker E2E Integration Services
         run: |
-          docker compose -f docker-compose-dev.yml up -d keycloak redis mongo payload
+          docker compose -f docker-compose-dev.yml up -d keycloak redis
 
       - name: Wait for Keycloak Service Health
         run: |
@@ -42,24 +42,6 @@ jobs:
           docker compose -f docker-compose-dev.yml logs keycloak
           exit 1
 
-      - name: Wait for Payload CMS Service Health
-        run: |
-          echo "Waiting for Payload CMS to boot..."
-          for i in {1..30}; do
-            if curl --fail -s http://localhost:4000 >/dev/null; then
-              echo "Payload CMS is ready!"
-              exit 0
-            fi
-            echo "Payload CMS not ready yet, sleeping 5s..."
-            sleep 5
-          done
-          echo "Payload CMS failed to boot in time"
-          docker compose -f docker-compose-dev.yml logs payload
-          exit 1
-
-      - name: Seed Payload CMS
-        run: npx tsx scripts/seed-cms.ts
-
       - name: Push Database Schema
         run: pnpm run db:push
 
@@ -71,6 +53,7 @@ jobs:
           REDIS_URI: redis://localhost:6379
           SKIP_ENV_VALIDATION: 'true'
           MOCK_SQUARE: 'true'
+          NEXT_PUBLIC_PAYLOAD_URI: 'https://cms.csclub.org.au'
         run: pnpm exec playwright test
 
       - name: Stop Docker Services
