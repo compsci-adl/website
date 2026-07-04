@@ -212,6 +212,15 @@ describe('NextAuth Config and Wrapper', () => {
             assert.deepEqual(result, { user: { name: 'Base User' } });
         });
 
+        it('returns NextResponse.next for middleware calls with mock auth', async () => {
+            mockHeaders.set('x-mock-auth', 'user');
+            const result = await auth(new Request('http://localhost:3000/settings'));
+
+            assert.strictEqual(result instanceof Response, true);
+            assert.strictEqual(result.headers.get('x-middleware-next'), '1');
+            assert.deepEqual(baseAuthCalledWith, []);
+        });
+
         it('handles headers() throwing an error gracefully', async () => {
             mockHeadersThrow = true;
             const result = await auth();
