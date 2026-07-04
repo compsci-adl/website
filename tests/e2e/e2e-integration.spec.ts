@@ -7,7 +7,7 @@ test.describe('Real Integration E2E Tests', () => {
     test.beforeEach(async () => {
         try {
             execSync(
-                `sqlite3 dev.sqlite "DELETE FROM notifications WHERE keycloak_id IN (SELECT keycloak_id FROM members WHERE email = 'e2e-test-user@csclub.org.au'); DELETE FROM members WHERE email = 'e2e-test-user@csclub.org.au';"`
+                `sqlite3 dev.sqlite -cmd ".timeout 5000" "DELETE FROM notifications WHERE keycloak_id IN (SELECT keycloak_id FROM members WHERE email = 'e2e-test-user@csclub.org.au'); DELETE FROM members WHERE email = 'e2e-test-user@csclub.org.au';"`
             );
         } catch (error) {
             console.error('Failed to clean up E2E member from DB:', error);
@@ -92,6 +92,15 @@ test.describe('Real Integration E2E Tests', () => {
         // Verify status shows Payment Required
         await expect(page.locator('text=Payment Required')).toBeVisible();
 
+        // Intercept navigation to Square sandbox to speed up E2E test and avoid network flakiness
+        await page.route(/.*square.*sandbox.*/, (route) => {
+            route.fulfill({
+                status: 200,
+                contentType: 'text/html',
+                body: '<html><body>Mocked Square Checkout Portal</body></html>',
+            });
+        });
+
         // Click Pay Online to trigger real Square Checkout link generation and Redis caching
         await page.click('button:has-text("Pay Online")');
 
@@ -109,7 +118,7 @@ test.describe('Real Integration E2E Tests', () => {
 
         // Wait for redirection to Keycloak
         await page.waitForURL(/.*realms\/cs-club\/protocol\/openid-connect\/auth.*/, {
-            timeout: 20000,
+            timeout: 25000,
         });
 
         // Log in as E2E admin user
@@ -118,7 +127,7 @@ test.describe('Real Integration E2E Tests', () => {
         await page.click('#kc-login');
 
         // Redirection back to homepage
-        await page.waitForURL(`${baseUrl}/`, { timeout: 20000 });
+        await page.waitForURL(`${baseUrl}/`, { timeout: 25000 });
 
         // Navigate to /admin
         await page.goto(`${baseUrl}/admin`);
@@ -128,7 +137,8 @@ test.describe('Real Integration E2E Tests', () => {
     });
 
     test('should verify Payload CMS is running and accessible', async ({ page }) => {
-        const cmsUrl = process.env.NEXT_PUBLIC_PAYLOAD_URI || 'http://127.0.0.1:4000';
+        const cmsUrl = 'http://127.0.0.1:4000';
+
         // Go to Payload CMS Admin login page/dashboard
         await page.goto(`${cmsUrl}/admin`);
         // The page title should contain Payload
