@@ -68,6 +68,8 @@ jobs:
           --cache-from=type=local,src=/tmp/.buildx-cache \
           --cache-to=type=local,dest=/tmp/.buildx-cache-new,mode=max \
           --output type=docker,dest=csclub-website.tar \
+          --build-arg NEXT_PUBLIC_PAYLOAD_URI="${{ secrets.NEXT_PUBLIC_PAYLOAD_URI }}" \
+          --build-arg PRODUCTION_BUILD="true" \
           --platform=linux/arm64 --file=Dockerfile -t csclub-website .
           gzip csclub-website.tar
 

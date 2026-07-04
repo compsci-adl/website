@@ -24,6 +24,7 @@ const nextConfig = {
                 pathname: '/api/media/file/**',
             },
         ],
+        unoptimized: true,
     },
     typescript: {
         // Ignore TypeScript errors during production build
