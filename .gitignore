@@ -44,3 +44,12 @@ next-env.d.ts
 # Keycloak
 /keycloak/*
 !/keycloak/docker-compose.yml
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+/working-proxies.txt

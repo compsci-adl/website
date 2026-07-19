@@ -5,6 +5,7 @@ import { fetcher } from '@/lib/fetcher';
 import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
+import type { SettingTabProps } from '../Settings';
 
 const notificationTypeNames = {
     email: 'Email',
@@ -20,7 +21,7 @@ const categoryNames = {
 type NotificationTypes = keyof typeof notificationTypeNames;
 type CategoryTypes = keyof typeof categoryNames;
 
-export default function NotificationsSettings() {
+export default function NotificationsSettings(_props: SettingTabProps) {
     const { data: session } = useSession();
     const userId = session?.user?.id;
     const [saveSuccess, setSaveSuccess] = useState(false);

@@ -7,7 +7,9 @@ export default function Paragraph({
     className?: string;
 }) {
     return (
-        <div className={`${className}rounded-xl bg-grey border-2 p-3 text-lg md:p-6 md:text-xl`}>
+        <div
+            className={`${className ? `${className} ` : ''}rounded-xl bg-grey border-2 p-3 text-lg md:p-6 md:text-xl`}
+        >
             {children}
         </div>
     );

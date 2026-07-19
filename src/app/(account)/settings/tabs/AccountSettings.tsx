@@ -1,6 +1,7 @@
 import Button from '@/components/Button';
+import type { SettingTabProps } from '../Settings';
 
-export default function AccountSettings() {
+export default function AccountSettings(_props: SettingTabProps) {
     const keycloakBaseUrl = process.env.NEXT_PUBLIC_LOCAL_KEYCLOAK_URL;
     const keycloakRealm = process.env.NEXT_PUBLIC_AUTH_REALM;
     const keycloakUpdatePasswordUrl = `${keycloakBaseUrl}/realms/${keycloakRealm}/account/account-security/signing-in`;

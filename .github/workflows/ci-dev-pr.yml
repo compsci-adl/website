@@ -11,9 +11,15 @@ jobs:
   lint-format:
     name: Linting and Formatting Checks
     uses: ./.github/workflows/lint-and-format.yml
+  unit-test:
+    name: Unit Tests
+    uses: ./.github/workflows/unit-tests.yml
+  e2e-tests:
+    name: E2E Tests
+    uses: ./.github/workflows/e2e-tests.yml
 
   build:
-    needs: lint-format
+    needs: [lint-format, unit-test, e2e-tests]
     name: Build
     runs-on: ubuntu-latest
     environment: Development
@@ -21,7 +27,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@900f2210b1d28bbbd0bd22d17926b9e224e8f231
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Build Docker container
         env:

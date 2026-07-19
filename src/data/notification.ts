@@ -1,6 +1,7 @@
 import type { NotificationData, ImageData } from '@/components/Notification/types';
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { resolveCmsUrl } from '@/lib/payload';
 
 const notificationURL = `${env.NEXT_PUBLIC_PAYLOAD_URI}/api/globals/notification`;
 
@@ -9,10 +10,8 @@ const resolveImageUrl = (img?: ImageData): ImageData | undefined =>
 
 export async function fetchNotification(): Promise<NotificationData | null> {
     try {
-        const data = await fetcher.get.query([
-            notificationURL,
-            { cache: 'no-store', prefixUrl: '' },
-        ]);
+        const url = resolveCmsUrl(notificationURL);
+        const data = await fetcher.get.query([url, { next: { revalidate: 300 }, prefixUrl: '' }]);
 
         return {
             ...data,

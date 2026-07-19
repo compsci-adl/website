@@ -1,5 +1,6 @@
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { resolveCmsUrl } from '@/lib/payload';
 
 export type Gallery = {
     eventName: string;
@@ -42,7 +43,10 @@ export const galleryURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/gallery?limit=100'
 export async function fetchGalleries(): Promise<Gallery[]> {
     try {
         // Fetching gallery data from payload with fetcher
-        const data = await fetcher.get.query([galleryURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = await fetcher.get.query([
+            resolveCmsUrl(galleryURL),
+            { next: { revalidate: 300 }, prefixUrl: '' },
+        ]);
 
         const payloadData = data.docs;
         const GALLERIES: Gallery[] = [];

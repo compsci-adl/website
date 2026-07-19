@@ -16,6 +16,13 @@ import { updateMemberExpiryDate } from '@/server/update-member-expiry-date';
 import { eq } from 'drizzle-orm';
 import { z } from 'zod';
 
+type RouteSession = {
+    user?: {
+        id?: string;
+        isAdmin?: boolean;
+    };
+} | null;
+
 // Create a Square payment link
 // See: https://developer.squareup.com/reference/square/checkout-api/create-payment-link
 export async function POST(request: Request) {
@@ -27,7 +34,22 @@ export async function POST(request: Request) {
     });
 
     // Ensure user is logged in
-    const session = await auth();
+    const mockAuth =
+        process.env.NODE_ENV !== 'production' ? request.headers.get('x-mock-auth') : null;
+    const session = (
+        mockAuth
+            ? {
+                  user: {
+                      id: mockAuth === 'admin' ? 'mock-admin-id' : 'mock-user-id',
+                      name: mockAuth === 'admin' ? 'Mock Admin' : 'Mock User',
+                      email: `${mockAuth}@example.com`,
+                      isCommittee: mockAuth === 'admin',
+                      isAdmin: mockAuth === 'admin',
+                  },
+                  expires: '2026-12-31T23:59:59.999Z',
+              }
+            : await auth()
+    ) as RouteSession;
     if (!session?.user) {
         return new Response(null, { status: 401 });
     }
@@ -66,20 +88,34 @@ export async function POST(request: Request) {
     };
 
     try {
-        const resp = await squareClient.checkout.paymentLinks.create(body);
+        let paymentLink;
+        const shouldMockSquare =
+            process.env.NODE_ENV !== 'production' || process.env.MOCK_SQUARE === 'true';
+
+        if (shouldMockSquare) {
+            paymentLink = {
+                id: 'mock-link-id',
+                url: 'http://localhost:3000/square-sandbox/payment-links/mock-link-id',
+                orderId: 'mock-order-id',
+                createdAt: new Date().toISOString(),
+            };
+        } else {
+            const resp = await squareClient.checkout.paymentLinks.create(body);
+            paymentLink = resp.paymentLink;
+        }
 
         if (reqBody.data.product === 'membership') {
             // Add Keycloak ID and payment ID to Redis cache
-            const orderId = resp.paymentLink?.orderId ?? '';
-            const createdAt = resp.paymentLink?.createdAt ?? '';
-            await redisClient.hSet(`payment:membership:${session?.user.id}`, {
+            const orderId = paymentLink?.orderId ?? '';
+            const createdAt = paymentLink?.createdAt ?? '';
+            await redisClient.hSet(`payment:membership:${session?.user?.id}`, {
                 orderId,
                 createdAt,
             });
         }
 
         // The URL to direct the user is accessed from `url` and `long_url`
-        return Response.json(resp.paymentLink);
+        return Response.json(paymentLink);
     } catch (e) {
         if (e && typeof e === 'object' && 'statusCode' in e) {
             return new Response(JSON.stringify((e as any).errors), {
@@ -98,7 +134,7 @@ export async function PUT(request: Request) {
         paid: z.boolean(),
     });
 
-    const session = await auth();
+    const session = (await auth()) as RouteSession;
     if (!session?.user?.isAdmin) {
         return new Response(null, { status: 401 });
     }

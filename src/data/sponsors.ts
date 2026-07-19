@@ -1,5 +1,6 @@
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { resolveCmsUrl } from '@/lib/payload';
 
 export const SPONSOR_TYPES = ['gold', 'silver', 'bronze'] as const;
 
@@ -32,7 +33,10 @@ export const sponsorURL = env.NEXT_PUBLIC_PAYLOAD_URI + '/api/sponsors?limit=20'
 export async function fetchSponsors(): Promise<Sponsor[]> {
     try {
         // Use fetcher.get.query to perform a GET request.
-        const data = await fetcher.get.query([sponsorURL, { cache: 'no-store', prefixUrl: '' }]);
+        const data = await fetcher.get.query([
+            resolveCmsUrl(sponsorURL),
+            { next: { revalidate: 300 }, prefixUrl: '' },
+        ]);
 
         // Parse each API sponsor into Sponsor type and reverse the order
         return (data.docs || [])

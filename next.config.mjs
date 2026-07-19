@@ -2,7 +2,10 @@ import './src/env.mjs';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'standalone',
+    allowedDevOrigins: ['127.0.0.1', 'localhost', '127.0.0.1:3000', 'localhost:3000'],
     images: {
+        minimumCacheTTL: 86400,
         remotePatterns: [
             {
                 protocol: 'https',
@@ -26,6 +29,19 @@ const nextConfig = {
     typescript: {
         // Ignore TypeScript errors during production build
         ignoreBuildErrors: process.env.PRODUCTION_BUILD === 'true',
+    },
+    async headers() {
+        return [
+            {
+                source: '/:path*\\.(png|jpg|jpeg|gif|webp|svg|ico|mp4|webm|pdf|woff2|woff)',
+                headers: [
+                    {
+                        key: 'Cache-Control',
+                        value: 'public, max-age=86400, immutable',
+                    },
+                ],
+            },
+        ];
     },
 };
 

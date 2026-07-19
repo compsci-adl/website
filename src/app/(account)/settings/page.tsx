@@ -44,7 +44,10 @@ export default async function SettingsPage() {
             <section className="w-full max-w-248">
                 <FancyRectangle colour="purple" offset="8" filled fullWidth>
                     {exists ? (
-                        <Settings settingData={{ membershipPayment }} />
+                        <Settings
+                            settingData={{ membershipPayment }}
+                            customerId={session.user.id ?? ''}
+                        />
                     ) : (
                         <div className="flex w-full flex-col gap-4 border-4 border-black bg-white px-4 py-8 text-black md:flex-row md:gap-8 md:p-12">
                             <h2 className="text-xl">

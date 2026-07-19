@@ -1,5 +1,6 @@
 import { env } from '@/env.mjs';
 import { fetcher } from '@/lib/fetcher';
+import { resolveCmsUrl } from '@/lib/payload';
 
 type CommitteeMember = {
     name: string;
@@ -51,8 +52,8 @@ export async function fetchCommitteeMember(): Promise<CommitteeMember[]> {
     try {
         // Fetching committee member data from payload with fetcher
         const data = await fetcher.get.query([
-            committeeMemberURL,
-            { cache: 'no-store', prefixUrl: '' },
+            resolveCmsUrl(committeeMemberURL),
+            { next: { revalidate: 300 }, prefixUrl: '' },
         ]);
 
         // Process the data to match the CommitteeMember interface

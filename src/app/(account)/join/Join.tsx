@@ -19,10 +19,10 @@ export default function Join() {
     const { data: session } = useSession();
 
     useEffect(() => {
-        if (session?.user) {
+        if (session?.user?.id) {
             setStep(2);
         }
-    }, [setStep, session?.user]);
+    }, [setStep, session?.user?.id]);
 
     return (
         <main className="flex flex-col items-center gap-8 md:gap-16">

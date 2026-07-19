@@ -100,7 +100,7 @@ export default async function HomePage() {
                                 <Image
                                     src="/images/yellow-star.svg"
                                     alt="Yellow Star"
-                                    className="ml-4 h-10"
+                                    className="ml-4 h-10 w-auto"
                                     width={50}
                                     height={50}
                                 />
@@ -219,7 +219,7 @@ export default async function HomePage() {
                     <Image
                         src="/images/yellow-triangle.svg"
                         alt="Yellow Triangle"
-                        className="mr-4 mb-12"
+                        className="mr-4 mb-12 h-auto w-auto"
                         width={30}
                         height={30}
                     />
