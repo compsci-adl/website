@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import React, { useMemo } from 'react';
 import type { Photo } from './types';
 
