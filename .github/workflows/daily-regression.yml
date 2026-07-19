@@ -22,8 +22,31 @@ jobs:
       - name: Install Playwright Browsers
         run: pnpm exec playwright install --with-deps chromium
 
+      - name: Find working proxies
+        run: node scripts/find-proxies.js
+
       - name: Run Production Regression Tests
-        run: pnpm exec playwright test tests/e2e/production.spec.ts
+        run: |
+          if [ -f working-proxies.txt ]; then
+            success=false
+            while read -r proxy; do
+              if [ -z "$proxy" ]; then continue; fi
+              echo "Attempting to run regression tests using proxy: $proxy"
+              if PLAYWRIGHT_PROXY="http://$proxy" pnpm exec playwright test tests/e2e/production.spec.ts; then
+                success=true
+                break
+              else
+                echo "Tests failed using proxy $proxy. Retrying with next proxy..."
+              fi
+            done < working-proxies.txt
+            if [ "$success" = false ]; then
+              echo "All proxies failed."
+              exit 1
+            fi
+          else
+            echo "working-proxies.txt not found. Running without proxy..."
+            pnpm exec playwright test tests/e2e/production.spec.ts
+          fi
 
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: ${{ !cancelled() }}

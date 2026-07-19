@@ -22,6 +22,9 @@ export default defineConfig({
 
     /* Collect trace when retrying a failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    /* Configure proxy if provided via environment variable */
+    proxy: process.env.PLAYWRIGHT_PROXY ? { server: process.env.PLAYWRIGHT_PROXY } : undefined,
   },
 
   /* Configure projects for major browsers */
