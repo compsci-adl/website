@@ -25,6 +25,9 @@ export default defineConfig({
 
     /* Configure proxy if provided via environment variable */
     proxy: process.env.PLAYWRIGHT_PROXY ? { server: process.env.PLAYWRIGHT_PROXY } : undefined,
+
+    /* Ignore HTTPS certification errors */
+    ignoreHTTPSErrors: true,
   },
 
   /* Configure projects for major browsers */
