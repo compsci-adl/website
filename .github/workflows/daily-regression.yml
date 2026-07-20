@@ -26,6 +26,8 @@ jobs:
         run: node scripts/find-proxies.js
 
       - name: Run Production Regression Tests
+        env:
+          NEXT_PUBLIC_PAYLOAD_URI: 'https://cms.csclub.org.au'
         run: |
           if [ -f working-proxies.txt ]; then
             success=false
