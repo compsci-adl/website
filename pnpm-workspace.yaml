@@ -12,7 +12,7 @@ overrides:
   esbuild@<=0.24.2: "^0.28.0"
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
   "esbuild@^0.24.3": "^0.28.0"
-  postcss@<8.5.10: "^8.5.10"
+  postcss@<8.5.10: "^8.5.18"
   protobufjs@<7.5.5: "^7.5.5"
 peerDependencyRules:
   allowedVersions:
