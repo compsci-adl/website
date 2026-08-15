@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
-let createTransportOptions: any = null;
+let createTransportOptions: unknown = null;
 
 mock.module('nodemailer', {
     exports: {
-        createTransport: (options: any) => {
+        createTransport: (options: unknown) => {
             createTransportOptions = options;
             return {
                 sendMail: async () => {},

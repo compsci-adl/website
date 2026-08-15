@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
-let mockDbResults: any[] = [];
+let mockDbResults: unknown[] = [];
 let mockRedisHash: Record<string, string> = {};
-let mockSquareOrderRes: any = null;
+let mockSquareOrderRes: unknown = null;
 let mockSquareThrowError = false;
 let updateMemberExpiryDateCalled = false;
 let redisDelCalledKey: string | null = null;
@@ -23,8 +23,8 @@ mock.module('@/db', {
 
 mock.module('drizzle-orm', {
     exports: {
-        eq: (col: any, val: any) => ({ col, val }),
-        sql: (strings: any, ...values: any[]) => strings.join('?'),
+        eq: (col: unknown, val: unknown) => ({ col, val }),
+        sql: (strings: TemplateStringsArray, ...values: unknown[]) => strings.join('?'),
     },
 });
 
@@ -62,7 +62,7 @@ mock.module('@/lib/square', {
 let updateMemberExpiryDateThrow = false;
 mock.module('../../../src/server/update-member-expiry-date', {
     exports: {
-        updateMemberExpiryDate: async (id: string, mode: string) => {
+        updateMemberExpiryDate: async (_id: string, _mode: string) => {
             updateMemberExpiryDateCalled = true;
             if (updateMemberExpiryDateThrow) {
                 throw new Error('Database write failed');

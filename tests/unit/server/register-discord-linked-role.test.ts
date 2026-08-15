@@ -6,23 +6,21 @@ process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID = 'mock-client-id';
 process.env.DISCORD_TOKEN = 'mock-token';
 
 let fetchUrl: string | null = null;
-let fetchOptions: any = null;
+let fetchOptions: RequestInit | null = null;
 let fetchResponseOk = true;
 let fetchResponseText = '';
-let fetchResponseJson: any = null;
+let fetchResponseJson: unknown = null;
 
 // Save original fetch
 const originalFetch = globalThis.fetch;
 
 // Mock global fetch
-globalThis.fetch = async (url: any, options: any) => {
+globalThis.fetch = async (url: string | URL | Request, options?: RequestInit) => {
     fetchUrl = String(url);
-    fetchOptions = options;
-    return {
-        ok: fetchResponseOk,
-        text: async () => fetchResponseText,
-        json: async () => fetchResponseJson,
-    } as any;
+    fetchOptions = options ?? null;
+    return new Response(fetchResponseJson ? JSON.stringify(fetchResponseJson) : fetchResponseText, {
+        status: fetchResponseOk ? 200 : 400,
+    });
 };
 
 const { registerDiscordLinkedRole } = await import('@/server/register-discord-linked-role');
@@ -40,10 +38,12 @@ describe('registerDiscordLinkedRole server function', () => {
             fetchUrl,
             'https://discord.com/api/v10/applications/mock-client-id/role-connections/metadata'
         );
-        assert.ok(fetchOptions);
-        assert.strictEqual(fetchOptions.method, 'PUT');
-        assert.strictEqual(fetchOptions.headers.Authorization, 'Bot mock-token');
-        assert.deepEqual(JSON.parse(fetchOptions.body), [
+        const opts = fetchOptions as RequestInit | null;
+        assert.ok(opts);
+        const headers = opts.headers as Record<string, string>;
+        assert.strictEqual(opts.method, 'PUT');
+        assert.strictEqual(headers?.Authorization, 'Bot mock-token');
+        assert.deepEqual(JSON.parse(opts.body as string), [
             {
                 key: 'member',
                 name: 'CS Club Member',
@@ -56,6 +56,7 @@ describe('registerDiscordLinkedRole server function', () => {
 
     it('throws Error when Discord API request fails', async () => {
         fetchResponseOk = false;
+        fetchResponseJson = null;
         fetchResponseText = 'Rate limited or unauthorized';
 
         await assert.rejects(async () => {

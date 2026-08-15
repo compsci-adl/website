@@ -23,7 +23,7 @@ mock.module('redis', {
 
 describe('Redis Client Socket Already Opened Recovery', () => {
     it('recovers and treats connection as healthy if Socket already opened error occurs', async () => {
-        const { redisClient } = await import('../../../src/lib/redis.ts');
+        const { redisClient } = await import('../../../src/lib/redis');
 
         await redisClient.connect();
         assert.strictEqual(connectCalled, true);

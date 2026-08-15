@@ -2,17 +2,17 @@ import { DateTime } from 'luxon';
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
-let lastUpdateValues: any = null;
-let lastUpdateId: any = null;
+let lastUpdateValues: unknown = null;
+let lastUpdateId: { col?: unknown; val?: unknown } | null = null;
 
 mock.module('@/db', {
     exports: {
         db: {
             update: () => ({
-                set: (values: any) => {
+                set: (values: unknown) => {
                     lastUpdateValues = values;
                     return {
-                        where: async (cond: any) => {
+                        where: async (cond: { col?: unknown; val?: unknown }) => {
                             lastUpdateId = cond;
                         },
                     };
@@ -24,10 +24,10 @@ mock.module('@/db', {
 
 mock.module('drizzle-orm', {
     exports: {
-        eq: (col: any, val: any) => {
+        eq: (col: unknown, val: unknown) => {
             return { col, val };
         },
-        sql: (strings: any, ...values: any[]) => strings.join('?'),
+        sql: (strings: TemplateStringsArray, ...values: unknown[]) => strings.join('?'),
     },
 });
 
@@ -48,8 +48,9 @@ describe('updateMemberExpiryDate server function', () => {
             membershipExpiresAt: expectedDate,
             welcomeEmailSent: false,
         });
-        assert.ok(lastUpdateId);
-        assert.strictEqual(lastUpdateId.val, 'mock-keycloak-id');
+        const updateId1 = lastUpdateId as { col?: unknown; val?: unknown } | null;
+        assert.ok(updateId1);
+        assert.strictEqual(updateId1.val, 'mock-keycloak-id');
     });
 
     it('updates user expiry date to Jan 1st of next year using id mode', async () => {
@@ -66,7 +67,8 @@ describe('updateMemberExpiryDate server function', () => {
             membershipExpiresAt: expectedDate,
             welcomeEmailSent: false,
         });
-        assert.ok(lastUpdateId);
-        assert.strictEqual(lastUpdateId.val, 'mock-db-id');
+        const updateId2 = lastUpdateId as { col?: unknown; val?: unknown } | null;
+        assert.ok(updateId2);
+        assert.strictEqual(updateId2.val, 'mock-db-id');
     });
 });

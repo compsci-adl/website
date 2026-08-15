@@ -16,7 +16,7 @@ mock.module('redis', {
 describe('Redis Client Timeout', () => {
     it('fails fast on connection timeout', async (t) => {
         t.mock.timers.enable({ apis: ['setTimeout'] });
-        const { redisClient } = await import('../../../src/lib/redis.ts');
+        const { redisClient } = await import('../../../src/lib/redis');
 
         const connectPromise = redisClient.connect();
         t.mock.timers.tick(2500);

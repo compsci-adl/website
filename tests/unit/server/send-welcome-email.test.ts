@@ -1,11 +1,11 @@
 import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
-let mockDbResults: any[] = [];
-let lastUpdateValues: any = null;
-let lastUpdateId: any = null;
-let sentEmailOptions: any = null;
-let renderCalledWith: any = null;
+let mockDbResults: unknown[] = [];
+let lastUpdateValues: unknown = null;
+let lastUpdateId: { col?: unknown; val?: unknown } | null = null;
+let sentEmailOptions: { to?: string; html?: string } | null = null;
+let renderCalledWith: unknown = null;
 
 let shouldDbUpdateThrow = false;
 
@@ -19,10 +19,10 @@ mock.module('@/db', {
                 }),
             }),
             update: () => ({
-                set: (values: any) => {
+                set: (values: unknown) => {
                     lastUpdateValues = values;
                     return {
-                        where: async (cond: any) => {
+                        where: async (cond: { col?: unknown; val?: unknown }) => {
                             if (shouldDbUpdateThrow) {
                                 throw new Error('Database update failed');
                             }
@@ -37,8 +37,8 @@ mock.module('@/db', {
 
 mock.module('drizzle-orm', {
     exports: {
-        eq: (col: any, val: any) => ({ col, val }),
-        sql: (strings: any, ...values: any[]) => strings.join('?'),
+        eq: (col: unknown, val: unknown) => ({ col, val }),
+        sql: (strings: TemplateStringsArray, ...values: unknown[]) => strings.join('?'),
     },
 });
 
@@ -46,15 +46,15 @@ mock.module('drizzle-orm', {
 mock.module('@react-email/components', {
     exports: {
         Img: () => null,
-        Section: ({ children }: any) => children,
-        Row: ({ children }: any) => children,
-        Column: ({ children }: any) => children,
-        Head: ({ children }: any) => children,
-        Html: ({ children }: any) => children,
-        Body: ({ children }: any) => children,
-        Container: ({ children }: any) => children,
-        Tailwind: ({ children }: any) => children,
-        render: async (element: any) => {
+        Section: ({ children }: { children?: React.ReactNode }) => children,
+        Row: ({ children }: { children?: React.ReactNode }) => children,
+        Column: ({ children }: { children?: React.ReactNode }) => children,
+        Head: ({ children }: { children?: React.ReactNode }) => children,
+        Html: ({ children }: { children?: React.ReactNode }) => children,
+        Body: ({ children }: { children?: React.ReactNode }) => children,
+        Container: ({ children }: { children?: React.ReactNode }) => children,
+        Tailwind: ({ children }: { children?: React.ReactNode }) => children,
+        render: async (element: unknown) => {
             renderCalledWith = element;
             return '<div>Welcome! <div data-comment-start="!mso"></div></div>';
         },
@@ -65,7 +65,7 @@ mock.module('@react-email/components', {
 mock.module('@/lib/email', {
     exports: {
         transporter: {
-            sendMail: async (options: any) => {
+            sendMail: async (options: { to?: string; html?: string }) => {
                 sentEmailOptions = options;
             },
         },
@@ -77,26 +77,34 @@ const { sendWelcomeEmail } = await import('@/server/send-welcome-email');
 describe('sendWelcomeEmail server function', () => {
     it('does not send email if member already received one', async () => {
         mockDbResults = [{ welcomeEmailSent: true }];
-        sentEmailOptions = null;
-
-        await sendWelcomeEmail('keycloak-id', 'test@example.com', 'Alice');
-
-        assert.strictEqual(sentEmailOptions, null);
-    });
-
-    it('renders and sends welcome email and updates database flag', async () => {
-        mockDbResults = [{ welcomeEmailSent: false }];
+        shouldDbUpdateThrow = false;
         lastUpdateValues = null;
         lastUpdateId = null;
         sentEmailOptions = null;
 
         await sendWelcomeEmail('keycloak-id', 'test@example.com', 'Alice');
 
-        assert.ok(sentEmailOptions);
-        assert.strictEqual(sentEmailOptions.to, 'test@example.com');
-        assert.ok(sentEmailOptions.html.includes('<!--[if !mso]><!-- -->'));
+        assert.strictEqual(sentEmailOptions, null);
+        assert.strictEqual(lastUpdateValues, null);
+    });
+
+    it('renders and sends welcome email and updates database flag', async () => {
+        mockDbResults = [{ welcomeEmailSent: false }];
+        shouldDbUpdateThrow = false;
+        lastUpdateValues = null;
+        lastUpdateId = null;
+        sentEmailOptions = null;
+
+        await sendWelcomeEmail('keycloak-id', 'test@example.com', 'Alice');
+
+        const emailOpts = sentEmailOptions as { to?: string; html?: string } | null;
+        const updateId = lastUpdateId as { col?: unknown; val?: unknown } | null;
+
+        assert.ok(emailOpts);
+        assert.strictEqual(emailOpts.to, 'test@example.com');
+        assert.ok(emailOpts.html?.includes('<!--[if !mso]><!-- -->'));
         assert.deepEqual(lastUpdateValues, { welcomeEmailSent: true });
-        assert.strictEqual(lastUpdateId.val, 'keycloak-id');
+        assert.strictEqual(updateId?.val, 'keycloak-id');
     });
 
     it('handles database update errors gracefully', async () => {

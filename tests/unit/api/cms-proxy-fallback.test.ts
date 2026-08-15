@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
 // Set NODE_ENV to development to exercise the local 127.0.0.1 routing path
-process.env.NODE_ENV = 'development';
+(process.env as { NODE_ENV?: string }).NODE_ENV = 'development';
 
 // Mock env with NEXT_PUBLIC_PAYLOAD_URI undefined to test fallback branch
 mock.module('@/env.mjs', {
@@ -22,9 +22,9 @@ describe('CMS Proxy API - Fallback Base URL', () => {
                 headers: { 'Content-Type': 'application/json' },
             });
         });
-        globalThis.fetch = mockFetch as any;
+        globalThis.fetch = mockFetch as typeof fetch;
 
-        const { GET } = await import('../../../src/app/api/cms/[...slug]/route.ts');
+        const { GET } = await import('../../../src/app/api/cms/[...slug]/route');
         const req = new Request('http://localhost:3000/api/cms/globals/notification');
         const res = await GET(req, {
             params: Promise.resolve({ slug: ['globals', 'notification'] }),

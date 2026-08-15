@@ -8,7 +8,7 @@ describe('DB Schema Default Generators', () => {
         assert.ok(idFn);
         const result = idFn();
         assert.strictEqual(typeof result, 'string');
-        assert.ok(result.length > 0);
+        assert.ok((result as string).length > 0);
     });
 
     it('notificationsTable id generator returns a nanoid string', () => {
@@ -16,7 +16,7 @@ describe('DB Schema Default Generators', () => {
         assert.ok(idFn);
         const result = idFn();
         assert.strictEqual(typeof result, 'string');
-        assert.ok(result.length > 0);
+        assert.ok((result as string).length > 0);
     });
 
     it('notificationsTable Boolean columns default to false', () => {
@@ -54,7 +54,7 @@ describe('DB Schema Default Generators', () => {
         );
         assert.ok(fkSymbol);
 
-        const fks = (notificationsTable as any)[fkSymbol];
+        const fks = Reflect.get(notificationsTable, fkSymbol) as Array<{ reference: () => void }>;
         assert.ok(Array.isArray(fks));
         assert.strictEqual(fks.length, 1);
 
