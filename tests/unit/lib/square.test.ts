@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
 let initializedToken: string | null = null;
-let initializedEnv: any = null;
+let initializedEnv: unknown = null;
 
 mock.module('square', {
     exports: {
@@ -11,7 +11,7 @@ mock.module('square', {
             Sandbox: 'sandbox',
         },
         SquareClient: class {
-            constructor(options: any) {
+            constructor(options: { token: string; environment: unknown }) {
                 initializedToken = options.token;
                 initializedEnv = options.environment;
             }

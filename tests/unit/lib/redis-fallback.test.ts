@@ -7,7 +7,7 @@ describe('Redis Fallback Client', () => {
         process.env.REDIS_URI = '';
 
         // Dynamically import to avoid ESM import hoisting
-        const { redisClient } = await import('../../../src/lib/redis.ts');
+        const { redisClient } = await import('../../../src/lib/redis');
 
         await redisClient.connect();
 

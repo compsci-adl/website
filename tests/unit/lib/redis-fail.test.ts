@@ -15,7 +15,7 @@ mock.module('redis', {
 
 describe('Redis Client Failure', () => {
     it('fails open on connection error', async () => {
-        const { redisClient } = await import('../../../src/lib/redis.ts');
+        const { redisClient } = await import('../../../src/lib/redis');
 
         await redisClient.connect();
 

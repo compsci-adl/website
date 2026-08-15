@@ -21,7 +21,7 @@ describe('Payload Utility - resolveCmsUrl', () => {
             location: {
                 origin: 'http://localhost:3000',
             },
-        } as any;
+        } as unknown as Window & typeof globalThis;
 
         const inputUrl = 'http://localhost:4000/api/events?limit=100';
         assert.strictEqual(resolveCmsUrl(inputUrl), '/api/cms/events?limit=100');
@@ -39,17 +39,17 @@ describe('Payload Utility - resolveCmsUrl', () => {
         delete globalThis.window;
 
         // --- Scenario 2: Server side in development (NODE_ENV=development) ---
-        process.env.NODE_ENV = 'development';
+        (process.env as { NODE_ENV?: string }).NODE_ENV = 'development';
         assert.strictEqual(resolveCmsUrl(inputUrl), 'http://127.0.0.1:4000/api/events?limit=100');
 
         // --- Scenario 3: Server side in production/Docker (NODE_ENV=production) ---
-        process.env.NODE_ENV = 'production';
+        (process.env as { NODE_ENV?: string }).NODE_ENV = 'production';
         assert.strictEqual(resolveCmsUrl(inputUrl), 'http://payload:4000/api/events?limit=100');
 
         const inputUrl127 = 'http://127.0.0.1:4000/api/events?limit=100';
         assert.strictEqual(resolveCmsUrl(inputUrl127), 'http://payload:4000/api/events?limit=100');
 
         // Restore env
-        process.env.NODE_ENV = originalNodeEnv;
+        (process.env as { NODE_ENV?: string }).NODE_ENV = originalNodeEnv;
     });
 });

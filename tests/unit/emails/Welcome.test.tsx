@@ -5,15 +5,19 @@ import React from 'react';
 
 mock.module('@react-email/components', {
     exports: {
-        Html: ({ children }: any) => <div>{children}</div>,
-        Head: ({ children }: any) => <div data-testid="head">{children}</div>,
-        Body: ({ children, className }: any) => <div className={className}>{children}</div>,
-        Container: ({ children, className }: any) => <div className={className}>{children}</div>,
-        Tailwind: ({ children }: any) => <div>{children}</div>,
-        Section: ({ children }: any) => <section>{children}</section>,
-        Row: ({ children }: any) => <tr>{children}</tr>,
-        Column: ({ children }: any) => <td>{children}</td>,
-        Img: (props: any) => <img {...props} />,
+        Html: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+        Head: ({ children }: React.PropsWithChildren) => <div data-testid="head">{children}</div>,
+        Body: ({ children, className }: React.PropsWithChildren<{ className?: string }>) => (
+            <div className={className}>{children}</div>
+        ),
+        Container: ({ children, className }: React.PropsWithChildren<{ className?: string }>) => (
+            <div className={className}>{children}</div>
+        ),
+        Tailwind: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
+        Section: ({ children }: React.PropsWithChildren) => <section>{children}</section>,
+        Row: ({ children }: React.PropsWithChildren) => <tr>{children}</tr>,
+        Column: ({ children }: React.PropsWithChildren) => <td>{children}</td>,
+        Img: (props: React.ImgHTMLAttributes<HTMLImageElement>) => <img {...props} />,
     },
 });
 

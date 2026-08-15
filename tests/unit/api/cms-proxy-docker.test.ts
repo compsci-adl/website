@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it, mock } from 'node:test';
 
 // Set NODE_ENV to production to simulate Docker/non-development routing
-process.env.NODE_ENV = 'production';
+(process.env as { NODE_ENV?: string }).NODE_ENV = 'production';
 
 // Mock env
 mock.module('@/env.mjs', {
@@ -14,18 +14,17 @@ mock.module('@/env.mjs', {
 });
 
 // Mock fetch globally
-const mockFetch = mock.fn(async () => {
-    return {
-        ok: true,
+const mockFetch = mock.fn(async (_url?: string | URL | Request) => {
+    return new Response(JSON.stringify({ success: true }), {
         status: 200,
-        json: async () => ({ success: true }),
-    } as any;
+        headers: { 'Content-Type': 'application/json' },
+    });
 });
-globalThis.fetch = mockFetch as any;
+globalThis.fetch = mockFetch as typeof fetch;
 
 describe('CMS Proxy Route Handler (Docker / Production)', () => {
     it('rewrites localhost to payload hostname in non-development environments', async () => {
-        const { GET } = await import('../../../src/app/api/cms/[...slug]/route.ts');
+        const { GET } = await import('../../../src/app/api/cms/[...slug]/route');
 
         const req = new Request('http://localhost:3000/api/cms/globals/notification');
         const res = await GET(req, {
@@ -34,6 +33,9 @@ describe('CMS Proxy Route Handler (Docker / Production)', () => {
 
         assert.strictEqual(res.status, 200);
         const lastCall = mockFetch.mock.calls[mockFetch.mock.calls.length - 1];
-        assert.strictEqual(lastCall.arguments[0], 'http://payload:4000/api/globals/notification');
+        assert.strictEqual(
+            lastCall.arguments[0] as string,
+            'http://payload:4000/api/globals/notification'
+        );
     });
 });

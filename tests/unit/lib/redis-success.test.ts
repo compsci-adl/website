@@ -44,7 +44,7 @@ mock.module('redis', {
 
 describe('Redis Client Success', () => {
     it('successfully connects and routes commands to redis client', async () => {
-        const { redisClient } = await import('../../../src/lib/redis.ts');
+        const { redisClient } = await import('../../../src/lib/redis');
 
         await redisClient.connect();
         assert.strictEqual(connectCalled, true);

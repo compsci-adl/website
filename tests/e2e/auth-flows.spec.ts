@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page, type Route } from '@playwright/test';
 
 test.describe('Authenticated User Flows', () => {
     // Helper to mock the next-auth session both on the browser and server-side (via HTTP header)
-    const mockSession = async (page, userRole: 'admin' | 'user' | null) => {
+    const mockSession = async (page: Page, userRole: 'admin' | 'user' | null) => {
         const context = page.context();
         if (userRole) {
             await context.setExtraHTTPHeaders({
@@ -13,7 +13,7 @@ test.describe('Authenticated User Flows', () => {
         }
 
         // Mock the client-side API endpoint for browser calls
-        await page.route('**/api/auth/session', (route) => {
+        await page.route('**/api/auth/session', (route: Route) => {
             if (userRole) {
                 route.fulfill({
                     status: 200,

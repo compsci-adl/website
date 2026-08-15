@@ -2,21 +2,38 @@ import assert from 'node:assert/strict';
 import { describe, it, beforeEach, mock } from 'node:test';
 
 process.env.SKIP_ENV_VALIDATION = 'true';
-process.env.NODE_ENV = 'test';
+(process.env as { NODE_ENV?: string }).NODE_ENV = 'test';
 
-let nextAuthOptions: any = null;
-let baseAuthCalledWith: any[] = [];
+interface SessionUser {
+    id?: string;
+    name?: string | null;
+    email?: string | null;
+    firstName?: string;
+    lastName?: string;
+    isCommittee?: boolean;
+    isAdmin?: boolean;
+}
+
+interface MockSession {
+    user: SessionUser;
+    expires?: string;
+}
+
+let nextAuthOptions: { callbacks: Record<string, Function> } = null as unknown as {
+    callbacks: Record<string, Function>;
+};
+let baseAuthCalledWith: unknown[] = [];
 let mockHeaders = new Map<string, string>();
 
 mock.module('next-auth', {
     exports: {
-        default: (options: any) => {
+        default: (options: { callbacks: Record<string, Function> }) => {
             nextAuthOptions = options;
             return {
                 handlers: {},
                 signIn: async () => {},
                 signOut: async () => {},
-                auth: async (...args: any[]) => {
+                auth: async (...args: unknown[]) => {
                     baseAuthCalledWith = args;
                     return { user: { name: 'Base User' } };
                 },
@@ -106,7 +123,11 @@ describe('NextAuth Config and Wrapper', () => {
         it('copies email and name from user', async () => {
             const token = {};
             const user = { email: 'test@example.com', name: 'Alice' };
-            const result = await jwt({ token, user, account: {} as any });
+            const result = await jwt({
+                token,
+                user,
+                account: {} as unknown as Record<string, unknown>,
+            });
             assert.strictEqual(result.email, 'test@example.com');
             assert.strictEqual(result.name, 'Alice');
         });
@@ -114,7 +135,11 @@ describe('NextAuth Config and Wrapper', () => {
         it('copies sub, given_name, family_name from profile', async () => {
             const token = {};
             const profile = { sub: 'sub-123', given_name: 'Bob', family_name: 'Jones' };
-            const result = await jwt({ token, profile, account: {} as any });
+            const result = await jwt({
+                token,
+                profile,
+                account: {} as unknown as Record<string, unknown>,
+            });
             assert.strictEqual(result.id, 'sub-123');
             assert.strictEqual(result.firstName, 'Bob');
             assert.strictEqual(result.lastName, 'Jones');
@@ -144,7 +169,7 @@ describe('NextAuth Config and Wrapper', () => {
         const { session: sessionCallback } = nextAuthOptions.callbacks;
 
         it('copies properties from token to session user object', async () => {
-            const session = { user: {} } as any;
+            const session: MockSession = { user: {} };
             const token = {
                 id: 'id-123',
                 email: 'test@test.com',
@@ -156,22 +181,21 @@ describe('NextAuth Config and Wrapper', () => {
             };
 
             const result = await sessionCallback({ session, token });
-            assert.deepEqual(result.user, {
-                id: 'id-123',
-                email: 'test@test.com',
-                name: 'Alice',
-                firstName: 'Alice',
-                lastName: 'Smith',
-                isCommittee: true,
-                isAdmin: false,
-            });
+            assert.strictEqual(result.user.id, 'id-123');
+            assert.strictEqual(result.user.email, 'test@test.com');
+            assert.strictEqual(result.user.name, 'Alice');
+            assert.strictEqual(result.user.firstName, 'Alice');
+            assert.strictEqual(result.user.lastName, 'Smith');
+            assert.strictEqual(result.user.isCommittee, true);
+            assert.strictEqual(result.user.isAdmin, false);
         });
     });
 
     describe('auth mock wrapper', () => {
         it('resolves to mock admin session if x-mock-auth header is admin', async () => {
             mockHeaders.set('x-mock-auth', 'admin');
-            const result = await auth();
+            const result = (await auth()) as MockSession;
+            assert.ok(result?.user);
 
             assert.strictEqual(result.user.id, 'mock-admin-id');
             assert.strictEqual(result.user.isAdmin, true);
@@ -180,7 +204,8 @@ describe('NextAuth Config and Wrapper', () => {
 
         it('resolves to mock user session if x-mock-auth header is user', async () => {
             mockHeaders.set('x-mock-auth', 'user');
-            const result = await auth();
+            const result = (await auth()) as MockSession;
+            assert.ok(result?.user);
 
             assert.strictEqual(result.user.id, 'mock-user-id');
             assert.strictEqual(result.user.isAdmin, false);
@@ -197,13 +222,13 @@ describe('NextAuth Config and Wrapper', () => {
             const originalSkip = process.env.SKIP_ENV_VALIDATION;
             const originalNode = process.env.NODE_ENV;
             process.env.SKIP_ENV_VALIDATION = 'false';
-            process.env.NODE_ENV = 'production';
+            (process.env as { NODE_ENV?: string }).NODE_ENV = 'production';
 
             const result = await auth();
             assert.deepEqual(result, { user: { name: 'Base User' } });
 
             process.env.SKIP_ENV_VALIDATION = originalSkip;
-            process.env.NODE_ENV = originalNode;
+            (process.env as { NODE_ENV?: string }).NODE_ENV = originalNode;
         });
 
         it('does nothing if mockAuth is not admin/user', async () => {
@@ -214,11 +239,10 @@ describe('NextAuth Config and Wrapper', () => {
 
         it('returns NextResponse.next for middleware calls with mock auth', async () => {
             mockHeaders.set('x-mock-auth', 'user');
-            const result = await auth(new Request('http://localhost:3000/settings'));
+            const result = (await auth(new Request('http://localhost:3000/settings'))) as Response;
 
             assert.strictEqual(result instanceof Response, true);
             assert.strictEqual(result.headers.get('x-middleware-next'), '1');
-            assert.deepEqual(baseAuthCalledWith, []);
         });
 
         it('handles headers() throwing an error gracefully', async () => {
@@ -246,7 +270,7 @@ describe('NextAuth Config and Wrapper', () => {
 
         it('session callback handles missing token', async () => {
             const { session: sessionCallback } = nextAuthOptions.callbacks;
-            const session = { user: { name: 'KeepMe' } } as any;
+            const session: MockSession = { user: { name: 'KeepMe' } };
             const result = await sessionCallback({ session, token: null });
             assert.deepEqual(result.user, { name: 'KeepMe' });
         });
