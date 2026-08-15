@@ -27,6 +27,7 @@
     "@hookform/resolvers": "^5.4.0",
     "@libsql/client": "^0.17.4",
     "@react-email/components": "^1.0.12",
+    "@swc/helpers": "^0.5.23",
     "@t3-oss/env-nextjs": "^0.13.11",
     "drizzle-orm": "^0.45.2",
     "drizzle-zod": "^0.8.3",
