@@ -422,7 +422,10 @@ export default async function AboutPage() {
                         Constitution
                     </a>
                     , and{' '}
-                    <a href="https://github.com/compsci-adl/Constitution" className="underline">
+                    <a
+                        href="https://drive.google.com/file/d/16Yk-pwU46TQ6yA_tIJ4prhOCbeqNCVua/view?usp=sharing"
+                        className="underline"
+                    >
                         Code of Conduct
                     </a>
                     .
