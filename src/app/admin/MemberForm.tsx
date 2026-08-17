@@ -72,7 +72,7 @@ export default function MemberForm({
                 onChange={setSelectedMember}
                 displayOptionStr={getMemberStr}
                 filterOptionStr={getMemberSearchStr}
-                placeholder="Search for a member by name..."
+                placeholder="Search for a member by email or name..."
                 notFoundMessage="No members found"
             />
             <div className="flex justify-center">
