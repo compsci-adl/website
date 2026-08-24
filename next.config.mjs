@@ -3,6 +3,9 @@ import './src/env.mjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     output: 'standalone',
+    outputFileTracingIncludes: {
+        '**/*': ['./node_modules/@swc/helpers/**/*'],
+    },
     allowedDevOrigins: ['127.0.0.1', 'localhost', '127.0.0.1:3000', 'localhost:3000'],
     images: {
         minimumCacheTTL: 86400,

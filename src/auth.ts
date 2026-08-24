@@ -132,19 +132,10 @@ interface AuthFunction {
 }
 
 export const auth: AuthFunction = (async (...args: any[]) => {
-    console.log(
-        '--- auth() CALLED. env.SKIP_ENV_VALIDATION:',
-        process.env.SKIP_ENV_VALIDATION,
-        'env.NODE_ENV:',
-        process.env.NODE_ENV,
-        'args.length:',
-        args.length
-    );
     if (process.env.SKIP_ENV_VALIDATION === 'true' || process.env.NODE_ENV === 'test') {
         try {
             const reqHeaders = await headers();
             const mockAuth = reqHeaders.get('x-mock-auth');
-            console.log('--- E2E MOCK AUTH HEADER RESOLVED:', mockAuth);
             if (mockAuth) {
                 if (args.length > 0) {
                     return NextResponse.next();
