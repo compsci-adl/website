@@ -23,10 +23,33 @@ globalThis.fetch = async (url: string | URL | Request, options?: RequestInit) =>
     });
 };
 
+const { env } = await import('@/env.mjs');
 const { registerDiscordLinkedRole } = await import('@/server/register-discord-linked-role');
 
 describe('registerDiscordLinkedRole server function', () => {
+    it('returns null if NEXT_PUBLIC_DISCORD_CLIENT_ID is missing', async () => {
+        const originalId = env.NEXT_PUBLIC_DISCORD_CLIENT_ID;
+        (env as any).NEXT_PUBLIC_DISCORD_CLIENT_ID = undefined;
+
+        const result = await registerDiscordLinkedRole();
+        assert.strictEqual(result, null);
+
+        (env as any).NEXT_PUBLIC_DISCORD_CLIENT_ID = originalId;
+    });
+
+    it('returns null if DISCORD_TOKEN is missing', async () => {
+        const originalToken = env.DISCORD_TOKEN;
+        (env as any).DISCORD_TOKEN = undefined;
+
+        const result = await registerDiscordLinkedRole();
+        assert.strictEqual(result, null);
+
+        (env as any).DISCORD_TOKEN = originalToken;
+    });
+
     it('sends correct metadata connection request to Discord API', async () => {
+        (env as any).NEXT_PUBLIC_DISCORD_CLIENT_ID = 'mock-client-id';
+        (env as any).DISCORD_TOKEN = 'mock-token';
         fetchUrl = null;
         fetchOptions = null;
         fetchResponseOk = true;
@@ -55,6 +78,8 @@ describe('registerDiscordLinkedRole server function', () => {
     });
 
     it('throws Error when Discord API request fails', async () => {
+        (env as any).NEXT_PUBLIC_DISCORD_CLIENT_ID = 'mock-client-id';
+        (env as any).DISCORD_TOKEN = 'mock-token';
         fetchResponseOk = false;
         fetchResponseJson = null;
         fetchResponseText = 'Rate limited or unauthorized';
