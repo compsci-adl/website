@@ -23,12 +23,14 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Find working proxies
+        continue-on-error: true
         env:
           USER_AGENT: 'Uptimeflare'
         run: node scripts/find-proxies.js
 
       - name: Run Production Regression Tests
         env:
+          SKIP_WEBSERVER: 'true'
           NEXT_PUBLIC_PAYLOAD_URI: 'https://cms.csclub.org.au'
           USER_AGENT: 'Uptimeflare'
           PLAYWRIGHT_USER_AGENT: 'Uptimeflare'
