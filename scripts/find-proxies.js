@@ -40,9 +40,10 @@ function testProxy(proxyHost, proxyPort) {
 
                     tlsSocket.setTimeout(TIMEOUT_MS);
 
+                    const userAgent = process.env.USER_AGENT || 'Uptimeflare';
                     tlsSocket.on('secureConnect', () => {
                         tlsSocket.write(
-                            `GET / HTTP/1.1\r\nHost: ${TARGET_HOST}\r\nConnection: close\r\n\r\n`
+                            `GET / HTTP/1.1\r\nHost: ${TARGET_HOST}\r\nUser-Agent: ${userAgent}\r\nConnection: close\r\n\r\n`
                         );
                     });
 
@@ -90,7 +91,8 @@ async function main() {
     console.log(`Fetching proxy list from ${PROXY_LIST_URL}...`);
     const response = await fetch(PROXY_LIST_URL);
     if (!response.ok) {
-        throw new Error(`Failed to fetch proxy list: ${response.statusText}`);
+        console.warn(`Failed to fetch proxy list: ${response.statusText}`);
+        return;
     }
     const text = await response.text();
     const proxies = text
@@ -133,13 +135,19 @@ async function main() {
     const workers = Array.from({ length: CONCURRENCY }, () => worker());
     await Promise.all(workers);
 
-    if (workingProxies.length < 3) {
-        console.error(`Could only find ${workingProxies.length} working proxies.`);
-        process.exit(1);
+    if (workingProxies.length > 0) {
+        const outputPath = path.join(process.cwd(), 'working-proxies.txt');
+        fs.writeFileSync(outputPath, workingProxies.join('\n'));
+        console.log(`\nWorking proxies found:`, workingProxies);
+        console.log(`Saved working proxies to ${outputPath}`);
+        process.exit(0);
+    } else {
+        console.warn('No working proxies found. Tests will run directly without proxy.');
+        process.exit(0);
     }
 }
 
 main().catch((err) => {
-    console.error('Error finding proxies:', err);
-    process.exit(1);
+    console.warn('Error finding proxies:', err);
+    process.exit(0);
 });

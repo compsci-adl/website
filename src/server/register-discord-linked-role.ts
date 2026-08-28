@@ -1,6 +1,10 @@
 import { env } from '@/env.mjs';
 
 export const registerDiscordLinkedRole = async () => {
+    if (!env.NEXT_PUBLIC_DISCORD_CLIENT_ID || !env.DISCORD_TOKEN) {
+        return null;
+    }
+
     const url = `https://discord.com/api/v10/applications/${env.NEXT_PUBLIC_DISCORD_CLIENT_ID}/role-connections/metadata`;
 
     const body = [
