@@ -22,7 +22,7 @@ export default async function AboutPage() {
                     <Title colour="orange">About Us</Title>
                 </div>
                 {/* Basic Description */}
-                <section className="flex flex-col gap-10 md:flex-row">
+                <section className="flex flex-col gap-10 lg:flex-row">
                     {/* Grid */}
                     <Image
                         src="/images/square-grid.svg"
@@ -31,18 +31,18 @@ export default async function AboutPage() {
                         height={500}
                         className="absolute -z-10 mt-8 ml-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
                     />
-                    <div className="mr-2 flex">
-                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded>
-                            <Image
-                                src={'/images/about/meet-and-greet.jpg'}
-                                alt={'Meet and Greet'}
-                                width={1210}
-                                height={800}
-                                className="rounded-xl border-2 border-white"
-                            ></Image>
+                    <div className="mx-auto w-full lg:w-1/2">
+                        <FancyRectangle colour={'purple'} offset={'8'} filled rounded fullWidth>
+                            <iframe
+                                src="https://www.youtube.com/embed/hk6HS_g9Tz4"
+                                title="Adelaide University Computer Science Club Trailer"
+                                className="aspect-video w-full rounded-xl border-2 border-white"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowFullScreen
+                            />
                         </FancyRectangle>
                     </div>
-                    <div className="mt-8 mb-10 flex flex-col lg:justify-center">
+                    <div className="mt-8 mb-10 flex w-full flex-col lg:my-0 lg:w-1/2 lg:justify-center">
                         <div className="relative flex justify-end">
                             <Image
                                 src="/images/white-star.svg"
@@ -420,6 +420,13 @@ export default async function AboutPage() {
                     refer to our{' '}
                     <a href="https://github.com/compsci-adl/Constitution" className="underline">
                         Constitution
+                    </a>
+                    , and{' '}
+                    <a
+                        href="https://drive.google.com/file/d/16Yk-pwU46TQ6yA_tIJ4prhOCbeqNCVua/view?usp=sharing"
+                        className="underline"
+                    >
+                        Code of Conduct
                     </a>
                     .
                 </Paragraph>
