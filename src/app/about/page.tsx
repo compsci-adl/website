@@ -22,7 +22,7 @@ export default async function AboutPage() {
                     <Title colour="orange">About Us</Title>
                 </div>
                 {/* Basic Description */}
-                <section className="flex flex-col gap-10 md:flex-row">
+                <section className="flex flex-col gap-10 lg:flex-row">
                     {/* Grid */}
                     <Image
                         src="/images/square-grid.svg"
@@ -31,7 +31,7 @@ export default async function AboutPage() {
                         height={500}
                         className="absolute -z-10 mt-8 ml-8 w-0 max-w-[800px] md:w-[70vw] lg:w-[50vw]"
                     />
-                    <div className="mx-auto w-full max-w-6xl">
+                    <div className="mx-auto w-full lg:w-1/2">
                         <FancyRectangle colour={'purple'} offset={'8'} filled rounded fullWidth>
                             <iframe
                                 src="https://www.youtube.com/embed/hk6HS_g9Tz4"
@@ -42,7 +42,7 @@ export default async function AboutPage() {
                             />
                         </FancyRectangle>
                     </div>
-                    <div className="mt-8 mb-10 flex flex-col lg:justify-center">
+                    <div className="mt-8 mb-10 flex w-full flex-col lg:my-0 lg:w-1/2 lg:justify-center">
                         <div className="relative flex justify-end">
                             <Image
                                 src="/images/white-star.svg"
