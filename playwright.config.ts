@@ -26,6 +26,9 @@ export default defineConfig({
     /* Configure proxy if provided via environment variable */
     proxy: process.env.PLAYWRIGHT_PROXY ? { server: process.env.PLAYWRIGHT_PROXY } : undefined,
 
+    /* Configure userAgent if provided via environment variable */
+    userAgent: process.env.PLAYWRIGHT_USER_AGENT || process.env.USER_AGENT || undefined,
+
     /* Ignore HTTPS certification errors */
     ignoreHTTPSErrors: true,
   },
@@ -36,35 +39,40 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        ...(process.env.PLAYWRIGHT_USER_AGENT || process.env.USER_AGENT
+          ? { userAgent: process.env.PLAYWRIGHT_USER_AGENT || process.env.USER_AGENT }
+          : {}),
         viewport: { width: 1440, height: 900 },
       },
     },
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'pnpm dev',
-    url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000,
-    env: {
-      SKIP_ENV_VALIDATION: 'true',
-      MOCK_SQUARE: 'true',
-      PORT: '3000',
-      AUTH_URL: 'http://localhost:3000',
-      NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: 'http://localhost:3000/join',
-      DATABASE_URL: 'file:dev.sqlite',
-      NEXT_PUBLIC_CONTAINER_KEYCLOAK_ENDPOINT: 'http://127.0.0.1:8080',
-      NEXT_PUBLIC_LOCAL_KEYCLOAK_URL: 'http://127.0.0.1:8080',
-      NEXT_PUBLIC_AUTH_REALM: 'cs-club',
-      AUTH_KEYCLOAK_ID: 'website',
-      AUTH_KEYCLOAK_SECRET: 'secret',
-      AUTH_SECRET: 'secret-auth-key-32-chars-long-or-more',
-      NEXT_PUBLIC_DRIVE_LINK: 'https://example.com/drive',
-      NEXT_PUBLIC_PAYLOAD_URI: process.env.NEXT_PUBLIC_PAYLOAD_URI || 'http://127.0.0.1:4000',
-      REDIS_URI: process.env.REDIS_URI || '',
-      SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN || '',
-      SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID || '',
-    },
-  },
+  webServer: process.env.SKIP_WEBSERVER
+    ? undefined
+    : {
+        command: 'pnpm dev',
+        url: 'http://localhost:3000',
+        reuseExistingServer: !process.env.CI,
+        timeout: 120000,
+        env: {
+          SKIP_ENV_VALIDATION: 'true',
+          MOCK_SQUARE: 'true',
+          PORT: '3000',
+          AUTH_URL: 'http://localhost:3000',
+          NEXT_PUBLIC_KEYCLOAK_REDIRECT_URI: 'http://localhost:3000/join',
+          DATABASE_URL: 'file:dev.sqlite',
+          NEXT_PUBLIC_CONTAINER_KEYCLOAK_ENDPOINT: 'http://127.0.0.1:8080',
+          NEXT_PUBLIC_LOCAL_KEYCLOAK_URL: 'http://127.0.0.1:8080',
+          NEXT_PUBLIC_AUTH_REALM: 'cs-club',
+          AUTH_KEYCLOAK_ID: 'website',
+          AUTH_KEYCLOAK_SECRET: 'secret',
+          AUTH_SECRET: 'secret-auth-key-32-chars-long-or-more',
+          NEXT_PUBLIC_DRIVE_LINK: 'https://example.com/drive',
+          NEXT_PUBLIC_PAYLOAD_URI: process.env.NEXT_PUBLIC_PAYLOAD_URI || 'http://127.0.0.1:4000',
+          REDIS_URI: process.env.REDIS_URI || '',
+          SQUARE_ACCESS_TOKEN: process.env.SQUARE_ACCESS_TOKEN || '',
+          SQUARE_LOCATION_ID: process.env.SQUARE_LOCATION_ID || '',
+        },
+      },
 });

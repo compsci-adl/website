@@ -25,12 +25,16 @@ test.describe('Production Services Check', () => {
         );
 
         // If NextAuth signin selection page is shown, click Keycloak signin button
-        if (await signInBtn.isVisible()) {
+        if (await signInBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
             await signInBtn.first().click();
         }
 
         // Wait for page to navigate to the Keycloak authentication realm
-        await page.waitForLoadState('load');
+        await page.waitForURL(
+            (url) =>
+                url.href.includes('cs-club') && /openid-connect|protocol|auth|login/.test(url.href),
+            { timeout: 20000 }
+        );
 
         // Verify it redirected to Keycloak domain containing the cs-club realm
         const currentUrl = page.url();

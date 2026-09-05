@@ -35,7 +35,12 @@ const archivo = Archivo({
 
 let didRegister = false;
 
-if (!didRegister) {
+const isProduction =
+    process.env.NODE_ENV === 'production' &&
+    !process.env.CI &&
+    Boolean(env.DISCORD_TOKEN && env.NEXT_PUBLIC_DISCORD_CLIENT_ID);
+
+if (isProduction && !didRegister) {
     didRegister = true;
     registerDiscordLinkedRole().catch((err) => {
         console.error('Failed to register Discord linked role metadata:', err);
