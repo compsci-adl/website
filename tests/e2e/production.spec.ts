@@ -1,9 +1,15 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Production Services Check', () => {
+    test.beforeEach(async ({ page }) => {
+        page.setDefaultNavigationTimeout(20000);
+    });
+
     test('website is up and fetches CMS data successfully', async ({ page }) => {
         // Go to live website
-        const response = await page.goto('https://csclub.org.au');
+        const response = await page.goto('https://csclub.org.au', {
+            waitUntil: 'domcontentloaded',
+        });
         expect(response?.status()).toBe(200);
 
         // Check website main elements are loaded (website is up)
@@ -17,7 +23,9 @@ test.describe('Production Services Check', () => {
 
     test('keycloak login redirect gives expected results', async ({ page }) => {
         // Go to signin page to trigger Keycloak login redirect
-        await page.goto('https://csclub.org.au/api/auth/signin?callbackUrl=%2Fjoin');
+        await page.goto('https://csclub.org.au/api/auth/signin?callbackUrl=%2Fjoin', {
+            waitUntil: 'domcontentloaded',
+        });
 
         // Look for the signin button in the NextAuth page
         const signInBtn = page.locator(
@@ -50,7 +58,9 @@ test.describe('Production Services Check', () => {
         // which fetches CMS data server-side. Sponsors are rendered under "Supported By".
         // We avoid hitting the CMS API directly because the CI runner IP is blocked by
         // Cloudflare WAF (returns 403) — going through the production website avoids this.
-        const response = await page.goto('https://csclub.org.au');
+        const response = await page.goto('https://csclub.org.au', {
+            waitUntil: 'domcontentloaded',
+        });
         expect(response?.status()).toBe(200);
 
         // If sponsors CMS data loads, the "Supported By" section appears

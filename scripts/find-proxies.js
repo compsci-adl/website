@@ -7,8 +7,9 @@ const PROXY_LIST_URL =
     'https://raw.githubusercontent.com/TheSpeedX/PROXY-List/refs/heads/master/http.txt';
 const TARGET_HOST = 'csclub.org.au';
 const TARGET_PORT = 443;
-const TIMEOUT_MS = 5000;
+const TIMEOUT_MS = 4000;
 const CONCURRENCY = 50;
+const TARGET_PROXY_COUNT = 5;
 
 function testProxy(proxyHost, proxyPort) {
     return new Promise((resolve, reject) => {
@@ -19,6 +20,12 @@ function testProxy(proxyHost, proxyPort) {
         });
 
         socket.setTimeout(TIMEOUT_MS);
+
+        const cleanup = () => {
+            try {
+                socket.destroy();
+            } catch {}
+        };
 
         socket.on('connect', () => {
             socket.write(
@@ -40,6 +47,13 @@ function testProxy(proxyHost, proxyPort) {
 
                     tlsSocket.setTimeout(TIMEOUT_MS);
 
+                    const tlsCleanup = () => {
+                        try {
+                            tlsSocket.destroy();
+                        } catch {}
+                        cleanup();
+                    };
+
                     const userAgent = process.env.USER_AGENT || 'Uptimeflare';
                     tlsSocket.on('secureConnect', () => {
                         tlsSocket.write(
@@ -48,40 +62,67 @@ function testProxy(proxyHost, proxyPort) {
                     });
 
                     let responseBuffer = '';
+                    let resolved = false;
+
                     tlsSocket.on('data', (resData) => {
                         responseBuffer += resData.toString();
-                    });
-
-                    tlsSocket.on('end', () => {
-                        const statusLine = responseBuffer.split('\r\n')[0];
-                        const duration = Date.now() - startTime;
-                        if (
-                            statusLine &&
-                            (statusLine.includes('200') ||
-                                statusLine.includes('301') ||
-                                statusLine.includes('302'))
-                        ) {
-                            resolve(duration);
-                        } else {
-                            reject(new Error(`Bad status: ${statusLine}`));
+                        if (!resolved && responseBuffer.includes('\r\n\r\n')) {
+                            const statusLine = responseBuffer.split('\r\n')[0];
+                            if (
+                                statusLine &&
+                                (statusLine.includes('200') ||
+                                    statusLine.includes('301') ||
+                                    statusLine.includes('302'))
+                            ) {
+                                resolved = true;
+                                const duration = Date.now() - startTime;
+                                tlsCleanup();
+                                resolve(duration);
+                            }
                         }
                     });
 
-                    tlsSocket.on('error', (err) => reject(err));
+                    tlsSocket.on('end', () => {
+                        if (!resolved) {
+                            const statusLine = responseBuffer.split('\r\n')[0];
+                            const duration = Date.now() - startTime;
+                            if (
+                                statusLine &&
+                                (statusLine.includes('200') ||
+                                    statusLine.includes('301') ||
+                                    statusLine.includes('302'))
+                            ) {
+                                resolved = true;
+                                tlsCleanup();
+                                resolve(duration);
+                            } else {
+                                tlsCleanup();
+                                reject(new Error(`Bad status: ${statusLine}`));
+                            }
+                        }
+                    });
+
+                    tlsSocket.on('error', (err) => {
+                        tlsCleanup();
+                        reject(err);
+                    });
                     tlsSocket.on('timeout', () => {
-                        tlsSocket.destroy();
+                        tlsCleanup();
                         reject(new Error('TLS Timeout'));
                     });
                 } else {
-                    socket.destroy();
+                    cleanup();
                     reject(new Error(`Proxy rejected CONNECT: ${buffer.split('\r\n')[0]}`));
                 }
             }
         });
 
-        socket.on('error', (err) => reject(err));
+        socket.on('error', (err) => {
+            cleanup();
+            reject(err);
+        });
         socket.on('timeout', () => {
-            socket.destroy();
+            cleanup();
             reject(new Error('Socket Timeout'));
         });
     });
@@ -115,12 +156,14 @@ async function main() {
                 const duration = await testProxy(host, port);
                 if (duration <= TIMEOUT_MS && !finished) {
                     console.log(`[SUCCESS] Proxy ${proxy} responded in ${duration}ms`);
-                    workingProxies.push(proxy);
-                    if (workingProxies.length >= 3) {
+                    workingProxies.push({ proxy, duration });
+                    if (workingProxies.length >= TARGET_PROXY_COUNT) {
                         finished = true;
+                        workingProxies.sort((a, b) => a.duration - b.duration);
+                        const sortedProxies = workingProxies.map((item) => item.proxy);
                         const outputPath = path.join(process.cwd(), 'working-proxies.txt');
-                        fs.writeFileSync(outputPath, workingProxies.join('\n'));
-                        console.log(`\nWorking proxies found:`, workingProxies);
+                        fs.writeFileSync(outputPath, sortedProxies.join('\n'));
+                        console.log(`\nWorking proxies found (sorted by latency):`, sortedProxies);
                         console.log(`Saved working proxies to ${outputPath}`);
                         process.exit(0);
                     }
@@ -136,9 +179,11 @@ async function main() {
     await Promise.all(workers);
 
     if (workingProxies.length > 0) {
+        workingProxies.sort((a, b) => a.duration - b.duration);
+        const sortedProxies = workingProxies.map((item) => item.proxy);
         const outputPath = path.join(process.cwd(), 'working-proxies.txt');
-        fs.writeFileSync(outputPath, workingProxies.join('\n'));
-        console.log(`\nWorking proxies found:`, workingProxies);
+        fs.writeFileSync(outputPath, sortedProxies.join('\n'));
+        console.log(`\nWorking proxies found (sorted by latency):`, sortedProxies);
         console.log(`Saved working proxies to ${outputPath}`);
         process.exit(0);
     } else {
