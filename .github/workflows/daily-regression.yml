@@ -40,7 +40,7 @@ jobs:
             while read -r proxy; do
               if [ -z "$proxy" ]; then continue; fi
               echo "Attempting to run regression tests using proxy: $proxy"
-              if PLAYWRIGHT_PROXY="http://$proxy" PLAYWRIGHT_USER_AGENT="Uptimeflare" pnpm exec playwright test tests/e2e/production.spec.ts; then
+              if PLAYWRIGHT_PROXY="http://$proxy" PLAYWRIGHT_USER_AGENT="Uptimeflare" pnpm exec playwright test tests/e2e/production.spec.ts --retries=1; then
                 success=true
                 break
               else
@@ -48,8 +48,13 @@ jobs:
               fi
             done < working-proxies.txt
             if [ "$success" = false ]; then
-              echo "All proxies failed."
-              exit 1
+              echo "All proxies failed. Falling back to running directly without proxy..."
+              if PLAYWRIGHT_USER_AGENT="Uptimeflare" pnpm exec playwright test tests/e2e/production.spec.ts; then
+                success=true
+              else
+                echo "Direct run without proxy also failed."
+                exit 1
+              fi
             fi
           else
             echo "working-proxies.txt not found. Running without proxy..."
