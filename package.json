@@ -40,7 +40,7 @@
     "nanoid": "^5.1.16",
     "next": "^16.2.10",
     "next-auth": "5.0.0-beta.32",
-    "nodemailer": "^9.0.3",
+    "nodemailer": "^10.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-email": "^5.2.11",
