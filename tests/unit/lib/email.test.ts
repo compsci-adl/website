@@ -3,14 +3,19 @@ import { describe, it, mock } from 'node:test';
 
 let createTransportOptions: unknown = null;
 
+const mockNodemailer = {
+    createTransport: (options: unknown) => {
+        createTransportOptions = options;
+        return {
+            sendMail: async () => {},
+        };
+    },
+};
+
 mock.module('nodemailer', {
     exports: {
-        createTransport: (options: unknown) => {
-            createTransportOptions = options;
-            return {
-                sendMail: async () => {},
-            };
-        },
+        ...mockNodemailer,
+        default: mockNodemailer,
     },
 });
 
