@@ -5,7 +5,7 @@ type LinkCardProps = CustomLink;
 function LinkCard({ title, url, description }: LinkCardProps) {
     return (
         <FancyRectangle colour="white" offset="8" rounded>
-            <div className="box-border flex w-[100vw] max-w-2xl flex-col items-stretch rounded-xl bg-white p-4 text-black md:p-6">
+            <div className="box-border flex w-[90vw] max-w-2xl flex-col items-stretch rounded-xl bg-white p-4 text-black md:p-6">
                 <div className="w-full space-y-2">
                     <a
                         className="block w-full truncate rounded-lg border-[3px] border-black p-2 text-xl font-semibold hover:underline md:text-2xl"

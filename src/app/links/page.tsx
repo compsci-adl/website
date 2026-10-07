@@ -10,17 +10,24 @@ export const metadata: Metadata = {
 };
 
 export default async function LinksPage() {
-    // Get links from payload
     const links: CustomLink[] = await fetchLinks();
 
     return (
-        <main className="flex flex-col items-center gap-10">
+        <main className="flex flex-col items-center gap-10 px-8 md:px-0">
             <div className="flex items-center gap-8">
                 <Title colour="yellow">Links</Title>
             </div>
-            <div className="flex max-w-3xl flex-col items-center gap-4 border-x-4 border-white p-2 text-center text-lg md:p-5 md:text-2xl">
+            <div className="flex max-w-3xl flex-col items-center gap-4 border-x-4 border-white p-4 text-center text-lg md:p-5 md:text-2xl">
                 <div>Check out these important external links recommended by</div>
-                <Duck colour="yellow" size={80} className="hidden md:block" />
+                <div className="flex max-w-3xl flex-col items-center gap-4 p-4 text-center text-lg md:p-5 md:text-2xl">
+                    {/* Mobile */}
+                    <div className="block text-base text-xl font-semibold md:hidden">
+                        The CS Club
+                    </div>
+
+                    {/* Desktop */}
+                    <Duck colour="yellow" size={80} className="hidden md:block" />
+                </div>
             </div>
             <Links links={links} />
         </main>
