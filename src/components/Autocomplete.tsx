@@ -8,7 +8,9 @@ interface AutocompleteProps<TOption> {
     value: TOption | null;
     onChange: (option: TOption | null) => void;
     options: TOption[];
+    searchOptions?: TOption[];
     displayOptionStr: (option: TOption) => string;
+    filterOptionStr?: (option: TOption) => string;
     placeholder?: string;
     notFoundMessage?: string;
     className?: string;
@@ -17,7 +19,9 @@ export default function Autocomplete<TOption>({
     value,
     onChange,
     options,
+    searchOptions,
     displayOptionStr,
+    filterOptionStr,
     placeholder,
     notFoundMessage,
     className,
@@ -26,8 +30,10 @@ export default function Autocomplete<TOption>({
     const filteredOptions =
         query === ''
             ? options
-            : options.filter((option) =>
-                  displayOptionStr(option).toLowerCase().includes(query.toLowerCase())
+            : (searchOptions ?? options).filter((option) =>
+                  (filterOptionStr ?? displayOptionStr)(option)
+                      .toLowerCase()
+                      .includes(query.toLowerCase())
               );
 
     return (
