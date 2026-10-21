@@ -20,7 +20,7 @@ jobs:
   build:
     needs: lint-format
     name: Build
-    runs-on: ubuntu-24.04-arm
+    runs-on: ubuntu-26.04-arm
     environment: Production
     permissions:
       id-token: write
