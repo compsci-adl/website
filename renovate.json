@@ -18,19 +18,19 @@
   "minimumReleaseAge": "3 days",
   "packageRules": [
     {
-      "matchManagers": ["github-actions"],
+      "matchDatasources": ["github-actions"],
       "matchUpdateTypes": ["major"],
       "groupName": "GitHub Actions major updates",
       "groupSlug": "github-actions-major-updates"
     },
     {
-      "matchManagers": ["github-actions"],
+      "matchDatasources": ["github-actions"],
       "matchUpdateTypes": ["minor", "patch", "digest"],
       "enabled": false
     },
     {
       "matchDatasources": ["npm"],
-      "isVulnerabilityAlert": true,
+      "matchUpdateTypes": ["security"],
       "groupName": "npm security updates",
       "groupSlug": "npm-security-updates"
     },
@@ -41,7 +41,7 @@
     },
     {
       "matchDatasources": ["docker"],
-      "isVulnerabilityAlert": true,
+      "matchUpdateTypes": ["security"],
       "groupName": "docker security updates",
       "groupSlug": "docker-security-updates"
     },
