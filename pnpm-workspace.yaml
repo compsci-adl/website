@@ -12,7 +12,7 @@ overrides:
   esbuild@<=0.24.2: "^0.28.1"
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
   "esbuild@^0.24.3": "^0.28.1"
-  postcss@<8.5.10: "^8.5.19"
+  postcss@<8.5.10: "^8.5.20"
   protobufjs@<7.5.5: "^7.5.6"
 peerDependencyRules:
   allowedVersions:
@@ -28,7 +28,7 @@ minimumReleaseAgeExclude:
   - next@16.2.11
   # Renovate security update: next-auth@5.0.0-beta.32
   - next-auth@5.0.0-beta.32
-  # Renovate security update: postcss@8.5.18 || 8.5.23 || 8.5.19
-  - postcss@8.5.18 || 8.5.23 || 8.5.19
+  # Renovate security update: postcss@8.5.18 || 8.5.23 || 8.5.19 || 8.5.20
+  - postcss@8.5.18 || 8.5.23 || 8.5.19 || 8.5.20
   # Renovate security update: protobufjs@7.5.6
   - protobufjs@7.5.6
