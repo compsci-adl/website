@@ -7,7 +7,7 @@ settings:
 overrides:
   esbuild@<=0.24.2: ^0.28.0
   esbuild@>=0.27.3 <0.28.1: ^0.28.1
-  esbuild@^0.24.3: ^0.28.0
+  esbuild@^0.24.3: ^0.28.1
   postcss@<8.5.10: ^8.5.18
   protobufjs@<7.5.5: ^7.5.5
 
@@ -2069,6 +2069,11 @@ packages:
 
   ajv-formats@3.0.1:
     resolution: {integrity: sha512-8iUql50EUR+uUcdRQ3HDqa6EVyo3docL8g5WJ3FNcWmu62IbkGUue/pEyLBW8VGKKucTPgqeks4fIU1DA4yowQ==}
+    peerDependencies:
+      ajv: ^8.0.0
+    peerDependenciesMeta:
+      ajv:
+        optional: true
 
   ajv@6.15.0:
     resolution: {integrity: sha512-fgFx7Hfoq60ytK2c7DhnF8jIvzYgOMxfugjLOSMHjLIPgenqa7S7oaagATUq99mV6IYvN2tRmC0wnTYX6iPbMw==}
