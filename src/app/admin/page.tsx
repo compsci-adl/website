@@ -18,7 +18,6 @@ const PAGE_SIZE = 250;
 
 const queryMembers = async (page: number) => {
     const skip = (page - 1) * PAGE_SIZE;
-
     // Fetch members with pagination
     const dbMembers = await db.query.memberTable.findMany({
         columns: {
@@ -47,6 +46,24 @@ const queryMembers = async (page: number) => {
         totalPages,
     };
 };
+const queryAllMembers = async () => {
+    const dbMembers = await db.query.memberTable.findMany({
+        columns: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            membershipExpiresAt: true,
+            createdAt: true,
+        },
+        orderBy: desc(memberTable.createdAt),
+    });
+
+    return dbMembers.map(({ membershipExpiresAt, ...member }) => ({
+        ...member,
+        paid: membershipExpiresAt !== null && membershipExpiresAt > new Date(),
+    }));
+};
 
 export type Member = {
     paid: boolean;
@@ -65,7 +82,10 @@ export default async function AdminPage(props: { searchParams?: Promise<{ page?:
     }
 
     const page = parseInt(searchParams?.page || '1', 10);
-    const { members, totalPages } = await queryMembers(page);
+    const [{ members, totalPages }, allMembers] = await Promise.all([
+        queryMembers(page),
+        queryAllMembers(),
+    ]);
 
     return (
         <div className="space-y-8">
@@ -74,7 +94,7 @@ export default async function AdminPage(props: { searchParams?: Promise<{ page?:
             </div>
             <FancyRectangle colour="purple" offset="8" filled fullWidth>
                 <div className="w-full border-4 border-black bg-white px-8 py-8 text-black md:px-12 md:py-12">
-                    <MemberForm members={members} />
+                    <MemberForm members={members} allMembers={allMembers} />
                     <PaginationControls currentPage={page} totalPages={totalPages} />
                 </div>
             </FancyRectangle>
