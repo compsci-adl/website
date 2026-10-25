@@ -89,8 +89,7 @@ function sessionCallback(params: any) {
         (session.user as ExtendedSession['user']).firstName = token.firstName as string | undefined;
         (session.user as ExtendedSession['user']).lastName = token.lastName as string | undefined;
         (session.user as ExtendedSession['user']).isCommittee = token.isCommittee as
-            | boolean
-            | undefined;
+            boolean | undefined;
         (session.user as ExtendedSession['user']).isAdmin = token.isAdmin as boolean | undefined;
     }
     return session;
