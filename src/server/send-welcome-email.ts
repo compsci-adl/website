@@ -3,7 +3,7 @@ import { memberTable } from '@/db/schema';
 import Email from '@/emails/Welcome';
 import { env } from '@/env.mjs';
 import { transporter } from '@/lib/email';
-import { render } from '@react-email/components';
+import { render } from 'react-email';
 import { eq } from 'drizzle-orm';
 import React from 'react';
 

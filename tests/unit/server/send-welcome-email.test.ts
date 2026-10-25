@@ -43,7 +43,7 @@ mock.module('drizzle-orm', {
 });
 
 // Mock react-email rendering
-mock.module('@react-email/components', {
+mock.module('react-email', {
     exports: {
         Img: () => null,
         Section: ({ children }: { children?: React.ReactNode }) => children,
