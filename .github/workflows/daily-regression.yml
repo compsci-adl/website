@@ -29,12 +29,6 @@ jobs:
           cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           cloudflare-zone-id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
 
-      - name: Find working proxies
-        continue-on-error: true
-        env:
-          USER_AGENT: 'Uptimeflare'
-        run: node scripts/find-proxies.js
-
       - name: Run Production Regression Tests
         env:
           SKIP_WEBSERVER: 'true'
