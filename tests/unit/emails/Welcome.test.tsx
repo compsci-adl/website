@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { describe, it, afterEach, mock } from 'node:test';
 import React from 'react';
 
-mock.module('@react-email/components', {
+mock.module('react-email', {
     exports: {
         Html: ({ children }: React.PropsWithChildren) => <div>{children}</div>,
         Head: ({ children }: React.PropsWithChildren) => <div data-testid="head">{children}</div>,

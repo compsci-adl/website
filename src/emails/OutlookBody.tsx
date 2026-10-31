@@ -1,4 +1,4 @@
-import { Img, Container } from '@react-email/components';
+import { Img, Container } from 'react-email';
 import * as React from 'react';
 
 export interface BodyProps {

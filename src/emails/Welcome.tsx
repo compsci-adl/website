@@ -1,15 +1,5 @@
 import { LINKS } from '@/data/links';
-import {
-    Img,
-    Section,
-    Row,
-    Column,
-    Head,
-    Html,
-    Body,
-    Container,
-    Tailwind,
-} from '@react-email/components';
+import { Img, Section, Row, Column, Head, Html, Body, Container, Tailwind } from 'react-email';
 import * as React from 'react';
 import EmailBody from './Body';
 import { HtmlConditionalComment } from './HtmlConditionalComment';
