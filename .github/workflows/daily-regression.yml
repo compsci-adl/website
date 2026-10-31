@@ -24,10 +24,11 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Whitelist GitHub Actions IP in Cloudflare
-        uses: xiaotianxt/bypass-cloudflare-for-github-action
+        uses: xiaotianxt/bypass-cloudflare-for-github-action@v2.1.0
         with:
-          cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          cloudflare-zone-id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          cf_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          cf_zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
+          cf_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
 
       - name: Run Production Regression Tests
         env:
@@ -35,32 +36,7 @@ jobs:
           NEXT_PUBLIC_PAYLOAD_URI: 'https://cms.csclub.org.au'
           USER_AGENT: 'Uptimeflare'
           PLAYWRIGHT_USER_AGENT: 'Uptimeflare'
-        run: |
-          if [ -f working-proxies.txt ]; then
-            success=false
-            while read -r proxy; do
-              if [ -z "$proxy" ]; then continue; fi
-              echo "Attempting to run regression tests using proxy: $proxy"
-              if PLAYWRIGHT_PROXY="http://$proxy" PLAYWRIGHT_USER_AGENT="Uptimeflare" pnpm exec playwright test tests/e2e/production.spec.ts --retries=1; then
-                success=true
-                break
-              else
-                echo "Tests failed using proxy $proxy. Retrying with next proxy..."
-              fi
-            done < working-proxies.txt
-            if [ "$success" = false ]; then
-              echo "All proxies failed. Falling back to running directly without proxy..."
-              if PLAYWRIGHT_USER_AGENT="Uptimeflare" pnpm exec playwright test tests/e2e/production.spec.ts; then
-                success=true
-              else
-                echo "Direct run without proxy also failed."
-                exit 1
-              fi
-            fi
-          else
-            echo "working-proxies.txt not found. Running without proxy..."
-            PLAYWRIGHT_USER_AGENT="Uptimeflare" pnpm exec playwright test tests/e2e/production.spec.ts
-          fi
+        run: pnpm exec playwright test tests/e2e/production.spec.ts
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7
         if: ${{ !cancelled() }}
