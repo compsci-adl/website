@@ -24,7 +24,7 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Whitelist GitHub Actions IP in Cloudflare
-        uses: xiaotianxt/bypass-cloudflare-for-github-action@v2.1.0
+        uses: xiaotianxt/bypass-cloudflare-for-github-action@0c44a8bb3b1c9d370e48be2becf88ef33de8d57e # v2.1.0
         with:
           cf_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           cf_zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
