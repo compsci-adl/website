@@ -29,6 +29,7 @@ jobs:
           cf_account_id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           cf_zone_id: ${{ secrets.CLOUDFLARE_ZONE_ID }}
           cf_api_token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          disable_bot_fight_mode: 'true'
 
       - name: Run Production Regression Tests
         env:
