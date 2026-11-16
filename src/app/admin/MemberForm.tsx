@@ -12,7 +12,8 @@ const Autocomplete = dynamic(() => import('@/components/Autocomplete'), {
 }) as typeof import('@/components/Autocomplete').default;
 
 const getMemberStr = (member: Member) => `${member.email} - ${member.firstName} ${member.lastName}`;
-
+const getMemberSearchStr = (member: Member) =>
+    `${member.email} ${member.firstName} ${member.lastName}`;
 function MemberDetail({ member }: { member: Member }) {
     const [payment, setPayment] = useState(member.paid);
 
@@ -53,16 +54,24 @@ function MemberDetail({ member }: { member: Member }) {
     );
 }
 
-export default function MemberForm({ members }: { members: Member[] }) {
+export default function MemberForm({
+    members,
+    allMembers,
+}: {
+    members: Member[];
+    allMembers: Member[];
+}) {
     const [selectedMember, setSelectedMember] = useState<Member | null>(null);
 
     return (
         <div className="w-full space-y-4">
             <Autocomplete
                 options={members}
+                searchOptions={allMembers}
                 value={selectedMember}
                 onChange={setSelectedMember}
                 displayOptionStr={getMemberStr}
+                filterOptionStr={getMemberSearchStr}
                 placeholder="Search for a member by email or name..."
                 notFoundMessage="No members found"
             />
